@@ -848,8 +848,14 @@ window.FB = window.FB || {};
     var marker = root.querySelector('#crx-' + o.id);
     if (!path || !marker || !path.getTotalLength) return;
     var L = path.getTotalLength();
-    /* the route is drawn restaurant->home, so progress runs backwards along it */
-    var pt = path.getPointAtLength(L * (1 - FB.clamp(t, 0, 1)));
+    /* Nobody has been assigned yet, so nobody is on the route. The dot used to set
+       off toward your house during `confirmed`, which is a courier travelling before
+       one exists — it is parked at the restaurant and hidden until the beat that
+       introduces them plays. Driven from here rather than from mapSvg because the map
+       is rendered once and only this runs on the ticker. */
+    var waiting = !FB.tracker.assigned(o);
+    marker.style.display = waiting ? 'none' : '';
+    var pt = path.getPointAtLength(L * (1 - FB.clamp(waiting ? 0 : t, 0, 1)));
     marker.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ',' + pt.y.toFixed(1) + ')');
   };
 

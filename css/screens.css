@@ -254,6 +254,14 @@
 .slingercard .gc-b b { display: block; font: 700 calc(15px * var(--fs)) var(--font); }
 .slingercard .gc-b span { display: block; font: var(--t-cap); color: var(--ink-2); margin-top: 2px; }
 .slingercard .gc-a { display: flex; gap: 8px; }
+/* the dispatch queue: a number where a face would be, because there is no face yet */
+.slingercard--queue .gc-q {
+  width: 52px; height: 52px; border-radius: 50%; flex: none;
+  display: grid; place-items: center;
+  background: var(--surface-3); color: var(--ink-3);
+  font: 700 calc(19px * var(--fs)) var(--font); font-variant-numeric: tabular-nums;
+}
+.slingercard--queue .gc-b b { color: var(--ink-2); }
 
 .orderrow { display: flex; gap: 12px; padding: 14px var(--pad); border-bottom: 1px solid var(--line); width: 100%; text-align: left; align-items: flex-start; }
 .orderrow img { width: 46px; height: 46px; border-radius: 12px; flex: none; object-fit: cover; }

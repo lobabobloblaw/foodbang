@@ -1970,8 +1970,115 @@ check('nobody is driving until somebody has been assigned', () => {
       }
     } finally { b2.clock.restore(); b2.dispose(); }
 
+    /* --- and the SCREEN agrees with the sim ---
+       Without this the tracker is honest and TRACKR is not: it drew the photograph,
+       the name, the rating and a Message button for someone the feed had not
+       mentioned. Same shape as the pickup repair this file already covers. */
+    (function () {
+      /* A FRESH order: `dsp` above has already been replayed, and the monotonic guard
+         correctly refuses to un-introduce someone the feed has named — so rewinding
+         the clock on it would be testing the wrong thing. */
+      const d = harness.loadApp();
+      try {
+        d.clock.set(T0);
+        harness.addToCart(d.FB, 'cluckingham', 3);
+        const x = harness.makeOrder(d.FB, 'cluckingham', { now: T0 });
+        x.id = 'dsp_screen'; x.events = []; x.etaDrift = 0; delete x.replayed;
+        d.FB.tracker.build(x);
+        d.FB.store.set((st) => { st.orders.unshift(x); st.activeOrderId = x.id; return st; });
+        const trk = d.FB.screens.get('track');
+        d.clock.set(x.startAt + 1);
+        const before = trk.render({ id: 'dsp_screen' });
+        if (!/slingercard--queue/.test(before)) throw new Error('TRACKR draws a courier before one is assigned');
+        if (before.indexOf(x.slinger.name) > -1) throw new Error('TRACKR names the courier before the feed introduces them');
+        if (/data-msg/.test(before)) throw new Error('TRACKR offers to message a courier who has not been assigned');
+        if (!/Position \d+ of \d+ in the dispatch queue/.test(before)) throw new Error('the queue card does not say where you are');
+        d.clock.set(d.FB.tracker.assignedAt(x) + 1000);
+        d.FB.tracker.tick();
+        const after = trk.render({ id: 'dsp_screen' });
+        if (/slingercard--queue/.test(after)) throw new Error('the queue card survives the assignment');
+        if (after.indexOf(d.FB.store.order('dsp_screen').slinger.name) < 0) throw new Error('TRACKR never names the courier at all');
+        if (!/data-msg/.test(after)) throw new Error('an assigned courier cannot be messaged');
+      } finally { d.clock.restore(); d.dispose(); }
+    })();
+
+    /* THE MAP. The dot used to set off toward your house during `confirmed` — a
+       courier travelling before one exists. placeCourier needs a measurable path,
+       which the harness's stub document does not provide, so it gets one here. */
+    (function () {
+      const m = harness.loadApp();
+      try {
+        m.clock.set(T0);
+        harness.addToCart(m.FB, 'cluckingham', 3);
+        const x = harness.makeOrder(m.FB, 'cluckingham', { now: T0 });
+        x.id = 'dsp_map'; x.events = []; x.etaDrift = 0; delete x.replayed;
+        m.FB.tracker.build(x);
+        m.FB.store.set((st) => { st.orders.unshift(x); st.activeOrderId = x.id; return st; });
+        const marker = { style: {}, setAttribute(k, v) { this[k] = v; } };
+        const svg = { querySelector: (sel) => (sel.indexOf('#rt-') === 0
+          ? { getTotalLength: () => 100, getPointAtLength: (l) => ({ x: l, y: l }) }
+          : marker) };
+        m.clock.set(x.startAt + 1);
+        m.FB.tracker.placeCourier(svg, x, 0.4);
+        if (marker.style.display !== 'none') throw new Error('the map draws a courier before one is assigned');
+        if (marker.transform !== 'translate(100.0,100.0)') {
+          throw new Error('an unassigned courier is not parked at the restaurant: ' + marker.transform);
+        }
+        m.clock.set(m.FB.tracker.assignedAt(x) + 1000);
+        m.FB.tracker.tick();
+        m.FB.tracker.placeCourier(svg, m.FB.store.order('dsp_map'), 0.4);
+        if (marker.style.display === 'none') throw new Error('the courier never appears on the map');
+        if (marker.transform === 'translate(100.0,100.0)') throw new Error('an assigned courier never leaves the restaurant');
+      } finally { m.clock.restore(); m.dispose(); }
+    })();
+
+    /* THE FIFTH CACHED FRAGMENT. This screen patches a fixed list of nodes on the
+       ticker and rebuilds the body only when delivery changes its shape — so a card
+       that is not in that list renders "Position 4 of 4" once and never becomes a
+       person. Driven through the real mount, because the list is the bug. */
+    (function () {
+      const c = harness.loadApp();
+      try {
+        c.clock.set(T0);
+        harness.addToCart(c.FB, 'cluckingham', 3);
+        const x = harness.makeOrder(c.FB, 'cluckingham', { now: T0 });
+        x.id = 'dsp_patch'; x.events = []; x.etaDrift = 0; delete x.replayed;
+        c.FB.tracker.build(x);
+        c.FB.store.set((st) => { st.orders.unshift(x); st.activeOrderId = x.id; return st; });
+        c.FB.nav.go = () => {};
+        c.FB.nav.current = () => ({ name: 'track', params: { id: 'dsp_patch' } });
+        const nodes = {};
+        const mk = (cls) => (nodes[cls] = nodes[cls] || { innerHTML: '', className: cls });
+        const el = () => ({ dataset: {}, innerHTML: '', scrollTop: 0, addEventListener() {}, removeEventListener() {},
+          querySelector: (sel) => (sel && sel.charAt(0) === '.' ? mk(sel.slice(1)) : el()),
+          querySelectorAll: () => [], contains: () => true, setAttribute() {}, getAttribute: () => null,
+          classList: { add() {}, remove() {}, toggle() {} }, style: {} });
+        const root = el();
+        const gap = c.FB.tracker.assignedAt(x) - x.startAt;
+        c.clock.set(x.startAt + 1);
+        c.FB._binds = []; c.FB.screens.get('track').mount(root, { id: 'dsp_patch' }); c.FB._binds = null;
+        /* mount() PATCHES; the initial markup comes from render(). So the first thing
+           to prove is that a tick writes this node at all — if the fragment is not in
+           the patch list it stays exactly as render() left it, forever. */
+        c.clock.set(x.startAt + Math.round(gap * 0.7));
+        c.FB.tracker.tick();
+        const mid = mk('trk-slinger').innerHTML;
+        if (!/dispatch queue/.test(mid)) {
+          throw new Error('the dispatch card is not patched on the ticker — it renders once and never counts down');
+        }
+        /* and then it must become a person, without a body rebuild */
+        c.clock.set(c.FB.tracker.assignedAt(x) + 1500);
+        c.FB.tracker.tick();
+        const late = mk('trk-slinger').innerHTML;
+        if (/dispatch queue/.test(late)) throw new Error('the queue card is still up after the courier was assigned');
+        if (late.indexOf(c.FB.store.order('dsp_patch').slinger.name) < 0) {
+          throw new Error('the patched card does not name the courier');
+        }
+      } finally { c.clock.restore(); c.dispose(); }
+    })();
+
     return 'the gap is ' + ((at - o.startAt) / 1000).toFixed(1) + 's, the queue counts down from ' +
-      samples[0].of + ', and ' + checked + ' orders introduce the courier before naming them';
+      samples[0].of + ', ' + checked + ' orders introduce the courier before naming them, and the card is patched live';
   } finally { clock.restore(); app.dispose(); }
 });
 

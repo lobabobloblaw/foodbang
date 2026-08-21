@@ -85,6 +85,10 @@ window.FB = window.FB || {};
          and rebuilds the body only when delivery changes its shape — so a countdown
          that is not in this list is a countdown that never moves. */
       var lastInc = incidentBlock(o);
+      /* A FIFTH. The dispatch queue counts down on the ticker and then becomes a
+         person — omit it here and the card renders "Position 4 of 4" once and stays
+         there for the whole delivery. */
+      var lastSlinger = slingerBlock(o);
       var lastStatus = o.status;
       offTick = FB.tracker.onTick(function () {
         var cur = FB.store.order(p.id);
@@ -120,6 +124,9 @@ window.FB = window.FB || {};
           var nextInc = incidentBlock(cur);
           var incEl = root.querySelector('.trk-inc');
           if (incEl && nextInc !== lastInc) { incEl.innerHTML = nextInc; lastInc = nextInc; }
+          var nextSl = slingerBlock(cur);
+          var slEl = root.querySelector('.trk-slinger');
+          if (slEl && nextSl !== lastSlinger) { slEl.innerHTML = nextSl; lastSlinger = nextSl; }
         }
         /* one announcement per step, not one per second */
         if (cur.status !== lastStatus) {
@@ -204,6 +211,45 @@ window.FB = window.FB || {};
       '</div>';
   }
 
+  /* Who is carrying it — or, until somebody is, where you are in the queue.
+     The courier has been decided since placement, but the app is not entitled to
+     draw them until the beat that introduces them has played: this screen used to
+     show a photograph, a name, a rating and a Message button for a median of nine
+     seconds before the feed above it mentioned anyone. */
+  function slingerBlock(o) {
+    if (o.mode === 'pickup') {
+      var store = FB.catalog.get(o.slug);
+      return '<div class="slingercard">' +
+        (store && store.logoSrc ? '<img src="' + store.logoSrc + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '') +
+        '<span class="gc-b"><b>' + FB.esc(store ? store.name : o.storeName) + '</b>' +
+        '<span>' + FB.esc(store ? store.address : 'Collection counter') + '</span>' +
+        '<span style="font:var(--t-cap);color:var(--ink-3);margin-top:3px;display:block">' +
+        'Collection shelf · unattended</span></span></div>';
+    }
+    var q = FB.tracker.dispatch(o);
+    if (q) {
+      /* No photograph, no name, no rating, and no [data-msg] — there is nobody to
+         message. The queue is the only thing the platform will commit to, and it
+         does not commit to that either. */
+      return '<div class="slingercard slingercard--queue">' +
+        '<span class="gc-q" aria-hidden="true">' + q.position + '</span>' +
+        '<span class="gc-b"><b>No Slinger has been assigned</b>' +
+        '<span>Position ' + q.position + ' of ' + q.of + ' in the dispatch queue.</span>' +
+        '<span style="font:var(--t-cap);color:var(--ink-3);margin-top:3px;display:block">' +
+        (q.revised
+          ? 'The queue has been recalculated in the interest of accuracy.'
+          : 'Position is indicative and is not a commitment.') +
+        '</span></span></div>';
+    }
+    var g = o.slinger;
+    if (!g) return '';
+    return '<div class="slingercard"><img src="' + g.photo + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
+      '<span class="gc-b"><b>' + FB.esc(g.name) + '</b>' +
+      '<span>' + g.rating.toFixed(1) + '★ · ' + FB.plural(g.deliveries, 'delivery', 'deliveries') + ' · ' + FB.esc(g.vehicle) + '</span>' +
+      '<span style="font:var(--t-cap);color:var(--ink-3);margin-top:3px;display:block">Employed ' + FB.plural(g.tenure, 'day') + '</span></span>' +
+      '<span class="gc-a"><button class="iconbtn" data-msg aria-label="Message">' + FB.icon('phone', 18) + '</button></span></div>';
+  }
+
   function feedBlock(o) {
     var done = o.status === 'delivered';
     return o.events.map(function (e, i) {
@@ -226,7 +272,6 @@ window.FB = window.FB || {};
        went on drawing a courier card, a route to YOU and a doorstep photo over a feed
        that says you are collecting it yourself. The suite only grepped the feed. */
     var pickup = o.mode === 'pickup';
-    var store = FB.catalog.get(o.slug);
     var h = '';
 
     /* map */
@@ -260,23 +305,10 @@ window.FB = window.FB || {};
         'Arrival is not affected by tip. Tip is not affected by arrival. These facts are unrelated and are presented together.</p></div>';
     }
 
-    /* slinger — or, for a pickup, the shelf you are collecting from. No courier card
-       and no Message button: openChat renders delivery dialogue and tenureLine
-       describes someone who is driving. */
-    if (pickup) {
-      h += '<div class="slingercard">' +
-        (store && store.logoSrc ? '<img src="' + store.logoSrc + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '') +
-        '<span class="gc-b"><b>' + FB.esc(store ? store.name : o.storeName) + '</b>' +
-        '<span>' + FB.esc(store ? store.address : 'Collection counter') + '</span>' +
-        '<span style="font:var(--t-cap);color:var(--ink-3);margin-top:3px;display:block">' +
-        'Collection shelf · unattended</span></span></div>';
-    } else {
-      h += '<div class="slingercard"><img src="' + g.photo + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
-        '<span class="gc-b"><b>' + FB.esc(g.name) + '</b>' +
-        '<span>' + g.rating.toFixed(1) + '★ · ' + FB.plural(g.deliveries, 'delivery', 'deliveries') + ' · ' + FB.esc(g.vehicle) + '</span>' +
-        '<span style="font:var(--t-cap);color:var(--ink-3);margin-top:3px;display:block">Employed ' + FB.plural(g.tenure, 'day') + '</span></span>' +
-        '<span class="gc-a"><button class="iconbtn" data-msg aria-label="Message">' + FB.icon('phone', 18) + '</button></span></div>';
-    }
+    /* A FIFTH cached fragment — see mount(). The queue below counts down on the
+       ticker, so a card that is not patched there is a card that renders once and
+       never becomes a person. */
+    h += '<div class="trk-slinger">' + slingerBlock(o) + '</div>';
 
     /* feed */
     h += '<div class="trk-feed">' + feedBlock(o) + '</div>';
