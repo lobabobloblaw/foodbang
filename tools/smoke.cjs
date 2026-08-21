@@ -254,6 +254,97 @@ check('no stale brand strings in source', () => {
   return 'clean';
 });
 
+/* ---- the UI layer, rendered headlessly ---------------------------------- */
+/* Until these two, ~2,300 lines of js/ui had exactly one grep for coverage. Every
+   screen's render() is a pure string function by architectural rule, so the whole
+   layer can be exercised behind a stub document — see tools/harness.cjs. */
+const harness = require(path.join(ROOT, 'tools/harness.cjs'));
+
+/* Buttons are not nested in this app, but count depth anyway rather than assume it. */
+function eachButton(html, fn) {
+  const re = /<button\b/g;
+  let m;
+  while ((m = re.exec(html))) {
+    const gt = html.indexOf('>', m.index);
+    if (gt < 0) continue;
+    const attrs = html.slice(m.index + 7, gt);
+    let depth = 1, i = gt + 1;
+    while (i < html.length && depth > 0) {
+      const nb = html.indexOf('<button', i), cb = html.indexOf('</button>', i);
+      if (cb < 0) break;
+      if (nb > -1 && nb < cb) { depth++; i = nb + 7; } else { depth--; i = cb + 9; }
+    }
+    fn(attrs, html.slice(gt + 1, i - 9));
+  }
+}
+
+let RENDERED = null;   /* [{screen, fn, html}] — built once, swept twice */
+
+check('every screen renders under every state fixture', () => {
+  const app = harness.loadApp();
+  const { FB } = app;
+  RENDERED = [];
+  const bad = [];
+  let n = 0;
+  for (const fx of harness.FIXTURES) {
+    FB.store.reset();
+    let params;
+    try { params = fx.apply(FB) || {}; }
+    catch (e) { bad.push('fixture "' + fx.name + '" threw: ' + e.message); continue; }
+    for (const name of FB.screens.list()) {
+      const def = FB.screens.get(name);
+      const p = harness.paramsFor(name, params);
+      for (const fn of ['appbar', 'render']) {
+        if (!def[fn]) continue;
+        let out;
+        const where = fx.name + ' / ' + name + '.' + fn + '()';
+        try { out = def[fn](p); }
+        catch (e) { bad.push(where + ' threw: ' + e.message); continue; }
+        if (typeof out !== 'string') { bad.push(where + ' returned ' + typeof out); continue; }
+        n++;
+        RENDERED.push({ screen: name, fn: fn, html: out, fixture: fx.name });
+        /* A field that arrived undefined on an old save, or a total poisoned to NaN,
+           reaches the user as these two literal strings and nothing else notices. */
+        if (out.indexOf('undefined') > -1) bad.push(where + ' rendered the string "undefined"');
+        if (out.indexOf('NaN') > -1) bad.push(where + ' rendered the string "NaN"');
+      }
+    }
+  }
+  app.dispose();
+  if (bad.length) throw new Error(bad.length + ' problem(s):\n          ' + bad.slice(0, 8).join('\n          '));
+  return n + ' renders across ' + harness.FIXTURES.length + ' fixtures, ' + FB.screens.list().length + ' screens';
+});
+
+check('rendered markup keeps its accessible names', () => {
+  if (!RENDERED) throw new Error('the render check did not run');
+  const bad = [];
+  const seen = new Set();
+  function flag(r, msg) {
+    const k = r.screen + '.' + r.fn + ' :: ' + msg;
+    if (!seen.has(k)) { seen.add(k); bad.push(k); }
+  }
+  for (const r of RENDERED) {
+    (r.html.match(/<img\b[^>]*>/g) || []).forEach((t) => {
+      if (!/\balt=/.test(t)) flag(r, 'img without alt: ' + t.slice(0, 60));
+    });
+    (r.html.match(/<(input|textarea)\b[^>]*>/g) || []).forEach((t) => {
+      if (!/aria-label=/.test(t) && !/aria-labelledby=/.test(t)) {
+        flag(r, 'input without an accessible name: ' + t.slice(0, 70));
+      }
+    });
+    eachButton(r.html, (attrs, inner) => {
+      /* strip the icon, then the tags — what is left is what a screen reader says */
+      const text = inner.replace(/<svg[\s\S]*?<\/svg>/g, '').replace(/<[^>]+>/g, '').replace(/&[a-z]+;/g, '').trim();
+      if (!text && !/aria-label=/.test(attrs)) flag(r, 'icon-only button without aria-label: <button' + attrs.slice(0, 60) + '>');
+    });
+    if (/role="radio"/.test(r.html) && !/role="radiogroup"/.test(r.html)) {
+      flag(r, 'role="radio" with no role="radiogroup" around it');
+    }
+  }
+  if (bad.length) throw new Error(bad.length + ' problem(s):\n          ' + bad.slice(0, 8).join('\n          '));
+  return RENDERED.length + ' rendered fragments swept';
+});
+
 console.log('');
 if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
 console.log('all checks passed');
