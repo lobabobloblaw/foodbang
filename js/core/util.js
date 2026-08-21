@@ -171,6 +171,10 @@ window.FB = window.FB || {};
   };
   FB.sum = function (arr, fn) { return arr.reduce(function (a, x) { return a + (fn ? fn(x) : x); }, 0); };
   FB.deep = function (o) { return JSON.parse(JSON.stringify(o)); };
+  FB.ordinal = function (n) {
+    var s = ['th', 'st', 'nd', 'rd'], v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  };
   FB.scrollTop = function (smooth) {
     var v = document.getElementById('view');
     if (v) v.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });

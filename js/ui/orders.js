@@ -194,8 +194,14 @@ window.FB = window.FB || {};
     h += '<div class="trk-bar">' + barBlock(o) + '</div>';
 
     if (!done) {
+      var reviews = o.tipReviews || 0;
       h += '<div style="padding:10px 16px 4px"><button class="btn btn--ghost btn--sm btn--block" data-boost>' +
         FB.icon('zap', 15) + 'Increase tip to reduce arrival by 4 min</button>' +
+        (o.calc.tip > 0
+          ? '<button class="btn btn--ghost btn--sm btn--block" data-reduce style="margin-top:8px"' +
+              (reviews >= 3 ? ' disabled' : '') + '>' +
+              FB.icon('edit', 15) + (reviews >= 3 ? 'Further revisions require a call' : 'Reduce tip · review fee applies') + '</button>'
+          : '') +
         '<p style="font:var(--t-cap);color:var(--ink-3);margin:8px 0 0;line-height:1.45">' +
         'Arrival is not affected by tip. Tip is not affected by arrival. These facts are unrelated and are presented together.</p></div>';
     }
@@ -253,6 +259,11 @@ window.FB = window.FB || {};
         }).join('') +
         '<div class="rl"><span class="rl-l">Taxes &amp; Other Fees</span><span class="rl-r">' + FB.money(o.calc.tax) + '</span></div>' +
         '<div class="rl"><span class="rl-l">Slinger Tip</span><span class="rl-r">' + FB.money(o.calc.tip) + '</span></div>' +
+        (o.tipHistory || []).map(function (t) {
+          return '<div class="rl rl--sub"><span class="rl-l">' +
+            (t.delta < 0 ? 'Revised down ' + FB.money(Math.abs(t.delta)) + ' · review fee' : 'Revised up ' + FB.money(t.delta)) +
+            '</span><span class="rl-r">' + (t.fee ? FB.money(t.fee) : '—') + '</span></div>';
+        }).join('') +
         (o.calc.roundUp ? '<div class="rl"><span class="rl-l">Convenience Rounding™</span><span class="rl-r">' + FB.money(o.calc.roundUp) + '</span></div>' : '') +
         '<div class="rl rl--total"><span class="rl-l">Charged to ' + FB.esc(o.payment.brand) + ' ····' + FB.esc(o.payment.last4) + '</span>' +
         '<span class="rl-r">' + FB.money(o.calc.total) + '</span></div>' +
@@ -265,6 +276,52 @@ window.FB = window.FB || {};
     h += '<div class="fineprint">Order ' + FB.esc(o.id) + '. Retained indefinitely.</div>';
     return h;
   }
+
+  var TIP_REVIEW_FEE = 2.40;
+  var MAX_REVIEWS = 3;
+
+  /* Three ledgers record what an order cost, and they have to agree: the order's
+     own calc, the lifetime totals on meta, and the frozen BODYMAX history row that
+     bodymax.ingest() pushed at placement. The tip-boost sheet has always patched
+     the first two and not the third, so the chart and the receipt drifted apart
+     every time anyone used it. Both directions go through here now.
+
+     delta is the change to the TIP. fee is charged on top and is never refunded. */
+  function adjustTip(orderId, delta, fee) {
+    fee = fee || 0;
+    FB.store.set(function (st) {
+      var oo = st.orders.filter(function (x) { return x.id === orderId; })[0];
+      if (!oo) return st;
+      /* a tip can be revised to zero and no further */
+      var newTip = Math.max(0, FB.round2(oo.calc.tip + delta));
+      var realDelta = FB.round2(newTip - oo.calc.tip);
+      var spendDelta = FB.round2(realDelta + fee);
+
+      oo.calc.tip = newTip;
+      oo.calc.total = FB.round2(oo.calc.total + spendDelta);
+      oo.calc.feesTotal = FB.round2(oo.calc.feesTotal + fee);
+      oo.tipHistory = (oo.tipHistory || []).concat([{ ts: Date.now(), delta: realDelta, fee: fee, to: newTip }]);
+      if (fee) oo.tipReviews = (oo.tipReviews || 0) + 1;
+
+      st.meta.lifetimeTips = FB.round2(st.meta.lifetimeTips + realDelta);
+      st.meta.lifetimeSpend = FB.round2(st.meta.lifetimeSpend + spendDelta);
+      st.meta.lifetimeFees = FB.round2(st.meta.lifetimeFees + fee);
+
+      /* the row BODYMAX froze at placement, patched by order id */
+      var row = (st.bodymax.history || []).filter(function (r) { return r.orderId === orderId; })[0];
+      if (row) {
+        row.spend = FB.round2(row.spend + spendDelta);
+        row.fees = FB.round2(row.fees + fee);
+      }
+      return st;
+    });
+  }
+
+  /* exported so the ledger invariant is tested against THIS function rather than
+     against a copy of it in the test — a copy would agree with itself forever */
+  FB.adjustTip = adjustTip;
+  FB.TIP_REVIEW_FEE = TIP_REVIEW_FEE;
+  FB.MAX_TIP_REVIEWS = MAX_REVIEWS;
 
   function wire(root, o) {
     FB.on(root, 'click', '[data-boost]', function () {
@@ -283,16 +340,55 @@ window.FB = window.FB || {};
           FB.on(b, 'click', '[data-tipup]', function (e, t) {
             var n = Number(t.dataset.tipup);
             FB.busy(t, 'tipBoost', function () {
+            adjustTip(o.id, n, 0);
             FB.store.set(function (st) {
               var oo = st.orders.filter(function (x) { return x.id === o.id; })[0];
-              if (oo) { oo.calc.tip = FB.round2(oo.calc.tip + n); oo.calc.total = FB.round2(oo.calc.total + n); oo.etaDrift += 1; }
-              st.meta.lifetimeTips = FB.round2(st.meta.lifetimeTips + n);
-              st.meta.lifetimeSpend = FB.round2(st.meta.lifetimeSpend + n);
+              if (oo) oo.etaDrift += 1;
               return st;
-            });
+            }, { silent: true });
             h.close();
             FB.toast('Tip increased by ' + FB.money(n) + '. Estimate updated. Arrival unchanged.');
             FB.nav.refresh();
+            });
+          });
+        },
+      });
+    });
+
+    /* The reduction is reviewed, and the review is billed. On a small reduction the
+       fee exceeds it, which the sheet states in both directions and does not
+       apologise for. */
+    FB.on(root, 'click', '[data-reduce]', function () {
+      var cur = FB.store.order(o.id);
+      if (!cur || (cur.tipReviews || 0) >= MAX_REVIEWS) return;
+      var steps = [2, 5, 10].filter(function (n) { return n <= cur.calc.tip + 0.001; });
+      if (!steps.length) steps = [FB.round2(cur.calc.tip)];
+      FB.sheet.open({
+        title: 'Reduce your tip',
+        sub: 'Reducing a tip requires review. The review is not free.',
+        html: '<div style="padding:0 16px 14px"><p style="font:var(--t-body);color:var(--ink-2);line-height:1.55;margin:0">' +
+          'Your Slinger is already driving and will not be informed of the revision. ' +
+          'The revision will be retained on your account.</p></div>' +
+          '<div style="padding:0 16px 20px;display:flex;flex-direction:column;gap:8px">' +
+          steps.map(function (n) {
+            var net = FB.round2(n - TIP_REVIEW_FEE);
+            return '<button class="btn btn--ghost btn--block btn--split" data-tipdown="' + n + '">' +
+              '<span>Reduce by ' + FB.money(n) + '</span>' +
+              '<span style="color:var(--' + (net > 0 ? 'good' : 'bad') + ')">' +
+              (net > 0 ? 'you keep ' + FB.money(net) : 'costs you ' + FB.money(Math.abs(net))) + '</span></button>';
+          }).join('') + '</div>' +
+          '<div class="fineprint">Tip Reduction Review Fee ' + FB.money(TIP_REVIEW_FEE) +
+          ' per revision, charged whether or not the revision is larger than the fee. ' +
+          FB.plural(MAX_REVIEWS, 'revision') + ' per order.</div>',
+        onMount: function (b, h) {
+          FB.on(b, 'click', '[data-tipdown]', function (e, t) {
+            var n = Number(t.dataset.tipdown);
+            FB.busy(t, 'tipBoost', function () {
+              adjustTip(o.id, -n, TIP_REVIEW_FEE);
+              h.close();
+              FB.toast('Tip reduced by ' + FB.money(n) + '. Review fee ' + FB.money(TIP_REVIEW_FEE) + ' charged.',
+                { kind: 'bad' });
+              FB.nav.refresh();
             });
           });
         },
@@ -309,6 +405,8 @@ window.FB = window.FB || {};
           if (oo) oo.rated = n;
           return st;
         });
+        /* it goes on the person's record with you, not just on the order */
+        if (o.slingerId) FB.slingers.rate(o.slingerId, n);
         FB.toast(n >= 4 ? 'Thank you. Your rating has been forwarded.' : 'Received. Your rating has been forwarded to the Slinger with your name attached.');
         FB.nav.refresh();
       });
@@ -365,10 +463,16 @@ window.FB = window.FB || {};
   function chatFor(o) { return CHATS[FB.hash(String(o.id) + 'chat') % CHATS.length]; }
 
   function openChat(o) {
+    var person = o.slingerId ? FB.slingers.get(o.slingerId) : null;
+    var reduced = (o.tipHistory || []).some(function (t) { return t.delta < 0; });
+    var greeting = FB.slingers.greeting(person, reduced);
+    var thread = chatFor(o);
+    if (greeting) thread = [['them', greeting]].concat(thread);
     FB.sheet.open({
-      title: o.slinger.name, sub: 'Messages are monitored for quality.',
+      title: o.slinger.name,
+      sub: FB.slingers.tenureLine(person) || 'Messages are monitored for quality.',
       html: '<div style="padding:8px 16px 16px;display:flex;flex-direction:column;gap:8px">' +
-        chatFor(o).map(function (c) {
+        thread.map(function (c) {
           var mine = c[0] === 'you';
           return '<div style="align-self:' + (mine ? 'flex-end' : 'flex-start') + ';max-width:78%;' +
             'background:' + (mine ? 'var(--fb)' : 'var(--surface-2)') + ';color:' + (mine ? '#fff' : 'var(--ink)') + ';' +

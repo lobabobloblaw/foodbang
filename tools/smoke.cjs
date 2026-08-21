@@ -90,6 +90,7 @@ check('every fee line has a FEE_WHY entry, in every context', () => {
     { subtotal: 40, lineCount: 3, scrip: 3 },
     { subtotal: 40, lineCount: 3, tosVersion: 3 },
     { subtotal: 40, lineCount: 3, restockAlerts: 2 },
+    { subtotal: 40, lineCount: 3, tipReviews: 1 },
   ];
   const seen = new Set(), missing = new Set();
   for (const ctx of contexts) {
@@ -1365,6 +1366,81 @@ check('some things run out, and never too many of them', () => {
     if (FB.fees.compute({ subtotal: 12, lineCount: 2, settings: FB.S().settings }).total !== 60) throw new Error('the $60.00 case moved');
 
     return marked + ' items can run out; ' + outDays + ' of 14 days for the grape leaves';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('the same nine people keep turning up, and a revised tip stays consistent', () => {
+  /* Identity was seeded on the ORDER id, so a given Slinger structurally could never
+     recur: every delivery in the app's life was made by a stranger. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T0);
+
+    /* nine people, and the same nine in every save */
+    const roster = FB.slingers.all();
+    if (roster.length !== FB.slingers.SIZE) throw new Error('the roster is ' + roster.length + ' people');
+    if (new Set(roster.map(s => s.name)).size !== roster.length) throw new Error('two people on the roster share a name');
+    if (new Set(roster.map(s => s.id)).size !== roster.length) throw new Error('two people on the roster share an id');
+
+    /* assignment is deterministic and recurs */
+    const first = FB.slingers.assign('o_probe');
+    if (FB.slingers.assign('o_probe').id !== first.id) throw new Error('assignment is not deterministic');
+    const seen = {};
+    for (let i = 0; i < 40; i++) { const s = FB.slingers.assign('o_' + i); seen[s.id] = (seen[s.id] || 0) + 1; }
+    if (Object.keys(seen).length < 4) throw new Error('only ' + Object.keys(seen).length + ' people ever deliver');
+    if (!Object.values(seen).some(n => n > 1)) throw new Error('nobody ever delivers twice');
+
+    /* rating goes on the person, and shapes who comes back */
+    FB.slingers.rate(roster[0].id, 5);
+    FB.slingers.rate(roster[0].id, 5);
+    if (FB.slingers.avgRating(FB.slingers.get(roster[0].id)) !== 5) throw new Error('ratings did not land on the person');
+
+    /* --- a revised tip must leave three ledgers agreeing --- */
+    harness.addToCart(FB, 'mcronalds', 2);
+    const o = harness.makeOrder(FB, 'mcronalds', { now: T0 });
+    o.etaDrift = 0; o.events = [];
+    FB.tracker.build(o);
+    FB.cart.clear('mcronalds');
+    FB.store.set((st) => {
+      st.orders.unshift(o); st.activeOrderId = o.id;
+      st.meta.orderCount = 1;
+      st.meta.lifetimeSpend = o.calc.total;
+      st.meta.lifetimeTips = o.calc.tip;
+      st.meta.lifetimeFees = o.calc.feesTotal;
+      return st;
+    });
+    FB.bodymax.ingest(o);
+
+    const before = {
+      total: FB.store.order(o.id).calc.total,
+      spend: FB.S().meta.lifetimeSpend,
+      tips: FB.S().meta.lifetimeTips,
+      row: FB.S().bodymax.history.find(r => r.orderId === o.id).spend,
+    };
+    if (before.row !== before.total) throw new Error('the BODYMAX row disagreed with the receipt before anything changed');
+
+    /* the fee is charged whether or not it is larger than the reduction */
+    const FEE = FB.TIP_REVIEW_FEE, CUT = 5;
+    const tipWas = FB.store.order(o.id).calc.tip;
+    FB.adjustTip(o.id, -CUT, FEE);
+
+    const after = FB.store.order(o.id);
+    const row = FB.S().bodymax.history.find(r => r.orderId === o.id);
+    if (after.calc.tip !== FB.round2(tipWas - CUT)) throw new Error('the tip did not come down by the amount chosen');
+    if (row.spend !== after.calc.total) throw new Error('the BODYMAX row and the receipt disagree after a revision');
+    if (FB.S().meta.lifetimeSpend !== FB.round2(before.spend + (after.calc.total - before.total))) {
+      throw new Error('lifetimeSpend and the receipt disagree after a revision');
+    }
+    if (FB.S().meta.lifetimeTips !== FB.round2(before.tips - CUT)) throw new Error('lifetimeTips did not follow the revision');
+    /* the fee exceeding the reduction is the joke and must stay possible */
+    if (FEE <= 2) throw new Error('the review fee is too small to ever exceed a reduction');
+    if (after.tipHistory.length !== 1 || after.tipHistory[0].delta !== -CUT) throw new Error('tipHistory is not append-only and accurate');
+    /* and a tip can never be revised below zero */
+    if (after.calc.tip < 0) throw new Error('the tip went negative');
+
+    return FB.slingers.SIZE + ' on the roster, ' + Object.keys(seen).length + ' seen over 40 orders, ledgers agree after a revision';
   } finally { clock.restore(); app.dispose(); }
 });
 

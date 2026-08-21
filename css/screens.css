@@ -212,6 +212,8 @@
   letter-spacing: .02em; margin-top: 4px; text-transform: none;
 }
 
+.rl--sub .rl-l { padding-left: 12px; color: var(--ink-3); font-size: calc(12px * var(--fs)); }
+
 .trk-feed { padding: 6px 0 4px; }
 .tf {
   display: flex; gap: 12px; padding: 9px var(--pad); animation: fadein var(--mid) both;

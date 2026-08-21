@@ -392,7 +392,13 @@ window.FB = window.FB || {};
       }, { calories: 0, sodium: 0, grease: 0, ranch: 0 });
 
       var id = FB.uid('o');
-      var g = FB.C.slinger(id);
+      /* Drawn from the roster, so the same nine people recur and their tenure with
+         you counts up. The SNAPSHOT is still written to the order — historical
+         orders must keep rendering exactly as they were delivered, even after the
+         person's rating with you moves. */
+      var person = FB.slingers.assign(id, Date.now());
+      var g = { name: person.name, rating: person.rating, deliveries: person.deliveries,
+                vehicle: person.vehicle, photo: person.photo, tenure: person.timesWithYou };
       var order = {
         id: id, slug: s.slug, storeName: s.name, logo: s.logoSrc,
         placedAt: Date.now(), mode: co.mode, express: co.express, scheduled: slotFor(p),
@@ -401,7 +407,8 @@ window.FB = window.FB || {};
           tip: c.tipLine.amount, total: c.total, nonFood: c.nonFood, multiple: c.multiple,
           feeLines: c.feeLines.map(function (l) { return { label: l.label, amount: l.amount, id: l.id, free: l.free }; }),
           roundUp: c.roundLine ? c.roundLine.amount : 0, promo: c.promoAmount },
-        status: 'placed', slinger: g, etaMin: s.deliveryMax + (co.express ? -1 : 0), etaDrift: 0,
+        status: 'placed', slinger: g, slingerId: person.id,
+        etaMin: s.deliveryMax + (co.express ? -1 : 0), etaDrift: 0,
         events: [], rated: null, load: load, step: 0,
       };
       /* The tracker gives it an absolute timetable — every beat at a real moment,

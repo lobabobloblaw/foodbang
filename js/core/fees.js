@@ -33,6 +33,7 @@ window.FB = window.FB || {};
     upsell: 'Suppressing recommendations removes a revenue stream. The stream is restored here.',
     restraint: 'A reduced Hunger Level reduces recommended volume. The shortfall is billed.',
     standing: 'Maintaining a Standing requires maintenance. The fee is assessed at the tier you hold, not the tier you use.',
+    tipreview: 'A tip is a commitment. Revising a commitment is an operation, and operations are billed.',
     restock: 'Notifying you that food exists again requires monitoring that food. Monitoring is billed.',
     reconciliation: 'Where the order-time and delivery-time assessments are equal, reconciliation is still performed, and is billed.',
     scrip: 'BangBux™ are a benefit. Benefits are denominated in BangBux™. BangBux™ are redeemable against fees, which are denominated in dollars, at a rate we publish here.',
@@ -178,6 +179,10 @@ window.FB = window.FB || {};
       /* §14, added in Terms 9.4.3 and billed from the moment you accept it — the
          only fee in this engine you agreed to in writing. */
       if (ctx.tosVersion >= 3) lines.push(line('reconciliation', 'Reconciliation Fee', 1.20, null));
+      if (ctx.tipReviews > 0) {
+        lines.push(line('tipreview', 'Tip Reduction Review Fee', 2.40 * ctx.tipReviews,
+          FB.plural(ctx.tipReviews, 'revision') + ' reviewed.'));
+      }
       if (ctx.restockAlerts > 0) {
         lines.push(line('restock', 'Restock Monitoring', 1.40 * ctx.restockAlerts,
           FB.plural(ctx.restockAlerts, 'item') + ' being monitored.'));
