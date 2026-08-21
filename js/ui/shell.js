@@ -72,12 +72,88 @@ window.FB = window.FB || {};
     mounted = null;
   }
 
+  /* Screens re-render wholesale — 37 nav.refresh() call sites throw away #view and
+     build it again — so every toggle, filter and tip button used to drop keyboard
+     focus back to <body>. There is no component identity to hold on to, so a control
+     is identified by the data-* attribute it already carries.
+     Anything NOT on this list has no stable identity across a repaint, and focus is
+     dropped rather than handed to whatever happens to sit at the same index: a cart
+     list shifts when a line is removed, and "the button now where yours used to be"
+     is the next item's Remove. */
+  var FOCUS_ATTRS = ['data-tab', 'data-filter', 'data-cat', 'data-tip', 'data-cmode', 'data-mode',
+    'data-sort', 'data-slot', 'data-pick', 'data-pickp', 'data-why', 'data-set', 'data-lid',
+    'data-drop', 'data-try', 'data-q', 'data-rm', 'data-edit', 'data-dq', 'data-seg', 'data-sw',
+    'data-rate', 'data-use', 'data-del', 'data-usep', 'data-delp', 'data-item', 'data-slug',
+    'data-jump', 'data-cartgo', 'data-go'];
+
+  function focusKey(elm) {
+    if (!elm || elm === document.body) return null;
+    var inView = viewEl.contains(elm), inBar = barEl.contains(elm);
+    if (!inView && !inBar) return null;
+    for (var i = 0; i < FOCUS_ATTRS.length; i++) {
+      if (elm.hasAttribute(FOCUS_ATTRS[i])) {
+        /* the +/- steppers share a data-dq (the line id) and differ only by data-d,
+           and every store card shares data-go="store" and differs only by data-params */
+        var tie = elm.hasAttribute('data-d') ? 'data-d' : (elm.hasAttribute('data-params') ? 'data-params' : null);
+        return { root: inView ? 'view' : 'bar', name: FOCUS_ATTRS[i], value: elm.getAttribute(FOCUS_ATTRS[i]),
+                 tie: tie, tieValue: tie ? elm.getAttribute(tie) : null };
+      }
+    }
+    if (elm.id) return { root: inView ? 'view' : 'bar', id: elm.id };
+    return null;
+  }
+
+  function restoreFocus(key) {
+    if (!key) return;
+    /* only ever look in the root the control came from: falling back to the other one
+       moves focus across regions, e.g. from a rating star to the app bar's help button */
+    var root = key.root === 'bar' ? barEl : viewEl;
+    var target = null;
+    if (key.id) {
+      var byId = document.getElementById(key.id);
+      if (byId && root.contains(byId)) target = byId;
+    } else {
+      /* matched by VALUE, never by a selector built from data — data-q holds whatever
+         was typed into the search box, and a double quote in it would turn
+         querySelector into a SyntaxError thrown straight out of paint() */
+      var candidates = FB.qsa('[' + key.name + ']', root);
+      for (var i = 0; i < candidates.length; i++) {
+        if (candidates[i].getAttribute(key.name) !== key.value) continue;
+        if (key.tie && candidates[i].getAttribute(key.tie) !== key.tieValue) continue;
+        target = candidates[i]; break;
+      }
+    }
+    if (target && target.focus) { try { target.focus({ preventScroll: true }); } catch (e) {} }
+  }
+
+  /* Disposable render roots. #view and #appbar used to outlive every screen, so a
+     listener that escaped the bookkeeping below stayed attached and fired again on
+     the next render, and the one after that — the mechanism behind both of the
+     confirmed criticals in this app. Swapping the node itself makes that physically
+     impossible: the old element, and everything bound to it, is garbage.
+     The node is REPLACED rather than wrapped so #view stays the scroll container —
+     screens read root.scrollTop and bind root 'scroll', and a non-scrolling wrapper
+     would silently break both. */
+  function freshRoot(el) {
+    var next = document.createElement(el.tagName);
+    next.id = el.id;
+    if (el.hasAttribute('tabindex')) next.setAttribute('tabindex', el.getAttribute('tabindex'));
+    el.parentNode.replaceChild(next, el);
+    return next;
+  }
+
   function paint() {
     var def = screens[current.name];
     if (!def) { console.warn('no screen', current.name); return; }
 
+    /* only worth restoring if the keyboard was driving — a mouse user who clicks a
+       chip does not want focus chasing the rebuilt DOM */
+    var refocus = document.body.classList.contains('kb') ? focusKey(document.activeElement) : null;
+
     unmountCurrent();
 
+    barEl = freshRoot(barEl);
+    viewEl = freshRoot(viewEl);
     barEl.innerHTML = def.appbar ? def.appbar(current.params) : '';
     viewEl.innerHTML = def.render ? def.render(current.params) : '';
     viewEl.className = def.viewClass || '';
@@ -95,6 +171,7 @@ window.FB = window.FB || {};
       FB._binds = null;
       mounted = { name: current.name, binds: binds };
     }
+    restoreFocus(refocus);
   }
 
   var nav = {
@@ -259,9 +336,15 @@ window.FB = window.FB || {};
     return new Promise(function (resolve) {
       FB.modal.open({
         html: '<h2>' + FB.esc(cfg.title) + '</h2><p>' + FB.esc(cfg.body || '') + '</p>' +
-          '<div class="modal-acts">' +
-            '<button class="btn ' + (cfg.danger ? 'btn--danger' : 'btn--primary') + ' btn--block" data-yes>' + FB.esc(cfg.yes || 'Confirm') + '</button>' +
-            '<button class="btn btn--ghost btn--block" data-no>' + FB.esc(cfg.no || 'Cancel') + '</button>' +
+          /* .modal-acts is a column, so DOM order and visual order can differ. On a
+             destructive confirm Cancel comes FIRST in the DOM — mkOverlay focuses the
+             first tabbable, and a dialog must never arm the button that erases your
+             data — while order:-1 keeps Erase where the eye expects it, on top. */
+          '<div class="modal-acts">' + (cfg.danger
+            ? '<button class="btn btn--ghost btn--block" data-no>' + FB.esc(cfg.no || 'Cancel') + '</button>' +
+              '<button class="btn btn--danger btn--block" style="order:-1" data-yes>' + FB.esc(cfg.yes || 'Confirm') + '</button>'
+            : '<button class="btn btn--primary btn--block" data-yes>' + FB.esc(cfg.yes || 'Confirm') + '</button>' +
+              '<button class="btn btn--ghost btn--block" data-no>' + FB.esc(cfg.no || 'Cancel') + '</button>') +
           '</div>',
         onMount: function (body, h) {
           body.querySelector('[data-yes]').addEventListener('click', function () { h.close(); resolve(true); });
@@ -310,16 +393,30 @@ window.FB = window.FB || {};
       });
       FB.on(document, 'click', '[data-back]', function (e) { e.preventDefault(); nav.back(); });
 
+      /* `kb` marks a session that is being driven from the keyboard; paint() only
+         restores focus for those, so a mouse click never yanks focus around. */
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Tab') document.body.classList.add('kb');
+      }, true);
+      window.addEventListener('mousedown', function () { document.body.classList.remove('kb'); }, true);
+
       window.addEventListener('popstate', function () { nav.back(); });
       document.addEventListener('keydown', function (e) {
-        if (e.target.matches && e.target.matches('input,textarea')) {
-          if (e.key === 'Escape') e.target.blur();
+        /* closest(), not matches() — a keystroke can land on a child of an editable */
+        var t = e.target;
+        if (t && t.closest && t.closest('input,textarea,[contenteditable]')) {
+          if (e.key === 'Escape' && t.blur) t.blur();
           return;
         }
-        if (e.key === 'Escape') { nav.back(); }
-        else if (e.key === '/') { e.preventDefault(); nav.tab('search'); }
-        else if (e.key.toLowerCase() === 'd') { FB.cycleTheme(); }
-        else if (e.key.toLowerCase() === 'r' && (e.metaKey || e.ctrlKey) === false) { FB.hardReset(); }
+        if (e.key === 'Escape') { nav.back(); return; }
+        /* a dialog owns the keyboard while it is up: no recolouring the app underneath
+           it, and no stacking a second modal on top of the first */
+        if (FB.overlay.any()) return;
+        if (e.key === '/') { e.preventDefault(); nav.tab('search'); }
+        else if (e.key === 'd' || e.key === 'D') { FB.cycleTheme(); }
+        /* the only shortcut that destroys data asks for Shift as well, so that a
+           stray 'r' typed at an unfocused search box cannot reach it */
+        else if (e.key === 'R' && e.shiftKey && (e.metaKey || e.ctrlKey) === false) { FB.hardReset(); }
       });
 
       FB.store.sub(function () { renderTabs(); renderCartBar(); FB.updateDeskStats(); });

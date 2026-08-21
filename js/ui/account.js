@@ -110,6 +110,14 @@ window.FB = window.FB || {};
   });
 
   /* ===================== settings ===================== */
+  /* Kept beside the bindings in js/ui/shell.js — if one moves, move both. */
+  var SHORTCUTS = [
+    [['Esc'], 'Back, or close the sheet on top'],
+    [['/'], 'Jump to Search'],
+    [['D'], 'Cycle theme'],
+    [['Shift', 'R'], 'Erase all local data'],
+  ];
+
   FB.screens.register('settings', {
     tab: 'account',
     appbar: function () { return '<div class="bar bar--border"><button class="iconbtn" data-back aria-label="Back">' + FB.icon('back', 20) + '</button><h1>Settings</h1></div>'; },
@@ -120,33 +128,48 @@ window.FB = window.FB || {};
       h += '<div class="menulist"><h3>APPEARANCE</h3>' +
         '<div style="padding:2px 0 6px"><div style="padding:0 16px 8px;font:var(--t-cap);color:var(--ink-3)">Theme</div>' +
         seg('theme', s.theme, [['system', 'System'], ['light', 'Light'], ['dark', 'Dark']]) +
-        '<div style="padding:6px 16px 8px;font:var(--t-cap);color:var(--ink-3)">Text size</div>' +
+        '</div></div>';
+
+      /* Text size and Animations were filed under APPEARANCE, where nothing marked
+         them as assistive, and the four keyboard shortcuts were advertised only in
+         the desktop sidebar — which is display:none below 940px. */
+      h += '<div class="menulist"><h3>ACCESSIBILITY</h3>' +
+        '<div style="padding:2px 0 6px"><div style="padding:0 16px 8px;font:var(--t-cap);color:var(--ink-3)">Text size</div>' +
         seg('textsize', s.textsize, [['m', 'Default'], ['l', 'Large'], ['xl', 'Larger']]) +
         '</div>' +
         sw('motion', s.motion === 'on' || (s.motion === 'system'), 'Animations', 'Motion, transitions and the marquee.') +
+        '<div style="padding:12px 16px 4px">' +
+        '<div style="font:var(--t-cap);color:var(--ink-3);margin-bottom:9px">KEYBOARD</div>' +
+        '<div class="keyrow">' +
+        SHORTCUTS.map(function (k) {
+          return '<div>' + k[0].map(function (key) { return '<kbd>' + FB.esc(key) + '</kbd>'; }).join('') +
+            '<span>' + FB.esc(k[1]) + '</span></div>';
+        }).join('') + '</div></div>' +
+        '<div class="callout" style="margin-top:10px">' + FB.icon('info', 17) +
+        '<span>Accessibility settings are provided at no charge. This arrangement is under review.</span></div>' +
         '</div>';
 
       h += '<div class="menulist"><h3>ORDERING</h3>' +
         '<div style="padding:12px 16px 4px"><div style="display:flex;justify-content:space-between;align-items:baseline">' +
         '<b style="font:var(--t-body);font-weight:500">Hunger Level</b>' +
-        '<span style="font:700 15px var(--mono);color:var(--fb)">' + s.hungerLevel + ' / 10</span></div>' +
+        '<span style="font:700 calc(15px * var(--fs)) var(--mono);color:var(--fb)">' + s.hungerLevel + ' / 10</span></div>' +
         '<input class="slider" type="range" min="1" max="10" value="' + s.hungerLevel + '" data-hunger style="margin-top:12px">' +
         '<div style="font:var(--t-cap);color:var(--ink-3);margin-top:8px;line-height:1.45">' +
         FB.esc(hungerCopy(s.hungerLevel)) + '</div></div>' +
         '<div style="padding:14px 16px 4px"><div style="display:flex;justify-content:space-between;align-items:baseline">' +
         '<b style="font:var(--t-body);font-weight:500">Default tip</b>' +
-        '<span style="font:700 15px var(--mono)">' + s.autoTipPct + '%</span></div>' +
+        '<span style="font:700 calc(15px * var(--fs)) var(--mono)">' + s.autoTipPct + '%</span></div>' +
         '<input class="slider" type="range" min="0" max="80" step="1" value="' + s.autoTipPct + '" data-tipdef style="margin-top:12px">' +
         '<div style="font:var(--t-cap);color:var(--ink-3);margin-top:8px">Pre-selected at checkout. The suggested default is 42%.</div></div>' +
         '</div>';
 
       h += '<div class="menulist"><h3>PRIVACY &amp; DISCLOSURE</h3>' +
-        sw('feeTransparency', s.feeTransparency, 'Show itemised fees',
+        sw('feeTransparency', s.feeTransparency, 'Show itemized fees',
           s.feeTransparency ? 'On. Adds the Fee Transparency Fee ($0.85) to each order.' : 'Off. Adds the Fee Opacity Fee ($2.85) to each order.') +
         sw('reduceUpsells', s.reduceUpsells, 'Reduce recommendations',
           s.reduceUpsells ? 'On. Adds the Upsell Suppression Fee ($3.25) to each order.' : 'Off. Recommendations appear at your Hunger Level.') +
-        sw('dataSharing', s.dataSharing, 'Share behavioural data with partners',
-          s.dataSharing ? 'On. Your data is subsidising your food.' : 'Off. Adds the Data Sovereignty Fee ($4.10) to each order.') +
+        sw('dataSharing', s.dataSharing, 'Share behavioral data with partners',
+          s.dataSharing ? 'On. Your data is subsidizing your food.' : 'Off. Adds the Data Sovereignty Fee ($4.10) to each order.') +
         '<div class="callout callout--warn" style="margin-top:6px">' + FB.icon('alert', 17) +
         '<span>Every privacy setting on this screen costs money to enable <em>and</em> to disable. There is no configuration of this screen that is free.</span></div>' +
         '</div>';
@@ -192,7 +215,7 @@ window.FB = window.FB || {};
         });
         var s = FB.S().settings;
         if (k === 'motion') FB.applyAppearance();
-        if (k === 'feeTransparency') FB.toast(s.feeTransparency ? 'Itemised fees restored. Fee Transparency Fee reinstated.' : 'Fees hidden. Fee Opacity Fee applied — it is larger.', { kind: 'bad' });
+        if (k === 'feeTransparency') FB.toast(s.feeTransparency ? 'Itemized fees restored. Fee Transparency Fee reinstated.' : 'Fees hidden. Fee Opacity Fee applied — it is larger.', { kind: 'bad' });
         if (k === 'reduceUpsells' && s.reduceUpsells) FB.toast('Recommendations reduced. Upsell Suppression Fee applied.', { kind: 'bad' });
         if (k === 'dataSharing' && !s.dataSharing) FB.toast('Data sharing off. Data Sovereignty Fee applied.', { kind: 'bad' });
         FB.nav.refresh();
@@ -326,7 +349,7 @@ window.FB = window.FB || {};
       onMount: function (b, h) {
         FB.on(b, 'click', '[data-pick]', function (e, t) {
           FB.store.set(function (s) { s.selectedAddress = t.dataset.pick; return s; });
-          h.close(); if (after) after(); else FB.nav.refresh();
+          h.close(); if (typeof after === 'function') after(); else FB.nav.refresh();
         });
         FB.on(h.el, 'click', '[data-manage]', function () { h.close(); FB.nav.go('addresses'); });
       },
@@ -409,7 +432,7 @@ window.FB = window.FB || {};
       onMount: function (b, h) {
         FB.on(b, 'click', '[data-pickp]', function (e, t) {
           FB.store.set(function (s) { s.selectedPayment = t.dataset.pickp; return s; });
-          h.close(); if (after) after(); else FB.nav.refresh();
+          h.close(); if (typeof after === 'function') after(); else FB.nav.refresh();
         });
         FB.on(h.el, 'click', '[data-managep]', function () { h.close(); FB.nav.go('payments'); });
       },
@@ -504,11 +527,11 @@ window.FB = window.FB || {};
         'we will describe later. You have waived the right to be told what it is.</p>' +
         '<p><b style="color:var(--ink)">Fees.</b> Fees are assessed at order time and reassessed at delivery time. Where the two differ, ' +
         'the larger governs. Where they are equal, a Reconciliation Fee applies.</p>' +
-        '<p><b style="color:var(--ink)">Data.</b> Your behavioural data is used to improve your experience and the experience of ' +
+        '<p><b style="color:var(--ink)">Data.</b> Your behavioral data is used to improve your experience and the experience of ' +
         'FoodBang™. Where these conflict, FoodBang™ prevails.</p>' +
         '<p><b style="color:var(--ink)">Nutrition.</b> BODYMAX™ is a wellness feature, not a medical device, not a scale, and not an ' +
         'opinion. Its Recommended Daily Intake of 9,400 units is not endorsed by any medical body and was selected internally.</p>' +
-        '<p style="margin-top:28px;color:var(--ink-3);font-size:11px">Last updated: continuously. Prior versions are not retained. ' +
+        '<p style="margin-top:28px;color:var(--ink-3);font-size:calc(11px * var(--fs))">Last updated: continuously. Prior versions are not retained. ' +
         'You have accepted all of them.</p></div>',
     });
   }

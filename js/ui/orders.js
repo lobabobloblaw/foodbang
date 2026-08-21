@@ -71,6 +71,11 @@ window.FB = window.FB || {};
       wire(root, o);
       FB.tracker.placeCourier(root, o, FB.tracker.progress(o));
       if (offTick) { offTick(); offTick = null; }
+      var wasDone = o.status === 'delivered';
+      /* aria-live fires on every write, not on every change. Rewriting the ETA block
+         on all ~20 ticks made a screen reader interrupt and re-read the whole arrival
+         summary every few seconds; only write when the markup actually differs. */
+      var lastEta = etaBlock(o), lastBar = barBlock(o), lastFeed = feedBlock(o);
       offTick = FB.tracker.onTick(function () {
         var cur = FB.store.order(p.id);
         if (!cur) return;
@@ -78,10 +83,31 @@ window.FB = window.FB || {};
            for an order the user has navigated away from */
         var now = FB.nav.current();
         if (!now || now.name !== 'track' || now.params.id !== p.id) return;
-        var sc = root.scrollTop;
-        root.innerHTML = body(cur);
-        root.scrollTop = sc;
-        wire(root, cur);
+
+        var done = cur.status === 'delivered';
+        if (done !== wasDone) {
+          /* delivery changes the SHAPE of the screen — proof photo, rating stars and
+             reorder appear, the tip-boost button goes — so this one tick rebuilds */
+          wasDone = done;
+          var sc = root.scrollTop;
+          root.innerHTML = body(cur);
+          root.scrollTop = sc;
+          /* deliberately NOT re-wiring: wire() delegates on `root` itself, which is
+             untouched by the innerHTML above, and every handler re-reads the order
+             from state. Calling it again bound a second copy of each listener, so
+             one tap on Reorder added the whole order to the cart twice. */
+        } else {
+          /* Patch the three fragments that moved. Rebuilding #view every 2-5s
+             re-parsed the whole map, re-bound every listener and blew away keyboard
+             focus; a screen reader got no announcement out of any of it. */
+          var nextEta = etaBlock(cur), nextBar = barBlock(cur), nextFeed = feedBlock(cur);
+          var eta = root.querySelector('.trk-eta');
+          if (eta && nextEta !== lastEta) { eta.innerHTML = nextEta; lastEta = nextEta; }
+          var bar = root.querySelector('.trk-bar');
+          if (bar && nextBar !== lastBar) { bar.innerHTML = nextBar; lastBar = nextBar; }
+          var feed = root.querySelector('.trk-feed');
+          if (feed && nextFeed !== lastFeed) { feed.innerHTML = nextFeed; lastFeed = nextFeed; }
+        }
         FB.tracker.placeCourier(root, cur, FB.tracker.progress(cur));
       });
       FB.on(document.getElementById('appbar'), 'click', '[data-help]', function () {
@@ -97,6 +123,32 @@ window.FB = window.FB || {};
   var PROOFS = ['assets/app/proof-delivery.webp', 'assets/app/proof-delivery-2.webp', 'assets/app/proof-delivery-3.webp'];
   function proofPhoto(id) { return PROOFS[FB.hash(String(id) + 'proof') % PROOFS.length]; }
 
+  /* The three fragments a tick actually changes. body() builds them too, so there
+     is one source for each piece of markup and the tick can patch in place instead
+     of tearing the whole screen down under the reader every few seconds. */
+  function etaBlock(o) {
+    var done = o.status === 'delivered';
+    var step = FB.tracker.STEPS[o.step];
+    return '<div class="te-k">' + (done ? 'DELIVERED' : 'ESTIMATED ARRIVAL') + '</div>' +
+      '<h2>' + (done ? FB.clock(new Date(o.deliveredAt)) : FB.tracker.eta(o) + ' min') + '</h2>' +
+      '<div class="te-s">' + FB.esc(step.label) + ' · ' + FB.esc(o.storeName) + '</div>' +
+      (!done && o.etaDrift > 0 ? '<div class="te-drift">' + FB.icon('alert', 13) + 'Arrival revised later by ' + o.etaDrift + ' min since you ordered</div>' : '');
+  }
+  function barBlock(o) {
+    return FB.tracker.STEPS.slice(0, 5).map(function (s, i) {
+      return '<i class="' + (i < o.step ? 'on' : i === o.step ? 'cur' : '') + '"></i>';
+    }).join('');
+  }
+  function feedBlock(o) {
+    var done = o.status === 'delivered';
+    return o.events.map(function (e, i) {
+      return '<div class="tf ' + (i === 0 && !done ? 'is-now' : i > 3 ? 'is-past' : '') + '">' +
+        '<span class="tf-dot"></span><span class="tf-b"><b>' + FB.esc(e.text) + '</b>' +
+        (e.sub ? '<span>' + FB.esc(e.sub) + '</span>' : '') +
+        '<span>' + FB.clock(new Date(e.ts)) + '</span></span></div>';
+    }).join('');
+  }
+
   function body(o) {
     var done = o.status === 'delivered';
     var eta = FB.tracker.eta(o);
@@ -107,17 +159,12 @@ window.FB = window.FB || {};
     /* map */
     h += '<div class="trk-map">' + FB.tracker.mapSvg(o, FB.tracker.progress(o)) + '</div>';
 
-    /* eta */
-    h += '<div class="trk-eta"><div class="te-k">' + (done ? 'DELIVERED' : 'ESTIMATED ARRIVAL') + '</div>' +
-      '<h2>' + (done ? FB.clock(new Date(o.deliveredAt)) : eta + ' min') + '</h2>' +
-      '<div class="te-s">' + FB.esc(step.label) + ' · ' + FB.esc(o.storeName) + '</div>' +
-      (!done && o.etaDrift > 0 ? '<div class="te-drift">' + FB.icon('alert', 13) + 'Arrival revised later by ' + o.etaDrift + ' min since you ordered</div>' : '') +
-      '</div>';
+    /* eta — the live region. aria-atomic so a status change is read as one
+       sentence rather than as three disconnected fragments. */
+    h += '<div class="trk-eta" role="status" aria-live="polite" aria-atomic="true">' + etaBlock(o) + '</div>';
 
     /* progress */
-    h += '<div class="trk-bar">' + FB.tracker.STEPS.slice(0, 5).map(function (s, i) {
-      return '<i class="' + (i < o.step ? 'on' : i === o.step ? 'cur' : '') + '"></i>';
-    }).join('') + '</div>';
+    h += '<div class="trk-bar">' + barBlock(o) + '</div>';
 
     if (!done) {
       h += '<div style="padding:10px 16px 4px"><button class="btn btn--ghost btn--sm btn--block" data-boost>' +
@@ -134,12 +181,7 @@ window.FB = window.FB || {};
       '<span class="gc-a"><button class="iconbtn" data-msg aria-label="Message">' + FB.icon('phone', 18) + '</button></span></div>';
 
     /* feed */
-    h += '<div class="trk-feed">' + o.events.map(function (e, i) {
-      return '<div class="tf ' + (i === 0 && !done ? 'is-now' : i > 3 ? 'is-past' : '') + '">' +
-        '<span class="tf-dot"></span><span class="tf-b"><b>' + FB.esc(e.text) + '</b>' +
-        (e.sub ? '<span>' + FB.esc(e.sub) + '</span>' : '') +
-        '<span>' + FB.clock(new Date(e.ts)) + '</span></span></div>';
-    }).join('') + '</div>';
+    h += '<div class="trk-feed">' + feedBlock(o) + '</div>';
 
     /* delivered extras */
     if (done) {

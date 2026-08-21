@@ -139,7 +139,9 @@ window.FB = window.FB || {};
       });
       FB.on(root, 'click', '[data-sortsheet]', openSort);
       FB.on(document.getElementById('appbar'), 'click', '[data-gosearch]', function () { FB.nav.tab('search'); });
-      FB.on(document.getElementById('appbar'), 'click', '[data-addrpick]', FB.openAddressSheet);
+      FB.on(document.getElementById('appbar'), 'click', '[data-addrpick]', function () {
+        FB.openAddressSheet(function () { FB.nav.refresh(); });
+      });
       FB.on(document.getElementById('appbar'), 'click', '[data-notifs]', FB.openNotifications);
     },
   });

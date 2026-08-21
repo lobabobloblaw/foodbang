@@ -33,9 +33,9 @@ window.FB = window.FB || {};
         h += FB.C.sectionHead('Browse by category');
         h += '<div style="padding:0 16px 20px;display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
           FB.catalog.categories().map(function (c) {
-            return '<button class="chip chip--outline" data-cat="' + c.slug + '" style="height:52px;justify-content:flex-start;padding:0 14px;font-size:14.5px">' +
+            return '<button class="chip chip--outline" data-cat="' + c.slug + '" style="height:52px;justify-content:flex-start;padding:0 14px;font-size:calc(14.5px * var(--fs))">' +
               '<i class="catchip">' + c.icon + '<img src="' + c.img + '" alt="" loading="lazy" onerror="this.remove()"></i>' + FB.esc(c.label) +
-              '<span style="margin-left:auto;color:var(--ink-3);font-size:12px">' + c.count + '</span></button>';
+              '<span style="margin-left:auto;color:var(--ink-3);font-size:calc(12px * var(--fs))">' + c.count + '</span></button>';
           }).join('') + '</div>';
 
         h += FB.C.sectionHead('All stores', FB.catalog.count() + ' near ' + FB.esc(FB.store.address().city.split(',')[0]));
@@ -61,7 +61,7 @@ window.FB = window.FB || {};
               : '<span class="row-img" style="display:grid;place-items:center;font-size:22px">' + (FB.CAT_ICONS[(rec.store.categories || [])[0]] || '🍽') + '</span>') +
             '<span class="row-b"><b>' + FB.esc(rec.item.name) + '</b>' +
             '<span>' + FB.esc(rec.store.name) + (rec.via ? ' · ' + FB.esc(rec.via) : ' · ' + FB.esc(rec.item.sectionName)) + '</span></span>' +
-            '<span class="row-r"><b style="color:var(--ink);font:700 14px var(--font)">' + FB.money(rec.item.price) + '</b></span></button>';
+            '<span class="row-r"><b style="color:var(--ink);font:700 calc(14px * var(--fs)) var(--font)">' + FB.money(rec.item.price) + '</b></span></button>';
         }).join('');
       }
       return h2;
@@ -69,7 +69,9 @@ window.FB = window.FB || {};
     mount: function (root) {
       var bar = document.getElementById('appbar');
       var input = document.getElementById('q');
-      if (input && !q) setTimeout(function () { input.focus(); }, 120);
+      /* focus even when a query is already there — otherwise the first letter of
+         the next search lands on the document's shortcut handler instead */
+      if (input) setTimeout(function () { input.focus(); input.select(); }, 120);
 
       FB.on(bar, 'input', '#q', FB.debounce(function (e, t) {
         q = t.value;
