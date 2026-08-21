@@ -20,8 +20,11 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose thirteen checks always run together — there is no way to run a
-single one short of editing the file. `node tools/rebrand.cjs --selfcheck` is separate and is only
+(`node tools/smoke.cjs`) whose twenty-three checks always run together — there is no way to run a
+single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
+behind a stub document, which is what lets the UI checks render every screen headlessly; it also
+exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
+`clock.set` — pass `opts.now` or the fixture is stamped with the test machine's wall clock.** `node tools/rebrand.cjs --selfcheck` is separate and is only
 worth running after editing that file's rules.
 
 Deployed from `main` at repo root via GitHub Pages. Pushing to `main` redeploys.
@@ -32,13 +35,13 @@ Deployed from `main` at repo root via GitHub Pages. Pushing to `main` redeploys.
 index.html            shell: phone frame, status bar, tab bar, and the ordered <script> list
 css/tokens.css        67 design tokens — light/dark, three-state theming; --fs scales the type ramp
 css/app.css           component library      css/screens.css   per-screen styles
-js/core/              util · icons · state · catalog · fees · cart      (no DOM access)
+js/core/              util · world · icons · state · latency · catalog · fees · cart  (no DOM access)
 js/ui/                shell (router/sheets/toasts) · components · item sheet · 16 screens
 js/sim/               tracker.js (TRACKR™)   bodymax.js (BODYMAX™ — and the 16th screen)
 js/app.js             boot: catalog.init -> shell.init -> nav.go('home') -> tracker.resume
 js/data/menus/*.json  one file per restaurant — THE source of truth
 assets/app/cat/*.webp 14 category tiles (the photographic ones on Home and Search)
-tools/                bundle.cjs · build-artifact.cjs · rebrand.cjs · serve.mjs · smoke.cjs
+tools/                bundle.cjs · build-artifact.cjs · harness.cjs · rebrand.cjs · serve.mjs · smoke.cjs
 tools/*-bible.json    the art-direction + pricing briefs the content was generated from
 tools/retired-brands.json  names this app has stopped using; npm test greps for them
 ```
@@ -55,8 +58,28 @@ headlessly.
 **State is one object under one localStorage key** (`foodbang.state.v1`, `js/core/state.js`). Read
 it with `FB.S()`; never assign into it. `FB.store.set(function (st) { …; return st; })` persists
 (debounced 90 ms) and notifies `FB.store.sub` subscribers — that is what repaints the tab bar,
-cart pill and desk stats. New fields go in `defaults()`; `migrate()` shallow-merges keys that a
-saved state predates, so bump `VERSION` only for a genuinely breaking change (it wipes the save).
+cart pill and desk stats. **New fields go in `defaults()` and nothing else is required**:
+`fillDefaults()` backfills every key a save is missing at any depth, so adding a field is safe
+against every existing save. Plain objects only — an array in a save is the user's data and is
+never merged into. **Do not bump `VERSION` to add a field.** A bump runs the `MIGRATIONS` ladder,
+and a rung that does not exist still falls back to wiping the save; add a rung only for a
+genuinely breaking *reshape*. `persist()` reports the first storage failure through
+`FB.store.onStorageError`, which `app.js` voices — core must not reach for `FB.toast` itself.
+
+**The world is a pure function of the clock.** `FB.world.at(ts)` (`js/core/world.js`) buckets time
+into 20 minutes and derives daypart, weather, surge and `kitchenLoad(slug)` from `FB.seeded` on the
+bucket. It stores nothing and ticks nothing, which is why leaving for a week is automatically
+correct. Two rules: **read it at render, never on `catalog.decorate()`** (which runs once at boot,
+so a stamped value is wrong for a tab left open), and never let it reorder the feed — a store list
+that reshuffles under a thumb at a bucket boundary is a bug. `at()` deliberately does not echo back
+the timestamp it was given, because idempotence inside a bucket is the property under test.
+
+**Interactions wait.** `js/core/latency.js` gives each kind of interaction a small millisecond
+range and draws from it seeded on a call counter. The ranges are asymmetric on purpose — adding to
+a cart is quick, taking something out is not, and cancelling a membership is the slowest thing in
+the app. `FB.busy(el, kind, fn)` is the visible half and also guards against a double fire. Only
+things that would really leave the building wait; anything a real app answers optimistically (the
+qty stepper, the tip selector, form validation) stays instant.
 
 **Screens are self-registering and never reach into each other.**
 `FB.screens.register(name, { tab, appbar, render, mount, unmount, immersive, hideCartBar, viewClass })`.
@@ -101,10 +124,10 @@ the `bodymax` screen and its achievement flags (`app.js` fires `FB.bodymax.flag(
 
 ## Invariants — these are easy to break silently
 
-**`js/data/menus.generated.js` is generated.** Never hand-edit it. Edit `js/data/menus/*.json`
-and run `npm run bundle`. The bundler validates as it builds (required fields, duplicate ids,
-missing assets, non-numeric prices, items with no modifier groups) and **refuses to write a
-partial bundle**.
+**Never hand-edit `js/data/menus.generated.js`.** Edit `js/data/menus/*.json` and run
+`npm run bundle`. The bundler validates as it builds (required fields, duplicate ids, missing
+assets, non-numeric prices, items with no modifier groups) and **refuses to write a partial
+bundle**. See also the source-hash note above.
 
 **Classic scripts only, `FB` namespace.** No ES modules, no imports — the app must run from
 `file://` as well as over http. Add a new file to the ordered `<script>` list in `index.html`.
@@ -148,12 +171,32 @@ would make renaming the app an image job again, and a linked `.svg` favicon does
 inlined into the single-file build. Restaurant logos stay raster — only the app's own identity is
 code.
 
-**Run `npm test` before committing.** Thirteen checks: the $60.00 total, the fee stack order, a
-`FEE_WHY` entry for every fee id across six contexts, the bundle matching its sources, asset
-presence (including zero-byte dataless files), the exact photo split, the advertised delivery fee
-being the one charged, distinct rating counts, reachable modifier caps, no raw `addEventListener`
-in a screen, mount/unmount listener idempotence, every item orderable, and stale brand strings
-after a rename.
+**The order runs on a wall clock.** `FB.tracker.build(o)` gives an order an absolute timetable at
+placement — every beat with a real timestamp, plus a `deliverAt` — and `tick()` replays whatever is
+in the past, so catching up after an absence is the same code path as running live. One simulated
+minute is `SIM_MS_PER_MIN` (2 s) of real time. Three rules that are easy to undo: replayed beats
+are stamped from the **timetable**, never `Date.now()` (or a catch-up collapses the whole feed onto
+one second); `resume()` catches up with `{catchUp:true}` so an order that finished while nobody was
+here does not fire a toast; and `deliveredAt` records when it happened, not when it was noticed. A
+scheduled order's clock starts at its slot. Pickup has its own script and step labels.
+
+**`js/data/menus.generated.js` is generated, and is not the source of truth.** `bundle.cjs` strips
+`BUILD_ONLY` fields (`imagePrompt`, `photoStyle`) — they stay verbatim in the JSON by doctrine but
+no screen reads them, and `imagePrompt` was the only thing in the app producing a line over 1 KB.
+It also stamps a sha256 of the sources into the banner, and `npm test` recomputes it, so a
+forgotten `npm run bundle` is a red test rather than a wrong price. **Data checks read
+`js/data/menus/*.json`, never the bundle.**
+
+**Run `npm test` before committing.** Twenty-three checks: the $60.00 total, the fee stack order, a
+`FEE_WHY` entry for every fee id across eight contexts, the bundle's source hash and stripped
+fields, asset presence (including zero-byte dataless files), the exact photo split, the advertised
+delivery fee being the one charged, distinct rating counts, reachable modifier caps, no raw
+`addEventListener` in a screen or a sim, mount/unmount listener idempotence, every item orderable,
+stale brand strings after a rename, every screen rendering under six state fixtures with no
+`undefined`/`NaN` in the markup, accessible names in that markup, nested backfill of an old save,
+Hunger never lowering a price or pre-selecting a refusal, single-use promo codes, no unseeded
+randomness outside `util.js`, latency staying small and buyable, the world clock's idempotence, the
+wall-clock order lifecycle, and the artifact build's regex contract plus its 1 KB line limit.
 
 ## Rebranding
 
