@@ -25,8 +25,16 @@ window.FB = window.FB || {};
 
       var others = FB.cart.activeSlugs().filter(function (x) { return x !== p.slug; });
       var sub = FB.cart.subtotal(p.slug);
+      /* the same per-cart checkout state checkout.js reads — this preview used to
+         hardcode delivery, so a cart switched to Pickup on the store page quoted a
+         total several dollars off from the one checkout would charge */
+      var co = FB.cart.co(p.slug);
+      var promoCode = co.promoCode ? FB.fees.checkPromo(co.promoCode, sub) : null;
       var calc = FB.fees.compute({
-        subtotal: sub, lineCount: lines.length, store: s, mode: 'delivery',
+        subtotal: sub, lineCount: lines.length, store: s, mode: co.mode,
+        express: co.express, scheduled: !!co.scheduled,
+        tipPct: co.tipCustom != null ? null : co.tipPct, tipCustom: co.tipCustom,
+        promo: promoCode,
         plus: FB.store.isPlus(), settings: FB.S().settings, distanceMi: s.distanceMi,
       });
 

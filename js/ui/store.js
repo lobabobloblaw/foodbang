@@ -3,7 +3,6 @@ window.FB = window.FB || {};
 (function (FB) {
   'use strict';
 
-  var mode = 'delivery';
   var activeSec = null;
   var offScroll = null;
 
@@ -60,6 +59,9 @@ window.FB = window.FB || {};
         }).join('') + '</div>';
       }
 
+      /* the toggle writes to this store's own cart, which is what checkout reads —
+         it is not a per-page preference and it does not follow you to another store */
+      var mode = FB.cart.co(s.slug).mode;
       h += '<div class="st-modes">' +
         '<button data-mode="delivery" aria-pressed="' + (mode === 'delivery') + '">Delivery · ' + FB.mins(s.deliveryMin, s.deliveryMax) + '</button>' +
         '<button data-mode="pickup" aria-pressed="' + (mode === 'pickup') + '">Pickup · ' + s.distanceMi.toFixed(1) + ' mi</button>' +
@@ -97,8 +99,8 @@ window.FB = window.FB || {};
       var s = FB.catalog.get(p.slug); if (!s) return;
 
       FB.on(root, 'click', '[data-mode]', function (e, t) {
-        mode = t.dataset.mode; FB.nav.refresh();
-        FB.toast(mode === 'pickup' ? 'Pickup selected. Retrieval fees now apply.' : 'Delivery selected.');
+        FB.cart.setCo(s.slug, { mode: t.dataset.mode }); FB.nav.refresh();
+        FB.toast(t.dataset.mode === 'pickup' ? 'Pickup selected. Retrieval fees now apply.' : 'Delivery selected.');
       });
       FB.on(root, 'click', '[data-fav]', function () {
         FB.store.set(function (st) {

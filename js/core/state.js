@@ -81,6 +81,15 @@ window.FB = window.FB || {};
     Object.keys(d.settings.notifications).forEach(function (k) {
       if (s.settings.notifications[k] === undefined) s.settings.notifications[k] = d.settings.notifications[k];
     });
+    /* A cart bucket can exist with no lines: the store page's Delivery/Pickup toggle
+       writes to st.cart[slug].co before anything is added. That is right for the
+       session you are shopping in and wrong a week later — a Pickup chosen once on an
+       empty cart would silently still be in force. Drop the empties on load. */
+    Object.keys(s.cart || {}).forEach(function (k) {
+      var b = s.cart[k];
+      if (!b || !b.lines || !b.lines.length) delete s.cart[k];
+    });
+
     /* The house card carries the app's own name, so it moves when the app is
        renamed. Matched by id rather than by the old string: naming the retired
        brand here would put it right back into the source npm test greps. */

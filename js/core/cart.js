@@ -66,6 +66,31 @@ window.FB = window.FB || {};
     },
     clearAll: function () { FB.store.set(function (st) { st.cart = {}; return st; }); },
 
+    /* Checkout state belongs to the CART, not to the checkout screen. The app keeps
+       one cart per store and never merges them, so a delivery mode, a tip and a promo
+       chosen against one store's basket must not follow you into another's. Living on
+       the bucket, it also dies with the cart it was chosen for.
+       The promo is stored as a CODE, never as a validated result: a code is only ever
+       as valid as the current subtotal, and the subtotal moves. */
+    CO_DEFAULTS: { mode: 'delivery', express: false, scheduled: null, tipPct: null, tipCustom: null, promoCode: null },
+    co: function (slug) {
+      var b = bucket(slug);
+      var saved = (b && b.co) || {};
+      var out = {};
+      Object.keys(FB.cart.CO_DEFAULTS).forEach(function (k) {
+        out[k] = saved[k] !== undefined ? saved[k] : FB.cart.CO_DEFAULTS[k];
+      });
+      return out;
+    },
+    setCo: function (slug, patch) {
+      FB.store.set(function (st) {
+        var b = bucket(slug, true);
+        if (!b.co) b.co = {};
+        Object.keys(patch).forEach(function (k) { b.co[k] = patch[k]; });
+        return st;
+      });
+    },
+
     /* human-readable modifier summary for a line */
     describe: function (slug, l) {
       var it = FB.catalog.item(slug, l.itemId);
