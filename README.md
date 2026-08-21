@@ -2,6 +2,8 @@
 
 **Every Door Is A Mouth.**
 
+**→ [lobabobloblaw.github.io/doorgorge](https://lobabobloblaw.github.io/doorgorge/)**
+
 A satirical, entirely fictional clone of a present-day food-delivery app. Twenty invented
 restaurants, 426 menu items, 1,473 modifier groups and 4,700 modifier options — every one of them
 priced to make the total arrive somewhere you did not agree to.
@@ -17,10 +19,15 @@ made. Everything lives in `localStorage` and can be erased from **Account → Re
 npm start          # http://127.0.0.1:8899
 ```
 
-Or open `build/doorgorge.html` — a single self-contained file with every asset inlined, no server
-required. A published mirror lives at
-<https://claude.ai/code/artifact/a577d604-3fd5-4a05-a698-50ebbedf9e41> (private until you share it
-from the page's Share menu).
+Or run `npm run artifact` to produce `build/doorgorge.html` — a single self-contained file with
+every asset inlined, openable from anywhere with no server at all.
+
+Two hosted mirrors:
+
+| | |
+|---|---|
+| [GitHub Pages](https://lobabobloblaw.github.io/doorgorge/) | the multi-file app; images lazy-load and cache individually |
+| [Claude artifact](https://claude.ai/code/artifact/a577d604-3fd5-4a05-a698-50ebbedf9e41) | the single-file build (private until shared from its Share menu) |
 
 ```bash
 npm run bundle     # rebuild js/data/menus.generated.js from js/data/menus/*.json
