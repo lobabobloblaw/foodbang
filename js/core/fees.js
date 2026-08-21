@@ -36,7 +36,7 @@ window.FB = window.FB || {};
     pickupB: 'A vehicle was deployed and then stood down. Deployment is billed at deployment.',
     schedule: 'Scheduling requires the future, which must be reserved.',
     express: 'Express Bang places your order ahead of other orders, which are then placed ahead of yours.',
-    plusBenefit: 'Realising a BANG+ benefit requires a benefit realisation process.',
+    plusbenefit: 'Realising a BANG+ benefit requires a benefit realisation process.',
     other: 'Other.',
     rounding: 'Totals are rounded up to the nearest $5.00 for your convenience. The convenience is ours to define.',
     taxes: 'Taxes are collected on the subtotal and on the fees, including the fee for displaying the fees.',
@@ -171,7 +171,7 @@ window.FB = window.FB || {};
 
     /* working promo codes. every one of them is a trap. */
     PROMOS: {
-      GORGE10:   { kind: 'flat', value: 10, blurb: 'Applies to the subtotal, not the total.' },
+      BANG10:    { kind: 'flat', value: 10, blurb: 'Applies to the subtotal, not the total.' },
       FREEDELIV: { kind: 'flat', value: 4.99, blurb: 'Equal to the Delivery Fee, which is still charged.' },
       HALFOFF:   { kind: 'pct',  value: 0.5, min: 180, blurb: 'Valid on subtotals over $180.00.' },
       WELCOME:   { kind: 'flat', value: 3, blurb: 'New customers. You are not new.' },

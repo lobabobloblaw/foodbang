@@ -101,7 +101,7 @@ window.FB = window.FB || {};
   /* ===================== favorites ===================== */
   FB.screens.register('favorites', {
     tab: 'account',
-    appbar: function () { return '<div class="bar bar--border"><button class="iconbtn" data-back>' + FB.icon('back', 20) + '</button><h1>Saved stores</h1></div>'; },
+    appbar: function () { return '<div class="bar bar--border"><button class="iconbtn" data-back aria-label="Back">' + FB.icon('back', 20) + '</button><h1>Saved stores</h1></div>'; },
     render: function () {
       var favs = FB.S().favorites.map(FB.catalog.get).filter(Boolean);
       if (!favs.length) return FB.C.empty({ title: 'Nothing saved', body: 'Saving a store lets us remind you about it more often.', cta: 'Browse', go: 'home' });
@@ -112,7 +112,7 @@ window.FB = window.FB || {};
   /* ===================== settings ===================== */
   FB.screens.register('settings', {
     tab: 'account',
-    appbar: function () { return '<div class="bar bar--border"><button class="iconbtn" data-back>' + FB.icon('back', 20) + '</button><h1>Settings</h1></div>'; },
+    appbar: function () { return '<div class="bar bar--border"><button class="iconbtn" data-back aria-label="Back">' + FB.icon('back', 20) + '</button><h1>Settings</h1></div>'; },
     render: function () {
       var s = FB.S().settings;
       var h = '';
@@ -233,8 +233,8 @@ window.FB = window.FB || {};
   /* ===================== addresses ===================== */
   FB.screens.register('addresses', {
     tab: 'account',
-    appbar: function () { return '<div class="bar bar--border"><button class="iconbtn" data-back>' + FB.icon('back', 20) + '</button>' +
-      '<h1>Addresses</h1><button class="iconbtn" data-addnew>' + FB.icon('plus', 20) + '</button></div>'; },
+    appbar: function () { return '<div class="bar bar--border"><button class="iconbtn" data-back aria-label="Back">' + FB.icon('back', 20) + '</button>' +
+      '<h1>Addresses</h1><button class="iconbtn" data-addnew aria-label="Add an address">' + FB.icon('plus', 20) + '</button></div>'; },
     render: function () {
       var st = FB.S();
       return st.addresses.map(function (a) {
@@ -280,8 +280,8 @@ window.FB = window.FB || {};
         field('Street address', 'line1', a.line1, '123 Example Way') +
         field('Apt / Suite', 'line2', a.line2, 'Optional') +
         field('City, State ZIP', 'city', a.city, 'Sprawl Heights, CA 90210') +
-        '<div class="field"><span class="lbl">Dropoff instructions</span>' +
-        '<textarea class="textarea" data-f="instructions" placeholder="Gate code, floor, warnings…">' + FB.esc(a.instructions) + '</textarea></div>',
+        '<div class="field"><label class="lbl" for="f-instructions">Dropoff instructions</label>' +
+        '<textarea class="textarea" id="f-instructions" data-f="instructions" placeholder="Gate code, floor, warnings…">' + FB.esc(a.instructions) + '</textarea></div>',
       footer: '<button class="btn btn--primary btn--block" data-save>Save address</button>',
       onMount: function (b, h) {
         FB.on(h.el, 'click', '[data-save]', function () {
@@ -306,8 +306,11 @@ window.FB = window.FB || {};
     });
   }
   function field(label, key, val, ph) {
-    return '<div class="field"><span class="lbl">' + label + '</span>' +
-      '<input class="input" data-f="' + key + '" value="' + FB.attr(val || '') + '" placeholder="' + FB.attr(ph || '') + '"></div>';
+    /* a real <label for>, not a floating span: without it every input in the app
+       is announced as "edit text, blank" */
+    var id = 'f-' + key + '-' + FB.uid('');
+    return '<div class="field"><label class="lbl" for="' + id + '">' + label + '</label>' +
+      '<input class="input" id="' + id + '" data-f="' + key + '" value="' + FB.attr(val || '') + '" placeholder="' + FB.attr(ph || '') + '"></div>';
   }
 
   FB.openAddressSheet = function (after) {
@@ -333,8 +336,8 @@ window.FB = window.FB || {};
   /* ===================== payments ===================== */
   FB.screens.register('payments', {
     tab: 'account',
-    appbar: function () { return '<div class="bar bar--border"><button class="iconbtn" data-back>' + FB.icon('back', 20) + '</button>' +
-      '<h1>Payment methods</h1><button class="iconbtn" data-addcard>' + FB.icon('plus', 20) + '</button></div>'; },
+    appbar: function () { return '<div class="bar bar--border"><button class="iconbtn" data-back aria-label="Back">' + FB.icon('back', 20) + '</button>' +
+      '<h1>Payment methods</h1><button class="iconbtn" data-addcard aria-label="Add a payment method">' + FB.icon('plus', 20) + '</button></div>'; },
     render: function () {
       var st = FB.S();
       return st.payments.map(function (p) {
@@ -383,7 +386,7 @@ window.FB = window.FB || {};
           var digits = (v.num || '').replace(/\D/g, '');
           if (digits.length < 4) { FB.toast('Enter at least 4 digits.', { kind: 'bad' }); return; }
           FB.store.set(function (st) {
-            st.payments.push({ id: FB.uid('p'), brand: digits[0] === '4' ? 'Visa' : digits[0] === '5' ? 'Mastercard' : 'GorgeCard',
+            st.payments.push({ id: FB.uid('p'), brand: digits[0] === '4' ? 'Visa' : digits[0] === '5' ? 'Mastercard' : 'BangCard',
               last4: digits.slice(-4), exp: v.exp || '01/30', nickname: v.nick || 'Card', isDefault: false });
             return st;
           });
@@ -489,6 +492,8 @@ window.FB = window.FB || {};
     FB.sheet.open({
       title: 'Legal & policies', full: true,
       html: '<div style="padding:0 16px 30px;font:var(--t-sub);color:var(--ink-2);line-height:1.65">' +
+        '<div style="padding:2px 0 18px;border-bottom:1px solid var(--line);margin-bottom:18px">' +
+          FB.lockup({ size: 30 }) + '</div>' +
         '<p><b style="color:var(--ink)">This application is a work of satire.</b> FoodBang™, every restaurant in it, every menu item, ' +
         'every price, every fee and every modifier are fictional and were invented for parody. The brands depicted are ' +
         'exaggerated inventions and are not affiliated with, endorsed by, or representative of any real company.</p>' +

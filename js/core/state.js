@@ -45,7 +45,7 @@ window.FB = window.FB || {};
       ],
       selectedAddress: 'a1',
       payments: [
-        { id: 'p1', brand: 'GorgeCard', last4: '9931', exp: '11/29', nickname: 'BANG+ Linked', isDefault: true },
+        { id: 'p1', brand: 'BangCard', last4: '9931', exp: '11/29', nickname: 'BANG+ Linked', isDefault: true },
         { id: 'p2', brand: 'Visa', last4: '4417', exp: '03/28', nickname: 'Personal', isDefault: false },
         { id: 'p3', brand: 'EBT-Adjacent', last4: '0002', exp: '—', nickname: 'Provisional', isDefault: false },
       ],
@@ -80,6 +80,13 @@ window.FB = window.FB || {};
     });
     Object.keys(d.settings.notifications).forEach(function (k) {
       if (s.settings.notifications[k] === undefined) s.settings.notifications[k] = d.settings.notifications[k];
+    });
+    /* The house card carries the app's own name, so it moves when the app is
+       renamed. Matched by id rather than by the old string: naming the retired
+       brand here would put it right back into the source npm test greps. */
+    var house = d.payments[0];
+    (s.payments || []).forEach(function (p) {
+      if (p.id === house.id && p.brand !== house.brand) p.brand = house.brand;
     });
     return s;
   }

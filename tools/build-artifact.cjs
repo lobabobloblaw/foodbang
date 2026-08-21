@@ -109,7 +109,11 @@ function assetScript(map) {
   return lines.join('\n');
 }
 
-const out = '<title>FoodBang</title>\n' + FONTS + '\n<style>\n' + css + '\n</style>\n' + GUARD + body +
+/* keep the tab title identical to index.html rather than a second copy that drifts */
+const title = (html.match(/<title>([\s\S]*?)<\/title>/) || [, 'FoodBang'])[1];
+const themeColor = (html.match(/<meta name="theme-color"[^>]*>/) || [''])[0];
+
+const out = '<title>' + title + '</title>\n' + themeColor + '\n' + FONTS + '\n<style>\n' + css + '\n</style>\n' + GUARD + body +
   '\n<script>\n' + assetScript(assets) + '\n</script>\n' +
   '<script>' + SHIM + '</script>\n<script>\n' + js + '\n</script>\n';
 

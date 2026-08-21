@@ -46,11 +46,28 @@ check('fee stack order is intact', () => {
   return 'peak on stack, tip on subtotal';
 });
 
-check('every fee line has a FEE_WHY entry', () => {
-  const c = FB.fees.compute({ subtotal: 40, lineCount: 3, express: true, scheduled: true, settings: FB.S().settings });
-  const missing = c.feeLines.filter(l => !FB.FEE_WHY[l.id]).map(l => l.id);
-  if (missing.length) throw new Error('missing explanations for: ' + missing.join(', '));
-  return c.feeLines.length + ' fees';
+check('every fee line has a FEE_WHY entry, in every context', () => {
+  /* one context only ever exercises one branch of the fee stack, and the fee
+     that goes unexplained is always the one on the branch nobody tested */
+  const base = FB.S().settings;
+  const contexts = [
+    { subtotal: 12, lineCount: 2 },
+    { subtotal: 40, lineCount: 3, express: true, scheduled: true },
+    { subtotal: 90, lineCount: 9, mode: 'pickup' },
+    { subtotal: 40, lineCount: 3, plus: true },
+    { subtotal: 400, lineCount: 3, plus: true },
+    { subtotal: 40, lineCount: 3, settings: { ...base, feeTransparency: false, reduceUpsells: true, dataSharing: false } },
+  ];
+  const seen = new Set(), missing = new Set();
+  for (const ctx of contexts) {
+    const c = FB.fees.compute({ settings: base, ...ctx });
+    for (const l of c.feeLines.concat([c.taxLine, c.tipLine], c.roundLine ? [c.roundLine] : [])) {
+      seen.add(l.id);
+      if (!FB.FEE_WHY[l.id]) missing.add(l.id);
+    }
+  }
+  if (missing.size) throw new Error('missing explanations for: ' + [...missing].join(', '));
+  return seen.size + ' distinct fee ids across ' + contexts.length + ' contexts';
 });
 
 check('bundle matches the source menus', () => {
@@ -99,9 +116,13 @@ check('every item is orderable (required groups resolvable)', () => {
 });
 
 check('no stale brand strings in source', () => {
-  const stale = /doorgorge|gorger|gorgebux|mouthgut|\bDG\b/i;
+  /* The needles live in a data file that tools/rebrand.cjs skips. Spelled out
+     here they would themselves be rewritten by the courier-noun rule on the
+     next rename, and this check would start hunting for the CURRENT brand. */
+  const retired = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/retired-brands.json'), 'utf8'));
+  const stale = new RegExp(retired.patterns.join('|'), 'i');
   const skipDirs = new Set(['.git', 'node_modules', 'build']);
-  const skipFiles = new Set(['menus.generated.js', 'rebrand.cjs', 'smoke.cjs', 'CLAUDE.md']);
+  const skipFiles = new Set(['menus.generated.js', 'rebrand.cjs', 'smoke.cjs', 'retired-brands.json', 'CLAUDE.md']);
   const hits = [];
   (function walk(dir) {
     for (const e of fs.readdirSync(dir)) {

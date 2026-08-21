@@ -1,0 +1,13 @@
+{
+  "_why": "Names this app has stopped using. tools/smoke.cjs greps the source for these so a rename cannot leave half the old identity behind. They live in a data file because tools/rebrand.cjs skips this file: written out as literals inside smoke.cjs, the courier-noun rule would rewrite them on the next rename and the check would start hunting for the CURRENT brand in every file. tools/rebrand.cjs appends to this list as it runs.",
+  "_format": "Regular-expression sources, joined with | and matched case-insensitively against every .js/.css/.html/.json/.md file outside build/.",
+  "patterns": [
+    "doorgorge",
+    "gorger",
+    "gorgebux",
+    "gorgecard",
+    "gorge10",
+    "mouthgut",
+    "\\bDG\\b"
+  ]
+}
