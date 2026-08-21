@@ -211,6 +211,10 @@ taking the bag and the advertised arrival, less `RESOLVE_MARGIN_MS`, and never o
 computed **above** the incident block: read a line too late it is `undefined`, the bound is `NaN`,
 every comparison against it is false, and the clamp appears to work while doing nothing. The election
 path shifts arrival by the hold actually offered, not by `INCIDENT_MS`.
+**The shortest store drops its incident entirely, and that is the intended reading** — Dunkinn's
+19-minute window cannot hold an answerable deadline, so it never runs out of anything. Nineteen of
+the twenty stores are unaffected. Do not "fix" this by shrinking the floor without deciding that a
+deadline shorter than the sheet takes to read is worth offering.
 
 **`js/data/menus.generated.js` is generated, and is not the source of truth.** `bundle.cjs` strips
 `BUILD_ONLY` fields (`imagePrompt`, `photoStyle`) — they stay verbatim in the JSON by doctrine but
