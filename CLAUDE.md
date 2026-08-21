@@ -20,7 +20,7 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose thirty-four checks always run together — there is no way to run a
+(`node tools/smoke.cjs`) whose forty checks always run together — there is no way to run a
 single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
 exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
@@ -211,7 +211,7 @@ is rewritten; the file on disk is not), and a camelCase suffix slips past the wo
 carries the outgoing brand forever. That is why the roster file is `roster.js` and the order field is
 `personId`. `--selfcheck` finds both; run it after adding a subsystem, not just after editing `RULES`.
 
-**Run `npm test` before committing.** Thirty-four checks. Beyond the original thirteen they cover:
+**Run `npm test` before committing.** Forty checks. Beyond the original thirteen they cover:
 every screen rendering under six state fixtures × two hours with no `undefined`/`NaN` in the markup;
 accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
 pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency

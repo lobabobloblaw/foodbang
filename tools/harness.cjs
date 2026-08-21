@@ -64,9 +64,22 @@ function stubDocument() {
   const byId = {};
   const doc = {
     documentElement: stubEl('html'),
+    head: stubEl('head'),
     body: stubEl('body'),
     activeElement: null,
-    getElementById(id) { if (!byId[id]) { byId[id] = stubEl('div'); byId[id].id = id; } return byId[id]; },
+    getElementById(id) {
+      if (!byId[id]) {
+        const el = stubEl('div');
+        el.id = id;
+        /* a parent, because shell.js's freshRoot() replaces #view and #appbar in
+           their parent on every paint — without one, boot throws on the first
+           render and the whole boot path stays untested */
+        const parent = stubEl('div');
+        parent.appendChild(el);
+        byId[id] = el;
+      }
+      return byId[id];
+    },
     createElement(tag) { return stubEl(tag); },
     createTextNode(t) { return { textContent: t }; },
     querySelector() { return stubEl('div'); },
@@ -125,6 +138,9 @@ function loadApp(opts) {
   sandbox.clearInterval = (t) => { timers.delete(t); return clearInterval(t); };
   sandbox.requestAnimationFrame = (fn) => sandbox.setTimeout(fn, 0);
   sandbox.matchMedia = () => ({ matches: false, addEventListener() {}, addListener() {} });
+  sandbox.addEventListener = () => {};
+  sandbox.removeEventListener = () => {};
+  sandbox.scrollTo = () => {};
   sandbox.history = { pushState() {}, replaceState() {} };
   sandbox.location = { hash: '', href: 'http://localhost/' };
   sandbox.navigator = { userAgent: 'harness', vibrate() {} };

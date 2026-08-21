@@ -1820,6 +1820,54 @@ check('the map tints carry all six tokens and both themes', () => {
   return blocks.length + ' tint blocks, six tokens each, both dark forms';
 });
 
+check('the app boots', () => {
+  /* js/app.js is the one file the harness deliberately skips, so nothing has ever
+     exercised the actual boot sequence: applyAppearance, installFavicon, catalog
+     init, shell.init, standing decay, BangBux expiry, the notification backlog,
+     nav.go('home') and tracker.resume — in that order, with whatever the save
+     happens to contain. Every one of those is a place a renamed API throws. */
+  const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+  const appSrc = fs.readFileSync(path.join(ROOT, 'js/app.js'), 'utf8');
+
+  function boot(seed) {
+    const app = harness.loadApp();
+    app.clock.set(T0);
+    if (seed) seed(app.FB, T0);
+    try { app.run(appSrc); }
+    catch (e) { app.dispose(); throw new Error('boot threw: ' + e.message); }
+    const at = app.FB.nav.current();
+    const orders = app.FB.S().orders.length;
+    app.clock.restore();
+    app.dispose();
+    if (!at || at.name !== 'home') throw new Error('boot did not land on home: ' + (at && at.name));
+    return orders;
+  }
+
+  /* a fresh install */
+  boot(null);
+
+  /* and a save with an order abandoned a day ago, which is what makes boot do work:
+     tracker.resume() catches it up, standing decays, the backlog is synthesised */
+  const withOrder = boot((FB, now) => {
+    harness.addToCart(FB, 'mcronalds', 2);
+    const o = harness.makeOrder(FB, 'mcronalds', { now: now - 86400000 });
+    o.etaDrift = 0; o.events = []; o.calc.discounts = [];
+    FB.tracker.build(o);
+    FB.cart.clear('mcronalds');
+    FB.store.set((st) => {
+      st.orders.unshift(o);
+      st.activeOrderId = o.id;
+      st.meta.orderCount = 9;
+      st.standing = { points: 12, tier: 2, lastOrderAt: now - 86400000 * 5, decayedThrough: now - 86400000 * 5, seenTier: 2 };
+      st.scrip = [{ id: 'b1', amt: 1, at: now - 86400000 * 4 }];
+      return st;
+    });
+  });
+  if (!withOrder) throw new Error('the seeded order did not survive boot');
+
+  return 'fresh install and a day-old abandoned order, both reaching home';
+});
+
 console.log('');
 if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
 console.log('all checks passed');
