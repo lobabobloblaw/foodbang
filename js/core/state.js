@@ -51,8 +51,9 @@ window.FB = window.FB || {};
         { id: 'p3', brand: 'EBT-Adjacent', last4: '0002', exp: '—', nickname: 'Provisional', isDefault: false },
       ],
       selectedPayment: 'p1',
-      plus: { active: false, since: null, cancelAttempts: 0, trialUsed: false, renewsOn: null },
-      credits: 0,
+      plus: { active: false, since: null, cancelAttempts: 0, trialUsed: false, renewsOn: null,
+              saved: 0, paid: 0, retentionUsed: 0 },
+      scrip: [],            /* BangBux™ grants, each with an issue time. see js/core/scrip.js */
       cart: {},          /* slug -> { lines: [], updated } */
       orders: [],
       activeOrderId: null,

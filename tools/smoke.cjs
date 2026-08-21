@@ -59,11 +59,15 @@ check('$12 of food totals exactly $60.00', () => {
 });
 
 check('fee stack order is intact', () => {
+  /* Located by ID, not by position. This asserted peak was the LAST line until the
+     BangBux redemption started landing after it — deliberately, so that redeeming a
+     dollar does not also shrink the multiplier that dollar was multiplied into. */
   const c = FB.fees.compute({ subtotal: 12, lineCount: 2, settings: FB.S().settings });
-  const peak = c.feeLines[c.feeLines.length - 1];
-  if (!/Peak Demand/.test(peak.label)) throw new Error('Peak Demand must be the last fee line, saw: ' + peak.label);
-  const stack = c.feeLines.slice(0, -1).reduce((a, l) => a + l.amount, 0);
-  if (Math.abs(peak.amount - stack * 0.4) > 0.02) throw new Error('Peak multiplier is not applied to the whole stack');
+  const i = c.feeLines.findIndex(l => l.id === 'peak');
+  if (i < 0) throw new Error('no Peak Demand line at all');
+  const stack = c.feeLines.slice(0, i).reduce((a, l) => a + l.amount, 0);
+  if (Math.abs(c.feeLines[i].amount - stack * 0.4) > 0.02) throw new Error('Peak multiplier is not applied to the whole stack');
+  if (c.feeLines.slice(0, i).some(l => l.amount < 0)) throw new Error('something is discounted before the multiplier is applied');
   if (Math.abs(c.tipLine.amount - 12 * 0.42) > 0.01) throw new Error('tip must be computed on the subtotal');
   return 'peak on stack, tip on subtotal';
 });
@@ -82,6 +86,7 @@ check('every fee line has a FEE_WHY entry, in every context', () => {
     { subtotal: 40, lineCount: 3, settings: { ...base, hungerLevel: 1 } },
     { subtotal: 40, lineCount: 3, settings: { ...base, instantInterface: true } },
     { subtotal: 40, lineCount: 3, standingTier: 3 },
+    { subtotal: 40, lineCount: 3, scrip: 3 },
   ];
   const seen = new Set(), missing = new Set();
   for (const ctx of contexts) {
@@ -950,6 +955,73 @@ check('Standing is earned by ordering and lost by not ordering', () => {
     if (S.settle() !== null) throw new Error('settling twice in one day decayed twice');
 
     return S.TIERS.length + ' tiers, upkeep $' + S.upkeep(1).toFixed(2) + '-$' + S.upkeep(4).toFixed(2) + ', 1 point a day';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('BANG+ keeps books, and BangBux expire', () => {
+  /* plus.saved was written as 0 on join and never incremented while five places
+     rendered it, and `credits` was declared, rendered in two screens, and granted
+     by nothing — the checkout row is gated on > 0, so it had never rendered once. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const S = FB.S().settings;
+    const base = { subtotal: 40, lineCount: 3, settings: S, store: FB.catalog.get('mcronalds') };
+
+    /* the ledger */
+    const member = FB.fees.compute({ ...base, plus: true });
+    const outsider = FB.fees.compute(base);
+    if (!(member.plusSaved > 0)) throw new Error('membership saved nothing on a delivery order');
+    if (member.plusPaid !== 1.99) throw new Error('the Benefit Realization Fee is not being recorded');
+    /* the joke has to survive: on an ordinary order, membership is a net loss */
+    if (member.plusSaved - member.plusPaid >= 0) throw new Error('membership is net POSITIVE on a $40 order');
+    if (outsider.plusSaved !== 0 || outsider.plusPaid !== 0) throw new Error('a non-member has a member ledger');
+    /* and pickup has no saving at all, which is why the checkout pitch hides there */
+    const pickup = FB.fees.compute({ ...base, plus: true, mode: 'pickup' });
+    if (pickup.plusSaved !== 0) throw new Error('pickup claims a BANG+ delivery saving');
+
+    /* redemption: whole BangBux, capped, and after the multiplier */
+    const plain = FB.fees.compute(base);
+    if (JSON.stringify(FB.fees.compute({ ...base, scrip: 0 })) !== JSON.stringify(plain)) {
+      throw new Error('passing scrip: 0 changes the result');
+    }
+    const red = FB.fees.compute({ ...base, scrip: 3 });
+    if (red.scripUsed !== FB.fees.SCRIP_MAX_PER_ORDER) throw new Error('redemption is not capped per order: ' + red.scripUsed);
+    if (FB.fees.compute({ ...base, scrip: 0.9 }).scripUsed !== 0) throw new Error('a fractional balance was redeemed');
+    const line = red.feeLines.find(l => l.id === 'scrip');
+    if (!line || line.amount >= 0) throw new Error('redemption is not a negative fee line');
+    const peakIdx = red.feeLines.findIndex(l => l.id === 'peak');
+    if (red.feeLines.findIndex(l => l.id === 'scrip') < peakIdx) {
+      throw new Error('redemption lands before the multiplier, shrinking the ×1.4 it was multiplied into');
+    }
+    if (Math.abs(red.feesTotal - (plain.feesTotal - red.scripUsed)) > 0.011) {
+      throw new Error('redemption did not come off the fee total');
+    }
+
+    /* and the punchline the engine delivers on its own */
+    if (red.total !== plain.total) {
+      throw new Error('Convenience Rounding no longer absorbs a $1 redemption — check the copy still matches');
+    }
+
+    /* grants expire seventy-two hours after issue, oldest spent first */
+    const T = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T);
+    FB.scrip.grant(1, T);
+    FB.scrip.grant(1, T - 40 * 3600000);
+    if (FB.scrip.balance() !== 2) throw new Error('balance is ' + FB.scrip.balance() + ', not 2');
+    if (FB.scrip.redeemable() !== FB.fees.SCRIP_MAX_PER_ORDER) throw new Error('redeemable ignores the per-order cap');
+    FB.scrip.grant(1, T - 80 * 3600000);          /* already dead on arrival */
+    if (FB.scrip.balance() !== 2) throw new Error('an expired grant counted toward the balance');
+    if (FB.scrip.expire(T) !== 1) throw new Error('expire() did not reclaim the dead grant');
+    /* spending takes the oldest first, so what is about to expire goes first */
+    FB.scrip.spend(1, T);
+    const left = FB.S().scrip;
+    if (left.length !== 1 || left[0].at !== T) throw new Error('spending did not take the oldest grant first');
+    clock.set(T + 80 * 3600000);
+    if (FB.scrip.expire() !== 1) throw new Error('a grant did not expire after 72 hours');
+    if (FB.scrip.balance() !== 0) throw new Error('balance survived expiry');
+
+    return 'ledger, capped whole-BangBux redemption after the multiplier, 72h expiry';
   } finally { clock.restore(); app.dispose(); }
 });
 

@@ -33,6 +33,7 @@ window.FB = window.FB || {};
     upsell: 'Suppressing recommendations removes a revenue stream. The stream is restored here.',
     restraint: 'A reduced Hunger Level reduces recommended volume. The shortfall is billed.',
     standing: 'Maintaining a Standing requires maintenance. The fee is assessed at the tier you hold, not the tier you use.',
+    scrip: 'BangBux™ are a benefit. Benefits are denominated in BangBux™. BangBux™ are redeemable against fees, which are denominated in dollars, at a rate we publish here.',
     accel: 'Requests take the time they take. Acceleration is applied to the display of the request, which is the part you are present for.',
     data: 'Your behavioral data was subsidizing your food. You have withdrawn the subsidy.',
     pickupA: 'You are retrieving the order yourself. Facilitating your retrieval is a service.',
@@ -53,6 +54,13 @@ window.FB = window.FB || {};
      time and take the one thing under direct test with it. standing.js reads it
      back off FB.fees, so there is still one table. */
   var STANDING_UPKEEP = [0, 0.60, 1.25, 2.10, 3.40];
+
+  /* BangBux™: 2% of the fee stack back, in whole BangBux™, one per order. Rounded
+     rather than floored — at 2% of a typical stack, flooring would mean the balance
+     never moved and the whole benefit would be invisible. */
+  var SCRIP_RATE = 0.02;
+  var SCRIP_MAX_PER_ORDER = 1;
+  var SCRIP_TTL_MS = 72 * 3600 * 1000;
   function upkeep(tier) {
     var i = Math.max(0, Math.min(STANDING_UPKEEP.length - 1, Math.round(tier) || 0));
     return STANDING_UPKEEP[i];
@@ -68,6 +76,7 @@ window.FB = window.FB || {};
    */
   FB.fees = {
     STANDING_UPKEEP: STANDING_UPKEEP,
+    SCRIP_RATE: SCRIP_RATE, SCRIP_MAX_PER_ORDER: SCRIP_MAX_PER_ORDER, SCRIP_TTL_MS: SCRIP_TTL_MS,
     TAX_RATE: TAX_RATE, PEAK_MULT: PEAK_MULT,
 
     compute: function (ctx) {
@@ -78,6 +87,8 @@ window.FB = window.FB || {};
       var dist = ctx.distanceMi || (ctx.store && ctx.store.distanceMi) || 2.4;
       var lines = [];
       var discounts = [];
+      /* what membership actually did on THIS order, so the panel can keep books */
+      var plusSaved = 0, plusPaid = 0;
 
       /* ---------- discounts (applied to subtotal) ---------- */
       var promoAmt = 0;
@@ -103,11 +114,14 @@ window.FB = window.FB || {};
           if (sub >= 312) {
             lines.push({ id: 'delivery', label: 'Delivery Fee', amount: 0, was: base, kind: 'fee', free: true,
               note: 'BANG+ waives this on orders over $312.00.' });
+            plusSaved = FB.round2(base);
           } else {
             lines.push(line('delivery', 'Delivery Fee (BANG+ Reduced)', base * 0.7,
               'A 30% reduction on ' + FB.money(base) + '. Full waiver applies at $312.00. You are ' + FB.money(312 - sub) + ' away.'));
+            plusSaved = FB.round2(base * 0.3);
           }
           lines.push(line('plusbenefit', 'BANG+ Benefit Realization Fee', 1.99, null));
+          plusPaid = 1.99;
         } else {
           lines.push(line('delivery', 'Delivery Fee', base, advNote));
         }
@@ -156,7 +170,22 @@ window.FB = window.FB || {};
       var peak = FB.round2(stack * (PEAK_MULT - 1));
       lines.push(line('peak', 'Peak Demand Multiplier ×' + PEAK_MULT.toFixed(1), peak, 'Applied to all fees above.'));
 
-      var feesTotal = FB.round2(stack + peak);
+      /* Redemption is a negative FEE, not a discount. `discounts` below is
+         DISPLAY-ONLY — the arithmetic runs on the promoAmt scalar and discounts is
+         only iterated by the receipt renderer — so a line pushed there would render
+         a row that changes no number at all. And it lands AFTER the multiplier, so
+         redeeming a dollar does not also shrink the ×1.4 that dollar was multiplied
+         into. In whole BangBux™, capped per order, never below zero. */
+      var scripUsed = 0;
+      if (ctx.scrip > 0) {
+        scripUsed = Math.min(SCRIP_MAX_PER_ORDER, Math.floor(ctx.scrip));
+        if (scripUsed > 0) {
+          lines.push(line('scrip', 'BangBux™ Redemption', -scripUsed,
+            'Redeemable against fees. ' + FB.money(SCRIP_MAX_PER_ORDER) + ' maximum per order.'));
+        }
+      }
+
+      var feesTotal = FB.round2(stack + peak - scripUsed);
 
       /* ---------- taxes ---------- */
       var taxable = FB.round2(sub - promoAmt + feesTotal);
@@ -192,6 +221,12 @@ window.FB = window.FB || {};
         /* how many times the food cost you paid */
         multiple: sub > 0 ? total / sub : 0,
         nonFood: FB.round2(total - sub + promoAmt),
+        /* the member ledger, and the scrip. plus.saved was written as 0 on join and
+           never incremented while five places rendered it. */
+        plusSaved: plusSaved,
+        plusPaid: plusPaid,
+        scripUsed: scripUsed,
+        scripEarned: Math.min(SCRIP_MAX_PER_ORDER, Math.round(FB.round2(stack + peak) * SCRIP_RATE)),
       };
     },
 

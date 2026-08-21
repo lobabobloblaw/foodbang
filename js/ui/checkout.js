@@ -50,6 +50,7 @@ window.FB = window.FB || {};
       tipCustom: co.tipCustom, promo: promoFor(p, sub), plus: FB.store.isPlus(),
       settings: FB.S().settings, distanceMi: s ? s.distanceMi : 2.4,
       standingTier: FB.S().standing.tier,
+      scrip: FB.scrip.redeemable(),
     });
   }
 
@@ -122,7 +123,9 @@ window.FB = window.FB || {};
         '<span>' + (promo ? FB.esc(promo.valid ? promo.blurb : promo.error)
           : FB.titleCase(count(nCodes)) + ' codes are currently active. All ' + count(nCodes) + ' have conditions.') + '</span></span>' +
         '<span class="crow-r">' + FB.icon('fwd', 14) + '</span></button>' +
-        (st.credits > 0 ? '<div class="crow">' + FB.icon('gift', 19) + '<span class="crow-b"><b>BangBux™ balance</b><span>' + FB.money(st.credits) + ' — redeemable against fees, not food</span></span></div>' : '') +
+        (FB.scrip.balance() > 0 ? '<div class="crow">' + FB.icon('gift', 19) +
+          '<span class="crow-b"><b>BangBux™ balance ' + FB.money(FB.scrip.balance()) + '</b><span>Redeemable against fees, not food. ' +
+          'A maximum of ' + FB.money(FB.fees.SCRIP_MAX_PER_ORDER) + ' may be redeemed per order.</span></span></div>' : '') +
         '</div>';
 
       /* bang+ inline pitch. Located by id, never by position: feeLines[0] on a
@@ -381,8 +384,22 @@ window.FB = window.FB || {};
         st.standing.tier = FB.standing.tierFor(st.standing.points);
         st.standing.lastOrderAt = order.placedAt;
         st.standing.decayedThrough = order.placedAt;
+        /* the member ledger: gross saved, dues-adjacent fees paid. NET is what the
+           BANG+ panel shows growing fastest, and it grows in red. */
+        if (st.plus.active) {
+          st.plus.saved = FB.round2((st.plus.saved || 0) + c.plusSaved);
+          st.plus.paid = FB.round2((st.plus.paid || 0) + c.plusPaid);
+        }
         return st;
       });
+      /* spend before granting, so a dollar redeemed on this order cannot be the
+         dollar this order earns */
+      if (c.scripUsed > 0) FB.scrip.spend(c.scripUsed);
+      if (c.scripEarned > 0) {
+        FB.scrip.grant(c.scripEarned, order.placedAt);
+        FB.toast(FB.money(c.scripEarned) + ' in BangBux™ issued. BangBux™ expire seventy-two hours after issue ' +
+          'and cannot be reissued within that window.', { icon: 'gift', ms: 4200 });
+      }
       announceStanding();
       FB.bodymax.ingest(order);
       /* the cart bucket carried the promo, tip, mode and schedule, and deleting the

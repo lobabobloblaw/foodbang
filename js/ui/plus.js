@@ -31,17 +31,27 @@ window.FB = window.FB || {};
         '<h1>' + (active ? 'You are a member' : 'Pay a fee to reduce your fees') + '</h1>' +
         '<p>' + (active
           ? 'Member since ' + FB.dayLabel(st.plus.since) + '. ' + FB.plural(months, 'month') + ' billed. ' + FB.money(st.plus.saved || 0) + ' saved.'
+          + (FB.scrip.balance() > 0 ? ' ' + FB.money(FB.scrip.balance()) + ' in BangBux™ expiring shortly.' : '')
           : '$19.99 per month. Waives the delivery fee on orders over $312.00, which is more than you have ever spent in one order.') +
         '</p></div>';
 
       if (active) {
-        var paid = FB.round2(19.99 * months);
+        /* Real books at last. saved is the gross delivery reduction membership
+           actually applied; paid is the Benefit Realization Fee it charged to apply
+           it; dues are the dues. NET is saved minus both, and it is the number that
+           grows fastest. */
+        var dues = FB.round2(19.99 * months);
+        var saved = FB.round2(st.plus.saved || 0);
+        var benefitFees = FB.round2(st.plus.paid || 0);
+        var net = FB.round2(saved - dues - benefitFees);
         h += '<div class="statgrid">' +
-          '<div><b>' + FB.money(paid) + '</b><span>PAID IN DUES</span></div>' +
-          '<div><b style="color:var(--good)">' + FB.money(st.plus.saved || 0) + '</b><span>SAVED</span></div>' +
-          '<div><b style="color:var(--bad)">' + FB.money(paid - (st.plus.saved || 0)) + '</b><span>NET</span></div></div>' +
+          '<div><b>' + FB.money(FB.round2(dues + benefitFees)) + '</b><span>PAID</span></div>' +
+          '<div><b style="color:var(--good)">' + FB.money(saved) + '</b><span>SAVED</span></div>' +
+          '<div><b style="color:var(--bad)">' + (net < 0 ? '−' : '') + FB.money(Math.abs(net)) + '</b><span>NET</span></div></div>' +
           '<p style="font:var(--t-cap);color:var(--ink-3);padding:12px 16px;line-height:1.5">' +
-          'Net figure is shown for transparency and is subject to the Fee Transparency Fee.</p>';
+          FB.money(dues) + ' in dues and ' + FB.money(benefitFees) + ' in Benefit Realization Fees, against ' +
+          FB.money(saved) + ' in reduced delivery. The net figure is shown for transparency and is subject to ' +
+          'the Fee Transparency Fee.</p>';
       }
 
       h += '<div style="border-top:8px solid var(--surface-2);margin-top:' + (active ? '8px' : '0') + '">' +
@@ -99,7 +109,7 @@ window.FB = window.FB || {};
       FB.sheet.open({
         title: 'Manage membership',
         html: '<div class="mrow">' + FB.icon('card', 19) + '<span class="mr-b"><b>Billing</b><span>$19.99 monthly · ' + FB.esc(st.plus.renewsOn || 'renews automatically') + '</span></span></div>' +
-          '<div class="mrow">' + FB.icon('gift', 19) + '<span class="mr-b"><b>BangBux™</b><span>' + FB.money(st.credits) + ' available</span></span></div>' +
+          '<div class="mrow">' + FB.icon('gift', 19) + '<span class="mr-b"><b>BangBux™</b><span>' + FB.money(FB.scrip.balance()) + ' available</span></span></div>' +
           '<button class="mrow" data-next>' + FB.icon('x', 19) + '<span class="mr-b"><b>Cancel membership</b><span>Available online.</span></span>' +
           '<span class="mr-r">' + FB.icon('fwd', 15) + '</span></button>',
         onMount: function (b, h) { FB.on(b, 'click', '[data-next]', function () { h.close(); FB.latency.run('plusCancel', function () { cancelStep(2); }); }); },

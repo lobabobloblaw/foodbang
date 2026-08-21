@@ -39,6 +39,7 @@ window.FB = window.FB || {};
         /* threaded here too — a preview that omits a fee checkout charges is the
            exact regression the comment above this block records */
         standingTier: FB.S().standing.tier,
+        scrip: FB.scrip.redeemable(),
       });
 
       var h = '';

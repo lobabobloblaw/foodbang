@@ -92,12 +92,21 @@
        what the save already knows rather than accrued by a timer */
     /* Standing decays once, here, against a day stamp — never in a render path. */
     var lost = FB.standing.settle();
+    var expired = FB.scrip.expire();
     FB.notifs.backfill();
     FB.nav.go('home', {}, { silent: true });
     FB.tracker.resume();
     FB.updateDeskStats();
     hideSplash();
 
+    if (expired > 0) {
+      FB.notifs.push({
+        id: 'scrip-exp:' + Math.floor(Date.now() / 3600000), kind: 'promo', icon: 'gift',
+        title: FB.money(expired) + ' in BangBux™ expired',
+        body: 'They were available for seventy-two hours, during which you did not order.',
+        go: 'plus',
+      });
+    }
     if (lost) {
       var name = FB.standing.name(lost.to);
       FB.toast('Your Standing has been reduced to ' + name + '.', { kind: 'bad', ms: 4200 });
