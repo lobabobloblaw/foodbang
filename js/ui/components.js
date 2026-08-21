@@ -67,20 +67,25 @@ window.FB = window.FB || {};
   /* merchandising tile for a single photographed dish */
   C.dishTile = function (rec) {
     var it = rec.item, s = rec.store;
-    return '<button class="dishtile pressable" data-item="' + it.id + '" data-slug="' + s.slug + '">' +
+    /* Home's rail and Search render items too. An item struck through on the store
+       page but purchasable from Home reads as a bug, not as scarcity. */
+    var out = !FB.catalog.available(it);
+    return '<button class="dishtile pressable' + (out ? ' is-out' : '') + '" data-item="' + it.id + '" data-slug="' + s.slug + '">' +
       '<img src="' + it.photoSrc + '" alt="" loading="lazy">' +
       '<b class="trunc1">' + FB.esc(it.name) + '</b>' +
       '<span class="trunc1">' + FB.esc(s.shortName || s.name) + '</span>' +
-      '<span class="dt-p">' + FB.money(it.price) + '</span></button>';
+      '<span class="dt-p">' + (out ? 'Unavailable' : FB.money(it.price)) + '</span></button>';
   };
 
   C.menuItem = function (it, store) {
     var badge = (it.badges || [])[0];
-    return '<button class="mitem" data-item="' + it.id + '" data-slug="' + store.slug + '">' +
+    var out = !FB.catalog.available(it);
+    return '<button class="mitem' + (out ? ' is-out' : '') + '" data-item="' + it.id + '" data-slug="' + store.slug + '">' +
       '<span class="mi-b">' +
-        (badge ? '<span class="badge badge--promo" style="margin-bottom:5px">' + FB.esc(badge) + '</span>' : '') +
+        (out ? '<span class="badge badge--warn" style="margin-bottom:5px">Unavailable today</span>'
+             : badge ? '<span class="badge badge--promo" style="margin-bottom:5px">' + FB.esc(badge) + '</span>' : '') +
         '<b>' + FB.esc(it.name) + '</b>' +
-        '<span class="mi-d trunc2">' + FB.esc(it.desc) + '</span>' +
+        '<span class="mi-d trunc2">' + FB.esc(out ? it.scarce : it.desc) + '</span>' +
         '<span class="mi-p">' + FB.money(it.price) +
           '<i class="mi-cal">' + FB.int(it.calories) + ' Cal</i></span>' +
       '</span>' +

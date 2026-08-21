@@ -380,6 +380,11 @@ kbd {
 }
 .tosdiff-row svg { flex: none; margin-top: 2px; color: var(--fb); }
 
+/* unavailable: still legible, plainly not for sale today */
+.mitem.is-out, .dishtile.is-out { opacity: .58; }
+.mitem.is-out .mi-p, .dishtile.is-out .dt-p { text-decoration: line-through; }
+.mitem.is-out .mi-add { display: none; }
+
 .belldot {
   position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; border-radius: 50%;
   background: var(--fb); box-shadow: 0 0 0 2px var(--bg);

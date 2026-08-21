@@ -377,6 +377,7 @@
           "id": "bcs-003",
           "name": "Taro Milk Tea",
           "desc": "Purple, thick, cold. We make the real taro in the morning and when it is gone it is gone.",
+          "scarce": "the taro is fresh and is therefore finite",
           "price": 3.05,
           "calories": 710,
           "badges": [
@@ -1651,6 +1652,7 @@
           "id": "bcs-015",
           "name": "Black Sesame Snow",
           "desc": "WARNING: THIS IS NOT SWEET. IT IS SESAME. ADD THE CONDENSED MILK OR DO NOT ORDER IT. WE ARE TELLING YOU BEFORE AND NOT AFTER.",
+          "scarce": "black sesame is ground here and is ground once",
           "price": 4.4,
           "calories": 1290,
           "badges": [

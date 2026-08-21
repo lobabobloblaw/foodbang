@@ -89,6 +89,7 @@ check('every fee line has a FEE_WHY entry, in every context', () => {
     { subtotal: 40, lineCount: 3, standingTier: 3 },
     { subtotal: 40, lineCount: 3, scrip: 3 },
     { subtotal: 40, lineCount: 3, tosVersion: 3 },
+    { subtotal: 40, lineCount: 3, restockAlerts: 2 },
   ];
   const seen = new Set(), missing = new Set();
   for (const ctx of contexts) {
@@ -1286,6 +1287,85 @@ check('store promotions change the total, or say they do not', () => {
 
     return mech + ' promos with arithmetic, ' + inert + ' without, across ' + total;
   } finally { app.dispose(); }
+});
+
+check('some things run out, and never too many of them', () => {
+  /* The menus have always promised this — "when they are gone they are gone until
+     Sunday", "hand battered in the morning, and the app does not know when they are
+     gone" — and the app honoured none of it, which is what makes a menu read as
+     published rather than operated. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    let marked = 0;
+    for (const [slug, m] of Object.entries(SOURCES)) {
+      const all = m.menu.flatMap(s => s.items);
+      const scarce = all.filter(it => it.scarce);
+      marked += scarce.length;
+      for (const it of scarce) {
+        if (typeof it.scarce !== 'string' || it.scarce.length < 8) throw new Error(slug + '/' + it.id + ': scarce is not a reason');
+      }
+      /* a menu that is mostly unavailable is not scarcity, it is a broken store */
+      if (scarce.length > all.length * 0.25) throw new Error(slug + ': ' + scarce.length + ' of ' + all.length + ' can run out');
+    }
+    if (marked < 7) throw new Error('only ' + marked + ' items can ever run out');
+
+    /* stable for a whole day, different tomorrow, identical across a restart */
+    const day0 = new Date(2026, 7, 20, 12, 0, 0).getTime();
+    const item = FB.catalog.item('gyropalace', 'gyp-017');
+    if (!item.scarce) throw new Error('the grape leaves lost their scarcity');
+    clock.set(day0);
+    const a = FB.catalog.available(item, day0);
+    if (FB.catalog.available(item, day0 + 6 * 3600000) !== a) throw new Error('availability changed within one day');
+    if (FB.catalog.available(item, day0) !== a) throw new Error('availability is not deterministic');
+
+    /* over a fortnight it must both happen and not happen */
+    let outDays = 0;
+    for (let d = 0; d < 14; d++) {
+      const t = day0 + d * 86400000;
+      clock.set(t);
+      if (!FB.catalog.available(item, t)) outDays++;
+    }
+    if (outDays === 0) throw new Error('a scarce item was never once unavailable in a fortnight');
+    if (outDays === 14) throw new Error('a scarce item was never once available in a fortnight');
+
+    /* and no store is ever gutted: every day, every store keeps most of its menu */
+    for (let d = 0; d < 14; d++) {
+      const t = day0 + d * 86400000;
+      clock.set(t);
+      for (const s of FB.catalog.all()) {
+        const all = s.menu.flatMap(sec => sec.items);
+        const live = all.filter(it => FB.catalog.available(it, t));
+        if (live.length < 15) throw new Error(s.slug + ' has only ' + live.length + ' items on day ' + d);
+        if (live.length < all.length * 0.75) throw new Error(s.slug + ' lost over a quarter of its menu on day ' + d);
+      }
+    }
+
+    /* an unavailable item is unavailable everywhere it is drawn, not just on the
+       store page — Home's rail and Search render items too */
+    clock.set(day0);
+    const gone = FB.catalog.all().flatMap(s => s.menu.flatMap(sec => sec.items))
+      .find(it => it.scarce && !FB.catalog.available(it, day0));
+    if (gone) {
+      const store = FB.catalog.get(gone.storeSlug);
+      const row = FB.C.menuItem(gone, store);
+      if (!/is-out/.test(row)) throw new Error('an unavailable item renders as available on the store page');
+      if (!row.includes(FB.esc(gone.scarce))) throw new Error('the menu row does not say why it is gone');
+      if (gone.photoSrc) {
+        const tile = FB.C.dishTile({ item: gone, store: store });
+        if (!/is-out/.test(tile)) throw new Error("an unavailable item renders as available on Home's rail");
+      }
+    }
+
+    /* the restock fee is order-level, so the FEE_WHY walk can reach it at all */
+    const c = FB.fees.compute({ subtotal: 40, lineCount: 3, settings: FB.S().settings, restockAlerts: 2 });
+    const l = c.feeLines.find(x => x.id === 'restock');
+    if (!l) throw new Error('the restock fee is unreachable from fees.compute');
+    if (Math.abs(l.amount - 2.80) > 0.011) throw new Error('the restock fee does not scale with the count');
+    if (FB.fees.compute({ subtotal: 12, lineCount: 2, settings: FB.S().settings }).total !== 60) throw new Error('the $60.00 case moved');
+
+    return marked + ' items can run out; ' + outDays + ' of 14 days for the grape leaves';
+  } finally { clock.restore(); app.dispose(); }
 });
 
 console.log('');

@@ -1273,6 +1273,7 @@
           "id": "gyp-012",
           "name": "Lamb Chops (4)",
           "desc": "Four chops on the char grill with rice and salad. Priced the same as 2016 and I am aware of what lamb costs now.",
+          "scarce": "four chops to a rack, and the rack is the unit we buy",
           "price": 13.75,
           "calories": 2340,
           "badges": [
@@ -1470,6 +1471,7 @@
           "id": "gyp-014",
           "name": "Half Rotisserie Chicken With Rice",
           "desc": "Half a chicken off the vertical rotisserie, cut in the back, over rice. Available until it runs out, usually around 8.",
+          "scarce": "the rotisserie holds what it holds, and it is usually empty by eight",
           "price": 9.45,
           "calories": 2520,
           "badges": [],
@@ -1753,6 +1755,7 @@
           "id": "gyp-017",
           "name": "Stuffed Grape Leaves (6)",
           "desc": "Rolled by my aunt on Sundays. When they are gone they are gone until Sunday.",
+          "scarce": "the aunt who rolls these does so on Sundays",
           "price": 4.4,
           "calories": 620,
           "badges": [

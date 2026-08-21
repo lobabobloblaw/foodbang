@@ -42,6 +42,7 @@ window.FB = window.FB || {};
         scrip: FB.scrip.redeemable(),
         tosVersion: FB.tos.version(),
         storePromo: FB.catalog.storeOffer(s, sub, FB.store.isPlus()),
+        restockAlerts: (FB.S().restock || []).length,
       });
 
       var h = '';

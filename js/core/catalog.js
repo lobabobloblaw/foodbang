@@ -129,6 +129,38 @@ window.FB = window.FB || {};
       return s.menu.filter(function (x) { return x.id === secId; })[0] || null;
     },
 
+    /* Scarcity. The menus have always PROMISED this — "when they are gone they are
+       gone until Sunday", "hand battered in the morning, and the app does not know
+       when they are gone" — and the app honoured none of it, which is what makes a
+       menu read as published rather than operated.
+
+       Keyed on the item and the DAY, so an item is unavailable for a whole day and
+       different tomorrow, never Math.random() in a render path, and it gives a
+       returning user something that changed while they were away. Weighted by how
+       hard the kitchen is being hit right now, so scarcity bites at dinner. */
+    available: function (item, at) {
+      if (!item || !item.scarce) return true;
+      var now = at || Date.now();
+      var d = new Date(now);
+      var day = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+      var roll = FB.seeded('86:' + item.id + ':' + day)();
+      var load = FB.world ? FB.world.kitchenLoad(item.storeSlug, now) : 0.5;
+      /* 22% of days at a quiet kitchen, up to about 45% at a slammed one */
+      return roll > (0.22 + load * 0.23);
+    },
+
+    /** the scarce items a store is out of right now */
+    soldOut: function (store, at) {
+      if (!store) return [];
+      var out = [];
+      store.menu.forEach(function (sec) {
+        sec.items.forEach(function (it) {
+          if (it.scarce && !FB.catalog.available(it, at)) out.push(it);
+        });
+      });
+      return out;
+    },
+
     /* The best store promo this basket qualifies for, or null. Pure: the caller
        passes the subtotal and whether they are a member. Fourteen of the
        twenty-two promos are jokes with no arithmetic in them (kind "none") and

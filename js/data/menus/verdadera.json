@@ -423,6 +423,7 @@
           "id": "tqv-004",
           "name": "Taco de Lengua",
           "desc": "Beef tongue, simmered four hours, chopped to order. NOT AVAILABLE MONDAYS.",
+          "scarce": "one tongue per day, and it is a small tongue",
           "price": 2.4,
           "calories": 680,
           "badges": [
@@ -1581,6 +1582,7 @@
           "id": "tqv-015",
           "name": "Consomé de Birria",
           "desc": "16 oz of the broth, with onion and cilantro and a lime. Ask for it. Hector asks for it every time.",
+          "scarce": "the consomé is what is left after the birria, and there is a fixed amount of birria",
           "price": 2.65,
           "calories": 680,
           "badges": [
@@ -1959,6 +1961,7 @@
           "id": "tqv-019",
           "name": "Salsa de la Señora Elvia (8 oz)",
           "desc": "Roja or verde, by the cup, to take home. WARNING: the habanera is not a flavor, it is a decision, and we will not replace your order after.",
+          "scarce": "la Señora Elvia decides how much to make",
           "price": 1.6,
           "calories": 610,
           "badges": [

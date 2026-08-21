@@ -61,6 +61,7 @@ window.FB = window.FB || {};
       recentSearches: [],
       standing: { points: 0, tier: 0, lastOrderAt: null, decayedThrough: null, seenTier: 0 },
       tos: { version: 1, acceptedAt: null, accepted: [] },
+      restock: [],          /* item ids you have paid to be told about */
       notifs: [],           /* the notification centre. see js/core/notifs.js */
       notifsThrough: 0,     /* how far the boot backlog has synthesised */
       promo: { applied: null, used: [] },

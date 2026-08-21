@@ -12,10 +12,49 @@ window.FB = window.FB || {};
     'Thank you. Your instructions have been added to your permanent profile.',
   ];
 
+  /* Being told food exists again requires monitoring that food, and monitoring is
+     billed — as an order-level fee, so it can be reached by the FEE_WHY walk, which
+     only ever reads what fees.compute returns. */
+  function openSoldOut(store, item) {
+    var armed = (FB.S().restock || []).indexOf(item.id) > -1;
+    FB.sheet.open({
+      title: item.name,
+      sub: FB.esc(store.name) + ' · unavailable today',
+      html: '<div style="padding:2px 16px 18px">' +
+        '<p style="font:var(--t-body);color:var(--ink-2);line-height:1.6;margin:0 0 4px">' +
+        FB.esc(item.scarce.charAt(0).toUpperCase() + item.scarce.slice(1)) + '.</p>' +
+        '<p style="font:var(--t-cap);color:var(--ink-3);line-height:1.5;margin:10px 0 0">' +
+        'Availability is determined at the restaurant and reported here afterwards.</p></div>',
+      footer: armed
+        ? '<button class="btn btn--ghost btn--block" disabled>You will be told once</button>'
+        : '<button class="btn btn--dark btn--block btn--split" data-restock>' +
+            '<span>Restock Notification</span><span>' + FB.money(1.40) + '</span></button>',
+      onMount: function (b, h) {
+        FB.on(h.el, 'click', '[data-restock]', function (e, t) {
+          FB.busy(t, 'save', function () {
+            FB.store.set(function (st) {
+              st.restock = st.restock || [];
+              if (st.restock.indexOf(item.id) < 0) st.restock.push(item.id);
+              return st;
+            });
+            h.close();
+            FB.toast('You will be told when it returns. You will be told once.', { icon: 'bell' });
+          });
+        });
+      },
+    });
+  }
+
   FB.openItem = function (slug, itemId, existing) {
     var store = FB.catalog.get(slug);
     var item = FB.catalog.item(slug, itemId);
     if (!store || !item) return;
+
+    /* Gated HERE, not at commit(). FB.wireItemOpeners delegates on document for any
+       [data-item][data-slug], so gating at commit would mean configuring the item,
+       choosing every required modifier, tapping Add — and only then being refused.
+       An item already in the cart still opens, so an existing line can be edited. */
+    if (!existing && !FB.catalog.available(item)) { openSoldOut(store, item); return; }
 
     var hunger = FB.S().settings.hungerLevel;
     var sel = existing ? FB.deep(existing.sel) : FB.catalog.defaultSel(item, hunger);

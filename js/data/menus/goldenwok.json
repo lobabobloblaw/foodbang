@@ -2116,6 +2116,7 @@
           "id": "gwk-016",
           "name": "Salt & Pepper Shrimp",
           "desc": "Shell on, wok tossed with jalapeño and onion. My father would only make this on Fridays. We make it every day now.",
+          "scarce": "the shrimp arrives Tuesdays",
           "price": 9.1,
           "calories": 1240,
           "badges": [

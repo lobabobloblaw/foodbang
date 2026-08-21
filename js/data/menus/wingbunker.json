@@ -462,6 +462,7 @@
           "id": "wgb-004",
           "name": "50 Wings",
           "desc": "WARNING. THIS IS FIFTY WINGS. IT DOES NOT FIT IN A DELIVERY BAG AND THE DRIVER WILL HAVE TO CARRY IT IN TWO HANDS.",
+          "scarce": "fifty at once requires a fryer that is not always available",
           "price": 26.75,
           "calories": 5600,
           "badges": [
@@ -1110,6 +1111,7 @@
           "id": "wgb-010",
           "name": "Onion Rings",
           "desc": "Hand battered in the morning. When they are gone they are gone and the app does not know that.",
+          "scarce": "hand battered in the morning, and the app does not know when they are gone",
           "price": 3.95,
           "calories": 1120,
           "badges": [
@@ -2021,6 +2023,7 @@
           "id": "wgb-021",
           "name": "Sweet Tea (Quart)",
           "desc": "Brewed here in the morning in a five gallon urn. It is sweet the way it is supposed to be sweet and we will not adjust it.",
+          "scarce": "brewed by the quart, in quantities decided that morning",
           "price": 2.95,
           "calories": 720,
           "badges": [

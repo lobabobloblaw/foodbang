@@ -2255,6 +2255,7 @@
           "id": "cpg-021",
           "name": "Fountain Access",
           "desc": "A time-limited right to operate the self-service fountain. The cup is a separate product.",
+          "scarce": "fountain access is time-limited and the limit is not published",
           "price": 2.85,
           "calories": 760,
           "badges": [

@@ -66,7 +66,7 @@ const out = {};
    non-numeric prices, and the build exited 0 on all of it. */
 const problems = [];
 const warnings = [];
-let items = 0, photos = 0, groups = 0, options = 0, amateur = 0, studio = 0;
+let items = 0, photos = 0, groups = 0, options = 0, amateur = 0, studio = 0, scarce = 0;
 const ratingSeen = new Map();
 
 const files = fs.readdirSync(DIR).filter(f => f.endsWith('.json')).sort();
@@ -168,8 +168,18 @@ for (const f of files) {
         if (g.min != null && g.min > n) problems.push(`${slug}/${it.id}/${g.id}: min ${g.min} exceeds ${n} options`);
       }
       if (!(it.groups || []).length) problems.push(`${slug}/${it.id}: no modifier groups`);
+      if (it.scarce !== undefined) {
+        if (typeof it.scarce !== 'string' || it.scarce.length < 8) problems.push(`${slug}/${it.id}: scarce must be a reason, not ${JSON.stringify(it.scarce)}`);
+        scarce++;
+      }
     }
   }
+  const scarceHere = m.menu.flatMap(sec => sec.items).filter(it => it.scarce).length;
+  const itemsHere = m.menu.flatMap(sec => sec.items).length;
+  if (scarceHere > itemsHere * 0.25) {
+    problems.push(`${slug}: ${scarceHere} of ${itemsHere} items can run out — over the 25% ceiling`);
+  }
+
   for (const asset of ['logo.webp', 'hero.webp']) {
     if (!fs.existsSync(path.join(ROOT, 'assets', 'brands', slug, asset))) problems.push(`${slug}: missing ${asset}`);
   }
@@ -239,6 +249,7 @@ const locals = Object.values(out).filter(m => m.local).length;
 console.log(`stores      ${Object.keys(out).length}  (${locals} local, ${Object.keys(out).length - locals} chain)`);
 console.log(`items       ${items}  (${photos} photographed: ${amateur} amateur, ${studio} studio)`);
 console.log(`modifiers   ${groups} groups / ${options} options`);
+console.log(`scarcity    ${scarce} items can run out`);
 console.log(`bundle      ${(fs.readFileSync(OUT).length / 1024).toFixed(0)} KB -> js/data/menus.generated.js  (${stripped} build-only fields stripped)`);
 if (warnings.length) { console.log(`\nWARNINGS (${warnings.length}):`); warnings.slice(0, 40).forEach(w => console.log('  ~ ' + w)); }
 else console.log('\nno problems');

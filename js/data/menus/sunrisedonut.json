@@ -173,6 +173,7 @@
           "id": "snd-002",
           "name": "Apple Fritter",
           "desc": "Bigger than the plate it goes on. Chunks of apple in it, not sauce. We make eleven of these a day.",
+          "scarce": "the fritters are the first thing to go and the last thing we make",
           "price": 2.65,
           "calories": 1420,
           "badges": [
@@ -1359,6 +1360,7 @@
           "id": "snd-016",
           "name": "Tuna Salad on Rye",
           "desc": "Made every morning, celery in it, not too much mayo. If it is gone it is gone and I will not open another can at noon.",
+          "scarce": "made at four in the morning and not again",
           "price": 5.85,
           "calories": 920,
           "badges": [],
@@ -1840,6 +1842,7 @@
           "id": "snd-022",
           "name": "Scratch Ticket",
           "desc": "You cannot actually order this. The state does not let me put it in a bag and hand it to a driver. It is listed because the app would not let me leave the counter half empty.",
+          "scarce": "the machine that prints these is down",
           "price": 1.85,
           "calories": 620,
           "badges": [
