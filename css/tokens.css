@@ -186,6 +186,18 @@
 :root[data-textsize="l"]  { --fs: 1.1; }
 :root[data-textsize="xl"] { --fs: 1.2; }
 
+/* The TRACKR map under weather. Only the tokens move — every rule that paints the
+   map reads them, so the whole thing re-tints from four declarations. */
+#device[data-weather="rain"] {
+  --map-bg: #DEDEE4; --map-block: #D2D2DA; --map-park: #C2CFBE; --map-water: #AEC3D6;
+}
+#device[data-weather="heat"] {
+  --map-bg: #F0E9DC; --map-block: #E4DCCA; --map-park: #D6DCB4; --map-water: #C6D8E2;
+}
+#device[data-daypart="deadzone"], #device[data-daypart="earlyam"] {
+  --map-bg: #C9C6CE; --map-block: #BDBAC4; --map-park: #B4C0AF; --map-water: #A8BACB;
+}
+
 /* TRACKR map palette */
 :root {
   --map-bg: #E9E6E0;

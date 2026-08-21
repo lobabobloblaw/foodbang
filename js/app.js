@@ -5,6 +5,8 @@
   function updateClock() {
     var el = document.querySelector('.sb-time');
     if (el) el.textContent = FB.clock();
+    /* the world moves on its own clock, not on navigation */
+    if (FB.shell && FB.shell.stampWorld) FB.shell.stampWorld();
   }
 
   FB.cycleTheme = function () {

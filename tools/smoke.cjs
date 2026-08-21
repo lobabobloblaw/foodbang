@@ -614,6 +614,47 @@ check('the single-file build can still parse index.html, and its output is safe 
   return scripts.length + ' scripts, body slice intact, ' + note;
 });
 
+check('the world is a pure function of the clock', () => {
+  /* FB.world stores nothing and ticks nothing: it buckets time and derives from a
+     seed. That is what makes leaving the app and coming back a week later correct
+     for free — and it only holds while at() is genuinely idempotent inside a
+     bucket, because screens call it in a render path. */
+  const app = harness.loadApp();
+  const { FB } = app;
+  try {
+    const day = (h, m) => new Date(2026, 7, 20, h, m, 0, 0).getTime();
+
+    /* every hour of the day belongs to exactly one daypart */
+    for (let h = 0; h < 24; h++) {
+      const d = FB.world.at(day(h, 0)).daypart;
+      if (!d) throw new Error('hour ' + h + ' has no daypart');
+      const spans = FB.world.DAYPARTS.filter((p) => h >= p.from && h < p.to);
+      if (spans.length !== 1) throw new Error('hour ' + h + ' matches ' + spans.length + ' dayparts');
+    }
+
+    const T = day(19, 14);
+    const a = JSON.stringify(FB.world.at(T));
+    if (a !== JSON.stringify(FB.world.at(T + 60000))) throw new Error('at() is not idempotent inside a bucket');
+    if (a !== JSON.stringify(FB.world.at(T))) throw new Error('at() is not even idempotent at one instant');
+    if (a === JSON.stringify(FB.world.at(T + FB.world.BUCKET_MS + 1000))) throw new Error('at() never changes bucket');
+
+    /* the same must hold per store, because the Busy badge is drawn from it */
+    const slug = FB.catalog.all()[0].slug;
+    if (FB.world.kitchenLoad(slug, T) !== FB.world.kitchenLoad(slug, T + 60000)) {
+      throw new Error('kitchenLoad is not stable inside a bucket');
+    }
+
+    /* and it has to say something: a city where every kitchen is slammed at 3 AM,
+       or none of them at dinner, is no more informative than no badge at all */
+    const busyAt = (h) => FB.catalog.all().filter((s) => FB.world.isBusy(s.slug, day(h, 4))).length;
+    const night = busyAt(3), dinner = busyAt(19);
+    if (night > 3) throw new Error(night + ' kitchens are Busy at 3 AM');
+    if (dinner < 4) throw new Error('only ' + dinner + ' kitchens are Busy at dinner');
+    if (dinner <= night) throw new Error('dinner (' + dinner + ') is no busier than 3 AM (' + night + ')');
+    return 'dayparts cover the clock; ' + night + ' busy at 3 AM, ' + dinner + ' at dinner';
+  } finally { app.dispose(); }
+});
+
 console.log('');
 if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
 console.log('all checks passed');

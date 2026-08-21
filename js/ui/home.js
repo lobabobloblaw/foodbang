@@ -3,11 +3,29 @@ window.FB = window.FB || {};
 (function (FB) {
   'use strict';
 
-  var TICKER = [
+  /* The marquee used to be seven lines that were true at every hour, which is
+     another way of saying it was true at none of them. Drawn per daypart now, and
+     seeded on the world bucket, so it is stable for twenty minutes and different
+     after that — and at 3 AM it says something only 3 AM could say. */
+  var TICKER_ANY = [
     'PEAK DEMAND IN EFFECT', 'PEAK DEMAND HAS BEEN IN EFFECT SINCE MARCH 2019',
-    'YOUR SLINGER IS ALREADY MOVING', 'FEES ARE FINAL', 'ELECTROLYTES AVAILABLE NOW',
-    'DO NOT ANSWER THE DOOR EMPTY-HANDED', 'BANG+ PAYS FOR ITSELF AT $312',
+    'FEES ARE FINAL', 'BANG+ PAYS FOR ITSELF AT $312',
   ];
+  var TICKER_BY_DAYPART = {
+    earlyam:   ['THE OVENS ARE COMING UP TO TEMPERATURE', 'FOUR RESTAURANTS ARE OPEN. THEY ARE AWARE OF EACH OTHER'],
+    breakfast: ['BREAKFAST IS SERVED UNTIL IT IS NOT', 'COFFEE IS A DELIVERY CATEGORY'],
+    lunch:     ['YOUR SLINGER IS ALREADY MOVING', 'LUNCH VOLUME IS NOMINAL AND IS BEING BILLED AS EXCEPTIONAL'],
+    slump:     ['DEMAND IS LOW. PEAK DEMAND REMAINS IN EFFECT', 'THE AFTERNOON IS A RECOGNISED MEAL'],
+    dinner:    ['EVERY KITCHEN IN YOUR AREA IS AT CAPACITY', 'DO NOT ANSWER THE DOOR EMPTY-HANDED'],
+    evening:   ['ELECTROLYTES AVAILABLE NOW', 'THE EVENING SURCHARGE IS NOT AN EVENING SURCHARGE'],
+    deadzone:  ['FOUR RESTAURANTS ARE OPEN. THEY ARE AWARE OF EACH OTHER', 'NOBODY WILL ASK YOU ANYTHING'],
+  };
+  function tickerLines() {
+    var w = FB.world.at();
+    var pool = TICKER_ANY.concat(TICKER_BY_DAYPART[w.daypart] || []);
+    return FB.shuffle(pool, FB.seeded('ticker' + w.bucket))
+      .map(function (t) { return FB.clock() + ' · ' + t; });
+  }
 
   var PROMOS = [
     { img: 'assets/app/promo-1.webp', kicker: 'LIMITED TIME', title: 'Free Fries With Any $85 Order',
@@ -67,7 +85,8 @@ window.FB = window.FB || {};
       }).join('') + '</div>';
 
       /* ticker */
-      h += '<div class="marquee"><div>' + TICKER.concat(TICKER).map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</div></div>';
+      var ticker = tickerLines();
+      h += '<div class="marquee"><div>' + ticker.concat(ticker).map(function (t) { return '<span>' + FB.esc(t) + '</span>'; }).join('') + '</div></div>';
 
       /* promo carousel */
       h += '<div class="promorail">' + PROMOS.map(function (p) {

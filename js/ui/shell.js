@@ -142,6 +142,17 @@ window.FB = window.FB || {};
     return next;
   }
 
+  /* The world's state, on the device, for CSS to read. Called from paint() and
+     again on the boot clock's interval, so a tab left open through a weather change
+     catches up without anyone navigating. */
+  function stampWorld() {
+    var dev = document.getElementById('device');
+    if (!dev) return;
+    var w = FB.world.at();
+    dev.dataset.weather = w.weather;
+    dev.dataset.daypart = w.daypart;
+  }
+
   function paint() {
     var def = screens[current.name];
     if (!def) { console.warn('no screen', current.name); return; }
@@ -162,6 +173,7 @@ window.FB = window.FB || {};
     dev.classList.toggle('immersive', !!def.immersive);
     dev.classList.remove('scrolled');
     dev.dataset.screen = current.name;
+    stampWorld();
 
     renderTabs(); renderCartBar();
     viewEl.scrollTop = current.scroll || 0;
@@ -399,6 +411,7 @@ window.FB = window.FB || {};
 
   /* ===================== boot ===================== */
   FB.shell = {
+    stampWorld: stampWorld,
     init: function () {
       viewEl = el('view'); barEl = el('appbar'); tabEl = el('tabbar'); cartEl = el('cartbar');
 

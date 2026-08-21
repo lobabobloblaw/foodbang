@@ -28,9 +28,13 @@ window.FB = window.FB || {};
       });
     });
     if (m.priceFrom === Infinity) m.priceFrom = 0;
-    /* deterministic per-store flavor that the data files don't carry */
+    /* Deterministic per-store flavor the data files don't carry. `busy` used to be
+       decided here and never revisited — decorate() runs once inside catalog.init()
+       at boot, so a tab left open across dinner still showed the afternoon's badges.
+       It lives in FB.world now and is read at render. recentOrders deliberately
+       stays here: it feeds the Desperation sort, and a sort order that changes
+       under the user's thumb at a bucket boundary is a bug, not a living world. */
     var rnd = FB.seeded(m.slug);
-    m.busy = rnd() > 0.55;
     m.recentOrders = 40 + Math.floor(rnd() * 1800);
     return m;
   }

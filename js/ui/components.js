@@ -10,7 +10,7 @@ window.FB = window.FB || {};
     var out = [];
     if (s.bangPlus) out.push('<span class="badge badge--plus">' + FB.icon('zap', 11) + 'BANG+</span>');
     if (s.local) out.push('<span class="badge badge--glass">LOCAL</span>');
-    if (s.busy) out.push('<span class="badge badge--warn">Busy</span>');
+    if (FB.world.isBusy(s.slug)) out.push('<span class="badge badge--warn">Busy</span>');
     return out.join('');
   };
 
