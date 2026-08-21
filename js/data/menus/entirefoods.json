@@ -22,7 +22,12 @@
   "about": "Entire Foods Market is a certified whole-adjacent provisioning environment. Every item we carry is food, and every item we do not carry is also food, which is why we do not carry it. Our prices are set in a serif typeface by a committee that meets seasonally.",
   "announcement": "SEASONAL NOTICE: The chalkboards are being rewritten this week. Prices shown may be lower than the prices being written.",
   "promos": [
-    "Save $5 when you spend $210"
+    {
+      "text": "Save $5 when you spend $210",
+      "kind": "spendSave",
+      "min": 210,
+      "value": 5
+    }
   ],
   "reviews": [
     {

@@ -1215,6 +1215,79 @@ check('no two orders tell the same story', () => {
   } finally { clock.restore(); app.dispose(); }
 });
 
+check('store promotions change the total, or say they do not', () => {
+  /* Twenty-two promos were display strings that never touched a price, while six
+     real codes lived in fees.js. `discounts` is display-only — everything runs on
+     one scalar — so pushing a line there without adding to it renders a receipt row
+     that changes no number, which is exactly what these were. */
+  const app = harness.loadApp();
+  const { FB } = app;
+  try {
+    const S = FB.S().settings;
+    const KINDS = new Set(['spendSave', 'pct', 'plusFlat', 'none']);
+    let mech = 0, inert = 0, total = 0;
+
+    for (const [slug, m] of Object.entries(SOURCES)) {
+      for (const pr of (m.promos || [])) {
+        total++;
+        if (typeof pr !== 'object' || !pr.text) throw new Error(slug + ': a promo is still a bare string');
+        if (!KINDS.has(pr.kind)) throw new Error(slug + ': promo kind "' + pr.kind + '" is not in the enum');
+        if (pr.kind === 'none') { inert++; continue; }
+        mech++;
+        /* the copy must name the numbers the engine uses — scoped to the kinds that
+           carry one, because fourteen legitimately name none */
+        if (pr.kind === 'spendSave') {
+          const nums = (pr.text.match(/\$([\d.,]+)/g) || []).map(x => Number(x.slice(1).replace(/,/g, '')));
+          if (!nums.includes(pr.min)) throw new Error(slug + ': "' + pr.text + '" does not name its minimum');
+          if (!nums.includes(pr.value)) throw new Error(slug + ': "' + pr.text + '" does not name its saving');
+        }
+      }
+    }
+    if (!mech) throw new Error('no promo has any arithmetic behind it');
+    if (!inert) throw new Error('every promo became mechanical — the jokes are gone');
+
+    /* every store still renders a promo string, and none of them is [object Object] */
+    for (const s of FB.catalog.all()) {
+      const card = FB.C.storeCard(s);
+      if (/\[object Object\]/.test(card)) throw new Error(s.slug + "'s card renders [object Object]");
+      if ((s.promos || []).length && !card.includes(FB.esc(s.promos[0].text))) {
+        throw new Error(s.slug + "'s card does not show its promo text");
+      }
+    }
+
+    /* the threshold fires exactly at the threshold */
+    const ab = FB.catalog.get('applebeez');
+    const pr = (ab.promos || []).find(p => p.kind === 'spendSave');
+    if (!FB.catalog.storeOffer(ab, pr.min, false)) throw new Error('the promo does not fire at its own minimum');
+    if (FB.catalog.storeOffer(ab, pr.min - 0.01, false)) throw new Error('the promo fires below its minimum');
+    const on = FB.fees.compute({ subtotal: pr.min, lineCount: 3, store: ab, settings: S, storePromo: FB.catalog.storeOffer(ab, pr.min, false) });
+    const off = FB.fees.compute({ subtotal: pr.min, lineCount: 3, store: ab, settings: S });
+    if (!on.discounts.some(d => d.id === 'storepromo')) throw new Error('no store promotion line on the receipt');
+    if (on.promoAmount !== pr.value) throw new Error('the discount scalar did not take the store promo: ' + on.promoAmount);
+    if (!(on.total < off.total)) throw new Error('the promo changed the receipt but not the total');
+
+    /* a member-only promo is member-only */
+    const ph = FB.catalog.get('pizzahutch');
+    if (FB.catalog.storeOffer(ph, 50, false)) throw new Error('a members-only promo applied to a non-member');
+    if (!FB.catalog.storeOffer(ph, 50, true)) throw new Error('a members-only promo did not apply to a member');
+
+    /* a percentage promo respects its own cap */
+    const bw = FB.catalog.get('brawndo');
+    const pct = (bw.promos || []).find(p => p.kind === 'pct');
+    if (FB.catalog.storeOffer(bw, 10000, false).amount !== pct.max) throw new Error('the percentage promo ignored its cap');
+
+    /* stacking with a typed code can never discount more than the food */
+    const stacked = FB.fees.compute({
+      subtotal: 4, lineCount: 1, store: ab, settings: S,
+      promo: { valid: true, kind: 'flat', value: 10, code: 'BANG10', blurb: '' },
+      storePromo: { text: 'x', kind: 'spendSave', amount: 5 },
+    });
+    if (stacked.promoAmount > 4) throw new Error('the combined discount exceeded the subtotal');
+
+    return mech + ' promos with arithmetic, ' + inert + ' without, across ' + total;
+  } finally { app.dispose(); }
+});
+
 console.log('');
 if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
 console.log('all checks passed');

@@ -24,7 +24,10 @@
   "about": "Sunrise Donut & Deli has been at this address since 1998, first as just Sunrise Donut, then the deli case came in 2004 when my brother-in-law's place over on Vandergrift closed. The donuts are made here starting at 3:15 AM. I am the one who makes them and I am also the one who answers the phone, so please be patient with me on both.",
   "announcement": "WE OPEN 4:00 AM EVERY DAY. If you want a specific donut after 10 AM please call first, (555) 214-0087, becuase the case gets thin by then and I don't want you disappointed. Cash is fine at the counter. — Ray",
   "promos": [
-    "Buy 5 drinks, get a stamp. Card printing is paused."
+    {
+      "text": "Buy 5 drinks, get a stamp. Card printing is paused.",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

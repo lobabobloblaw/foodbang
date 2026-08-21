@@ -23,7 +23,10 @@
   "about": "STARBUX Refuel Terminal is a beverage refueling facility operating under a hospitality license. Product is dispensed by volume through calibrated brass hoses rather than poured. Vessel classes above Municipal require a compatible residence and a floor drain.",
   "announcement": "Watershed dispense is temporarily suspended at this terminal pending a drain inspection. Regional remains fully available and is, in most respects, larger.",
   "promos": [
-    "Free drink, drink not included"
+    {
+      "text": "Free drink, drink not included",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

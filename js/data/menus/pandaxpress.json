@@ -22,8 +22,14 @@
   "about": "Panda Xpress 9000 is an autonomous American-Chinese steam table installation on the upper level of Sunview Galleria. Entrées are portioned by the unit, held at temperature, and released upon settlement of the modifier schedule. Staffing was discontinued in a prior fiscal year and service has not been interrupted.",
   "announcement": "NOTICE: The 9000-Series unit is operating unattended and is fulfilling orders normally. Please do not tap the sneeze guard.",
   "promos": [
-    "Free side with any order over $88",
-    "Side is not selectable"
+    {
+      "text": "Free side with any order over $88",
+      "kind": "none"
+    },
+    {
+      "text": "Side is not selectable",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

@@ -91,12 +91,23 @@ window.FB = window.FB || {};
       /* what membership actually did on THIS order, so the panel can keep books */
       var plusSaved = 0, plusPaid = 0;
 
-      /* ---------- discounts (applied to subtotal) ---------- */
+      /* ---------- discounts (applied to subtotal) ----------
+         `discounts` is DISPLAY-ONLY. Everything below runs on this one scalar, so a
+         line pushed into the array without adding to it renders a receipt row that
+         changes no number — which is precisely what twenty-two store promos did for
+         the whole life of this app. */
       var promoAmt = 0;
       if (ctx.promo && ctx.promo.valid) {
         promoAmt = ctx.promo.kind === 'pct' ? sub * ctx.promo.value : Math.min(ctx.promo.value, sub);
         discounts.push(line('promo', 'Promotion · ' + ctx.promo.code, -promoAmt, ctx.promo.blurb, 'discount'));
       }
+      if (ctx.storePromo && ctx.storePromo.amount > 0) {
+        promoAmt += ctx.storePromo.amount;
+        discounts.push(line('storepromo', 'Store promotion · ' + ctx.storePromo.text, -ctx.storePromo.amount,
+          'Applied automatically.', 'discount'));
+      }
+      /* a code and a store promo can stack; together they can never exceed the food */
+      promoAmt = FB.round2(Math.min(promoAmt, sub));
 
       /* ---------- delivery ---------- */
       if (mode === 'delivery') {

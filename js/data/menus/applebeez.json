@@ -23,8 +23,16 @@
   "about": "Applebeez Neighborhood Feeding Trough is a neighborhood bar and grill serving a neighborhood that is legally a parking lot. Our dining rooms are decorated with authentic antiques purchased in bulk from a single vendor. Riblets are available.",
   "announcement": "RIBLETS ARE AVAILABLE. RIBLETS HAVE ALWAYS BEEN AVAILABLE.",
   "promos": [
-    "Spend $95, Save $3",
-    "Buy 1, Get 1 Half (Half is a size)"
+    {
+      "text": "Spend $95, Save $3",
+      "kind": "spendSave",
+      "min": 95,
+      "value": 3
+    },
+    {
+      "text": "Buy 1, Get 1 Half (Half is a size)",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

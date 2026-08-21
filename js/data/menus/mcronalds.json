@@ -22,7 +22,12 @@
   "about": "McRonald's has operated continuously since 1974 under an operations manual that has never been revised. Procedures described in this listing are procedures. They are not promises.",
   "announcement": "NOTICE: The Frozen Dairy Solutions unit is operational. This notice is printed weekly in advance and may not reflect current conditions.",
   "promos": [
-    "Spend $110, Save $4"
+    {
+      "text": "Spend $110, Save $4",
+      "kind": "spendSave",
+      "min": 110,
+      "value": 4
+    }
   ],
   "reviews": [
     {

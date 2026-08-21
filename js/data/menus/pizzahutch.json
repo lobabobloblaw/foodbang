@@ -22,7 +22,11 @@
   "about": "Pizza Hutch has pursued crust innovation continuously since 1993 and has not identified a stopping condition. Every crust manufactured at this location contains at least one additional crust, per internal standard PH-9. Dine-in seating remains available but is no longer recommended.",
   "announcement": "NOTICE: The salad bar remains under sneeze-guard supervision. Return trips are metered.",
   "promos": [
-    "Members save $1.10 on this store"
+    {
+      "text": "Members save $1.10 on this store",
+      "kind": "plusFlat",
+      "value": 1.1
+    }
   ],
   "reviews": [
     {

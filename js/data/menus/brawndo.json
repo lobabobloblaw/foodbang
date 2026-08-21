@@ -22,8 +22,16 @@
   "about": "BRAWNDO Hydration Depot supplies electrolytes at residential, municipal, and watershed scale. It's got what you crave, and it has had it since the founding of the depot. Water is available elsewhere.",
   "announcement": "DOCK NOTICE: Orders above 275 gallons are delivered to the curb and become the household's problem at the curb.",
   "promos": [
-    "20% off, up to $4.00",
-    "Free item with any $140 order"
+    {
+      "text": "20% off, up to $4.00",
+      "kind": "pct",
+      "value": 0.2,
+      "max": 4
+    },
+    {
+      "text": "Free item with any $140 order",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

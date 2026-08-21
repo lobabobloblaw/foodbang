@@ -41,6 +41,7 @@ window.FB = window.FB || {};
         standingTier: FB.S().standing.tier,
         scrip: FB.scrip.redeemable(),
         tosVersion: FB.tos.version(),
+        storePromo: FB.catalog.storeOffer(s, sub, FB.store.isPlus()),
       });
 
       var h = '';

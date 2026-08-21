@@ -22,8 +22,16 @@
   "about": "Colonel Cluckingham's Poultry Compound is a pressure-frying facility operating under a hospitality license. The title of Colonel is a rank conferred internally and is presently vacant; the recipe survives the officer. All poultry is processed on site under pressure that is monitored but not published.",
   "announcement": "NOTICE: The Compound's gravy line is now connected to the township's secondary main. Residents may experience taste in their tap water. This is expected.",
   "promos": [
-    "Spend $140, Save $4",
-    "Second entree at Municipal pricing"
+    {
+      "text": "Spend $140, Save $4",
+      "kind": "spendSave",
+      "min": 140,
+      "value": 4
+    },
+    {
+      "text": "Second entree at Municipal pricing",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

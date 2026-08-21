@@ -22,7 +22,12 @@
   "about": "Taco Belligerent™ operates six ingredients under forty-one names. All formats are folded, layered, coned, or wrapped inside another format at our sole discretion. Decisions made on this property after 10 PM are considered final and are not reviewable.",
   "announcement": "THE FOURTH MEAL PROTOCOL IS ACTIVE. Orders placed between 10:00 PM and 4:00 AM are classified as Fourth Meals regardless of how many meals you have had.",
   "promos": [
-    "$4 off orders of $185 or more"
+    {
+      "text": "$4 off orders of $185 or more",
+      "kind": "spendSave",
+      "min": 185,
+      "value": 4
+    }
   ],
   "reviews": [
     {

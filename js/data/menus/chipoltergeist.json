@@ -23,7 +23,10 @@
   "about": "Chipoltergeist assembles wrapped cylinders and open vessels in full view of the guest, using constituents sourced from suppliers who have signed something. The premises are haunted; this disclosure satisfies all applicable notice requirements and no further action is available. Staff will not make eye contact, which is a service standard and not a mood.",
   "announcement": "PARANORMAL DISCLOSURE POSTED. Cold spots between the salsa well and the register are known, documented, and priced into the menu. Service continues.",
   "promos": [
-    "$0 delivery fee on your 9th order"
+    {
+      "text": "$0 delivery fee on your 9th order",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

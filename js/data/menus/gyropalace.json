@@ -24,7 +24,10 @@
   "about": "Gyro Palace was opened in 1998 on Route 9 by my father. That building is a phone store now. This is the third one and it is the only one still open, same recipes, same white sauce, my brother Emre runs the grill six days. We do not use a commissary and we never have.",
   "announcement": "WE ARE OPEN. The app says 45 minutes but on Friday it is closer to an hour, we have one grill. If you need it faster please call the store direct at (555) 018-4471 and ask for Sami, do not put it in the notes because the printer cuts them off. Sorry for the incovenience.",
   "promos": [
-    "$2 OFF IF YOU ORDER ON THE PHONE INSTEAD"
+    {
+      "text": "$2 OFF IF YOU ORDER ON THE PHONE INSTEAD",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

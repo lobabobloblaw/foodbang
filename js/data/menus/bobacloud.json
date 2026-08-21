@@ -24,7 +24,10 @@
   "about": "We opened in 2017 after our old counter on Kessel Road lost its lease. My sister Amy does the snow bowls and I do the tea, and we are both here every day, which is why it sometimes takes a minute. Everything is shaken to order.",
   "announcement": "THE SEALING MACHINE IS FIXED. Sorry to everybody last week, we were sending drinks out with press lids and they leaked in the bags. Also we can not do half sugar on the snow bowls anymore because it comes out seperate. If something is wrong with your order please call the shop at (555) 0142 before you rate us and we will remake it. - Teresa",
   "promos": [
-    "FREE CAN OF SODA WITH ORDERS OVER $40"
+    {
+      "text": "FREE CAN OF SODA WITH ORDERS OVER $40",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

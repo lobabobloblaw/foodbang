@@ -22,7 +22,10 @@
   "about": "Olive Orchard has served hospitality in the Tuscan manner since 1987, from a building designed in 1987 to resemble a region none of our staff have visited. Guests are family. Family arrangements, once entered into, remain in effect.",
   "announcement": "NOTICE: The breadstick basket is refilled automatically. Refusal of a refill is processed as a refill.",
   "promos": [
-    "3 for $33 (limit 2)"
+    {
+      "text": "3 for $33 (limit 2)",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

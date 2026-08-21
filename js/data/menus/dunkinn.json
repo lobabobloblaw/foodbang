@@ -23,7 +23,10 @@
   "about": "Dunkinn is a beverage-and-glazed-matter dispensary operating on a continuous morning. Donuts are classified by structural load before dispatch. You are already enrolled in the rewards program and have been since first contact.",
   "announcement": "MORNING IS NOW CONTINUOUS. Breakfast classification is available 24 hours and is not related to the position of the sun.",
   "promos": [
-    "Buy 2, Get 1 Assigned To You"
+    {
+      "text": "Buy 2, Get 1 Assigned To You",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

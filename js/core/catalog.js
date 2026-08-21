@@ -129,6 +129,34 @@ window.FB = window.FB || {};
       return s.menu.filter(function (x) { return x.id === secId; })[0] || null;
     },
 
+    /* The best store promo this basket qualifies for, or null. Pure: the caller
+       passes the subtotal and whether they are a member. Fourteen of the
+       twenty-two promos are jokes with no arithmetic in them (kind "none") and
+       never qualify for anything. */
+    storeOffer: function (store, subtotal, isPlus) {
+      if (!store || !store.promos) return null;
+      var best = null;
+      store.promos.forEach(function (p) {
+        var amt = 0;
+        if (p.kind === 'spendSave') { if (subtotal >= p.min) amt = p.value; }
+        else if (p.kind === 'pct') { amt = Math.min(p.max, FB.round2(subtotal * p.value)); }
+        else if (p.kind === 'plusFlat') { if (isPlus) amt = p.value; }
+        if (amt > 0 && (!best || amt > best.amount)) best = { text: p.text, kind: p.kind, amount: FB.round2(amt) };
+      });
+      return best;
+    },
+
+    /** the nearest promo you have NOT reached yet, for the "you are $x away" line */
+    nextOffer: function (store, subtotal) {
+      if (!store || !store.promos) return null;
+      var best = null;
+      store.promos.forEach(function (p) {
+        if (p.kind !== 'spendSave' || subtotal >= p.min) return;
+        if (!best || p.min < best.min) best = { text: p.text, min: p.min, value: p.value, away: FB.round2(p.min - subtotal) };
+      });
+      return best;
+    },
+
     /* Pure, DOM-free and state-free, so they are testable headlessly — and read at
        RENDER time, never cached on decorate(), which runs once at boot and would
        leave a tab open across a closing time saying "Open now" forever. */

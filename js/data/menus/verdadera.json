@@ -23,7 +23,10 @@
   "about": "My mother opened the first La Taqueria Verdadera on Bellhaven Ave in 1994. That location was reclassified in 2011 so this one is #2, we never changed the sign because the sign is painted on the wall. Salsa is made every morning by Señora Elvia, who has worked here since the beginning and does not measure anything.",
   "announcement": "WE ARE OPEN. The front phone has not worked since Tuesday so if you need us please call the cell 209-555-0148 and let it ring, my son is fixing the other one. No lengua on Mondays becuase the delivery comes Tuesday morning. Thank you for your patience.",
   "promos": [
-    "FREE CONSOMÉ OVER $35 — ASK OR YOU WILL NOT GET IT"
+    {
+      "text": "FREE CONSOMÉ OVER $35 — ASK OR YOU WILL NOT GET IT",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {

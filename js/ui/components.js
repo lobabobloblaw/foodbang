@@ -52,7 +52,7 @@ window.FB = window.FB || {};
         '</div>' +
         '<div class="sc-meta"><span style="color:' + (s.deliveryFee === 0 ? 'var(--good)' : 'var(--ink-2)') + '">' + fee + '</span>' +
           (s.local ? '<i class="dot-sep"></i><span>Independent</span>' : '') + '</div>' +
-        (s.promos && s.promos.length ? '<div class="sc-promo">' + FB.icon('tag', 13) + '<span class="trunc1">' + FB.esc(s.promos[0]) + '</span></div>' : '') +
+        (s.promos && s.promos.length ? '<div class="sc-promo">' + FB.icon('tag', 13) + '<span class="trunc1">' + FB.esc(s.promos[0].text) + '</span></div>' : '') +
       '</div></button>';
   };
 

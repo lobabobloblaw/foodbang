@@ -59,9 +59,24 @@ window.FB = window.FB || {};
         h += '<div class="st-ann">' + FB.icon('alert', 16) + '<span>' + FB.esc(s.announcement) + '</span></div>';
       }
       if (s.promos && s.promos.length) {
+        /* the ones with arithmetic behind them say where you stand; the fourteen
+           without say nothing extra, because there is nothing to say */
+        var subNow = FB.cart.subtotal(s.slug);
+        var live = FB.catalog.storeOffer(s, subNow, FB.store.isPlus());
         h += '<div style="padding:12px 16px 0;display:flex;flex-direction:column;gap:7px">' + s.promos.map(function (pr) {
-          return '<div class="badge badge--promo" style="height:auto;padding:8px 11px;font:var(--t-sub);align-self:flex-start">' +
-            FB.icon('tag', 13) + FB.esc(pr) + '</div>';
+          var applied = live && live.text === pr.text;
+          var note = '';
+          if (applied) note = ' · applied automatically';
+          else if (pr.kind === 'spendSave') {
+            note = subNow > 0
+              ? ' · applies at ' + FB.money(pr.min) + '. You are ' + FB.money(FB.round2(pr.min - subNow)) + ' away.'
+              : ' · applies at ' + FB.money(pr.min);
+          } else if (pr.kind === 'plusFlat' && !FB.store.isPlus()) {
+            note = ' · members only';
+          }
+          return '<div class="badge badge--promo' + (applied ? ' is-on' : '') +
+            '" style="height:auto;padding:8px 11px;font:var(--t-sub);align-self:flex-start">' +
+            FB.icon('tag', 13) + FB.esc(pr.text) + (note ? '<span style="opacity:.7">' + FB.esc(note) + '</span>' : '') + '</div>';
         }).join('') + '</div>';
       }
 

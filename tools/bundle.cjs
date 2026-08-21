@@ -80,6 +80,39 @@ for (const f of files) {
   if (m.slug !== slug) problems.push(`${slug}: slug field is "${m.slug}"`);
   if (!Array.isArray(m.menu) || !m.menu.length) { problems.push(`${slug}: no menu sections`); continue; }
 
+  /* Twenty-two promos were display strings that never touched a price. Eight of
+     them are now structured; the other fourteen are jokes with no arithmetic in
+     them and say so with kind "none". The value check is SCOPED to the kinds that
+     carry a figure — fourteen legitimately name none ("Buy 5 drinks, get a stamp.
+     Card printing is paused."), and six name one while delivering something that
+     is not money. */
+  const PROMO_KINDS = new Set(['spendSave', 'pct', 'plusFlat', 'none']);
+  for (const pr of (m.promos || [])) {
+    if (typeof pr !== 'object' || !pr.text) { problems.push(`${slug}: a promo is not an object with text`); continue; }
+    if (!PROMO_KINDS.has(pr.kind)) { problems.push(`${slug}: promo kind "${pr.kind}" is not one of ${[...PROMO_KINDS].join(', ')}`); continue; }
+    if (pr.kind === 'spendSave') {
+      if (typeof pr.min !== 'number' || typeof pr.value !== 'number') problems.push(`${slug}: spendSave promo needs numeric min and value`);
+      else {
+        /* the copy has to name the same numbers the engine will use */
+        const nums = (pr.text.match(/\$([\d.,]+)/g) || []).map(x => Number(x.slice(1).replace(/,/g, '')));
+        if (!nums.includes(pr.min)) problems.push(`${slug}: "${pr.text}" does not name its own minimum of ${pr.min}`);
+        if (!nums.includes(pr.value)) problems.push(`${slug}: "${pr.text}" does not name its own saving of ${pr.value}`);
+        /* and the threshold has to be an implausible multiple of the cheapest item,
+           which is the joke — the earlier 4x rule was cleared by every promo 10-40x over */
+        const cheapest = Math.min(...m.menu.flatMap(sec => (sec.items || []).map(it => it.price)).filter(n => typeof n === 'number'));
+        if (isFinite(cheapest) && cheapest > 0 && pr.min < cheapest * 15) {
+          warnings.push(`${slug}: promo minimum ${pr.min} is only ${(pr.min / cheapest).toFixed(1)}x the cheapest item (${cheapest})`);
+        }
+      }
+    } else if (pr.kind === 'pct') {
+      if (!(pr.value > 0 && pr.value < 1)) problems.push(`${slug}: pct promo value ${pr.value} is not a fraction`);
+      if (typeof pr.max !== 'number') problems.push(`${slug}: pct promo needs a max`);
+      else if (!pr.text.includes(String(Math.round(pr.value * 100)) + '%')) problems.push(`${slug}: "${pr.text}" does not name its own ${Math.round(pr.value * 100)}%`);
+    } else if (pr.kind === 'plusFlat') {
+      if (typeof pr.value !== 'number') problems.push(`${slug}: plusFlat promo needs a numeric value`);
+    }
+  }
+
   const openMins = minsOfDay(m.opensAt);
   const closeMins = minsOfDay(m.closesAt);
   if (m.opensAt !== undefined && openMins === null) problems.push(`${slug}: opensAt "${m.opensAt}" is not a clock time`);

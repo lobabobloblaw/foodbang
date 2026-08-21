@@ -22,7 +22,12 @@
   "about": "The Subterranean Sandwich Authority is a federally chartered agency responsible for the intake, review, and issuance of sandwiches within this jurisdiction. Submitting an application does not guarantee a sandwich. Determinations are final and are not disclosed.",
   "announcement": "The $5 Footlong promotion concluded in 2016. Signage removal is scheduled and funded. Pricing is unaffected.",
   "promos": [
-    "Spend $60, Save $2.50"
+    {
+      "text": "Spend $60, Save $2.50",
+      "kind": "spendSave",
+      "min": 60,
+      "value": 2.5
+    }
   ],
   "reviews": [
     {

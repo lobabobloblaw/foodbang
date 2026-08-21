@@ -22,7 +22,10 @@
   "about": "The Cheesecake Manufactory operates a 412-page menu inside a climate-stabilized Egyptian-revival dining palace. Portions are specified by our structural department and are not adjustable at the table. There is one exit and it is located at the rear of the Cheesecake Vault.",
   "announcement": "MENU PAGES 96-141 ARE CURRENTLY UNDER LOAD REVIEW. ITEMS ON THOSE PAGES REMAIN ORDERABLE AND REMAIN LARGE.",
   "promos": [
-    "Free upgrade to Family (Family is smaller)"
+    {
+      "text": "Free upgrade to Family (Family is smaller)",
+      "kind": "none"
+    }
   ],
   "reviews": [
     {
