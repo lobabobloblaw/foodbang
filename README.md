@@ -95,7 +95,7 @@ station), La Taqueria Verdadera #2, Boba Cloud Tea & Snow, Golden Wok Express, S
 The independents carry their own signals: two- and three-digit rating counts, higher delivery fees,
 41–79 minute windows, odd closing times, and announcements that read like the owner typed them.
 
-**171 generated images**, all `bytedance/seedream-4.5` via Replicate, each brand given its own art
+**187 generated images**, all `bytedance/seedream-4.5` via Replicate, each brand given its own art
 direction — 1974 franchise flash, 2am neon drive-thru, faux-Egyptian revival, institutional
 fluorescent, gas-station hot case. Menu photography is deliberately **mixed**: 45 polished chain
 marketing shots and **75 amateur staff phone photos** — styrofoam clamshells, hard on-camera flash,
@@ -131,10 +131,10 @@ index.html               shell — phone frame, status bar, tab bar
 css/tokens.css           64 design tokens; light + dark, three-state theming
 css/app.css              component library
 css/screens.css          screen-specific styles
-js/core/                 util · icons · state (localStorage) · catalog · fees · cart
-js/ui/                   shell (router, sheets, toasts) · components · 12 screens
+js/core/                 util · icons (and the drawn brand mark) · state (localStorage) · catalog · fees · cart
+js/ui/                   shell (router, sheets, toasts) · components · item sheet · 15 screens
 js/sim/tracker.js        TRACKR™ order simulation
-js/sim/bodymax.js        BODYMAX™ telemetry
+js/sim/bodymax.js        BODYMAX™ telemetry — and the 16th screen
 js/data/menus/*.json     one file per restaurant — the source of truth
 js/data/menus.generated.js  bundled by tools/bundle.cjs (validates as it builds)
 tools/brand-bible.json   art direction + pricing doctrine for the 14 chains
@@ -145,6 +145,11 @@ build/raw/               2048px source renders, kept for re-encoding
 
 No framework, no build step, no dependencies. Classic scripts under a `FB` namespace so it runs
 straight from `file://`.
+
+The app's own mark — a bag, and a handle, which on this platform is a separate object and is billed
+separately — is drawn in `js/core/icons.js` rather than stored as an image, so it is crisp at every
+size, follows the accent token, survives being inlined into the single-file build, and costs nothing
+to regenerate when the app is renamed.
 
 ---
 
