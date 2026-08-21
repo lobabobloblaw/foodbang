@@ -210,9 +210,21 @@ window.FB = window.FB || {};
     var tier = o.tier || 1;
     var pool = [];
     for (var t = 2; t <= tier; t++) pool = pool.concat((def.extra && def.extra[t]) || []);
-    if (!pool.length) return out;
+    /* NOT an early return on an empty pool any more: a tier-1 order has no extras at
+       all, and returning here skipped the courier's quirk with them — so the first
+       order a new player places would be the one delivery with no personality in it. */
     var rnd = FB.seeded(o.id + ':' + stepKey);
     var take = FB.shuffle(pool, rnd).slice(0, Math.min(2, pool.length));
+    /* The courier's own oddity. Appended to `take` rather than added to the pool, so
+       it ALWAYS plays rather than competing for one of two slots — the point is that
+       the same person does the same thing every time you get them, and a quirk that
+       showed up half the time would read as noise. Keyed on personId, which
+       checkout.js writes before build() and which test fixtures do not have, so it is
+       simply absent there. Not on a pickup: there is nobody to have a habit. */
+    if (o.mode !== 'pickup' && FB.slingers && FB.slingers.quirk) {
+      var qk = FB.slingers.quirk(o.personId);
+      if (qk && qk[0] === stepKey) take = take.concat([[qk[1], qk[2], 0]]);
+    }
     take.forEach(function (ev) {
       /* A one-beat step is not a spine with a headline, it is a single line — and
          appending to it meant the tier-3 "Delivered" variant sat at index 1 while

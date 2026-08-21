@@ -67,6 +67,27 @@ window.FB = window.FB || {};
     return FB.round2(FB.sum(s.yourRatings, function (n) { return n; }) / s.yourRatings.length);
   }
 
+  /* One recurring oddity per person. DERIVED from the id, never stored: no roster
+     field, nothing for fillDefaults to backfill, and the same person always does the
+     same odd thing on every order they carry — which is what makes them a person
+     rather than a dice roll. Nine people, nine quirks, and the roster is small
+     enough that you will see the repeat.
+
+     [step, text, subtext] — drift is deliberately absent. These are colour, not
+     delay: an order's length is the script's business, and a quirk that pushed the
+     estimate would make who you got change what you paid. */
+  var QUIRKS = [
+    ['pickup',  '{slinger} does not use the callbox', 'This is their practice and is not a fault.'],
+    ['pickup',  '{slinger} photographs the bag before carrying it', 'The photograph is not attached to your order.'],
+    ['pickup',  '{slinger} has declined the insulated sleeve', 'The sleeve is optional and is not provided.'],
+    ['enroute', '{slinger} is taking the route they prefer', 'It is not the route we selected.'],
+    ['enroute', '{slinger} has stopped, briefly', 'The stop is recorded as movement.'],
+    ['enroute', '{slinger} does not announce arrival', 'You will know by other means.'],
+    ['confirmed', '{slinger} has read the order notes', 'Reading is not acknowledgement.'],
+    ['confirmed', '{slinger} has queried the address and withdrawn the query', 'No detail of the query is retained.'],
+    ['preparing', '{slinger} is waiting inside', 'Waiting inside is at the discretion of the restaurant.'],
+  ];
+
   FB.slingers = {
     SIZE: SIZE,
     all: roster,
@@ -95,6 +116,21 @@ window.FB = window.FB || {};
         return st;
       }, { silent: true });
       return FB.slingers.get(picked.id);
+    },
+
+    /** the one odd thing this person always does, or null for anyone unknown */
+    quirk: function (personId) {
+      if (!personId) return null;
+      /* By ROSTER POSITION, not by hashing the id. There are exactly as many quirks
+         as there are people, so an index gives each of the nine their own — hashing
+         collided and left five habits spread across nine couriers, which reads as a
+         shallow pool rather than as nine people. Falls back to the hash for an id
+         that is not on the roster, so nothing depends on the lookup succeeding. */
+      var list = roster();
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].id === personId) return QUIRKS[i % QUIRKS.length];
+      }
+      return QUIRKS[FB.hash(personId + 'quirk') % QUIRKS.length];
     },
 
     rate: function (id, stars) {

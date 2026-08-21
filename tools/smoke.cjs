@@ -2207,6 +2207,101 @@ check('placing an order is narrated, and then it waits', () => {
   } finally { FB.nav.go = realGo; FB.nav.refresh = realRefresh; FB.toast = realToast; clock.restore(); app.dispose(); }
 });
 
+check('the same nine people bring their own habits', () => {
+  /* The roster already made the same nine people recur, with tenure that accumulates.
+     What it did not do is make them behave differently — two orders carried by two
+     different couriers told the same story with a different name substituted into it.
+
+     Each of the nine now has one recurring oddity, DERIVED from their roster position
+     and never stored: no field, nothing for fillDefaults to backfill, and the same
+     person always does the same thing on every order they carry. That is what makes
+     the roster nine people rather than nine names. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T0);
+    const people = FB.slingers.all();
+    if (people.length !== FB.slingers.SIZE) throw new Error('the roster is not the size it says it is');
+
+    /* one each, and the same one every time */
+    const habits = people.map((p) => FB.slingers.quirk(p.id));
+    if (habits.some((q) => !q)) throw new Error('somebody on the roster has no habit');
+    const distinct = new Set(habits.map((q) => q[1]));
+    if (distinct.size !== people.length) {
+      throw new Error(distinct.size + ' habits spread across ' + people.length +
+        ' couriers — that reads as a shallow pool, not as nine people');
+    }
+    for (const p of people) {
+      if (FB.slingers.quirk(p.id)[1] !== FB.slingers.quirk(p.id)[1]) throw new Error('a habit is not stable');
+    }
+    if (FB.slingers.quirk(null) !== null) throw new Error('a habit was invented for nobody');
+    if (!FB.slingers.quirk('not-on-the-roster')) throw new Error('an unknown courier falls through to nothing');
+    /* colour, not delay: a habit that pushed the estimate would make WHO YOU GOT
+       change what the order cost */
+    for (const q of habits) {
+      if (q.length > 3 && q[3]) throw new Error('a habit carries drift');
+      if (!/^\{slinger\}/.test(q[1])) throw new Error('a habit does not name the person doing it: ' + q[1]);
+    }
+
+    /* it reaches the timetable, on a TIER-1 order — the first order a new player
+       places used to be the one delivery with no personality in it, because an empty
+       extras pool returned before the habit was appended */
+    harness.addToCart(FB, 'cluckingham', 3);
+    let played = 0, orders = 0;
+    const missed = [];
+    /* EVERY tier. Tier 1 has an empty extras pool and tiers 2 and 3 have a full one —
+       a habit appended only when there is room left over is a habit that disappears
+       exactly when the story is busiest, which is the wrong way round. */
+    for (let tier = 1; tier <= 3; tier++) {
+      for (let i = 0; i < people.length; i++) {
+        const o = harness.makeOrder(FB, 'cluckingham', { now: T0 });
+        o.id = 'quirk' + tier + '_' + i; o.tier = tier; o.events = []; o.etaDrift = 0;
+        delete o.incident; delete o.replayed;
+        o.personId = people[i].id; o.slinger = people[i];
+        FB.tracker.build(o);
+        orders++;
+        const want = FB.slingers.quirk(o.personId)[1].replace('{slinger}', people[i].name);
+        if ((o.schedule || []).some((b) => b.text === want)) played++;
+        else missed.push('tier ' + tier + '/' + people[i].name);
+      }
+    }
+    if (played !== orders) {
+      throw new Error('the courier habit plays on ' + played + ' of ' + orders + ' orders; missing on ' +
+        missed.slice(0, 4).join(', '));
+    }
+
+    /* the same order, carried by two different people, is two different stories —
+       and neither the shuffled pool nor the splice position explains the difference,
+       because the order id (and so every seed) is identical */
+    const story = (pid) => {
+      const o = harness.makeOrder(FB, 'cluckingham', { now: T0 });
+      o.id = 'same_story'; o.tier = 1; o.events = []; o.etaDrift = 0;
+      delete o.incident; delete o.replayed;
+      o.personId = pid; o.slinger = people.filter((x) => x.id === pid)[0];
+      FB.tracker.build(o);
+      return (o.schedule || []).map((b) => b.text).join('|');
+    };
+    if (story(people[0].id) === story(people[3].id)) {
+      throw new Error('two different couriers tell an identical story for the same order');
+    }
+
+    /* and a pickup has nobody to have a habit */
+    FB.cart.clearAll();
+    harness.addToCart(FB, 'pizzahutch', 2);
+    const pk = harness.makeOrder(FB, 'pizzahutch', { now: T0, mode: 'pickup' });
+    pk.id = 'quirk_pick'; pk.events = []; pk.etaDrift = 0; delete pk.replayed;
+    pk.personId = people[0].id;
+    FB.tracker.build(pk);
+    const pkWant = FB.slingers.quirk(people[0].id)[1].replace('{slinger}', '');
+    if ((pk.schedule || []).some((b) => b.text.indexOf(pkWant.trim().slice(0, 16)) > -1)) {
+      throw new Error('a pickup order carries a courier habit');
+    }
+
+    return people.length + ' couriers, ' + distinct.size + ' distinct habits, all of them reaching a tier-1 timetable';
+  } finally { clock.restore(); app.dispose(); }
+});
+
 check('a schedule slot is never offered outside the hours it is for', () => {
   /* The sheet built its rows from wall-clock arithmetic alone — deliveryMax + 45n —
      and never asked whether the store was open at the time it was offering. Swept
