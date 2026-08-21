@@ -74,7 +74,13 @@ window.FB = window.FB || {};
       beats: [
         ['{store} has acknowledged your existence', null, 0],
         ['Order accepted', 'The restaurant has 90 seconds to reject this. It has not.', 0],
-        ['Slinger {slinger} assigned', '{rating}★ · {deliveries} lifetime deliveries · {vehicle}', 0],
+        /* TAGGED. Everything about this order already knows who is carrying it — the
+           roster draw is seeded on the order id and runs at placement — but this is
+           the moment the app is allowed to SAY so. The screen used to draw the
+           courier's photo, name and a Message button from the first frame, while the
+           feed above it had not mentioned anyone: a median of nine seconds, and up to
+           thirty-four, of claiming a person who had not been introduced. */
+        ['Slinger {slinger} assigned', '{rating}★ · {deliveries} lifetime deliveries · {vehicle}', 0, 'assign'],
       ],
       extra: {
         2: [['{slinger} was reassigned and then assigned back', 'No explanation will be offered.', 0]],
@@ -196,6 +202,8 @@ window.FB = window.FB || {};
      used by both the schedule builder and anything that needs to know how long a
      step runs — two callers deriving the beat list separately is how a wider pool
      silently makes a late order run long. */
+  var NAMES_COURIER = /\{slinger\}|\{rating\}|\{deliveries\}|\{vehicle\}/;
+
   function beatsFor(o, stepKey) {
     var def = scriptFor(o)[stepKey] || { beats: [] };
     var out = def.beats.slice();
@@ -212,6 +220,17 @@ window.FB = window.FB || {};
       if (out.length === 1) { out[0] = ev; return; }
       /* otherwise never at the front: the first beat of a step is its headline */
       var at = 1 + Math.floor(rnd() * out.length);
+      /* THE BARRIER. An extra that names the courier cannot be spliced in above the
+         beat that introduces them — "{slinger} was reassigned and then assigned back"
+         landing before "Slinger {slinger} assigned" reads as a bug, not as flavour.
+         Measured before this clamp: the name leaked above its own introduction in a
+         third of tier-2 and tier-3 orders. Matched on the TAG rather than on the
+         beat's text, so rewording the line cannot silently unhook it. */
+      if (NAMES_COURIER.test(ev[0]) || (ev[1] && NAMES_COURIER.test(ev[1]))) {
+        var anchor = -1;
+        for (var k = 0; k < out.length; k++) if (out[k][3] === 'assign') { anchor = k; break; }
+        if (anchor > -1) at = Math.max(at, anchor + 1);
+      }
       out.splice(Math.min(at, out.length), 0, ev);
     });
     return out;
@@ -270,6 +289,7 @@ window.FB = window.FB || {};
           text: fill(ev[0], o),
           sub: ev[1] ? fill(ev[1], o) : null,
           drift: ev[2] || 0,
+          tag: ev[3] || null,
           at: Math.round(o.startAt + cursor + slice * FB.clamp(frac, 0.05, 0.95)),
         });
       });
@@ -447,6 +467,22 @@ window.FB = window.FB || {};
       /* one notification per STEP, not per beat — eighteen beats an order would be
          a notification centre nobody reads twice. Stamped from the timetable, and
          keyed by order and step so a catch-up cannot produce duplicates. */
+      /* The moment the courier is disclosed. NOT inside the step-change guard below:
+         the tagged beat is the third of `confirmed`, and the step changed on the
+         first — so gated on the step it could never fire at all. Gated on the TAG,
+         which is the thing that actually means "a person has been attached to this
+         order". Stamped from the timetable, pushed from inside the beat loop, and
+         deduped on id, so a week-long catch-up announces it at the second it
+         happened rather than the second it was noticed, exactly once. */
+      if (b.tag === 'assign' && o.slinger && FB.notifs) {
+        FB.notifs.push({
+          id: 'asg:' + o.id, kind: 'order', icon: 'bike',
+          title: 'Slinger assigned',
+          body: o.slinger.name + ' · ' + o.slinger.vehicle + '. ' +
+            'Assignment is final and is not a commitment.',
+          ts: b.at, go: 'track', params: { id: o.id },
+        });
+      }
       if (b.step !== o.status && FB.notifs) {
         FB.notifs.push({
           id: 'ord:' + o.id + ':' + b.step, kind: 'order', icon: 'bike',
@@ -550,6 +586,61 @@ window.FB = window.FB || {};
   /* Resolving an incident. The two fee ids and their amounts come from fees.js, so
      the FEE_WHY walk — which only reads what compute returns — covers them, and the
      receipt gets a real line rather than a total that silently moved. */
+  /* ---------- dispatch ----------
+     Who is carrying the order has been decided since placement — the roster draw is
+     seeded on the order id — but the app is not entitled to SAY so until the tagged
+     beat plays. These three are PURE: they take `now`, they store nothing, and they
+     are safe to call from a render path. Nothing here moves a write onto the replay
+     path, which is the whole reason this shape was chosen. */
+  function assignIdx(o) {
+    var sched = o && o.schedule;
+    if (!sched) return -1;
+    for (var i = 0; i < sched.length; i++) if (sched[i].tag === 'assign') return i;
+    return -1;
+  }
+
+  /** the moment the courier is disclosed, or placement for anything without one */
+  FB.tracker.assignedAt = function (o) {
+    var i = assignIdx(o);
+    return i > -1 ? o.schedule[i].at : (o && (o.startAt || o.placedAt)) || 0;
+  };
+
+  /** has the app introduced the courier yet? */
+  FB.tracker.assigned = function (o, now) {
+    if (!o) return true;
+    /* a pickup has no courier to wait for, and a finished order has nothing left to
+       disclose */
+    if (o.mode === 'pickup' || o.status === 'delivered' || o.status === 'cancelled') return true;
+    var i = assignIdx(o);
+    /* No tagged beat at all means a legacy save or a test fixture, neither of which
+       ever ran build(). Absence reads as ALREADY ASSIGNED, so this branch can only
+       ever withdraw a claim the app was making too early — no migration, no fixture
+       churn, and an old order keeps rendering exactly as it was delivered. */
+    if (i < 0) return true;
+    /* Monotonic, and consulted BEFORE the clock: replayed only ever counts up, so a
+       corrected system clock or a save carried to another device cannot un-introduce
+       someone the feed has already named. */
+    if ((o.replayed || 0) > i) return true;
+    return (now || Date.now()) >= o.schedule[i].at;
+  };
+
+  /** the queue card's contents while nobody is assigned, or null once someone is */
+  FB.tracker.dispatch = function (o, now) {
+    if (FB.tracker.assigned(o, now)) return null;
+    now = now || Date.now();
+    var start = o.startAt || o.placedAt;
+    var at = FB.tracker.assignedAt(o);
+    var of = 3 + FB.hash(o.id + 'queue') % 5;                 /* 3..7 ahead of you */
+    var span = Math.max(1, at - start);
+    var t = FB.clamp((now - start) / span, 0, 1);
+    var position = Math.max(1, Math.ceil(of * (1 - t)));
+    /* The queue recalculates upward exactly ONCE per order, at a seeded moment, and
+       never again — it is a bureaucracy admitting an error, not a tic. */
+    var revisedAt = 0.25 + (FB.seeded('queue:' + o.id)() * 0.4);
+    var revised = t >= revisedAt && t < revisedAt + 0.18;
+    return { position: revised ? of + 1 : position, of: of, revised: revised };
+  };
+
   FB.tracker.INCIDENT_MS = INCIDENT_MS;
   FB.tracker.INCIDENT_MIN_MS = INCIDENT_MIN_MS;
   FB.tracker.RESOLVE_MARGIN_MS = RESOLVE_MARGIN_MS;

@@ -1861,6 +1861,120 @@ check('an incident expires while the food is still in the kitchen', () => {
   } finally { clock.restore(); app.dispose(); }
 });
 
+check('nobody is driving until somebody has been assigned', () => {
+  /* The courier has been decided since placement — the roster draw is seeded on the
+     order id — but the app claimed them from the first frame while the feed above had
+     not mentioned anyone: a median of nine seconds, and up to thirty-four, of showing
+     a photograph, a name, a rating and a Message button for someone who had not been
+     introduced. The wait was already in the timetable; the screen simply pre-empted it.
+
+     Nothing about WHO is chosen moves, and no write moves onto the replay path — the
+     three accessors are pure and take `now`. That is the whole reason this shape was
+     chosen over making assignment a state transition. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T0);
+    harness.addToCart(FB, 'cluckingham', 3);
+    const o = harness.makeOrder(FB, 'cluckingham', { now: T0 });
+    o.id = 'dsp'; o.events = []; o.etaDrift = 0; delete o.replayed;
+    FB.tracker.build(o);
+    FB.store.set((st) => { st.orders.unshift(o); st.activeOrderId = o.id; return st; });
+
+    const at = FB.tracker.assignedAt(o);
+    if (!(at > o.startAt)) throw new Error('the courier is disclosed at placement, so there is no gap at all');
+    if (FB.tracker.assigned(o, o.startAt)) throw new Error('somebody is assigned before the beat that assigns them');
+    if (!FB.tracker.assigned(o, at + 1)) throw new Error('nobody is assigned after the beat that assigns them');
+
+    /* the queue card, while nobody is */
+    const samples = [];
+    for (let t = 0; t <= at - o.startAt; t += 400) {
+      const d = FB.tracker.dispatch(o, o.startAt + t);
+      if (d) samples.push(d);
+    }
+    if (samples.length < 5) throw new Error('the dispatch queue is drawn for ' + samples.length + ' samples');
+    if (samples[0].position < samples[samples.length - 1].position) throw new Error('the queue counts upward');
+    const revised = samples.filter((d) => d.revised);
+    if (!revised.length) throw new Error('the queue never recalculates, so the joke never lands');
+    if (revised.length > samples.length / 2) throw new Error('the queue recalculates on most samples — that is a tic, not an episode');
+    /* one episode, not several: the revised samples must be contiguous */
+    const first = samples.indexOf(revised[0]), last = samples.lastIndexOf(revised[revised.length - 1]);
+    if (last - first + 1 !== revised.length) throw new Error('the queue recalculates more than once in one order');
+    if (!revised.every((d) => d.position > d.of)) throw new Error('a recalculation that does not exceed the queue is not a recalculation');
+    if (FB.tracker.dispatch(o, at + 1) !== null) throw new Error('the queue card survives the assignment');
+
+    /* a pickup has no courier to wait for, and a fixture that never ran build() has
+       no tagged beat — absence must read as ALREADY assigned, so this can only ever
+       withdraw a claim, never invent a wait */
+    FB.cart.clearAll();
+    harness.addToCart(FB, 'pizzahutch', 2);
+    const pk = harness.makeOrder(FB, 'pizzahutch', { now: T0, mode: 'pickup' });
+    pk.id = 'dsp_pick'; pk.events = []; pk.etaDrift = 0; delete pk.replayed;
+    FB.tracker.build(pk);
+    if (!FB.tracker.assigned(pk, T0)) throw new Error('a pickup waits for a courier that does not exist');
+    if (FB.tracker.dispatch(pk, T0)) throw new Error('a pickup is given a dispatch queue');
+    if ((pk.schedule || []).some((b) => b.tag === 'assign')) throw new Error('a pickup script assigns a Slinger');
+    if (!FB.tracker.assigned(harness.makeOrder(FB, 'cluckingham', { now: T0 }), T0)) {
+      throw new Error('an order with no schedule reads as unassigned — a legacy save would show a queue forever');
+    }
+
+    /* MONOTONIC. Consulted before the clock, so a corrected system clock or a save
+       carried to another device cannot un-introduce someone the feed has named. */
+    clock.set(at + 5000);
+    FB.tracker.tick();
+    const live = FB.store.order('dsp');
+    if (!((live.replayed || 0) > 0)) throw new Error('nothing replayed');
+    if (!FB.tracker.assigned(live, o.startAt)) throw new Error('a backwards clock un-assigned a named courier');
+
+    /* the name may never appear above the beat that introduces it */
+    let leaked = 0, checked = 0;
+    for (const s of FB.catalog.all()) {
+      FB.cart.clearAll();
+      harness.addToCart(FB, s.slug, 3);
+      if (FB.cart.lines(s.slug).length < 2) continue;
+      for (let tier = 2; tier <= 3; tier++) {
+        for (let i = 0; i < 3; i++) {
+          const x = harness.makeOrder(FB, s.slug, { now: T0 });
+          x.id = 'leak_' + s.slug + tier + i; x.tier = tier; x.events = []; x.etaDrift = 0;
+          delete x.incident; delete x.replayed;
+          FB.tracker.build(x);
+          const ai = x.schedule.findIndex((b) => b.tag === 'assign');
+          if (ai < 0) throw new Error(x.id + ' has no assignment beat');
+          checked++;
+          const nm = x.slinger.name;
+          const early = x.schedule.findIndex((b) => b.text.indexOf(nm) > -1 || (b.sub || '').indexOf(nm) > -1);
+          if (early > -1 && early < ai) leaked++;
+        }
+      }
+    }
+    if (leaked) throw new Error(leaked + ' of ' + checked + ' orders name the courier above the beat that introduces them');
+
+    /* and the announcement is stamped from the timetable, once, however late it is read */
+    const b2 = harness.loadApp();
+    try {
+      b2.clock.set(T0);
+      harness.addToCart(b2.FB, 'cluckingham', 3);
+      const o2 = harness.makeOrder(b2.FB, 'cluckingham', { now: T0 });
+      o2.id = 'dsp_catch'; o2.events = []; o2.etaDrift = 0; delete o2.replayed;
+      b2.FB.tracker.build(o2);
+      b2.FB.store.set((st) => { st.orders.unshift(o2); st.activeOrderId = o2.id; return st; });
+      const when = b2.FB.tracker.assignedAt(o2);
+      b2.clock.set(T0 + 7 * 86400000);
+      b2.FB.tracker.tick({ catchUp: true });
+      b2.FB.tracker.tick({ catchUp: true });
+      const hits = b2.FB.notifs.list().filter((n) => n.id === 'asg:dsp_catch');
+      if (hits.length !== 1) throw new Error('a week-late catch-up announced the assignment ' + hits.length + ' times');
+      if (Math.abs(hits[0].ts - when) > 2) {
+        throw new Error('the assignment is stamped when it was noticed, not when it happened');
+      }
+    } finally { b2.clock.restore(); b2.dispose(); }
+
+    return 'the gap is ' + ((at - o.startAt) / 1000).toFixed(1) + 's, the queue counts down from ' +
+      samples[0].of + ', and ' + checked + ' orders introduce the courier before naming them';
+  } finally { clock.restore(); app.dispose(); }
+});
+
 check('a schedule slot is never offered outside the hours it is for', () => {
   /* The sheet built its rows from wall-clock arithmetic alone — deliveryMax + 45n —
      and never asked whether the store was open at the time it was offering. Swept
@@ -2150,7 +2264,26 @@ check('notifications accumulate, back-date, and never stay read', () => {
     for (let t = 0; t <= 160; t += 2) { clock.set(o.startAt + t * 1000); FB.tracker.tick(); }
     const afterOrder = FB.notifs.list().length;
     if (afterOrder < 3) throw new Error('an entire order produced only ' + afterOrder + ' notifications');
-    if (afterOrder > 6) throw new Error(afterOrder + ' notifications for one order — that is per beat, not per step');
+    /* The bound this was written for is "one per STEP, not one per beat" — an order
+       has eighteen or more beats and five step changes. Stated against the step
+       notifications themselves rather than against a total, because the total also
+       carries the two TAGGED moments (the courier being assigned, and their message
+       on collection), and a bare number could not tell a new tagged moment from the
+       per-beat regression it exists to catch. */
+    const perStep = FB.notifs.list().filter((n) => /^ord:/.test(n.id));
+    if (perStep.length > 6) {
+      throw new Error(perStep.length + ' step notifications for one order — that is per beat, not per step');
+    }
+    if (new Set(perStep.map((n) => n.id)).size !== perStep.length) {
+      throw new Error('the same step notified twice');
+    }
+    const tagged = FB.notifs.list().filter((n) => /^(asg|slg):/.test(n.id));
+    if (tagged.length > 2) throw new Error(tagged.length + ' tagged moments in one order');
+    if (afterOrder !== perStep.length + tagged.length) {
+      throw new Error('an order emitted ' + afterOrder + ' notifications that are neither per-step nor tagged');
+    }
+    /* the courier's assignment is one of them, and it is the moment the feed claims */
+    if (!tagged.some((n) => /^asg:/.test(n.id))) throw new Error('the courier was assigned and never announced');
     FB.tracker.tick(); FB.tracker.tick();
     if (FB.notifs.list().length !== afterOrder) throw new Error('re-ticking duplicated notifications');
     for (const n of FB.notifs.list()) {
