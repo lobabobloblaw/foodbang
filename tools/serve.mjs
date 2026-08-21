@@ -29,4 +29,4 @@ createServer(async (req, res) => {
   } catch {
     res.writeHead(404, { 'Content-Type': 'text/plain' }).end('404 ' + p);
   }
-}).listen(PORT, '127.0.0.1', () => console.log('DoorGorge → http://127.0.0.1:' + PORT));
+}).listen(PORT, '127.0.0.1', () => console.log('FoodBang → http://127.0.0.1:' + PORT));

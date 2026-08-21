@@ -1,12 +1,12 @@
 /* Inlines the whole app — CSS, JS, menu bundle and every image — into one
    self-contained HTML file that runs anywhere with no server.
    Images come from build/artifact-assets (re-encoded smaller) when present.
-   node tools/build-artifact.cjs  ->  build/doorgorge.html */
+   node tools/build-artifact.cjs  ->  build/foodbang.html */
 const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const OUT = path.join(ROOT, 'build', 'doorgorge.html');
+const OUT = path.join(ROOT, 'build', 'foodbang.html');
 const SMALL = path.join(ROOT, 'build', 'artifact-assets');
 const MIME = { '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
 
@@ -55,7 +55,7 @@ const FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">' +
    property hook, so a MutationObserver sweeps those. */
 const SHIM = [
   '(function () {',
-  '  var MAP = window.__DG_ASSETS;',
+  '  var MAP = window.__FB_ASSETS;',
   '  function map(v) { if (typeof v !== "string") return v; var k = v.replace(/^\\.\\//, ""); return MAP[k] || v; }',
   '  var d = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, "src");',
   '  Object.defineProperty(HTMLImageElement.prototype, "src", {',
@@ -67,10 +67,10 @@ const SHIM = [
   '    if (n === "src" && this.tagName === "IMG") v = map(v);',
   '    return setAttr.call(this, n, v); };',
   '  function sweep() {',
-  '    var imgs = document.querySelectorAll("img[src]:not([data-dgm])");',
+  '    var imgs = document.querySelectorAll("img[src]:not([data-fbm])");',
   '    for (var i = 0; i < imgs.length; i++) {',
   '      var im = imgs[i], raw = im.getAttribute("src");',
-  '      im.setAttribute("data-dgm", "");',
+  '      im.setAttribute("data-fbm", "");',
   '      var m = map(raw); if (m !== raw) setAttr.call(im, "src", m); } }',
   '  new MutationObserver(sweep).observe(document.documentElement, { childList: true, subtree: true });',
   '  document.addEventListener("DOMContentLoaded", sweep); sweep();',
@@ -80,11 +80,11 @@ const SHIM = [
 /* A single-file build has no devtools for the reader. If boot throws, say so on
    the page instead of showing an empty frame. */
 const GUARD = [
-  '<div id="__dgerr" style="display:none;position:fixed;inset:0;z-index:9999;background:#0B0B0D;color:#F4F4F7;',
+  '<div id="__fberr" style="display:none;position:fixed;inset:0;z-index:9999;background:#0B0B0D;color:#F4F4F7;',
   'font:14px/1.6 ui-monospace,monospace;padding:32px;overflow:auto;white-space:pre-wrap"></div>',
   '<script>(function(){',
-  '  function show(msg){var e=document.getElementById("__dgerr");if(!e)return;',
-  '    e.style.display="block";e.textContent="DoorGorge failed to start.\\n\\n"+msg;}',
+  '  function show(msg){var e=document.getElementById("__fberr");if(!e)return;',
+  '    e.style.display="block";e.textContent="FoodBang failed to start.\\n\\n"+msg;}',
   '  window.addEventListener("error",function(ev){',
   '    show((ev.message||"error")+"\\n  at line "+(ev.lineno||"?")+":"+(ev.colno||"?")+',
   '      (ev.error&&ev.error.stack?"\\n\\n"+ev.error.stack:""));});',
@@ -96,7 +96,7 @@ const GUARD = [
    pass through, so the base64 goes out in short chunks joined at runtime. */
 function assetScript(map) {
   const CHUNK = 480;
-  const lines = ['window.__DG_ASSETS = (function () { var a = {};'];
+  const lines = ['window.__FB_ASSETS = (function () { var a = {};'];
   for (const key of Object.keys(map)) {
     const v = map[key];
     const parts = [];
@@ -109,7 +109,7 @@ function assetScript(map) {
   return lines.join('\n');
 }
 
-const out = '<title>DoorGorge</title>\n' + FONTS + '\n<style>\n' + css + '\n</style>\n' + GUARD + body +
+const out = '<title>FoodBang</title>\n' + FONTS + '\n<style>\n' + css + '\n</style>\n' + GUARD + body +
   '\n<script>\n' + assetScript(assets) + '\n</script>\n' +
   '<script>' + SHIM + '</script>\n<script>\n' + js + '\n</script>\n';
 
@@ -118,4 +118,4 @@ fs.writeFileSync(OUT, out);
 console.log('images inlined  ' + Object.keys(assets).length + '  (' + (bytes / 1024 | 0) + ' KB)');
 console.log('css             ' + (css.length / 1024 | 0) + ' KB');
 console.log('js + menus      ' + (js.length / 1024 | 0) + ' KB');
-console.log('output          ' + (out.length / 1048576).toFixed(2) + ' MB -> build/doorgorge.html');
+console.log('output          ' + (out.length / 1048576).toFixed(2) + ' MB -> build/foodbang.html');

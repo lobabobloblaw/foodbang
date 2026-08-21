@@ -15,7 +15,7 @@
   "deliveryFee": 7.49,
   "distanceMi": 6.8,
   "priceTier": 3,
-  "gorgePlus": true,
+  "bangPlus": true,
   "closesAt": "12:30 AM",
   "address": "1 Cheesecake Concourse, Pavilion Level 2, Outparcel 7, Sunridge Galleria Ring Road, Vestibule Township, CA 91708",
   "about": "The Cheesecake Manufactory operates a 412-page menu inside a climate-stabilized Egyptian-revival dining palace. Portions are specified by our structural department and are not adjustable at the table. There is one exit and it is located at the rear of the Cheesecake Vault.",
@@ -739,7 +739,7 @@
                   "id": "o2",
                   "name": "Manufactory Retains Custody",
                   "price": 4.4,
-                  "note": "Uneaten portions return with the Gorger."
+                  "note": "Uneaten portions return with the Slinger."
                 },
                 {
                   "id": "o3",
@@ -799,7 +799,7 @@
               "options": [
                 {
                   "id": "o1",
-                  "name": "Vessel Returns With Gorger",
+                  "name": "Vessel Returns With Slinger",
                   "price": 3.95,
                   "note": null
                 },
@@ -1202,7 +1202,7 @@
                   "id": "o4",
                   "name": "Regional Pour (22 qt)",
                   "price": 62.4,
-                  "note": "Two Gorgers are dispatched. Both are billed."
+                  "note": "Two Slingers are dispatched. Both are billed."
                 }
               ]
             },
@@ -1432,7 +1432,7 @@
                   "id": "o2",
                   "name": "Continuous Grind Until Instructed to Stop",
                   "price": 7.95,
-                  "note": "Instruction must be given aloud. The Gorger will not stop on gesture."
+                  "note": "Instruction must be given aloud. The Slinger will not stop on gesture."
                 }
               ]
             }

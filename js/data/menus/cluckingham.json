@@ -15,7 +15,7 @@
   "deliveryFee": 5.49,
   "distanceMi": 3.8,
   "priceTier": 2,
-  "gorgePlus": true,
+  "bangPlus": true,
   "closesAt": "1:30 AM",
   "address": "44190 Frontage Access Road, Bay 6, Behind the Retention Pond, Grimsley Township",
   "about": "Colonel Cluckingham's Poultry Compound is a pressure-frying facility operating under a hospitality license. The title of Colonel is a rank conferred internally and is presently vacant; the recipe survives the officer. All poultry is processed on site under pressure that is monitored but not published.",
@@ -490,7 +490,7 @@
                 {
                   "name": "Vents in the Vehicle",
                   "price": 1.9,
-                  "note": "The Gorger has consented on your behalf.",
+                  "note": "The Slinger has consented on your behalf.",
                   "id": "o2"
                 },
                 {
@@ -1250,7 +1250,7 @@
                 {
                   "name": "Vents in the Vehicle",
                   "price": 1.9,
-                  "note": "The Gorger has consented on your behalf.",
+                  "note": "The Slinger has consented on your behalf.",
                   "id": "o2"
                 },
                 {

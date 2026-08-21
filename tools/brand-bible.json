@@ -1,11 +1,11 @@
 {
   "app": {
-    "name": "DoorGorge",
-    "legalName": "DoorGorge Nutrition Logistics, Inc.",
-    "tagline": "EVERY DOOR IS A MOUTH.",
-    "subscription": "GORGE+ INFINITY PRIME ELITE",
-    "courierNoun": "Gorger",
-    "currency": "GorgeBux",
+    "name": "FoodBang",
+    "legalName": "FoodBang Nutrition Logistics, Inc.",
+    "tagline": "IMPACT IS PART OF DELIVERY.",
+    "subscription": "BANG+ INFINITY PRIME ELITE",
+    "courierNoun": "Slinger",
+    "currency": "BangBux",
     "tracker": "TRACKR",
     "health": "BODYMAX",
     "voice": "Deadpan corporate-dystopian. The satire is in the pricing, the modifiers, and the total sincerity of the copy. Never wink at the camera. Brands believe in themselves completely. Idiocracy-adjacent: aggressive trademarks, legally-hedged claims, portions described in civic-infrastructure units, wellness framed as compliance."
@@ -36,7 +36,7 @@
     "deliveryFee": "number, e.g. 4.99 or 0",
     "distanceMi": "number one decimal",
     "priceTier": "1|2|3|4 (renders as $ signs)",
-    "gorgePlus": "boolean",
+    "bangPlus": "boolean",
     "closesAt": "string like '11:45 PM' or '3:00 AM'",
     "address": "string, absurd suburban-sprawl address",
     "about": "string, 1-3 deadpan sentences of corporate 'about' copy",

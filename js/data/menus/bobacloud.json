@@ -17,7 +17,7 @@
   "deliveryFee": 6.49,
   "distanceMi": 3.8,
   "priceTier": 1,
-  "gorgePlus": false,
+  "bangPlus": false,
   "closesAt": "9:20 PM",
   "address": "1140 Pinewreath Crossing Plaza, Unit D-6 (behind the nail salon, share the lot with the tax place), Loam Springs",
   "about": "We opened in 2017 after our old counter on Kessel Road lost its lease. My sister Amy does the snow bowls and I do the tea, and we are both here every day, which is why it sometimes takes a minute. Everything is shaken to order.",
@@ -274,7 +274,7 @@
                   "id": "o3",
                   "name": "Next Batch (we hold your order twelve minutes)",
                   "price": 2.25,
-                  "note": "Your Gorger waits at the counter. We do not control what that does to your delivery estimate."
+                  "note": "Your Slinger waits at the counter. We do not control what that does to your delivery estimate."
                 }
               ]
             },

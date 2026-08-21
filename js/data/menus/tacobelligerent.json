@@ -15,7 +15,7 @@
   "deliveryFee": 3.49,
   "distanceMi": 2.7,
   "priceTier": 1,
-  "gorgePlus": true,
+  "bangPlus": true,
   "closesAt": "4:00 AM",
   "address": "17-B Frontage Loop, Outparcel 4, Behind The Tire Place, Cloverbend Commons, TX 75041",
   "about": "Taco Belligerent™ operates six ingredients under forty-one names. All formats are folded, layered, coned, or wrapped inside another format at our sole discretion. Decisions made on this property after 10 PM are considered final and are not reviewable.",
@@ -703,7 +703,7 @@
                   "id": "o1",
                   "name": "Eleven-Minute Window",
                   "price": 3.6,
-                  "note": "Your Gorger waits at the curb and does not speak."
+                  "note": "Your Slinger waits at the curb and does not speak."
                 }
               ]
             }
@@ -945,7 +945,7 @@
                   "id": "o3",
                   "name": "Six Tortillas",
                   "price": 9.6,
-                  "note": "Six is the maximum a Gorger may carry unassisted."
+                  "note": "Six is the maximum a Slinger may carry unassisted."
                 },
                 {
                   "id": "o4",
@@ -1497,7 +1497,7 @@
                   "id": "o3",
                   "name": "Six Tortillas",
                   "price": 9.6,
-                  "note": "Six is the maximum a Gorger may carry unassisted."
+                  "note": "Six is the maximum a Slinger may carry unassisted."
                 },
                 {
                   "id": "o4",
@@ -2553,7 +2553,7 @@
                   "id": "o1",
                   "name": "Eleven-Minute Window",
                   "price": 3.6,
-                  "note": "Your Gorger waits at the curb and does not speak."
+                  "note": "Your Slinger waits at the curb and does not speak."
                 }
               ]
             }
@@ -2981,7 +2981,7 @@
                   "id": "o1",
                   "name": "Eleven-Minute Window",
                   "price": 3.6,
-                  "note": "Your Gorger waits at the curb and does not speak."
+                  "note": "Your Slinger waits at the curb and does not speak."
                 }
               ]
             }

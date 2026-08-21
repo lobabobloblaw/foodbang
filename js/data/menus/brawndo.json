@@ -15,7 +15,7 @@
   "deliveryFee": 6.49,
   "distanceMi": 3.8,
   "priceTier": 2,
-  "gorgePlus": true,
+  "bangPlus": true,
   "closesAt": "3:00 AM",
   "address": "1 Electrolyte Way, Bay 14, Dock C, Sundale Commerce Annex, Lot 7700",
   "about": "BRAWNDO Hydration Depot supplies electrolytes at residential, municipal, and watershed scale. It's got what you crave, and it has had it since the founding of the depot. Water is available elsewhere.",
@@ -223,7 +223,7 @@
                   "id": "o3",
                   "name": "Announced",
                   "price": 1.25,
-                  "note": "Your Gorger will state the volume aloud."
+                  "note": "Your Slinger will state the volume aloud."
                 }
               ]
             }
@@ -551,7 +551,7 @@
                 },
                 {
                   "id": "o3",
-                  "name": "Read Aloud by Your Gorger",
+                  "name": "Read Aloud by Your Slinger",
                   "price": 8.35,
                   "note": "Recitation takes eleven minutes at the doorway."
                 }
@@ -800,7 +800,7 @@
                 },
                 {
                   "id": "o3",
-                  "name": "Read Aloud by Your Gorger",
+                  "name": "Read Aloud by Your Slinger",
                   "price": 8.35,
                   "note": "Recitation takes eleven minutes at the doorway."
                 }
@@ -1050,7 +1050,7 @@
                 },
                 {
                   "id": "o3",
-                  "name": "Read Aloud by Your Gorger",
+                  "name": "Read Aloud by Your Slinger",
                   "price": 8.35,
                   "note": "Recitation takes eleven minutes at the doorway."
                 }
@@ -1625,7 +1625,7 @@
                 },
                 {
                   "id": "o3",
-                  "name": "Read Aloud by Your Gorger",
+                  "name": "Read Aloud by Your Slinger",
                   "price": 8.35,
                   "note": "Recitation takes eleven minutes at the doorway."
                 }
@@ -2032,7 +2032,7 @@
                 },
                 {
                   "id": "o3",
-                  "name": "Read Aloud by Your Gorger",
+                  "name": "Read Aloud by Your Slinger",
                   "price": 8.35,
                   "note": "Recitation takes eleven minutes at the doorway."
                 }
@@ -2228,7 +2228,7 @@
                 },
                 {
                   "id": "o3",
-                  "name": "Read Aloud by Your Gorger",
+                  "name": "Read Aloud by Your Slinger",
                   "price": 8.35,
                   "note": "Recitation takes eleven minutes at the doorway."
                 }

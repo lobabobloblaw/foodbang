@@ -1,23 +1,23 @@
 {
   "scope": "app",
-  "app": "DoorGorge",
+  "app": "FoodBang",
   "model": "bytedance/seedream-4.5",
   "generated": "2026-08-20",
   "images": [
     {
-      "file": "gorger-1.webp",
+      "file": "slinger-1.webp",
       "aspect": "1:1",
       "predictionId": "sypprfc3zdrmy0d046190v48pw",
       "prompt": "Portrait of a food delivery courier for a profile bubble: a tired man in his 20s wearing a plain red thermal-bag harness over a t-shirt, photographed sitting in a car at night, dashboard glow on his face, phone light from below, caught mid-blink, faintly resigned. Candid smartphone snapshot realism, shallow depth of field, centered head and shoulders. No text, no logos, no packaging labels, no watermarks."
     },
     {
-      "file": "gorger-2.webp",
+      "file": "slinger-2.webp",
       "aspect": "1:1",
       "predictionId": "dhsv5rdjtxrmt0d0461a5y760c",
       "prompt": "Portrait of a food delivery courier for a profile bubble: a woman in her 40s in a plain red insulated jacket standing in an apartment stairwell under a bare fluorescent bulb, holding a stack of three plain thermal delivery bags, blank patient expression. Candid smartphone snapshot realism, shallow depth of field, centered head and shoulders. No text, no logos, no packaging labels, no watermarks."
     },
     {
-      "file": "gorger-3.webp",
+      "file": "slinger-3.webp",
       "aspect": "1:1",
       "predictionId": "0vrtcj28w1rmw0d04639fbjk04",
       "prompt": "Portrait of a food delivery courier for a profile bubble: a man in his 60s in a plain red cap and plain red windbreaker sitting on an e-bike at dusk in an empty strip-mall parking lot, squinting down at a phone, plain grey thermal bag strapped to the handlebars. Tight head and shoulders framing, the courier fills the frame, the background is heavily blurred into soft bokeh with no signage or storefronts visible. Candid smartphone snapshot realism, shallow depth of field, centered. No text, no signs, no lettering, no logos, no packaging labels, no watermarks.",
@@ -36,7 +36,7 @@
       "prompt": "Proof of delivery photo taken by a courier: a large plain red paper delivery bag left on a suburban concrete doorstep at night, harsh on-camera flash blowing out the front door, the bag has tipped over and one paper cup has rolled onto the doormat, a small puddle spreading across the concrete. Flat phone-flash snapshot, slightly crooked framing, deep black night behind. No text, no logos, no packaging labels, no watermarks, no hands, no people."
     },
     {
-      "file": "gorgeplus-hero.webp",
+      "file": "bangplus-hero.webp",
       "aspect": "16:9",
       "predictionId": "dek699dpw9rmt0d0461vg3qhm0",
       "prompt": "Premium subscription promo art: an obsidian-black credit-card-shaped slab floating in a red-lit void, its blank surface machined with fine concentric rings, a faint red volumetric glow beneath it, heavy studio product photography, luxury fintech advertising. The slab surface is completely blank and unmarked. No text, no logos, no packaging labels, no watermarks, no hands, no people."

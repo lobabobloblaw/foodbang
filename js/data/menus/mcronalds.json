@@ -15,7 +15,7 @@
   "deliveryFee": 3.49,
   "distanceMi": 0.8,
   "priceTier": 1,
-  "gorgePlus": true,
+  "bangPlus": true,
   "closesAt": "2:00 AM",
   "address": "18400 Frontage Road West, Pad Site C, Exit 41B Commerce Overlay",
   "about": "McRonald's has operated continuously since 1974 under an operations manual that has never been revised. Procedures described in this listing are procedures. They are not promises.",
@@ -1750,7 +1750,7 @@
                   "id": "o2",
                   "name": "Announced at Handoff",
                   "price": 3.25,
-                  "note": "The Gorger will state aloud that you have ordered a salad."
+                  "note": "The Slinger will state aloud that you have ordered a salad."
                 },
                 {
                   "id": "o3",

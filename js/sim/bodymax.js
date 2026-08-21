@@ -1,10 +1,10 @@
-/* DoorGorge — BODYMAX™ Intake Telemetry.
+/* FoodBang — BODYMAX™ Intake Telemetry.
    A wellness feature that measures you, reports on you, and then sells to you. */
-window.DG = window.DG || {};
-(function (DG) {
+window.FB = window.FB || {};
+(function (FB) {
   'use strict';
 
-  var RDI = 9400;          /* "Recommended Daily Intake", per DoorGorge™ */
+  var RDI = 9400;          /* "Recommended Daily Intake", per FoodBang™ */
   var SODIUM_CEIL = 24000; /* mg */
 
   var TRAJECTORY = ['STABLE', 'EXPANDING', 'SUBSTANTIAL', 'MUNICIPAL', 'REGIONAL', 'WATERSHED'];
@@ -26,13 +26,13 @@ window.DG = window.DG || {};
 
   function dayKey(ts) { var d = new Date(ts); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
 
-  DG.bodymax = {
+  FB.bodymax = {
     RDI: RDI,
     BADGES: BADGES,
     TRAJECTORY: TRAJECTORY,
 
     ingest: function (order) {
-      DG.store.set(function (st) {
+      FB.store.set(function (st) {
         var flags = {};
         var text = order.lines.map(function (l) { return l.opts + ' ' + l.name; }).join(' ').toLowerCase();
         if (/trough/.test(text)) flags.trough = true;
@@ -50,20 +50,20 @@ window.DG = window.DG || {};
         if (!st.bodymax.firstTs) st.bodymax.firstTs = order.placedAt;
         return st;
       });
-      DG.bodymax.checkBadges();
+      FB.bodymax.checkBadges();
     },
 
     flag: function (name) {
-      DG.store.set(function (st) {
+      FB.store.set(function (st) {
         st.bodymax.flags = st.bodymax.flags || {};
         st.bodymax.flags[name] = true;
         return st;
       }, { silent: true });
-      DG.bodymax.checkBadges();
+      FB.bodymax.checkBadges();
     },
 
     metrics: function () {
-      var st = DG.S();
+      var st = FB.S();
       var h = st.bodymax.history;
       var flags = Object.assign({}, st.bodymax.flags || {});
       h.forEach(function (e) { Object.assign(flags, e.flags || {}); });
@@ -73,74 +73,74 @@ window.DG = window.DG || {};
       var brands = {};
       h.forEach(function (e) { brands[e.slug] = 1; });
 
-      var totalCal = DG.sum(h, function (e) { return e.cal; });
+      var totalCal = FB.sum(h, function (e) { return e.cal; });
       var days = Math.max(1, Math.ceil((Date.now() - (st.bodymax.firstTs || Date.now())) / 86400000) || 1);
 
       return {
         orders: h.length,
         brands: Object.keys(brands).length,
-        todayCal: DG.sum(todayEntries, function (e) { return e.cal; }),
-        todaySodium: DG.sum(todayEntries, function (e) { return e.sodium; }),
-        todayGrease: DG.round2(DG.sum(todayEntries, function (e) { return e.grease; })),
+        todayCal: FB.sum(todayEntries, function (e) { return e.cal; }),
+        todaySodium: FB.sum(todayEntries, function (e) { return e.sodium; }),
+        todayGrease: FB.round2(FB.sum(todayEntries, function (e) { return e.grease; })),
         totalCal: totalCal,
         avgCal: Math.round(totalCal / days),
-        ranch: DG.round2(DG.sum(h, function (e) { return e.ranch; })),
-        grease: DG.round2(DG.sum(h, function (e) { return e.grease; })),
-        spend: DG.round2(st.meta.lifetimeSpend),
-        fees: DG.round2(st.meta.lifetimeFees),
-        tips: DG.round2(st.meta.lifetimeTips),
+        ranch: FB.round2(FB.sum(h, function (e) { return e.ranch; })),
+        grease: FB.round2(FB.sum(h, function (e) { return e.grease; })),
+        spend: FB.round2(st.meta.lifetimeSpend),
+        fees: FB.round2(st.meta.lifetimeFees),
+        tips: FB.round2(st.meta.lifetimeTips),
         maxOrderCal: h.length ? Math.max.apply(null, h.map(function (e) { return e.cal; })) : 0,
         flags: flags,
         /* derived indices — all invented, all authoritative */
-        loyalty: DG.clamp(Math.round(h.length * 6 + Object.keys(brands).length * 4), 0, 100),
-        integrity: DG.clamp(100 - Math.round(totalCal / 900) - h.length * 2, 4, 100),
+        loyalty: FB.clamp(Math.round(h.length * 6 + Object.keys(brands).length * 4), 0, 100),
+        integrity: FB.clamp(100 - Math.round(totalCal / 900) - h.length * 2, 4, 100),
         chewDebt: Math.round(totalCal / 62),
-        trajectory: TRAJECTORY[DG.clamp(Math.floor(totalCal / 14000), 0, TRAJECTORY.length - 1)],
-        trajectoryIdx: DG.clamp(Math.floor(totalCal / 14000), 0, TRAJECTORY.length - 1),
+        trajectory: TRAJECTORY[FB.clamp(Math.floor(totalCal / 14000), 0, TRAJECTORY.length - 1)],
+        trajectoryIdx: FB.clamp(Math.floor(totalCal / 14000), 0, TRAJECTORY.length - 1),
       };
     },
 
     days: function (n) {
-      var st = DG.S(), out = [];
+      var st = FB.S(), out = [];
       for (var i = n - 1; i >= 0; i--) {
         var d = new Date(Date.now() - i * 86400000);
         var k = dayKey(d.getTime());
-        var cal = DG.sum(st.bodymax.history.filter(function (e) { return dayKey(e.ts) === k; }), function (e) { return e.cal; });
+        var cal = FB.sum(st.bodymax.history.filter(function (e) { return dayKey(e.ts) === k; }), function (e) { return e.cal; });
         out.push({ label: ['S', 'M', 'T', 'W', 'T', 'F', 'S'][d.getDay()], date: d.getDate(), cal: cal });
       }
       return out;
     },
 
     badges: function () {
-      var m = DG.bodymax.metrics();
+      var m = FB.bodymax.metrics();
       return BADGES.map(function (b) { return { id: b.id, icon: b.icon, name: b.name, hint: b.hint, earned: !!b.test(m) }; });
     },
 
     checkBadges: function () {
-      var earned = DG.bodymax.badges().filter(function (b) { return b.earned; });
-      var st = DG.S();
+      var earned = FB.bodymax.badges().filter(function (b) { return b.earned; });
+      var st = FB.S();
       var fresh = earned.filter(function (b) { return st.bodymax.badges.indexOf(b.id) < 0; });
       if (!fresh.length) return;
-      DG.store.set(function (s) {
+      FB.store.set(function (s) {
         fresh.forEach(function (b) { s.bodymax.badges.push(b.id); });
         return s;
       });
       fresh.forEach(function (b, i) {
-        setTimeout(function () { DG.toast(b.icon + '  Achievement: ' + b.name, { kind: 'plus', ms: 3600 }); }, 700 + i * 900);
+        setTimeout(function () { FB.toast(b.icon + '  Achievement: ' + b.name, { kind: 'plus', ms: 3600 }); }, 700 + i * 900);
       });
     },
   };
 
   /* ---------------- screen ---------------- */
   function gauge(cfg) {
-    var pct = DG.clamp(cfg.value / cfg.max * 100, 0, 100);
+    var pct = FB.clamp(cfg.value / cfg.max * 100, 0, 100);
     var color = pct > 88 ? 'var(--bad)' : pct > 62 ? 'var(--warn)' : 'var(--good)';
     if (cfg.invert) color = pct < 30 ? 'var(--bad)' : pct < 62 ? 'var(--warn)' : 'var(--good)';
-    return '<div class="gauge"><div class="gauge-h"><b>' + DG.esc(cfg.label) + '</b>' +
+    return '<div class="gauge"><div class="gauge-h"><b>' + FB.esc(cfg.label) + '</b>' +
       '<span class="g-v" style="color:' + color + '">' + cfg.display + '</span>' +
-      '<span class="g-u">' + DG.esc(cfg.unit || '') + '</span></div>' +
+      '<span class="g-u">' + FB.esc(cfg.unit || '') + '</span></div>' +
       '<div class="gtrack"><div class="gfill" style="width:' + pct.toFixed(1) + '%;background:' + color + '"></div></div>' +
-      (cfg.note ? '<div class="g-note">' + DG.esc(cfg.note) + '</div>' : '') + '</div>';
+      (cfg.note ? '<div class="g-note">' + FB.esc(cfg.note) + '</div>' : '') + '</div>';
   }
 
   function spark(days) {
@@ -148,7 +148,7 @@ window.DG = window.DG || {};
     var w = 100 / days.length;
     var bars = days.map(function (d, i) {
       var hpct = d.cal / max * 100;
-      var col = d.cal > RDI ? 'var(--bad)' : d.cal > 0 ? 'var(--gorge)' : 'var(--surface-3)';
+      var col = d.cal > RDI ? 'var(--bad)' : d.cal > 0 ? 'var(--fb)' : 'var(--surface-3)';
       return '<rect x="' + (i * w + w * 0.16).toFixed(2) + '" y="' + (100 - Math.max(hpct, 1.5)).toFixed(2) + '" ' +
         'width="' + (w * 0.68).toFixed(2) + '" height="' + Math.max(hpct, 1.5).toFixed(2) + '" rx="1" fill="' + col + '"/>';
     }).join('');
@@ -157,32 +157,32 @@ window.DG = window.DG || {};
       '<line x1="0" y1="' + rdiY.toFixed(2) + '" x2="100" y2="' + rdiY.toFixed(2) + '" stroke="var(--ink)" stroke-width=".6" stroke-dasharray="2 2" opacity=".55"/></svg>';
   }
 
-  DG.screens.register('bodymax', {
+  FB.screens.register('bodymax', {
     tab: 'account',
     hideCartBar: true,
     appbar: function () {
-      return '<div class="bar"><button class="iconbtn" data-back>' + DG.icon('back', 20) + '</button>' +
-        '<h1>BODYMAX™</h1><button class="iconbtn" data-bmhelp>' + DG.icon('help', 19) + '</button></div>';
+      return '<div class="bar"><button class="iconbtn" data-back>' + FB.icon('back', 20) + '</button>' +
+        '<h1>BODYMAX™</h1><button class="iconbtn" data-bmhelp>' + FB.icon('help', 19) + '</button></div>';
     },
     render: function () {
-      var m = DG.bodymax.metrics();
-      var days = DG.bodymax.days(14);
-      var badges = DG.bodymax.badges();
-      var st = DG.S();
+      var m = FB.bodymax.metrics();
+      var days = FB.bodymax.days(14);
+      var badges = FB.bodymax.badges();
+      var st = FB.S();
 
       if (!m.orders) {
         return '<div class="bmhero"><img src="assets/app/bodymax-hero.webp" alt="" onerror="this.remove()">' +
           '<div class="bm-k"><i>INTAKE TELEMETRY</i><b>No signal</b></div></div>' +
-          DG.C.empty({ title: 'BODYMAX™ is listening', body: 'Place an order and your telemetry will begin. It cannot be stopped once begun.', cta: 'Find something', go: 'home' });
+          FB.C.empty({ title: 'BODYMAX™ is listening', body: 'Place an order and your telemetry will begin. It cannot be stopped once begun.', cta: 'Find something', go: 'home' });
       }
 
       var h = '<div class="bmhero"><img src="assets/app/bodymax-hero.webp" alt="" onerror="this.remove()">' +
-        '<div class="bm-k"><i>INTAKE TELEMETRY · SUBJECT ' + DG.esc(st.user.name.toUpperCase()) + '</i><b>' + DG.int(m.totalCal) + ' units logged</b></div></div>';
+        '<div class="bm-k"><i>INTAKE TELEMETRY · SUBJECT ' + FB.esc(st.user.name.toUpperCase()) + '</i><b>' + FB.int(m.totalCal) + ' units logged</b></div></div>';
 
       /* trajectory */
       h += '<div class="trajectory"><div style="display:flex;align-items:baseline;gap:8px">' +
         '<b style="font:var(--t-micro);letter-spacing:.14em;color:var(--ink-3)">BODY TRAJECTORY</b>' +
-        '<span style="margin-left:auto;font:800 17px var(--display);color:var(--gorge)">' + m.trajectory + '</span></div>' +
+        '<span style="margin-left:auto;font:800 17px var(--display);color:var(--fb)">' + m.trajectory + '</span></div>' +
         '<div class="traj-steps">' + TRAJECTORY.map(function (t, i) {
           return (i ? '<i class="' + (i <= m.trajectoryIdx ? 'on' : '') + '"></i>' : '') +
             '<b class="' + (i <= m.trajectoryIdx ? 'on' : '') + (i === m.trajectoryIdx ? ' now' : '') + '"></b>';
@@ -194,10 +194,10 @@ window.DG = window.DG || {};
 
       /* today */
       h += '<div style="padding:16px 16px 4px"><b style="font:var(--t-micro);letter-spacing:.14em;color:var(--ink-3)">TODAY</b></div>';
-      h += gauge({ label: 'Units Consumed', value: m.todayCal, max: RDI, display: DG.int(m.todayCal),
-        unit: '/ ' + DG.int(RDI) + ' RDI', note: 'DoorGorge™ Recommended Daily Intake is ' + DG.int(RDI) + ' units. This figure is not endorsed by any medical body.' });
-      h += gauge({ label: 'Sodium Saturation', value: m.todaySodium, max: SODIUM_CEIL, display: DG.pct(m.todaySodium / SODIUM_CEIL * 100),
-        unit: DG.int(m.todaySodium) + ' mg', note: 'Saturation above 100% is permitted and is not tracked further.' });
+      h += gauge({ label: 'Units Consumed', value: m.todayCal, max: RDI, display: FB.int(m.todayCal),
+        unit: '/ ' + FB.int(RDI) + ' RDI', note: 'FoodBang™ Recommended Daily Intake is ' + FB.int(RDI) + ' units. This figure is not endorsed by any medical body.' });
+      h += gauge({ label: 'Sodium Saturation', value: m.todaySodium, max: SODIUM_CEIL, display: FB.pct(m.todaySodium / SODIUM_CEIL * 100),
+        unit: FB.int(m.todaySodium) + ' mg', note: 'Saturation above 100% is permitted and is not tracked further.' });
       h += gauge({ label: 'Grease Index', value: m.todayGrease, max: 40, display: m.todayGrease.toFixed(1), unit: 'GI' });
 
       /* lifetime */
@@ -209,34 +209,34 @@ window.DG = window.DG || {};
         note: 'Declines with cumulative intake. Restoration is not offered at this tier.' });
       h += gauge({ label: 'Corporate Loyalty', value: m.loyalty, max: 100, display: m.loyalty + '/100', invert: true,
         note: 'Higher is better for us.' });
-      h += gauge({ label: 'Chew Debt', value: m.chewDebt, max: Math.max(600, m.chewDebt), display: DG.int(m.chewDebt), unit: 'min owed',
+      h += gauge({ label: 'Chew Debt', value: m.chewDebt, max: Math.max(600, m.chewDebt), display: FB.int(m.chewDebt), unit: 'min owed',
         note: 'Chewing not performed at the time of consumption accrues and is owed to the jaw.' });
 
       /* chart */
       h += '<div style="border-top:8px solid var(--surface-2);margin-top:10px">' +
-        DG.C.sectionHead('14-day intake', 'Dashed line is the Recommended Daily Intake.') +
+        FB.C.sectionHead('14-day intake', 'Dashed line is the Recommended Daily Intake.') +
         '<div class="sparkwrap">' + spark(days) + '</div>' +
         '<div class="sparklab">' + days.map(function (d, i) { return i % 2 === 0 ? '<span>' + d.label + '</span>' : '<span></span>'; }).join('') + '</div></div>';
 
       /* spend */
       h += '<div class="statgrid" style="margin-top:18px">' +
-        '<div><b>' + DG.money(m.spend) + '</b><span>SPENT</span></div>' +
-        '<div><b style="color:var(--gorge)">' + DG.money(m.fees) + '</b><span>IN FEES</span></div>' +
-        '<div><b>' + DG.money(m.tips) + '</b><span>TIPPED</span></div></div>' +
+        '<div><b>' + FB.money(m.spend) + '</b><span>SPENT</span></div>' +
+        '<div><b style="color:var(--fb)">' + FB.money(m.fees) + '</b><span>IN FEES</span></div>' +
+        '<div><b>' + FB.money(m.tips) + '</b><span>TIPPED</span></div></div>' +
         '<p style="font:var(--t-cap);color:var(--ink-3);padding:10px 16px;line-height:1.5">' +
-        (m.spend > 0 ? DG.pct(m.fees / m.spend * 100, 1) + ' of your lifetime spend was not food.' : '') + '</p>';
+        (m.spend > 0 ? FB.pct(m.fees / m.spend * 100, 1) + ' of your lifetime spend was not food.' : '') + '</p>';
 
       /* badges */
       h += '<div style="border-top:8px solid var(--surface-2);margin-top:6px">' +
-        DG.C.sectionHead('Achievements', badges.filter(function (b) { return b.earned; }).length + ' of ' + badges.length + ' unlocked') +
+        FB.C.sectionHead('Achievements', badges.filter(function (b) { return b.earned; }).length + ' of ' + badges.length + ' unlocked') +
         '<div class="badgegrid">' + badges.map(function (b) {
-          return '<div class="bdg' + (b.earned ? '' : ' locked') + '" title="' + DG.attr(b.hint) + '">' +
-            '<span class="bi">' + b.icon + '</span><b>' + DG.esc(b.name) + '</b><span>' + DG.esc(b.earned ? 'Unlocked' : b.hint) + '</span></div>';
+          return '<div class="bdg' + (b.earned ? '' : ' locked') + '" title="' + FB.attr(b.hint) + '">' +
+            '<span class="bi">' + b.icon + '</span><b>' + FB.esc(b.name) + '</b><span>' + FB.esc(b.earned ? 'Unlocked' : b.hint) + '</span></div>';
         }).join('') + '</div></div>';
 
       /* recommendations — all of them are upsells */
       h += '<div style="border-top:8px solid var(--surface-2);margin-top:14px">' +
-        DG.C.sectionHead('Wellness recommendations', 'Personalised from your telemetry.') +
+        FB.C.sectionHead('Wellness recommendations', 'Personalised from your telemetry.') +
         rec('droplet', 'Increase electrolyte intake', 'BRAWNDO™ Hydration Depot is 12 minutes away.', 'brawndo') +
         rec('scale', 'Reduce portion volume', 'Try a Municipal instead of a Regional. Municipal is 41% smaller and 12% more expensive.', null) +
         rec('activity', 'Offset today\'s intake', 'Walking to the door counts. It is the only thing that counts.', null) +
@@ -244,22 +244,22 @@ window.DG = window.DG || {};
         '</div>';
 
       h += '<div class="fineprint">BODYMAX™ is a wellness feature, not a medical device, not a scale, and not an opinion. ' +
-        'Figures are generated by DoorGorge™ from your own ordering behaviour and are not reviewed by a clinician. ' +
+        'Figures are generated by FoodBang™ from your own ordering behaviour and are not reviewed by a clinician. ' +
         'Telemetry cannot be disabled. It can be renamed.</div>';
 
       return h;
     },
     mount: function (root) {
-      DG.on(root, 'click', '[data-rec]', function (e, t) {
-        if (t.dataset.rec) DG.nav.go('store', { slug: t.dataset.rec });
-        else DG.toast('Recommendation acknowledged. It will be shown again.');
+      FB.on(root, 'click', '[data-rec]', function (e, t) {
+        if (t.dataset.rec) FB.nav.go('store', { slug: t.dataset.rec });
+        else FB.toast('Recommendation acknowledged. It will be shown again.');
       });
-      DG.on(document.getElementById('appbar'), 'click', '[data-bmhelp]', function () {
-        DG.why('About BODYMAX™',
+      FB.on(document.getElementById('appbar'), 'click', '[data-bmhelp]', function () {
+        FB.why('About BODYMAX™',
           'BODYMAX™ converts your ordering history into physiological estimates. No measurement is taken from your body. ' +
-          'All figures are inferred from what you bought, which DoorGorge™ considers more reliable.');
+          'All figures are inferred from what you bought, which FoodBang™ considers more reliable.');
       });
-      DG.qsa('.gfill', root).forEach(function (el) {
+      FB.qsa('.gfill', root).forEach(function (el) {
         var w = el.style.width; el.style.width = '0';
         setTimeout(function () { el.style.width = w; }, 60);
       });
@@ -267,8 +267,8 @@ window.DG = window.DG || {};
   });
 
   function rec(icon, title, body, slug) {
-    return '<button class="mrow" data-rec="' + (slug || '') + '">' + DG.icon(icon, 19) +
-      '<span class="mr-b"><b>' + DG.esc(title) + '</b><span>' + DG.esc(body) + '</span></span>' +
-      '<span class="mr-r">' + DG.icon('fwd', 15) + '</span></button>';
+    return '<button class="mrow" data-rec="' + (slug || '') + '">' + FB.icon(icon, 19) +
+      '<span class="mr-b"><b>' + FB.esc(title) + '</b><span>' + FB.esc(body) + '</span></span>' +
+      '<span class="mr-r">' + FB.icon('fwd', 15) + '</span></button>';
   }
-})(window.DG);
+})(window.FB);

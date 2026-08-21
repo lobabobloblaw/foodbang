@@ -1,11 +1,11 @@
-/* DoorGorge — app shell: router, tab bar, sheets, modals, toasts */
-window.DG = window.DG || {};
-(function (DG) {
+/* FoodBang — app shell: router, tab bar, sheets, modals, toasts */
+window.FB = window.FB || {};
+(function (FB) {
   'use strict';
 
   /* ===================== screen registry ===================== */
   var screens = {};
-  DG.screens = {
+  FB.screens = {
     register: function (name, def) { screens[name] = def; },
     get: function (name) { return screens[name]; },
     list: function () { return Object.keys(screens); },
@@ -28,33 +28,33 @@ window.DG = window.DG || {};
 
   function renderTabs() {
     var cur = current ? (screens[current.name] || {}).tab : null;
-    var pending = DG.store.activeOrder() ? 1 : 0;
+    var pending = FB.store.activeOrder() ? 1 : 0;
     tabEl.innerHTML = TABS.map(function (t) {
       var badge = '';
       if (t.id === 'orders' && pending) badge = '<i class="dot">' + pending + '</i>';
       return '<button class="tab" data-tab="' + t.id + '"' + (cur === t.id ? ' aria-current="page"' : '') + '>' +
-        DG.icon(t.icon, 23) + '<span>' + t.label + '</span>' + badge + '</button>';
+        FB.icon(t.icon, 23) + '<span>' + t.label + '</span>' + badge + '</button>';
     }).join('');
   }
 
   function renderCartBar() {
     var scr = screens[current && current.name] || {};
     if (scr.hideCartBar) { cartEl.innerHTML = ''; return; }
-    var slugs = DG.cart.activeSlugs();
+    var slugs = FB.cart.activeSlugs();
     if (!slugs.length) { cartEl.innerHTML = ''; return; }
     /* on a store page, show that store's cart; otherwise the most recent */
-    var slug = (current.name === 'store' && DG.cart.count(current.params.slug)) ? current.params.slug : slugs[0];
-    var store = DG.catalog.get(slug);
+    var slug = (current.name === 'store' && FB.cart.count(current.params.slug)) ? current.params.slug : slugs[0];
+    var store = FB.catalog.get(slug);
     if (!store) { cartEl.innerHTML = ''; return; }
-    var n = DG.cart.count(slug);
+    var n = FB.cart.count(slug);
     var others = slugs.length - 1;
     cartEl.innerHTML =
       '<button class="cartpill" data-cartgo="' + slug + '">' +
         '<span class="cp-n">' + n + '</span>' +
-        '<span class="cp-t">' + DG.esc(store.shortName || store.name) +
+        '<span class="cp-t">' + FB.esc(store.shortName || store.name) +
           (others > 0 ? ' <span style="opacity:.72">+' + others + ' more ' + (others === 1 ? 'cart' : 'carts') + '</span>' : '') +
         '</span>' +
-        '<span class="cp-p">' + DG.money(DG.cart.subtotal(slug)) + '</span>' +
+        '<span class="cp-p">' + FB.money(FB.cart.subtotal(slug)) + '</span>' +
       '</button>';
   }
 
@@ -91,13 +91,13 @@ window.DG = window.DG || {};
       } else {
         current = { name: name, params: params || {}, scroll: 0 };
       }
-      DG.overlay.closeAll(true);
+      FB.overlay.closeAll(true);
       paint();
       if (!opts.silent) { try { history.pushState({ n: name }, '', '#' + name); } catch (e) {} }
     },
     replace: function (name, params) { nav.go(name, params, { replace: true }); },
     back: function () {
-      if (DG.overlay.any()) { DG.overlay.close(); return true; }
+      if (FB.overlay.any()) { FB.overlay.close(); return true; }
       if (!stack.length) { if (current && current.name !== 'home') { nav.go('home', {}, { replace: true }); return true; } return false; }
       var prev = stack.pop();
       current = { name: prev.name, params: prev.params, scroll: prev.scroll, prev: current };
@@ -106,16 +106,16 @@ window.DG = window.DG || {};
     },
     /* switch a bottom tab: reset the stack to that root */
     tab: function (id) {
-      if (current && current.name === id) { DG.scrollTop(true); return; }
+      if (current && current.name === id) { FB.scrollTop(true); return; }
       stack = []; current = { name: id, params: {}, scroll: 0, prev: current };
-      DG.overlay.closeAll(true);
+      FB.overlay.closeAll(true);
       paint();
     },
     current: function () { return current; },
     depth: function () { return stack.length; },
     refresh: function () { if (current) { current.scroll = viewEl.scrollTop; paint(); } },
   };
-  DG.nav = nav;
+  FB.nav = nav;
 
   /* ===================== overlays (sheets + modals) ===================== */
   var overlays = [];
@@ -132,9 +132,9 @@ window.DG = window.DG || {};
           (cfg.noGrab ? '' : '<div class="sheet-grab"></div>') +
           (cfg.title || cfg.close !== false
             ? '<div class="sheet-head">' +
-                (cfg.back ? '<button class="iconbtn" data-sheet-back>' + DG.icon('back', 20) + '</button>' : '') +
-                '<h2>' + DG.esc(cfg.title || '') + (cfg.sub ? '<span class="sh-sub">' + DG.esc(cfg.sub) + '</span>' : '') + '</h2>' +
-                (cfg.close === false ? '' : '<button class="iconbtn" data-sheet-close aria-label="Close">' + DG.icon('x', 19) + '</button>') +
+                (cfg.back ? '<button class="iconbtn" data-sheet-back>' + FB.icon('back', 20) + '</button>' : '') +
+                '<h2>' + FB.esc(cfg.title || '') + (cfg.sub ? '<span class="sh-sub">' + FB.esc(cfg.sub) + '</span>' : '') + '</h2>' +
+                (cfg.close === false ? '' : '<button class="iconbtn" data-sheet-close aria-label="Close">' + FB.icon('x', 19) + '</button>') +
               '</div>'
             : '') +
           '<div class="sheet-body">' + (cfg.html || '') + '</div>' +
@@ -161,8 +161,8 @@ window.DG = window.DG || {};
     if (cfg.dismissible !== false) {
       ov.querySelector('[data-scrim]').addEventListener('click', function () { handle.close(); });
     }
-    DG.on(ov, 'click', '[data-sheet-close]', function () { handle.close(); });
-    if (cfg.back) DG.on(ov, 'click', '[data-sheet-back]', function () { handle.close(); cfg.back(); });
+    FB.on(ov, 'click', '[data-sheet-close]', function () { handle.close(); });
+    if (cfg.back) FB.on(ov, 'click', '[data-sheet-back]', function () { handle.close(); cfg.back(); });
     if (cfg.onMount) { try { cfg.onMount(handle.body, handle); } catch (e) { console.error(e); } }
     return handle;
   }
@@ -180,7 +180,7 @@ window.DG = window.DG || {};
     setTimeout(fin, 260);
   }
 
-  DG.overlay = {
+  FB.overlay = {
     any: function () { return overlays.length > 0; },
     close: function (v) { if (overlays.length) closeOverlay(overlays[overlays.length - 1], v); },
     closeAll: function (instant) {
@@ -193,34 +193,34 @@ window.DG = window.DG || {};
     top: function () { return overlays[overlays.length - 1]; },
   };
 
-  DG.sheet = {
+  FB.sheet = {
     open: function (cfg) { return mkOverlay('sheet', cfg || {}); },
-    close: function (v) { DG.overlay.close(v); },
+    close: function (v) { FB.overlay.close(v); },
   };
-  DG.modal = {
+  FB.modal = {
     open: function (cfg) { return mkOverlay('modal', cfg || {}); },
-    close: function (v) { DG.overlay.close(v); },
+    close: function (v) { FB.overlay.close(v); },
   };
 
   /* an explanatory sheet for any fee line */
-  DG.why = function (title, body, extra) {
-    DG.sheet.open({
+  FB.why = function (title, body, extra) {
+    FB.sheet.open({
       title: title,
       html: '<div style="padding:0 16px 20px"><p style="font:var(--t-body);color:var(--ink-2);line-height:1.6;margin:0 0 14px">' +
-        DG.esc(body) + '</p>' + (extra || '') +
+        FB.esc(body) + '</p>' + (extra || '') +
         '<p style="font:var(--t-cap);color:var(--ink-3);margin:16px 0 0;line-height:1.5">This fee is non-negotiable, non-refundable, and non-optional. ' +
         'You may dispute it by writing to an address that will be provided upon request, in writing.</p></div>',
       footer: '<button class="btn btn--dark btn--block" data-sheet-close>Understood</button>',
     });
   };
 
-  DG.confirm = function (cfg) {
+  FB.confirm = function (cfg) {
     return new Promise(function (resolve) {
-      DG.modal.open({
-        html: '<h2>' + DG.esc(cfg.title) + '</h2><p>' + DG.esc(cfg.body || '') + '</p>' +
+      FB.modal.open({
+        html: '<h2>' + FB.esc(cfg.title) + '</h2><p>' + FB.esc(cfg.body || '') + '</p>' +
           '<div class="modal-acts">' +
-            '<button class="btn ' + (cfg.danger ? 'btn--danger' : 'btn--primary') + ' btn--block" data-yes>' + DG.esc(cfg.yes || 'Confirm') + '</button>' +
-            '<button class="btn btn--ghost btn--block" data-no>' + DG.esc(cfg.no || 'Cancel') + '</button>' +
+            '<button class="btn ' + (cfg.danger ? 'btn--danger' : 'btn--primary') + ' btn--block" data-yes>' + FB.esc(cfg.yes || 'Confirm') + '</button>' +
+            '<button class="btn btn--ghost btn--block" data-no>' + FB.esc(cfg.no || 'Cancel') + '</button>' +
           '</div>',
         onMount: function (body, h) {
           body.querySelector('[data-yes]').addEventListener('click', function () { h.close(); resolve(true); });
@@ -232,15 +232,15 @@ window.DG = window.DG || {};
   };
 
   /* ===================== toasts ===================== */
-  DG.toast = function (msg, opts) {
+  FB.toast = function (msg, opts) {
     opts = opts || {};
     var root = el('toast-root');
     /* never stack more than two — a queue of identical toasts reads as a bug */
     while (root.children.length >= 2) root.removeChild(root.firstElementChild);
     var t = document.createElement('div');
     t.className = 'toast' + (opts.kind ? ' toast--' + opts.kind : '');
-    t.innerHTML = (opts.icon ? DG.icon(opts.icon, 17) : '') + '<span>' + DG.esc(msg) + '</span>' +
-      (opts.action ? '<button class="linkbtn" style="color:inherit;text-decoration:underline;margin-left:4px" data-act>' + DG.esc(opts.action) + '</button>' : '');
+    t.innerHTML = (opts.icon ? FB.icon(opts.icon, 17) : '') + '<span>' + FB.esc(msg) + '</span>' +
+      (opts.action ? '<button class="linkbtn" style="color:inherit;text-decoration:underline;margin-left:4px" data-act>' + FB.esc(opts.action) + '</button>' : '');
     root.appendChild(t);
     if (opts.action && opts.onAction) t.querySelector('[data-act]').addEventListener('click', function () { opts.onAction(); kill(); });
     var to = setTimeout(kill, opts.ms || 2800);
@@ -253,21 +253,21 @@ window.DG = window.DG || {};
   };
 
   /* ===================== boot ===================== */
-  DG.shell = {
+  FB.shell = {
     init: function () {
       viewEl = el('view'); barEl = el('appbar'); tabEl = el('tabbar'); cartEl = el('cartbar');
 
-      DG.on(tabEl, 'click', '[data-tab]', function (e, t) { DG.tap(t); nav.tab(t.dataset.tab); });
-      DG.on(cartEl, 'click', '[data-cartgo]', function (e, t) { nav.go('cart', { slug: t.dataset.cartgo }); });
+      FB.on(tabEl, 'click', '[data-tab]', function (e, t) { FB.tap(t); nav.tab(t.dataset.tab); });
+      FB.on(cartEl, 'click', '[data-cartgo]', function (e, t) { nav.go('cart', { slug: t.dataset.cartgo }); });
 
       /* global delegated actions available on every screen */
-      DG.on(document, 'click', '[data-go]', function (e, t) {
+      FB.on(document, 'click', '[data-go]', function (e, t) {
         e.preventDefault();
         var p = {};
         try { p = t.dataset.params ? JSON.parse(t.dataset.params) : {}; } catch (err) {}
         nav.go(t.dataset.go, p);
       });
-      DG.on(document, 'click', '[data-back]', function (e) { e.preventDefault(); nav.back(); });
+      FB.on(document, 'click', '[data-back]', function (e) { e.preventDefault(); nav.back(); });
 
       window.addEventListener('popstate', function () { nav.back(); });
       document.addEventListener('keydown', function (e) {
@@ -277,12 +277,12 @@ window.DG = window.DG || {};
         }
         if (e.key === 'Escape') { nav.back(); }
         else if (e.key === '/') { e.preventDefault(); nav.tab('search'); }
-        else if (e.key.toLowerCase() === 'd') { DG.cycleTheme(); }
-        else if (e.key.toLowerCase() === 'r' && (e.metaKey || e.ctrlKey) === false) { DG.hardReset(); }
+        else if (e.key.toLowerCase() === 'd') { FB.cycleTheme(); }
+        else if (e.key.toLowerCase() === 'r' && (e.metaKey || e.ctrlKey) === false) { FB.hardReset(); }
       });
 
-      DG.store.sub(function () { renderTabs(); renderCartBar(); DG.updateDeskStats(); });
+      FB.store.sub(function () { renderTabs(); renderCartBar(); FB.updateDeskStats(); });
     },
     repaintChrome: function () { renderTabs(); renderCartBar(); },
   };
-})(window.DG);
+})(window.FB);

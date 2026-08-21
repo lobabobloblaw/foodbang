@@ -1,5 +1,5 @@
 /* ===========================================================
-   DoorGorge — screen-specific styles
+   FoodBang — screen-specific styles
    =========================================================== */
 
 /* ---------- HOME ------------------------------------------- */
@@ -58,14 +58,14 @@
   box-shadow: var(--e3), 0 0 0 3px var(--bg); margin-bottom: 12px;
 }
 .st-head h1 { font: 800 25px/1.12 var(--display); letter-spacing: -.7px; margin: 0 0 4px; }
-.st-tag { font: var(--t-micro); letter-spacing: .12em; color: var(--gorge); margin-bottom: 8px; }
+.st-tag { font: var(--t-micro); letter-spacing: .12em; color: var(--fb); margin-bottom: 8px; }
 .st-facts { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; color: var(--ink-2); font: var(--t-sub); }
 .st-about { color: var(--ink-2); font: var(--t-sub); line-height: 1.5; margin-top: 10px; }
 .st-quick { display: flex; gap: 8px; margin: 14px 0 4px; }
 
 .st-ann {
   margin: 12px var(--pad) 0; padding: 11px 13px; border-radius: var(--r-md);
-  background: var(--gorge-tint); color: var(--gorge-deep); font: var(--t-sub); line-height: 1.45;
+  background: var(--fb-tint); color: var(--fb-deep); font: var(--t-sub); line-height: 1.45;
   display: flex; gap: 9px;
 }
 :root[data-theme="dark"] .st-ann, :root:not([data-theme="light"]) .st-ann { color: #FF8A73; }
@@ -81,7 +81,7 @@
   transition: background var(--mid);
 }
 .catnav .rail { padding-bottom: 8px; }
-.catnav .chip.is-on { background: var(--gorge); color: #fff; }
+.catnav .chip.is-on { background: var(--fb); color: #fff; }
 
 .msec { padding-top: 6px; }
 .msec > h3 { font: 800 20px/1.2 var(--display); letter-spacing: -.4px; margin: 18px 0 2px; padding: 0 var(--pad); }
@@ -175,8 +175,8 @@
 }
 .tipbtn b { display: block; font: 700 14.5px var(--font); }
 .tipbtn span { display: block; font: var(--t-micro); color: var(--ink-3); margin-top: 2px; }
-.tipbtn[aria-pressed="true"] { background: var(--gorge-tint); border-color: var(--gorge); }
-.tipbtn[aria-pressed="true"] b, .tipbtn[aria-pressed="true"] span { color: var(--gorge); }
+.tipbtn[aria-pressed="true"] { background: var(--fb-tint); border-color: var(--fb); }
+.tipbtn[aria-pressed="true"] b, .tipbtn[aria-pressed="true"] span { color: var(--fb); }
 .tipguilt { padding: 0 var(--pad) 12px; font: var(--t-cap); color: var(--ink-2); line-height: 1.45; }
 
 .placebar { display: flex; flex-direction: column; gap: 3px; width: 100%; }
@@ -196,8 +196,8 @@
 
 .trk-bar { display: flex; gap: 5px; padding: 12px var(--pad) 4px; }
 .trk-bar i { flex: 1; height: 5px; border-radius: 3px; background: var(--surface-3); overflow: hidden; position: relative; }
-.trk-bar i.on { background: var(--gorge); }
-.trk-bar i.cur::after { content: ''; position: absolute; inset: 0; background: var(--gorge); transform-origin: left; animation: fill 3s linear infinite; }
+.trk-bar i.on { background: var(--fb); }
+.trk-bar i.cur::after { content: ''; position: absolute; inset: 0; background: var(--fb); transform-origin: left; animation: fill 3s linear infinite; }
 @keyframes fill { from { transform: scaleX(0); } }
 
 .trk-feed { padding: 6px 0 4px; }
@@ -205,18 +205,18 @@
   display: flex; gap: 12px; padding: 9px var(--pad); animation: fadein var(--mid) both;
 }
 .tf-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); flex: none; margin-top: 6px; position: relative; }
-.tf.is-now .tf-dot { background: var(--gorge); box-shadow: 0 0 0 4px var(--gorge-tint); }
+.tf.is-now .tf-dot { background: var(--fb); box-shadow: 0 0 0 4px var(--fb-tint); }
 .tf-b { flex: 1; min-width: 0; }
 .tf-b b { display: block; font: var(--t-body-m); font-weight: 500; line-height: 1.35; }
 .tf-b span { display: block; font: var(--t-cap); color: var(--ink-3); margin-top: 2px; }
 .tf.is-past { opacity: .5; }
 
-.gorgercard { display: flex; gap: 12px; align-items: center; padding: 14px var(--pad); border-top: 8px solid var(--surface-2); border-bottom: 1px solid var(--line); }
-.gorgercard img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex: none; background: var(--surface-3); }
-.gorgercard .gc-b { flex: 1; min-width: 0; }
-.gorgercard .gc-b b { display: block; font: 700 15px var(--font); }
-.gorgercard .gc-b span { display: block; font: var(--t-cap); color: var(--ink-2); margin-top: 2px; }
-.gorgercard .gc-a { display: flex; gap: 8px; }
+.slingercard { display: flex; gap: 12px; align-items: center; padding: 14px var(--pad); border-top: 8px solid var(--surface-2); border-bottom: 1px solid var(--line); }
+.slingercard img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex: none; background: var(--surface-3); }
+.slingercard .gc-b { flex: 1; min-width: 0; }
+.slingercard .gc-b b { display: block; font: 700 15px var(--font); }
+.slingercard .gc-b span { display: block; font: var(--t-cap); color: var(--ink-2); margin-top: 2px; }
+.slingercard .gc-a { display: flex; gap: 8px; }
 
 .orderrow { display: flex; gap: 12px; padding: 14px var(--pad); border-bottom: 1px solid var(--line); width: 100%; text-align: left; align-items: flex-start; }
 .orderrow img { width: 46px; height: 46px; border-radius: 12px; flex: none; object-fit: cover; }
@@ -253,14 +253,14 @@
 .segmented button { flex: 1; height: 33px; border-radius: 8px; font: 600 13px var(--font); color: var(--ink-2); transition: all var(--fast) var(--sp); }
 .segmented button[aria-pressed="true"] { background: var(--bg); color: var(--ink); box-shadow: var(--e1); }
 
-/* ---------- GORGE+ ----------------------------------------- */
+/* ---------- BANG+ ----------------------------------------- */
 .plushero { background: linear-gradient(150deg,#16161C,#000 70%); color: #fff; padding: 26px var(--pad) 24px; text-align: center; position: relative; overflow: hidden; }
 .plushero img { position: absolute; left: 50%; top: -20px; width: 340px; transform: translateX(-50%); opacity: .4; }
 .plushero .ph-k { position: relative; font: var(--t-micro); letter-spacing: .2em; color: var(--gold); }
 .plushero h1 { position: relative; font: 900 30px/1.06 var(--display); letter-spacing: -1px; margin: 10px 0 8px; }
 .plushero p { position: relative; color: #A9A9B6; font: var(--t-sub); line-height: 1.5; margin: 0 auto; max-width: 280px; }
 .plusfeat { display: flex; gap: 12px; padding: 13px var(--pad); border-bottom: 1px solid var(--line); align-items: flex-start; }
-.plusfeat svg { flex: none; color: var(--gorge); margin-top: 1px; }
+.plusfeat svg { flex: none; color: var(--fb); margin-top: 1px; }
 .plusfeat b { display: block; font: var(--t-body-m); }
 .plusfeat span { display: block; color: var(--ink-2); font: var(--t-sub); margin-top: 2px; line-height: 1.45; }
 
@@ -297,14 +297,14 @@
 .trajectory { padding: 16px var(--pad); border-bottom: 1px solid var(--line); }
 .traj-steps { display: flex; align-items: center; gap: 0; margin-top: 12px; }
 .traj-steps i { flex: 1; height: 3px; background: var(--surface-3); }
-.traj-steps i.on { background: var(--gorge); }
+.traj-steps i.on { background: var(--fb); }
 .traj-steps b {
   width: 11px; height: 11px; border-radius: 50%; background: var(--surface-3); flex: none;
 }
-.traj-steps b.on { background: var(--gorge); }
-.traj-steps b.now { box-shadow: 0 0 0 4px var(--gorge-tint); }
+.traj-steps b.on { background: var(--fb); }
+.traj-steps b.now { box-shadow: 0 0 0 4px var(--fb-tint); }
 .traj-labels { display: flex; justify-content: space-between; margin-top: 8px; font: var(--t-micro); color: var(--ink-3); }
-.traj-labels span.on { color: var(--gorge); font-weight: 700; }
+.traj-labels span.on { color: var(--fb); font-weight: 700; }
 
 /* ---------- SEARCH ----------------------------------------- */
 .searchhint { padding: 10px var(--pad); color: var(--ink-3); font: var(--t-cap); }

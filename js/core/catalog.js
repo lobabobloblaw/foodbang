@@ -1,6 +1,6 @@
-/* DoorGorge — catalog index built over the generated menu bundle */
-window.DG = window.DG || {};
-(function (DG) {
+/* FoodBang — catalog index built over the generated menu bundle */
+window.FB = window.FB || {};
+(function (FB) {
   'use strict';
 
   var stores = [];
@@ -29,16 +29,16 @@ window.DG = window.DG || {};
     });
     if (m.priceFrom === Infinity) m.priceFrom = 0;
     /* deterministic per-store flavour that the data files don't carry */
-    var rnd = DG.seeded(m.slug);
+    var rnd = FB.seeded(m.slug);
     m.busy = rnd() > 0.55;
     m.recentOrders = 40 + Math.floor(rnd() * 1800);
     return m;
   }
 
-  DG.catalog = {
+  FB.catalog = {
     init: function (bundle) {
       stores = []; bySlug = {}; itemIndex = [];
-      var src = bundle || window.DG_MENUS || {};
+      var src = bundle || window.FB_MENUS || {};
       Object.keys(src).forEach(function (k) {
         var m = src[k];
         if (!m || !m.slug) return;
@@ -47,7 +47,7 @@ window.DG = window.DG || {};
         bySlug[m.slug] = m;
       });
       /* stable feed order, but not alphabetical — it should feel merchandised */
-      stores.sort(function (a, b) { return DG.hash(b.slug + 'feed') - DG.hash(a.slug + 'feed'); });
+      stores.sort(function (a, b) { return FB.hash(b.slug + 'feed') - FB.hash(a.slug + 'feed'); });
       return stores.length;
     },
 
@@ -71,8 +71,8 @@ window.DG = window.DG || {};
     categories: function () {
       var counts = {};
       stores.forEach(function (s) { (s.categories || []).forEach(function (c) { counts[c] = (counts[c] || 0) + 1; }); });
-      return Object.keys(DG.CAT_LABELS).filter(function (c) { return counts[c]; })
-        .map(function (c) { return { slug: c, label: DG.CAT_LABELS[c], icon: DG.CAT_ICONS[c], count: counts[c] }; });
+      return Object.keys(FB.CAT_LABELS).filter(function (c) { return counts[c]; })
+        .map(function (c) { return { slug: c, label: FB.CAT_LABELS[c], icon: FB.CAT_ICONS[c], count: counts[c] }; });
     },
     byCategory: function (cat) {
       if (!cat) return stores;
@@ -82,7 +82,7 @@ window.DG = window.DG || {};
     /* photographed items make the best merchandising tiles */
     photoItems: function (limit) {
       var out = itemIndex.filter(function (r) { return r.item.photoSrc; });
-      out = DG.shuffle(out, DG.seeded('photofeed'));
+      out = FB.shuffle(out, FB.seeded('photofeed'));
       return limit ? out.slice(0, limit) : out;
     },
 
@@ -141,7 +141,7 @@ window.DG = window.DG || {};
       return out;
     },
     unitPrice: function (item, sel) {
-      return DG.round2(item.price + DG.sum(DG.catalog.optionsFor(item, sel), function (r) { return r.option.price || 0; }));
+      return FB.round2(item.price + FB.sum(FB.catalog.optionsFor(item, sel), function (r) { return r.option.price || 0; }));
     },
     /** default selection: first option of every required group */
     defaultSel: function (item) {
@@ -162,18 +162,18 @@ window.DG = window.DG || {};
     },
     /* rough nutrition for the BODYMAX telemetry */
     itemLoad: function (item, sel, qty) {
-      var opts = DG.catalog.optionsFor(item, sel);
-      var extra = DG.sum(opts, function (r) { return (r.option.price || 0) * 26; });
+      var opts = FB.catalog.optionsFor(item, sel);
+      var extra = FB.sum(opts, function (r) { return (r.option.price || 0) * 26; });
       var cal = (item.calories || 800) + extra;
-      var rnd = DG.seeded(item.id);
+      var rnd = FB.seeded(item.id);
       return {
         calories: Math.round(cal * qty),
         sodium: Math.round(cal * (0.9 + rnd() * 1.4) * qty),          /* mg */
-        grease: DG.round2(cal / 1000 * (0.6 + rnd() * 0.9) * qty),    /* "grease units" */
-        ranch: DG.round2(DG.sum(opts, function (r) {
+        grease: FB.round2(cal / 1000 * (0.6 + rnd() * 0.9) * qty),    /* "grease units" */
+        ranch: FB.round2(FB.sum(opts, function (r) {
           return /ranch|sauce|dip|dressing|aioli|gravy|queso|drizzle/i.test(r.option.name) ? (r.option.price || 0) * 3.4 : 0;
         }) * qty),
       };
     },
   };
-})(window.DG);
+})(window.FB);

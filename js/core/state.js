@@ -1,9 +1,9 @@
-/* DoorGorge — application state, persisted to localStorage */
-window.DG = window.DG || {};
-(function (DG) {
+/* FoodBang — application state, persisted to localStorage */
+window.FB = window.FB || {};
+(function (FB) {
   'use strict';
 
-  var KEY = 'doorgorge.state.v1';
+  var KEY = 'foodbang.state.v1';
   var VERSION = 1;
 
   function defaults() {
@@ -31,7 +31,7 @@ window.DG = window.DG || {};
         soundEffects: true,
         autoTipPct: 42,
         notifications: {
-          orderUpdates: true, promos: true, gorgerMessages: true,
+          orderUpdates: true, promos: true, slingerMessages: true,
           biometric: true, nightly: true, reengagement: true,
         },
       },
@@ -45,7 +45,7 @@ window.DG = window.DG || {};
       ],
       selectedAddress: 'a1',
       payments: [
-        { id: 'p1', brand: 'GorgeCard', last4: '9931', exp: '11/29', nickname: 'GORGE+ Linked', isDefault: true },
+        { id: 'p1', brand: 'GorgeCard', last4: '9931', exp: '11/29', nickname: 'BANG+ Linked', isDefault: true },
         { id: 'p2', brand: 'Visa', last4: '4417', exp: '03/28', nickname: 'Personal', isDefault: false },
         { id: 'p3', brand: 'EBT-Adjacent', last4: '0002', exp: '—', nickname: 'Provisional', isDefault: false },
       ],
@@ -137,8 +137,8 @@ window.DG = window.DG || {};
   };
 
   state = load();
-  DG.store = store;
-  DG.S = function () { return state; };
+  FB.store = store;
+  FB.S = function () { return state; };
 
   /* Whatever data-theme the host page arrived with is the "system" answer.
      Standalone that is nothing (so prefers-color-scheme decides); embedded in a
@@ -146,7 +146,7 @@ window.DG = window.DG || {};
   var HOST_THEME = (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme')) || null;
 
   /* apply persisted appearance settings to <html> immediately */
-  DG.applyAppearance = function () {
+  FB.applyAppearance = function () {
     var r = document.documentElement, s = state.settings;
     if (s.theme === 'system') {
       if (HOST_THEME) r.setAttribute('data-theme', HOST_THEME); else r.removeAttribute('data-theme');
@@ -154,4 +154,4 @@ window.DG = window.DG || {};
     if (s.motion === 'system') r.removeAttribute('data-motion'); else r.dataset.motion = s.motion;
     if (s.textsize === 'm') r.removeAttribute('data-textsize'); else r.dataset.textsize = s.textsize;
   };
-})(window.DG);
+})(window.FB);

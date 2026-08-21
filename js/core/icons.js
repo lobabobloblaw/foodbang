@@ -1,6 +1,6 @@
-/* DoorGorge — icon set. 24x24 grid. Stroke icons inherit currentColor. */
-window.DG = window.DG || {};
-(function (DG) {
+/* FoodBang — icon set. 24x24 grid. Stroke icons inherit currentColor. */
+window.FB = window.FB || {};
+(function (FB) {
   'use strict';
 
   // stroke paths
@@ -77,7 +77,7 @@ window.DG = window.DG || {};
     plusFill: 'M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm1.1 5h-2.2v3.9H7v2.2h3.9V17h2.2v-3.9H17v-2.2h-3.9z',
   };
 
-  DG.icon = function (name, size, cls) {
+  FB.icon = function (name, size, cls) {
     var sw = 1.75, d = S[name], fill = false;
     if (!d) { d = F[name]; fill = true; }
     if (!d) d = S.info;
@@ -86,27 +86,27 @@ window.DG = window.DG || {};
       (fill ? 'fill="currentColor">' : 'fill="none" stroke="currentColor" stroke-width="' + sw + '" stroke-linecap="round" stroke-linejoin="round">') +
       '<path d="' + d + '"/></svg>';
   };
-  DG.hasIcon = function (n) { return !!(S[n] || F[n]); };
+  FB.hasIcon = function (n) { return !!(S[n] || F[n]); };
 
   /* rating stars widget */
-  DG.starRow = function (n) {
+  FB.starRow = function (n) {
     var out = '';
     for (var i = 1; i <= 5; i++) {
-      out += '<span style="color:' + (i <= Math.round(n) ? 'var(--gorge)' : 'var(--line-strong)') + '">' + DG.icon('starFill', 13) + '</span>';
+      out += '<span style="color:' + (i <= Math.round(n) ? 'var(--fb)' : 'var(--line-strong)') + '">' + FB.icon('starFill', 13) + '</span>';
     }
     return '<span class="starrow" style="display:inline-flex;gap:1px;align-items:center">' + out + '</span>';
   };
 
   /* category emoji glyphs — deliberately the cheap ones a real app would use */
-  DG.CAT_ICONS = {
+  FB.CAT_ICONS = {
     'fast-food': '🍟', burgers: '🍔', mexican: '🌮', chicken: '🍗', pizza: '🍕',
     coffee: '☕️', asian: '🥡', sandwiches: '🥪', grocery: '🛒', drinks: '🥤',
     sweets: '🍩', italian: '🍝', 'casual-dining': '🍽', healthy: '🥗',
   };
-  DG.CAT_LABELS = {
+  FB.CAT_LABELS = {
     'fast-food': 'Fast Food', burgers: 'Burgers', mexican: 'Mexican', chicken: 'Chicken',
     pizza: 'Pizza', coffee: 'Coffee', asian: 'Asian', sandwiches: 'Sandwich',
     grocery: 'Grocery', drinks: 'Drinks', sweets: 'Sweets', italian: 'Italian',
     'casual-dining': 'Sit-Down', healthy: 'Wellness',
   };
-})(window.DG);
+})(window.FB);

@@ -1,12 +1,12 @@
-/* DoorGorge — Home feed */
-window.DG = window.DG || {};
-(function (DG) {
+/* FoodBang — Home feed */
+window.FB = window.FB || {};
+(function (FB) {
   'use strict';
 
   var TICKER = [
     'PEAK DEMAND IN EFFECT', 'PEAK DEMAND HAS BEEN IN EFFECT SINCE MARCH 2019',
-    'YOUR GORGER IS ALREADY MOVING', 'FEES ARE FINAL', 'ELECTROLYTES AVAILABLE NOW',
-    'DO NOT ANSWER THE DOOR EMPTY-HANDED', 'GORGE+ PAYS FOR ITSELF AT $312',
+    'YOUR SLINGER IS ALREADY MOVING', 'FEES ARE FINAL', 'ELECTROLYTES AVAILABLE NOW',
+    'DO NOT ANSWER THE DOOR EMPTY-HANDED', 'BANG+ PAYS FOR ITSELF AT $312',
   ];
 
   var PROMOS = [
@@ -21,43 +21,43 @@ window.DG = window.DG || {};
   var state = { cat: null, sort: 'default', filters: {} };
 
   function addressBar() {
-    var a = DG.store.address();
-    var st = DG.S();
+    var a = FB.store.address();
+    var st = FB.S();
     return '<div class="addrbar">' +
       '<button class="addrpick" data-addrpick>' +
         '<span style="min-width:0">' +
-          '<span class="ap-line"><span class="ap-mode">Delivery</span>' + DG.icon('down', 15) + '</span>' +
-          '<span class="ap-addr">' + DG.esc(a.line1) + '</span>' +
+          '<span class="ap-line"><span class="ap-mode">Delivery</span>' + FB.icon('down', 15) + '</span>' +
+          '<span class="ap-addr">' + FB.esc(a.line1) + '</span>' +
         '</span>' +
       '</button>' +
-      (st.plus.active ? '<span class="badge badge--plus" style="height:26px;padding:0 9px">' + DG.icon('zap', 11) + 'GORGE+</span>'
-        : '<button class="btn btn--sm btn--dark" data-go="plus">Try GORGE+</button>') +
-      '<button class="iconbtn" data-notifs aria-label="Notifications">' + DG.icon('bell', 19) + '</button>' +
+      (st.plus.active ? '<span class="badge badge--plus" style="height:26px;padding:0 9px">' + FB.icon('zap', 11) + 'BANG+</span>'
+        : '<button class="btn btn--sm btn--dark" data-go="plus">Try BANG+</button>') +
+      '<button class="iconbtn" data-notifs aria-label="Notifications">' + FB.icon('bell', 19) + '</button>' +
     '</div>';
   }
 
-  DG.screens.register('home', {
+  FB.screens.register('home', {
     tab: 'home',
     appbar: function () {
       return addressBar() +
-        '<div class="searchbox">' + DG.icon('search', 18) +
-        '<input readonly placeholder="Search DoorGorge™" data-gosearch></div>';
+        '<div class="searchbox">' + FB.icon('search', 18) +
+        '<input readonly placeholder="Search FoodBang™" data-gosearch></div>';
     },
     render: function () {
-      var stores = DG.catalog.all();
-      var shown = DG.catalog.sort(DG.catalog.byCategory(state.cat), state.sort);
-      var fast = DG.catalog.sort(stores, 'fast').slice(0, 6);
+      var stores = FB.catalog.all();
+      var shown = FB.catalog.sort(FB.catalog.byCategory(state.cat), state.sort);
+      var fast = FB.catalog.sort(stores, 'fast').slice(0, 6);
       var deals = stores.filter(function (s) { return s.promos && s.promos.length; }).slice(0, 6);
-      var dishes = DG.catalog.photoItems(14);
-      var cats = DG.catalog.categories();
-      var st = DG.S();
+      var dishes = FB.catalog.photoItems(14);
+      var cats = FB.catalog.categories();
+      var st = FB.S();
 
       var h = '';
 
       /* category rail */
       h += '<div class="cats">' + cats.map(function (c) {
         return '<button class="cat" data-cat="' + c.slug + '"' + (state.cat === c.slug ? ' aria-pressed="true"' : '') + '>' +
-          '<i>' + c.icon + '</i><span>' + DG.esc(c.label) + '</span></button>';
+          '<i>' + c.icon + '</i><span>' + FB.esc(c.label) + '</span></button>';
       }).join('') + '</div>';
 
       /* ticker */
@@ -67,14 +67,14 @@ window.DG = window.DG || {};
       h += '<div class="promorail">' + PROMOS.map(function (p) {
         return '<button class="promo" data-go="' + p.go + '">' +
           '<img src="' + p.img + '" alt="" loading="lazy" onerror="this.remove()">' +
-          '<span class="promo-b"><i>' + p.kicker + '</i><b>' + DG.esc(p.title) + '</b><span>' + DG.esc(p.sub) + '</span></span></button>';
+          '<span class="promo-b"><i>' + p.kicker + '</i><b>' + FB.esc(p.title) + '</b><span>' + FB.esc(p.sub) + '</span></span></button>';
       }).join('') + '</div>';
 
-      /* GORGE+ pitch */
+      /* BANG+ pitch */
       if (!st.plus.active) {
         h += '<button class="plusbanner" data-go="plus">' +
-          '<img src="assets/app/gorgeplus-hero.webp" alt="" loading="lazy" onerror="this.remove()">' +
-          '<span class="pb-k">GORGE+ INFINITY PRIME ELITE</span>' +
+          '<img src="assets/app/bangplus-hero.webp" alt="" loading="lazy" onerror="this.remove()">' +
+          '<span class="pb-k">BANG+ INFINITY PRIME ELITE</span>' +
           '<span class="pb-t">$0 delivery fees on orders over $312</span>' +
           '<span class="pb-s">$19.99/mo. Cancel anytime, in person, during business hours.</span>' +
           '<span class="pb-c">Start free trial</span></button>';
@@ -82,44 +82,44 @@ window.DG = window.DG || {};
 
       /* filters */
       h += '<div class="filterbar">' +
-        '<button class="chip chip--outline" data-sortsheet>' + DG.icon('sliders', 15) + 'Sort' +
-          (state.sort !== 'default' ? ' · ' + DG.esc(SORTS[state.sort]) : '') + '</button>' +
-        '<button class="chip chip--outline" data-filter="plus"' + (state.filters.plus ? ' aria-pressed="true"' : '') + '>GORGE+</button>' +
+        '<button class="chip chip--outline" data-sortsheet>' + FB.icon('sliders', 15) + 'Sort' +
+          (state.sort !== 'default' ? ' · ' + FB.esc(SORTS[state.sort]) : '') + '</button>' +
+        '<button class="chip chip--outline" data-filter="plus"' + (state.filters.plus ? ' aria-pressed="true"' : '') + '>BANG+</button>' +
         '<button class="chip chip--outline" data-filter="fast"' + (state.filters.fast ? ' aria-pressed="true"' : '') + '>Under 30 min</button>' +
         '<button class="chip chip--outline" data-filter="rated"' + (state.filters.rated ? ' aria-pressed="true"' : '') + '>4.0+</button>' +
         '<button class="chip chip--outline" data-filter="cheap"' + (state.filters.cheap ? ' aria-pressed="true"' : '') + '>$ &amp; $$</button>' +
         '<button class="chip chip--outline" data-filter="local"' + (state.filters.local ? ' aria-pressed="true"' : '') + '>Independent</button>' +
-        (state.cat ? '<button class="chip is-on" data-cat="">' + DG.esc(DG.CAT_LABELS[state.cat]) + ' ✕</button>' : '') +
+        (state.cat ? '<button class="chip is-on" data-cat="">' + FB.esc(FB.CAT_LABELS[state.cat]) + ' ✕</button>' : '') +
       '</div>';
 
       if (!state.cat && !Object.keys(state.filters).length) {
-        h += '<section class="sec">' + DG.C.sectionHead('Fastest near you', 'Speed is estimated. Estimates are not commitments.') +
-          '<div class="hcards">' + fast.map(DG.C.storeCard).join('') + '</div></section>';
+        h += '<section class="sec">' + FB.C.sectionHead('Fastest near you', 'Speed is estimated. Estimates are not commitments.') +
+          '<div class="hcards">' + fast.map(FB.C.storeCard).join('') + '</div></section>';
 
-        h += '<section class="sec">' + DG.C.sectionHead('In your mouth again?', 'Based on things you have not eaten yet.') +
-          '<div class="dishrail">' + dishes.slice(0, 10).map(DG.C.dishTile).join('') + '</div></section>';
+        h += '<section class="sec">' + FB.C.sectionHead('In your mouth again?', 'Based on things you have not eaten yet.') +
+          '<div class="dishrail">' + dishes.slice(0, 10).map(FB.C.dishTile).join('') + '</div></section>';
 
         var locals = stores.filter(function (s) { return s.local; });
         if (locals.length) {
-          h += '<section class="sec">' + DG.C.sectionHead('Right here, actually',
-            DG.plural(locals.length, 'independent') + ' near you. Longer waits, higher delivery fees, better food.') +
-            '<div class="hcards">' + locals.map(DG.C.storeCard).join('') + '</div></section>';
+          h += '<section class="sec">' + FB.C.sectionHead('Right here, actually',
+            FB.plural(locals.length, 'independent') + ' near you. Longer waits, higher delivery fees, better food.') +
+            '<div class="hcards">' + locals.map(FB.C.storeCard).join('') + '</div></section>';
         }
 
-        h += '<section class="sec">' + DG.C.sectionHead('Deals you cannot decline', 'Declining is available for a fee.') +
-          '<div class="hcards">' + deals.map(DG.C.storeCard).join('') + '</div></section>';
+        h += '<section class="sec">' + FB.C.sectionHead('Deals you cannot decline', 'Declining is available for a fee.') +
+          '<div class="hcards">' + deals.map(FB.C.storeCard).join('') + '</div></section>';
       }
 
       /* full list */
       var list = applyFilters(shown);
       h += '<section class="sec">' +
-        DG.C.sectionHead(state.cat ? DG.CAT_LABELS[state.cat] : 'All ' + list.length + ' stores near you',
+        FB.C.sectionHead(state.cat ? FB.CAT_LABELS[state.cat] : 'All ' + list.length + ' stores near you',
           state.cat ? null : 'Ranked by an algorithm that is not disclosed and is not appealable.') +
-        '<div class="grid1">' + (list.length ? list.map(DG.C.storeCard).join('')
+        '<div class="grid1">' + (list.length ? list.map(FB.C.storeCard).join('')
           : '<p style="color:var(--ink-2);font:var(--t-body);padding:20px 0">Nothing matches. Loosen a filter, or lower a standard.</p>') +
         '</div></section>';
 
-      h += '<div class="fineprint"><b>DoorGorge™ Nutrition Logistics, Inc.</b> — Every restaurant, item, price, fee and modifier in this application is fictional and exists for satirical purposes. ' +
+      h += '<div class="fineprint"><b>FoodBang™ Nutrition Logistics, Inc.</b> — Every restaurant, item, price, fee and modifier in this application is fictional and exists for satirical purposes. ' +
         'Delivery estimates are aspirational. Fees are structural. Prices shown do not include fees, and fees do not include fees. ' +
         'By scrolling this far you have agreed to the Terms, which are longer than this menu.</div>';
 
@@ -127,18 +127,18 @@ window.DG = window.DG || {};
     },
 
     mount: function (root) {
-      DG.on(root, 'click', '[data-cat]', function (e, t) {
-        state.cat = t.dataset.cat || null; DG.nav.refresh(); DG.scrollTop();
+      FB.on(root, 'click', '[data-cat]', function (e, t) {
+        state.cat = t.dataset.cat || null; FB.nav.refresh(); FB.scrollTop();
       });
-      DG.on(root, 'click', '[data-filter]', function (e, t) {
+      FB.on(root, 'click', '[data-filter]', function (e, t) {
         var k = t.dataset.filter;
         if (state.filters[k]) delete state.filters[k]; else state.filters[k] = true;
-        DG.nav.refresh();
+        FB.nav.refresh();
       });
-      DG.on(root, 'click', '[data-sortsheet]', openSort);
-      DG.on(document.getElementById('appbar'), 'click', '[data-gosearch]', function () { DG.nav.tab('search'); });
-      DG.on(document.getElementById('appbar'), 'click', '[data-addrpick]', DG.openAddressSheet);
-      DG.on(document.getElementById('appbar'), 'click', '[data-notifs]', DG.openNotifications);
+      FB.on(root, 'click', '[data-sortsheet]', openSort);
+      FB.on(document.getElementById('appbar'), 'click', '[data-gosearch]', function () { FB.nav.tab('search'); });
+      FB.on(document.getElementById('appbar'), 'click', '[data-addrpick]', FB.openAddressSheet);
+      FB.on(document.getElementById('appbar'), 'click', '[data-notifs]', FB.openNotifications);
     },
   });
 
@@ -147,7 +147,7 @@ window.DG = window.DG || {};
   function applyFilters(list) {
     var f = state.filters;
     return list.filter(function (s) {
-      if (f.plus && !s.gorgePlus) return false;
+      if (f.plus && !s.bangPlus) return false;
       if (f.fast && s.deliveryMax > 30) return false;
       if (f.rated && s.rating < 4) return false;
       if (f.cheap && s.priceTier > 2) return false;
@@ -157,7 +157,7 @@ window.DG = window.DG || {};
   }
 
   function openSort() {
-    DG.sheet.open({
+    FB.sheet.open({
       title: 'Sort',
       sub: 'One of these is honest.',
       html: '<div>' + Object.keys(SORTS).map(function (k) {
@@ -167,10 +167,10 @@ window.DG = window.DG || {};
           '</span></button>';
       }).join('') + '</div>',
       onMount: function (body, h) {
-        DG.on(body, 'click', '[data-sort]', function (e, t) {
-          state.sort = t.dataset.sort; h.close(); DG.nav.refresh();
+        FB.on(body, 'click', '[data-sort]', function (e, t) {
+          state.sort = t.dataset.sort; h.close(); FB.nav.refresh();
         });
       },
     });
   }
-})(window.DG);
+})(window.FB);

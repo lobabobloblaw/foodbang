@@ -1,14 +1,14 @@
-/* DoorGorge — TRACKR™ live order simulation.
+/* FoodBang — TRACKR™ live order simulation.
    Runs on a global ticker so an order keeps progressing while you shop. */
-window.DG = window.DG || {};
-(function (DG) {
+window.FB = window.FB || {};
+(function (FB) {
   'use strict';
 
   var STEPS = [
     { key: 'placed',    label: 'Order placed',        ms: 5000 },
     { key: 'confirmed', label: 'Restaurant notified', ms: 9000 },
     { key: 'preparing', label: 'Preparing',           ms: 15000 },
-    { key: 'pickup',    label: 'Gorger en route',     ms: 14000 },
+    { key: 'pickup',    label: 'Slinger en route',     ms: 14000 },
     { key: 'enroute',   label: 'Arriving',            ms: 17000 },
     { key: 'delivered', label: 'Delivered',           ms: 0 },
   ];
@@ -16,32 +16,32 @@ window.DG = window.DG || {};
   /* each entry: [message, subtext|null, etaDriftMinutes] */
   var SCRIPT = {
     placed: [
-      ['Order received by DoorGorge™', 'Your order has entered the system.', 0],
+      ['Order received by FoodBang™', 'Your order has entered the system.', 0],
       ['Payment authorised', 'A hold has been placed for the total, plus a margin for the total.', 0],
     ],
     confirmed: [
       ['{store} has acknowledged your existence', null, 0],
       ['Order accepted', 'The restaurant has 90 seconds to reject this. It has not.', 0],
-      ['Gorger {gorger} assigned', '{rating}★ · {deliveries} lifetime deliveries · {vehicle}', 0],
+      ['Slinger {slinger} assigned', '{rating}★ · {deliveries} lifetime deliveries · {vehicle}', 0],
     ],
     preparing: [
       ['Food is being assembled', null, 0],
       ['Item entering thermal chamber', 'Temperature Maintenance Fee is now active.', 1],
-      ['{gorger} has accepted a second order', 'Yours is now #2 of 2.', 4],
+      ['{slinger} has accepted a second order', 'Yours is now #2 of 2.', 4],
       ['Bag sealed', 'Handles attached separately, as licensed.', 0],
     ],
     pickup: [
-      ['{gorger} has arrived at {store}', null, 0],
-      ['{gorger} is waiting', 'Standard wait. Waiting is included.', 2],
+      ['{slinger} has arrived at {store}', null, 0],
+      ['{slinger} is waiting', 'Standard wait. Waiting is included.', 2],
       ['Order collected', null, 0],
-      ['{gorger} has taken one (1) fry as tribute', 'This is permitted under the Gorger Agreement, §4.2.', 0],
+      ['{slinger} has taken one (1) fry as tribute', 'This is permitted under the Slinger Agreement, §4.2.', 0],
     ],
     enroute: [
-      ['{gorger} is 2.1 mi away', null, 0],
-      ['{gorger} is 3.4 mi away', 'Route recalculated.', 3],
-      ['{gorger} is stationary', 'Reason: not provided.', 5],
-      ['{gorger} is moving again', 'No explanation will be offered.', 0],
-      ['{gorger} is 0.3 mi away', 'Approaching. Please prepare to receive.', 0],
+      ['{slinger} is 2.1 mi away', null, 0],
+      ['{slinger} is 3.4 mi away', 'Route recalculated.', 3],
+      ['{slinger} is stationary', 'Reason: not provided.', 5],
+      ['{slinger} is moving again', 'No explanation will be offered.', 0],
+      ['{slinger} is 0.3 mi away', 'Approaching. Please prepare to receive.', 0],
     ],
     delivered: [
       ['Delivered', 'Photo attached. The photo is of a door.', 0],
@@ -53,10 +53,10 @@ window.DG = window.DG || {};
 
   function fill(str, o) {
     return str.replace(/\{store\}/g, o.storeName)
-      .replace(/\{gorger\}/g, o.gorger.name)
-      .replace(/\{rating\}/g, o.gorger.rating.toFixed(1))
-      .replace(/\{deliveries\}/g, o.gorger.deliveries)
-      .replace(/\{vehicle\}/g, o.gorger.vehicle);
+      .replace(/\{slinger\}/g, o.slinger.name)
+      .replace(/\{rating\}/g, o.slinger.rating.toFixed(1))
+      .replace(/\{deliveries\}/g, o.slinger.deliveries)
+      .replace(/\{vehicle\}/g, o.slinger.vehicle);
   }
 
   function advance(o) {
@@ -85,7 +85,7 @@ window.DG = window.DG || {};
   }
 
   function tick() {
-    var st = DG.S();
+    var st = FB.S();
     var live = st.orders.filter(function (o) { return o.status !== 'delivered' && o.status !== 'cancelled'; });
     if (!live.length) { stop(); return; }
     var changed = false;
@@ -99,27 +99,27 @@ window.DG = window.DG || {};
         o._next = now + gap * (0.75 + Math.random() * 0.6);
         changed = true;
         if (r === 'done') {
-          DG.store.set(function (s) { s.activeOrderId = o.id; return s; }, { silent: true });
-          DG.toast('Your order has been delivered.', { icon: 'checkFill', action: 'Rate it', onAction: function () { DG.nav.go('track', { id: o.id }); } });
+          FB.store.set(function (s) { s.activeOrderId = o.id; return s; }, { silent: true });
+          FB.toast('Your order has been delivered.', { icon: 'checkFill', action: 'Rate it', onAction: function () { FB.nav.go('track', { id: o.id }); } });
         }
       }
     });
     if (changed) {
-      DG.store.set(function (s) { return s; }, { silent: true });
+      FB.store.set(function (s) { return s; }, { silent: true });
       listeners.forEach(function (f) { try { f(); } catch (e) {} });
-      DG.shell.repaintChrome();
+      FB.shell.repaintChrome();
     }
   }
 
   function start() { if (!timer) timer = setInterval(tick, 900); }
   function stop() { clearInterval(timer); timer = null; }
 
-  DG.tracker = {
+  FB.tracker = {
     STEPS: STEPS,
     start: function () { start(); },
     stop: stop,
     resume: function () {
-      var live = DG.S().orders.filter(function (o) { return o.status !== 'delivered' && o.status !== 'cancelled'; });
+      var live = FB.S().orders.filter(function (o) { return o.status !== 'delivered' && o.status !== 'cancelled'; });
       if (live.length) start();
     },
     onTick: function (fn) { listeners.push(fn); return function () { var i = listeners.indexOf(fn); if (i > -1) listeners.splice(i, 1); }; },
@@ -127,12 +127,12 @@ window.DG = window.DG || {};
       var elapsed = (Date.now() - o.placedAt) / 60000;
       return Math.max(1, Math.round(o.etaMin + o.etaDrift - elapsed));
     },
-    progress: function (o) { return DG.clamp(o.step / (STEPS.length - 1), 0, 1); },
+    progress: function (o) { return FB.clamp(o.step / (STEPS.length - 1), 0, 1); },
   };
 
   /* ---------------- the map ---------------- */
   function mapSvg(o) {
-    var rnd = DG.seeded(o.id);
+    var rnd = FB.seeded(o.id);
     var blocks = '', roads = '', casing = '';
     /* city blocks first, so roads read as gaps between them */
     for (var b = 0; b < 26; b++) {
@@ -159,7 +159,7 @@ window.DG = window.DG || {};
       '<style>' +
         '.rdc{stroke:var(--map-roadcase);stroke-width:11;stroke-linecap:round}' +
         '.rd{stroke:var(--map-road);stroke-width:7;stroke-linecap:round}' +
-        '.rt{stroke:var(--gorge);stroke-width:4.5;fill:none;stroke-linecap:round;' +
+        '.rt{stroke:var(--fb);stroke-width:4.5;fill:none;stroke-linecap:round;' +
           'filter:drop-shadow(0 0 5px rgba(255,45,20,.55))}' +
         '.rtbg{stroke:var(--map-roadcase);stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:2 8}' +
         '.pinlab{font:700 8px var(--font);fill:var(--ink);letter-spacing:.06em}' +
@@ -176,28 +176,28 @@ window.DG = window.DG || {};
       /* home */
       '<g transform="translate(46,216)">' +
         '<circle r="13" fill="var(--bg)" stroke="var(--line-strong)" stroke-width="1.5"/>' +
-        '<path d="M-5,0 L0,-5 L5,0 v5 h-10 z" fill="var(--gorge)"/>' +
+        '<path d="M-5,0 L0,-5 L5,0 v5 h-10 z" fill="var(--fb)"/>' +
         '<rect x="-17" y="15" width="34" height="13" rx="6.5" fill="var(--bg)" stroke="var(--line)" stroke-width="1"/>' +
         '<text class="pinlab" y="24" text-anchor="middle">YOU</text></g>' +
       /* courier — positioned by JS along the route path */
       '<g id="crx-' + o.id + '">' +
-        '<circle r="15" fill="var(--gorge)" opacity=".24"><animate attributeName="r" values="12;23;12" dur="2.6s" repeatCount="indefinite"/></circle>' +
-        '<circle r="10.5" fill="var(--gorge)" stroke="#fff" stroke-width="2.5"/>' +
+        '<circle r="15" fill="var(--fb)" opacity=".24"><animate attributeName="r" values="12;23;12" dur="2.6s" repeatCount="indefinite"/></circle>' +
+        '<circle r="10.5" fill="var(--fb)" stroke="#fff" stroke-width="2.5"/>' +
         '<path d="M-3.4,1.6 a1.9,1.9 0 1 0 0,-.1 M3.4,1.6 a1.9,1.9 0 1 0 0,-.1 M-3.4,1.6 h2.6 l2-4 M1.6,-2.4 h2" ' +
           'stroke="#fff" stroke-width="1.15" fill="none" stroke-linecap="round"/>' +
       '</g></svg>';
   }
 
   /* place the courier marker at fraction t along the drawn route */
-  DG.tracker.placeCourier = function (root, o, t) {
+  FB.tracker.placeCourier = function (root, o, t) {
     var path = root.querySelector('#rt-' + o.id);
     var marker = root.querySelector('#crx-' + o.id);
     if (!path || !marker || !path.getTotalLength) return;
     var L = path.getTotalLength();
     /* the route is drawn restaurant->home, so progress runs backwards along it */
-    var pt = path.getPointAtLength(L * (1 - DG.clamp(t, 0, 1)));
+    var pt = path.getPointAtLength(L * (1 - FB.clamp(t, 0, 1)));
     marker.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ',' + pt.y.toFixed(1) + ')');
   };
 
-  DG.tracker.mapSvg = mapSvg;
-})(window.DG);
+  FB.tracker.mapSvg = mapSvg;
+})(window.FB);

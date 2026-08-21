@@ -15,7 +15,7 @@
   "deliveryFee": 5.49,
   "distanceMi": 3.7,
   "priceTier": 2,
-  "gorgePlus": true,
+  "bangPlus": true,
   "closesAt": "1:30 AM",
   "address": "8842 Frontage Access Loop, Pad C, Behind the Former Sears, Grantwood Meadows",
   "about": "Pizza Hutch has pursued crust innovation continuously since 1993 and has not identified a stopping condition. Every crust manufactured at this location contains at least one additional crust, per internal standard PH-9. Dine-in seating remains available but is no longer recommended.",
@@ -40,7 +40,7 @@
       "name": "Ronnie P.",
       "stars": 3,
       "date": "Aug 6",
-      "text": "I declined the box and was billed more than the box costs. The Gorger explained the policy while standing on my porch and it made sense at the time."
+      "text": "I declined the box and was billed more than the box costs. The Slinger explained the policy while standing on my porch and it made sense at the time."
     },
     {
       "name": "Aunt Vergie",
@@ -511,7 +511,7 @@
                   "id": "o2",
                   "name": "Acknowledged Verbally at the Door",
                   "price": 3.95,
-                  "note": "The Gorger will say the vegetables out loud."
+                  "note": "The Slinger will say the vegetables out loud."
                 },
                 {
                   "id": "o3",
@@ -2292,7 +2292,7 @@
                   "id": "o2",
                   "name": "Waiver Signed at the Door",
                   "price": 2.3,
-                  "note": "The Gorger carries a clipboard."
+                  "note": "The Slinger carries a clipboard."
                 },
                 {
                   "id": "o3",

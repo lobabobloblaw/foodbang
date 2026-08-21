@@ -1,8 +1,8 @@
 {
-  "name": "doorgorge",
+  "name": "foodbang",
   "version": "1.0.0",
   "private": true,
-  "description": "DoorGorge™ — a satirical, entirely fictional clone of a modern food-delivery app",
+  "description": "FoodBang™ — a satirical, entirely fictional clone of a modern food-delivery app",
   "type": "module",
   "scripts": {
     "start": "node tools/serve.mjs 8899",

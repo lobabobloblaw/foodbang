@@ -16,7 +16,7 @@
   "deliveryFee": 3.49,
   "distanceMi": 1.4,
   "priceTier": 1,
-  "gorgePlus": true,
+  "bangPlus": true,
   "closesAt": "3:00 AM",
   "address": "8801 Frontage Road South, Bay 4, Behind The Other One, Sprawl Ring 6",
   "about": "Dunkinn is a beverage-and-glazed-matter dispensary operating on a continuous morning. Donuts are classified by structural load before dispatch. You are already enrolled in the rewards program and have been since first contact.",
@@ -29,7 +29,7 @@
       "name": "Dwayne R.",
       "stars": 5,
       "date": "Aug 14",
-      "text": "Ordered a Municipal pour at 4am and it arrived in a vessel I could not lift alone. The Gorger helped. He also could not lift it alone."
+      "text": "Ordered a Municipal pour at 4am and it arrived in a vessel I could not lift alone. The Slinger helped. He also could not lift it alone."
     },
     {
       "name": "Priya N.",
@@ -158,7 +158,7 @@
                   "id": "o4",
                   "name": "Hot Glaze Pour-Over",
                   "price": 3.95,
-                  "note": "Poured at your door by the Gorger, at the Gorger's discretion."
+                  "note": "Poured at your door by the Slinger, at the Slinger's discretion."
                 }
               ]
             }
@@ -247,7 +247,7 @@
                   "id": "o2",
                   "name": "Vehicle Overspray",
                   "price": 2.15,
-                  "note": "Occurs in the Gorger's vehicle and remains there."
+                  "note": "Occurs in the Slinger's vehicle and remains there."
                 },
                 {
                   "id": "o3",
@@ -2036,7 +2036,7 @@
                   "id": "o4",
                   "name": "Hot Glaze Pour-Over",
                   "price": 3.95,
-                  "note": "Poured at your door by the Gorger, at the Gorger's discretion."
+                  "note": "Poured at your door by the Slinger, at the Slinger's discretion."
                 }
               ]
             }

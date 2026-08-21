@@ -1,8 +1,8 @@
-# DoorGorge™
+# FoodBang™
 
-**Every Door Is A Mouth.**
+**Impact Is Part Of Delivery.**
 
-**→ [lobabobloblaw.github.io/doorgorge](https://lobabobloblaw.github.io/doorgorge/)**
+**→ [lobabobloblaw.github.io/foodbang](https://lobabobloblaw.github.io/foodbang/)**
 
 A satirical, entirely fictional clone of a present-day food-delivery app. Twenty invented
 restaurants, 426 menu items, 1,473 modifier groups and 4,700 modifier options — every one of them
@@ -19,19 +19,19 @@ made. Everything lives in `localStorage` and can be erased from **Account → Re
 npm start          # http://127.0.0.1:8899
 ```
 
-Or run `npm run artifact` to produce `build/doorgorge.html` — a single self-contained file with
+Or run `npm run artifact` to produce `build/foodbang.html` — a single self-contained file with
 every asset inlined, openable from anywhere with no server at all.
 
 Two hosted mirrors:
 
 | | |
 |---|---|
-| [GitHub Pages](https://lobabobloblaw.github.io/doorgorge/) | the multi-file app; images lazy-load and cache individually |
+| [GitHub Pages](https://lobabobloblaw.github.io/foodbang/) | the multi-file app; images lazy-load and cache individually |
 | [Claude artifact](https://claude.ai/code/artifact/a577d604-3fd5-4a05-a698-50ebbedf9e41) | the single-file build (private until shared from its Share menu) |
 
 ```bash
 npm run bundle     # rebuild js/data/menus.generated.js from js/data/menus/*.json
-npm run artifact   # rebuild build/doorgorge.html
+npm run artifact   # rebuild build/foodbang.html
 ```
 
 Keyboard: <kbd>D</kbd> theme · <kbd>/</kbd> search · <kbd>Esc</kbd> back · <kbd>R</kbd> reset.
@@ -105,9 +105,9 @@ delivery feed looks like.
 **Two food-tracking simulations.**
 
 - **TRACKR™** — a live order tracker on a global ticker, so it keeps advancing while you shop.
-  Animated route map, a Gorger with a name and a tenure in days, an ETA that only ever revises
-  later, and a status feed that includes *"your Gorger has taken one (1) fry as tribute — this is
-  permitted under the Gorger Agreement, §4.2."* Offers to reduce your arrival time for a larger tip,
+  Animated route map, a Slinger with a name and a tenure in days, an ETA that only ever revises
+  later, and a status feed that includes *"your Slinger has taken one (1) fry as tribute — this is
+  permitted under the Slinger Agreement, §4.2."* Offers to reduce your arrival time for a larger tip,
   then explains that arrival is not affected by tip.
 - **BODYMAX™ Intake Telemetry** — ingests every order and reports back. Units Consumed against a
   Recommended Daily Intake of 9,400. Sodium Saturation, Grease Index, Blood Ranch Level, Structural
@@ -119,8 +119,8 @@ delivery feed looks like.
 search that reaches into modifier options, per-store carts, delivery/pickup, scheduling, six working
 promo codes that are all traps, address and payment CRUD, order history, reorder, ratings, a
 notification centre, light/dark/system theming, three text sizes, a Hunger Level slider that
-changes how hard the app upsells you — and GORGE+ INFINITY PRIME ELITE™, whose five-step
-cancellation flow ends by telling you to call 1-800-GORGE-NO during a 25-minute window on Tuesdays.
+changes how hard the app upsells you — and BANG+ INFINITY PRIME ELITE™, whose five-step
+cancellation flow ends by telling you to call 1-800-BANG-NO during a 25-minute window on Tuesdays.
 
 ---
 
@@ -139,18 +139,18 @@ js/data/menus/*.json     one file per restaurant — the source of truth
 js/data/menus.generated.js  bundled by tools/bundle.cjs (validates as it builds)
 tools/brand-bible.json   art direction + pricing doctrine for the 14 chains
 tools/local-bible.json   independent doctrine + the amateur-photography recipe
-build/doorgorge.html     single-file build, every asset inlined
+build/foodbang.html     single-file build, every asset inlined
 build/raw/               2048px source renders, kept for re-encoding
 ```
 
-No framework, no build step, no dependencies. Classic scripts under a `DG` namespace so it runs
+No framework, no build step, no dependencies. Classic scripts under a `FB` namespace so it runs
 straight from `file://`.
 
 ---
 
 ## Legal, sincerely
 
-DoorGorge™ is a work of parody. Every brand, dish, price, fee, modifier, review and statistic in it
+FoodBang™ is a work of parody. Every brand, dish, price, fee, modifier, review and statistic in it
 is invented. The restaurants are exaggerated fictions and are not affiliated with, endorsed by, or
 representative of any real company. BODYMAX™ figures are not medical information and its 9,400-unit
 Recommended Daily Intake was, as the app itself admits, "selected internally."
