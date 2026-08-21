@@ -153,9 +153,23 @@ window.FB = window.FB || {};
         '<span class="rl-r">' + FB.money(calc.roundLine.amount) + '</span></div>';
     }
     h += '<div class="rl rl--total"><span class="rl-l">Total</span><span class="rl-r">' + FB.money(calc.total) + '</span></div>';
-    if (calc.subtotal > 0) {
+    /* Gated on the denominator the ratio is actually measured against. It used to
+       gate on `subtotal` while `multiple` divided by it too, so the divide-by-zero
+       fallback could only fire on an empty cart and was unreachable. Once `multiple`
+       moved to foodPaid, a flat promo code worth more than the food — BANG10 against
+       a $2.50 soda — left foodPaid at exactly zero and printed "0.0× the price of the
+       food" over a button charging $50.00.
+
+       There is no finite multiple when the food cost nothing, so say that instead of
+       printing a false one. `foodPaid` may be absent on a receipt built from a saved
+       order's frozen calc, hence the fallback to subtotal. */
+    var food = calc.foodPaid != null ? calc.foodPaid : calc.subtotal;
+    if (food > 0) {
       h += '<div class="rl-note" style="padding-top:8px">You are paying <b>' + calc.multiple.toFixed(1) + '×</b> the price of the food. ' +
         FB.money(calc.nonFood) + ' of this order is not food.</div>';
+    } else if (calc.subtotal > 0) {
+      h += '<div class="rl-note" style="padding-top:8px">The food has been covered in full. ' +
+        FB.money(calc.nonFood) + ' of this order is not food, and is not covered.</div>';
     }
     h += '</div>';
     return h;

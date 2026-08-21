@@ -1120,6 +1120,16 @@ check('every figure a receipt prints reconciles with the ones beside it', () => 
         const markup = FB.screens.get('checkout').render({ slug: 'mcronalds' });
         if (/Infinity|NaN/.test(markup)) throw new Error('checkout renders Infinity/NaN for a tip of ' + poison);
       }
+      /* the middle of the range, not just its ends: pinning only 0 and TIP_MAX let
+         any zero-preserving mangling through — halving every tip, or flooring the
+         cents off it, both survived a check that tested only the boundaries */
+      saveTip('7.25');
+      if (FB.cart.co('mcronalds').tipCustom !== 7.25) throw new Error('a $7.25 tip was stored as ' + FB.cart.co('mcronalds').tipCustom);
+      if (FB.cart.co('mcronalds').tipPct !== null) throw new Error('a custom tip did not clear the percentage choice');
+      saveTip('20000');
+      if (FB.cart.co('mcronalds').tipCustom !== FB.fees.TIP_MAX) {
+        throw new Error('a tip over the cap stored as ' + FB.cart.co('mcronalds').tipCustom + ', expected ' + FB.fees.TIP_MAX);
+      }
       saveTip('-5');
       if (FB.cart.co('mcronalds').tipCustom !== 0) throw new Error('a negative tip was stored as ' + FB.cart.co('mcronalds').tipCustom);
     } finally { FB.sheet.open = realSheet; FB.nav.refresh = realRefresh; }
@@ -1140,6 +1150,28 @@ check('every figure a receipt prints reconciles with the ones beside it', () => 
     if (merged[0].qty !== 2) throw new Error('the merged line carries qty ' + merged[0].qty + ', expected 2');
     const keys = merged.map((l) => l.key);
     if (new Set(keys).size !== keys.length) throw new Error('two cart lines share a key');
+
+    /* The merge must exclude the line it is editing. The stepper is update()'s
+       highest-traffic caller and sends a BARE { qty } patch with no key, so a
+       predicate that can match the line's own lid doubles it onto itself and then
+       filters it out — the item disappears from the cart on a "+" tap. */
+    FB.cart.clearAll();
+    FB.cart.add('mcronalds', item, sel, 1, '');
+    FB.cart.add('mcronalds', item, sel, 1, 'extra');
+    const solo = FB.cart.lines('mcronalds')[0];
+    FB.cart.update('mcronalds', solo.lid, { qty: solo.qty + 1 });
+    const stepped = FB.cart.lines('mcronalds');
+    if (stepped.length !== 2) throw new Error('a bare qty step changed the line count to ' + stepped.length);
+    const still = stepped.filter((l) => l.lid === solo.lid)[0];
+    if (!still) throw new Error('stepping a line up removed it from the cart');
+    if (still.qty !== 2) throw new Error('stepping 1 -> 2 stored qty ' + still.qty);
+    /* and stepping down to zero still removes exactly that line, not its neighbour */
+    FB.cart.update('mcronalds', solo.lid, { qty: 0 });
+    const left = FB.cart.lines('mcronalds');
+    if (left.length !== 1 || left[0].lid === solo.lid) {
+      throw new Error('stepping a line to zero removed the wrong line');
+    }
+    FB.cart.clearAll();
 
     /* --- a receipt's rows sum to its own subtotal, even after a removal --- */
     FB.cart.clearAll();
@@ -1232,6 +1264,39 @@ check('every figure a receipt prints reconciles with the ones beside it', () => 
       printed++;
     }
     if (printed < 1) throw new Error('no discounted checkout was rendered, so the screen half is untested');
+
+    /* A flat promo code worth more than the food leaves foodPaid at exactly zero.
+       The ratio has no meaning there, and printing the divide-by-zero fallback said
+       "0.0× the price of the food" over a chargeable total. Reachable on any of the
+       212 items priced under BANG10's $10, so it is a live path, not a contrivance. */
+    FB.cart.clearAll();
+    const cheapStore = FB.catalog.all().filter((x) =>
+      x.menu.reduce((a, sec) => a.concat(sec.items), []).some((i) => i.price <= 3 && FB.catalog.available(i)))[0];
+    if (!cheapStore) throw new Error('no store sells an item under $3, so the covered-food case is unreachable');
+    const cheap = cheapStore.menu.reduce((a, sec) => a.concat(sec.items), [])
+      .filter((i) => i.price <= 3 && FB.catalog.available(i))[0];
+    FB.cart.add(cheapStore.slug, cheap, FB.catalog.defaultSel(cheap), 1, '');
+    FB.cart.setCo(cheapStore.slug, { promoCode: 'BANG10' });
+    const covered = FB.fees.compute({
+      subtotal: FB.cart.subtotal(cheapStore.slug), lineCount: 1, store: cheapStore, mode: 'delivery',
+      settings: FB.S().settings, promo: FB.fees.checkPromo('BANG10', FB.cart.subtotal(cheapStore.slug), []),
+    });
+    if (covered.foodPaid !== 0) throw new Error('BANG10 against ' + FB.money(cheap.price) + ' of food left foodPaid at ' + covered.foodPaid);
+    if (!(covered.total > 0)) throw new Error('a fully discounted basket charges nothing, so there is no falsehood to print');
+    for (const scr of ['checkout', 'cart']) {
+      const markup = FB.screens.get(scr).render({ slug: cheapStore.slug });
+      if (/0\.0×/.test(markup)) {
+        throw new Error(scr + ' prints "0.0× the price of the food" over a total of ' + FB.money(covered.total));
+      }
+      if (markup.indexOf('× the price of the food') > -1 && covered.foodPaid <= 0) {
+        throw new Error(scr + ' prints a multiple when nothing was paid for the food');
+      }
+      /* and it says something in its place — dropping the line entirely leaves the
+         receipt's loudest sentence simply missing whenever a code covers the food */
+      if (markup.indexOf('The food has been covered in full') < 0) {
+        throw new Error(scr + ' prints nothing at all where the multiple would go');
+      }
+    }
     FB.cart.clearAll();
 
     /* --- BODYMAX's "not food" means everything that was not food --- */
