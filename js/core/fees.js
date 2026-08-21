@@ -14,7 +14,7 @@ window.FB = window.FB || {};
 
   /* Every fee's public justification. Tapping the (?) shows these verbatim. */
   var WHY = {
-    delivery: 'The Delivery Fee covers delivery. It does not cover the Slinger, who is covered by the Tip, which is optional in the same way that breathing is optional.',
+    delivery: 'The Delivery Fee begins at the amount advertised for this restaurant and increases with distance, which is not advertised. It covers delivery. It does not cover the Slinger, who is covered by the Tip, which is optional in the same way that breathing is optional.',
     range: 'Your residence is farther from the restaurant than the restaurant is from itself. This differential is billed to you.',
     service: 'The Service Fee funds the service of assessing fees. It scales with your order because larger orders require more assessment.',
     small: 'Small orders are inefficient. The Small Order Fee restores efficiency by making the order larger.',
@@ -31,12 +31,12 @@ window.FB = window.FB || {};
     transparency: 'This is the fee for displaying the fees. It is displayed.',
     opacity: 'You have elected not to see the fees. Concealment requires active maintenance and is priced accordingly.',
     upsell: 'Suppressing recommendations removes a revenue stream. The stream is restored here.',
-    data: 'Your behavioural data was subsidising your food. You have withdrawn the subsidy.',
+    data: 'Your behavioral data was subsidizing your food. You have withdrawn the subsidy.',
     pickupA: 'You are retrieving the order yourself. Facilitating your retrieval is a service.',
     pickupB: 'A vehicle was deployed and then stood down. Deployment is billed at deployment.',
     schedule: 'Scheduling requires the future, which must be reserved.',
     express: 'Express Bang places your order ahead of other orders, which are then placed ahead of yours.',
-    plusbenefit: 'Realising a BANG+ benefit requires a benefit realisation process.',
+    plusbenefit: 'Realizing a BANG+ benefit requires a benefit realization process.',
     other: 'Other.',
     rounding: 'Totals are rounded up to the nearest $5.00 for your convenience. The convenience is ours to define.',
     taxes: 'Taxes are collected on the subtotal and on the fees, including the fee for displaying the fees.',
@@ -73,18 +73,28 @@ window.FB = window.FB || {};
 
       /* ---------- delivery ---------- */
       if (mode === 'delivery') {
-        var base = FB.round2(4.99 + Math.max(0, dist - 1.5) * 0.62);
+        /* The fee the store advertises in the feed is the FLOOR, not the price —
+           distance is added on top of it. Before this the engine invented its own
+           base, so the number on the store card and the number on the receipt were
+           unrelated. 4.99 is the fallback for a context with no store (the fee tests
+           run headless and pass none), which keeps the $12 → $60.00 case exact. */
+        var advertised = (ctx.store && typeof ctx.store.deliveryFee === 'number') ? ctx.store.deliveryFee : 4.99;
+        var surcharge = FB.round2(Math.max(0, dist - 1.5) * 0.62);
+        var base = FB.round2(advertised + surcharge);
+        var advNote = surcharge > 0
+          ? 'Advertised at ' + FB.money(advertised) + '. Distance is additional and is not advertised.'
+          : null;
         if (plus) {
           if (sub >= 312) {
             lines.push({ id: 'delivery', label: 'Delivery Fee', amount: 0, was: base, kind: 'fee', free: true,
               note: 'BANG+ waives this on orders over $312.00.' });
           } else {
             lines.push(line('delivery', 'Delivery Fee (BANG+ Reduced)', base * 0.7,
-              'Full waiver applies at $312.00. You are ' + FB.money(312 - sub) + ' away.'));
+              'A 30% reduction on ' + FB.money(base) + '. Full waiver applies at $312.00. You are ' + FB.money(312 - sub) + ' away.'));
           }
           lines.push(line('plusbenefit', 'BANG+ Benefit Realization Fee', 1.99, null));
         } else {
-          lines.push(line('delivery', 'Delivery Fee', base, null));
+          lines.push(line('delivery', 'Delivery Fee', base, advNote));
         }
         if (dist > 3.4) lines.push(line('range', 'Expanded Range Fee', 2.99, FB.round2(dist) + ' mi from the restaurant.'));
       } else {
@@ -183,7 +193,7 @@ window.FB = window.FB || {};
       code = String(code || '').trim().toUpperCase();
       if (!code) return null;
       var p = FB.fees.PROMOS[code];
-      if (!p) return { code: code, valid: false, error: 'Code not recognised. It may have expired, or may never have existed.' };
+      if (!p) return { code: code, valid: false, error: 'Code not recognized. It may have expired, or may never have existed.' };
       if (p.min && sub < p.min) return { code: code, valid: false, error: 'Requires a subtotal of ' + FB.money(p.min) + '. You are ' + FB.money(p.min - sub) + ' short.' };
       return { code: code, valid: true, kind: p.kind, value: p.value, blurb: p.blurb };
     },
