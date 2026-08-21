@@ -60,6 +60,7 @@ window.FB = window.FB || {};
       favorites: [],
       recentSearches: [],
       standing: { points: 0, tier: 0, lastOrderAt: null, decayedThrough: null, seenTier: 0 },
+      tos: { version: 1, acceptedAt: null, accepted: [] },
       notifs: [],           /* the notification centre. see js/core/notifs.js */
       notifsThrough: 0,     /* how far the boot backlog has synthesised */
       promo: { applied: null, used: [] },

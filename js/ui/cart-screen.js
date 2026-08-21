@@ -40,6 +40,7 @@ window.FB = window.FB || {};
            exact regression the comment above this block records */
         standingTier: FB.S().standing.tier,
         scrip: FB.scrip.redeemable(),
+        tosVersion: FB.tos.version(),
       });
 
       var h = '';

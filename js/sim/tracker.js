@@ -54,7 +54,7 @@ window.FB = window.FB || {};
       ['{slinger} has arrived at {store}', null, 0],
       ['{slinger} is waiting', 'Standard wait. Waiting is included.', 2],
       ['Order collected', null, 0],
-      ['{slinger} has taken one (1) fry as tribute', 'This is permitted under the Slinger Agreement, §4.2.', 0],
+      ['{slinger} has taken {fries} fry as tribute', 'This is permitted under the Slinger Agreement, §4.2.', 0],
     ],
     enroute: [
       ['{slinger} is 2.1 mi away', null, 0],
@@ -110,7 +110,10 @@ window.FB = window.FB || {};
       .replace(/\{slinger\}/g, o.slinger.name)
       .replace(/\{rating\}/g, o.slinger.rating.toFixed(1))
       .replace(/\{deliveries\}/g, o.slinger.deliveries)
-      .replace(/\{vehicle\}/g, o.slinger.vehicle);
+      .replace(/\{vehicle\}/g, o.slinger.vehicle)
+      /* filled at BUILD time, so an order keeps the terms it was placed under —
+         and so §4.2 getting worse actually changes what the Slinger does */
+      .replace(/\{fries\}/g, (FB.tos && FB.tos.fries()) || 'one (1)');
   }
 
   /* ---------------- the timetable ----------------

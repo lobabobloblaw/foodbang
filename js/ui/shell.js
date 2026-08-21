@@ -218,7 +218,15 @@ window.FB = window.FB || {};
     },
     replace: function (name, params) { nav.go(name, params, { replace: true }); },
     back: function () {
-      if (FB.overlay.any()) { FB.overlay.close(); return true; }
+      if (FB.overlay.any()) {
+        var top = FB.overlay.top();
+        /* dismissible:false used to mean only "do not wire the scrim", so Escape
+           still closed a modal that had exactly one button by design. It means it
+           now — for the welcome modal too. */
+        if (top && top.cfg && top.cfg.dismissible === false) return true;
+        FB.overlay.close();
+        return true;
+      }
       if (!stack.length) { if (current && current.name !== 'home') { nav.go('home', {}, { replace: true }); return true; } return false; }
       var prev = stack.pop();
       current = { name: prev.name, params: prev.params, scroll: prev.scroll, prev: current };

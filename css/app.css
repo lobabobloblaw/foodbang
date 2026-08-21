@@ -372,6 +372,14 @@ kbd {
 .storecard.is-shut .sc-media > img:not(.sc-logo) { filter: grayscale(.72) brightness(.82); }
 .storecard.is-shut .sc-body { opacity: .72; }
 
+/* the diff on a terms update — one row per thing that got worse */
+.tosdiff { margin: 4px 0 18px; display: flex; flex-direction: column; gap: 9px; }
+.tosdiff-row {
+  display: flex; gap: 9px; align-items: flex-start; text-align: left;
+  font: var(--t-sub); color: var(--ink-2); line-height: 1.45;
+}
+.tosdiff-row svg { flex: none; margin-top: 2px; color: var(--fb); }
+
 .belldot {
   position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; border-radius: 50%;
   background: var(--fb); box-shadow: 0 0 0 2px var(--bg);

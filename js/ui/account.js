@@ -79,7 +79,7 @@ window.FB = window.FB || {};
         '<span class="mr-b"><b>Sign out</b><span>You cannot sign out. This is a demonstration.</span></span></button>' +
         '</div>';
 
-      h += '<div class="fineprint">FoodBang™ v9.4.1 (build 40118) · Nutrition Logistics, Inc.<br>' +
+      h += '<div class="fineprint">FoodBang™ v' + FB.esc(FB.tos.label()) + ' (build 40118) · Nutrition Logistics, Inc.<br>' +
         'This is a satirical simulation. No orders are placed, no payments are processed, no data leaves this device. ' +
         'Everything is stored in your browser and can be erased above.</div>';
       return h;

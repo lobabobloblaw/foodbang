@@ -33,6 +33,7 @@ window.FB = window.FB || {};
     upsell: 'Suppressing recommendations removes a revenue stream. The stream is restored here.',
     restraint: 'A reduced Hunger Level reduces recommended volume. The shortfall is billed.',
     standing: 'Maintaining a Standing requires maintenance. The fee is assessed at the tier you hold, not the tier you use.',
+    reconciliation: 'Where the order-time and delivery-time assessments are equal, reconciliation is still performed, and is billed.',
     scrip: 'BangBux™ are a benefit. Benefits are denominated in BangBux™. BangBux™ are redeemable against fees, which are denominated in dollars, at a rate we publish here.',
     accel: 'Requests take the time they take. Acceleration is applied to the display of the request, which is the part you are present for.',
     data: 'Your behavioral data was subsidizing your food. You have withdrawn the subsidy.',
@@ -162,6 +163,9 @@ window.FB = window.FB || {};
       if (s.hungerLevel <= 2) lines.push(line('restraint', 'Restraint Accommodation Fee', 2.40, 'A reduced Hunger Level reduces recommended volume.'));
       if (s.instantInterface) lines.push(line('accel', 'Interface Acceleration Fee', 1.95, 'Waiting is removed from the interface, not from the process.'));
       if (!s.dataSharing) lines.push(line('data', 'Data Sovereignty Fee', 4.10, 'You have withdrawn the subsidy.'));
+      /* §14, added in Terms 9.4.3 and billed from the moment you accept it — the
+         only fee in this engine you agreed to in writing. */
+      if (ctx.tosVersion >= 3) lines.push(line('reconciliation', 'Reconciliation Fee', 1.20, null));
       if (ctx.scheduled) lines.push(line('schedule', 'Temporal Coordination Fee', 2.60, null));
       if (ctx.express) lines.push(line('express', 'Express Bang™', 5.99, 'Reduces estimated arrival by up to 1 minute.'));
 

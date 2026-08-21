@@ -88,6 +88,7 @@ check('every fee line has a FEE_WHY entry, in every context', () => {
     { subtotal: 40, lineCount: 3, settings: { ...base, instantInterface: true } },
     { subtotal: 40, lineCount: 3, standingTier: 3 },
     { subtotal: 40, lineCount: 3, scrip: 3 },
+    { subtotal: 40, lineCount: 3, tosVersion: 3 },
   ];
   const seen = new Set(), missing = new Set();
   for (const ctx of contexts) {
@@ -1068,6 +1069,74 @@ check('the cancellation flow gets longer and the offer gets worse', () => {
 
     return F.stepsFor(1).length + ' steps, then ' + F.stepsFor(2).length + ', then ' + F.stepsFor(3).length +
       '; $' + F.retentionFor(1).then + ' -> $' + F.retentionFor(3).then;
+  } finally { app.dispose(); }
+});
+
+check('the terms get worse, and take §4.2 with them', () => {
+  /* The only mechanism in this app that can retroactively worsen a rule you have
+     already learned. Everything else escalates what happens next. */
+  const app = harness.loadApp();
+  const { FB } = app;
+  try {
+    const T = FB.tos;
+
+    /* well-formed: versions strictly increase, each has a label and a diff */
+    let prev = 0;
+    for (const v of T.VERSIONS) {
+      if (v.n <= prev) throw new Error('version ' + v.label + ' does not increase');
+      if (!v.label) throw new Error('version ' + v.n + ' has no label');
+      if (v.n > 1 && (!v.diff || !v.diff.length)) throw new Error('version ' + v.label + ' changes nothing');
+      if (!v.fries) throw new Error('version ' + v.label + ' does not say what §4.2 entitles a Slinger to');
+      prev = v.n;
+    }
+    /* the labels continue the app version already printed on the Account screen */
+    if (T.VERSIONS[0].label !== '9.4.1') throw new Error('the terms start a second version scheme');
+
+    /* the gate fires on the third order and every fifth after it */
+    const fires = [];
+    for (let n = 1; n <= 30; n++) if (T.dueAt(n)) fires.push(n);
+    const want = [];
+    for (let n = T.FIRST_AT; n <= 30; n += T.EVERY) want.push(n);
+    if (fires.join(',') !== want.join(',')) throw new Error('the gate fires at ' + fires.join(',') + ', expected ' + want.join(','));
+
+    /* accepting one stops it asking again for that version */
+    const at = T.dueAt(T.FIRST_AT);
+    T.accept(at);
+    if (T.dueAt(T.FIRST_AT) !== null) throw new Error('the gate asks again for a version already accepted');
+    if (T.version() !== at) throw new Error('accepting did not record the version');
+    if (T.label() !== T.entry(at).label) throw new Error('the accepted label does not match');
+
+    /* the Reconciliation Fee arrives with §14 and not before */
+    const S = FB.S().settings;
+    for (const v of [undefined, 0, 1, 2]) {
+      const c = FB.fees.compute({ subtotal: 40, lineCount: 3, settings: S, tosVersion: v });
+      if (c.feeLines.some(l => l.id === 'reconciliation')) throw new Error('the Reconciliation Fee applies at version ' + v);
+    }
+    const c3 = FB.fees.compute({ subtotal: 40, lineCount: 3, settings: S, tosVersion: 3 });
+    if (!c3.feeLines.some(l => l.id === 'reconciliation')) throw new Error('the Reconciliation Fee never applies');
+    /* and it cannot reach the headless $12 -> $60.00 case */
+    if (FB.fees.compute({ subtotal: 12, lineCount: 2, settings: S }).total !== 60) throw new Error('the $60.00 case moved');
+
+    /* §4.2 changes the world, not just the paperwork: the version that raises the
+       tribute must be the version whose diff says it does */
+    const raises = T.VERSIONS.find(v => v.diff.some(d => /§4\.2/.test(d) && /fry|fries/.test(d)));
+    if (!raises) throw new Error('no version amends §4.2');
+    const before = T.fries(raises.n - 1), after = T.fries(raises.n);
+    if (before === after) throw new Error('the §4.2 diff claims a change the tracker does not make');
+
+    /* every token the scripts use must be one fill() knows about */
+    const known = new Set(['store', 'slinger', 'rating', 'deliveries', 'vehicle', 'fries']);
+    for (const script of [FB.tracker.SCRIPT, FB.tracker.PICKUP_SCRIPT]) {
+      for (const beats of Object.values(script)) {
+        for (const b of beats) {
+          for (const m of String(b[0] + ' ' + (b[1] || '')).matchAll(/\{(\w+)\}/g)) {
+            if (!known.has(m[1])) throw new Error('a tracker beat uses {' + m[1] + '}, which fill() does not know');
+          }
+        }
+      }
+    }
+
+    return T.VERSIONS.length + ' versions, gated at order ' + want.slice(0, 3).join(', ') + '…, §4.2 ' + before + ' -> ' + after;
   } finally { app.dispose(); }
 });
 

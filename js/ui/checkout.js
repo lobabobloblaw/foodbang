@@ -51,6 +51,7 @@ window.FB = window.FB || {};
       settings: FB.S().settings, distanceMi: s ? s.distanceMi : 2.4,
       standingTier: FB.S().standing.tier,
       scrip: FB.scrip.redeemable(),
+      tosVersion: FB.tos.version(),
     });
   }
 
@@ -198,7 +199,15 @@ window.FB = window.FB || {};
       FB.on(root, 'click', '[data-instructions]', openInstructions);
       FB.on(root, 'click', '[data-schedule]', openSchedule);
       FB.on(root, 'click', '[data-promo]', function () { openPromo(p); });
-      FB.on(root, 'click', '[data-place]', function (e, t) { place(p, t); });
+      /* Gated BEFORE place(), not after. Opening it from inside place()'s setTimeout
+         would put a modal up eleven lines before FB.nav.go('track') runs
+         overlay.closeAll(true) and removes it before a frame paints — and gating
+         first is the honest reading of "you must accept this to continue" anyway. */
+      FB.on(root, 'click', '[data-place]', function (e, t) {
+        var due = FB.tos.due();
+        if (!due) { place(p, t); return; }
+        openTerms(due, function () { place(p, t); });
+      });
 
       function openCustomTip() {
         var cur = FB.cart.co(p.slug).tipCustom;
@@ -306,6 +315,35 @@ window.FB = window.FB || {};
       }
     },
   });
+
+  /* One button, and it means it: dismissible:false now also blocks Escape, which
+     until this landed only skipped wiring the scrim. */
+  function openTerms(version, onAccept) {
+    var v = FB.tos.entry(version);
+    FB.modal.open({
+      dismissible: false,
+      html: '<h2>Terms of Service, version ' + FB.esc(v.label) + '</h2>' +
+        '<p>These terms have been updated. Continued use constitutes acceptance. ' +
+        'Discontinued use also constitutes acceptance.</p>' +
+        '<div class="tosdiff">' + v.diff.map(function (d) {
+          return '<div class="tosdiff-row">' + FB.icon('edit', 15) + '<span>' + FB.esc(d) + '</span></div>';
+        }).join('') + '</div>' +
+        '<div class="modal-acts"><button class="btn btn--dark btn--block" data-accept>Accept</button></div>',
+      onMount: function (b, h) {
+        FB.on(b, 'click', '[data-accept]', function () {
+          FB.tos.accept(version);
+          FB.notifs.push({
+            id: 'tos:' + version, kind: 'promo', icon: 'shield',
+            title: 'Terms accepted · version ' + v.label,
+            body: v.diff[0] || 'The updated terms have been accepted.',
+            go: 'account',
+          });
+          h.close();
+          setTimeout(onAccept, 220);
+        });
+      },
+    });
+  }
 
   /* A TOAST, never a sheet: place() ends with FB.nav.go, whose overlay.closeAll(true)
      destroys anything opened in the same tick. */
