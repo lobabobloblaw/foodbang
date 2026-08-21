@@ -50,6 +50,7 @@ const SOURCES = Object.fromEntries(
   SRC_FILES.map(f => [f.replace(/\.json$/, ''), JSON.parse(fs.readFileSync(path.join(MENU_DIR, f), 'utf8'))])
 );
 const SRC_ITEMS = Object.entries(SOURCES).flatMap(([slug, m]) => m.menu.flatMap(s => s.items.map(it => [slug, it])));
+const RETENTION_PROBE = 3;
 
 console.log('FoodBang smoke test\n');
 
@@ -1023,6 +1024,51 @@ check('BANG+ keeps books, and BangBux expire', () => {
 
     return 'ledger, capped whole-BangBux redemption after the multiplier, 72h expiry';
   } finally { clock.restore(); app.dispose(); }
+});
+
+check('the cancellation flow gets longer and the offer gets worse', () => {
+  /* cancelAttempts counts COMPLETED cancellations, so it cannot drive "your second
+     cancellation" — that would need a rejoin in between. Entries to the flow are
+     counted separately. The flow is an ordered list rather than a numbered chain,
+     because inserting a step into the chain meant renumbering every forward call
+     and an off-by-one there strands the user in a sheet with no way out. */
+  const app = harness.loadApp();
+  const { FB } = app;
+  try {
+    const F = FB.plusFlow;
+
+    /* the offer deepens while the rate it lands on rises */
+    let prevRate = -1;
+    for (let i = 1; i <= RETENTION_PROBE; i++) {
+      const r = F.retentionFor(i);
+      if (!r || !r.headline) throw new Error('no retention offer at entry ' + i);
+      if (r.then <= prevRate) throw new Error('the post-promotional rate did not rise at entry ' + i);
+      prevRate = r.then;
+    }
+    /* and it is clamped, never undefined, however many times you try */
+    for (const n of [0, 1, 99, -3]) {
+      if (!F.retentionFor(n) || !F.retentionFor(n).headline) throw new Error('retentionFor(' + n + ') is not a real offer');
+    }
+
+    /* the flow only grows, and every step in it is distinct */
+    let prevLen = 0;
+    for (let entry = 1; entry <= 4; entry++) {
+      const steps = F.stepsFor(entry);
+      if (steps.length < prevLen) throw new Error('the flow got SHORTER at entry ' + entry);
+      if (new Set(steps).size !== steps.length) throw new Error('a step appears twice at entry ' + entry);
+      if (steps[0] !== 'manage') throw new Error('the flow does not start at Manage membership');
+      if (steps[steps.length - 1] !== 'phone') throw new Error('the flow does not end at the phone number');
+      prevLen = steps.length;
+    }
+    if (F.stepsFor(2).length <= F.stepsFor(1).length) throw new Error('the second entry is no longer than the first');
+    if (F.stepsFor(3).length <= F.stepsFor(2).length) throw new Error('the third entry is no longer than the second');
+    if (F.stepsFor(1).includes('survey')) throw new Error('the survey appears on the first entry');
+    if (!F.stepsFor(2).includes('survey')) throw new Error('the survey never appears');
+    if (!F.stepsFor(3).includes('arbitration')) throw new Error('the arbitration notice never appears');
+
+    return F.stepsFor(1).length + ' steps, then ' + F.stepsFor(2).length + ', then ' + F.stepsFor(3).length +
+      '; $' + F.retentionFor(1).then + ' -> $' + F.retentionFor(3).then;
+  } finally { app.dispose(); }
 });
 
 console.log('');

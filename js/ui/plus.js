@@ -72,10 +72,17 @@ window.FB = window.FB || {};
       if (active) {
         h += '<div style="padding:20px 16px 8px"><button class="btn btn--ghost btn--block" data-cancel>Manage membership</button></div>';
       } else {
+        /* trialUsed has been written on join since the app shipped and read by
+           nothing, so the thirty-day trial was on offer again the moment you left. */
+        var trialGone = !!st.plus.trialUsed;
         h += '<div style="padding:20px 16px 8px">' +
-          '<button class="btn btn--dark btn--lg btn--block" data-join>Start 30-day free trial</button>' +
+          '<button class="btn btn--dark btn--lg btn--block" data-join>' +
+          (trialGone ? 'Rejoin at $19.99/month' : 'Start 30-day free trial') + '</button>' +
           '<p style="text-align:center;font:var(--t-cap);color:var(--ink-3);margin:10px 0 0;line-height:1.5">' +
-          'Then $19.99/month. Cancel anytime. Cancellation takes effect after the following billing cycle.</p></div>';
+          (trialGone
+            ? 'The thirty-day trial is available to accounts that have not held a membership. This account has held a membership.'
+            : 'Then $19.99/month. Cancel anytime. Cancellation takes effect after the following billing cycle.') +
+          '</p></div>';
       }
 
       h += '<div class="fineprint">BANG+ INFINITY PRIME ELITE™ is a subscription. Subscriptions renew. Renewal is automatic and is ' +
@@ -97,122 +104,263 @@ window.FB = window.FB || {};
       });
       /* and every step of leaving is the slowest interaction in the app */
       FB.on(root, 'click', '[data-cancel]', function (e, t) {
-        FB.busy(t, 'plusCancel', function () { cancelStep(1); });
+        FB.busy(t, 'plusCancel', function () { cancelStep(); });
       });
     },
   });
 
-  /* ---------- the cancellation flow ---------- */
-  function cancelStep(n) {
+  /* ---------- the cancellation flow ----------
+
+     Driven by an ORDERED LIST rather than an if/else chain over step numbers. The
+     chain worked, but inserting a step into it meant renumbering every branch and
+     every forward call, and an off-by-one there strands the user in a sheet with no
+     way forward that no test would catch. Steps take a `next` callback and never
+     know their own index, so the attempt-2 survey and the attempt-3 arbitration
+     notice are one push each.
+
+     `cancelAttempts` counts COMPLETED cancellations, which is why it cannot drive
+     this: "your second cancellation" would require a rejoin in between. Entries to
+     the flow are counted separately, in cancelEntries. */
+
+  var RETENTION = [
+    { headline: '50% off',         term: 'for two months', then: 24.99 },
+    { headline: '70% off',         term: 'for one month',  then: 29.99 },
+    { headline: 'Two months free', term: '',               then: 34.99 },
+  ];
+  function retentionFor(entry) { return RETENTION[FB.clamp(entry - 1, 0, RETENTION.length - 1)]; }
+
+  function cancelStep() {
+    FB.store.set(function (s) {
+      s.plus.cancelEntries = (s.plus.cancelEntries || 0) + 1;
+      return s;
+    }, { silent: true });
+    var entry = FB.S().plus.cancelEntries || 1;
+
+    var steps = [stepManage, stepBeforeYouGo, stepOffer];
+    if (entry >= 2) steps.push(stepSurvey);
+    steps.push(stepReason);
+    if (entry >= 3) steps.push(stepArbitration);
+    steps.push(stepPhone);
+
+    (function run(i) {
+      if (i >= steps.length) return;
+      steps[i](entry, function () {
+        FB.latency.run('plusCancel', function () { run(i + 1); });
+      });
+    })(0);
+  }
+  /* exposed so a test can assert the shape of the flow without opening sheets */
+  FB.plusFlow = {
+    RETENTION: RETENTION,
+    retentionFor: retentionFor,
+    stepsFor: function (entry) {
+      var steps = ['manage', 'beforeYouGo', 'offer'];
+      if (entry >= 2) steps.push('survey');
+      steps.push('reason');
+      if (entry >= 3) steps.push('arbitration');
+      steps.push('phone');
+      return steps;
+    },
+  };
+
+  function keepIt(h) { h.close(); FB.toast('Membership retained. Thank you.'); }
+
+  function stepManage(entry, next) {
     var st = FB.S();
-    if (n === 1) {
-      FB.sheet.open({
-        title: 'Manage membership',
-        html: '<div class="mrow">' + FB.icon('card', 19) + '<span class="mr-b"><b>Billing</b><span>$19.99 monthly · ' + FB.esc(st.plus.renewsOn || 'renews automatically') + '</span></span></div>' +
-          '<div class="mrow">' + FB.icon('gift', 19) + '<span class="mr-b"><b>BangBux™</b><span>' + FB.money(FB.scrip.balance()) + ' available</span></span></div>' +
-          '<button class="mrow" data-next>' + FB.icon('x', 19) + '<span class="mr-b"><b>Cancel membership</b><span>Available online.</span></span>' +
-          '<span class="mr-r">' + FB.icon('fwd', 15) + '</span></button>',
-        onMount: function (b, h) { FB.on(b, 'click', '[data-next]', function () { h.close(); FB.latency.run('plusCancel', function () { cancelStep(2); }); }); },
-      });
-    } else if (n === 2) {
-      FB.sheet.open({
-        title: 'Before you go',
-        sub: 'Here is what you would lose.',
-        html: FEATURES.map(function (f) {
-          return '<div class="plusfeat">' + FB.icon(f[0], 19) + '<span><b>' + FB.esc(f[1]) + '</b><span>' + FB.esc(f[2]) + '</span></span></div>';
-        }).join('') +
-        '<div style="padding:18px 16px 8px"><p style="font:var(--t-sub);color:var(--ink-2);line-height:1.55;margin:0">' +
-        'You have saved ' + FB.money(st.plus.saved || 0) + ' with BANG+. Members save an average of ' + FB.money(41.20) +
-        ', which is an average of all members, including members who spend more than you.</p></div>',
-        footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
-          '<button class="btn btn--dark btn--block" data-keep>Keep my membership</button>' +
-          '<button class="linkbtn" data-next style="color:var(--ink-3);font-size:calc(12.5px * var(--fs));text-align:center">Continue to cancel</button></div>',
-        onMount: function (b, h) {
-          FB.on(h.el, 'click', '[data-keep]', function () { h.close(); FB.toast('Membership retained. Thank you.'); });
-          FB.on(h.el, 'click', '[data-next]', function () { h.close(); FB.latency.run('plusCancel', function () { cancelStep(3); }); });
-        },
-      });
-    } else if (n === 3) {
-      FB.sheet.open({
-        title: 'A one-time offer',
-        sub: 'Available to you only, and to everyone.',
-        html: '<div style="padding:6px 16px 18px">' +
-          '<div style="background:var(--plus);color:var(--bg);border-radius:18px;padding:20px;text-align:center">' +
-          '<div style="font:var(--t-micro);letter-spacing:.16em;color:var(--gold)">RETENTION OFFER</div>' +
-          '<div style="font:900 calc(32px * var(--fs))/1.06 var(--display);letter-spacing:-1px;margin:8px 0 6px">50% off</div>' +
-          '<div style="font:var(--t-sub);opacity:.75">for two months, then $24.99/month</div></div>' +
-          '<p style="font:var(--t-cap);color:var(--ink-3);margin:14px 0 0;line-height:1.5">' +
-          'The post-promotional rate reflects a scheduled price adjustment that would have applied regardless.</p></div>',
-        footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
-          '<button class="btn btn--primary btn--block" data-accept>Accept 50% off</button>' +
-          '<button class="linkbtn" data-next style="color:var(--ink-3);font-size:calc(12.5px * var(--fs));text-align:center">No thanks, cancel</button></div>',
-        onMount: function (b, h) {
-          FB.on(h.el, 'click', '[data-accept]', function () {
-            h.close();
-            FB.store.set(function (s) { s.plus.retentionUsed = true; return s; });
-            FB.toast('Discount applied for two months. Your rate then becomes $24.99.', { kind: 'plus', ms: 3600 });
+    FB.sheet.open({
+      title: 'Manage membership',
+      html: '<div class="mrow">' + FB.icon('card', 19) + '<span class="mr-b"><b>Billing</b><span>$19.99 monthly · ' + FB.esc(st.plus.renewsOn || 'renews automatically') + '</span></span></div>' +
+        '<div class="mrow">' + FB.icon('gift', 19) + '<span class="mr-b"><b>BangBux™</b><span>' + FB.money(FB.scrip.balance()) + ' available</span></span></div>' +
+        '<button class="mrow" data-next>' + FB.icon('x', 19) + '<span class="mr-b"><b>Cancel membership</b><span>Available online.</span></span>' +
+        '<span class="mr-r">' + FB.icon('fwd', 15) + '</span></button>',
+      onMount: function (b, h) { FB.on(b, 'click', '[data-next]', function () { h.close(); next(); }); },
+    });
+  }
+
+  function stepBeforeYouGo(entry, next) {
+    var st = FB.S();
+    FB.sheet.open({
+      title: 'Before you go',
+      sub: 'Here is what you would lose.',
+      html: FEATURES.map(function (f) {
+        return '<div class="plusfeat">' + FB.icon(f[0], 19) + '<span><b>' + FB.esc(f[1]) + '</b><span>' + FB.esc(f[2]) + '</span></span></div>';
+      }).join('') +
+      '<div style="padding:18px 16px 8px"><p style="font:var(--t-sub);color:var(--ink-2);line-height:1.55;margin:0">' +
+      'You have saved ' + FB.money(st.plus.saved || 0) + ' with BANG+, against ' +
+      FB.money(FB.round2(st.plus.paid || 0)) + ' in Benefit Realization Fees. Members save an average of ' + FB.money(41.20) +
+      ', which is an average of all members, including members who spend more than you.</p></div>',
+      footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
+        '<button class="btn btn--dark btn--block" data-keep>Keep my membership</button>' +
+        '<button class="linkbtn" data-next style="color:var(--ink-3);font-size:calc(12.5px * var(--fs));text-align:center">Continue to cancel</button></div>',
+      onMount: function (b, h) {
+        FB.on(h.el, 'click', '[data-keep]', function () { keepIt(h); });
+        FB.on(h.el, 'click', '[data-next]', function () { h.close(); next(); });
+      },
+    });
+  }
+
+  function stepOffer(entry, next) {
+    var r = retentionFor(entry);
+    var taken = FB.S().plus.retentionUsed || 0;
+    FB.sheet.open({
+      title: 'A one-time offer',
+      sub: entry >= 3 ? 'Available to members who have attempted cancellation three times.'
+                      : 'Available to you only, and to everyone.',
+      html: '<div style="padding:6px 16px 18px">' +
+        '<div style="background:var(--plus);color:var(--bg);border-radius:18px;padding:20px;text-align:center">' +
+        '<div style="font:var(--t-micro);letter-spacing:.16em;color:var(--gold)">RETENTION OFFER' +
+          (taken ? ' · ' + FB.plural(taken, 'previous offer') + ' accepted' : '') + '</div>' +
+        '<div style="font:900 calc(32px * var(--fs))/1.06 var(--display);letter-spacing:-1px;margin:8px 0 6px">' + FB.esc(r.headline) + '</div>' +
+        '<div style="font:var(--t-sub);opacity:.75">' + (r.term ? FB.esc(r.term) + ', then ' : 'then ') + FB.money(r.then) + '/month</div></div>' +
+        '<p style="font:var(--t-cap);color:var(--ink-3);margin:14px 0 0;line-height:1.5">' +
+        (entry >= 3 ? 'You are the only such member we are able to discuss. ' : '') +
+        'The post-promotional rate reflects a scheduled price adjustment that would have applied regardless.</p></div>',
+      footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
+        '<button class="btn btn--primary btn--block" data-accept>Accept ' + FB.esc(r.headline) + '</button>' +
+        '<button class="linkbtn" data-next style="color:var(--ink-3);font-size:calc(12.5px * var(--fs));text-align:center">No thanks, cancel</button></div>',
+      onMount: function (b, h) {
+        FB.on(h.el, 'click', '[data-accept]', function () {
+          h.close();
+          FB.store.set(function (s) { s.plus.retentionUsed = (s.plus.retentionUsed || 0) + 1; return s; });
+          FB.toast('Discount applied. Your rate then becomes ' + FB.money(r.then) + '.', { kind: 'plus', ms: 3600 });
+        });
+        FB.on(h.el, 'click', '[data-next]', function () { h.close(); next(); });
+      },
+    });
+  }
+
+  /* Inserted from the second entry onward. The answers do not affect the outcome,
+     and the sheet says so. */
+  var SURVEY = [
+    ['How would you rate your membership?', ['Excellent', 'Good', 'Adequate', 'I was unaware of it']],
+    ['How often did you reach the $312.00 threshold?', ['Often', 'Once', 'Never', 'I was unaware of it']],
+    ['Would you recommend BANG+ to a member of your household?', ['Yes', 'No', 'They are already enrolled']],
+  ];
+  function stepSurvey(entry, next) {
+    var answers = {};
+    FB.sheet.open({
+      title: 'A brief survey',
+      sub: 'Three questions. The survey cannot be skipped. Your answers do not affect the outcome.',
+      html: SURVEY.map(function (q, qi) {
+        return '<div class="grp"><div class="grp-h"><b>' + FB.esc(q[0]) +
+          '<span class="grp-rule">Required · choose 1</span></b></div>' +
+          q[1].map(function (a, ai) {
+            return '<button class="opt" role="radio" aria-checked="false" data-sq="' + qi + '" data-sa="' + ai + '">' +
+              '<span class="mark"></span><span class="opt-b"><b>' + FB.esc(a) + '</b></span></button>';
+          }).join('') + '</div>';
+      }).join(''),
+      footer: '<button class="btn btn--dark btn--block" data-next disabled>Submit and continue</button>',
+      onMount: function (b, h) {
+        FB.on(b, 'click', '[data-sq]', function (e, t) {
+          answers[t.dataset.sq] = t.dataset.sa;
+          FB.qsa('[data-sq="' + t.dataset.sq + '"]', b).forEach(function (x) {
+            x.setAttribute('aria-checked', x.dataset.sa === t.dataset.sa);
           });
-          FB.on(h.el, 'click', '[data-next]', function () { h.close(); FB.latency.run('plusCancel', function () { cancelStep(4); }); });
-        },
-      });
-    } else if (n === 4) {
-      var REASONS = ['Too expensive', 'I do not order enough', 'I never reached the $312 threshold',
-        'The benefits did not apply to me', 'I did not know I had this', 'Other'];
-      var pick = null;
-      FB.sheet.open({
-        title: 'Why are you cancelling?', sub: 'A selection is required to continue.',
-        html: REASONS.map(function (r, i) {
-          return '<button class="opt" role="radio" aria-checked="false" data-reason="' + i + '">' +
-            '<span class="mark"></span><span class="opt-b"><b>' + FB.esc(r) + '</b></span></button>';
-        }).join(''),
-        footer: '<button class="btn btn--dark btn--block" data-next disabled>Continue</button>',
-        onMount: function (b, h) {
-          FB.on(b, 'click', '[data-reason]', function (e, t) {
-            pick = t.dataset.reason;
-            FB.qsa('[data-reason]', b).forEach(function (x) { x.setAttribute('aria-checked', x.dataset.reason === pick); });
-            var btn = h.el.querySelector('[data-next]'); if (btn) btn.disabled = false;
+          var btn = h.el.querySelector('[data-next]');
+          if (btn) btn.disabled = Object.keys(answers).length < SURVEY.length;
+        });
+        FB.on(h.el, 'click', '[data-next]', function () {
+          if (Object.keys(answers).length < SURVEY.length) return;
+          h.close(); next();
+        });
+      },
+    });
+  }
+
+  function stepReason(entry, next) {
+    var REASONS = ['Too expensive', 'I do not order enough', 'I never reached the $312 threshold',
+      'The benefits did not apply to me', 'I did not know I had this', 'Other'];
+    var pick = null;
+    FB.sheet.open({
+      title: 'Why are you cancelling?', sub: 'A selection is required to continue.',
+      html: REASONS.map(function (r, i) {
+        return '<button class="opt" role="radio" aria-checked="false" data-reason="' + i + '">' +
+          '<span class="mark"></span><span class="opt-b"><b>' + FB.esc(r) + '</b></span></button>';
+      }).join(''),
+      footer: '<button class="btn btn--dark btn--block" data-next disabled>Continue</button>',
+      onMount: function (b, h) {
+        FB.on(b, 'click', '[data-reason]', function (e, t) {
+          pick = t.dataset.reason;
+          FB.qsa('[data-reason]', b).forEach(function (x) { x.setAttribute('aria-checked', x.dataset.reason === pick); });
+          var btn = h.el.querySelector('[data-next]'); if (btn) btn.disabled = false;
+        });
+        FB.on(h.el, 'click', '[data-next]', function () {
+          if (pick == null) return;
+          h.close(); next();
+        });
+      },
+    });
+  }
+
+  /* Inserted from the third entry onward. */
+  function stepArbitration(entry, next) {
+    FB.sheet.open({
+      title: 'Notice of arbitration',
+      sub: 'Acknowledgement is required to continue.',
+      html: '<div style="padding:6px 16px 18px">' +
+        '<p style="font:var(--t-body);color:var(--ink-2);line-height:1.6;margin:0 0 14px">' +
+        'Repeated cancellation is handled under §9, which requires that any dispute arising from a ' +
+        'membership be resolved in a venue selected at the time of the dispute.</p>' +
+        '<p style="font:var(--t-body);color:var(--ink-2);line-height:1.6;margin:0 0 14px">' +
+        'This is not a dispute. Acknowledging it is not an admission that it is one. Declining to ' +
+        'acknowledge it does not prevent it from having been served.</p>' +
+        '<p style="font:var(--t-cap);color:var(--ink-3);margin:0;line-height:1.5">' +
+        'A copy has been retained. A copy is not available.</p></div>',
+      footer: '<button class="btn btn--dark btn--block" data-next>Acknowledge</button>',
+      onMount: function (b, h) { FB.on(h.el, 'click', '[data-next]', function () { h.close(); next(); }); },
+    });
+  }
+
+  function stepPhone(entry, next) {
+    FB.sheet.open({
+      title: 'One more step',
+      html: '<div style="padding:6px 16px 18px">' +
+        '<p style="font:var(--t-body);color:var(--ink-2);line-height:1.6;margin:0 0 16px">' +
+        'To complete cancellation, call the Membership Retention Line during business hours.</p>' +
+        '<div style="background:var(--surface-2);border-radius:14px;padding:18px;text-align:center">' +
+        '<div style="font:800 calc(22px * var(--fs)) var(--mono);letter-spacing:-.5px">1-800-BANG-NO</div>' +
+        '<div style="font:var(--t-cap);color:var(--ink-3);margin-top:6px">Tue &amp; Thu, 10:15 AM – 10:40 AM</div></div>' +
+        '<p style="font:var(--t-cap);color:var(--ink-3);margin:16px 0 0;line-height:1.5">' +
+        'Average hold time is not published. Business hours are observed in a time zone we have not disclosed.</p></div>',
+      footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
+        '<button class="btn btn--dark btn--block" data-keep>Never mind, keep it</button>' +
+        '<button class="linkbtn" data-finish style="color:var(--ink-3);font-size:calc(12.5px * var(--fs));text-align:center">Cancel online instead</button></div>',
+      onMount: function (b, h) {
+        FB.on(h.el, 'click', '[data-keep]', function () { keepIt(h); });
+        FB.on(h.el, 'click', '[data-finish]', function () {
+          h.close();
+          FB.store.set(function (s) {
+            s.plus.active = false; s.plus.cancelAttempts = (s.plus.cancelAttempts || 0) + 1;
+            s.plus.since = null; s.plus.renewsOn = null;
+            return s;
           });
-          FB.on(h.el, 'click', '[data-next]', function () {
-            if (pick == null) return;
-            h.close(); FB.latency.run('plusCancel', function () { cancelStep(5); });
-          });
-        },
-      });
-    } else if (n === 5) {
-      FB.sheet.open({
-        title: 'One more step',
-        html: '<div style="padding:6px 16px 18px">' +
-          '<p style="font:var(--t-body);color:var(--ink-2);line-height:1.6;margin:0 0 16px">' +
-          'To complete cancellation, call the Membership Retention Line during business hours.</p>' +
-          '<div style="background:var(--surface-2);border-radius:14px;padding:18px;text-align:center">' +
-          '<div style="font:800 calc(22px * var(--fs)) var(--mono);letter-spacing:-.5px">1-800-BANG-NO</div>' +
-          '<div style="font:var(--t-cap);color:var(--ink-3);margin-top:6px">Tue &amp; Thu, 10:15 AM – 10:40 AM</div></div>' +
-          '<p style="font:var(--t-cap);color:var(--ink-3);margin:16px 0 0;line-height:1.5">' +
-          'Average hold time is not published. Business hours are observed in a time zone we have not disclosed.</p></div>',
-        footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
-          '<button class="btn btn--dark btn--block" data-keep>Never mind, keep it</button>' +
-          '<button class="linkbtn" data-finish style="color:var(--ink-3);font-size:calc(12.5px * var(--fs));text-align:center">Cancel online instead</button></div>',
-        onMount: function (b, h) {
-          FB.on(h.el, 'click', '[data-keep]', function () { h.close(); FB.toast('Membership retained. Thank you.'); });
-          FB.on(h.el, 'click', '[data-finish]', function () {
-            h.close();
-            FB.store.set(function (s) {
-              s.plus.active = false; s.plus.cancelAttempts = (s.plus.cancelAttempts || 0) + 1;
-              s.plus.since = null; s.plus.renewsOn = null;
-              return s;
-            });
-            setTimeout(function () {
-              FB.modal.open({
-                html: '<h2>Membership cancelled</h2>' +
-                  '<p>Your cancellation takes effect after the following billing cycle. You have been charged for that cycle. ' +
-                  'You may continue to use BANG+ benefits, none of which are currently active.</p>' +
-                  '<div class="modal-acts"><button class="btn btn--dark btn--block" data-ok>Understood</button></div>',
-                onMount: function (bb, hh) { FB.on(bb, 'click', '[data-ok]', function () { hh.close(); FB.nav.refresh(); }); },
-              });
-            }, 260);
-          });
-        },
-      });
-    }
+          setTimeout(function () { finalModal(entry); }, 260);
+        });
+      },
+    });
+  }
+
+  /* The Continuity Provision opens a membership and lets you close it in one tap.
+     The membership is never actually made active — trapping someone in a
+     subscription they cannot leave is the one version of this joke that stops
+     being one, and it would fight the plus.active = false directly above. */
+  function finalModal(entry) {
+    var continuity = entry >= 3;
+    FB.modal.open({
+      html: '<h2>Membership cancelled</h2>' +
+        '<p>Your cancellation takes effect after the following billing cycle. You have been charged for ' +
+        'that cycle. You may continue to use BANG+ benefits, none of which are currently active.</p>' +
+        (continuity ? '<p>A membership has been opened in its place under the Continuity Provision. ' +
+          'You may cancel it.</p>' : '') +
+        '<div class="modal-acts"><button class="btn btn--dark btn--block" data-ok>' +
+        (continuity ? 'Cancel it' : 'Understood') + '</button></div>',
+      onMount: function (bb, hh) {
+        FB.on(bb, 'click', '[data-ok]', function () {
+          hh.close();
+          if (continuity) FB.toast('Cancelled. That one was free.');
+          FB.nav.refresh();
+        });
+      },
+    });
   }
 })(window.FB);
