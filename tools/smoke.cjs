@@ -81,6 +81,7 @@ check('every fee line has a FEE_WHY entry, in every context', () => {
     { subtotal: 40, lineCount: 3, settings: { ...base, feeTransparency: false, reduceUpsells: true, dataSharing: false } },
     { subtotal: 40, lineCount: 3, settings: { ...base, hungerLevel: 1 } },
     { subtotal: 40, lineCount: 3, settings: { ...base, instantInterface: true } },
+    { subtotal: 40, lineCount: 3, standingTier: 3 },
   ];
   const seen = new Set(), missing = new Set();
   for (const ctx of contexts) {
@@ -882,6 +883,73 @@ check('notifications accumulate, back-date, and never stay read', () => {
     if (FB.notifs.unreadCount() !== n0) throw new Error('they did not all come back');
 
     return 'per step, back-dated, capped at ' + FB.notifs.CAP + ', gated, and always unread';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('Standing is earned by ordering and lost by not ordering', () => {
+  /* Nothing outside BODYMAX changed as you used this app: order forty was
+     byte-identical to order one. The tier table and decay curve are pure, so they
+     are tested here the way fees.js is — numbers in, numbers out. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const S = FB.standing;
+
+    /* the ladder is monotone and its top tier is reachable */
+    let prevAt = -1;
+    for (const t of S.TIERS) {
+      if (t.at <= prevAt) throw new Error('tier ' + t.name + ' is not above the one below it');
+      if (S.tierFor(t.at) !== t.key) throw new Error(t.name + ' is not entered at its own threshold');
+      if (!t.benefit) throw new Error(t.name + ' has no benefit');
+      prevAt = t.at;
+    }
+    if (S.toNext(S.TIERS[S.TIERS.length - 1].at) !== null) throw new Error('the top tier claims a next one');
+
+    /* upkeep rises with the tier and is free at the bottom */
+    let prevFee = -1;
+    for (const t of S.TIERS) {
+      const f = S.upkeep(t.key);
+      if (f < prevFee) throw new Error('upkeep falls at ' + t.name);
+      prevFee = f;
+    }
+    if (S.upkeep(0) !== 0) throw new Error('the bottom tier is not free, which makes it a subscription');
+    /* one table, in fees.js, read back by standing.js */
+    if (S.upkeep(3) !== FB.fees.STANDING_UPKEEP[3]) throw new Error('standing.js and fees.js disagree about upkeep');
+
+    /* the fee is invisible without a tier, so the headless $60.00 case is safe */
+    const bare = FB.fees.compute({ subtotal: 12, lineCount: 2, settings: FB.S().settings });
+    if (bare.feeLines.some((l) => l.id === 'standing')) throw new Error('a tierless order was charged Standing Maintenance');
+    if (bare.total !== 60) throw new Error('the $60.00 case moved: ' + bare.total);
+    for (const tier of [0, undefined, null]) {
+      const c = FB.fees.compute({ subtotal: 12, lineCount: 2, standingTier: tier, settings: FB.S().settings });
+      if (c.feeLines.some((l) => l.id === 'standing')) throw new Error('tier ' + tier + ' acquired the fee');
+    }
+
+    /* decay is day-granular: reloading a page cannot cost you a point */
+    if (S.decay(10, 0) !== 10) throw new Error('decay charged for no elapsed days');
+    if (S.decay(10, 3) !== 7) throw new Error('decay is not one point per day');
+    if (S.decay(2, 99) !== 0) throw new Error('decay went below zero');
+    if (S.daysBetween(0, Date.now()) !== 0) throw new Error('decay from a null stamp is not zero');
+
+    /* and the round trip through state */
+    const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T0);
+    FB.store.set((st) => {
+      st.standing = { points: 9, tier: S.tierFor(9), lastOrderAt: T0, decayedThrough: T0, seenTier: S.tierFor(9) };
+      return st;
+    });
+    if (FB.S().standing.tier !== 2) throw new Error('nine points is not SUSTAINING');
+    clock.set(T0 + 12 * 3600000);            /* half a day */
+    if (S.settle() !== null) throw new Error('half a day cost a point');
+    clock.set(T0 + 4 * 86400000);            /* four days */
+    const lost = S.settle();
+    if (!lost) throw new Error('four days away cost nothing');
+    if (FB.S().standing.points !== 5) throw new Error('points after four days: ' + FB.S().standing.points);
+    if (FB.S().standing.tier !== 1) throw new Error('four days away did not demote');
+    /* settling again on the same day must be a no-op, or every reload demotes */
+    if (S.settle() !== null) throw new Error('settling twice in one day decayed twice');
+
+    return S.TIERS.length + ' tiers, upkeep $' + S.upkeep(1).toFixed(2) + '-$' + S.upkeep(4).toFixed(2) + ', 1 point a day';
   } finally { clock.restore(); app.dispose(); }
 });
 

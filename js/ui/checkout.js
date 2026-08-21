@@ -49,6 +49,7 @@ window.FB = window.FB || {};
       tipPct: co.tipCustom != null ? null : (co.tipPct != null ? co.tipPct : FB.S().settings.autoTipPct),
       tipCustom: co.tipCustom, promo: promoFor(p, sub), plus: FB.store.isPlus(),
       settings: FB.S().settings, distanceMi: s ? s.distanceMi : 2.4,
+      standingTier: FB.S().standing.tier,
     });
   }
 
@@ -303,6 +304,22 @@ window.FB = window.FB || {};
     },
   });
 
+  /* A TOAST, never a sheet: place() ends with FB.nav.go, whose overlay.closeAll(true)
+     destroys anything opened in the same tick. */
+  function announceStanding() {
+    var st = FB.S();
+    var seen = st.standing.seenTier || 0;
+    if (st.standing.tier === seen) return;
+    var up = st.standing.tier > seen;
+    var t = FB.standing.tier(st.standing.tier);
+    FB.store.set(function (s) { s.standing.seenTier = s.standing.tier; return s; }, { silent: true });
+    if (!up) return;   /* a demotion is announced by the decay pass, not by an order */
+    FB.toast('You have been advanced to ' + t.name + '. Advancement is recognised on your receipt and nowhere else.',
+      { kind: 'plus', ms: 4200 });
+    FB.notifs.push({ id: 'standing:' + t.name, kind: 'promo', icon: 'trophy',
+      title: 'Standing: ' + t.name, body: t.benefit, go: 'account' });
+  }
+
   /* One order per tap, whatever the DOM does. The 3-second "cancellation window"
      means the button stays on screen while the order is in flight. */
   var placing = false;
@@ -358,8 +375,15 @@ window.FB = window.FB || {};
         st.meta.lifetimeTips = FB.round2(st.meta.lifetimeTips + c.tipLine.amount);
         st.meta.lifetimeCalories += load.calories;
         if (promo && promo.valid) st.promo.used.push(promo.code);
+        /* Standing is earned here and decayed at boot — never in a render path,
+           which would re-persist state on every paint. */
+        st.standing.points = Math.min(FB.standing.MAX_POINTS, st.standing.points + FB.standing.earn(c.total));
+        st.standing.tier = FB.standing.tierFor(st.standing.points);
+        st.standing.lastOrderAt = order.placedAt;
+        st.standing.decayedThrough = order.placedAt;
         return st;
       });
+      announceStanding();
       FB.bodymax.ingest(order);
       /* the cart bucket carried the promo, tip, mode and schedule, and deleting the
          cart above is what clears them — no screen-level state is left to reset */

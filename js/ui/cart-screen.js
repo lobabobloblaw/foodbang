@@ -36,6 +36,9 @@ window.FB = window.FB || {};
         tipPct: co.tipCustom != null ? null : co.tipPct, tipCustom: co.tipCustom,
         promo: promoCode,
         plus: FB.store.isPlus(), settings: FB.S().settings, distanceMi: s.distanceMi,
+        /* threaded here too — a preview that omits a fee checkout charges is the
+           exact regression the comment above this block records */
+        standingTier: FB.S().standing.tier,
       });
 
       var h = '';

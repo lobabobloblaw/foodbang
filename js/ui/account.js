@@ -25,6 +25,15 @@ window.FB = window.FB || {};
         '<div><b>' + FB.money(st.meta.lifetimeSpend) + '</b><span>SPENT</span></div>' +
         '<div><b style="color:var(--fb)">' + FB.money(st.meta.lifetimeFees) + '</b><span>IN FEES</span></div></div>';
 
+      var sd = st.standing;
+      var tier = FB.standing.tier(sd.tier);
+      var next = FB.standing.toNext(sd.points);
+      h += '<button class="crow" data-standing style="margin-top:14px">' + FB.icon('shield', 19) +
+        '<span class="crow-b"><b>FoodBang™ Standing · ' + FB.esc(tier.name) + '</b><span>' +
+        (next === null ? 'The highest tier. It decays at the same rate as the others.'
+          : FB.plural(next, 'order') + ' to the next tier · decays 1 point per day') +
+        '</span></span><span class="crow-r">' + FB.icon('fwd', 14) + '</span></button>';
+
       /* BANG+ card */
       if (st.plus.active) {
         h += '<button class="plusbanner" data-go="plus" style="margin-top:16px">' +
@@ -76,6 +85,7 @@ window.FB = window.FB || {};
       return h;
     },
     mount: function (root) {
+      FB.on(root, 'click', '[data-standing]', openStanding);
       FB.on(root, 'click', '[data-act="notifs"]', FB.openNotifications);
       FB.on(root, 'click', '[data-act="promos"]', openPromos);
       FB.on(root, 'click', '[data-act="help"]', openHelp);
@@ -510,6 +520,26 @@ window.FB = window.FB || {};
       },
     });
   };
+
+  function openStanding() {
+    var sd = FB.S().standing;
+    FB.sheet.open({
+      title: 'FoodBang™ Standing',
+      sub: FB.standing.name(sd.tier) + ' · ' + FB.plural(sd.points, 'point'),
+      html: FB.standing.TIERS.map(function (t) {
+        var held = sd.tier === t.key;
+        return '<div class="mrow" style="align-items:flex-start' + (held ? '' : ';opacity:.6') + '">' +
+          FB.icon(held ? 'shield' : 'dot', 19) +
+          '<span class="mr-b"><b>' + FB.esc(t.name) + (held ? ' · held' : '') + '</b>' +
+          '<span>' + FB.plural(t.at, 'point') + ' · ' + FB.esc(t.benefit) + '</span></span>' +
+          '<span class="mr-r">' + (FB.standing.upkeep(t.key) ? FB.money(FB.standing.upkeep(t.key)) + '/order' : 'free') + '</span></div>';
+      }).join('') +
+      '<div class="fineprint">A Standing is earned by ordering and lost by not ordering. The Standing ' +
+      'Maintenance Fee is assessed at the tier you hold, not the tier you use. Standing cannot be ' +
+      'transferred, gifted, or declined.</div>',
+      footer: '<button class="btn btn--dark btn--block" data-sheet-close>Close</button>',
+    });
+  }
 
   function openPromos() {
     var used = FB.S().promo.used || [];

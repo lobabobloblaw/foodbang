@@ -32,6 +32,7 @@ window.FB = window.FB || {};
     opacity: 'You have elected not to see the fees. Concealment requires active maintenance and is priced accordingly.',
     upsell: 'Suppressing recommendations removes a revenue stream. The stream is restored here.',
     restraint: 'A reduced Hunger Level reduces recommended volume. The shortfall is billed.',
+    standing: 'Maintaining a Standing requires maintenance. The fee is assessed at the tier you hold, not the tier you use.',
     accel: 'Requests take the time they take. Acceleration is applied to the display of the request, which is the part you are present for.',
     data: 'Your behavioral data was subsidizing your food. You have withdrawn the subsidy.',
     pickupA: 'You are retrieving the order yourself. Facilitating your retrieval is a service.',
@@ -46,6 +47,17 @@ window.FB = window.FB || {};
   };
   FB.FEE_WHY = WHY;
 
+  /* The upkeep table lives HERE, not in js/sim/standing.js, for the same reason
+     fees.js must never reach for FB.world: tools/smoke.cjs requires this file with
+     only util.js loaded, so a lookup into another module would throw at require
+     time and take the one thing under direct test with it. standing.js reads it
+     back off FB.fees, so there is still one table. */
+  var STANDING_UPKEEP = [0, 0.60, 1.25, 2.10, 3.40];
+  function upkeep(tier) {
+    var i = Math.max(0, Math.min(STANDING_UPKEEP.length - 1, Math.round(tier) || 0));
+    return STANDING_UPKEEP[i];
+  }
+
   function line(id, label, amount, note, kind) {
     return { id: id, label: label, amount: FB.round2(amount), note: note || null, kind: kind || 'fee' };
   }
@@ -55,6 +67,7 @@ window.FB = window.FB || {};
    *         express, scheduled, promo, plus, settings, distanceMi }
    */
   FB.fees = {
+    STANDING_UPKEEP: STANDING_UPKEEP,
     TAX_RATE: TAX_RATE, PEAK_MULT: PEAK_MULT,
 
     compute: function (ctx) {
@@ -109,6 +122,13 @@ window.FB = window.FB || {};
       if (sub < 25) lines.push(line('small', 'Small Order Fee', 4.50, 'Orders under $25.00.'));
       if (sub > 60) lines.push(line('large', 'Large Order Fee', 6.75, 'Orders over $60.00.'));
       lines.push(line('regulatory', 'Regulatory Response Fee', 2.10, null));
+      /* Holding a Standing costs money whether or not you use it. Gated on a ctx
+         field the headless $12 -> $60.00 context does not pass, so that case is
+         untouched — every new fee in this engine has to be. */
+      if (ctx.standingTier) {
+        lines.push(line('standing', 'Standing Maintenance Fee', upkeep(ctx.standingTier),
+          'Assessed at the tier you hold.'));
+      }
       if (ctx.lineCount) lines.push(line('digitization', 'Menu Digitization Surcharge', 0.39 * ctx.lineCount, FB.plural(ctx.lineCount, 'line item') + ' × $0.39.'));
       if (mode === 'delivery') {
         lines.push(line('bag', 'Bag Fee', 0.35, null));

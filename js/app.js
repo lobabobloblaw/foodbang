@@ -90,11 +90,24 @@
 
     /* three days away is three days of correctly back-dated nagging, computed from
        what the save already knows rather than accrued by a timer */
+    /* Standing decays once, here, against a day stamp — never in a render path. */
+    var lost = FB.standing.settle();
     FB.notifs.backfill();
     FB.nav.go('home', {}, { silent: true });
     FB.tracker.resume();
     FB.updateDeskStats();
     hideSplash();
+
+    if (lost) {
+      var name = FB.standing.name(lost.to);
+      FB.toast('Your Standing has been reduced to ' + name + '.', { kind: 'bad', ms: 4200 });
+      FB.notifs.push({
+        id: 'standing-down:' + name + ':' + Math.floor(Date.now() / 86400000),
+        kind: 'promo', icon: 'alert', title: 'Standing reduced to ' + name,
+        body: 'Standing decays at one point per day. This is not a penalty; it is an absence of activity.',
+        go: 'account',
+      });
+    }
 
     updateClock();
     setInterval(updateClock, 20000);
