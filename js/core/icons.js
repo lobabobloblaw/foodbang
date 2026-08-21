@@ -97,7 +97,84 @@ window.FB = window.FB || {};
     return '<span class="starrow" style="display:inline-flex;gap:1px;align-items:center">' + out + '</span>';
   };
 
-  /* category emoji glyphs — deliberately the cheap ones a real app would use */
+  /* ===================== the brand mark =====================
+     Drawn, not photographed. A logo asset would make renaming the app an image
+     job again; this way `tools/rebrand.cjs` moves the wordmark, the accent token
+     recolours the tile, and nothing needs regenerating.
+
+     The mark is a bag and a handle. The handle does not touch the bag, because
+     on this platform it is a separate object, licensed separately, and billed
+     separately. Nobody at FoodBang™ finds this funny. */
+  var MARK =
+    '<path d="M18 44h64a3 3 0 0 1 3 3.2l-4.6 40a7 7 0 0 1-7 6.3H26.6a7 7 0 0 1-7-6.3l-4.6-40A3 3 0 0 1 18 44Z"/>' +
+    '<path d="M34 28a16 16 0 0 1 32 0" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>' +
+    '<rect x="18" y="44" width="64" height="7" opacity=".34"/>';
+
+  /** the glyph alone, in currentColor */
+  FB.mark = function (size, extra) {
+    size = size || 24;
+    return '<svg class="fb-mark" width="' + size + '" height="' + size + '" viewBox="0 0 100 100" ' +
+      'fill="currentColor" aria-hidden="true" focusable="false"' + (extra ? ' ' + extra : '') + '>' + MARK + '</svg>';
+  };
+
+  /** the glyph on its tile — the app icon */
+  FB.markTile = function (size, cls) {
+    size = size || 40;
+    return '<span class="fb-tile' + (cls ? ' ' + cls : '') + '" style="--tile:' + size + 'px" aria-hidden="true">' +
+      FB.mark(Math.round(size * 0.58)) + '</span>';
+  };
+
+  FB.wordmark = function () { return '<span class="fb-word">FoodBang<sup>™</sup></span>'; };
+
+  /** tile + wordmark + optional tagline, for letterheads and splashes */
+  FB.lockup = function (opts) {
+    opts = opts || {};
+    return '<span class="fb-lock' + (opts.stack ? ' fb-lock--stack' : '') + '">' +
+      FB.markTile(opts.size || 34) +
+      '<span class="fb-lock-t">' + FB.wordmark() +
+      (opts.tagline === false ? '' : '<span class="fb-lock-sub">Impact Is Part Of Delivery</span>') +
+      '</span></span>';
+  };
+
+  /** fills any [data-fb-mark="32"] / [data-fb-lockup] in static markup, so index.html stays plain */
+  FB.paintMarks = function (root) {
+    root = root || document;
+    FB.qsa('[data-fb-mark]', root).forEach(function (el) {
+      if (el.dataset.fbPainted) return;
+      el.dataset.fbPainted = '1';
+      el.innerHTML = FB.mark(parseInt(el.dataset.fbMark, 10) || 24);
+    });
+    FB.qsa('[data-fb-lockup]', root).forEach(function (el) {
+      if (el.dataset.fbPainted) return;
+      el.dataset.fbPainted = '1';
+      el.innerHTML = FB.lockup({ size: parseInt(el.dataset.fbLockup, 10) || 64, stack: true });
+    });
+  };
+
+  /* The tab icon is the same geometry as everything else, tinted with the live
+     accent token — so it survives a rebrand, and it survives being inlined into
+     the single-file build, where a linked .svg would not. */
+  FB.installFavicon = function () {
+    var accent = '#FF2D14';
+    try {
+      var v = getComputedStyle(document.documentElement).getPropertyValue('--fb').trim();
+      if (v) accent = v;
+    } catch (e) {}
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="color:#fff">' +
+      '<rect width="100" height="100" rx="23" fill="' + accent + '"/>' + MARK + '</svg>';
+    var href = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    ['icon', 'shortcut icon'].forEach(function (rel) {
+      var link = document.querySelector('link[rel="' + rel + '"]') || document.createElement('link');
+      link.rel = rel; link.type = 'image/svg+xml'; link.href = href;
+      if (!link.parentNode) document.head.appendChild(link);
+    });
+  };
+
+  /** the photographic category tile; the emoji below stays as its fallback */
+  FB.CAT_IMG = function (slug) { return 'assets/app/cat/' + slug + '.webp'; };
+
+  /* category emoji glyphs — the fallback under the tiles, and what search rows
+     use when an item has no photo of its own */
   FB.CAT_ICONS = {
     'fast-food': '🍟', burgers: '🍔', mexican: '🌮', chicken: '🍗', pizza: '🍕',
     coffee: '☕️', asian: '🥡', sandwiches: '🥪', grocery: '🛒', drinks: '🥤',

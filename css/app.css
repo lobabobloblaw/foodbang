@@ -91,15 +91,38 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 #view::-webkit-scrollbar { width: 0; height: 0; }
 
+/* ---------- brand mark ---------------------------------------- */
+.fb-tile {
+  width: var(--tile, 40px); height: var(--tile, 40px); flex: none;
+  display: grid; place-items: center; border-radius: 23%;
+  background: linear-gradient(160deg, var(--fb-lift), var(--fb) 55%, var(--fb-sink));
+  color: #fff; box-shadow: 0 6px 18px -7px rgba(255, 45, 20, .85);
+}
+.fb-tile--flat { box-shadow: none; }
+.fb-mark { display: block; }
+.fb-word { font: 800 17px/1.1 var(--display); letter-spacing: -.4px; white-space: nowrap; }
+.fb-word sup { font-size: .5em; font-weight: 700; vertical-align: super; margin-left: .5px; }
+.fb-lock { display: flex; align-items: center; gap: 11px; }
+.fb-lock--stack { flex-direction: column; gap: 14px; text-align: center; }
+.fb-lock-sub {
+  display: block; margin-top: 3px; color: var(--ink-3);
+  font: 700 9.5px/1.4 var(--font); letter-spacing: .14em; text-transform: uppercase;
+}
+
+/* first paint. Every app of this kind shows you its own name before it shows
+   you anything you asked for. */
+#splash {
+  position: absolute; inset: 0; z-index: 70; display: grid; place-items: center;
+  background: var(--bg); transition: opacity 280ms var(--ez);
+}
+#splash .fb-lock-sub { color: var(--ink-3); }
+#splash.out { opacity: 0; pointer-events: none; }
+#splash.gone { display: none; }
+
 /* ---------- desktop side panel -------------------------------- */
 #deskside { width: 290px; color: #EDEDF2; font: var(--t-sub); }
 .ds-brand { display: flex; gap: 12px; align-items: center; margin-bottom: 18px; }
-.ds-mark {
-  width: 44px; height: 44px; border-radius: 13px; flex: none;
-  background: linear-gradient(160deg, #FF5A3C, var(--fb) 55%, #C81605);
-  color: #fff; font: 800 17px/44px var(--display); text-align: center; letter-spacing: -.5px;
-  box-shadow: 0 6px 20px -6px rgba(255,45,20,.8);
-}
+.ds-mark { --tile: 44px; border-radius: 13px; }
 .ds-brand b { display: block; font: 700 17px/1.2 var(--display); }
 .ds-brand span { color: #8A8A96; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; }
 .ds-note { color: #9A9AA6; line-height: 1.55; border-left: 2px solid #FF2D14; padding-left: 12px; }
@@ -118,7 +141,7 @@ kbd {
 @media (max-width: 940px) { #deskside { display: none; } }
 @media (max-width: 520px), (max-height: 900px) and (max-width: 940px) {
   #bezel { padding: 0; gap: 0; align-items: stretch; background: var(--bg); }
-  #device { width: 100%; height: 100dvh; border-radius: 0; box-shadow: none; }
+  #device { width: 100%; height: 100dvh; min-height: 0; border-radius: 0; box-shadow: none; }
   #device-notch { display: none; }
   #statusbar { height: env(safe-area-inset-top, 0px); padding: 0; }
   #statusbar > * { display: none; }
@@ -159,7 +182,7 @@ kbd {
 .addrpick { display: flex; align-items: center; gap: 5px; min-width: 0; flex: 1; }
 .addrpick .ap-mode { font: 700 15px/1 var(--font); }
 .addrpick .ap-line { display: flex; align-items: center; gap: 4px; min-width: 0; }
-.addrpick .ap-addr { font: var(--t-sub); color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.addrpick .ap-addr { display: block; font: var(--t-sub); color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .addrpick svg { width: 15px; height: 15px; flex: none; color: var(--ink-2); }
 
 /* ===========================================================
@@ -271,10 +294,18 @@ kbd {
 .cat i {
   width: 44px; height: 44px; border-radius: 15px; display: grid; place-items: center;
   background: var(--surface-2); font-size: 22px; font-style: normal; line-height: 1;
-  transition: background var(--fast);
+  position: relative; overflow: hidden;
+  transition: background var(--fast), box-shadow var(--fast);
 }
-.cat[aria-pressed="true"] i { background: var(--fb); }
+/* the photographic tile sits over the emoji, which stays as its fallback */
+.cat i img, .catchip img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cat[aria-pressed="true"] i { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--fb); }
 .cat[aria-pressed="true"] { color: var(--fb); }
+.catchip {
+  width: 30px; height: 30px; border-radius: 10px; flex: none; margin-right: 9px;
+  display: grid; place-items: center; position: relative; overflow: hidden;
+  background: var(--surface-2); font-size: 15px; font-style: normal; line-height: 1;
+}
 .cat span { font: var(--t-micro); text-align: center; letter-spacing: -.01em; line-height: 1.15; }
 
 /* ===========================================================
@@ -415,7 +446,7 @@ kbd {
    Forms
    =========================================================== */
 .field { display: block; padding: 0 var(--pad) 14px; }
-.field > span.lbl { display: block; font: var(--t-cap); color: var(--ink-2); margin-bottom: 6px; letter-spacing: .01em; }
+.field > .lbl { display: block; font: var(--t-cap); color: var(--ink-2); margin-bottom: 6px; letter-spacing: .01em; }
 .input, .textarea, .select {
   width: 100%; background: var(--surface-2); border: 1.5px solid transparent;
   border-radius: var(--r-md); padding: 12px 14px; font: var(--t-body); color: var(--ink);

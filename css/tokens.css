@@ -11,6 +11,10 @@
   --fb-press:  #D31E07;
   --fb-tint:   #FFECE9;
   --fb-deep:   #8C1104;
+  /* the two ends of the app-icon gradient — the mark's tile is the only place
+     the accent is lit from above, so it reads as an icon rather than a button */
+  --fb-lift:   #FF5A3C;
+  --fb-sink:   #C81605;
   --plus:         #0B0B0D;   /* BANG+ obsidian */
   /* the stage the phone sits on — deliberately dark in both themes, like a
      product shot; the device itself is what changes with the viewer's theme */

@@ -24,6 +24,7 @@ window.FB = window.FB || {};
     var a = FB.store.address();
     var st = FB.S();
     return '<div class="addrbar">' +
+      FB.markTile(30, 'fb-tile--flat') +
       '<button class="addrpick" data-addrpick>' +
         '<span style="min-width:0">' +
           '<span class="ap-line"><span class="ap-mode">Delivery</span>' + FB.icon('down', 15) + '</span>' +
@@ -57,7 +58,8 @@ window.FB = window.FB || {};
       /* category rail */
       h += '<div class="cats">' + cats.map(function (c) {
         return '<button class="cat" data-cat="' + c.slug + '"' + (state.cat === c.slug ? ' aria-pressed="true"' : '') + '>' +
-          '<i>' + c.icon + '</i><span>' + FB.esc(c.label) + '</span></button>';
+          '<i>' + c.icon + '<img src="' + c.img + '" alt="" loading="lazy" onerror="this.remove()"></i>' +
+          '<span>' + FB.esc(c.label) + '</span></button>';
       }).join('') + '</div>';
 
       /* ticker */

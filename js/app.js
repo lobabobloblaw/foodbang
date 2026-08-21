@@ -45,13 +45,29 @@
     }).join('');
   };
 
+  /* The splash exists so that the app can say its own name before you have
+     asked it for anything. It is held for a beat, then dropped. */
+  function hideSplash(now) {
+    var el = document.getElementById('splash');
+    if (!el || el.classList.contains('out')) return;
+    var instant = now || FB.S().settings.motion === 'off' ||
+      (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    setTimeout(function () {
+      el.classList.add('out');
+      setTimeout(function () { el.classList.add('gone'); }, 300);
+    }, instant ? 0 : 420);
+  }
+
   function boot() {
     FB.applyAppearance();
+    FB.installFavicon();
+    FB.paintMarks();
 
     var n = FB.catalog.init(window.FB_MENUS);
     if (!n) {
+      hideSplash(true);
       document.getElementById('view').innerHTML =
-        '<div class="empty"><h3>Menu data missing</h3><p>Run <code>node tools/bundle.mjs</code> to rebuild ' +
+        '<div class="empty"><h3>Menu data missing</h3><p>Run <code>npm run bundle</code> to rebuild ' +
         '<code>js/data/menus.generated.js</code>, then reload.</p></div>';
       return;
     }
@@ -65,6 +81,7 @@
     FB.nav.go('home', {}, { silent: true });
     FB.tracker.resume();
     FB.updateDeskStats();
+    hideSplash();
 
     updateClock();
     setInterval(updateClock, 20000);
@@ -73,7 +90,7 @@
     if (!FB.S().seen.welcome) {
       setTimeout(function () {
         FB.modal.open({
-          html: '<div style="text-align:center;margin-bottom:6px;font-size:34px">🚪</div>' +
+          html: '<div style="display:flex;justify-content:center;margin-bottom:10px">' + FB.markTile(54) + '</div>' +
             '<h2 style="text-align:center">Welcome to FoodBang™</h2>' +
             '<p style="text-align:center">A satirical simulation of a food delivery app. Every restaurant, dish, price, ' +
             'fee and modifier is invented. Nothing is ordered, charged, or sent anywhere — it all lives in this browser.</p>' +
@@ -88,7 +105,7 @@
             });
           },
         });
-      }, 500);
+      }, 1050);   /* after the splash has cleared */
     }
 
     console.log('%cFoodBang™', 'font:800 20px system-ui;color:#FF2D14',
