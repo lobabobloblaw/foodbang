@@ -1546,6 +1546,49 @@ check('the restaurant can run out mid-order, and it is answered exactly once', (
   } finally { clock.restore(); app.dispose(); }
 });
 
+check('every screen mounts, and records what it binds', () => {
+  /* The render check never calls mount(), which is where a screen reaches for an
+     API — so a function renamed out from under a mount handler renders perfectly
+     and throws the moment anyone opens the screen. */
+  const app = harness.loadApp();
+  const { FB, clock, doc } = app;
+  try {
+    clock.set(new Date(2026, 7, 20, 19, 0, 0).getTime());
+    const bad = [];
+    let mounted = 0, bound = 0;
+    for (const fx of harness.FIXTURES) {
+      FB.store.reset();
+      const params = fx.apply(FB) || {};
+      for (const name of FB.screens.list()) {
+        const def = FB.screens.get(name);
+        if (!def.mount) continue;
+        const p = harness.paramsFor(name, params);
+        const root = doc.createElement('main');
+        try { root.innerHTML = def.render ? def.render(p) : ''; }
+        catch (e) { bad.push(fx.name + ' / ' + name + '.render: ' + e.message); continue; }
+        /* the shell parks this array; FB.on records every unbind fn into it */
+        const binds = FB._binds = [];
+        try { def.mount(root, p); mounted++; }
+        catch (e) { bad.push(fx.name + ' / ' + name + '.mount: ' + e.message); }
+        FB._binds = null;
+        bound += binds.length;
+        /* every recorded unbind must actually be callable, or the shell throws on
+           the next paint instead of on this one */
+        for (const off of binds) {
+          if (typeof off !== 'function') { bad.push(name + ' recorded a non-function unbind'); break; }
+        }
+        if (def.unmount) {
+          try { def.unmount(); } catch (e) { bad.push(fx.name + ' / ' + name + '.unmount: ' + e.message); }
+        }
+        binds.forEach((off) => { try { off(); } catch (e) { bad.push(name + ': unbind threw: ' + e.message); } });
+      }
+    }
+    if (bad.length) throw new Error(bad.length + ' problem(s):\n          ' + bad.slice(0, 6).join('\n          '));
+    if (!bound) throw new Error('no screen bound a single listener — the harness is not exercising mount');
+    return mounted + ' mounts, ' + bound + ' listeners recorded and unbound';
+  } finally { clock.restore(); app.dispose(); }
+});
+
 console.log('');
 if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
 console.log('all checks passed');
