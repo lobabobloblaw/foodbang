@@ -31,6 +31,7 @@ window.FB = window.FB || {};
     transparency: 'This is the fee for displaying the fees. It is displayed.',
     opacity: 'You have elected not to see the fees. Concealment requires active maintenance and is priced accordingly.',
     upsell: 'Suppressing recommendations removes a revenue stream. The stream is restored here.',
+    restraint: 'A reduced Hunger Level reduces recommended volume. The shortfall is billed.',
     data: 'Your behavioral data was subsidizing your food. You have withdrawn the subsidy.',
     pickupA: 'You are retrieving the order yourself. Facilitating your retrieval is a service.',
     pickupB: 'A vehicle was deployed and then stood down. Deployment is billed at deployment.',
@@ -120,6 +121,10 @@ window.FB = window.FB || {};
       if (s.feeTransparency) lines.push(line('transparency', 'Fee Transparency Fee', 0.85, 'The fee for displaying the fees.'));
       else lines.push(line('opacity', 'Fee Opacity Fee', 2.85, 'Concealment requires active maintenance.'));
       if (s.reduceUpsells) lines.push(line('upsell', 'Upsell Suppression Fee', 3.25, null));
+      /* both ends of the Hunger Level cost you. undefined <= 2 is false, so a
+         context that passes no hungerLevel — the headless $12 → $60.00 case — is
+         untouched by this branch. */
+      if (s.hungerLevel <= 2) lines.push(line('restraint', 'Restraint Accommodation Fee', 2.40, 'A reduced Hunger Level reduces recommended volume.'));
       if (!s.dataSharing) lines.push(line('data', 'Data Sovereignty Fee', 4.10, 'You have withdrawn the subsidy.'));
       if (ctx.scheduled) lines.push(line('schedule', 'Temporal Coordination Fee', 2.60, null));
       if (ctx.express) lines.push(line('express', 'Express Bang™', 5.99, 'Reduces estimated arrival by up to 1 minute.'));
@@ -179,21 +184,34 @@ window.FB = window.FB || {};
       ].map(function (t) { t.amount = FB.round2(sub * t.pct / 100); return t; });
     },
 
-    /* working promo codes. every one of them is a trap. */
+    /* Working promo codes. Every one of them is a trap, and every one of them works
+       exactly once — `spent` is what the code says the second time. WELCOME's blurb
+       has always asserted "you are not new"; now the app can prove it. */
     PROMOS: {
-      BANG10:    { kind: 'flat', value: 10, blurb: 'Applies to the subtotal, not the total.' },
-      FREEDELIV: { kind: 'flat', value: 4.99, blurb: 'Equal to the Delivery Fee, which is still charged.' },
-      HALFOFF:   { kind: 'pct',  value: 0.5, min: 180, blurb: 'Valid on subtotals over $180.00.' },
-      WELCOME:   { kind: 'flat', value: 3, blurb: 'New customers. You are not new.' },
-      ELECTROLYTES: { kind: 'flat', value: 7.5, blurb: 'It has what plants crave.' },
-      IDIOCRACY: { kind: 'pct', value: 0.15, blurb: 'Thank you for your patronage, valued customer.' },
+      BANG10:    { kind: 'flat', value: 10, blurb: 'Applies to the subtotal, not the total.',
+                   spent: 'BANG10 has been redeemed on this account. Codes are single-use. The code remains valid; your relationship to it does not.' },
+      FREEDELIV: { kind: 'flat', value: 4.99, blurb: 'Equal to the Delivery Fee, which is still charged.',
+                   spent: 'Redeemed. The Delivery Fee it was equal to is still charged.' },
+      HALFOFF:   { kind: 'pct',  value: 0.5, min: 180, blurb: 'Valid on subtotals over $180.00.',
+                   spent: 'Redeemed at a subtotal you have not reached since.' },
+      WELCOME:   { kind: 'flat', value: 3, blurb: 'New customers. You are not new.',
+                   spent: 'This code is for new customers. You used it, which is what stopped you being new.' },
+      ELECTROLYTES: { kind: 'flat', value: 7.5, blurb: 'It has what plants crave.',
+                   spent: 'Redeemed. What plants crave has been supplied and will not be supplied again.' },
+      IDIOCRACY: { kind: 'pct', value: 0.15, blurb: 'Thank you for your patronage, valued customer.',
+                   spent: 'Thank you for your patronage, valued customer. Your patronage has been recorded as complete.' },
     },
 
-    checkPromo: function (code, sub) {
+    /* `used` is st.promo.used, which has been written on every order since the app
+       shipped and read by nothing. The function stays pure — the caller passes it.
+       The spent branch sits AFTER "not recognized" and BEFORE the minimum, so a
+       burned HALFOFF says redeemed rather than "you are $155 short". */
+    checkPromo: function (code, sub, used) {
       code = String(code || '').trim().toUpperCase();
       if (!code) return null;
       var p = FB.fees.PROMOS[code];
       if (!p) return { code: code, valid: false, error: 'Code not recognized. It may have expired, or may never have existed.' };
+      if (used && used.indexOf(code) > -1) return { code: code, valid: false, spent: true, error: p.spent };
       if (p.min && sub < p.min) return { code: code, valid: false, error: 'Requires a subtotal of ' + FB.money(p.min) + '. You are ' + FB.money(p.min - sub) + ' short.' };
       return { code: code, valid: true, kind: p.kind, value: p.value, blurb: p.blurb };
     },

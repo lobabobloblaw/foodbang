@@ -170,8 +170,12 @@ window.FB = window.FB || {};
           s.reduceUpsells ? 'On. Adds the Upsell Suppression Fee ($3.25) to each order.' : 'Off. Recommendations appear at your Hunger Level.') +
         sw('dataSharing', s.dataSharing, 'Share behavioral data with partners',
           s.dataSharing ? 'On. Your data is subsidizing your food.' : 'Off. Adds the Data Sovereignty Fee ($4.10) to each order.') +
-        '<div class="callout callout--warn" style="margin-top:6px">' + FB.icon('alert', 17) +
-        '<span>Every privacy setting on this screen costs money to enable <em>and</em> to disable. There is no configuration of this screen that is free.</span></div>' +
+        /* The three subtitles above already name every price, so this is the frame
+           and not the explanation. Plain callout, not the amber one: a platform this
+           certain of itself files a disclosure, it does not raise a warning. */
+        '<div class="callout" style="margin-top:6px">' + FB.icon('info', 17) +
+        '<span>Disclosure required under §11: each setting on this screen carries a charge in both positions. ' +
+        'FoodBang™ does not offer an uncharged configuration and is not required to.</span></div>' +
         '</div>';
 
       var n = s.notifications;
@@ -480,15 +484,21 @@ window.FB = window.FB || {};
   };
 
   function openPromos() {
-    var sub = 25;
+    var used = FB.S().promo.used || [];
+    var codes = Object.keys(FB.fees.PROMOS);
     FB.sheet.open({
-      title: 'Promotions', sub: 'All codes are live. All codes have conditions.',
-      html: Object.keys(FB.fees.PROMOS).map(function (k) {
+      title: 'Promotions',
+      /* counted, not spelled: a seventh code used to make this sentence a lie */
+      sub: 'All ' + FB.int(codes.length) + ' codes are live. All ' + FB.int(codes.length) + ' have conditions.',
+      html: codes.map(function (k) {
         var p = FB.fees.PROMOS[k];
+        var spent = used.indexOf(k) > -1;
         return '<div class="mrow" style="align-items:flex-start">' + FB.icon('tag', 19) +
-          '<span class="mr-b"><b>' + k + '</b><span>' +
+          '<span class="mr-b"><b>' + k +
+            (spent ? ' <span class="badge badge--warn">REDEEMED — still circulating</span>' : '') + '</b><span>' +
           (p.kind === 'pct' ? Math.round(p.value * 100) + '% off the subtotal' : FB.money(p.value) + ' off the subtotal') +
-          (p.min ? ' · requires ' + FB.money(p.min) + ' subtotal' : '') + '<br>' + FB.esc(p.blurb) + '</span></span></div>';
+          (p.min ? ' · requires ' + FB.money(p.min) + ' subtotal' : '') + '<br>' +
+          FB.esc(spent ? p.spent : p.blurb) + '</span></span></div>';
       }).join('') +
       '<div class="fineprint">Discounts apply to the subtotal. Fees are calculated on the subtotal before the discount and on the total after it.</div>',
     });

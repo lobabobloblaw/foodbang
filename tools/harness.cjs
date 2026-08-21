@@ -81,7 +81,12 @@ function scriptList() {
   return out;
 }
 
-function loadApp() {
+/* opts.savedState: an object written into localStorage under the app's own key
+   BEFORE state.js loads, so migrate() runs on it exactly as it would in a browser.
+   The key is read off a previously-loaded app rather than spelled out here — it
+   carries the brand, and tools/rebrand.cjs does not rewrite this file. */
+function loadApp(opts) {
+  opts = opts || {};
   const sandbox = {};
   const ctx = vm.createContext(sandbox);
   const doc = stubDocument();
@@ -91,6 +96,7 @@ function loadApp() {
   sandbox.globalThis = sandbox;
   sandbox.document = doc;
   sandbox.localStorage = stubStorage();
+  if (opts.savedState) sandbox.localStorage.setItem(opts.storageKey, JSON.stringify(opts.savedState));
   sandbox.console = console;
   /* Timers are tracked so dispose() can clear them. state.js debounces its writes
      through setTimeout, so without this the smoke run renders everything, prints

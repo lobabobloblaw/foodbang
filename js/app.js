@@ -75,6 +75,14 @@
     FB.shell.init();
     FB.wireItemOpeners();
 
+    /* localStorage can be full, blocked outright, or absent in a private window.
+       state.js debounces its writes and would swallow every failure silently, so
+       it reports the first one here rather than reaching for the DOM itself. */
+    FB.store.onStorageError = function () {
+      FB.toast('Local storage is unavailable. This session will not be retained. ' +
+        'Your intake will be, in aggregate.', { kind: 'bad', icon: 'alert' });
+    };
+
     /* opening a fee explainer is an achievement, because of course it is */
     FB.on(document, 'click', '[data-why]', function () { FB.bodymax.flag('readFees'); });
 
@@ -95,7 +103,8 @@
             '<p style="text-align:center">A satirical simulation of a food delivery app. Every restaurant, dish, price, ' +
             'fee and modifier is invented. Nothing is ordered, charged, or sent anywhere — it all lives in this browser.</p>' +
             '<p style="text-align:center;font:var(--t-cap);color:var(--ink-3);margin-bottom:18px">' +
-            'Watch the fees. That is the whole joke.</p>' +
+            'Your intake profile has been created. Pricing is displayed at checkout, ' +
+            'and is displayed accurately.</p>' +
             '<div class="modal-acts"><button class="btn btn--primary btn--block" data-ok>Begin intake</button></div>',
           dismissible: false,
           onMount: function (b, h) {

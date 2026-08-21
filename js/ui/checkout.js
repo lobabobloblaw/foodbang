@@ -21,7 +21,9 @@ window.FB = window.FB || {};
      off with it rather than ride along on the validation it passed a basket ago. */
   function promoFor(p, sub) {
     var code = FB.cart.co(p.slug).promoCode;
-    return code ? FB.fees.checkPromo(code, sub) : null;
+    /* re-checked on every paint, never cached — which means placing an order flips
+       the code to spent in any other open cart still holding it. Deliberate. */
+    return code ? FB.fees.checkPromo(code, sub, FB.S().promo.used) : null;
   }
 
   function calc(p) {
@@ -269,7 +271,7 @@ window.FB = window.FB || {};
             var msg = body.querySelector('[data-msg]');
             FB.on(body, 'click', '[data-try]', function (e, t) { input.value = t.dataset.try; });
             FB.on(h.el, 'click', '[data-apply]', function () {
-              var r = FB.fees.checkPromo(input.value, FB.cart.subtotal(pp.slug));
+              var r = FB.fees.checkPromo(input.value, FB.cart.subtotal(pp.slug), FB.S().promo.used);
               if (!r) { h.close(); return; }
               if (!r.valid) { msg.className = 'field-err'; msg.textContent = r.error; return; }
               FB.cart.setCo(pp.slug, { promoCode: r.code }); h.close(); FB.nav.refresh();

@@ -17,7 +17,8 @@ window.FB = window.FB || {};
     var item = FB.catalog.item(slug, itemId);
     if (!store || !item) return;
 
-    var sel = existing ? FB.deep(existing.sel) : FB.catalog.defaultSel(item);
+    var hunger = FB.S().settings.hungerLevel;
+    var sel = existing ? FB.deep(existing.sel) : FB.catalog.defaultSel(item, hunger);
     var qty = existing ? existing.qty : 1;
     var note = existing ? existing.note : '';
     var showErr = false;
@@ -72,6 +73,7 @@ window.FB = window.FB || {};
       var rule = g.required
         ? (multi ? 'Required · choose ' + (g.min || 1) + (g.max > g.min ? '–' + g.max : '') : 'Required · choose 1')
         : (multi ? 'Optional · up to ' + g.max : 'Optional');
+      if (g.required && !existing && hunger >= 8) rule += ' · pre-selected at your Hunger Level';
       return '<div class="grp' + (missing ? ' is-missing' : '') + '" data-grp="' + g.id + '">' +
         '<div class="grp-h"><b>' + FB.esc(g.name) + '<span class="grp-rule">' + rule +
           (missing ? ' — a selection is required' : '') + '</span></b>' +

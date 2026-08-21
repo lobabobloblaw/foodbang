@@ -68,19 +68,70 @@ window.FB = window.FB || {};
   var subs = [];
   var saveTimer = null;
 
+  function isPlain(v) { return v !== null && typeof v === 'object' && !Array.isArray(v); }
+
+  /* Backfill every key the defaults have and the save does not, AT ANY DEPTH.
+     The old version walked the top level plus two hardcoded sub-objects, which is
+     why plus.saved and plus.retentionUsed are undefined on every existing save —
+     and why `st.meta.lifetimeCalories += load.calories` on a save written before
+     that field existed poisons a lifetime total to NaN permanently. Adding depth
+     means adding fields, so this is the thing that has to be right first.
+
+     Plain objects only. An array in a saved value is the user's data: merging the
+     defaults into a saved addresses list would resurrect an address they deleted,
+     and a defaults array is only ever a starting point, never a floor. A value the
+     user already has is never overwritten. */
+  function fillDefaults(saved, d) {
+    Object.keys(d).forEach(function (k) {
+      var dv = d[k];
+      if (saved[k] === undefined) {
+        saved[k] = (dv !== null && typeof dv === 'object') ? FB.deep(dv) : dv;
+      } else if (isPlain(dv) && isPlain(saved[k])) {
+        fillDefaults(saved[k], dv);
+      }
+    });
+    return saved;
+  }
+
+  /* A VERSION bump used to mean `return defaults()` — erasing every order, badge
+     and lifetime total in an app whose central conceit is a record that "cannot be
+     reversed within this application". Each rung transforms a save one step, in
+     order, and the save before a breaking step is kept in a backup slot.
+     Adding a FIELD needs no rung: fillDefaults above handles that, which is the
+     whole point. Add a rung only for a genuinely breaking RESHAPE, and then only
+     with its own key, e.g.  2: function (s) { …; return s; }  */
+  var MIGRATIONS = {};
+
+  function backup(s) {
+    try { localStorage.setItem(KEY + '.bak', JSON.stringify(s)); } catch (e) { /* full, or blocked */ }
+  }
+
+  /* Two ledgers grow without bound — one entry per order, forever. At some point a
+     save stops fitting in the quota and every write starts failing silently. */
+  var HISTORY_CAP = 200;
+
   function migrate(s) {
     var d = defaults();
-    if (!s || s.v !== VERSION) return d;
-    /* shallow-merge any keys added since the save was written */
-    Object.keys(d).forEach(function (k) {
-      if (s[k] === undefined) s[k] = d[k];
-    });
-    Object.keys(d.settings).forEach(function (k) {
-      if (s.settings[k] === undefined) s.settings[k] = d.settings[k];
-    });
-    Object.keys(d.settings.notifications).forEach(function (k) {
-      if (s.settings.notifications[k] === undefined) s.settings.notifications[k] = d.settings.notifications[k];
-    });
+    if (!s || typeof s !== 'object') return d;
+
+    var from = Number(s.v) || 0;
+    if (from > VERSION) return d;              /* written by a newer build */
+    if (from < VERSION) {
+      backup(s);
+      for (var v = from + 1; v <= VERSION; v++) {
+        var step = MIGRATIONS[v];
+        if (typeof step !== 'function') return d;   /* no rung: the old behaviour */
+        try { s = step(s) || s; } catch (e) { return d; }
+      }
+      s.v = VERSION;
+    }
+
+    fillDefaults(s, d);
+
+    if (Array.isArray(s.orders) && s.orders.length > HISTORY_CAP) s.orders.length = HISTORY_CAP;
+    if (s.bodymax && Array.isArray(s.bodymax.history) && s.bodymax.history.length > HISTORY_CAP) {
+      s.bodymax.history.length = HISTORY_CAP;
+    }
     /* A cart bucket can exist with no lines: the store page's Delivery/Pickup toggle
        writes to st.cart[slug].co before anything is added. That is right for the
        session you are shopping in and wrong a week later — a Pickup chosen once on an
@@ -107,15 +158,33 @@ window.FB = window.FB || {};
     try { return migrate(JSON.parse(raw)); } catch (e) { return defaults(); }
   }
 
+  var storageWarned = false;
+
   function persist() {
     clearTimeout(saveTimer);
     saveTimer = setTimeout(function () {
-      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* quota / blocked */ }
+      try { localStorage.setItem(KEY, JSON.stringify(state)); }
+      catch (e) {
+        /* Quota, private mode, or storage blocked outright. Say so ONCE: writes are
+           debounced at 90ms and retry on the next change, so a per-failure message
+           would stack one toast per keystroke. Reported through a hook rather than
+           FB.toast directly, because nothing in js/core may touch the DOM — the
+           boot file owns how the app speaks. */
+        if (storageWarned) return;
+        storageWarned = true;
+        if (typeof store.onStorageError === 'function') {
+          try { store.onStorageError(e); } catch (e2) {}
+        }
+      }
     }, 90);
   }
 
   var store = {
     get state() { return state; },
+    /* exported so a test can seed a save without spelling the brand into a file
+       that tools/rebrand.cjs does not rewrite */
+    KEY: KEY,
+    onStorageError: null,
     /** mutate state through a function, then persist + notify */
     set: function (fn, opts) {
       var r = fn(state);

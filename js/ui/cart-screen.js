@@ -29,7 +29,7 @@ window.FB = window.FB || {};
          hardcode delivery, so a cart switched to Pickup on the store page quoted a
          total several dollars off from the one checkout would charge */
       var co = FB.cart.co(p.slug);
-      var promoCode = co.promoCode ? FB.fees.checkPromo(co.promoCode, sub) : null;
+      var promoCode = co.promoCode ? FB.fees.checkPromo(co.promoCode, sub, FB.S().promo.used) : null;
       var calc = FB.fees.compute({
         subtotal: sub, lineCount: lines.length, store: s, mode: co.mode,
         express: co.express, scheduled: !!co.scheduled,

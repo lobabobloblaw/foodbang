@@ -24,7 +24,7 @@ function eq(actual, expected, what) {
 global.window = {};
 require(path.join(ROOT, 'js/core/util.js'));
 const FB = global.window.FB;
-FB.S = () => ({ settings: { feeTransparency: true, reduceUpsells: false, dataSharing: true, autoTipPct: 42 } });
+FB.S = () => ({ settings: { feeTransparency: true, reduceUpsells: false, dataSharing: true, autoTipPct: 42, hungerLevel: 7 } });
 require(path.join(ROOT, 'js/core/fees.js'));
 require(path.join(ROOT, 'js/data/menus.generated.js'));
 const MENUS = global.window.FB_MENUS;
@@ -57,6 +57,7 @@ check('every fee line has a FEE_WHY entry, in every context', () => {
     { subtotal: 40, lineCount: 3, plus: true },
     { subtotal: 400, lineCount: 3, plus: true },
     { subtotal: 40, lineCount: 3, settings: { ...base, feeTransparency: false, reduceUpsells: true, dataSharing: false } },
+    { subtotal: 40, lineCount: 3, settings: { ...base, hungerLevel: 1 } },
   ];
   const seen = new Set(), missing = new Set();
   for (const ctx of contexts) {
@@ -343,6 +344,130 @@ check('rendered markup keeps its accessible names', () => {
   }
   if (bad.length) throw new Error(bad.length + ' problem(s):\n          ' + bad.slice(0, 8).join('\n          '));
   return RENDERED.length + ' rendered fragments swept';
+});
+
+check('a save written before a field existed gets it back, at any depth', () => {
+  /* migrate() used to walk the top level plus two hardcoded sub-objects, so the
+     first NESTED field anyone added arrived undefined on every existing save and
+     `st.meta.lifetimeCalories += n` poisoned a lifetime total to NaN forever.
+     Adding depth to this app means adding fields, so this is load-bearing. */
+  const probe = harness.loadApp();
+  const KEY = probe.FB.store.KEY;
+  const fresh = JSON.parse(JSON.stringify(probe.FB.S()));
+  probe.dispose();
+
+  function leaves(o, prefix, out) {
+    Object.keys(o).forEach((k) => {
+      const v = o[k];
+      const p = prefix ? prefix + '.' + k : k;
+      if (v !== null && typeof v === 'object' && !Array.isArray(v)) leaves(v, p, out);
+      else out.push(p);
+    });
+    return out;
+  }
+  function at(o, p) { return p.split('.').reduce((a, k) => (a === undefined || a === null ? undefined : a[k]), o); }
+
+  const expected = leaves(fresh, '', []);
+
+  /* the emptiest save the app can be handed that still claims to be current */
+  const bare = harness.loadApp({ savedState: { v: 1 }, storageKey: KEY });
+  const got = bare.FB.S();
+  const missing = expected.filter((p) => at(got, p) === undefined);
+  bare.dispose();
+  if (missing.length) {
+    throw new Error(missing.length + ' leaf/leaves arrived undefined, e.g. ' + missing.slice(0, 5).join(', '));
+  }
+
+  /* and a populated save must keep everything it already had */
+  const saved = {
+    v: 1,
+    meta: { orderCount: 7, lifetimeSpend: 421.5 },
+    settings: { theme: 'dark', hungerLevel: 2, notifications: { promos: false } },
+    plus: { active: true },
+    addresses: [{ id: 'only', label: 'Only', line1: 'x', city: 'y', isDefault: true }],
+    favorites: ['starbux'],
+  };
+  const app = harness.loadApp({ savedState: saved, storageKey: KEY });
+  const st = app.FB.S();
+  const kept = [
+    ['meta.orderCount', 7], ['meta.lifetimeSpend', 421.5],
+    ['settings.theme', 'dark'], ['settings.hungerLevel', 2],
+    ['settings.notifications.promos', false], ['plus.active', true],
+  ];
+  for (const [p, v] of kept) {
+    if (at(st, p) !== v) { app.dispose(); throw new Error('overwrote a saved value at ' + p + ': got ' + at(st, p)); }
+  }
+  /* An array in a save is the user's data. Merging the defaults in would resurrect
+     an address they deleted; a defaults array is a starting point, never a floor. */
+  if (st.addresses.length !== 1 || st.addresses[0].id !== 'only') {
+    app.dispose(); throw new Error('saved array was merged into: ' + JSON.stringify(st.addresses.map((a) => a.id)));
+  }
+  if (st.favorites.length !== 1) { app.dispose(); throw new Error('favorites array was merged into'); }
+  /* the whole point: this used to be undefined, and += made it NaN */
+  const poisoned = st.meta.lifetimeCalories + 1200;
+  app.dispose();
+  if (!Number.isFinite(poisoned)) throw new Error('meta.lifetimeCalories is not a number: ' + st.meta.lifetimeCalories);
+
+  return expected.length + ' leaves backfilled, saved values and arrays untouched';
+});
+
+check('a raised Hunger Level raises the default and never lowers it', () => {
+  /* Settings promises "portion defaults are raised one tier" and nothing read the
+     number. The obvious index rule is wrong — the last option is the dearest in
+     only 445 of the 1,019 required groups — and a pure price rule pre-selects a
+     refusal in 57 of them, which is less food for more money. */
+  const app = harness.loadApp();
+  const { FB } = app;
+  const DECLINE = /^\s*(no\b|no-|none\b|without\b|decline|omit|skip|hold the\b|do not\b|zero\b|bucketless|refuse|opt.?out)/i;
+  const lowered = [], declined = [], unorderable = [];
+  let items = 0, raised = 0;
+  FB.catalog.all().forEach((s) => s.menu.forEach((sec) => sec.items.forEach((it) => {
+    items++;
+    const p = [1, 8, 10].map((hh) => FB.catalog.unitPrice(it, FB.catalog.defaultSel(it, hh)));
+    if (p[1] < p[0] || p[2] < p[0] || p[2] < p[1]) lowered.push(it.id + ' ' + p.join('/'));
+    if (p[2] > p[0]) raised++;
+    for (const hh of [1, 8, 10]) {
+      const sel = FB.catalog.defaultSel(it, hh);
+      if (FB.catalog.validate(it, sel).length) unorderable.push(it.id + ' @ ' + hh);
+      (it.groups || []).forEach((g) => {
+        if (!g.required) return;
+        const o = g.options.filter((x) => x.id === sel[g.id][0])[0];
+        /* only a group with nothing BUT declines may default to one */
+        if (hh >= 8 && DECLINE.test(o.name) && g.options.some((x) => !DECLINE.test(x.name))) {
+          declined.push(it.id + '/' + g.id + ' -> "' + o.name + '"');
+        }
+      });
+    }
+  })));
+  app.dispose();
+  if (lowered.length) throw new Error('Hunger LOWERED the price on ' + lowered.length + ', e.g. ' + lowered[0]);
+  if (declined.length) throw new Error('Hunger pre-selected a refusal in ' + declined.length + ', e.g. ' + declined[0]);
+  if (unorderable.length) throw new Error('Hunger left ' + unorderable.length + ' unorderable, e.g. ' + unorderable[0]);
+  return raised + ' of ' + items + ' items cost more at Hunger 10, none less, none a refusal';
+});
+
+check('every promo code burns, and says something specific when it does', () => {
+  /* st.promo.used has been written on every order since the app shipped and read
+     by nothing, so all six codes were infinitely reusable — while WELCOME's own
+     blurb asserted "New customers. You are not new." */
+  const codes = Object.keys(FB.fees.PROMOS);
+  for (const k of codes) {
+    const fresh = FB.fees.checkPromo(k, 999, []);
+    if (!fresh.valid) throw new Error(k + ' is not valid unused at a $999 subtotal');
+    /* the burn is opt-in: a caller that passes no `used` gets the old behaviour */
+    if (JSON.stringify(FB.fees.checkPromo(k, 999)) !== JSON.stringify(fresh)) {
+      throw new Error(k + ' behaves differently with no `used` argument');
+    }
+    const burnt = FB.fees.checkPromo(k, 999, [k]);
+    if (burnt.valid) throw new Error(k + ' is still valid after being used');
+    if (!burnt.error) throw new Error(k + ' has no `spent` string');
+    if (burnt.error === fresh.blurb) throw new Error(k + ' reuses its blurb as its spent message');
+  }
+  /* the spent branch must sit before the minimum branch, or a burned HALFOFF says
+     "you are $170 short" rather than telling you that you already used it */
+  const low = FB.fees.checkPromo('HALFOFF', 10, ['HALFOFF']);
+  if (/short/.test(low.error)) throw new Error('a spent code below its minimum reports the shortfall instead');
+  return codes.length + ' codes, each single-use with its own justification';
 });
 
 console.log('');

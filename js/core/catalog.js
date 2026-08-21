@@ -35,6 +35,40 @@ window.FB = window.FB || {};
     return m;
   }
 
+  /* Settings promises that a raised Hunger Level raises portion defaults one tier,
+     and until now nothing here read the number.
+
+     Rank by PRICE, never by index: across the 1,019 required groups the last option
+     is the highest-priced one in only 445 of them, and in 118 it costs LESS than the
+     first — mcronalds mcr-002/g2 ends in "No Sheet" — so "select the largest" would
+     sometimes lower the price. Price is the ordering the data actually encodes, and
+     bundle.cjs already validates it as numeric.
+
+     Declines are excluded. 57 required groups price a refusal highest, so a pure
+     price rule opens Hunger 10 on "No Rice", "No Vessel" and "Decline to Declare":
+     less food for more money, which reads as a broken app rather than as a joke.
+     Matched by name, the way itemLoad() below already matches sauces. */
+  var DECLINE = /^\s*(no\b|no-|none\b|without\b|decline|omit|skip|hold the\b|do not\b|zero\b|bucketless|refuse|opt.out)/i;
+  function optPrice(o) { return o.price || 0; }
+
+  function hungerPick(g, hunger) {
+    var first = g.options[0];
+    if (!(hunger >= 8)) return first;
+    var eligible = g.options.filter(function (o) { return !DECLINE.test(o.name); });
+    if (!eligible.length) return first;
+    var pick;
+    if (hunger >= 10) {
+      pick = eligible.reduce(function (a, b) { return optPrice(b) > optPrice(a) ? b : a; }, eligible[0]);
+    } else {
+      /* one tier up: the cheapest option that still costs more than the default */
+      var up = eligible.filter(function (o) { return optPrice(o) > optPrice(first); });
+      if (!up.length) return first;
+      pick = up.reduce(function (a, b) { return optPrice(b) < optPrice(a) ? b : a; }, up[0]);
+    }
+    /* the floor, whatever the data does: Hunger must never lower a price */
+    return optPrice(pick) >= optPrice(first) ? pick : first;
+  }
+
   FB.catalog = {
     init: function (bundle) {
       stores = []; bySlug = {}; itemIndex = [];
@@ -150,11 +184,11 @@ window.FB = window.FB || {};
     unitPrice: function (item, sel) {
       return FB.round2(item.price + FB.sum(FB.catalog.optionsFor(item, sel), function (r) { return r.option.price || 0; }));
     },
-    /** default selection: first option of every required group */
-    defaultSel: function (item) {
+    /** default selection: first option of every required group, raised by Hunger */
+    defaultSel: function (item, hunger) {
       var sel = {};
       (item.groups || []).forEach(function (g) {
-        if (g.required) sel[g.id] = [g.options[0].id];
+        if (g.required) sel[g.id] = [hungerPick(g, hunger).id];
         else sel[g.id] = [];
       });
       return sel;
