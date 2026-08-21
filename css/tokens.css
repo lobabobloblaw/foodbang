@@ -186,18 +186,6 @@
 :root[data-textsize="l"]  { --fs: 1.1; }
 :root[data-textsize="xl"] { --fs: 1.2; }
 
-/* The TRACKR map under weather. Only the tokens move — every rule that paints the
-   map reads them, so the whole thing re-tints from four declarations. */
-#device[data-weather="rain"] {
-  --map-bg: #DEDEE4; --map-block: #D2D2DA; --map-park: #C2CFBE; --map-water: #AEC3D6;
-}
-#device[data-weather="heat"] {
-  --map-bg: #F0E9DC; --map-block: #E4DCCA; --map-park: #D6DCB4; --map-water: #C6D8E2;
-}
-#device[data-daypart="deadzone"], #device[data-daypart="earlyam"] {
-  --map-bg: #C9C6CE; --map-block: #BDBAC4; --map-park: #B4C0AF; --map-water: #A8BACB;
-}
-
 /* TRACKR map palette */
 :root {
   --map-bg: #E9E6E0;
@@ -216,4 +204,51 @@
 :root[data-theme="dark"] {
   --map-bg: #191920; --map-block: #21212A; --map-road: #33333F;
   --map-roadcase: #14141A; --map-park: #1E2C22; --map-water: #1A2634;
+}
+
+/* The map under weather and time of day. #device is an ancestor of #view, and a
+   custom property inherits from the nearest ancestor that DECLARES it — so these
+   beat the :root palettes above regardless of specificity, and every one of them
+   has to carry the dark case itself or a dark-mode map gets a near-white plate
+   with near-black roads. All SIX tokens in every block, too: redeclaring four of
+   them left the roads at the other theme's value. */
+#device[data-weather="rain"] {
+  --map-bg: #DEDEE4; --map-block: #D2D2DA; --map-road: #F4F4F8;
+  --map-roadcase: #C2C2CC; --map-park: #C2CFBE; --map-water: #AEC3D6;
+}
+#device[data-weather="heat"] {
+  --map-bg: #F0E9DC; --map-block: #E4DCCA; --map-road: #FFFDF6;
+  --map-roadcase: #D4CBB6; --map-park: #D6DCB4; --map-water: #C6D8E2;
+}
+#device[data-daypart="deadzone"], #device[data-daypart="earlyam"] {
+  --map-bg: #C9C6CE; --map-block: #BDBAC4; --map-road: #E6E3EA;
+  --map-roadcase: #ADAAB5; --map-park: #B4C0AF; --map-water: #A8BACB;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #device[data-weather="rain"] {
+    --map-bg: #16161C; --map-block: #1E1E26; --map-road: #2C2C38;
+    --map-roadcase: #101015; --map-park: #1A2620; --map-water: #172130;
+  }
+  :root:not([data-theme="light"]) #device[data-weather="heat"] {
+    --map-bg: #201C18; --map-block: #2A2520; --map-road: #3A342C;
+    --map-roadcase: #17130F; --map-park: #262C1C; --map-water: #1C2630;
+  }
+  :root:not([data-theme="light"]) #device[data-daypart="deadzone"],
+  :root:not([data-theme="light"]) #device[data-daypart="earlyam"] {
+    --map-bg: #101016; --map-block: #17171E; --map-road: #26262F;
+    --map-roadcase: #0B0B10; --map-park: #16201A; --map-water: #131C28;
+  }
+}
+:root[data-theme="dark"] #device[data-weather="rain"] {
+  --map-bg: #16161C; --map-block: #1E1E26; --map-road: #2C2C38;
+  --map-roadcase: #101015; --map-park: #1A2620; --map-water: #172130;
+}
+:root[data-theme="dark"] #device[data-weather="heat"] {
+  --map-bg: #201C18; --map-block: #2A2520; --map-road: #3A342C;
+  --map-roadcase: #17130F; --map-park: #262C1C; --map-water: #1C2630;
+}
+:root[data-theme="dark"] #device[data-daypart="deadzone"],
+:root[data-theme="dark"] #device[data-daypart="earlyam"] {
+  --map-bg: #101016; --map-block: #17171E; --map-road: #26262F;
+  --map-roadcase: #0B0B10; --map-park: #16201A; --map-water: #131C28;
 }

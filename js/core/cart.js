@@ -82,6 +82,22 @@ window.FB = window.FB || {};
       });
       return out;
     },
+    /* The slot an order will actually be scheduled for: the one you chose, or the
+       store's opening time if it is shut. DERIVED, never written — co.scheduled is
+       a clock STRING that renders as 'Scheduled · ' + itself.
+
+       It lives here, in core, because BOTH compute call sites need it and putting
+       it in either screen is how it diverged: checkout forced a slot for a closed
+       store and the cart preview did not, so a cart quoted $60.00 and the checkout
+       one tap later said $65.00. The comment above CO_DEFAULTS records the same
+       drift happening once before, with `mode`. */
+    slot: function (slug) {
+      var co = FB.cart.co(slug);
+      if (co.scheduled) return co.scheduled;
+      var s = FB.catalog.get(slug);
+      return (s && !FB.catalog.isOpen(s)) ? s.opensAt : null;
+    },
+
     setCo: function (slug, patch) {
       FB.store.set(function (st) {
         var b = bucket(slug, true);

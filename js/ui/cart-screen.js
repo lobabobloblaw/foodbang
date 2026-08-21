@@ -32,7 +32,9 @@ window.FB = window.FB || {};
       var promoCode = co.promoCode ? FB.fees.checkPromo(co.promoCode, sub, FB.S().promo.used) : null;
       var calc = FB.fees.compute({
         subtotal: sub, lineCount: lines.length, store: s, mode: co.mode,
-        express: co.express, scheduled: !!co.scheduled,
+        /* FB.cart.slot, not co.scheduled: a closed store is scheduled whether or
+           not you picked a time, and checkout charges for it either way */
+        express: co.express, scheduled: !!FB.cart.slot(p.slug),
         tipPct: co.tipCustom != null ? null : co.tipPct, tipCustom: co.tipCustom,
         promo: promoCode,
         plus: FB.store.isPlus(), settings: FB.S().settings, distanceMi: s.distanceMi,
@@ -120,7 +122,14 @@ window.FB = window.FB || {};
       FB.on(root, 'click', '[data-rm]', function (e, t) {
         var lid = t.dataset.rm;
         FB.busy(t.closest('.cartline') || t, 'cartRemove', function () {
+          /* The write is unconditional — cancelling it would silently drop a removal
+             the user tapped — but the NAVIGATION only happens if we are still on the
+             screen that scheduled it, or a half-second delay pops a screen out from
+             under whatever you moved to. */
+          var here = FB.nav.current();
+          var still = here && here.name === 'cart' && here.params.slug === p.slug;
           FB.cart.remove(p.slug, lid);
+          if (!still) return;
           FB.toast('Removed. The Menu Digitization Surcharge for this item is non-refundable.');
           if (!FB.cart.lines(p.slug).length) FB.nav.back(); else FB.nav.refresh();
         });

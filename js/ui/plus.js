@@ -95,7 +95,11 @@ window.FB = window.FB || {};
         FB.store.set(function (st) {
           st.plus.active = true; st.plus.since = Date.now(); st.plus.trialUsed = true;
           st.plus.renewsOn = FB.dayLabel(Date.now() + 30 * 86400000) + ', automatically';
-          st.plus.saved = 0;
+          /* BOTH halves, or the panel's own books contradict each other: net is
+             saved - dues - paid, and a rejoin that keeps the previous membership's
+             Benefit Realization Fees starts you in the red for someone else's. The
+             cancellation counters are deliberately lifetime and stay. */
+          st.plus.saved = 0; st.plus.paid = 0;
           return st;
         });
         FB.toast('BANG+ activated. Your first billing occurs in 30 days, or sooner.', { kind: 'plus', ms: 3800 });

@@ -33,6 +33,7 @@ window.FB = window.FB || {};
     upsell: 'Suppressing recommendations removes a revenue stream. The stream is restored here.',
     restraint: 'A reduced Hunger Level reduces recommended volume. The shortfall is billed.',
     standing: 'Maintaining a Standing requires maintenance. The fee is assessed at the tier you hold, not the tier you use.',
+    removal: 'A removed item is credited at its base price. Required selections were performed and are not credited.',
     substitution: 'A substitution is an operation performed on your order after you placed it, and is billed as one.',
     hold: 'Holding an order occupies a position that would otherwise be occupied by an order that is moving.',
     tipreview: 'A tip is a commitment. Revising a commitment is an operation, and operations are billed.',
@@ -63,6 +64,11 @@ window.FB = window.FB || {};
   /* BangBux™: 2% of the fee stack back, in whole BangBux™, one per order. Rounded
      rather than floored — at 2% of a typical stack, flooring would mean the balance
      never moved and the whole benefit would be invisible. */
+  /* Charged after the order is placed, by js/sim/tracker.js — but priced HERE, so
+     the amount the incident block quotes and the amount fees.compute would charge
+     cannot drift apart, and so the FEE_WHY walk covers both ids. */
+  var INCIDENT_FEES = { substitution: 2.40, hold: 1.85, removal: 0 };
+
   var SCRIP_RATE = 0.02;
   var SCRIP_MAX_PER_ORDER = 1;
   var SCRIP_TTL_MS = 72 * 3600 * 1000;
@@ -81,6 +87,7 @@ window.FB = window.FB || {};
    */
   FB.fees = {
     STANDING_UPKEEP: STANDING_UPKEEP,
+    INCIDENT_FEES: INCIDENT_FEES,
     SCRIP_RATE: SCRIP_RATE, SCRIP_MAX_PER_ORDER: SCRIP_MAX_PER_ORDER, SCRIP_TTL_MS: SCRIP_TTL_MS,
     TAX_RATE: TAX_RATE, PEAK_MULT: PEAK_MULT,
 
@@ -181,8 +188,8 @@ window.FB = window.FB || {};
       /* §14, added in Terms 9.4.3 and billed from the moment you accept it — the
          only fee in this engine you agreed to in writing. */
       if (ctx.tosVersion >= 3) lines.push(line('reconciliation', 'Reconciliation Fee', 1.20, null));
-      if (ctx.substitution) lines.push(line('substitution', 'Substitution Fee', 2.40, 'The substitute is selected by the restaurant.'));
-      if (ctx.hold) lines.push(line('hold', 'Order Hold Fee', 1.85, 'The order waits. The food does not.'));
+      if (ctx.substitution) lines.push(line('substitution', 'Substitution Fee', INCIDENT_FEES.substitution, 'The substitute is selected by the restaurant.'));
+      if (ctx.hold) lines.push(line('hold', 'Order Hold Fee', INCIDENT_FEES.hold, 'The order waits. The food does not.'));
       if (ctx.tipReviews > 0) {
         lines.push(line('tipreview', 'Tip Reduction Review Fee', 2.40 * ctx.tipReviews,
           FB.plural(ctx.tipReviews, 'revision') + ' reviewed.'));

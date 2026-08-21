@@ -116,6 +116,13 @@ window.FB = window.FB || {};
     count: function () { return stores.length; },
     itemCount: function () { return itemIndex.length; },
     get: function (slug) { return bySlug[slug] || null; },
+    /** an item by id alone, with the store it belongs to — st.restock holds bare ids */
+    find: function (itemId) {
+      for (var i = 0; i < itemIndex.length; i++) {
+        if (itemIndex[i].item.id === itemId) return itemIndex[i];
+      }
+      return null;
+    },
     item: function (slug, itemId) {
       var s = bySlug[slug]; if (!s) return null;
       for (var i = 0; i < s.menu.length; i++) {
@@ -144,7 +151,13 @@ window.FB = window.FB || {};
       var d = new Date(now);
       var day = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
       var roll = FB.seeded('86:' + item.id + ':' + day)();
-      var load = FB.world ? FB.world.kitchenLoad(item.storeSlug, now) : 0.5;
+      /* The THRESHOLD has to be day-stable too. Reading kitchen load at `now` made
+         it sweep a 0.1-wide band every twenty minutes, so any roll landing inside
+         that band toggled all day — "unavailable today" that came back at 3:20 and
+         left again at 3:40. Sampled at dinner on the item's own day instead, which
+         keeps the "scarcity bites when the kitchen is slammed" weighting. */
+      var dinner = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 19, 0, 0).getTime();
+      var load = FB.world ? FB.world.kitchenLoad(item.storeSlug, dinner) : 0.5;
       /* 22% of days at a quiet kitchen, up to about 45% at a slammed one */
       return roll > (0.22 + load * 0.23);
     },

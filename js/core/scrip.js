@@ -57,8 +57,14 @@ window.FB = window.FB || {};
     spend: function (amt, at) {
       var left = amt;
       if (!(left > 0)) return 0;
+      var cutoff = at || Date.now();
       FB.store.set(function (st) {
-        var live = (st.scrip || []).slice().sort(function (a, b) { return a.at - b.at; });
+        /* unexpired only, matching balance() — expire() runs once at boot, so a tab
+           left open past a grant's 72 hours would otherwise spend a balance the
+           rest of the app has already stopped counting */
+        var live = (st.scrip || [])
+          .filter(function (g) { return cutoff - g.at < ttl(); })
+          .sort(function (a, b) { return a.at - b.at; });
         live.forEach(function (g) {
           if (left <= 0) return;
           var take = Math.min(g.amt, left);

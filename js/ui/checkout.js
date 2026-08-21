@@ -28,15 +28,9 @@ window.FB = window.FB || {};
 
   /* An order from a shut store is not refused — it is scheduled, at the Temporal
      Coordination Fee this app already charges for the privilege of the future.
-     DERIVED, never written: co.scheduled is a clock STRING (checkout renders
-     'Scheduled · ' + it, so storing `true` prints "Scheduled · true"), and writing
-     to the cart from a render path would be a state change inside a paint. */
-  function slotFor(p) {
-    var co = FB.cart.co(p.slug);
-    if (co.scheduled) return co.scheduled;
-    var s = FB.catalog.get(p.slug);
-    return (s && !FB.catalog.isOpen(s)) ? s.opensAt : null;
-  }
+     The rule itself lives in js/core/cart.js so the cart preview reads the same
+     one; duplicating it here is exactly how the two screens came to disagree. */
+  function slotFor(p) { return FB.cart.slot(p.slug); }
 
   function calc(p) {
     var s = FB.catalog.get(p.slug);
@@ -397,8 +391,12 @@ window.FB = window.FB || {};
          orders must keep rendering exactly as they were delivered, even after the
          person's rating with you moves. */
       var person = FB.slingers.assign(id, Date.now());
+      /* tenure is DAYS EMPLOYED, which is what the Slinger card's label says. The
+         count of deliveries they have made for you is timesWithYou, and it is
+         rendered by FB.slingers.tenureLine() above the chat. */
       var g = { name: person.name, rating: person.rating, deliveries: person.deliveries,
-                vehicle: person.vehicle, photo: person.photo, tenure: person.timesWithYou };
+                vehicle: person.vehicle, photo: person.photo, tenure: person.tenure,
+                timesWithYou: person.timesWithYou };
       var order = {
         id: id, slug: s.slug, storeName: s.name, logo: s.logoSrc,
         placedAt: Date.now(), mode: co.mode, express: co.express, scheduled: slotFor(p),
@@ -406,7 +404,10 @@ window.FB = window.FB || {};
         lines: lines, calc: { subtotal: c.subtotal, feesTotal: c.feesTotal, tax: c.taxLine.amount,
           tip: c.tipLine.amount, total: c.total, nonFood: c.nonFood, multiple: c.multiple,
           feeLines: c.feeLines.map(function (l) { return { label: l.label, amount: l.amount, id: l.id, free: l.free }; }),
-          roundUp: c.roundLine ? c.roundLine.amount : 0, promo: c.promoAmount },
+          roundUp: c.roundLine ? c.roundLine.amount : 0, promo: c.promoAmount,
+          /* the rows, not just the scalar: store promotions now apply automatically,
+             so an order receipt without them prints lines that sum above its own total */
+          discounts: c.discounts.map(function (d) { return { label: d.label, amount: d.amount }; }) },
         status: 'placed', slinger: g, personId: person.id,
         etaMin: s.deliveryMax + (co.express ? -1 : 0), etaDrift: 0,
         events: [], rated: null, load: load, step: 0,

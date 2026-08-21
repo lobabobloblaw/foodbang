@@ -14,9 +14,9 @@ window.FB = window.FB || {};
   /* The labels continue the app version already printed on the Account screen —
      v9.4.1 (build 40118) — rather than starting a second, contradictory scheme. */
   var VERSIONS = [
-    { n: 1, label: '9.4.1', fries: 'one (1)', diff: [] },
+    { n: 1, label: '9.4.1', fries: 'one (1) fry', diff: [] },
     {
-      n: 2, label: '9.4.2', fries: 'one (1)',
+      n: 2, label: '9.4.2', fries: 'one (1) fry',
       diff: [
         '§2 — "Estimated arrival" is defined as an estimate of an arrival, and not as an estimate of your arrival or of any arrival.',
         '§7 — Fees quoted at the time of order are quoted at the time of order.',
@@ -24,7 +24,7 @@ window.FB = window.FB || {};
       ],
     },
     {
-      n: 3, label: '9.4.3', fries: 'two (2)',
+      n: 3, label: '9.4.3', fries: 'two (2) fries',
       diff: [
         '§4.2 — Slinger tribute increased from one (1) fry to two (2).',
         '§9 — Arbitration venue moved to a jurisdiction to be selected at the time of the dispute.',
@@ -32,7 +32,11 @@ window.FB = window.FB || {};
       ],
     },
     {
-      n: 4, label: '9.4.4', fries: 'two (2), and a third held in reserve',
+      /* `fries` is substituted into "{fries} fry as tribute", so it has to stay a
+         bare quantity. The clause lives in friesNote and is appended to the beat's
+         subtext instead. */
+      n: 4, label: '9.4.4', fries: 'two (2) fries',
+      friesNote: 'A third fry is held in reserve. Reserve fries are not consumed and are not returned.',
       diff: [
         '§4.2 — A third fry may be held in reserve. Reserve fries are not consumed and are not returned.',
         '§9 — The jurisdiction selected at the time of the dispute may be selected again.',
@@ -59,6 +63,7 @@ window.FB = window.FB || {};
     label: function (n) { return FB.tos.entry(n === undefined ? FB.tos.version() : n).label; },
     /** how many fries the Slinger is entitled to under the terms in force */
     fries: function (n) { return FB.tos.entry(n === undefined ? FB.tos.version() : n).fries; },
+    friesNote: function (n) { return FB.tos.entry(n === undefined ? FB.tos.version() : n).friesNote || null; },
 
     /** does placing order number `ordinal` require accepting a new version first? */
     dueAt: function (ordinal) {

@@ -91,11 +91,11 @@ window.FB = window.FB || {};
         ['{slinger} has arrived at {store}', null, 0],
         ['{slinger} is waiting', 'Standard wait. Waiting is included.', 2],
         ['Order collected', null, 0],
-        ['{slinger} has taken {fries} fry as tribute', 'This is permitted under the Slinger Agreement, §4.2.', 0],
+        ['{slinger} has taken {fries} as tribute', 'This is permitted under the Slinger Agreement, §4.2.{note}', 0],
       ],
       extra: {
         2: [['{slinger} is waiting behind someone who is also waiting', 'Both waits are included.', 2]],
-        3: [['{slinger} has taken a second (2nd) fry', 'This exceeds §4.2 and has been noted in your file, not theirs.', 0],
+        3: [['{slinger} has taken one more fry than §4.2 permits', 'This has been noted in your file, not theirs.', 0],
             ['The order was set down and picked up again', 'By the same person, at the same counter.', 1]],
       },
     },
@@ -196,8 +196,12 @@ window.FB = window.FB || {};
     var rnd = FB.seeded(o.id + ':' + stepKey);
     var take = FB.shuffle(pool, rnd).slice(0, Math.min(2, pool.length));
     take.forEach(function (ev) {
-      /* never at the front: the first beat of a step is its headline */
-      var at = out.length <= 1 ? out.length : 1 + Math.floor(rnd() * out.length);
+      /* A one-beat step is not a spine with a headline, it is a single line — and
+         appending to it meant the tier-3 "Delivered" variant sat at index 1 while
+         build() read index 0, so it could never once play. Replace it instead. */
+      if (out.length === 1) { out[0] = ev; return; }
+      /* otherwise never at the front: the first beat of a step is its headline */
+      var at = 1 + Math.floor(rnd() * out.length);
       out.splice(Math.min(at, out.length), 0, ev);
     });
     return out;
@@ -213,7 +217,8 @@ window.FB = window.FB || {};
       .replace(/\{vehicle\}/g, o.slinger.vehicle)
       /* filled at BUILD time, so an order keeps the terms it was placed under —
          and so §4.2 getting worse actually changes what the Slinger does */
-      .replace(/\{fries\}/g, (FB.tos && FB.tos.fries()) || 'one (1)');
+      .replace(/\{fries\}/g, (FB.tos && FB.tos.fries()) || 'one (1) fry')
+      .replace(/\{note\}/g, (FB.tos && FB.tos.friesNote()) ? ' ' + FB.tos.friesNote() : '');
   }
 
   /* ---------------- the timetable ----------------
@@ -317,6 +322,19 @@ window.FB = window.FB || {};
     return 0.10 + load * 0.30;
   }
 
+  /* The hold moves arrival but leaves the beats where they are, so every beat
+     stamped inside the hold window is already in the past when the gate lifts and
+     replays in one burst — forty seconds of hold is twenty simulated minutes, up to
+     two thirds of the whole narrative, dumped at once. Move the remaining beats
+     with it. */
+  function shiftAfterHold(o, heldMs) {
+    if (!(heldMs > 0)) return;
+    var from = o.incident ? o.incident.at : 0;
+    (o.schedule || []).forEach(function (b) { if (b.at >= from) b.at += heldMs; });
+    var base = (o.incident && o.incident.baseDeliverAt != null) ? o.incident.baseDeliverAt : o.deliverAt;
+    o.deliverAt = base + heldMs;
+  }
+
   function stepIndex(key) {
     for (var i = 0; i < STEPS.length; i++) if (STEPS[i].key === key) return i;
     return 0;
@@ -347,9 +365,15 @@ window.FB = window.FB || {};
         });
         changed = true;
       }
+      /* Anchored ONCE. Re-deriving the remaining span from the already-updated
+         deliverAt on every tick added the whole elapsed hold again each pass, so
+         the padding grew quadratically: forty seconds of not answering pushed
+         arrival out by nearly fifteen real minutes. Set outside the announce guard
+         so an order saved mid-hold before this fix is anchored on its next tick. */
+      if (inc.baseDeliverAt == null) inc.baseDeliverAt = o.deliverAt;
       if (now < inc.deadline) {
         /* the order waits. The food does not. */
-        o.deliverAt = Math.max(o.deliverAt, now + (o.deliverAt - inc.at));
+        o.deliverAt = inc.baseDeliverAt + (now - inc.at);
         return changed;
       }
       /* the deadline passed — possibly while the browser was closed. Elect once,
@@ -363,7 +387,7 @@ window.FB = window.FB || {};
           text: 'No resolution was selected',
           sub: 'Substitution has been elected on your behalf. Substitution was the most expensive available resolution.',
         });
-        o.deliverAt += INCIDENT_MS;
+        shiftAfterHold(o, INCIDENT_MS);
         changed = true;
       }
     }
@@ -425,9 +449,15 @@ window.FB = window.FB || {};
     if (!live.length) { stop(); return; }
     var now = Date.now();
     var changed = false;
+    /* A live countdown is a reason to REPAINT but not a reason to WRITE. During a
+       hold, replay() adds nothing and returns false, so gating the listeners on
+       `changed` alone froze the incident's own clock at the second it appeared. */
+    var repaint = false;
     live.forEach(function (o) {
       var r = replay(o, now);
       if (r) changed = true;
+      var inc = o.incident;
+      if (inc && !inc.resolution && now >= inc.at && now < inc.deadline) repaint = true;
       if (r === 'done') {
         FB.store.set(function (s) { s.activeOrderId = o.id; return s; }, { silent: true });
         /* An order abandoned last week settles at boot. Announcing it — with a "Rate
@@ -441,17 +471,19 @@ window.FB = window.FB || {};
     });
     if (changed) {
       FB.store.set(function (s) { return s; }, { silent: true });
-      listeners.forEach(function (f) { try { f(); } catch (e) {} });
       if (FB.shell && FB.shell.repaintChrome) FB.shell.repaintChrome();
+    }
+    if (changed || repaint) {
+      listeners.forEach(function (f) { try { f(); } catch (e) {} });
     }
   }
 
   function start() { if (!timer) timer = setInterval(tick, 900); }
   function stop() { clearInterval(timer); timer = null; }
 
-  /* Resolving an incident. The two new fees go through fees.compute like every
-     other fee — a fee charged anywhere else can never be covered by the FEE_WHY
-     walk, which only reads what compute returns. */
+  /* Resolving an incident. The two fee ids and their amounts come from fees.js, so
+     the FEE_WHY walk — which only reads what compute returns — covers them, and the
+     receipt gets a real line rather than a total that silently moved. */
   FB.tracker.INCIDENT_MS = INCIDENT_MS;
   FB.tracker.resolveIncident = function (orderId, choice) {
     var o = FB.store.order(orderId);
@@ -464,15 +496,19 @@ window.FB = window.FB || {};
       var it = FB.catalog.item(o.slug, line.itemId);
       result.credit = FB.round2((it ? it.price : line.unit) * line.qty);
     } else if (choice === 'substitute') {
-      result.fee = 2.40;
+      result.fee = FB.fees.INCIDENT_FEES.substitution;
+      result.line = { id: 'substitution', label: 'Substitution Fee', amount: result.fee };
     } else if (choice === 'hold') {
-      result.fee = 1.85;
+      result.fee = FB.fees.INCIDENT_FEES.hold;
+      result.line = { id: 'hold', label: 'Order Hold Fee', amount: result.fee };
     }
     FB.store.set(function (st) {
       var oo = st.orders.filter(function (x) { return x.id === orderId; })[0];
       if (!oo) return st;
       oo.incident.resolution = choice;
       oo.incident.resolvedAt = Date.now();
+      /* however long you actually took, the beats move with arrival */
+      shiftAfterHold(oo, Math.max(0, oo.incident.resolvedAt - oo.incident.at));
       oo.events.unshift({
         step: oo.status, ts: Date.now(),
         text: RESOLUTION_TEXT[choice] || 'Resolution recorded',
@@ -482,11 +518,22 @@ window.FB = window.FB || {};
       return st;
     }, { silent: true });
     /* one place patches the three ledgers, for tips and for this alike */
-    if (FB.adjustOrder) FB.adjustOrder(orderId, { spend: FB.round2(result.fee - result.credit), fees: result.fee });
+    if (FB.adjustOrder) {
+      FB.adjustOrder(orderId, {
+        spend: FB.round2(result.fee - result.credit),
+        fees: result.fee,
+        line: result.line || (result.credit > 0
+          ? { id: 'removal', label: 'Item removed · credited at base price', amount: FB.round2(-result.credit) }
+          : null),
+      });
+    }
     if (choice === 'hold') {
       FB.store.set(function (st) {
         var oo = st.orders.filter(function (x) { return x.id === orderId; })[0];
-        if (oo) oo.deliverAt += INCIDENT_MS;
+        if (oo) {
+          (oo.schedule || []).forEach(function (b) { if (b.at >= oo.incident.at) b.at += INCIDENT_MS; });
+          oo.deliverAt += INCIDENT_MS;
+        }
         return st;
       }, { silent: true });
     }

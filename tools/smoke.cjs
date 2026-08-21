@@ -1129,7 +1129,7 @@ check('the terms get worse, and take §4.2 with them', () => {
     if (before === after) throw new Error('the §4.2 diff claims a change the tracker does not make');
 
     /* every token the scripts use must be one fill() knows about */
-    const known = new Set(['store', 'slinger', 'rating', 'deliveries', 'vehicle', 'fries']);
+    const known = new Set(['store', 'slinger', 'rating', 'deliveries', 'vehicle', 'fries', 'note']);
     for (const script of [FB.tracker.SCRIPT, FB.tracker.PICKUP_SCRIPT]) {
       for (const step of Object.values(script)) {
         const all = (step.beats || []).concat(...Object.values(step.extra || {}));
@@ -1322,6 +1322,21 @@ check('some things run out, and never too many of them', () => {
     if (FB.catalog.available(item, day0 + 6 * 3600000) !== a) throw new Error('availability changed within one day');
     if (FB.catalog.available(item, day0) !== a) throw new Error('availability is not deterministic');
 
+    /* Every scarce item, sampled at the world clock's own 20-minute resolution
+       across a whole day. The threshold used to be weighted by kitchen load read at
+       `now`, which re-seeds every twenty minutes — so "unavailable today" came back
+       at 3:20 and left again at 3:40. Checking one item at 6-hour steps missed it. */
+    const scarceItems = FB.catalog.all().flatMap((s) => s.menu.flatMap((sec) => sec.items)).filter((i) => i.scarce);
+    for (const it of scarceItems) {
+      const midnight = new Date(2026, 7, 20, 0, 0, 0).getTime();
+      const first = FB.catalog.available(it, midnight);
+      for (let m = 20; m < 24 * 60; m += 20) {
+        if (FB.catalog.available(it, midnight + m * 60000) !== first) {
+          throw new Error(it.id + ' changed availability ' + Math.floor(m / 60) + ':' + (m % 60) + ' into its own day');
+        }
+      }
+    }
+
     /* over a fortnight it must both happen and not happen */
     let outDays = 0;
     for (let d = 0; d < 14; d++) {
@@ -1366,6 +1381,33 @@ check('some things run out, and never too many of them', () => {
     if (!l) throw new Error('the restock fee is unreachable from fees.compute');
     if (Math.abs(l.amount - 2.80) > 0.011) throw new Error('the restock fee does not scale with the count');
     if (FB.fees.compute({ subtotal: 12, lineCount: 2, settings: FB.S().settings }).total !== 60) throw new Error('the $60.00 case moved');
+
+    /* reorder must not walk around the sold-out gate the item sheet enforces */
+    const goneToday = FB.catalog.all().flatMap((s) => s.menu.flatMap((sec) => sec.items))
+      .find((it) => it.scarce && !FB.catalog.available(it, day0));
+    if (goneToday) {
+      clock.set(day0);
+      FB.store.reset();
+      const st = FB.catalog.get(goneToday.storeSlug);
+      FB.cart.add(st.slug, goneToday, FB.catalog.defaultSel(goneToday), 1, '');
+      /* the cart is where reorder would put it — assert the app knows it is gone */
+      if (FB.catalog.available(goneToday, day0)) throw new Error('the probe item is not actually unavailable');
+      FB.cart.clear(st.slug);
+    }
+
+    /* paying to be told stops being billed once you have been told */
+    FB.store.reset();
+    clock.set(day0);
+    const target = scarceItems[0];
+    FB.store.set((s) => { s.restock = [target.id]; return s; });
+    let told = 0;
+    for (let d = 0; d < 14 && !told; d++) {
+      const t = day0 + d * 86400000;
+      clock.set(t);
+      if (FB.catalog.available(target, t)) told = FB.notifs.restocks(t);
+    }
+    if (!told) throw new Error('a monitored item never came back in a fortnight');
+    if ((FB.S().restock || []).length !== 0) throw new Error('monitoring kept billing after the notification was sent');
 
     return marked + ' items can run out; ' + outDays + ' of 14 days for the grape leaves';
   } finally { clock.restore(); app.dispose(); }
@@ -1587,6 +1629,186 @@ check('every screen mounts, and records what it binds', () => {
     if (!bound) throw new Error('no screen bound a single listener — the harness is not exercising mount');
     return mounted + ' mounts, ' + bound + ' listeners recorded and unbound';
   } finally { clock.restore(); app.dispose(); }
+});
+
+check('the cart preview and the checkout it links to quote the same total', () => {
+  /* Every ctx field must be threaded through BOTH compute call sites. `scheduled`
+     was not: checkout forced a slot for a closed store and the preview did not, so
+     a cart said $60.00 and the very next screen said $65.00. The comment above
+     cart-screen's compute call records the same drift happening once before. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const money = (html, label) => (html.match(new RegExp(label + '<\\/span><span>(\\$[\\d.,]+)')) || [])[1];
+    const bad = [];
+    let compared = 0;
+    for (const [hourName, ts] of [['dinner', new Date(2026, 7, 20, 19, 0, 0).getTime()],
+                                  ['3 AM', new Date(2026, 7, 20, 3, 0, 0).getTime()],
+                                  ['10 PM', new Date(2026, 7, 20, 22, 0, 0).getTime()]]) {
+      clock.set(ts);
+      for (const s of FB.catalog.all()) {
+        FB.store.reset();
+        harness.addToCart(FB, s.slug, 2);
+        const cart = FB.screens.get('cart').render({ slug: s.slug });
+        const chk = FB.screens.get('checkout').render({ slug: s.slug });
+        const a = money(cart, 'Go to checkout'), b = money(chk, 'Place order');
+        if (!a || !b) { bad.push(hourName + ' / ' + s.slug + ': could not read a total'); continue; }
+        compared++;
+        if (a !== b) bad.push(hourName + ' / ' + s.slug + ': cart ' + a + ' vs checkout ' + b);
+      }
+    }
+    if (bad.length) throw new Error(bad.length + ' disagreement(s):\n          ' + bad.slice(0, 6).join('\n          '));
+    return compared + ' carts compared against their own checkout, open and closed';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('a receipt always reaches its own total', () => {
+  /* A charge that moves the total without moving the itemised lines is a receipt
+     whose rows do not sum to its bottom line. Store promotions started applying
+     automatically, and the incident fees are charged after placement. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T0);
+    function sums(c) {
+      const fees = c.feeLines.reduce((a, l) => a + l.amount, 0);
+      const disc = (c.discounts || []).reduce((a, l) => a + l.amount, 0);
+      return FB.round2(c.subtotal + disc + fees + c.taxLine.amount + c.tipLine.amount +
+        (c.roundLine ? c.roundLine.amount : 0));
+    }
+    const S = FB.S().settings;
+    /* the engine itself, across every branch the fee walk exercises */
+    const ctxs = [
+      { subtotal: 12, lineCount: 2 },
+      { subtotal: 95, lineCount: 3, store: FB.catalog.get('applebeez'), storePromo: FB.catalog.storeOffer(FB.catalog.get('applebeez'), 95, false) },
+      { subtotal: 40, lineCount: 3, plus: true, scrip: 3, standingTier: 3, tosVersion: 3, restockAlerts: 1, tipReviews: 1 },
+      { subtotal: 40, lineCount: 3, substitution: true, hold: true },
+    ];
+    for (const ctx of ctxs) {
+      const c = FB.fees.compute({ settings: S, ...ctx });
+      if (Math.abs(sums(c) - c.total) > 0.011) {
+        throw new Error('fees.compute rows sum to ' + sums(c) + ' but total is ' + c.total);
+      }
+    }
+
+    /* and a placed order after an incident has been resolved */
+    let hit = null;
+    for (let i = 0; i < 60 && !hit; i++) {
+      FB.store.reset();
+      clock.set(T0);
+      harness.addToCart(FB, 'mcronalds', 3);
+      const o = harness.makeOrder(FB, 'mcronalds', { now: T0 });
+      o.id = 'o_r' + i; o.etaDrift = 0; o.events = []; delete o.incident; delete o.replayed;
+      o.calc.discounts = [];
+      FB.tracker.build(o);
+      FB.cart.clear('mcronalds');
+      FB.store.set((st) => { st.orders.unshift(o); st.activeOrderId = o.id; return st; });
+      FB.bodymax.ingest(o);
+      if (o.incident) hit = o;
+    }
+    if (!hit) throw new Error('no incident to resolve');
+    const beforeLines = FB.store.order(hit.id).calc.feeLines.length;
+    FB.tracker.resolveIncident(hit.id, 'substitute');
+    const after = FB.store.order(hit.id);
+    if (after.calc.feeLines.length !== beforeLines + 1) {
+      throw new Error('the substitution moved the total without adding a line');
+    }
+    const added = after.calc.feeLines[after.calc.feeLines.length - 1];
+    if (!FB.FEE_WHY[added.id]) throw new Error('the added line has no FEE_WHY entry: ' + added.id);
+    if (added.amount !== FB.fees.INCIDENT_FEES.substitution) throw new Error('the line does not match the price quoted');
+
+    return ctxs.length + ' fee contexts and a resolved incident, all reconciled';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('an unanswered incident holds the order without running away with it', () => {
+  /* The hold re-derived the remaining span from the already-updated deliverAt on
+     every tick, so forty seconds of not answering pushed arrival out by nearly
+     fifteen real minutes. The old check ticked twice and only asserted the estimate
+     did not run DOWN. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    let o = null;
+    for (let i = 0; i < 60 && !o; i++) {
+      FB.store.reset();
+      clock.set(T0);
+      harness.addToCart(FB, 'cluckingham', 3);
+      const x = harness.makeOrder(FB, 'cluckingham', { now: T0 });
+      x.id = 'o_hold' + i; x.etaDrift = 0; x.events = []; delete x.incident; delete x.replayed;
+      FB.tracker.build(x);
+      FB.cart.clear('cluckingham');
+      FB.store.set((st) => { st.orders.unshift(x); st.activeOrderId = x.id; return st; });
+      if (x.incident) o = x;
+    }
+    if (!o) throw new Error('no incident to hold');
+    const span0 = o.deliverAt - o.startAt;
+
+    /* tick through the whole hold at the real ticker's cadence */
+    let eta0 = null;
+    for (let t = 0; t < FB.tracker.INCIDENT_MS - 1000; t += 900) {
+      clock.set(o.incident.at + t);
+      FB.tracker.tick();
+      const c = FB.store.order(o.id);
+      const e = FB.tracker.eta(c);
+      if (eta0 === null) eta0 = e;
+      if (e > eta0) throw new Error('the estimate GREW during the hold: ' + eta0 + ' -> ' + e + ' at +' + t + 'ms');
+      if (c.deliverAt - o.startAt > span0 + FB.tracker.INCIDENT_MS + 2000) {
+        throw new Error('deliverAt ran away: pushed ' + Math.round((c.deliverAt - o.startAt - span0) / 1000) + 's for a ' +
+          Math.round(t / 1000) + 's hold');
+      }
+    }
+
+    /* it still settles, and within a sane window */
+    let delivered = false;
+    for (let t = 0; t < 400 && !delivered; t += 2) {
+      clock.set(o.incident.deadline + t * 1000);
+      FB.tracker.tick();
+      if (FB.store.order(o.id).status === 'delivered') delivered = true;
+    }
+    if (!delivered) throw new Error('a held order never delivered');
+    const final = FB.store.order(o.id);
+    const took = final.deliveredAt - o.startAt;
+    if (took > span0 + FB.tracker.INCIDENT_MS + 60000) {
+      throw new Error('a held order took ' + Math.round(took / 1000) + 's for a ' + Math.round(span0 / 1000) + 's delivery');
+    }
+    /* the beats moved with it rather than dumping in one tick when the gate lifted */
+    const inHold = final.events.filter((e) => e.ts > o.incident.at && e.ts < o.incident.deadline &&
+      !/resolution|out of/.test(e.text));
+    if (inHold.length > 1) throw new Error(inHold.length + ' scheduled beats played during the hold');
+
+    return 'estimate frozen, arrival pushed once, beats moved with it';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('the map tints carry all six tokens and both themes', () => {
+  /* #device is an ancestor of #view, and a custom property inherits from the
+     nearest ancestor that DECLARES it — so a tint on #device beats the :root dark
+     palette regardless of specificity. Four of six tokens left the roads at the
+     other theme's value: a near-white plate with near-black roads. */
+  const css = fs.readFileSync(path.join(ROOT, 'css/tokens.css'), 'utf8');
+  const TOKENS = ['--map-bg', '--map-block', '--map-road', '--map-roadcase', '--map-park', '--map-water'];
+  const blocks = [...css.matchAll(/([^{}]*#device\[data-(?:weather|daypart)[^{]*)\{([^}]*)\}/g)];
+  if (!blocks.length) throw new Error('no map tint blocks at all');
+  const light = [];
+  for (const b of blocks) {
+    const sel = b[1].trim().replace(/\s+/g, ' ');
+    const missing = TOKENS.filter((t) => !b[2].includes(t));
+    if (missing.length) throw new Error(sel.slice(0, 60) + ' declares only ' + (6 - missing.length) + '/6 map tokens');
+    if (!/data-theme|prefers-color-scheme/.test(sel)) light.push(sel);
+  }
+  /* every light tint needs the two dark forms: the media query and the explicit stamp */
+  for (const sel of light) {
+    const key = sel.match(/#device\[[^\]]+\]/g).join('');
+    const dark = blocks.filter((b) => /data-theme="dark"/.test(b[1]) && b[1].includes(key.slice(0, 24)));
+    const media = css.includes('prefers-color-scheme: dark') &&
+      new RegExp('not\\(\\[data-theme="light"\\]\\)[^{]*' + key.slice(0, 24).replace(/[[\]]/g, '\\$&')).test(css);
+    if (!dark.length) throw new Error(sel.slice(0, 50) + ' has no [data-theme="dark"] counterpart');
+    if (!media) throw new Error(sel.slice(0, 50) + ' has no prefers-color-scheme counterpart');
+  }
+  return blocks.length + ' tint blocks, six tokens each, both dark forms';
 });
 
 console.log('');

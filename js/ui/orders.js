@@ -21,10 +21,15 @@ window.FB = window.FB || {};
         h += FB.C.sectionHead('In progress');
         h += live.map(function (o) {
           var step = FB.tracker.steps(o)[o.step];
+          /* etaBlock() got this guard; the list row did not, and eta() on an order
+             whose slot is seven hours away converts to 12,600 "minutes" */
+          var pend = FB.tracker.isPending(o);
           return '<button class="orderrow" data-go="track" data-params=\'{"id":"' + o.id + '"}\'>' +
             '<img src="' + o.logo + '" alt="" onerror="this.remove()">' +
             '<span class="or-b"><b>' + FB.esc(o.storeName) + '</b>' +
-            '<span style="color:var(--fb);font-weight:600">' + FB.esc(step.label) + ' · ' + FB.tracker.eta(o) + ' min</span>' +
+            '<span style="color:var(--fb);font-weight:600">' +
+              (pend ? 'Scheduled · ' + FB.esc(o.scheduled || FB.clock(new Date(o.startAt)))
+                    : FB.esc(step.label) + ' · ' + FB.tracker.eta(o) + ' min') + '</span>' +
             '<span class="or-items">' + FB.esc(o.lines.map(function (l) { return l.qty + '× ' + l.name; }).join(', ')) + '</span></span>' +
             '<span class="or-r"><b>' + FB.money(o.calc.total) + '</b>' + FB.icon('fwd', 15) + '</span></button>';
         }).join('');
@@ -187,12 +192,12 @@ window.FB = window.FB || {};
       'elected on your behalf.</p>' +
       '<div class="inc-acts">' +
         '<button class="btn btn--ghost btn--block btn--split" data-inc="substitute">' +
-          '<span>Substitute</span><span>+' + FB.money(2.40) + '</span></button>' +
+          '<span>Substitute</span><span>+' + FB.money(FB.fees.INCIDENT_FEES.substitution) + '</span></button>' +
         (single ? '' :
         '<button class="btn btn--ghost btn--block btn--split" data-inc="remove">' +
           '<span>Remove</span><span>credited at base price</span></button>') +
         '<button class="btn btn--ghost btn--block btn--split" data-inc="hold">' +
-          '<span>Hold the order</span><span>+' + FB.money(1.85) + '</span></button>' +
+          '<span>Hold the order</span><span>+' + FB.money(FB.fees.INCIDENT_FEES.hold) + '</span></button>' +
       '</div>' +
       '<div class="inc-fine">The substitute is selected by the restaurant. A removal is credited the base ' +
       'price, excluding required selections. A hold delays the order and does not delay the food.</div>' +
@@ -298,6 +303,17 @@ window.FB = window.FB || {};
           return '<div class="rl"><span class="rl-l">' + FB.esc(l.label) + '</span><span class="rl-r">' + (l.free ? 'Free' : FB.money(l.amount)) + '</span></div>';
         }).join('') +
         '<div class="rl"><span class="rl-l">Taxes &amp; Other Fees</span><span class="rl-r">' + FB.money(o.calc.tax) + '</span></div>' +
+        /* Discounts, if this order had any. Older orders carry only the scalar, so
+           fall back to one summary row rather than printing nothing and leaving the
+           receipt unable to reach its own total. */
+        ((o.calc.discounts && o.calc.discounts.length)
+          ? o.calc.discounts.map(function (d) {
+              return '<div class="rl"><span class="rl-l">' + FB.esc(d.label) + '</span>' +
+                '<span class="rl-r">' + FB.money(d.amount) + '</span></div>';
+            }).join('')
+          : (o.calc.promo > 0
+              ? '<div class="rl"><span class="rl-l">Discounts</span><span class="rl-r">−' + FB.money(o.calc.promo) + '</span></div>'
+              : '')) +
         '<div class="rl"><span class="rl-l">Slinger Tip</span><span class="rl-r">' + FB.money(o.calc.tip) + '</span></div>' +
         (o.tipHistory || []).map(function (t) {
           return '<div class="rl rl--sub"><span class="rl-l">' +
@@ -334,6 +350,15 @@ window.FB = window.FB || {};
       if (!oo) return st;
       oo.calc.total = FB.round2(oo.calc.total + spend);
       oo.calc.feesTotal = FB.round2(oo.calc.feesTotal + fees);
+      /* A charge that moves the total and not the itemised lines is a receipt whose
+         rows do not reach its own bottom line — which is the one thing this app is
+         not allowed to get wrong. */
+      if (d.line) {
+        oo.calc.feeLines = (oo.calc.feeLines || []).concat([
+          { id: d.line.id, label: d.line.label, amount: FB.round2(d.line.amount) },
+        ]);
+      }
+      oo.calc.nonFood = FB.round2((oo.calc.nonFood || 0) + spend);
       if (tip) oo.calc.tip = FB.round2(oo.calc.tip + tip);
 
       st.meta.lifetimeSpend = FB.round2(st.meta.lifetimeSpend + spend);
@@ -481,12 +506,21 @@ window.FB = window.FB || {};
       var store = FB.catalog.get(o.slug);
       if (!store) { FB.toast('This store is no longer available in your region.'); return; }
       FB.busy(t, 'reorder', function () {
-      var added = 0;
+      /* The sold-out gate lives at FB.openItem, and reorder does not go through it —
+         so without this, Reorder puts an item in your cart that the store page has
+         struck through and refuses to sell. */
+      var added = 0, gone = 0;
       o.lines.forEach(function (l) {
         var it = FB.catalog.item(o.slug, l.itemId);
-        if (it) { FB.cart.add(o.slug, it, l.sel, l.qty, l.note); added++; }
+        if (!it) return;
+        if (!FB.catalog.available(it)) { gone++; return; }
+        FB.cart.add(o.slug, it, l.sel, l.qty, l.note); added++;
       });
-      FB.toast(added ? 'Re-added ' + FB.plural(added, 'item') + '. Prices have been refreshed.' : 'Those items are no longer offered.');
+      FB.toast(added
+        ? 'Re-added ' + FB.plural(added, 'item') + '. Prices have been refreshed.' +
+          (gone ? ' ' + FB.plural(gone, 'item') + ' unavailable today.' : '')
+        : gone ? FB.plural(gone, 'item') + ' from this order are unavailable today.'
+               : 'Those items are no longer offered.');
       if (added) FB.nav.go('cart', { slug: o.slug });
       });
     });

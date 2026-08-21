@@ -130,6 +130,34 @@ window.FB = window.FB || {};
       });
     },
 
+    /* You paid to be told once. Told once, and the monitoring stops — otherwise the
+       Restock Monitoring fee is charged on every future order at every store for the
+       rest of the save, for a notification that never arrives. */
+    restocks: function (at) {
+      var st = FB.S();
+      var ids = (st.restock || []).slice();
+      if (!ids.length) return 0;
+      var now = at || Date.now();
+      var back = [], keep = [];
+      ids.forEach(function (id) {
+        var found = FB.catalog.find(id);
+        if (!found) return;                       /* item is gone from the menu entirely */
+        if (FB.catalog.available(found.item, now)) back.push(found); else keep.push(id);
+      });
+      if (!back.length) return 0;
+      var added = FB.notifs.pushMany(back.map(function (f) {
+        return {
+          id: 'restock:' + f.item.id + ':' + Math.floor(now / 86400000),
+          kind: 'promo', icon: 'bell',
+          title: f.item.name + ' is available again',
+          body: 'You were told once, which discharges the monitoring you paid for.',
+          ts: now, go: 'store', params: { slug: f.store.slug },
+        };
+      }));
+      FB.store.set(function (s) { s.restock = keep; return s; }, { silent: true });
+      return added;
+    },
+
     /* Computed from what the save already knows, not accrued by a timer. Runs at
        boot, is capped, and is keyed by a deterministic id so running it twice is a
        no-op. `through` is a stamp, not a count: a count would drift. */
@@ -153,14 +181,19 @@ window.FB = window.FB || {};
         out.push({
           id: 'miss:' + Math.floor(ts / 86400000),
           kind: 'miss', icon: 'bell',
-          title: MISS_TITLES[Math.min(d, MISS_TITLES.length) - 1],
+          /* Indexed by the GAP, not by the loop counter. `d` counts days added on
+             THIS launch, so someone who opens the app daily always saw rung one —
+             a fresh "We miss you (15 days)" sitting above an older "No further
+             notifications are planned (6 days)". */
+          title: MISS_TITLES[Math.min(elapsed, MISS_TITLES.length) - 1],
           body: 'You have not ordered in ' + FB.plural(elapsed, 'day') + '. ' +
-            MISS_BODIES[Math.min(d, MISS_BODIES.length) - 1],
+            MISS_BODIES[Math.min(elapsed, MISS_BODIES.length) - 1],
           ts: ts,
         });
       }
       var added = FB.notifs.pushMany(out);
       FB.store.set(function (s) { s.notifsThrough = now; return s; }, { silent: true });
+      added += FB.notifs.restocks(now);
       return added;
     },
   };

@@ -31,6 +31,7 @@ window.FB = window.FB || {};
         id: 'sl' + i,
         name: g.name, rating: g.rating, vehicle: g.vehicle, photo: g.photo,
         deliveries: g.deliveries,
+        tenure: g.tenure,          /* days employed — NOT deliveries made for you */
         timesWithYou: 0,
         yourRatings: [],
         lastSeenTs: null,
