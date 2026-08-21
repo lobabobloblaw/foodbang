@@ -346,7 +346,7 @@ check('every screen renders under every state fixture', () => {
   for (const fx of harness.FIXTURES) {
     FB.store.reset();
     let params;
-    try { params = fx.apply(FB) || {}; }
+    try { params = fx.apply(FB, hourTs) || {}; }
     catch (e) { bad.push('fixture "' + fx.name + '" threw: ' + e.message); continue; }
     for (const name of FB.screens.list()) {
       const def = FB.screens.get(name);
@@ -1190,13 +1190,22 @@ check('no two orders tell the same story', () => {
         if (key === 'delivered') continue;
         const spine = script[key].beats.map((x) => x[0]);
         const got = o.schedule.filter((x) => x.step === key).map((x) => x.text);
-        let at = -1;
+        /* Two things made the original version of this unable to fail: the search
+           was constrained to indexes AFTER the cursor, which made "is it before the
+           cursor" unsatisfiable, and every beat whose text begins with a {token}
+           was skipped — which in the pickup step is three of its four beats, so
+           there was nothing left to order. Strip the tokens, keep the beat, and ask
+           whether it can still be found at or after where we are. */
+        let at = 0;
         for (const s of spine) {
-          /* a spine beat may carry tokens, so match on the filled prefix */
-          const idx = got.findIndex((g, i) => i > at && g.slice(0, 12) === s.replace(/\{\w+\}/g, '').slice(0, 12).trim().slice(0, 12));
-          if (s.startsWith('{')) continue;              /* token-led beats are matched loosely */
-          if (idx <= at && idx !== -1) throw new Error('the spine of ' + key + ' was reordered');
-          if (idx > at) at = idx;
+          const needle = s.replace(/\{\w+\}/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 14);
+          if (needle.length < 8) continue;              /* too short to identify a beat */
+          if (got.findIndex((g) => g.indexOf(needle) > -1) === -1) continue;  /* not in this order */
+          const here = got.findIndex((g, i) => i >= at && g.indexOf(needle) > -1);
+          if (here === -1) {
+            throw new Error('the spine of ' + key + ' was reordered: "' + needle + '" plays before what should precede it');
+          }
+          at = here;
         }
       }
     }
@@ -1600,7 +1609,7 @@ check('every screen mounts, and records what it binds', () => {
     let mounted = 0, bound = 0;
     for (const fx of harness.FIXTURES) {
       FB.store.reset();
-      const params = fx.apply(FB) || {};
+      const params = fx.apply(FB, new Date(2026, 7, 20, 19, 0, 0).getTime()) || {};
       for (const name of FB.screens.list()) {
         const def = FB.screens.get(name);
         if (!def.mount) continue;

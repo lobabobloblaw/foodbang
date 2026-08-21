@@ -388,6 +388,13 @@ window.FB = window.FB || {};
           sub: 'Substitution has been elected on your behalf. Substitution was the most expensive available resolution.',
         });
         shiftAfterHold(o, INCIDENT_MS);
+        /* Charged the same as choosing it. The election used to bypass the only
+           path that patches the three ledgers, so ignoring the block was FREE while
+           picking the identical outcome cost $2.40 — the countdown was pressuring
+           you toward the more expensive action, which inverts every other price in
+           this app. Applied here rather than through resolveIncident(), which would
+           shift the schedule a second time on top of the shift above. */
+        inc.fee = FB.fees.INCIDENT_FEES.substitution;
         changed = true;
       }
     }
@@ -458,6 +465,16 @@ window.FB = window.FB || {};
       if (r) changed = true;
       var inc = o.incident;
       if (inc && !inc.resolution && now >= inc.at && now < inc.deadline) repaint = true;
+      /* charged outside replay(), which must stay a pure timetable walk */
+      if (o.incident && o.incident.fee && !o.incident.charged) {
+        o.incident.charged = true;
+        if (FB.adjustOrder) {
+          FB.adjustOrder(o.id, {
+            spend: o.incident.fee, fees: o.incident.fee,
+            line: { id: 'substitution', label: 'Substitution Fee (elected)', amount: o.incident.fee },
+          });
+        }
+      }
       if (r === 'done') {
         FB.store.set(function (s) { s.activeOrderId = o.id; return s; }, { silent: true });
         /* An order abandoned last week settles at boot. Announcing it — with a "Rate

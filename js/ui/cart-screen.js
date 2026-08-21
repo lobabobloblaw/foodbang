@@ -126,12 +126,23 @@ window.FB = window.FB || {};
              the user tapped — but the NAVIGATION only happens if we are still on the
              screen that scheduled it, or a half-second delay pops a screen out from
              under whatever you moved to. */
-          var here = FB.nav.current();
-          var still = here && here.name === 'cart' && here.params.slug === p.slug;
           FB.cart.remove(p.slug, lid);
-          if (!still) return;
-          FB.toast('Removed. The Menu Digitization Surcharge for this item is non-refundable.');
-          if (!FB.cart.lines(p.slug).length) FB.nav.back(); else FB.nav.refresh();
+          var here = FB.nav.current();
+          if (!here) return;
+          if (here.name === 'cart' && here.params.slug === p.slug) {
+            FB.toast('Removed. The Menu Digitization Surcharge for this item is non-refundable.');
+            if (!FB.cart.lines(p.slug).length) FB.nav.back(); else FB.nav.refresh();
+            return;
+          }
+          /* The write is unconditional — cancelling it would silently drop a removal
+             the user tapped — but it must not navigate a screen the user has since
+             left. It must still RESYNC one: a checkout that came from this cart is
+             now quoting, and would place, an order the cart no longer holds. */
+          if (here.params && here.params.slug === p.slug &&
+              (here.name === 'checkout' || here.name === 'store')) {
+            if (!FB.cart.lines(p.slug).length) FB.nav.tab('home');
+            else FB.nav.refresh();
+          }
         });
       });
       FB.on(root, 'click', '[data-edit]', function (e, t) {

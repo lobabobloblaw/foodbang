@@ -148,7 +148,11 @@ window.FB = window.FB || {};
       var added = FB.notifs.pushMany(back.map(function (f) {
         return {
           id: 'restock:' + f.item.id + ':' + Math.floor(now / 86400000),
-          kind: 'promo', icon: 'bell',
+          /* Deliberately an UNGATED kind. You paid to be told once, and the id is
+             dropped from st.restock as soon as this runs — so if a settings switch
+             could suppress it, the monitoring would be discharged without ever
+             delivering, and the item could then be re-armed and billed again. */
+          kind: 'restock', icon: 'bell',
           title: f.item.name + ' is available again',
           body: 'You were told once, which discharges the monitoring you paid for.',
           ts: now, go: 'store', params: { slug: f.store.slug },

@@ -31,7 +31,9 @@ window.FB = window.FB || {};
       h += '<button class="crow" data-standing style="margin-top:14px">' + FB.icon('shield', 19) +
         '<span class="crow-b"><b>FoodBang™ Standing · ' + FB.esc(tier.name) + '</b><span>' +
         (next === null ? 'The highest tier. It decays at the same rate as the others.'
-          : FB.plural(next, 'order') + ' to the next tier · decays 1 point per day') +
+          /* points, which is what toNext() returns — the sheet one tap away already
+             says points, and calling them orders overstates the gap by up to 3x */
+          : FB.plural(next, 'point') + ' to the next tier · decays 1 point per day') +
         '</span></span><span class="crow-r">' + FB.icon('fwd', 14) + '</span></button>';
 
       /* BANG+ card */

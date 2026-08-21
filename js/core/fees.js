@@ -117,8 +117,19 @@ window.FB = window.FB || {};
         discounts.push(line('storepromo', 'Store promotion · ' + ctx.storePromo.text, -ctx.storePromo.amount,
           'Applied automatically.', 'discount'));
       }
-      /* a code and a store promo can stack; together they can never exceed the food */
-      promoAmt = FB.round2(Math.min(promoAmt, sub));
+      /* A code and a store promo can stack; together they can never exceed the
+         food. Clamping the SCALAR alone left the display rows recording more than
+         was actually taken off, so the receipt's own lines summed below its total.
+         Absorb the overage out of the rows, last first, so a code the user typed
+         keeps its face value and the automatic store promotion gives way. */
+      var rawPromo = FB.round2(promoAmt);
+      promoAmt = FB.round2(Math.min(rawPromo, sub));
+      var over = FB.round2(rawPromo - promoAmt);
+      for (var di = discounts.length - 1; di >= 0 && over > 0; di--) {
+        var take = Math.min(over, -discounts[di].amount);
+        discounts[di].amount = FB.round2(discounts[di].amount + take);
+        over = FB.round2(over - take);
+      }
 
       /* ---------- delivery ---------- */
       if (mode === 'delivery') {

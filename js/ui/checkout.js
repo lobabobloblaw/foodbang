@@ -202,7 +202,16 @@ window.FB = window.FB || {};
       FB.on(root, 'click', '[data-place]', function (e, t) {
         var due = FB.tos.due();
         if (!due) { place(p, t); return; }
-        openTerms(due, function () { place(p, t); });
+        /* Accepting adds §14's Reconciliation Fee, which calc() reads — so placing
+           straight through would charge a total five dollars above the one the
+           button had just quoted, on the one modal you are not allowed to escape.
+           The app's rule is that a screen may not quote a total it will not charge.
+           Repaint and make the next tap be against the revised figure. `t` is the
+           old button node and is discarded by paint(); it must not be reused. */
+        openTerms(due, function () {
+          FB.nav.refresh();
+          FB.toast('Terms accepted. Your total has been reassessed under the terms now in force.');
+        });
       });
 
       function openCustomTip() {
@@ -260,13 +269,22 @@ window.FB = window.FB || {};
       }
 
       function openSchedule() {
-        var picked = FB.cart.co(p.slug).scheduled;
+        /* Read through the same derivation the FEE uses. Reading co.scheduled here
+           showed a closed store a pre-selected "Standard · no coordination fee" row
+           while it was being charged the coordination fee, with no way to reach the
+           state that row described. */
+        var picked = FB.cart.slot(p.slug);
+        var shut = !FB.catalog.isOpen(s);
         var slots = [];
+        if (shut && s.opensAt) slots.push(s.opensAt);
         for (var i = 1; i <= 8; i++) slots.push(FB.clockIn(s.deliveryMax + i * 45));
         FB.sheet.open({
-          title: 'Schedule delivery', sub: 'Scheduling requires the future, which must be reserved.',
-          html: '<button class="opt" role="radio" aria-checked="' + (!picked) + '" data-slot="">' +
-            '<span class="mark"></span><span class="opt-b"><b>Standard</b><span>' + FB.mins(s.deliveryMin, s.deliveryMax) + ' · no coordination fee</span></span></button>' +
+          title: 'Schedule delivery',
+          sub: shut ? FB.esc(s.name) + ' is closed. A time must be reserved.'
+                    : 'Scheduling requires the future, which must be reserved.',
+          html: (shut ? '' :
+            '<button class="opt" role="radio" aria-checked="' + (!picked) + '" data-slot="">' +
+            '<span class="mark"></span><span class="opt-b"><b>Standard</b><span>' + FB.mins(s.deliveryMin, s.deliveryMax) + ' · no coordination fee</span></span></button>') +
             slots.map(function (t) {
               return '<button class="opt" role="radio" aria-checked="' + (picked === t) + '" data-slot="' + t + '">' +
                 '<span class="mark"></span><span class="opt-b"><b>Today, ' + t + '</b><span>Window: ' + t + ' – indefinite</span></span>' +

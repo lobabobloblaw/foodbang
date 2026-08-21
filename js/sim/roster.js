@@ -44,6 +44,20 @@ window.FB = window.FB || {};
     var st = FB.S();
     if (!st.slingers || !st.slingers.length) {
       FB.store.set(function (s) { s.slingers = build(); return s; }, { silent: true });
+      return FB.S().slingers;
+    }
+    /* Backfilled on READ. fillDefaults never descends into an array, so a field
+       added to a roster entry after a save exists can only be repaired here — and
+       without it the Slinger card renders "Employed undefined days". The generator
+       is seeded on the index, so this reproduces exactly what a fresh build had. */
+    if (st.slingers.some(function (s) { return s.tenure === undefined; })) {
+      FB.store.set(function (s) {
+        var fresh = build();
+        s.slingers.forEach(function (x, i) {
+          if (x.tenure === undefined) x.tenure = (fresh[i] || {}).tenure;
+        });
+        return s;
+      }, { silent: true });
     }
     return FB.S().slingers;
   }

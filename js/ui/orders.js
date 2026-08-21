@@ -562,7 +562,13 @@ window.FB = window.FB || {};
   function chatFor(o) { return CHATS[FB.hash(String(o.id) + 'chat') % CHATS.length]; }
 
   function openChat(o) {
-    var person = o.personId ? FB.slingers.get(o.personId) : null;
+    /* the SNAPSHOT first: a historical order must keep rendering as it was
+       delivered, and the live record has moved on since */
+    var live = o.personId ? FB.slingers.get(o.personId) : null;
+    var person = (o.slinger && o.slinger.timesWithYou)
+      ? { name: o.slinger.name, timesWithYou: o.slinger.timesWithYou,
+          yourRatings: (live && live.yourRatings) || [] }
+      : live;
     var reduced = (o.tipHistory || []).some(function (t) { return t.delta < 0; });
     var greeting = FB.slingers.greeting(person, reduced);
     var thread = chatFor(o);

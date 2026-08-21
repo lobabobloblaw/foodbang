@@ -181,13 +181,16 @@ function addToCart(FB, slug, n) {
    rather than imported because place() needs a live button; if the shapes drift,
    a screen reading the missing field is exactly what these checks catch.
 
-   opts.now: this function runs in NODE's realm, so it does not see clock.set(),
-   which only patches Date inside the vm. A test travelling in time must pass the
-   moment it means, or the order is stamped with the wall clock of the machine
-   running the tests and every schedule derived from it is hours out. */
+   opts.now is REQUIRED. This function runs in NODE's realm, so it does not see
+   clock.set(), which only patches Date inside the vm — a fixture that omits it is
+   stamped with the wall clock of the machine running the tests, which silently
+   moved the render fixtures' orders out of the day the sweep was pinned to and made
+   coverage depend on what time the suite was run. Defaulting to Date.now() is what
+   hid that, so it throws instead. */
 function makeOrder(FB, slug, opts) {
   opts = opts || {};
-  const now = opts.now || Date.now();
+  if (!opts.now) throw new Error("makeOrder needs opts.now — Date.now() here is Node's clock, not the vm's");
+  const now = opts.now;
   const s = FB.catalog.get(slug);
   const lines = FB.cart.lines(slug).map((l) => ({
     name: l.name, qty: l.qty, unit: l.unit, itemId: l.itemId, sel: l.sel, note: l.note,
@@ -226,8 +229,10 @@ function makeOrder(FB, slug, opts) {
   };
 }
 
-/* Each fixture returns the params to render screens with. Fixtures are applied to
-   a FRESH state every time, so one never leaks into the next. */
+/* Each fixture returns the params to render screens with, and is handed the moment
+   the caller has pinned the vm's clock to — see makeOrder's note about realms.
+   Fixtures are applied to a FRESH state every time, so one never leaks into the
+   next. */
 const FIXTURES = [
   {
     name: 'fresh install',
@@ -242,9 +247,9 @@ const FIXTURES = [
   },
   {
     name: 'live order',
-    apply(FB) {
+    apply(FB, now) {
       addToCart(FB, 'cluckingham', 2);
-      const o = makeOrder(FB, 'cluckingham', { status: 'preparing', step: 2 });
+      const o = makeOrder(FB, 'cluckingham', { status: 'preparing', step: 2, now: now });
       FB.store.set((st) => {
         st.orders.unshift(o); st.activeOrderId = o.id;
         st.meta.orderCount = 1; st.meta.lifetimeSpend = o.calc.total;
@@ -258,10 +263,10 @@ const FIXTURES = [
   },
   {
     name: 'delivered and unrated',
-    apply(FB) {
+    apply(FB, now) {
       addToCart(FB, 'starbux', 2);
-      const o = makeOrder(FB, 'starbux', { status: 'delivered', step: 5, rated: null, ageMs: 3600000 });
-      o.deliveredAt = Date.now() - 60000;
+      const o = makeOrder(FB, 'starbux', { status: 'delivered', step: 5, rated: null, ageMs: 3600000, now: now });
+      o.deliveredAt = now - 60000;
       FB.store.set((st) => {
         st.orders.unshift(o); st.activeOrderId = o.id; st.meta.orderCount = 1;
         st.favorites.push('starbux');

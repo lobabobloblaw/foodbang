@@ -159,7 +159,11 @@ window.FB = window.FB || {};
   /* wire the (?) buttons inside any container */
   C.wireWhy = function (root) {
     FB.on(root, 'click', '[data-why]', function (e, t) {
-      e.stopPropagation();
+      /* NO stopPropagation: app.js delegates on document to award the "Read The
+         Fees" achievement from any [data-why] tap, and stopping the bubble here
+         made one of BODYMAX's twelve badges permanently unobtainable. Nothing in
+         the ancestor chain of a .rl row handles clicks, so there was nothing to
+         shield from in the first place. */
       FB.why(t.dataset.whylabel || 'About this fee', FB.FEE_WHY[t.dataset.why] || 'No explanation is available at this time.');
     });
   };
