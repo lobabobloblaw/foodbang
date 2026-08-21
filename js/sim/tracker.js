@@ -50,6 +50,8 @@ window.FB = window.FB || {};
 
   var timer = null;
   var listeners = [];
+  /* order id -> next-beat timestamp. Deliberately module-local and not persisted. */
+  var nextAt = {};
 
   function fill(str, o) {
     return str.replace(/\{store\}/g, o.storeName)
@@ -93,10 +95,13 @@ window.FB = window.FB || {};
       var now = Date.now();
       var step = STEPS[o.step];
       var gap = Math.max(2600, step.ms / ((SCRIPT[step.key] || []).length || 1));
-      if (!o._next) o._next = now + 1400;
-      if (now >= o._next) {
+      if (!nextAt[o.id]) nextAt[o.id] = now + 1400;
+      if (now >= nextAt[o.id]) {
         var r = advance(o);
-        o._next = now + gap * (0.75 + Math.random() * 0.6);
+        /* seeded on the order and how far into it we are, so a reload replays the
+           same pacing — and kept OFF the order, which is serialized to localStorage
+           and has no business carrying a runtime-only absolute timestamp. */
+        nextAt[o.id] = now + gap * (0.75 + FB.seeded(o.id + ':' + o.events.length)() * 0.6);
         changed = true;
         if (r === 'done') {
           FB.store.set(function (s) { s.activeOrderId = o.id; return s; }, { silent: true });

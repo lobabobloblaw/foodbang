@@ -81,10 +81,15 @@ window.FB = window.FB || {};
       return stores.filter(function (s) { return (s.categories || []).indexOf(cat) > -1; });
     },
 
-    /* photographed items make the best merchandising tiles */
-    photoItems: function (limit) {
-      var out = itemIndex.filter(function (r) { return r.item.photoSrc; });
-      out = FB.shuffle(out, FB.seeded('photofeed'));
+    /* Photographed items make the best merchandising tiles. Pass a slug to stay
+       inside one store — the cart's upsell rail used to take the first 20 of the
+       global shuffle and filter, which is deterministically EMPTY for six of the
+       twenty stores and fell through to advertising six other restaurants. */
+    photoItems: function (limit, slug) {
+      var out = itemIndex.filter(function (r) {
+        return r.item.photoSrc && (!slug || r.store.slug === slug);
+      });
+      out = FB.shuffle(out, FB.seeded('photofeed' + (slug || '')));
       return limit ? out.slice(0, limit) : out;
     },
 

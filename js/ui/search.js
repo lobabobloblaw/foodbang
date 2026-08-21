@@ -11,7 +11,7 @@ window.FB = window.FB || {};
     appbar: function () {
       return '<div class="bar" style="padding-bottom:2px"><h1>Search</h1></div>' +
         '<div class="searchbox">' + FB.icon('search', 18) +
-        '<input id="q" placeholder="Stores, dishes, regrets" value="' + FB.attr(q) + '" autocomplete="off">' +
+        '<input id="q" aria-label="Search stores and dishes" placeholder="Stores, dishes, regrets" value="' + FB.attr(q) + '" autocomplete="off">' +
         (q ? '<button class="sb-clear" data-clearq aria-label="Clear">' + FB.icon('x', 11) + '</button>' : '') + '</div>';
     },
     render: function () {
@@ -73,11 +73,27 @@ window.FB = window.FB || {};
          the next search lands on the document's shortcut handler instead */
       if (input) setTimeout(function () { input.focus(); input.select(); }, 120);
 
+      /* The x is drawn by appbar() from `q`, but typing re-renders only #view — so
+         it could never appear until an unrelated nav.refresh(). Rebuilding the app
+         bar wholesale would destroy the focused input mid-keystroke, so patch the
+         one node. Scrolling to the top is deliberate: these are different results. */
+      function syncClear() {
+        var box = bar.querySelector('.searchbox');
+        if (!box) return;
+        var btn = box.querySelector('.sb-clear');
+        if (q && !btn) {
+          box.insertAdjacentHTML('beforeend',
+            '<button class="sb-clear" data-clearq aria-label="Clear">' + FB.icon('x', 11) + '</button>');
+        } else if (!q && btn) {
+          btn.parentNode.removeChild(btn);
+        }
+      }
+
       FB.on(bar, 'input', '#q', FB.debounce(function (e, t) {
         q = t.value;
-        var sc = root.scrollTop;
         root.innerHTML = FB.screens.get('search').render();
         root.scrollTop = 0;
+        syncClear();
         if (q.trim().length > 2) {
           FB.store.set(function (st) {
             st.recentSearches = [q.trim()].concat(st.recentSearches.filter(function (x) { return x !== q.trim(); })).slice(0, 10);

@@ -107,11 +107,20 @@ window.FB = window.FB || {};
         (st.credits > 0 ? '<div class="crow">' + FB.icon('gift', 19) + '<span class="crow-b"><b>BangBux™ balance</b><span>' + FB.money(st.credits) + ' — redeemable against fees, not food</span></span></div>' : '') +
         '</div>';
 
-      /* bang+ inline pitch */
-      if (!st.plus.active) {
+      /* bang+ inline pitch. Located by id, never by position: feeLines[0] on a
+         PICKUP order is the Retrieval Facilitation Fee, which BANG+ does not touch —
+         the pitch offered to save $3.75 off a fee joining would not have reduced,
+         while joining would only have added the $1.99 Benefit Realization Fee.
+         Pickup gets no pitch at all, because there is no pickup saving to pitch. */
+      var dline = null;
+      if (co.mode === 'delivery') {
+        dline = c.feeLines.filter(function (l) { return l.id === 'delivery'; })[0] || null;
+      }
+      if (!st.plus.active && dline) {
+        var saves = FB.money(Math.min(FB.round2(dline.amount * 0.3), 4.99));
         h += '<div class="cblock"><button class="callout callout--plus" data-go="plus" style="width:calc(100% - 32px);text-align:left">' +
-          FB.icon('zap', 17) + '<span><b style="display:block;margin-bottom:3px">Join BANG+ and save ' + FB.money(Math.min(c.feeLines[0].amount, 4.99)) + ' on this order</b>' +
-          '<span style="opacity:.72">$19.99/month. This order would save ' + FB.money(Math.min(c.feeLines[0].amount, 4.99)) + '.</span></span></button></div>';
+          FB.icon('zap', 17) + '<span><b style="display:block;margin-bottom:3px">Join BANG+ and save ' + saves + ' on this order</b>' +
+          '<span style="opacity:.72">$19.99/month. This order would save ' + saves + '.</span></span></button></div>';
       }
 
       /* tip */

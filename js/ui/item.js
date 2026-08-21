@@ -96,8 +96,8 @@ window.FB = window.FB || {};
           '<span>Base ' + FB.money(item.price) + ' + selections ' + FB.money(mods) + '</span>' +
           '<span style="color:var(--fb);font-weight:700">' + (item.price > 0 ? '+' + Math.round(mods / item.price * 100) + '%' : '') + '</span></div>' : '') +
         '<div class="it-foot">' +
-          '<span class="stepper"><button data-q="-1"' + (qty <= 1 ? ' disabled' : '') + '>' + FB.icon('minus', 15) + '</button>' +
-          '<b>' + qty + '</b><button data-q="1">' + FB.icon('plus', 15) + '</button></span>' +
+          '<span class="stepper"><button data-q="-1" aria-label="One fewer"' + (qty <= 1 ? ' disabled' : '') + '>' + FB.icon('minus', 15) + '</button>' +
+          '<b>' + qty + '</b><button data-q="1" aria-label="One more">' + FB.icon('plus', 15) + '</button></span>' +
           '<button class="btn btn--primary btn--split" data-add>' +
             '<span>' + (existing ? 'Update' : 'Add to cart') + '</span><span>' + FB.money(unit * qty) + '</span></button>' +
         '</div></div>';
@@ -106,7 +106,12 @@ window.FB = window.FB || {};
     var footerWired = false;
     function wire(root, h) {
       function repaint() {
+        /* .sheet-body IS the scroll container: clearing its children clamps
+           scrollTop to 0 and re-adding them does not restore it. An item with six
+           required groups means re-scrolling after every single tap without this. */
+        var sc = root.scrollTop;
         root.innerHTML = body();
+        root.scrollTop = sc;
         h.setFooter(foot());
         var ta = root.querySelector('[data-note]');
         if (ta) ta.value = note;

@@ -175,7 +175,8 @@
 }
 @media (prefers-reduced-motion: reduce) {
   :root:not([data-motion="on"]) *,
-  :root:not([data-motion="on"]) *::before {
+  :root:not([data-motion="on"]) *::before,
+  :root:not([data-motion="on"]) *::after {
     animation-duration: .001ms !important;
     transition-duration: .001ms !important;
   }

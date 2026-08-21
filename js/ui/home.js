@@ -40,9 +40,13 @@ window.FB = window.FB || {};
   FB.screens.register('home', {
     tab: 'home',
     appbar: function () {
+      /* A button, not a readonly <input>. As an input it answered only to click:
+         Enter and Space did nothing, and once focus was inside it the global keydown
+         handler early-returned for anything in an input, so the / shortcut could not
+         rescue you either. The app's primary entry point was a keyboard dead end. */
       return addressBar() +
         '<div class="searchbox">' + FB.icon('search', 18) +
-        '<input readonly placeholder="Search FoodBang™" data-gosearch></div>';
+        '<button class="sbproxy" data-gosearch>Search FoodBang™</button></div>';
     },
     render: function () {
       var stores = FB.catalog.all();

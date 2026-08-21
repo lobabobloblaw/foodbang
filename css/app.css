@@ -492,6 +492,11 @@ kbd {
   padding: 0 40px 0 42px; font: var(--t-body); color: var(--ink);
 }
 .searchbox input:focus { background: var(--surface-3); }
+/* the Home tab's search field is a button that looks like the real input on Search */
+.searchbox .sbproxy {
+  width: 100%; height: 42px; border-radius: var(--r-pill); border: 0; background: var(--surface-2);
+  padding: 0 40px 0 42px; font: var(--t-body); color: var(--ink-3); text-align: left;
+}
 .searchbox .sb-clear { position: absolute; right: 26px; top: 11px; width: 20px; height: 20px; border-radius: 50%; background: var(--ink-3); color: var(--bg); display: grid; place-items: center; }
 .searchbox .sb-clear svg { position: static; width: 11px; height: 11px; color: inherit; }
 

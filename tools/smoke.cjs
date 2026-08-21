@@ -154,18 +154,26 @@ check('screens bind through FB.on, never addEventListener', () => {
      its screen and fires again on the next render, and the one after that. Two of the
      confirmed criticals in this app were exactly that. shell.js owns the boot-time
      document/window listeners and util.js implements FB.on, so both are exempt. */
-  const dir = path.join(ROOT, 'js/ui');
+  /* js/sim is walked too: bodymax.js registers a screen with a real mount() and
+     tracker.js runs the global ticker, so a raw listener there escapes the same
+     bookkeeping — and any future sim would have shipped unchecked by default. */
+  const dirs = ['js/ui', 'js/sim'];
   const exempt = new Set(['shell.js']);
   const hits = [];
-  for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.js'))) {
-    if (exempt.has(f)) continue;
-    const src = fs.readFileSync(path.join(dir, f), 'utf8');
-    src.split('\n').forEach((line, i) => {
-      if (/\.addEventListener\(/.test(line) && !/^\s*(\*|\/\/|\/\*)/.test(line)) hits.push(f + ':' + (i + 1));
-    });
+  let n = 0;
+  for (const d of dirs) {
+    const dir = path.join(ROOT, d);
+    for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.js'))) {
+      if (exempt.has(f)) continue;
+      n++;
+      const src = fs.readFileSync(path.join(dir, f), 'utf8');
+      src.split('\n').forEach((line, i) => {
+        if (/\.addEventListener\(/.test(line) && !/^\s*(\*|\/\/|\/\*)/.test(line)) hits.push(d + '/' + f + ':' + (i + 1));
+      });
+    }
   }
   if (hits.length) throw new Error('raw addEventListener in: ' + hits.join(', '));
-  return fs.readdirSync(dir).length - exempt.size + ' screen files clean';
+  return n + ' screen and sim files clean';
 });
 
 check('a re-mount does not accumulate listeners', () => {

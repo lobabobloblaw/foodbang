@@ -84,7 +84,7 @@ window.FB = window.FB || {};
     'data-sort', 'data-slot', 'data-pick', 'data-pickp', 'data-why', 'data-set', 'data-lid',
     'data-drop', 'data-try', 'data-q', 'data-rm', 'data-edit', 'data-dq', 'data-seg', 'data-sw',
     'data-rate', 'data-use', 'data-del', 'data-usep', 'data-delp', 'data-item', 'data-slug',
-    'data-jump', 'data-cartgo', 'data-go'];
+    'data-jump', 'data-cartgo', 'data-go', 'data-fav', 'data-express', 'data-expand-fees'];
 
   function focusKey(elm) {
     if (!elm || elm === document.body) return null;
@@ -283,30 +283,34 @@ window.FB = window.FB || {};
     return handle;
   }
 
-  function closeOverlay(h, value) {
+  /* `instant` skips the exit animation AND the focus hand-back — it is only used by
+     nav.go/nav.tab, which are about to repaint and would have the restored focus
+     replaced out from under them a moment later. What it must NOT skip is onClose:
+     FB.confirm resolves its promise there, so tearing the node out directly (which
+     is what this did) left an awaited confirm pending forever. Reachable today: a
+     toast sits above #overlay-root and its action button calls nav.go. */
+  function closeOverlay(h, value, instant) {
     var i = overlays.indexOf(h); if (i < 0) return;
     overlays.splice(i, 1);
     h.el.classList.add('closing');
     var done = false;
-    function fin() {
+    function fin(skipFocus) {
       if (done) return; done = true;
       if (h.el.parentNode) h.el.parentNode.removeChild(h.el);
-      var back = h.returnFocus;
-      if (back && back.isConnected && back.focus) { try { back.focus({ preventScroll: true }); } catch (e) {} }
+      if (!skipFocus) {
+        var back = h.returnFocus;
+        if (back && back.isConnected && back.focus) { try { back.focus({ preventScroll: true }); } catch (e) {} }
+      }
       if (h.cfg.onClose) { try { h.cfg.onClose(value); } catch (e) {} }
     }
-    setTimeout(fin, 260);
+    if (instant) fin(true); else setTimeout(fin, 260);
   }
 
   FB.overlay = {
     any: function () { return overlays.length > 0; },
     close: function (v) { if (overlays.length) closeOverlay(overlays[overlays.length - 1], v); },
     closeAll: function (instant) {
-      overlays.slice().forEach(function (h) {
-        overlays.splice(overlays.indexOf(h), 1);
-        if (instant) { if (h.el.parentNode) h.el.parentNode.removeChild(h.el); }
-        else closeOverlay(h, undefined);
-      });
+      overlays.slice().forEach(function (h) { closeOverlay(h, undefined, instant); });
     },
     top: function () { return overlays[overlays.length - 1]; },
   };

@@ -65,17 +65,16 @@ window.FB = window.FB || {};
             '<button data-rm="' + l.lid + '" style="color:var(--bad)">Remove</button></div>' +
           '</div>' +
           '<div class="cl-r"><b>' + FB.money(l.unit * l.qty) + '</b>' +
-            '<span class="stepper"><button data-dq="' + l.lid + '" data-d="-1">' + FB.icon('minus', 14) + '</button>' +
+            '<span class="stepper"><button data-dq="' + l.lid + '" data-d="-1" aria-label="One fewer ' + FB.attr(l.name) + '">' + FB.icon('minus', 14) + '</button>' +
             '<b style="min-width:24px">' + l.qty + '</b>' +
-            '<button data-dq="' + l.lid + '" data-d="1">' + FB.icon('plus', 14) + '</button></span></div>' +
+            '<button data-dq="' + l.lid + '" data-d="1" aria-label="One more ' + FB.attr(l.name) + '">' + FB.icon('plus', 14) + '</button></span></div>' +
         '</div>';
       }).join('');
 
       /* upsell — aggressiveness scales with the Hunger Level setting */
       var hunger = FB.S().settings.hungerLevel;
-      var picks = FB.catalog.photoItems(20).filter(function (r) { return r.store.slug === s.slug; }).slice(0, 6);
-      if (!picks.length) picks = FB.catalog.photoItems(6);
-      if (!FB.S().settings.reduceUpsells) {
+      var picks = FB.catalog.photoItems(6, s.slug);
+      if (picks.length && !FB.S().settings.reduceUpsells) {
         h += '<div style="border-top:8px solid var(--surface-2);padding-top:6px">' +
           FB.C.sectionHead(hunger >= 8 ? 'You are not finished' : 'People also added',
             hunger >= 8 ? 'Your Hunger Level is set to ' + hunger + '. We are acting accordingly.' : null) +

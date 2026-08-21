@@ -153,13 +153,13 @@ window.FB = window.FB || {};
         '<div style="padding:12px 16px 4px"><div style="display:flex;justify-content:space-between;align-items:baseline">' +
         '<b style="font:var(--t-body);font-weight:500">Hunger Level</b>' +
         '<span style="font:700 calc(15px * var(--fs)) var(--mono);color:var(--fb)">' + s.hungerLevel + ' / 10</span></div>' +
-        '<input class="slider" type="range" min="1" max="10" value="' + s.hungerLevel + '" data-hunger style="margin-top:12px">' +
+        '<input class="slider" type="range" min="1" max="10" value="' + s.hungerLevel + '" data-hunger aria-label="Hunger Level" style="margin-top:12px">' +
         '<div style="font:var(--t-cap);color:var(--ink-3);margin-top:8px;line-height:1.45">' +
         FB.esc(hungerCopy(s.hungerLevel)) + '</div></div>' +
         '<div style="padding:14px 16px 4px"><div style="display:flex;justify-content:space-between;align-items:baseline">' +
         '<b style="font:var(--t-body);font-weight:500">Default tip</b>' +
         '<span style="font:700 calc(15px * var(--fs)) var(--mono)">' + s.autoTipPct + '%</span></div>' +
-        '<input class="slider" type="range" min="0" max="80" step="1" value="' + s.autoTipPct + '" data-tipdef style="margin-top:12px">' +
+        '<input class="slider" type="range" min="0" max="80" step="1" value="' + s.autoTipPct + '" data-tipdef aria-label="Default tip percentage" style="margin-top:12px">' +
         '<div style="font:var(--t-cap);color:var(--ink-3);margin-top:8px">Pre-selected at checkout. The suggested default is 42%.</div></div>' +
         '</div>';
 
