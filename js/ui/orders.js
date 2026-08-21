@@ -57,8 +57,8 @@ window.FB = window.FB || {};
     tab: 'orders',
     hideCartBar: true,
     appbar: function () {
-      return '<div class="bar bar--border"><button class="iconbtn" data-back>' + FB.icon('back', 20) + '</button>' +
-        '<h1>TRACKR™</h1><button class="iconbtn" data-help>' + FB.icon('help', 19) + '</button></div>';
+      return '<div class="bar bar--border"><button class="iconbtn" data-back aria-label="Back">' + FB.icon('back', 20) + '</button>' +
+        '<h1>TRACKR™</h1><button class="iconbtn" data-help aria-label="About TRACKR">' + FB.icon('help', 19) + '</button></div>';
     },
     render: function (p) {
       var o = FB.store.order(p.id);
@@ -70,9 +70,14 @@ window.FB = window.FB || {};
       if (!o) return;
       wire(root, o);
       FB.tracker.placeCourier(root, o, FB.tracker.progress(o));
+      if (offTick) { offTick(); offTick = null; }
       offTick = FB.tracker.onTick(function () {
         var cur = FB.store.order(p.id);
         if (!cur) return;
+        /* the ticker is global and outlives this screen; never repaint #view
+           for an order the user has navigated away from */
+        var now = FB.nav.current();
+        if (!now || now.name !== 'track' || now.params.id !== p.id) return;
         var sc = root.scrollTop;
         root.innerHTML = body(cur);
         root.scrollTop = sc;
@@ -86,6 +91,11 @@ window.FB = window.FB || {};
     },
     unmount: function () { if (offTick) { offTick(); offTick = null; } },
   });
+
+  /* Three doorsteps, picked by order id, so one order always shows the same
+     photograph and the next order does not show that one. */
+  var PROOFS = ['assets/app/proof-delivery.webp', 'assets/app/proof-delivery-2.webp', 'assets/app/proof-delivery-3.webp'];
+  function proofPhoto(id) { return PROOFS[FB.hash(String(id) + 'proof') % PROOFS.length]; }
 
   function body(o) {
     var done = o.status === 'delivered';
@@ -135,7 +145,7 @@ window.FB = window.FB || {};
     if (done) {
       h += '<div style="border-top:8px solid var(--surface-2);padding-top:6px">' +
         FB.C.sectionHead('Proof of delivery', 'Photographed by ' + g.name + '.') +
-        '<div style="padding:0 16px 8px"><img src="assets/app/proof-delivery.webp" alt="Proof of delivery photo" ' +
+        '<div style="padding:0 16px 8px"><img src="' + proofPhoto(o.id) + '" alt="Proof of delivery photo" ' +
         'style="width:100%;border-radius:14px;background:var(--surface-2)" onerror="this.remove()"></div>' +
         '<p style="font:var(--t-cap);color:var(--ink-3);padding:0 16px 14px;line-height:1.45">' +
         'Photograph taken at the delivery address, or at an address near it, or at an address.</p></div>';
@@ -145,7 +155,7 @@ window.FB = window.FB || {};
           FB.C.sectionHead('How was it?', 'Ratings are shared with the restaurant, the Slinger, and eleven partners.') +
           '<div style="display:flex;gap:8px;padding:4px 16px 14px;justify-content:center">' +
           [1, 2, 3, 4, 5].map(function (n) {
-            return '<button class="iconbtn" data-rate="' + n + '" style="width:46px;height:46px;color:var(--ink-3)">' + FB.icon('starFill', 26) + '</button>';
+            return '<button class="iconbtn" data-rate="' + n + '" aria-label="Rate ' + n + ' out of 5" style="width:46px;height:46px;color:var(--ink-3)">' + FB.icon('starFill', 26) + '</button>';
           }).join('') + '</div></div>';
       } else {
         h += '<div class="callout" style="margin-top:14px">' + FB.icon('checkFill', 17) +
@@ -158,6 +168,7 @@ window.FB = window.FB || {};
 
     /* receipt */
     h += '<div style="border-top:8px solid var(--surface-2);margin-top:14px;padding-top:6px">' +
+      '<div style="padding:14px 16px 0">' + FB.lockup({ size: 26, tagline: false }) + '</div>' +
       FB.C.sectionHead('Receipt', FB.dayLabel(o.placedAt) + ' · ' + FB.clock(new Date(o.placedAt))) +
       '<div style="padding:0 16px 8px">' + o.lines.map(function (l) {
         return '<div style="padding:6px 0;font:var(--t-sub);display:flex;gap:10px">' +

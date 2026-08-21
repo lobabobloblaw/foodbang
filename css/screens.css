@@ -323,7 +323,10 @@
 .st-bar {
   padding: 54px 0 0; background: var(--bg); border-bottom: 1px solid var(--line);
   opacity: 0; transform: translateY(-6px); transition: opacity var(--mid), transform var(--mid);
+  /* transparent is not hidden: while it is faded out this bar still covers the
+     hero's own Back/Share/Save buttons, and would swallow their taps */
+  visibility: hidden; pointer-events: none;
 }
-.st-bar.on { opacity: 1; transform: none; }
+.st-bar.on { opacity: 1; transform: none; visibility: visible; pointer-events: auto; }
 .st-bar .bar { min-height: 46px; padding-bottom: 6px; }
 .st-bar h1 { font: var(--t-head); letter-spacing: -.2px; }

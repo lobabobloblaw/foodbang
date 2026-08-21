@@ -108,15 +108,29 @@ window.FB = window.FB || {};
     return t.content;
   };
   FB.node = function (html) { return FB.frag(html).firstElementChild; };
+  /* While a screen is mounting, the shell parks an array here and every listener
+     bound during that mount is recorded in it. Screens delegate onto #view and
+     #appbar, which outlive the screen, so without this a re-render would leave
+     the previous mount's handlers attached and every click would fire twice,
+     then three times, then four. */
+  FB._binds = null;
+
   /* delegated listener; returns an unbind fn */
   FB.on = function (root, type, sel, fn, opts) {
-    if (typeof sel === 'function') { root.addEventListener(type, sel, fn); return function () { root.removeEventListener(type, sel, fn); }; }
-    function h(e) {
-      var t = e.target.closest ? e.target.closest(sel) : null;
-      if (t && root.contains(t)) fn.call(t, e, t);
+    var off;
+    if (typeof sel === 'function') {
+      root.addEventListener(type, sel, fn);
+      off = function () { root.removeEventListener(type, sel, fn); };
+    } else {
+      var h = function (e) {
+        var t = e.target.closest ? e.target.closest(sel) : null;
+        if (t && root.contains(t)) fn.call(t, e, t);
+      };
+      root.addEventListener(type, h, opts);
+      off = function () { root.removeEventListener(type, h, opts); };
     }
-    root.addEventListener(type, h, opts);
-    return function () { root.removeEventListener(type, h, opts); };
+    if (FB._binds) FB._binds.push(off);
+    return off;
   };
   FB.debounce = function (fn, ms) {
     var t; return function () { var a = arguments, c = this; clearTimeout(t); t = setTimeout(function () { fn.apply(c, a); }, ms || 180); };

@@ -58,13 +58,25 @@ window.FB = window.FB || {};
       '</button>';
   }
 
+  /* The screen whose mount() actually ran, with the listeners it bound. Tracking
+     this rather than current.prev is what makes a re-render safe: nav.refresh()
+     repaints the screen you are already on, so "the previous screen" is usually
+     this one. */
+  var mounted = null;
+
+  function unmountCurrent() {
+    if (!mounted) return;
+    mounted.binds.forEach(function (off) { try { off(); } catch (e) {} });
+    var def = screens[mounted.name];
+    if (def && def.unmount) { try { def.unmount(); } catch (e) { console.error('unmount ' + mounted.name, e); } }
+    mounted = null;
+  }
+
   function paint() {
     var def = screens[current.name];
     if (!def) { console.warn('no screen', current.name); return; }
 
-    if (current.prev && screens[current.prev.name] && screens[current.prev.name].unmount) {
-      try { screens[current.prev.name].unmount(); } catch (e) {}
-    }
+    unmountCurrent();
 
     barEl.innerHTML = def.appbar ? def.appbar(current.params) : '';
     viewEl.innerHTML = def.render ? def.render(current.params) : '';
@@ -77,7 +89,12 @@ window.FB = window.FB || {};
 
     renderTabs(); renderCartBar();
     viewEl.scrollTop = current.scroll || 0;
-    if (def.mount) { try { def.mount(viewEl, current.params); } catch (e) { console.error('mount ' + current.name, e); } }
+    if (def.mount) {
+      var binds = FB._binds = [];
+      try { def.mount(viewEl, current.params); } catch (e) { console.error('mount ' + current.name, e); }
+      FB._binds = null;
+      mounted = { name: current.name, binds: binds };
+    }
   }
 
   var nav = {
@@ -128,11 +145,12 @@ window.FB = window.FB || {};
 
     if (kind === 'sheet') {
       inner =
-        '<div class="sheet' + (cfg.full ? ' sheet--full' : '') + '" role="dialog" aria-modal="true">' +
+        '<div class="sheet' + (cfg.full ? ' sheet--full' : '') + '" role="dialog" aria-modal="true" tabindex="-1"' +
+        (cfg.title ? ' aria-label="' + FB.attr(cfg.title) + '"' : '') + '>' +
           (cfg.noGrab ? '' : '<div class="sheet-grab"></div>') +
           (cfg.title || cfg.close !== false
             ? '<div class="sheet-head">' +
-                (cfg.back ? '<button class="iconbtn" data-sheet-back>' + FB.icon('back', 20) + '</button>' : '') +
+                (cfg.back ? '<button class="iconbtn" data-sheet-back aria-label="Back">' + FB.icon('back', 20) + '</button>' : '') +
                 '<h2>' + FB.esc(cfg.title || '') + (cfg.sub ? '<span class="sh-sub">' + FB.esc(cfg.sub) + '</span>' : '') + '</h2>' +
                 (cfg.close === false ? '' : '<button class="iconbtn" data-sheet-close aria-label="Close">' + FB.icon('x', 19) + '</button>') +
               '</div>'
@@ -141,7 +159,8 @@ window.FB = window.FB || {};
           (cfg.footer ? '<div class="sheet-foot">' + cfg.footer + '</div>' : '') +
         '</div>';
     } else {
-      inner = '<div class="modal" role="dialog" aria-modal="true">' + (cfg.html || '') + '</div>';
+      inner = '<div class="modal" role="dialog" aria-modal="true" tabindex="-1"' +
+        (cfg.title ? ' aria-label="' + FB.attr(cfg.title) + '"' : '') + '>' + (cfg.html || '') + '</div>';
     }
     ov.innerHTML = '<div class="ov-scrim" data-scrim></div>' + inner;
     root.appendChild(ov);
@@ -150,6 +169,7 @@ window.FB = window.FB || {};
       el: ov,
       body: ov.querySelector('.sheet-body') || ov.querySelector('.modal'),
       cfg: cfg,
+      returnFocus: document.activeElement,
       close: function (v) { closeOverlay(handle, v); },
       setFooter: function (html) {
         var f = ov.querySelector('.sheet-foot');
@@ -164,6 +184,25 @@ window.FB = window.FB || {};
     FB.on(ov, 'click', '[data-sheet-close]', function () { handle.close(); });
     if (cfg.back) FB.on(ov, 'click', '[data-sheet-back]', function () { handle.close(); cfg.back(); });
     if (cfg.onMount) { try { cfg.onMount(handle.body, handle); } catch (e) { console.error(e); } }
+
+    /* A dialog you cannot reach with the keyboard is a dialog that traps the
+       keyboard behind it: move focus in, keep Tab inside, hand it back on close. */
+    var dlg = ov.querySelector('.sheet, .modal');
+    var TABBABLE = 'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
+    function tabbables() {
+      return FB.qsa(TABBABLE, dlg).filter(function (el) { return el.offsetParent !== null || el === document.activeElement; });
+    }
+    var first = tabbables().filter(function (el) { return !el.hasAttribute('data-sheet-close'); })[0];
+    try { (first || dlg).focus({ preventScroll: true }); } catch (e) {}
+    FB.on(ov, 'keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var list = tabbables();
+      if (!list.length) { e.preventDefault(); dlg.focus({ preventScroll: true }); return; }
+      var i = list.indexOf(document.activeElement);
+      if (e.shiftKey && (i <= 0)) { e.preventDefault(); list[list.length - 1].focus(); }
+      else if (!e.shiftKey && i === list.length - 1) { e.preventDefault(); list[0].focus(); }
+      else if (i === -1) { e.preventDefault(); list[0].focus(); }
+    });
     return handle;
   }
 
@@ -175,6 +214,8 @@ window.FB = window.FB || {};
     function fin() {
       if (done) return; done = true;
       if (h.el.parentNode) h.el.parentNode.removeChild(h.el);
+      var back = h.returnFocus;
+      if (back && back.isConnected && back.focus) { try { back.focus({ preventScroll: true }); } catch (e) {} }
       if (h.cfg.onClose) { try { h.cfg.onClose(value); } catch (e) {} }
     }
     setTimeout(fin, 260);

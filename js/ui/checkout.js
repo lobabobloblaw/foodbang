@@ -29,7 +29,7 @@ window.FB = window.FB || {};
     tab: 'home',
     hideCartBar: true,
     appbar: function () {
-      return '<div class="bar bar--border"><button class="iconbtn" data-back>' + FB.icon('back', 20) + '</button>' +
+      return '<div class="bar bar--border"><button class="iconbtn" data-back aria-label="Back">' + FB.icon('back', 20) + '</button>' +
         '<h1>Checkout</h1><span class="badge">' + FB.icon('lock', 11) + 'Secure</span></div>';
     },
     render: function (p) {
@@ -85,7 +85,7 @@ window.FB = window.FB || {};
         '<span class="crow-r">Change' + FB.icon('fwd', 14) + '</span></button>' +
         '<button class="crow" data-promo>' + FB.icon('tag', 19) +
         '<span class="crow-b"><b>' + (ui.promo && ui.promo.valid ? 'Promo ' + FB.esc(ui.promo.code) + ' applied' : 'Add a promo code') + '</b>' +
-        '<span>' + (ui.promo && ui.promo.valid ? FB.esc(ui.promo.blurb) : 'Seven codes are currently active. Six have conditions.') + '</span></span>' +
+        '<span>' + (ui.promo && ui.promo.valid ? FB.esc(ui.promo.blurb) : 'Six codes are currently active. All six have conditions.') + '</span></span>' +
         '<span class="crow-r">' + FB.icon('fwd', 14) + '</span></button>' +
         (st.credits > 0 ? '<div class="crow">' + FB.icon('gift', 19) + '<span class="crow-b"><b>BangBux™ balance</b><span>' + FB.money(st.credits) + ' — redeemable against fees, not food</span></span></div>' : '') +
         '</div>';
@@ -149,8 +149,8 @@ window.FB = window.FB || {};
       function openCustomTip() {
         FB.sheet.open({
           title: 'Custom tip', sub: 'Custom amounts are reviewed.',
-          html: '<div class="field"><span class="lbl">Amount</span>' +
-            '<input class="input" type="number" min="0" step="0.25" value="' + (ui.tipCustom != null ? ui.tipCustom : '') + '" data-ct placeholder="0.00">' +
+          html: '<div class="field"><label class="lbl" for="f-tip">Amount</label>' +
+            '<input class="input" id="f-tip" type="number" min="0" step="0.25" value="' + (ui.tipCustom != null ? ui.tipCustom : '') + '" data-ct placeholder="0.00">' +
             '<div class="field-hint">The suggested amount is ' + FB.money(FB.cart.subtotal(p.slug) * 0.42) + '.</div></div>',
           footer: '<button class="btn btn--primary btn--block" data-save>Set tip</button>',
           onMount: function (body, h) {
@@ -177,8 +177,8 @@ window.FB = window.FB || {};
             return '<button class="opt" role="radio" aria-checked="' + (a.dropoff === o.id) + '" data-drop="' + o.id + '">' +
               '<span class="mark"></span><span class="opt-b"><b>' + o.name + '</b><span>' + o.note + '</span></span></button>';
           }).join('') +
-          '<div class="field" style="padding-top:14px"><span class="lbl">Note for your Slinger</span>' +
-          '<textarea class="textarea" data-ins placeholder="Gate code, floor, warnings…">' + FB.esc(a.instructions || '') + '</textarea></div>',
+          '<div class="field" style="padding-top:14px"><label class="lbl" for="f-note">Note for your Slinger</label>' +
+          '<textarea class="textarea" id="f-note" data-ins placeholder="Gate code, floor, warnings…">' + FB.esc(a.instructions || '') + '</textarea></div>',
           footer: '<button class="btn btn--primary btn--block" data-save>Save</button>',
           onMount: function (body, h) {
             var pick = a.dropoff;
@@ -246,7 +246,13 @@ window.FB = window.FB || {};
     },
   });
 
+  /* One order per tap, whatever the DOM does. The 3-second "cancellation window"
+     means the button stays on screen while the order is in flight. */
+  var placing = false;
+
   function place(p, btn) {
+    if (placing) return;
+    placing = true;
     var s = FB.catalog.get(p.slug);
     var lines = FB.cart.lines(p.slug).map(function (l) {
       return { name: l.name, qty: l.qty, unit: l.unit, itemId: l.itemId, sel: l.sel, note: l.note,
@@ -294,6 +300,7 @@ window.FB = window.FB || {};
       });
       FB.bodymax.ingest(order);
       ui.promo = null; ui.express = false; ui.scheduled = null; ui.tipCustom = null; ui.tipPct = null;
+      placing = false;
       FB.tracker.start(order.id);
       FB.nav.go('track', { id: order.id });
     }, 3000);
