@@ -1807,6 +1807,60 @@ check('the build tools fail loudly rather than quietly', () => {
   return 'an itemless section is reported with everything else, and a stale asset cache is refused out loud';
 });
 
+check('an incident expires while the food is still in the kitchen', () => {
+  /* The check that asserts a deadline lands before arrival passed by 167 MILLISECONDS
+     on the one order id it happened to pick, and 7 of the 16 candidate ids in its own
+     search would have failed it. It was true by luck, not by construction — so any
+     future beat that adds drift would have turned it red and read as that feature's
+     fault. Swept across every store and tier instead of spot-checked, and bounded
+     from BOTH sides: a deadline nobody can answer in time is as useless as one that
+     expires after the food has landed. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T0);
+    let built = 0, incidents = 0, minMargin = Infinity, minHold = Infinity, worst = '';
+    for (const s of FB.catalog.all()) {
+      FB.cart.clearAll();
+      harness.addToCart(FB, s.slug, 3);
+      if (FB.cart.lines(s.slug).length < 2) continue;
+      for (let tier = 1; tier <= 3; tier++) {
+        for (let i = 0; i < 6; i++) {
+          const o = harness.makeOrder(FB, s.slug, { now: T0 });
+          o.id = 'inc_' + s.slug + '_' + tier + '_' + i;
+          o.tier = tier; o.etaDrift = 0; o.events = []; delete o.incident; delete o.replayed;
+          FB.tracker.build(o);
+          built++;
+          if (!o.incident) continue;
+          incidents++;
+          const margin = o.deliverAt - o.incident.deadline;
+          const hold = o.incident.deadline - o.incident.at;
+          if (margin < minMargin) { minMargin = margin; worst = o.id; }
+          if (hold < minHold) minHold = hold;
+          if (o.incident.deadline >= o.deliverAt) {
+            throw new Error(o.id + ': the deadline lands ' + Math.round((o.incident.deadline - o.deliverAt) / 1000) +
+              's AFTER the order was due to arrive');
+          }
+          /* and before the courier has the bag, which is the physical constraint */
+          const firstPickup = (o.schedule || []).filter((b) => b.step === 'pickup')[0];
+          if (firstPickup && o.incident.deadline > firstPickup.at) {
+            throw new Error(o.id + ': the deadline outlives the courier collecting the order');
+          }
+          if (hold < FB.tracker.INCIDENT_MIN_MS) {
+            throw new Error(o.id + ': offers ' + Math.round(hold / 1000) + 's to answer, under the ' +
+              Math.round(FB.tracker.INCIDENT_MIN_MS / 1000) + 's floor');
+          }
+          if (hold > FB.tracker.INCIDENT_MS) throw new Error(o.id + ': offers longer than the ceiling');
+        }
+      }
+    }
+    if (incidents < 20) throw new Error('only ' + incidents + ' incidents across ' + built + ' orders — too few to bound');
+    return incidents + ' incidents over ' + built + ' orders, closest margin ' +
+      (minMargin / 1000).toFixed(1) + 's (' + worst + '), shortest hold ' + (minHold / 1000).toFixed(1) + 's';
+  } finally { clock.restore(); app.dispose(); }
+});
+
 check('a schedule slot is never offered outside the hours it is for', () => {
   /* The sheet built its rows from wall-clock arithmetic alone — deliveryMax + 45n —
      and never asked whether the store was open at the time it was offering. Swept
@@ -3052,34 +3106,76 @@ check('an unanswered incident holds the order without running away with it', () 
   const { FB, clock } = app;
   try {
     const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    /* Prefer an order whose deadline was actually CLAMPED. On one that happens to get
+       a near-full hold, shifting arrival by the 40 s ceiling instead of by the hold
+       offered is a one-second error and invisible — the defect only shows on the
+       short windows the clamp exists for. */
+    /* starbux, not cluckingham: at a 29-minute ETA the kitchen window is short enough
+       that the deadline is always CLAMPED, and the clamp is what this check has to be
+       able to see. On a long-window store the hold runs the full 40 s, and shifting
+       arrival by the ceiling instead of by the hold offered is a one-second error
+       that no assertion can distinguish. Measured: starbux and mcronalds clamp on
+       every order, every other store on none. */
+    const SHORT = 'starbux';
     let o = null;
-    for (let i = 0; i < 60 && !o; i++) {
+    for (let i = 0; i < 90 && !o; i++) {
       FB.store.reset();
       clock.set(T0);
-      harness.addToCart(FB, 'cluckingham', 3);
-      const x = harness.makeOrder(FB, 'cluckingham', { now: T0 });
+      harness.addToCart(FB, SHORT, 3);
+      const x = harness.makeOrder(FB, SHORT, { now: T0 });
       x.id = 'o_hold' + i; x.etaDrift = 0; x.events = []; delete x.incident; delete x.replayed;
       FB.tracker.build(x);
-      FB.cart.clear('cluckingham');
+      FB.cart.clear(SHORT);
       FB.store.set((st) => { st.orders.unshift(x); st.activeOrderId = x.id; return st; });
       if (x.incident) o = x;
     }
     if (!o) throw new Error('no incident to hold');
+    if (o.incident.deadline - o.incident.at >= FB.tracker.INCIDENT_MS - 8000) {
+      throw new Error(SHORT + ' no longer produces a clamped deadline, so this check can no longer ' +
+        'tell a hold shifted by its own length from one shifted by the ceiling');
+    }
     const span0 = o.deliverAt - o.startAt;
+    /* THIS order's hold, not the ceiling. The deadline is clamped to fit inside the
+       kitchen window, so an order whose window is short offers less than
+       INCIDENT_MS — and a loop that ticks past its own deadline fires the election
+       mid-loop, moves deliverAt, and throws about the estimate growing when what
+       actually happened is that the hold ended. */
+    const holdMs = o.incident.deadline - o.incident.at;
+    if (holdMs < FB.tracker.INCIDENT_MIN_MS) throw new Error('a hold of ' + holdMs + 'ms is shorter than the floor');
+    if (holdMs > FB.tracker.INCIDENT_MS) throw new Error('a hold of ' + holdMs + 'ms exceeds the ceiling');
 
     /* tick through the whole hold at the real ticker's cadence */
     let eta0 = null;
-    for (let t = 0; t < FB.tracker.INCIDENT_MS - 1000; t += 900) {
+    for (let t = 0; t < holdMs - 1000; t += 900) {
       clock.set(o.incident.at + t);
       FB.tracker.tick();
       const c = FB.store.order(o.id);
       const e = FB.tracker.eta(c);
       if (eta0 === null) eta0 = e;
       if (e > eta0) throw new Error('the estimate GREW during the hold: ' + eta0 + ' -> ' + e + ' at +' + t + 'ms');
-      if (c.deliverAt - o.startAt > span0 + FB.tracker.INCIDENT_MS + 2000) {
+      if (c.deliverAt - o.startAt > span0 + holdMs + 2000) {
         throw new Error('deliverAt ran away: pushed ' + Math.round((c.deliverAt - o.startAt - span0) / 1000) + 's for a ' +
           Math.round(t / 1000) + 's hold');
       }
+    }
+
+    /* Nobody answered, so the platform elects for you — and the arrival moves by the
+       hold that was ACTUALLY offered. Shifting by the 40 s ceiling instead pushes
+       arrival out by the difference for a wait that never happened, and the settle
+       bound below is 60 s wide, so it cannot see a 17 s over-push. */
+    clock.set(o.incident.deadline + 1200);
+    FB.tracker.tick();
+    const elected = FB.store.order(o.id);
+    if (!elected.incident.elected) throw new Error('the deadline passed without electing');
+    /* measured from the BASELINE the hold captured, not from the previous tick:
+       shiftAfterHold recomputes deliverAt as base + held on every pass, so the push
+       accumulates during the hold and the last pass only adds the remainder */
+    const base = elected.incident.baseDeliverAt;
+    if (base == null) throw new Error('the hold captured no baseline to shift from');
+    const pushed = elected.deliverAt - base;
+    if (Math.abs(pushed - holdMs) > 2500) {
+      throw new Error('an unanswered ' + Math.round(holdMs / 1000) + 's hold moved arrival by ' +
+        Math.round(pushed / 1000) + 's');
     }
 
     /* it still settles, and within a sane window */
@@ -3092,7 +3188,7 @@ check('an unanswered incident holds the order without running away with it', () 
     if (!delivered) throw new Error('a held order never delivered');
     const final = FB.store.order(o.id);
     const took = final.deliveredAt - o.startAt;
-    if (took > span0 + FB.tracker.INCIDENT_MS + 60000) {
+    if (took > span0 + holdMs + 60000) {
       throw new Error('a held order took ' + Math.round(took / 1000) + 's for a ' + Math.round(span0 / 1000) + 's delivery');
     }
     /* the beats moved with it rather than dumping in one tick when the gate lifted */

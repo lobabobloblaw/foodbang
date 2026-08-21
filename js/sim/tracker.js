@@ -26,6 +26,16 @@ window.FB = window.FB || {};
      what makes "Hold the order. The order waits. The food does not." true. */
   var INCIDENT_MS = 40000;
 
+  /* The deadline has to expire while the food is still in the kitchen, or answering
+     it changes nothing that has not already happened. The check asserting exactly
+     that passed by 167 MILLISECONDS on the order id it happened to pick, and 7 of the
+     16 candidate ids in its own search would have failed it — so the bound below is
+     not a new rule, it is the existing one finally being enforced instead of being
+     true by luck. INCIDENT_MIN_MS is the floor worth offering someone: shorter than
+     this and the sheet takes longer to read than to answer. */
+  var INCIDENT_MIN_MS = 22000;
+  var RESOLVE_MARGIN_MS = 6000;
+
   var STEPS = [
     { key: 'placed',    label: 'Order placed',        pickup: 'Order placed' },
     { key: 'confirmed', label: 'Restaurant notified', pickup: 'Restaurant notified' },
@@ -267,6 +277,12 @@ window.FB = window.FB || {};
     });
     sched.sort(function (a, b) { return a.at - b.at; });
 
+    /* Starts at what the store advertised; every drift beat pushes it out. Computed
+       HERE, above the incident, because the incident is bounded by it — read a line
+       too late it is undefined, the bound comes out NaN, every comparison against NaN
+       is false, and the clamp looks like it is working while doing nothing at all. */
+    o.deliverAt = o.startAt + o.etaMin * SIM_MS_PER_MIN;
+
     /* The restaurant runs out of something, sometimes. Needs at least two lines:
        "remove and be credited" on a single-line order empties an order whose fee
        stack has already been multiplied, which is not a resolution. */
@@ -280,14 +296,28 @@ window.FB = window.FB || {};
          has landed is not a deadline */
       var prep = sched.filter(function (b) { return b.step === 'preparing'; });
       var at = prep.length ? prep[0].at : o.startAt + span * 0.2;
-      o.incident = {
-        lineIdx: idx,
-        name: lines[idx].name,
-        at: at,
-        deadline: at + INCIDENT_MS,
-        resolution: null,
-        elected: false,
-      };
+      /* Bounded by whichever comes first: the courier taking the bag, or the arrival
+         the store advertised. Past either one there is nothing left to decide. */
+      var pick = sched.filter(function (b) { return b.step === 'pickup'; });
+      var bound = Math.min(pick.length ? pick[0].at : o.deliverAt, o.deliverAt) - RESOLVE_MARGIN_MS;
+      /* pull the question EARLIER rather than delete it — a short-ETA store should
+         still be able to run out of something */
+      if (bound - at < INCIDENT_MIN_MS) at = bound - INCIDENT_MIN_MS;
+      var prepStart = o.startAt + span * (WEIGHTS.placed + WEIGHTS.confirmed);
+      var ms = FB.clamp(bound - at, INCIDENT_MIN_MS, INCIDENT_MS);
+      /* and drop it only when the window genuinely cannot hold a deadline anyone
+         could answer — not silently, but by there being nowhere to put it */
+      if (at >= prepStart - 1) {
+        o.incident = {
+          lineIdx: idx,
+          name: lines[idx].name,
+          at: at,
+          ms: ms,
+          deadline: at + ms,
+          resolution: null,
+          elected: false,
+        };
+      }
     }
 
     /* SCRIPT.delivered used to be dead code: the done branch unshifted a hardcoded
@@ -295,8 +325,6 @@ window.FB = window.FB || {};
     var last = (chosen.delivered && chosen.delivered[0]) || scriptFor(o).delivered.beats[0];
     o.schedule = sched;
     o.finalBeat = { step: 'delivered', text: fill(last[0], o), sub: last[1] ? fill(last[1], o) : null, drift: 0 };
-    /* starts at what the store advertised; every drift beat pushes it out */
-    o.deliverAt = o.startAt + o.etaMin * SIM_MS_PER_MIN;
     o.status = 'placed';
     o.step = 0;
     o.events = [];
@@ -387,7 +415,10 @@ window.FB = window.FB || {};
           text: 'No resolution was selected',
           sub: 'Substitution has been elected on your behalf. Substitution was the most expensive available resolution.',
         });
-        shiftAfterHold(o, INCIDENT_MS);
+        /* the hold this order ACTUALLY offered, not the ceiling: a deadline clamped
+           to fit inside the kitchen window, then shifted by the full 40 s, pushes
+           arrival out by the difference for a wait that never happened */
+        shiftAfterHold(o, o.incident.deadline - o.incident.at);
         /* Charged the same as choosing it. The election used to bypass the only
            path that patches the three ledgers, so ignoring the block was FREE while
            picking the identical outcome cost $2.40 — the countdown was pressuring
@@ -520,6 +551,8 @@ window.FB = window.FB || {};
      the FEE_WHY walk — which only reads what compute returns — covers them, and the
      receipt gets a real line rather than a total that silently moved. */
   FB.tracker.INCIDENT_MS = INCIDENT_MS;
+  FB.tracker.INCIDENT_MIN_MS = INCIDENT_MIN_MS;
+  FB.tracker.RESOLVE_MARGIN_MS = RESOLVE_MARGIN_MS;
   FB.tracker.resolveIncident = function (orderId, choice) {
     var o = FB.store.order(orderId);
     if (!o || !o.incident || o.incident.resolution) return null;
