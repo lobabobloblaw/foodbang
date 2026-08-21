@@ -72,7 +72,9 @@ window.FB = window.FB || {};
       var counts = {};
       stores.forEach(function (s) { (s.categories || []).forEach(function (c) { counts[c] = (counts[c] || 0) + 1; }); });
       return Object.keys(FB.CAT_LABELS).filter(function (c) { return counts[c]; })
-        .map(function (c) { return { slug: c, label: FB.CAT_LABELS[c], icon: FB.CAT_ICONS[c], count: counts[c] }; });
+        .map(function (c) {
+          return { slug: c, label: FB.CAT_LABELS[c], icon: FB.CAT_ICONS[c], img: FB.CAT_IMG(c), count: counts[c] };
+        });
     },
     byCategory: function (cat) {
       if (!cat) return stores;

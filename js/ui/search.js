@@ -34,7 +34,7 @@ window.FB = window.FB || {};
         h += '<div style="padding:0 16px 20px;display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
           FB.catalog.categories().map(function (c) {
             return '<button class="chip chip--outline" data-cat="' + c.slug + '" style="height:52px;justify-content:flex-start;padding:0 14px;font-size:14.5px">' +
-              '<span style="font-size:20px;margin-right:8px">' + c.icon + '</span>' + FB.esc(c.label) +
+              '<i class="catchip">' + c.icon + '<img src="' + c.img + '" alt="" loading="lazy" onerror="this.remove()"></i>' + FB.esc(c.label) +
               '<span style="margin-left:auto;color:var(--ink-3);font-size:12px">' + c.count + '</span></button>';
           }).join('') + '</div>';
 
@@ -95,7 +95,7 @@ window.FB = window.FB || {};
   FB.screens.register('category', {
     tab: 'search',
     appbar: function (p) {
-      return '<div class="bar bar--border"><button class="iconbtn" data-back>' + FB.icon('back', 20) + '</button>' +
+      return '<div class="bar bar--border"><button class="iconbtn" data-back aria-label="Back">' + FB.icon('back', 20) + '</button>' +
         '<h1>' + FB.esc(FB.CAT_LABELS[p.cat] || 'Browse') + '</h1></div>';
     },
     render: function (p) {
@@ -110,7 +110,7 @@ window.FB = window.FB || {};
     tab: 'grocery',
     appbar: function () {
       return '<div class="bar" style="padding-bottom:2px"><h1>Grocery &amp; Retail</h1>' +
-        '<button class="iconbtn" data-go="search">' + FB.icon('search', 19) + '</button></div>';
+        '<button class="iconbtn" data-go="search" aria-label="Search">' + FB.icon('search', 19) + '</button></div>';
     },
     render: function () {
       var g = FB.catalog.byCategory('grocery').concat(
