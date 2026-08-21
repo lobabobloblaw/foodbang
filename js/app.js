@@ -2,11 +2,19 @@
 (function (FB) {
   'use strict';
 
+  /* Scarcity turns over at the local day boundary, but st.restock was only ever
+     settled at boot — so a tab left open across midnight kept billing $1.40 an order
+     to monitor an item the same app was already rendering as back in stock, and the
+     notification it had been paid for waited for a reload. Driven from the clock
+     tick, never from a render path, which must not write. */
   function updateClock() {
     var el = document.querySelector('.sb-time');
     if (el) el.textContent = FB.clock();
     /* the world moves on its own clock, not on navigation */
     if (FB.shell && FB.shell.stampWorld) FB.shell.stampWorld();
+
+    /* a repaint is justified once a day: availability turned over under the screen */
+    if (FB.notifs.settleDay().rolled) FB.nav.refresh();
   }
 
   FB.cycleTheme = function () {

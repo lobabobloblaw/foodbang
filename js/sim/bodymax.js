@@ -233,7 +233,11 @@ window.FB = window.FB || {};
         '<div><b style="color:var(--fb)">' + FB.money(m.fees) + '</b><span>IN FEES</span></div>' +
         '<div><b>' + FB.money(m.tips) + '</b><span>TIPPED</span></div></div>' +
         '<p style="font:var(--t-cap);color:var(--ink-3);padding:10px 16px;line-height:1.5">' +
-        (m.spend > 0 ? FB.pct(m.fees / m.spend * 100, 1) + ' of your lifetime spend was not food.' : '') + '</p>';
+        /* fees AND tips: lifetimeFees is feesTotal + tax + roundUp and deliberately
+           excludes the tip, which books separately — so this line claimed to describe
+           everything that was not food while being short by exactly the tip, and
+           contradicted the receipt's own nonFood figure on every order. */
+        (m.spend > 0 ? FB.pct((m.fees + m.tips) / m.spend * 100, 1) + ' of your lifetime spend was not food.' : '') + '</p>';
 
       /* badges */
       h += '<div style="border-top:8px solid var(--surface-2);margin-top:6px">' +

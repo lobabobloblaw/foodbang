@@ -252,8 +252,15 @@ window.FB = window.FB || {};
       var roundLine = roundUp > 0.004 ? line('rounding', 'Convenience Rounding™', roundUp, 'Rounded up to the nearest $5.00.', 'fee') : null;
       var total = FB.round2(pre + (roundLine ? roundLine.amount : 0));
 
+      /* The food you actually PAID for. `sub` is pre-discount while `nonFood` below
+         is computed post-discount, so anything dividing by `sub` counted the discount
+         twice — checkout's "$X of food · $Y of everything else" summed to the total
+         PLUS the promotion, on every order carrying one. */
+      var foodPaid = FB.round2(sub - promoAmt);
+
       return {
         subtotal: sub,
+        foodPaid: foodPaid,
         discounts: discounts,
         promoAmount: FB.round2(promoAmt),
         feeLines: lines,
@@ -265,8 +272,10 @@ window.FB = window.FB || {};
         tipPct: tipPct,
         roundLine: roundLine,
         total: total,
-        /* how many times the food cost you paid */
-        multiple: sub > 0 ? total / sub : 0,
+        /* how many times the food cost you paid — measured against the food you paid
+           for, not the menu price, or a promotion makes the ratio flatter than the
+           order was */
+        multiple: foodPaid > 0 ? total / foodPaid : 0,
         nonFood: FB.round2(total - sub + promoAmt),
         /* the member ledger, and the scrip. plus.saved was written as 0 on join and
            never incremented while five places rendered it. */
@@ -276,6 +285,12 @@ window.FB = window.FB || {};
         scripEarned: Math.min(SCRIP_MAX_PER_ORDER, Math.round(FB.round2(stack + peak) * SCRIP_RATE)),
       };
     },
+
+    /* The largest tip the app will accept. Lives here with the other money tables —
+       fees.js may not reference another module, but other modules read back off it.
+       Not a joke about generosity: FB.round2 overflows to Infinity above ~1.8e306,
+       and an Infinity that reaches localStorage becomes null and erases the ledgers. */
+    TIP_MAX: 9999.99,
 
     /* tip tiers, with the judgement made explicit */
     tipTiers: function (sub) {

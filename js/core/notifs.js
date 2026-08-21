@@ -133,6 +133,35 @@ window.FB = window.FB || {};
     /* You paid to be told once. Told once, and the monitoring stops — otherwise the
        Restock Monitoring fee is charged on every future order at every store for the
        rest of the save, for a notification that never arrives. */
+    /* The local day the last settle saw. Scarcity turns over at midnight, so a tab
+       left open across it is looking at yesterday's menu until something says so.
+       Lives here rather than in app.js because app.js boots on load and is skipped
+       by the test harness — logic parked there cannot be checked at all. */
+    _day: null,
+
+    /* Call on a timer. Reports whether the local day rolled since the last call and
+       how many monitorings that discharged; the first call only records the day. */
+    settleDay: function (at) {
+      var now = at || Date.now();
+      var day = new Date(now).toDateString();
+      var prev = FB.notifs._day;
+      FB.notifs._day = day;
+      if (prev === null || prev === day) return { rolled: false, settled: 0 };
+      return { rolled: true, settled: FB.notifs.restocks(now) };
+    },
+
+    /* The ids still being monitored FOR SOMETHING — that is, whose item is still out.
+       st.restock is only settled at boot, so a session that crosses local midnight
+       kept billing $1.40 an order for an item the same app was rendering as back in
+       stock. A pure read: FB.catalog.available is seeded and stores nothing, so this
+       is safe to call from a render path, which both fee call sites are. */
+    monitored: function (at) {
+      return (FB.S().restock || []).filter(function (id) {
+        var f = FB.catalog.find(id);
+        return f && !FB.catalog.available(f.item, at);
+      });
+    },
+
     restocks: function (at) {
       var st = FB.S();
       var ids = (st.restock || []).slice();

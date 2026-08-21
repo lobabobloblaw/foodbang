@@ -190,7 +190,17 @@ function loadApp(opts) {
 function addToCart(FB, slug, n) {
   const store = FB.catalog.get(slug);
   const items = [];
-  store.menu.forEach((sec) => sec.items.forEach((it) => items.push(it)));
+  /* SELLABLE items only. Scarcity is seeded on the item and the local DAY, and its
+     threshold samples the world at a local 7 PM whose EPOCH moves with the zone — so
+     which items are out genuinely differs between Los Angeles, Berlin and Tokyo.
+     Once checkout learned to refuse a basket holding an unavailable line, any fixture
+     that happened to scoop one up stopped rendering a receipt at all, and three of
+     five timezones went red on a check about something else entirely.
+     A fixture asking for n items wants n BUYABLE ones; a check that specifically
+     wants a dead line adds it with FB.cart.add directly. */
+  store.menu.forEach((sec) => sec.items.forEach((it) => {
+    if (FB.catalog.available(it)) items.push(it);
+  }));
   for (let i = 0; i < n && i < items.length; i++) {
     const it = items[i];
     FB.cart.add(slug, it, FB.catalog.defaultSel(it), 1, i === 0 ? 'no notes' : '');

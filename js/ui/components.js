@@ -105,7 +105,12 @@ window.FB = window.FB || {};
     return '<div class="empty">' +
       '<img src="' + (cfg.img || 'assets/app/empty-state.webp') + '" alt="" onerror="this.remove()">' +
       '<h3>' + FB.esc(cfg.title) + '</h3><p>' + FB.esc(cfg.body) + '</p>' +
-      (cfg.cta ? '<button class="btn btn--primary" data-go="' + cfg.go + '">' + FB.esc(cfg.cta) + '</button>' : '') +
+      /* params too: an empty state that sends you to a screen needing a slug used to
+         emit a bare data-go and land there with nothing. FB.esc escapes both quote
+         characters, so the JSON is safe inside a double-quoted attribute. */
+      (cfg.cta ? '<button class="btn btn--primary" data-go="' + cfg.go + '"' +
+        (cfg.params ? ' data-params="' + FB.esc(JSON.stringify(cfg.params)) + '"' : '') +
+        '>' + FB.esc(cfg.cta) + '</button>' : '') +
       '</div>';
   };
 

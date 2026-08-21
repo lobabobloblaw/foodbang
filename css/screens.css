@@ -144,6 +144,13 @@
 .cl-b { flex: 1; min-width: 0; }
 .cl-b b { display: block; font: var(--t-body-m); margin-bottom: 3px; }
 .cl-b .cl-o { display: block; color: var(--ink-3); font: var(--t-cap); line-height: 1.45; margin-bottom: 3px; }
+/* block, not inline: a span carrying a styled box escapes it — the app-bar address
+   line and the promo cards have both been bitten by exactly this */
+.cl-b .cl-x { display: block; color: var(--bad); font: var(--t-cap); line-height: 1.45; margin-bottom: 3px; }
+/* direct child only: .cl-r holds the price AND the stepper, whose quantity is also a
+   <b> — a descendant selector struck through the number the user has to read */
+.cartline.is-out .cl-r > b { text-decoration: line-through; color: var(--ink-3); }
+.cartline.is-out .stepper { opacity: .5; pointer-events: none; }
 .cl-b .cl-n { display: block; color: var(--ink-2); font: var(--t-cap); font-style: italic; }
 .cl-r { text-align: right; flex: none; }
 .cl-r b { display: block; font: 700 calc(15px * var(--fs)) var(--font); margin-bottom: 8px; }

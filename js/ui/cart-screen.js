@@ -24,14 +24,28 @@ window.FB = window.FB || {};
       }
 
       var others = FB.cart.activeSlugs().filter(function (x) { return x !== p.slug; });
-      var sub = FB.cart.subtotal(p.slug);
+
+      /* Read at render, never stamped: an item goes out at the local day boundary,
+         and a cart left open across midnight was still selling it. Derived HERE,
+         above the fee context, because the total below must price the basket the
+         screen is telling you to arrive at — pricing the dead line too quoted a
+         figure nothing could ever charge, which is the one thing this app's own
+         rule says a screen may not do. */
+      var dead = {};
+      FB.cart.unsellable(p.slug).forEach(function (l) {
+        var it = FB.catalog.item(p.slug, l.itemId);
+        dead[l.lid] = it && it.scarce ? it.scarce : 'no longer on the menu';
+      });
+      var deadCount = Object.keys(dead).length;
+      var sellable = lines.filter(function (l) { return !dead[l.lid]; });
+      var sub = FB.round2(FB.sum(sellable, function (l) { return l.unit * l.qty; }));
       /* the same per-cart checkout state checkout.js reads — this preview used to
          hardcode delivery, so a cart switched to Pickup on the store page quoted a
          total several dollars off from the one checkout would charge */
       var co = FB.cart.co(p.slug);
       var promoCode = co.promoCode ? FB.fees.checkPromo(co.promoCode, sub, FB.S().promo.used) : null;
       var calc = FB.fees.compute({
-        subtotal: sub, lineCount: lines.length, store: s, mode: co.mode,
+        subtotal: sub, lineCount: sellable.length, store: s, mode: co.mode,
         /* FB.cart.slot, not co.scheduled: a closed store is scheduled whether or
            not you picked a time, and checkout charges for it either way */
         express: co.express, scheduled: !!FB.cart.slot(p.slug),
@@ -44,7 +58,8 @@ window.FB = window.FB || {};
         scrip: FB.scrip.redeemable(),
         tosVersion: FB.tos.version(),
         storePromo: FB.catalog.storeOffer(s, sub, FB.store.isPlus()),
-        restockAlerts: (FB.S().restock || []).length,
+        /* identical to js/ui/checkout.js — see the note there */
+        restockAlerts: FB.notifs.monitored().length,
       });
 
       var h = '';
@@ -66,8 +81,10 @@ window.FB = window.FB || {};
 
       h += lines.map(function (l) {
         var opts = FB.cart.describe(p.slug, l);
-        return '<div class="cartline" data-lid="' + l.lid + '">' +
+        var out = dead[l.lid];
+        return '<div class="cartline' + (out ? ' is-out' : '') + '" data-lid="' + l.lid + '">' +
           '<div class="cl-b"><b>' + FB.esc(l.name) + '</b>' +
+            (out ? '<span class="cl-x">Unavailable today · ' + FB.esc(out) + '</span>' : '') +
             (opts ? '<span class="cl-o">' + FB.esc(opts) + '</span>' : '') +
             (l.note ? '<span class="cl-n">“' + FB.esc(l.note) + '”</span>' : '') +
             '<div class="cl-acts"><button data-edit="' + l.lid + '">Edit</button>' +
@@ -88,22 +105,34 @@ window.FB = window.FB || {};
           FB.C.sectionHead(hunger >= 8 ? 'You are not finished' : 'People also added',
             hunger >= 8 ? 'Your Hunger Level is set to ' + hunger + '. We are acting accordingly.' : null) +
           '<div class="upsell">' + picks.map(function (r) {
-            return '<button class="upcard pressable" data-item="' + r.item.id + '" data-slug="' + r.store.slug + '">' +
+            /* the same treatment dishTile gives Home's rail: an item struck through
+               on the store page but sold at full price here reads as a bug */
+            var out = !FB.catalog.available(r.item);
+            return '<button class="upcard pressable' + (out ? ' is-out' : '') + '" data-item="' + r.item.id + '" data-slug="' + r.store.slug + '">' +
               '<img src="' + r.item.photoSrc + '" alt="" loading="lazy">' +
               '<b class="trunc2">' + FB.esc(r.item.name) + '</b>' +
-              '<span>' + FB.money(r.item.price) + '</span></button>';
+              '<span>' + (out ? 'Unavailable' : FB.money(r.item.price)) + '</span></button>';
           }).join('') + '</div></div>';
       }
 
       h += '<div style="border-top:8px solid var(--surface-2);padding-top:10px">' +
-        FB.C.sectionHead('Order total') +
+        FB.C.sectionHead('Order total',
+          deadCount ? 'Priced without the ' + FB.plural(deadCount, 'item') + ' the restaurant has stopped serving.' : null) +
         FB.C.receipt(calc, { collapsed: !expanded }) + '</div>';
 
       h += '<div class="fineprint">Totals are estimates until they are charged, at which point they are final. ' +
         'Fees are assessed at the time of order and re-assessed at the time of delivery. Differences are resolved in favour of the platform.</div>';
 
-      h += '<div style="padding:0 16px 20px"><button class="btn btn--primary btn--lg btn--block btn--split" data-checkout>' +
-        '<span>Go to checkout</span><span>' + FB.money(calc.total) + '</span></button></div>';
+      h += '<div style="padding:0 16px 20px">' +
+        (deadCount
+          ? '<button class="btn btn--primary btn--lg btn--block" disabled>' +
+              FB.plural(deadCount, 'item') + ' must be removed</button>' +
+            '<p style="text-align:center;font:var(--t-cap);color:var(--ink-3);margin:10px 0 0">' +
+            'The restaurant has stopped serving ' + (deadCount === 1 ? 'it' : 'them') + ' today. ' +
+            'Removal is not compensated.</p>'
+          : '<button class="btn btn--primary btn--lg btn--block btn--split" data-checkout>' +
+              '<span>Go to checkout</span><span>' + FB.money(calc.total) + '</span></button>') +
+        '</div>';
 
       return h;
     },

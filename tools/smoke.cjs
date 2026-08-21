@@ -822,6 +822,721 @@ check('every store has hours, and they survive midnight', () => {
   } finally { clock.restore(); app.dispose(); }
 });
 
+check('an item the restaurant has stopped serving cannot be sold anywhere', () => {
+  /* Scarcity is keyed on the item and the DAY, and the sold-out gate only ever
+     covered the item sheet and reorder. A cart built before midnight still sold the
+     item after it, at both the cart and the checkout; Search rendered it at full
+     price with no marker and then refused the sale when tapped; and the $1.40
+     Restock Monitoring fee kept being charged for items already back in stock,
+     because st.restock was settled only at boot.
+
+     The rule lives in js/core/cart.js and js/core/notifs.js so every surface reads
+     one answer — the same reason `slot` does. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    /* find a real out-of-stock case rather than inventing one: the day key is
+       seeded, so this is stable across runs */
+    let hit = null;
+    outer:
+    for (const st of FB.catalog.all()) {
+      for (let d = 20; d < 34; d++) {
+        const now = new Date(2026, 7, d, 13, 0, 0).getTime();
+        for (const sec of st.menu) for (const it of sec.items) {
+          if (it.scarce && !FB.catalog.available(it, now)) { hit = { st, it, now, d }; break outer; }
+        }
+      }
+    }
+    if (!hit) throw new Error('no scarce item is ever unavailable, so scarcity is not wired up');
+    clock.set(hit.now);
+
+    /* The fixture helper must never hand a check a basket that cannot be bought.
+       Which items are out is genuinely zone-dependent — scarcity's threshold samples
+       the world at a LOCAL 7 PM, whose epoch moves — so a helper that scooped up a
+       dead line turned unrelated checks red in Berlin, Tokyo and Honolulu while
+       staying green in Los Angeles. Asserted here so it fails in every zone. */
+    FB.cart.clearAll();
+    harness.addToCart(FB, hit.st.slug, 40);
+    const scooped = FB.cart.unsellable(hit.st.slug);
+    if (scooped.length) {
+      throw new Error('harness.addToCart put ' + scooped.length + ' unsellable line(s) in a fixture cart: ' +
+        scooped.map((l) => l.name).join(', '));
+    }
+    if (!FB.cart.lines(hit.st.slug).length) throw new Error('addToCart filtered the whole menu away');
+    FB.cart.clearAll();
+
+    /* 1. the cart knows, and says why */
+    FB.cart.add(hit.st.slug, hit.it, FB.catalog.defaultSel(hit.it), 1, '');
+    harness.addToCart(FB, hit.st.slug, 1);
+    if (FB.cart.unsellable(hit.st.slug).length !== 1) throw new Error('the cart does not know its own dead line');
+    /* and a line whose item has left the menu entirely — unitPrice and describe
+       cannot resolve it either, so it is just as unsellable */
+    FB.store.set((st) => {
+      st.cart[hit.st.slug].lines.push({ lid: 'l_ghost', key: 'ghost', itemId: 'no-such-item',
+        name: 'Withdrawn Item', sel: {}, qty: 1, unit: 4.5, note: '' });
+      return st;
+    });
+    if (FB.cart.unsellable(hit.st.slug).length !== 2) throw new Error('a line whose item has left the catalog is still sellable');
+    FB.cart.remove(hit.st.slug, 'l_ghost');
+    const cart = FB.screens.get('cart').render({ slug: hit.st.slug });
+    if (!/cartline is-out/.test(cart)) throw new Error('the cart draws a dead line as an ordinary one');
+    if (!cart.includes('Unavailable today')) throw new Error('the cart does not say the line is unavailable');
+    /* The cart's total is the only figure on the screen. Pricing the struck-through
+       line into it quoted a basket nothing could ever charge — the house rule this
+       file enforces twice elsewhere is that a screen may not quote a total it will
+       not charge. Compare against the same cart with the dead line actually gone. */
+    const receiptOf = (markup) => {
+      const m = /<div class="receipt">[\s\S]*?<\/div>\s*<\/div>/.exec(markup);
+      if (!m) throw new Error('the cart does not print a receipt at all');
+      return m[0];
+    };
+    /* The WHOLE receipt, not just the total: the round-up to the next $5 absorbs a
+       per-line fee, so comparing the bottom line alone misses lineCount drift. */
+    const withDead = receiptOf(cart);
+    const deadLid = FB.cart.unsellable(hit.st.slug)[0].lid;
+    const keep = FB.deep(FB.S().cart[hit.st.slug].lines);
+    FB.cart.remove(hit.st.slug, deadLid);
+    const withoutDead = receiptOf(FB.screens.get('cart').render({ slug: hit.st.slug }));
+    FB.store.set((st) => { st.cart[hit.st.slug].lines = keep; return st; });
+    if (withDead !== withoutDead) {
+      throw new Error('the cart prices a basket it refuses differently from the one it is telling you to arrive at');
+    }
+
+    /* 2. and will not lead anywhere that would charge for it */
+    if (/data-checkout/.test(cart)) throw new Error('the cart still offers checkout with a dead line in it');
+    if (!/<button[^>]*disabled>[^<]*must be removed<\/button>/.test(cart)) {
+      throw new Error('the cart withdrew its checkout button without offering anything in its place');
+    }
+    const co = FB.screens.get('checkout').render({ slug: hit.st.slug });
+    if (/data-place/.test(co)) throw new Error('checkout still offers to place an order containing a dead line');
+    if (!co.includes('no longer available')) throw new Error('checkout refuses without saying why');
+    if (!/data-go="cart" data-params="\{&quot;slug&quot;/.test(co)) throw new Error('the refusal cannot get back to the cart it names');
+    /* the refusal must also agree with itself on number — the subject was branched
+       and the pronoun after it was not, so one dead line read "one item … They" */
+    if (/\bThey must be removed/.test(co) && dead.length === 1) throw new Error('the refusal says "They" about one item');
+
+    /* 3. Search renders items with its own markup, and was the one surface that
+          never asked — a full-price row that refuses the sale when tapped */
+    const sdef = FB.screens.get('search');
+    const live = [];
+    const stub = () => ({ dataset: {}, innerHTML: '', scrollTop: 0, addEventListener() {}, removeEventListener() {},
+      querySelector: stub, querySelectorAll: () => [], insertAdjacentHTML() {}, contains: () => true });
+    const sroot = Object.assign(stub(), { addEventListener: (t, h) => live.push({ t, h }) });
+    FB._binds = []; sdef.mount(sroot); FB._binds = null;
+    const chip = { dataset: { q: hit.it.name } };
+    live.filter((x) => x.t === 'click').forEach((x) =>
+      x.h({ target: { closest: (sel) => (sel === '[data-q]' ? chip : null) }, preventDefault() {} }));
+    const found = sdef.render();
+    if (!found.includes(FB.esc(hit.it.name))) throw new Error('search cannot find the item it is meant to mark');
+    if (!/class="row is-out"/.test(found)) throw new Error('search renders a sold-out dish as an ordinary result');
+    if (found.includes(FB.money(hit.it.price))) throw new Error('search still prints a price for a dish it will refuse to sell');
+
+    /* 4. monitoring bills only while there is something to monitor */
+    FB.store.set((st) => { st.restock = [hit.it.id]; return st; });
+    if (FB.notifs.monitored(hit.now).length !== 1) throw new Error('an item still out is not being monitored');
+    let backTs = null;
+    for (let d = hit.d + 1; d < hit.d + 20; d++) {
+      const t = new Date(2026, 7, d, 13, 0, 0).getTime();
+      if (FB.catalog.available(hit.it, t)) { backTs = t; break; }
+    }
+    if (!backTs) throw new Error('the item never comes back, so scarcity is permanent');
+    if (FB.notifs.monitored(backTs).length !== 0) throw new Error('monitoring keeps billing for an item back in stock');
+
+    /* The fee itself, at BOTH call sites and on BOTH sides of the item returning —
+       st.restock still holds the id throughout, so a call site reading the raw list
+       instead of monitored() keeps charging for nothing. Swept at backTs, where the
+       raw count is 1 and the true count is 0: at hit.now the two agree by accident
+       and nothing can be distinguished. */
+    FB.cart.clearAll();
+    const other = FB.catalog.all().find((x) => x.slug !== hit.st.slug);
+    harness.addToCart(FB, other.slug, 2);
+    /* the label is only legible in checkout's receipt — the cart renders its own
+       collapsed, so the cart call site is covered by the totals sweep below, where
+       a divergent count shows up as two screens quoting different money */
+    const billed = (when) => {
+      clock.set(when);
+      return /Restock Monitoring/.test(FB.screens.get('checkout').render({ slug: other.slug }));
+    };
+    if (!billed(hit.now)) throw new Error('monitoring an item that is out is not billed at all');
+    if (billed(backTs)) throw new Error('the Restock Monitoring fee survives the item coming back');
+
+    /* and the two still quote the same total, which is the invariant this touched.
+       Run at backTs ON PURPOSE, with st.restock still holding the id: the raw list
+       says 1 and the true count says 0, so a call site reading the wrong one is the
+       difference between two prices. At hit.now they agree by accident. */
+    clock.set(backTs);
+    for (const slug of FB.catalog.all().slice(0, 6).map((x) => x.slug)) {
+      FB.cart.clearAll();
+      harness.addToCart(FB, slug, 2);
+      if (FB.cart.unsellable(slug).length) continue;
+      const q = /data-quote="([\d.]+)"/.exec(FB.screens.get('checkout').render({ slug }));
+      const c = /Go to checkout<\/span><span>\$([\d,.]+)/.exec(FB.screens.get('cart').render({ slug }));
+      if (q && c && Number(q[1]).toFixed(2) !== c[1].replace(/,/g, '')) {
+        throw new Error(slug + ': cart preview quotes $' + c[1] + ' and checkout quotes $' + q[1]);
+      }
+    }
+
+    /* place() re-checks too, because render() is not the last word: the screen does
+       not repaint on a clock tick, so a day rolling over while checkout sits open
+       leaves an enabled Place order button over a basket the restaurant has dropped.
+       Mount while the item is available, then move the clock and tap. */
+    let avail = null;
+    for (let d = hit.d - 1; d > 14; d--) {
+      const t = new Date(2026, 7, d, 13, 0, 0).getTime();
+      if (FB.catalog.available(hit.it, t)) { avail = t; break; }
+    }
+    if (!avail) throw new Error('the item is never available before the day it is out');
+    clock.set(avail);
+    FB.cart.clearAll();
+    FB.cart.add(hit.st.slug, hit.it, FB.catalog.defaultSel(hit.it), 1, '');
+    harness.addToCart(FB, hit.st.slug, 1);
+    const cdef = FB.screens.get('checkout');
+    if (!/data-place/.test(cdef.render({ slug: hit.st.slug }))) throw new Error('checkout refuses a basket that is fine');
+
+    const bound = [];
+    const el = () => ({ dataset: {}, innerHTML: '', addEventListener() {}, removeEventListener() {},
+      querySelector: el, querySelectorAll: () => [], contains: () => true, setAttribute() {},
+      getAttribute: () => null, classList: { add() {}, remove() {}, toggle() {} } });
+    const croot = Object.assign(el(), { addEventListener: (t, h) => bound.push({ t, h }) });
+    FB._binds = []; cdef.mount(croot, { slug: hit.st.slug }); FB._binds = null;
+    const realToast = FB.toast, realRefresh = FB.nav.refresh;
+    const said = []; FB.toast = (m) => said.push(String(m));
+    FB.nav.refresh = () => {};
+    try {
+      clock.set(hit.now);                       /* the item goes out under the screen */
+      const btn = { dataset: { quote: '0' }, disabled: false, innerHTML: '' };
+      bound.filter((x) => x.t === 'click').forEach((x) =>
+        x.h({ target: { closest: (sel) => (sel === '[data-place]' ? btn : null) }, preventDefault() {} }));
+      if (btn.disabled) throw new Error('place() accepted a basket the restaurant had stopped serving');
+      if (FB.S().orders.length) throw new Error('an order was placed containing an unavailable item');
+      if (!said.some((t) => /no longer available/.test(t))) {
+        throw new Error('place() refused without saying why: ' + said.join(' | '));
+      }
+    } finally { FB.toast = realToast; FB.nav.refresh = realRefresh; }
+
+    /* the day rolling over settles the monitoring on its own, without a reload —
+       this used to happen only at boot, which is why a tab left open across midnight
+       kept billing. Lives in notifs so it can be checked; app.js only calls it. */
+    FB.store.set((st) => { st.restock = [hit.it.id]; return st; });
+    FB.notifs._day = null;
+    if (FB.notifs.settleDay(hit.now).rolled) throw new Error('the first settle claims the day rolled');
+    if (FB.notifs.settleDay(hit.now).rolled) throw new Error('the same day rolled');
+    const rollover = FB.notifs.settleDay(backTs);
+    if (!rollover.rolled) throw new Error('crossing into another day did not register as a rollover');
+    if (rollover.settled !== 1) throw new Error('the rollover did not discharge the monitoring: ' + rollover.settled);
+    if ((FB.S().restock || []).length) throw new Error('the id survived the rollover that discharged it');
+
+    /* and arming the monitoring repaints the screen it was armed from — the fee is
+       live immediately, so a cart left unrepainted quotes a total under what the
+       next screen charges */
+    FB.store.set((st) => { st.restock = []; st.settings.instantInterface = true; return st; });
+    let repainted = 0;
+    FB.nav.refresh = () => { repainted++; };
+    const overlays = [];
+    const realSheet = FB.sheet.open;
+    FB.sheet.open = (cfg) => {
+      const host = Object.assign(el(), { addEventListener: (t, h) => overlays.push({ t, h }) });
+      const h = { el: host, close() {} };
+      if (cfg.onMount) cfg.onMount(host, h);
+      return h;
+    };
+    try {
+      FB.openItem(hit.st.slug, hit.it.id);      /* unavailable -> the sold-out sheet */
+      const armBtn = { dataset: {}, disabled: false, classList: { add() {}, remove() {} } };
+      overlays.filter((x) => x.t === 'click').forEach((x) =>
+        x.h({ target: { closest: (sel) => (sel === '[data-restock]' ? armBtn : null) }, preventDefault() {} }));
+      if ((FB.S().restock || []).indexOf(hit.it.id) < 0) throw new Error('arming the monitoring did not store it');
+      if (!repainted) throw new Error('arming a restock notification does not repaint the screen it was armed from');
+    } finally { FB.sheet.open = realSheet; FB.nav.refresh = realRefresh; }
+
+    return hit.st.slug + '/"' + hit.it.name + '" is refused by cart, checkout, search and place(), and stops billing when it returns';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('every figure a receipt prints reconciles with the ones beside it', () => {
+  /* Five separate ways the money on screen disagreed with itself:
+       - a blank "Set tip" wrote tipPct:null over an explicit 0%, so a button labelled
+         Set tip put the 42% default back on the total;
+       - a custom tip above ~1.8e306 overflowed FB.round2 to Infinity, rendered as
+         "$Infinity", reached localStorage as null and zeroed every lifetime ledger;
+       - editing a cart line onto a configuration another line already held left two
+         lines sharing one key, doubling the per-line surcharge;
+       - resolving an incident with Remove spliced the row out but left calc.subtotal,
+         so the printed items no longer summed to the Subtotal beneath them;
+       - "$X of food · $Y of everything else" divided by the PRE-discount subtotal, so
+         the pair overshot the button by exactly the promotion. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const NOW = new Date(2026, 7, 20, 13, 0, 0).getTime();
+    clock.set(NOW);
+
+    /* --- the tip cannot be erased, and cannot be made infinite ---
+       Driven through the REAL sheet handler. Mirroring the handler's logic in the
+       test proves only that the mirror works: every tip mutation survived a copy. */
+    harness.addToCart(FB, 'mcronalds', 2);
+    FB.cart.setCo('mcronalds', { tipPct: 0, tipCustom: null });
+
+    const el = () => ({ dataset: {}, value: '', innerHTML: '', addEventListener() {}, removeEventListener() {},
+      querySelector: el, querySelectorAll: () => [], contains: () => true, setAttribute() {},
+      getAttribute: () => null, classList: { add() {}, remove() {}, toggle() {} }, focus() {}, select() {} });
+    const cdef = FB.screens.get('checkout');
+    const rootBinds = [];
+    const croot = Object.assign(el(), { addEventListener: (t, h) => rootBinds.push({ t, h }) });
+    const realSheet = FB.sheet.open, realRefresh = FB.nav.refresh;
+    FB.nav.refresh = () => {};
+    let sheetBinds = [], input = null;
+    FB.sheet.open = (cfg) => {
+      sheetBinds = [];
+      input = Object.assign(el(), { value: '' });
+      const body = Object.assign(el(), { querySelector: (sel) => (sel === '[data-ct]' ? input : el()) });
+      const host = Object.assign(el(), { addEventListener: (t, h) => sheetBinds.push({ t, h }) });
+      const h = { el: host, body: body, close() {} };
+      if (cfg.onMount) cfg.onMount(body, h);
+      return h;
+    };
+    let saveTip;
+    try {
+      FB._binds = []; cdef.mount(croot, { slug: 'mcronalds' }); FB._binds = null;
+      const fire = (binds, sel, target) => binds.filter((x) => x.t === 'click').forEach((x) =>
+        x.h({ target: { closest: (q) => (q === sel ? target : null) }, preventDefault() {} }));
+      saveTip = (rawIn) => {
+        fire(rootBinds, '[data-tipcustom]', { dataset: {} });   /* opens the real sheet */
+        if (!input) throw new Error('the custom tip sheet never rendered its field');
+        input.value = String(rawIn);
+        fire(sheetBinds, '[data-save]', { dataset: {} });
+      };
+      saveTip('');
+      if (FB.cart.co('mcronalds').tipPct !== 0) throw new Error('a blank Set tip erased an explicit 0% choice');
+      saveTip('   ');
+      if (FB.cart.co('mcronalds').tipPct !== 0) throw new Error('a whitespace Set tip erased an explicit 0% choice');
+      saveTip('abc');
+      if (FB.cart.co('mcronalds').tipPct !== 0) throw new Error('an unparseable Set tip erased an explicit 0% choice');
+      for (const poison of ['1e999', '1e307', '1e308', '9'.repeat(320), '1e400']) {
+        saveTip(poison);
+        const t = FB.cart.co('mcronalds').tipCustom;
+        if (!isFinite(t)) throw new Error('a tip of ' + poison + ' stored as ' + t);
+        if (JSON.parse(JSON.stringify({ t })).t !== t) throw new Error('a tip of ' + poison + ' does not survive a save');
+        const markup = FB.screens.get('checkout').render({ slug: 'mcronalds' });
+        if (/Infinity|NaN/.test(markup)) throw new Error('checkout renders Infinity/NaN for a tip of ' + poison);
+      }
+      saveTip('-5');
+      if (FB.cart.co('mcronalds').tipCustom !== 0) throw new Error('a negative tip was stored as ' + FB.cart.co('mcronalds').tipCustom);
+    } finally { FB.sheet.open = realSheet; FB.nav.refresh = realRefresh; }
+
+    /* --- a cart holds one line per configuration, however a line got there --- */
+    FB.cart.clearAll();
+    const store = FB.catalog.get('mcronalds');
+    const item = store.menu.reduce((a, sec) => a.concat(sec.items), []).filter((i) => FB.catalog.available(i))[0];
+    const sel = FB.catalog.defaultSel(item);
+    FB.cart.add('mcronalds', item, sel, 1, '');
+    FB.cart.add('mcronalds', item, sel, 1, 'extra');
+    if (FB.cart.lines('mcronalds').length !== 2) throw new Error('two configurations did not make two lines');
+    const second = FB.cart.lines('mcronalds')[1];
+    /* the patch js/ui/item.js commit() sends when you edit a line back onto the other */
+    FB.cart.update('mcronalds', second.lid, { sel: sel, qty: second.qty, note: '', key: JSON.stringify([item.id, sel, '']) });
+    const merged = FB.cart.lines('mcronalds');
+    if (merged.length !== 1) throw new Error(merged.length + ' lines after editing onto an existing configuration, expected 1');
+    if (merged[0].qty !== 2) throw new Error('the merged line carries qty ' + merged[0].qty + ', expected 2');
+    const keys = merged.map((l) => l.key);
+    if (new Set(keys).size !== keys.length) throw new Error('two cart lines share a key');
+
+    /* --- a receipt's rows sum to its own subtotal, even after a removal --- */
+    FB.cart.clearAll();
+    harness.addToCart(FB, 'cluckingham', 3);
+    const o = harness.makeOrder(FB, 'cluckingham', { now: NOW, status: 'preparing', step: 2 });
+    FB.store.set((st) => {
+      st.orders.unshift(o); st.activeOrderId = o.id; st.meta.orderCount = 1;
+      st.meta.lifetimeSpend = o.calc.total;
+      st.meta.lifetimeFees = o.calc.feesTotal + o.calc.tax + (o.calc.roundUp || 0);
+      st.meta.lifetimeTips = o.calc.tip;
+      return st;
+    });
+    FB.bodymax.ingest(o);
+    FB.store.set((st) => {
+      const oo = st.orders[0];
+      oo.incident = { lineIdx: 0, name: oo.lines[0].name, at: NOW, deadline: NOW + 90000, resolution: null };
+      return st;
+    });
+    const rowsBefore = FB.store.order(o.id).lines.length;
+    FB.tracker.resolveIncident(o.id, 'remove');
+    const oo = FB.store.order(o.id);
+    const rowSum = FB.round2(oo.lines.reduce((a, l) => a + l.unit * l.qty, 0));
+    if (Math.abs(rowSum - oo.calc.subtotal) > 0.005) {
+      throw new Error('the receipt prints rows summing to $' + rowSum + ' above a Subtotal of $' + oo.calc.subtotal);
+    }
+    if (oo.lines.length !== rowsBefore) throw new Error('a removed line was spliced out of the receipt it is credited against');
+    if (!oo.lines[0].removed) throw new Error('a removed line is not marked as removed');
+    if (!/Removed by the restaurant/.test(FB.screens.get('track').render({ id: o.id }))) {
+      throw new Error('the receipt does not show which row was removed');
+    }
+    /* and the three ledgers still agree, which is what adjustOrder exists for */
+    const st2 = FB.S();
+    const hist = st2.bodymax.history.filter((r) => r.orderId === o.id)[0];
+    if (!hist) throw new Error('the order has no BODYMAX row');
+    if (Math.abs(st2.meta.lifetimeSpend - oo.calc.total) > 0.005 || Math.abs(hist.spend - oo.calc.total) > 0.005) {
+      throw new Error('ledgers disagree after a removal: order $' + oo.calc.total +
+        ', meta $' + st2.meta.lifetimeSpend + ', bodymax $' + hist.spend);
+    }
+
+    /* --- food + everything else = the total, discount or no discount --- */
+    let withPromo = 0;
+    for (const s of FB.catalog.all()) {
+      FB.cart.clearAll();
+      harness.addToCart(FB, s.slug, 4);
+      const sub = FB.cart.subtotal(s.slug);
+      for (const promo of [null, FB.catalog.storeOffer(s, sub, false)]) {
+        const c = FB.fees.compute({ subtotal: sub, lineCount: 4, store: s, mode: 'delivery',
+          settings: FB.S().settings, tipPct: 25, storePromo: promo });
+        if (promo) withPromo++;
+        if (Math.abs((c.foodPaid + c.nonFood) - c.total) > 0.005) {
+          throw new Error(s.slug + ': $' + c.foodPaid + ' of food + $' + c.nonFood +
+            ' of everything else = $' + FB.round2(c.foodPaid + c.nonFood) + ', but the total is $' + c.total);
+        }
+        /* Math.abs: the one-sided form only caught an overshoot, so dividing by the
+           pre-discount subtotal — which makes the ratio too FLAT — sailed past it. */
+        if (Math.abs(c.multiple * c.foodPaid - c.total) > 0.005) {
+          throw new Error(s.slug + ': "' + c.multiple.toFixed(1) + '× the price of the food" against $' +
+            c.foodPaid + ' of food does not reach the $' + c.total + ' charged');
+        }
+      }
+    }
+    if (withPromo < 1) throw new Error('no store promotion qualified, so the discount branch is untested');
+
+    /* ...and the SCREEN prints those two figures, not just the engine. Asserted on
+       the markup because checkout could go on rendering c.subtotal while compute
+       returned a corrected foodPaid, and every arithmetic-only assertion above would
+       still pass. */
+    let printed = 0;
+    for (const s2 of FB.catalog.all()) {
+      FB.cart.clearAll();
+      harness.addToCart(FB, s2.slug, 4);
+      const sub2 = FB.cart.subtotal(s2.slug);
+      if (!FB.catalog.storeOffer(s2, sub2, false)) continue;
+      const markup = FB.screens.get('checkout').render({ slug: s2.slug });
+      const pair = /\$([\d,]+\.\d\d) of food · \$([\d,]+\.\d\d) of everything else/.exec(markup);
+      const btn = /data-quote="([\d.]+)"/.exec(markup);
+      if (!pair || !btn) throw new Error(s2.slug + ': checkout does not print the food/non-food pair beside a quote');
+      const food = Number(pair[1].replace(/,/g, '')), rest = Number(pair[2].replace(/,/g, ''));
+      if (Math.abs(food + rest - Number(btn[1])) > 0.005) {
+        throw new Error(s2.slug + ': the screen says $' + food + ' of food + $' + rest +
+          ' of everything else, but the button charges $' + btn[1]);
+      }
+      /* the receipt prints that ratio too, and it must describe the same order */
+      const note = /You are paying <b>([\d.]+)×<\/b>/.exec(markup);
+      if (!note) throw new Error(s2.slug + ': the receipt does not print the multiple');
+      if (Math.abs(Number(note[1]) * food - Number(btn[1])) > 0.05 * food) {
+        throw new Error(s2.slug + ': the receipt says ' + note[1] + '× of $' + food +
+          ' but the button charges $' + btn[1]);
+      }
+      printed++;
+    }
+    if (printed < 1) throw new Error('no discounted checkout was rendered, so the screen half is untested');
+    FB.cart.clearAll();
+
+    /* --- BODYMAX's "not food" means everything that was not food --- */
+    FB.store.set((st) => {
+      st.meta.lifetimeSpend = 70; st.meta.lifetimeFees = 33.86; st.meta.lifetimeTips = 10.69;
+      return st;
+    });
+    const bm = FB.screens.get('bodymax').render({});
+    const pctPrinted = /([\d.]+)% of your lifetime spend was not food/.exec(bm);
+    if (!pctPrinted) throw new Error('BODYMAX does not print its not-food share');
+    const mm = FB.bodymax.metrics();
+    const want = (mm.fees + mm.tips) / mm.spend * 100;
+    if (Math.abs(Number(pctPrinted[1]) - want) > 0.11) {
+      throw new Error('BODYMAX says ' + pctPrinted[1] + '% was not food; fees plus tips are ' +
+        want.toFixed(1) + '% — the tip is being left out of a figure that claims to include it');
+    }
+
+    /* --- and the two membership call sites step on the boundary the app printed --- */
+    for (const [days, want] of [[0, 1], [29, 1], [30, 2], [44, 2], [45, 2], [60, 3], [90, 4]]) {
+      FB.store.set((st) => { st.plus.active = true; st.plus.since = NOW - days * 86400000; return st; });
+      const got = FB.plusMonths(FB.S());
+      if (got !== want) throw new Error('day ' + days + ' of membership bills ' + got + ' months, expected ' + want);
+      /* BOTH screens, from the markup: these were two separate copies of the same
+         expression, which is how they came to disagree. Day 44 is the discriminator —
+         rounding says one month, the renewal schedule the app printed says two. */
+      const dues = FB.round2(19.99 * want + (FB.S().plus.paid || 0));
+      for (const scr of ['plus', 'account']) {
+        const markup = FB.screens.get(scr).render({});
+        if (markup.indexOf(FB.money(dues)) < 0) {
+          throw new Error(scr + ' does not print ' + FB.money(dues) + ' in dues on day ' + days +
+            ' — it is not reading FB.plusMonths');
+        }
+      }
+    }
+
+    return 'tip, cart merge, removal, promotion ratio and dues all reconcile (' + withPromo + ' promo contexts)';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('a schedule slot is never offered outside the hours it is for', () => {
+  /* The sheet built its rows from wall-clock arithmetic alone — deliveryMax + 45n —
+     and never asked whether the store was open at the time it was offering. Swept
+     over a day it put up 1,524 rows at closed times, and picking one CLEARED the
+     forced hold the app had just computed for that store being shut: two taps voided
+     it. A second bug in the same block hardcoded "Today," on rows that landed on the
+     next calendar day.
+
+     Generation lives in js/core/cart.js so BOTH compute call sites read one rule —
+     the same reason `slot` itself does. Swept whole rather than spot-checked, because
+     the shape of the bug was a percentage, not a case.
+
+     The sweep runs at a NON-ZERO second offset on purpose. Pinned to :00 it agreed
+     with FB.nextAtMinute by luck, which hid a regression where the generated grid
+     carried the current seconds and the sheet drew the picked slot twice. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    let rows = 0, closed = 0, empty = 0, nextDay = 0;
+    for (const s of FB.catalog.all()) {
+      for (let h = 0; h < 24; h++) {
+        for (const sec of [0, 37]) {
+          const now = new Date(2026, 7, 20, h, 0, sec).getTime();
+          clock.set(now);
+          const opts = FB.cart.slotOptions(s.slug, now);
+          if (!opts.length) empty++;
+          const seen = new Set();
+          opts.forEach((o, i) => {
+            rows++;
+            if (!FB.catalog.isOpen(s, o.at)) closed++;
+            /* a sheet is a radio group: one row per time, in order */
+            if (i && opts[i - 1].at >= o.at) throw new Error(s.slug + ' offers its slots out of order at ' + h + ':00');
+            if (seen.has(o.label)) throw new Error(s.slug + ' offers ' + o.label + ' twice at ' + h + ':00:' + sec);
+            seen.add(o.label);
+            /* On the whole-minute grid FB.nextAtMinute answers on. Walked from a raw
+               `now` the slots carried the current seconds, the in-force slot could
+               never be found among them, and the sheet drew the picked time twice. */
+            if (o.at % 60000 !== 0) throw new Error(s.slug + ' offers a slot that is not on a whole minute');
+            /* the label is what the sheet prints AND what it stores, so it has to
+               round-trip back to the instant it was drawn from */
+            if (FB.minsOfDay(o.label) !== new Date(o.at).getHours() * 60 + new Date(o.at).getMinutes()) {
+              throw new Error(s.slug + ' label ' + o.label + ' does not match the moment it stands for');
+            }
+            const a = new Date(now), b = new Date(o.at);
+            if (a.getDate() !== b.getDate()) nextDay++;
+          });
+        }
+      }
+    }
+    if (closed) throw new Error(closed + ' of ' + rows + ' offered slots are at a time the store is shut');
+    if (empty) throw new Error(empty + ' store-hours offer no slot at all');
+    /* the walk must actually be stepping over closures, or the filter is untested */
+    if (nextDay < 100) throw new Error('only ' + nextDay + ' slots land on another day, so the overnight walk is not exercised');
+
+    /* a closed store leads with its OWN opening time — the row the checkout screen
+       forces onto it, and the one the coordination fee is charged for */
+    const night = new Date(2026, 7, 20, 23, 0, 0).getTime();
+    clock.set(night);
+    const boba = FB.catalog.get('bobacloud');
+    if (FB.catalog.isOpen(boba, night)) throw new Error('Boba Cloud is open at 11 PM');
+    const shutOpts = FB.cart.slotOptions('bobacloud', night);
+    if (shutOpts[0].at !== FB.nextAtMinute(FB.minsOfDay(boba.opensAt), night)) {
+      throw new Error('a closed store does not lead with its own opening time');
+    }
+    if (FB.cart.slot('bobacloud', night) !== boba.opensAt) throw new Error('a closed store no longer forces its opening time');
+
+    /* the screen must say which day it means. "Today, 11:30 AM" at 11 PM described
+       an order arriving twelve and a half hours later. */
+    const def = FB.screens.get('checkout');
+    harness.addToCart(FB, 'bobacloud', 2);
+    const row = /<button class="crow" data-schedule>[\s\S]*?<\/button>/.exec(def.render({ slug: 'bobacloud' }))[0];
+    if (!row.includes('Tomorrow, ' + boba.opensAt)) throw new Error('the forced slot is not labelled with the day it lands on: ' + row);
+    if (!row.includes('is closed. The order is held')) throw new Error('a slot the app forced is not explained as a closure');
+
+    /* a stored slot is a bare clock string: it must expire rather than freeze, or a
+       cart parked overnight charges the coordination fee for a time that has gone */
+    FB.cart.setCo('bobacloud', { scheduled: boba.opensAt });
+    if (FB.cart.slot('bobacloud', night) !== boba.opensAt) throw new Error('a slot still in reach was discarded');
+    const noon = new Date(2026, 7, 21, 12, 0, 0).getTime();
+    clock.set(noon);
+    if (FB.cart.slot('bobacloud', noon) !== null) throw new Error('a slot the clock walked past is still in force');
+    /* and once it has expired the APP owns the row again, so the copy must say so */
+    const expired = /<button class="crow" data-schedule>[\s\S]*?<\/button>/.exec(def.render({ slug: 'bobacloud' }))[0];
+    if (expired.includes('Scheduled')) throw new Error('an expired slot still reads as scheduled: ' + expired);
+
+    /* The same, but with the store shut: cart.slot() falls back to opensAt while
+       co.scheduled still holds the dead pick. `forced` has to mean "the APP chose
+       this", not "nothing is stored" — otherwise the row credits the user with a
+       2:00 AM slot they can no longer have and drops the closure explanation. */
+    clock.set(night);
+    FB.cart.setCo('bobacloud', { scheduled: '2:00 AM' });
+    if (FB.cart.slot('bobacloud', night) !== boba.opensAt) throw new Error('a pick at a closed hour was honoured');
+    const stale = /<button class="crow" data-schedule>[\s\S]*?<\/button>/.exec(def.render({ slug: 'bobacloud' }))[0];
+    if (!stale.includes('is closed. The order is held')) {
+      throw new Error('a slot the app fell back to is not explained as a closure: ' + stale);
+    }
+    FB.cart.setCo('bobacloud', { scheduled: null });
+
+    /* the slot in force is always offered back, exactly once, however far the
+       generated set has drifted from it */
+    const day = new Date(2026, 7, 20, 14, 0, 11).getTime();
+    clock.set(day);
+    const open = FB.catalog.all().find((s) => FB.catalog.isOpen(s, day));
+    const firstSlot = FB.cart.slotOptions(open.slug, day)[0];
+    FB.cart.setCo(open.slug, { scheduled: firstSlot.label });
+    /* Forty minutes on, not six seconds: the generated window has walked PAST the
+       slot in force, so it is no longer among the rows and the splice is the only
+       thing putting it back. At six seconds the grid still contained it by itself
+       and the assertion below could not fail. */
+    const later = day + 40 * 60000;
+    clock.set(later);
+    if (FB.cart.slot(open.slug, later) !== firstSlot.label) throw new Error('a slot forty minutes out expired early');
+    const at = FB.cart.slotAt(open.slug, later);
+    const back = FB.cart.slotOptions(open.slug, later);
+    const marked = back.filter((o) => o.at === at).length;
+    const labelled = back.filter((o) => o.label === firstSlot.label).length;
+    if (marked !== 1) throw new Error(marked + ' rows match the slot in force, expected exactly 1');
+    if (labelled !== 1) throw new Error(labelled + ' rows PRINT the slot in force, expected exactly 1');
+    /* and it lands in chronological position, which is the whole point of splicing
+       rather than appending — the sweep above never has a stored slot, so this is
+       the only place the spliced row's ORDER is observable */
+    back.forEach((o, i) => {
+      if (i && back[i - 1].at >= o.at) throw new Error('the slot in force was spliced out of order');
+    });
+    if (back[0].at !== at) throw new Error('a slot earlier than the whole generated walk was not spliced to the front');
+
+    /* the next occurrence of a wall-clock minute keeps that minute, whatever the
+       calendar does to the length of the day. Probed in a zone that has daylight
+       saving, because in UTC a fixed 24-hour roll passes this by luck. */
+    const probe = require('child_process').execFileSync(process.execPath, ['-e', `
+      const { loadApp } = require(${JSON.stringify(require('path').join(__dirname, 'harness.cjs'))});
+      const app = loadApp();
+      let bad = 0;
+      for (const [y, mo, d] of [[2026, 2, 7], [2026, 9, 31]]) {
+        for (let mins = 0; mins < 1440; mins += 10) {
+          const from = new Date(y, mo, d, 23, 30, 0).getTime();
+          const t = app.FB.nextAtMinute(mins, from);
+          const got = new Date(t).getHours() * 60 + new Date(t).getMinutes();
+          if (got !== mins && !(mo === 2 && mins >= 120 && mins < 180)) bad++;
+        }
+      }
+      /* and the SCREEN on the eve of a spring-forward. Midnight to midnight is 23
+         hours that night, so a day count that floors reads 0 and prints "Today" for
+         an order landing the next morning; only rounding survives it. */
+      /* the 8th is the 23-hour day: midnight-to-midnight across it is 82800000 ms,
+         which floors to 0 days ("Today") and rounds to 1 ("Tomorrow"). The 7th is an
+         ordinary 24-hour day and cannot tell the two apart. */
+      const eve = new Date(2026, 2, 8, 23, 0, 0).getTime();
+      app.clock.set(eve);
+      const st = app.FB.catalog.get('bobacloud');
+      if (app.FB.catalog.isOpen(st, eve)) throw new Error('probe store is open on the DST eve');
+      const h = require(${JSON.stringify(require('path').join(__dirname, 'harness.cjs'))});
+      h.addToCart(app.FB, 'bobacloud', 2);
+      /* sliced, not matched: this whole script is a template literal, and a regex
+         literal's backslashes do not survive the trip into the child */
+      const html = app.FB.screens.get('checkout').render({ slug: 'bobacloud' });
+      const i = html.indexOf('data-schedule');
+      const crow = i < 0 ? '' : html.slice(i, html.indexOf('</button>', i));
+      if (crow.indexOf('Tomorrow, ' + st.opensAt) < 0) { console.log('CROW:' + crow); bad += 100; }
+      app.dispose();
+      console.log(bad);
+    `], { env: Object.assign({}, process.env, { TZ: 'America/New_York' }), encoding: 'utf8' }).trim();
+    if (probe !== '0') throw new Error(probe + ' wall-clock minutes drift across a daylight-saving boundary');
+
+    return rows + ' slots swept at two second-offsets, none at a closed hour, none doubled, ' +
+      nextDay + ' correctly on a later day';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('checkout will not place an order at a total it has stopped quoting', () => {
+  /* Nothing on the checkout screen re-renders on a clock tick, but place() calls
+     calc() fresh at the tap. A store closing while the screen sat open added the
+     coordination fee, the Peak Demand multiplier and the round-up — five dollars
+     above the figure on the button — and stamped the order as next-day scheduled.
+
+     This drives the real [data-place] handler, because asserting the data-quote
+     attribute alone let the entire refusal be deleted with the suite still green.
+     The tell is the button: place() disables it and writes "Placing…" as its first
+     act, so a button still enabled after a tap is a tap that was refused. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  const realToast = FB.toast, realRefresh = FB.nav.refresh;
+  try {
+    const boba = FB.catalog.get('bobacloud');
+    const before = new Date(2026, 7, 20, 21, 19, 0).getTime();   /* closes 9:20 PM */
+    clock.set(before);
+    if (!FB.catalog.isOpen(boba, before)) throw new Error('Boba Cloud is shut at 9:19 PM');
+    harness.addToCart(FB, 'bobacloud', 3);
+
+    const def = FB.screens.get('checkout');
+    const quoteOf = (m) => {
+      const q = /data-quote="([\d.]+)"/.exec(m);
+      if (!q) throw new Error('the place button does not carry the total it is quoting');
+      return Number(q[1]);
+    };
+    const q1 = quoteOf(def.render({ slug: 'bobacloud' }));
+
+    const after = new Date(2026, 7, 20, 21, 21, 0).getTime();
+    clock.set(after);
+    if (FB.catalog.isOpen(boba, after)) throw new Error('Boba Cloud is open at 9:21 PM');
+    const q2 = quoteOf(def.render({ slug: 'bobacloud' }));
+    if (q2 <= q1) throw new Error('closing did not move the total, so the guard is untested');
+
+    /* mount the real screen onto a root that records what FB.on binds */
+    const live = [];
+    const stub = () => ({ dataset: {}, addEventListener() {}, removeEventListener() {},
+                          querySelector: stub, querySelectorAll: () => [], contains: () => true,
+                          setAttribute() {}, getAttribute: () => null, classList: { add() {}, remove() {}, toggle() {} } });
+    const root = Object.assign(stub(), {
+      addEventListener: (t, h) => live.push({ t, h }),
+      removeEventListener: (t, h) => { const i = live.findIndex((x) => x.t === t && x.h === h); if (i > -1) live.splice(i, 1); },
+    });
+    FB._binds = []; def.mount(root, { slug: 'bobacloud' }); FB._binds = null;
+
+    const toasts = []; FB.toast = (m) => toasts.push(String(m));
+    let refreshed = 0; FB.nav.refresh = () => { refreshed++; };
+    const tap = (quote) => {
+      const btn = { dataset: { quote: String(quote) }, disabled: false, innerHTML: '' };
+      const ev = { target: { closest: (sel) => (sel === '[data-place]' ? btn : null) }, preventDefault() {} };
+      live.filter((x) => x.t === 'click').forEach((x) => x.h(ev));
+      return btn;
+    };
+
+    /* a button still carrying the 9:19 figure must be refused, not charged */
+    const stale = tap(q1);
+    if (stale.disabled) throw new Error('a stale quote was placed anyway');
+    if (!refreshed) throw new Error('a stale quote did not repaint the screen');
+    if (!toasts.some((t) => /reassessed/.test(t))) throw new Error('a stale quote was refused without saying so: ' + toasts.join(' | '));
+    if (FB.S().orders.length) throw new Error('a stale quote produced an order');
+
+    /* And the honest figure still goes through, or the guard is just a wall. This is
+       also the cancellation-window test: place() reads the clock a SECOND time three
+       seconds after the tap, so capture that callback rather than waiting for it,
+       move the clock across the store's closing minute, and assert the order is
+       stamped with the schedule its receipt was priced against.
+
+       One place() serves both halves because `placing` latches until the window
+       closes — a second accepted tap would be swallowed by that guard, not by this
+       one. */
+    clock.set(before);                       /* 9:19 PM: open, so no slot, no fee */
+    FB.nav.go = () => {};
+    const realSetTimeout = app.win.setTimeout;
+    let window3s = null;
+    app.win.setTimeout = (fn, ms) => (ms === 3000 ? ((window3s = fn), 0) : realSetTimeout(fn, ms));
+    try {
+      const fresh = tap(quoteOf(def.render({ slug: 'bobacloud' })));
+      if (!fresh.disabled) throw new Error('the current quote was refused too — the guard never lets an order through');
+      if (!window3s) throw new Error('place() did not open a cancellation window');
+      clock.set(after);                      /* 9:21 PM: shut while the window ran */
+      window3s();
+    } finally { app.win.setTimeout = realSetTimeout; }
+
+    const placed = FB.S().orders[0];
+    if (!placed) throw new Error('the cancellation window closed without placing');
+    if (placed.scheduled !== null) {
+      throw new Error('an order priced with no coordination fee was stamped scheduled ' + placed.scheduled);
+    }
+    if (placed.calc.feeLines.some((l) => l.id === 'schedule')) {
+      throw new Error('an unscheduled order carries a Temporal Coordination Fee');
+    }
+
+    return 'quote moves ' + FB.money(q1) + ' -> ' + FB.money(q2) + ' across closing; the stale tap is refused, ' +
+      'the fresh one is not, and the schedule survives the cancellation window intact';
+  } finally { FB.toast = realToast; FB.nav.refresh = realRefresh; clock.restore(); app.dispose(); }
+});
+
 check('notifications accumulate, back-date, and never stay read', () => {
   /* The bell opened a module-local array of six rows with the ages "2m" and "31m"
      baked in. The backlog is COMPUTED at boot from what the save already knows

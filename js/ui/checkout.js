@@ -32,6 +32,20 @@ window.FB = window.FB || {};
      one; duplicating it here is exactly how the two screens came to disagree. */
   function slotFor(p) { return FB.cart.slot(p.slug); }
 
+  /* The schedule sheet hardcoded "Today," on every row it drew. Sixteen percent of
+     them resolved to the next day — including the opening-time row the app itself
+     forces a closed store onto, which at 11 PM read "Today, 11:30 AM" for an order
+     arriving twelve and a half hours later. Anchored at local midnight and ROUNDED,
+     so the hour a daylight-saving change adds or removes cannot shift the answer. */
+  function dayWord(ts, from) {
+    var a = new Date(from || Date.now()), b = new Date(ts);
+    var days = Math.round((new Date(b.getFullYear(), b.getMonth(), b.getDate()) -
+                           new Date(a.getFullYear(), a.getMonth(), a.getDate())) / 86400000);
+    if (days <= 0) return 'Today';
+    if (days === 1) return 'Tomorrow';
+    return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][b.getDay()];
+  }
+
   function calc(p) {
     var s = FB.catalog.get(p.slug);
     var lines = FB.cart.lines(p.slug);
@@ -47,7 +61,11 @@ window.FB = window.FB || {};
       scrip: FB.scrip.redeemable(),
       tosVersion: FB.tos.version(),
       storePromo: FB.catalog.storeOffer(s, sub, FB.store.isPlus()),
-      restockAlerts: (FB.S().restock || []).length,
+      /* only what is still OUT — monitoring for an item already back in stock has
+         been discharged and must stop billing. Identical in js/ui/cart-screen.js:
+         a ctx field that differs between the two call sites is a cart preview
+         quoting a total checkout will not charge. */
+      restockAlerts: FB.notifs.monitored().length,
     });
   }
 
@@ -62,6 +80,23 @@ window.FB = window.FB || {};
       var s = FB.catalog.get(p.slug);
       var lines = FB.cart.lines(p.slug);
       if (!s || !lines.length) return FB.C.empty({ title: 'Nothing to check out', body: 'The cart emptied itself. This is rare and is being investigated.', cta: 'Home', go: 'home' });
+
+      /* The cart screen blocks its own button, but it is not the only way in — a
+         back-forward, a deep link, or a day rolling over while this screen sits open
+         all land here with food the restaurant has stopped serving. */
+      var dead = FB.cart.unsellable(p.slug);
+      if (dead.length) {
+        return FB.C.empty({
+          title: FB.plural(dead.length, 'item') + ' no longer available',
+          /* Pronoun-free: the subject was branched and the pronoun after it was not,
+             so a single dead line read "one item … They must be removed". The cart
+             screen states the same refusal flatly; match it. */
+          body: 'The restaurant has stopped serving ' + (dead.length === 1 ? 'one item' : 'items') +
+            ' in this order today: ' + dead.map(function (l) { return l.name; }).join(', ') +
+            '. Removal is required before the order can proceed.',
+          cta: 'Back to cart', go: 'cart', params: { slug: p.slug },
+        });
+      }
 
       var c = calc(p);
       var addr = FB.store.address();
@@ -99,9 +134,13 @@ window.FB = window.FB || {};
           '<span class="crow-r">' + FB.icon('fwd', 14) + '</span></button>';
       }
       var slot = slotFor(p);
-      var forced = !!slot && !co.scheduled;
+      var slotAt = FB.cart.slotAt(p.slug);
+      /* `forced` means the APP chose this slot, not you — which is also true when a
+         slot you chose has gone stale and cart.slot() has fallen back to opensAt. */
+      var forced = !!slot && slot !== co.scheduled;
+      var slotDay = slotAt && dayWord(slotAt) !== 'Today' ? dayWord(slotAt) + ', ' : '';
       h += '<button class="crow" data-schedule>' + FB.icon('clock', 19) +
-        '<span class="crow-b"><b>' + (slot ? 'Scheduled · ' + FB.esc(slot) : 'Standard · ' + FB.mins(s.deliveryMin, s.deliveryMax)) + '</b>' +
+        '<span class="crow-b"><b>' + (slot ? 'Scheduled · ' + FB.esc(slotDay + slot) : 'Standard · ' + FB.mins(s.deliveryMin, s.deliveryMax)) + '</b>' +
         '<span>' + (forced ? FB.esc(s.name) + ' is closed. The order is held until it opens, which must be reserved.'
           : slot ? 'Temporal Coordination Fee applies' : 'Arrives around ' + FB.clockIn(s.deliveryMax)) + '</span></span>' +
         '<span class="crow-r">' + FB.icon('fwd', 14) + '</span></button>';
@@ -168,10 +207,13 @@ window.FB = window.FB || {};
          window, and any refresh during it (a tip tap, a sheet closing) would otherwise
          rebuild an enabled "Place order" button over an order already in flight. */
       h += '<div style="padding:4px 16px 24px"><button class="btn btn--primary btn--lg btn--block btn--split" data-place' +
-        (placing ? ' disabled' : '') + '>' +
+        ' data-quote="' + c.total + '"' + (placing ? ' disabled' : '') + '>' +
         (placing ? '<span>Placing…</span>' : '<span>Place order</span><span>' + FB.money(c.total) + '</span>') + '</button>' +
         '<p style="text-align:center;font:var(--t-cap);color:var(--ink-3);margin:10px 0 0">' +
-        FB.money(c.subtotal) + ' of food · ' + FB.money(c.nonFood) + ' of everything else</p></div>';
+        /* foodPaid, not subtotal: nonFood is already post-discount, so pairing it
+           with the pre-discount figure made the two overshoot the button by exactly
+           the promotion. These two must add up to the total. */
+        FB.money(c.foodPaid) + ' of food · ' + FB.money(c.nonFood) + ' of everything else</p></div>';
 
       return h;
     },
@@ -200,6 +242,30 @@ window.FB = window.FB || {};
          overlay.closeAll(true) and removes it before a frame paints — and gating
          first is the honest reading of "you must accept this to continue" anyway. */
       FB.on(root, 'click', '[data-place]', function (e, t) {
+        /* Availability first, and ahead of the price check: scarcity turns over at
+           the local day boundary and this screen does not repaint on a clock tick,
+           so an enabled button can be sitting over a basket the restaurant has since
+           dropped. Telling someone their total moved, when the real problem is that
+           the food is gone, answers a question they did not ask. */
+        if (FB.cart.unsellable(p.slug).length) {
+          FB.nav.refresh();
+          FB.toast('An item in this order is no longer available and has to be removed.', { kind: 'bad' });
+          return;
+        }
+        /* The figure on this button was computed at the last paint, and nothing here
+           re-renders on a clock tick. A store that closes while the screen sits open
+           moves the total by five dollars — the coordination fee, times the Peak
+           Demand multiplier, rounded up — and silently converts a forty-minute
+           delivery into a next-day scheduled order. Same rule as the terms gate
+           below: a screen may not quote a total it will not charge. */
+        var quoted = parseFloat(t.dataset.quote);
+        var live = calc(p).total;
+        if (isFinite(quoted) && Math.abs(live - quoted) > 0.005) {
+          FB.nav.refresh();
+          FB.toast('The total has been reassessed while this screen was open. ' +
+            FB.money(live) + ' is now in force.');
+          return;
+        }
         var due = FB.tos.due();
         if (!due) { place(p, t); return; }
         /* Accepting adds §14's Reconciliation Fee, which calc() reads — so placing
@@ -219,13 +285,28 @@ window.FB = window.FB || {};
         FB.sheet.open({
           title: 'Custom tip', sub: 'Custom amounts are reviewed.',
           html: '<div class="field"><label class="lbl" for="f-tip">Amount</label>' +
-            '<input class="input" id="f-tip" type="number" min="0" step="0.25" value="' + (cur != null ? cur : '') + '" data-ct placeholder="0.00">' +
+            '<input class="input" id="f-tip" type="number" min="0" step="0.25" max="' + FB.fees.TIP_MAX + '" value="' + (cur != null ? cur : '') + '" data-ct placeholder="0.00">' +
             '<div class="field-hint">The suggested amount is ' + FB.money(FB.cart.subtotal(p.slug) * 0.42) + '.</div></div>',
           footer: '<button class="btn btn--primary btn--block" data-save>Set tip</button>',
           onMount: function (body, h) {
             FB.on(h.el, 'click', '[data-save]', function () {
-              var v = parseFloat(body.querySelector('[data-ct]').value);
-              FB.cart.setCo(p.slug, { tipCustom: isNaN(v) ? null : Math.max(0, v), tipPct: null });
+              var raw = String(body.querySelector('[data-ct]').value).trim();
+              var v = parseFloat(raw);
+              /* A blank or unparseable field is not a choice. Writing tipPct:null here
+                 erased an explicit "None" and dropped the order back onto
+                 settings.autoTipPct (fees.js:244), putting ten dollars of tip back on
+                 a total — from a button labelled "Set tip". */
+              if (raw === '' || isNaN(v)) { h.close(); return; }
+              /* Clamped, which the old Math.max(0, v) was not. parseFloat("1e999")
+                 is Infinity and isNaN(Infinity) is false, so it sailed through and
+                 rendered as "$Infinity" across cart and checkout — then reached
+                 localStorage, where JSON.stringify writes Infinity as null, and
+                 fillDefaults only backfills undefined, so every lifetime ledger read
+                 $0.00 after the next reload.
+                 Clamping before rounding rather than after is presentation, not
+                 safety: FB.clamp answers TIP_MAX for Infinity either way. */
+              var tip = FB.round2(FB.clamp(v, 0, FB.fees.TIP_MAX));
+              FB.cart.setCo(p.slug, { tipCustom: tip, tipPct: null });
               h.close(); FB.nav.refresh();
             });
           },
@@ -274,10 +355,12 @@ window.FB = window.FB || {};
            while it was being charged the coordination fee, with no way to reach the
            state that row described. */
         var picked = FB.cart.slot(p.slug);
+        var pickedAt = FB.cart.slotAt(p.slug);
         var shut = !FB.catalog.isOpen(s);
-        var slots = [];
-        if (shut && s.opensAt) slots.push(s.opensAt);
-        for (var i = 1; i <= 8; i++) slots.push(FB.clockIn(s.deliveryMax + i * 45));
+        /* Generated in core, where the store's own hours are consulted and the slot
+           already in force is spliced back in. Built here, the sheet offered times
+           the store was shut for and could not mark its own selection. */
+        var slots = FB.cart.slotOptions(p.slug);
         FB.sheet.open({
           title: 'Schedule delivery',
           /* raw, not FB.esc: mkOverlay escapes cfg.sub itself (shell.js), so
@@ -287,9 +370,10 @@ window.FB = window.FB || {};
           html: (shut ? '' :
             '<button class="opt" role="radio" aria-checked="' + (!picked) + '" data-slot="">' +
             '<span class="mark"></span><span class="opt-b"><b>Standard</b><span>' + FB.mins(s.deliveryMin, s.deliveryMax) + ' · no coordination fee</span></span></button>') +
-            slots.map(function (t) {
-              return '<button class="opt" role="radio" aria-checked="' + (picked === t) + '" data-slot="' + t + '">' +
-                '<span class="mark"></span><span class="opt-b"><b>Today, ' + t + '</b><span>Window: ' + t + ' – indefinite</span></span>' +
+            slots.map(function (o) {
+              return '<button class="opt" role="radio" aria-checked="' + (pickedAt === o.at) + '" data-slot="' + o.label + '">' +
+                '<span class="mark"></span><span class="opt-b"><b>' + dayWord(o.at) + ', ' + o.label + '</b>' +
+                '<span>Window: ' + o.label + ' – indefinite</span></span>' +
                 '<span class="opt-p">+' + FB.money(2.60) + '</span></button>';
             }).join(''),
           onMount: function (body, h) {
@@ -383,6 +467,11 @@ window.FB = window.FB || {};
 
   function place(p, btn) {
     if (placing) return;
+    /* Backstop. The [data-place] handler refuses first and with better copy; this is
+       here so no future caller of place() can bypass the check by not knowing it
+       exists. render() is not the last word either — none of the three repaint on a
+       clock tick. */
+    if (FB.cart.unsellable(p.slug).length) return;
     placing = true;
     var s = FB.catalog.get(p.slug);
     var lines = FB.cart.lines(p.slug).map(function (l) {
@@ -391,6 +480,12 @@ window.FB = window.FB || {};
     });
     var c = calc(p);
     var co = FB.cart.co(p.slug);
+    /* Read ONCE, with the price. calc() above priced the order on this answer, and
+       cart.slot() is clock-sensitive now that a stale slot expires — re-deriving it
+       three seconds later inside the cancellation window let the clock walk past the
+       slot between the two reads, and the order was stamped with a schedule its own
+       receipt had not been priced for, in either direction. */
+    var scheduled = slotFor(p);
     var promo = promoFor(p, FB.cart.subtotal(p.slug));
     btn.disabled = true;
     btn.innerHTML = '<span>Placing…</span>';
@@ -419,7 +514,7 @@ window.FB = window.FB || {};
                 timesWithYou: person.timesWithYou };
       var order = {
         id: id, slug: s.slug, storeName: s.name, logo: s.logoSrc,
-        placedAt: Date.now(), mode: co.mode, express: co.express, scheduled: slotFor(p),
+        placedAt: Date.now(), mode: co.mode, express: co.express, scheduled: scheduled,
         address: FB.deep(FB.store.address()), payment: FB.deep(FB.store.payment()),
         lines: lines, calc: { subtotal: c.subtotal, feesTotal: c.feesTotal, tax: c.taxLine.amount,
           tip: c.tipLine.amount, total: c.total, nonFood: c.nonFood, multiple: c.multiple,

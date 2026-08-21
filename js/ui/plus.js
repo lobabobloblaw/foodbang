@@ -12,6 +12,19 @@ window.FB = window.FB || {};
     ['clock',  'Extended support hours', 'Support is available 24 hours a day, in a window we select.'],
   ];
 
+  /* Whole cycles billed since joining. Math.round broke at 1.5 cycles, so the dues
+     total stepped on days 45, 75 and 105 — nowhere near the renewal dates the app
+     itself printed at join (since + 30n). On day 60, after two renewals by its own
+     schedule, the panel still read "1 month billed".
+
+     One helper because there are two call sites — here and the Account membership
+     row — and they were separate copies of the same expression. */
+  FB.plusMonths = function (st) {
+    st = st || FB.S();
+    if (!st.plus.since) return 1;
+    return 1 + Math.max(0, Math.floor((Date.now() - st.plus.since) / 2592000000));
+  };
+
   FB.screens.register('plus', {
     tab: 'account',
     hideCartBar: true,
@@ -22,7 +35,7 @@ window.FB = window.FB || {};
     render: function () {
       var st = FB.S();
       var active = st.plus.active;
-      var months = Math.max(1, Math.round((Date.now() - (st.plus.since || Date.now())) / 2592000000) || 1);
+      var months = FB.plusMonths(st);
       var h = '';
 
       h += '<div class="plushero">' +

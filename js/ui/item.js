@@ -40,6 +40,12 @@ window.FB = window.FB || {};
             });
             h.close();
             FB.toast('You will be told when it returns. You will be told once.', { icon: 'bell' });
+            /* The fee is live the moment this is stored, and store.sub only repaints
+               the tab bar, cart pill and desk stats — not the mounted screen. Armed
+               from a cart's upsell rail, the receipt behind this sheet kept quoting a
+               total five dollars under what the next screen would charge.
+               commit() below does the same thing for the same reason. */
+            FB.nav.refresh();
           });
         });
       },

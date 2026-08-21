@@ -56,12 +56,17 @@ window.FB = window.FB || {};
         h2 += FB.C.sectionHead(FB.plural(r.items.length, 'dish', 'dishes'),
           r.items.some(function (x) { return x.via; }) ? 'Including matches inside modifier options.' : null);
         h2 += r.items.map(function (rec) {
-          return '<button class="row" data-item="' + rec.item.id + '" data-slug="' + rec.store.slug + '">' +
+          /* Search built its own row markup and never asked, so it was the one
+             surface where scarcity was invisible: a full-price result that refuses
+             the sale when you tap it. Read at render, like every other caller. */
+          var out = !FB.catalog.available(rec.item);
+          return '<button class="row' + (out ? ' is-out' : '') + '" data-item="' + rec.item.id + '" data-slug="' + rec.store.slug + '">' +
             (rec.item.photoSrc ? '<img class="row-img" src="' + rec.item.photoSrc + '" alt="" loading="lazy">'
               : '<span class="row-img" style="display:grid;place-items:center;font-size:22px">' + (FB.CAT_ICONS[(rec.store.categories || [])[0]] || '🍽') + '</span>') +
             '<span class="row-b"><b>' + FB.esc(rec.item.name) + '</b>' +
             '<span>' + FB.esc(rec.store.name) + (rec.via ? ' · ' + FB.esc(rec.via) : ' · ' + FB.esc(rec.item.sectionName)) + '</span></span>' +
-            '<span class="row-r"><b style="color:var(--ink);font:700 calc(14px * var(--fs)) var(--font)">' + FB.money(rec.item.price) + '</b></span></button>';
+            '<span class="row-r"><b style="color:var(--ink);font:700 calc(14px * var(--fs)) var(--font)">' +
+            (out ? 'Unavailable' : FB.money(rec.item.price)) + '</b></span></button>';
         }).join('');
       }
       return h2;

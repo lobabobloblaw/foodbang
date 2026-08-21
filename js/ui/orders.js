@@ -30,7 +30,7 @@ window.FB = window.FB || {};
             '<span style="color:var(--fb);font-weight:600">' +
               (pend ? 'Scheduled · ' + FB.esc(o.scheduled || FB.clock(new Date(o.startAt)))
                     : FB.esc(step.label) + ' · ' + FB.tracker.eta(o) + ' min') + '</span>' +
-            '<span class="or-items">' + FB.esc(o.lines.map(function (l) { return l.qty + '× ' + l.name; }).join(', ')) + '</span></span>' +
+            '<span class="or-items">' + FB.esc(o.lines.map(function (l) { return l.qty + '× ' + l.name + (l.removed ? ' (removed)' : ''); }).join(', ')) + '</span></span>' +
             '<span class="or-r"><b>' + FB.money(o.calc.total) + '</b>' + FB.icon('fwd', 15) + '</span></button>';
         }).join('');
       }
@@ -43,7 +43,7 @@ window.FB = window.FB || {};
             '<span class="or-b"><b>' + FB.esc(o.storeName) + '</b>' +
             '<span>' + FB.dayLabel(o.placedAt) + ' · ' + FB.clock(new Date(o.placedAt)) +
               (o.rated ? ' · you rated ' + o.rated + '★' : '') + '</span>' +
-            '<span class="or-items">' + FB.esc(o.lines.map(function (l) { return l.qty + '× ' + l.name; }).join(', ')) + '</span></span>' +
+            '<span class="or-items">' + FB.esc(o.lines.map(function (l) { return l.qty + '× ' + l.name + (l.removed ? ' (removed)' : ''); }).join(', ')) + '</span></span>' +
             '<span class="or-r"><b>' + FB.money(o.calc.total) + '</b>' +
             '<span style="font:var(--t-cap);color:var(--ink-3)">' + FB.money(o.calc.nonFood) + ' fees</span></span></button>';
         }).join('');
@@ -290,10 +290,14 @@ window.FB = window.FB || {};
     h += '<div style="border-top:8px solid var(--surface-2);margin-top:14px;padding-top:6px">' +
       '<div style="padding:14px 16px 0">' + FB.lockup({ size: 26, tagline: false }) + '</div>' +
       FB.C.sectionHead('Receipt', FB.dayLabel(o.placedAt) + ' · ' + FB.clock(new Date(o.placedAt))) +
+      /* A line removed mid-order KEEPS its row and its price. It was charged, and
+         the credit further down is a credit against it — splicing it out left the
+         printed rows not summing to the Subtotal beneath them. */
       '<div style="padding:0 16px 8px">' + o.lines.map(function (l) {
-        return '<div style="padding:6px 0;font:var(--t-sub);display:flex;gap:10px">' +
+        return '<div class="rc-line' + (l.removed ? ' is-out' : '') + '" style="padding:6px 0;font:var(--t-sub);display:flex;gap:10px">' +
           '<span style="color:var(--ink-3);min-width:20px">' + l.qty + '×</span>' +
           '<span style="flex:1"><b style="font-weight:500">' + FB.esc(l.name) + '</b>' +
+          (l.removed ? '<span style="display:block;color:var(--bad);font:var(--t-cap);margin-top:2px">Removed by the restaurant · credited below at base price</span>' : '') +
           (l.opts ? '<span style="display:block;color:var(--ink-3);font:var(--t-cap);margin-top:2px">' + FB.esc(l.opts) + '</span>' : '') + '</span>' +
           '<span class="tabnums">' + FB.money(l.unit * l.qty) + '</span></div>';
       }).join('') + '</div>' +
@@ -511,6 +515,9 @@ window.FB = window.FB || {};
          struck through and refuses to sell. */
       var added = 0, gone = 0;
       o.lines.forEach(function (l) {
+        /* a line the restaurant pulled mid-order is still on the receipt, because the
+           credit is against it — but it is not something to re-add */
+        if (l.removed) { gone++; return; }
         var it = FB.catalog.item(o.slug, l.itemId);
         if (!it) return;
         if (!FB.catalog.available(it)) { gone++; return; }

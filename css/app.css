@@ -381,9 +381,14 @@ kbd {
 .tosdiff-row svg { flex: none; margin-top: 2px; color: var(--fb); }
 
 /* unavailable: still legible, plainly not for sale today */
-.mitem.is-out, .dishtile.is-out { opacity: .58; }
+.mitem.is-out, .dishtile.is-out, .upcard.is-out, .row.is-out { opacity: .58; }
+/* a receipt row the restaurant pulled: struck, but still legible — it was charged */
+.rc-line.is-out > .tabnums, .rc-line.is-out b { text-decoration: line-through; }
 .mitem.is-out .mi-p, .dishtile.is-out .dt-p { text-decoration: line-through; }
 .mitem.is-out .mi-add { display: none; }
+/* the cart line keeps full opacity — it is a thing you must act on, not a thing
+   being merchandised at you — and states the reason instead */
+.upcard.is-out span, .row.is-out .row-r b { text-decoration: line-through; }
 
 .belldot {
   position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; border-radius: 50%;

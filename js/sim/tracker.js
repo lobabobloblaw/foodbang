@@ -531,7 +531,18 @@ window.FB = window.FB || {};
         text: RESOLUTION_TEXT[choice] || 'Resolution recorded',
         sub: RESOLUTION_SUB[choice] || null,
       });
-      if (choice === 'remove' && oo.lines.length > 1) oo.lines.splice(oo.incident.lineIdx, 1);
+      /* The row STAYS. Splicing it out left calc.subtotal untouched, so the receipt
+         printed item rows that no longer summed to the Subtotal directly beneath
+         them — a hole with nothing explaining it, and the credit below is at the
+         BASE price, so it never covered the gap either. The whole post-placement
+         model here is charge-then-credit: FB.adjustOrder appends a fee line and
+         never rewrites calc.subtotal, so the priced row has to remain for the credit
+         to be a credit against something. Marked instead, so the receipt shows what
+         happened rather than hiding it. */
+      if (choice === 'remove') {
+        var gone = oo.lines[oo.incident.lineIdx];
+        if (gone) gone.removed = true;
+      }
       return st;
     }, { silent: true });
     /* one place patches the three ledgers, for tips and for this alike */

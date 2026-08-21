@@ -73,12 +73,25 @@ window.FB = window.FB || {};
     if (ap === 'AM' && h === 12) h = 0;
     return h * 60 + min;
   };
-  /* the next wall-clock occurrence of a minutes-of-day, at or after `from` */
+  /* the next wall-clock occurrence of a minutes-of-day, at or after `from`.
+
+     Rolls forward by a calendar DAY, not by a fixed 86400000: a day containing a
+     daylight-saving change is 23 or 25 hours long, and adding 24 landed the answer
+     an hour off the wall-clock minute it was asked for. That drift reached the
+     schedule sheet's pre-checked row, the stored-slot recheck in cart.js and the
+     order timetable in tracker.js, which between them started a scheduled order an
+     hour before its store opened.
+
+     A spring-forward morning has no 2:30 AM; Date normalises it to 3:30 AM, which is
+     the honest answer and is what a real kitchen would do with it. */
   FB.nextAtMinute = function (mins, from) {
     if (mins == null) return null;
-    var base = new Date(from || Date.now());
+    var now = from || Date.now();
+    var base = new Date(now);
     var t = new Date(base.getFullYear(), base.getMonth(), base.getDate(), Math.floor(mins / 60), mins % 60, 0, 0).getTime();
-    return t <= (from || Date.now()) ? t + 86400000 : t;
+    if (t > now) return t;
+    return new Date(base.getFullYear(), base.getMonth(), base.getDate() + 1,
+                    Math.floor(mins / 60), mins % 60, 0, 0).getTime();
   };
   FB.dayLabel = function (ts) {
     var d = new Date(ts), now = new Date();
