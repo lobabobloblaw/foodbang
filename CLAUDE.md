@@ -20,7 +20,7 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose fifty-three checks always run together — there is no way to run a
+(`node tools/smoke.cjs`) whose fifty-eight checks always run together — there is no way to run a
 single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
 exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
@@ -41,8 +41,8 @@ index.html            shell: phone frame, status bar, tab bar, and the ordered <
 css/tokens.css        67 design tokens — light/dark, three-state theming; --fs scales the type ramp
 css/app.css           component library      css/screens.css   per-screen styles
 js/core/              util · world · icons · state · latency · notifs · catalog · fees · scrip · tos · cart
-js/ui/                shell (router/sheets/toasts) · components · item sheet · 16 screens
-js/sim/               roster.js (the nine Slingers) · standing.js · tracker.js (TRACKR™) · bodymax.js
+js/ui/                shell (router/sheets/toasts) · components · item sheet · 18 screens
+js/sim/               roster.js (the nine Slingers) · standing.js · tracker.js (TRACKR™) · bodymax.js · missions.js
 js/app.js             boot: catalog.init -> shell.init -> nav.go('home') -> tracker.resume
 js/data/menus/*.json  one file per restaurant — THE source of truth
 assets/app/cat/*.webp 14 category tiles (the photographic ones on Home and Search)
@@ -233,6 +233,39 @@ testable cannot live in `js/app.js`** — the harness skips it because it boots 
 parked there is unreachable by every check. `settleDay`, `adopt` and `nav.pop` are all split that
 way: the rule in core, the one-line wiring in the boot file.
 
+**There are two apps, and `st.mode` says which one you are in.** Flipping to `'sling'` stamps
+`#device[data-mode]`, and one rule in `css/tokens.css` moves every `var(--fb)` in the app at once —
+a custom property inherits from the nearest ancestor that declares it, and `#device` is an ancestor
+of `#view`, which is the same mechanism the map palette already uses. The tab bar is chosen by
+mode, and **every id in it must name a registered screen**, because `nav.tab(id)` sets
+`current.name` to it directly. The two tickers do not know about each other: the customer side
+keeps running while you are slinging, and it should.
+
+**A mission is a run, and a run is watched.** An order is checked in on; a run is sat through, so
+it cannot use the tracker's two-seconds-a-simulated-minute — that put Dunkinn at 26 seconds and the
+Manufactory at two and a half minutes. The twenty are **remapped** onto 45–75 seconds rather than
+clamped into it, because clamping flattens half of them onto the same number and the ordering is
+worth keeping. The minutes a run advertises stay the store's own; only the wall clock is compressed.
+
+**The constraint IS the complication.** There is no generic mid-route event: the giver's one rule is
+tested once, under a bounded clock, and that is the climax. Every check holds the run — but
+`replay()` must `break` rather than `return` when a check is open, or a catch-up lands the player on
+a question with no story above it. Beats **before** the gate still play; beats after it wait.
+
+**Which runs carry a second decision is not a threshold.** Every run is offered one and the short
+ones cannot hold it — after the rule has had its window and its margin there is nowhere left to put
+another answerable question. The constraint decides, not a constant, so the two cannot drift apart.
+A window is `Math.min(room, max)` and never `clamp(room, min, max)`: clamping *up* hands back a
+window the bound never had room for, and makes the guard above it decorative.
+
+**Two axes, kept apart.** A restaurant's rule moves your standing with that restaurant and never
+your pay. The platform's interruption moves your pay and never your standing. The separation lives
+in the data — a mission carries no price fields at all — so a check asserts it against the table
+rather than against the branch that reads it.
+
+**Doing the six a favour costs you work.** One scalar, `st.slinging.platform`: chains raise it,
+favours lower it, and it decides how many givers are shown as asking. Nobody says so out loud.
+
 **Every fee goes through `fees.compute`, or it cannot be explained.** The `FEE_WHY` walk only reads
 what `compute` returns, so a charge applied anywhere else can never be covered by it — which is why
 the restock notification, the tip-reduction review and the substitution are `ctx` branches rather
@@ -259,7 +292,7 @@ carries the outgoing brand forever. That is why the roster file is `roster.js` a
 It has since caught a `slingerBlock`/`lastSlinger` pair added to a screen — the noun renames on a word
 boundary and camelCase has none, so **run it after naming anything, not only after adding a file.**
 
-**Run `npm test` before committing.** Fifty-three checks. Beyond the original thirteen they cover:
+**Run `npm test` before committing.** Fifty-eight checks. Beyond the original thirteen they cover:
 every screen rendering under six state fixtures × two hours with no `undefined`/`NaN` in the markup;
 accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
 pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency

@@ -104,6 +104,9 @@
     FB.notifs.backfill();
     FB.nav.go('home', {}, { silent: true });
     FB.tracker.resume();
+    /* the customer side keeps running while you are slinging, and vice versa —
+       the two tickers do not know about each other and do not need to */
+    FB.missions.resume();
     FB.updateDeskStats();
     hideSplash();
 

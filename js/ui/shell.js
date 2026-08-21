@@ -18,13 +18,21 @@ window.FB = window.FB || {};
 
   function el(id) { return document.getElementById(id); }
 
-  var TABS = [
+  /* Two tab bars, because there are two apps. Every id must name a registered
+     screen: nav.tab(id) sets current.name to it directly. */
+  var TABS_ORDER = [
     { id: 'home',    icon: 'home',    label: 'Home' },
     { id: 'grocery', icon: 'grocery', label: 'Grocery' },
     { id: 'search',  icon: 'search',  label: 'Search' },
     { id: 'orders',  icon: 'orders',  label: 'Orders' },
     { id: 'account', icon: 'account', label: 'Account' },
   ];
+  var TABS_SLING = [
+    { id: 'dispatch', icon: 'pin',     label: 'Dispatch' },
+    { id: 'run',      icon: 'bike',    label: 'Run' },
+    { id: 'account',  icon: 'account', label: 'Account' },
+  ];
+  function tabs() { return FB.S().mode === 'sling' ? TABS_SLING : TABS_ORDER; }
 
   function renderTabs() {
     if (!tabEl) return;
@@ -37,9 +45,11 @@ window.FB = window.FB || {};
     var pending = FB.S().orders.filter(function (o) {
       return o.status !== 'delivered' && o.status !== 'cancelled';
     }).length;
-    tabEl.innerHTML = TABS.map(function (t) {
+    var live = FB.S().mode === 'sling' && FB.S().slinging.run ? 1 : 0;
+    tabEl.innerHTML = tabs().map(function (t) {
       var badge = '';
       if (t.id === 'orders' && pending) badge = '<i class="dot">' + pending + '</i>';
+      if (t.id === 'run' && live) badge = '<i class="dot">' + live + '</i>';
       return '<button class="tab" data-tab="' + t.id + '"' + (cur === t.id ? ' aria-current="page"' : '') + '>' +
         FB.icon(t.icon, 23) + '<span>' + t.label + '</span>' + badge + '</button>';
     }).join('');
@@ -93,7 +103,8 @@ window.FB = window.FB || {};
     'data-sort', 'data-slot', 'data-pick', 'data-pickp', 'data-why', 'data-set', 'data-lid',
     'data-drop', 'data-try', 'data-q', 'data-rm', 'data-edit', 'data-dq', 'data-seg', 'data-sw',
     'data-rate', 'data-use', 'data-del', 'data-usep', 'data-delp', 'data-item', 'data-slug',
-    'data-jump', 'data-cartgo', 'data-go', 'data-fav', 'data-express', 'data-expand-fees'];
+    'data-jump', 'data-cartgo', 'data-go', 'data-fav', 'data-express', 'data-expand-fees',
+    'data-mode', 'data-take', 'data-answer', 'data-accept'];
 
   function focusKey(elm) {
     if (!elm || elm === document.body) return null;
@@ -195,6 +206,8 @@ window.FB = window.FB || {};
     dev.classList.toggle('immersive', !!def.immersive);
     dev.classList.remove('scrolled');
     dev.dataset.screen = current.name;
+    /* the whole accent hangs off this one attribute — see css/tokens.css */
+    dev.dataset.mode = FB.S().mode || 'order';
     stampWorld();
 
     renderTabs(); renderCartBar();

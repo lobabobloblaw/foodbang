@@ -375,3 +375,54 @@
 .st-bar.on { opacity: 1; transform: none; visibility: visible; pointer-events: auto; }
 .st-bar .bar { min-height: 46px; padding-bottom: 6px; }
 .st-bar h1 { font: var(--t-head); letter-spacing: -.2px; }
+
+/* ===== Slinger Mode ===== */
+.modeswitch {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+  background: var(--surface-2); border-radius: var(--r-sm); padding: 3px;
+  margin: 16px var(--pad) 0;
+}
+.ms-opt {
+  height: 38px; border-radius: 8px; font: 600 calc(13.5px * var(--fs)) var(--font);
+  color: var(--ink-2); transition: all var(--fast) var(--sp);
+}
+.ms-opt[aria-checked="true"] { background: var(--fb); color: #fff; box-shadow: var(--e1); }
+.ms-note { font: var(--t-cap); color: var(--ink-3); padding: 8px var(--pad) 0; line-height: 1.45; }
+
+.disp-hd { padding: 18px var(--pad) 14px; }
+.disp-hd i { display: block; font: var(--t-micro); letter-spacing: .14em; color: var(--ink-3); font-style: normal; }
+.disp-hd b { display: block; font: var(--t-title); margin: 6px 0 4px; }
+.disp-hd span { display: block; font: var(--t-sub); color: var(--ink-2); }
+
+.mcard {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 13px var(--pad); border-bottom: 1px solid var(--line);
+  border-left: 3px solid var(--fb);
+}
+.mcard.is-local { border-left-color: var(--good); }
+.mcard.is-shut { opacity: .55; border-left-color: var(--line-strong); }
+.mcard img { width: 40px; height: 40px; border-radius: 9px; object-fit: cover; flex: none; background: var(--surface-3); }
+.mc-b { flex: 1; min-width: 0; }
+.mc-top { display: flex; align-items: baseline; gap: 8px; }
+.mc-top b { font: 700 calc(15px * var(--fs)) var(--font); }
+.mc-pay { margin-left: auto; flex: none; font: 700 calc(15px * var(--fs)) var(--font); color: var(--fb); font-variant-numeric: tabular-nums; }
+.mc-title { display: block; font: var(--t-sub); color: var(--ink-2); margin-top: 3px; }
+.mc-rule { display: flex; align-items: center; gap: 5px; font: var(--t-cap); color: var(--ink); margin-top: 6px; font-weight: 500; }
+.mc-rule svg { color: var(--fb); flex: none; }
+.mc-meta { display: block; font: var(--t-cap); color: var(--ink-3); margin-top: 4px; }
+.mc-take { flex: none; align-self: center; }
+
+.brief { padding: 4px var(--pad) 18px; }
+.brief p { font: var(--t-body); color: var(--ink-2); line-height: 1.6; margin: 0 0 12px; }
+.brief-rule {
+  background: var(--fb-tint); border-radius: var(--r-sm); padding: 14px 16px; margin-top: 16px;
+}
+.brief-rule i { display: block; font: var(--t-micro); letter-spacing: .14em; color: var(--fb); font-style: normal; }
+.brief-rule b { display: block; font: 700 calc(17px * var(--fs)) var(--font); color: var(--ink); margin-top: 6px; }
+
+.run-test:empty, .run-out:empty { display: none; }
+.disp-plat { font: var(--t-cap); color: var(--ink-3); padding: 12px var(--pad) 0; line-height: 1.5; }
+/* the platform's own interruption is not the restaurant's rule, and does not look like one */
+.incident.is-platform { border-color: var(--line-strong); background: var(--surface-2); }
+.incident.is-platform .inc-h svg { color: var(--ink-2); }
+.incident.is-platform .inc-clock { color: var(--ink-2); }

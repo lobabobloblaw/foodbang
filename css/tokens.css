@@ -186,6 +186,42 @@
 :root[data-textsize="l"]  { --fs: 1.1; }
 :root[data-textsize="xl"] { --fs: 1.2; }
 
+/* ============================================================
+   Slinger Mode — the other side of the switch.
+   The accent moves off the platform's red and onto sodium vapour: the colour of
+   a forecourt at four in the morning, which is when this work happens. Declared
+   on #device for the same reason the map palette below is — a custom property
+   inherits from the nearest ancestor that declares it, so this beats :root
+   regardless of specificity and moves every var(--fb) in the app at once.
+   Both themes carry their own values, or one of them gets the other's contrast.
+   ============================================================ */
+#device[data-mode="sling"] {
+  --fb:       #B4640F;
+  --fb-press: #8C4C08;
+  --fb-tint:  #FBEBD6;
+  --fb-deep:  #5E3305;
+  --fb-lift:  #D98A2B;
+  --fb-sink:  #8C4C08;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #device[data-mode="sling"] {
+    --fb:       #FFAE3B;
+    --fb-press: #E09020;
+    --fb-tint:  #2C2011;
+    --fb-deep:  #FFCE86;
+    --fb-lift:  #FFC468;
+    --fb-sink:  #D98A2B;
+  }
+}
+:root[data-theme="dark"] #device[data-mode="sling"] {
+  --fb:       #FFAE3B;
+  --fb-press: #E09020;
+  --fb-tint:  #2C2011;
+  --fb-deep:  #FFCE86;
+  --fb-lift:  #FFC468;
+  --fb-sink:  #D98A2B;
+}
+
 /* TRACKR map palette */
 :root {
   --map-bg: #E9E6E0;

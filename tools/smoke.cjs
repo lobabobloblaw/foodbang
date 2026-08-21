@@ -3781,6 +3781,318 @@ check('nothing escapes a sheet subtitle twice', () => {
   return 'no overlay pre-escapes its own title or subtitle';
 });
 
+/* ===================== Slinger Mode ===================== */
+
+check('a run is watched, so it is bounded to a band', () => {
+  /* An order is checked in on; a run is sat through, start to finish. At the
+     tracker's two seconds a simulated minute that put Dunkinn at 26s and the
+     Manufactory at two and a half minutes — too short to hold a countdown and too
+     long to hold attention. The twenty are REMAPPED onto a band rather than clamped
+     into it, because clamping flattens half of them onto the same number and the
+     ordering is worth keeping. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T);
+    FB.store.reset();
+    const bad = [];
+    const secs = [];
+    let twoDecisions = 0;
+    for (const m of FB.missions.ALL) {
+      const run = FB.missions.build(m.slug, T);
+      if (!run) { bad.push(m.slug + ': no run at all'); continue; }
+      const s = run.span / 1000;
+      secs.push({ slug: m.slug, s: s, mins: run.minutes });
+      if (s < 45 || s > 75) bad.push(m.slug + ' runs ' + s + 's, outside 45-75');
+      if (!run.checks.length) bad.push(m.slug + ': a run with nothing to decide');
+      if (run.checks.length > 1) twoDecisions++;
+
+      run.checks.forEach(function (c, i) {
+        /* every check must be answerable, and answerable before the run is over */
+        if (c.at <= run.startAt) bad.push(m.slug + ': ' + c.kind + ' due before the run began');
+        if (c.deadline >= run.endAt) bad.push(m.slug + ': ' + c.kind + ' outlives the run');
+        const floor = c.kind === 'rule' ? FB.tracker.INCIDENT_MIN_MS : 9000;
+        if (c.ms < floor) bad.push(m.slug + ': ' + c.kind + ' offers ' + Math.round(c.ms / 1000) + 's');
+        /* and two questions may never be open at once */
+        if (i && c.at <= run.checks[i - 1].deadline) {
+          bad.push(m.slug + ': two decisions are open at the same time');
+        }
+      });
+    }
+    /* the ordering the remap exists to preserve */
+    const byTime = secs.slice().sort((a, b) => a.s - b.s);
+    const byMins = secs.slice().sort((a, b) => a.mins - b.mins);
+    for (let i = 0; i < byTime.length; i++) {
+      if (byTime[i].mins !== byMins[i].mins) {
+        bad.push('the remap reordered the roster: ' + byTime[i].slug + ' is out of place');
+        break;
+      }
+    }
+    if (!twoDecisions) throw new Error('no run anywhere gets a second decision');
+    if (twoDecisions === secs.length) throw new Error('every run gets a second decision — the threshold does nothing');
+    if (bad.length) throw new Error(bad.length + ' problem(s):\n          ' + bad.slice(0, 6).join('\n          '));
+    return secs.length + ' runs, ' + Math.round(byTime[0].s) + '-' + Math.round(byTime[byTime.length - 1].s) +
+      's, ' + twoDecisions + ' with a second decision';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('a run is held until the decision in front of it is answered', () => {
+  /* What makes it a decision rather than a notification: nothing after a check plays
+     while it is pending, and past the deadline it is answered for you — the incident's
+     own shape, and the same guard against being answered twice. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T);
+    FB.store.reset();
+    FB.missions.setMode('sling');
+    const run = FB.missions.accept('oliveorchard', T);
+    if (!run) throw new Error('the run was refused');
+    const c = run.checks[0];
+
+    /* before it is due, nothing is pending */
+    clock.set(c.at - 1000);
+    FB.missions.tick({ catchUp: true });
+    if (FB.missions.pending(FB.missions.run(), c.at - 1000)) throw new Error('a decision was pending before it was due');
+
+    /* while it is open the run does not advance past it */
+    clock.set(c.at + 1000);
+    for (let i = 0; i < 40; i++) FB.missions.tick({ catchUp: true });
+    let r = FB.missions.run();
+    if (!FB.missions.pending(r, c.at + 1000)) throw new Error('the decision is not pending while it is open');
+    const heldAt = r.replayed;
+    const past = r.beats.filter((b) => b.at <= c.at).length;
+    if (heldAt > past) throw new Error('the run played ' + (heldAt - past) + ' beat(s) past an unanswered decision');
+
+    /* A run is held until the DEADLINE, not forever — past it the answer is made for
+       you and the run continues, which is the whole point of the elected branch. So
+       the hold has to end exactly there and not before. */
+    clock.set(c.deadline - 500);
+    for (let i = 0; i < 20; i++) FB.missions.tick({ catchUp: true });
+    r = FB.missions.run();
+    if (!r) throw new Error('the run finished while its decision was still open');
+    if (r.replayed > past) throw new Error('a held run replayed past its decision');
+    if (!FB.missions.pending(r, c.deadline - 500)) throw new Error('the decision closed before its deadline');
+
+    /* answered exactly once, and only while open */
+    clock.set(c.at + 2000);
+    const first = FB.missions.answer('keep');
+    if (!first) throw new Error('a decision that was open refused an answer');
+    const snap = JSON.stringify(FB.S().slinging.run);
+    if (FB.missions.answer('break')) throw new Error('the same decision was answered twice');
+    if (JSON.stringify(FB.S().slinging.run) !== snap) throw new Error('a refused answer still wrote');
+
+    /* and past the deadline it is elected, once */
+    FB.store.reset();
+    FB.missions.setMode('sling');
+    const r2 = FB.missions.accept('oliveorchard', T);
+    clock.set(r2.checks[0].deadline + 500);
+    for (let i = 0; i < 30; i++) FB.missions.tick({ catchUp: true });
+    const live = FB.missions.run();
+    const elected = (live ? live.checks : (FB.S().slinging.log[0] ? [] : []))
+      .filter((x) => x.elected).length;
+    const events = (live ? live.events : []).filter((e) => e.text === 'No response was recorded').length;
+    if (live && !elected) throw new Error('the deadline passed and nothing was elected');
+    if (events > 1) throw new Error('the election was announced ' + events + ' times');
+    return 'held through 60 ticks, answered once, elected once';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('the restaurant moves your standing and the platform moves your pay', () => {
+  /* Two axes, kept apart on purpose. A giver's rule is about what they think of you;
+     the platform's interruption is about money. Collapsing them would make a run one
+     decision made twice. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T);
+
+    /* find a run that carries both kinds */
+    let slug = null;
+    for (const m of FB.missions.ALL) {
+      const r = FB.missions.build(m.slug, T);
+      if (r.checks.length === 2) { slug = m.slug; break; }
+    }
+    if (!slug) throw new Error('no run carries both a rule and an interruption');
+
+    function play(ruleAnswer, platAnswer) {
+      FB.store.reset();
+      FB.missions.setMode('sling');
+      const run = FB.missions.accept(slug, T);
+      const startPay = run.pay;
+      for (const c of run.checks.slice()) {
+        clock.set(c.at + 500);
+        FB.missions.tick({ catchUp: true });
+        FB.missions.answer(c.kind === 'rule' ? ruleAnswer : platAnswer);
+      }
+      clock.set(run.endAt + 2000);
+      for (let i = 0; i < 20; i++) FB.missions.tick({ catchUp: true });
+      const st = FB.S();
+      return { startPay: startPay, row: st.slinging.log[0], standing: st.slinging.standing[slug] || 0 };
+    }
+
+    /* the rule alone must never touch money */
+    const a = play('keep', 'keep');
+    const b = play('break', 'keep');
+    if (!a.row || !b.row) throw new Error('a run did not settle');
+    if (a.row.pay !== b.row.pay) {
+      throw new Error('keeping the rule paid ' + a.row.pay + ' and breaking it paid ' + b.row.pay);
+    }
+    if (a.standing <= b.standing) throw new Error('keeping the rule did not stand you better than breaking it');
+    eq(a.standing, 1, 'standing after keeping the rule');
+    eq(b.standing, -1, 'standing after breaking it');
+
+    /* The separation is a property of the DATA and not only of a branch: a giver's
+       rule carries no money at all, and the platform's interruption carries nothing
+       else. A kind check alone would be decorative, because the rule copy has no
+       price fields for it to guard. */
+    for (const m of FB.missions.ALL) {
+      /* asserted against the TABLE, not against the copy: copyFor builds a rule from
+         an explicit field list, so a price added to a mission would be silently
+         dropped on the way out and the separation would look enforced when the data
+         had already broken it. */
+      if (m.keepPay !== undefined || m.brkPay !== undefined) {
+        throw new Error(m.slug + ' attaches a price to a rule the restaurant set');
+      }
+      const cp = FB.missions.copyFor({ slug: m.slug }, { kind: 'rule' });
+      if (cp.keepPay !== undefined || cp.brkPay !== undefined) {
+        throw new Error(m.slug + ' leaks a price through copyFor');
+      }
+      if (!cp.keep || !cp.brk || !cp.kept || !cp.broken) throw new Error(m.slug + ' has an incomplete rule');
+    }
+    for (const p of FB.missions.INTERRUPTS) {
+      if (typeof p.keepPay !== 'number' || typeof p.brkPay !== 'number') {
+        throw new Error(p.id + ' does not price both of its answers');
+      }
+      if (p.keepPay === p.brkPay) throw new Error(p.id + ' costs the same either way');
+    }
+
+    /* the interruption alone must never touch standing */
+    const c = play('keep', 'break');
+    if (c.standing !== a.standing) throw new Error('the platform moved your standing with the restaurant');
+    if (c.row.pay === a.row.pay) throw new Error('the platform interruption changed nothing at all');
+
+    /* and the money it moves is itemised on the row rather than conjured */
+    if (FB.round2(a.startPay + a.row.adjusted) !== a.row.pay) {
+      throw new Error('the pay on the row does not reconcile with the adjustment recorded beside it');
+    }
+    /* a rule-only run adjusts nothing */
+    const short = FB.missions.ALL.filter((m) => FB.missions.build(m.slug, T).checks.length === 1)[0];
+    FB.store.reset(); FB.missions.setMode('sling');
+    const r = FB.missions.accept(short.slug, T);
+    clock.set(r.checks[0].at + 500); FB.missions.tick({ catchUp: true });
+    FB.missions.answer('break');
+    clock.set(r.endAt + 2000);
+    for (let i = 0; i < 20; i++) FB.missions.tick({ catchUp: true });
+    eq(FB.S().slinging.log[0].adjusted, 0, 'pay adjusted by a run with no interruption');
+    return 'rule ' + a.standing + '/' + b.standing + ' at a flat ' + FB.money(a.row.pay) +
+      '; platform ' + FB.money(a.row.adjusted) + ' vs ' + FB.money(c.row.adjusted) + ' at flat standing';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('doing the six a favour costs you work', () => {
+  /* The politics, and it is one scalar. Doing what a chain tells you raises your
+     standing with the platform; doing one of the six a favour lowers it — and the
+     platform decides how much work you are shown. Nobody says any of this out loud. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T);
+    const chains = FB.missions.ALL.filter((m) => !m.local);
+    const locals = FB.missions.ALL.filter((m) => m.local);
+    eq(locals.length, 6, 'independents on the roster');
+    eq(chains.length + locals.length, 20, 'givers on the roster');
+
+    function play(slug, answer) {
+      FB.missions.setMode('sling');
+      const run = FB.missions.accept(slug, T);
+      if (!run) throw new Error('the run was refused for ' + slug);
+      for (const c of run.checks.slice()) {
+        clock.set(c.at + 400);
+        FB.missions.tick({ catchUp: true });
+        FB.missions.answer(answer);
+      }
+      clock.set(run.endAt + 2000);
+      for (let i = 0; i < 20; i++) FB.missions.tick({ catchUp: true });
+      clock.set(T);
+      return FB.S().slinging.platform;
+    }
+
+    FB.store.reset();
+    const afterChain = play(chains[0].slug, 'keep');
+    if (!(afterChain > 0)) throw new Error('doing what a chain asked did not raise your partner standing');
+    const afterFavour = play(locals[0].slug, 'keep');
+    if (!(afterFavour < afterChain)) throw new Error('a favour for one of the six cost you nothing');
+
+    /* and the platform expresses it by showing you less */
+    const at = [-6, 0, 6].map(function (p) {
+      FB.store.set(function (st) { st.slinging.platform = p; return st; });
+      return FB.missions.asking(T);
+    });
+    if (!(at[0] < at[1] && at[1] < at[2])) {
+      throw new Error('the board does not respond to your partner standing: ' + at.join(', '));
+    }
+    if (at[0] < 3) throw new Error('a bad partner standing leaves you with ' + at[0] + ' — that is a wall, not a cost');
+
+    /* the board never offers more than are actually open */
+    FB.store.set(function (st) { st.slinging.platform = 99; return st; });
+    const board = FB.missions.board(T);
+    const asking = board.filter(function (b) { return b.asking; }).length;
+    const open = board.filter(function (b) { return b.open; }).length;
+    if (asking > open) throw new Error(asking + ' asking against ' + open + ' open');
+    if (board.some(function (b) { return b.asking && !b.open; })) throw new Error('a closed restaurant is asking');
+    return 'chain +' + afterChain + ', favour ' + afterFavour + ', board ' + at.join('/') + ' by standing';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('the dispatch board is a pure function of the clock', () => {
+  /* Scarcity with no new state and no new timer: which givers are asking is seeded on
+     FB.world's twenty-minute bucket, so the board turns over on its own, two tabs
+     agree about what is on it, and reading it never writes. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T);
+    FB.store.reset();
+    FB.missions.setMode('sling');
+
+    const key = function (b) { return b.filter(function (x) { return x.asking; }).map(function (x) { return x.slug; }).sort().join(','); };
+    const a = key(FB.missions.board(T));
+    if (!a) throw new Error('nobody is asking at seven in the evening');
+
+    /* stable inside the bucket */
+    const bucketMs = FB.world.BUCKET_MS;
+    if (key(FB.missions.board(T + 60000)) !== a) throw new Error('the board changed inside its own bucket');
+
+    /* and different in the next one — not guaranteed for any single pair, so sweep */
+    let moved = 0;
+    for (let i = 1; i <= 12; i++) {
+      if (key(FB.missions.board(T + i * bucketMs)) !== a) moved++;
+    }
+    if (!moved) throw new Error('the board never turns over across twelve buckets');
+
+    /* reading it does not write */
+    const realSet = FB.store.set;
+    let writes = 0;
+    FB.store.set = function (fn, o) { writes++; return realSet.call(FB.store, fn, o); };
+    try { for (let i = 0; i < 5; i++) FB.missions.board(T); } finally { FB.store.set = realSet; }
+    if (writes) throw new Error('reading the board called store.set ' + writes + ' time(s)');
+
+    /* every row is renderable — no undefined store, no NaN duration */
+    for (const row of FB.missions.board(T)) {
+      if (!row.title || !row.rule) throw new Error(row.slug + ' has no title or no rule');
+      if (!(row.seconds > 0) || isNaN(row.seconds)) throw new Error(row.slug + ' has no duration');
+      if (!(row.pay > 0) || isNaN(row.pay)) throw new Error(row.slug + ' pays ' + row.pay);
+    }
+    return moved + ' of 12 buckets differ, ' + FB.missions.board(T).length + ' rows, no writes';
+  } finally { clock.restore(); app.dispose(); }
+});
+
 console.log('');
 if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
 console.log('all checks passed');

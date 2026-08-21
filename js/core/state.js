@@ -75,6 +75,26 @@ window.FB = window.FB || {};
       notifsThrough: 0,     /* how far the boot backlog has synthesised */
       promo: { applied: null, used: [] },
       seen: {},
+      /* Which side of the switch you are on. 'order' is the app this has always
+         been; 'sling' is the same app from the other end of the transaction. A
+         string rather than a boolean because a third mode is a plausible future and
+         `mode === 'sling'` reads at the call site, where `!!slinging` does not. */
+      mode: 'order',
+      /* The courier side. `run` is the live run or null — one object carrying its
+         whole timetable, written once when the mission is accepted and only ever
+         answered into, so the ticker is a pure replay and two tabs converge.
+         `standing` is what each of the twenty thinks of you, keyed by slug. */
+      slinging: {
+        since: null,
+        run: null,
+        completed: 0,
+        kept: 0,
+        broken: 0,
+        earned: 0,
+        standing: {},
+        platform: 0,      /* what the platform makes of the company you keep */
+        log: [],          /* finished runs, newest first, capped in migrate() */
+      },
       /* `flags` and `maxCal` are durable because HISTORY_CAP truncates `history`,
          and metrics() folds over it — so an achievement earned on order 3 was
          RETRACTED on order 201 while its id still sat in `badges`. New fields need
@@ -149,6 +169,9 @@ window.FB = window.FB || {};
     fillDefaults(s, d);
 
     if (Array.isArray(s.orders) && s.orders.length > HISTORY_CAP) s.orders.length = HISTORY_CAP;
+    if (s.slinging && Array.isArray(s.slinging.log) && s.slinging.log.length > 40) {
+      s.slinging.log.length = 40;
+    }
     if (s.bodymax && Array.isArray(s.bodymax.history) && s.bodymax.history.length > HISTORY_CAP) {
       s.bodymax.history.length = HISTORY_CAP;
     }

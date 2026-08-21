@@ -793,7 +793,8 @@ window.FB = window.FB || {};
   };
 
   /* ---------------- the map ---------------- */
-  function mapSvg(o) {
+  function mapSvg(o, t, opts) {
+    opts = opts || {};
     var rnd = FB.seeded(o.id);
     var blocks = '', roads = '', casing = '';
     /* city blocks first, so roads read as gaps between them */
@@ -836,13 +837,13 @@ window.FB = window.FB || {};
         '<circle r="13" fill="var(--bg)" stroke="var(--line-strong)" stroke-width="1.5"/>' +
         '<path d="M-4,-5 v5 a4,4 0 0 0 8,0 v-5 M0,0 v6" stroke="var(--ink)" stroke-width="1.7" fill="none" stroke-linecap="round"/>' +
         '<rect x="-19" y="15" width="38" height="13" rx="6.5" fill="var(--bg)" stroke="var(--line)" stroke-width="1"/>' +
-        '<text class="pinlab" y="24" text-anchor="middle">STORE</text></g>' +
+        '<text class="pinlab" y="24" text-anchor="middle">' + (opts.fromLabel || 'STORE') + '</text></g>' +
       /* home */
       '<g transform="translate(46,216)">' +
         '<circle r="13" fill="var(--bg)" stroke="var(--line-strong)" stroke-width="1.5"/>' +
         '<path d="M-5,0 L0,-5 L5,0 v5 h-10 z" fill="var(--fb)"/>' +
         '<rect x="-17" y="15" width="34" height="13" rx="6.5" fill="var(--bg)" stroke="var(--line)" stroke-width="1"/>' +
-        '<text class="pinlab" y="24" text-anchor="middle">' + (o.mode === 'pickup' ? 'HOME' : 'YOU') + '</text></g>' +
+        '<text class="pinlab" y="24" text-anchor="middle">' + (opts.toLabel || (o.mode === 'pickup' ? 'HOME' : 'YOU')) + '</text></g>' +
       /* The travelling dot. On a PICKUP nobody is driving to you — the feed says so
          and the screen used to animate a courier to your door anyway — so it is drawn
          as the route YOU take, and the ends are labelled accordingly. */

@@ -325,6 +325,29 @@ const FIXTURES = [
     },
   },
   {
+    /* The other side of the switch, mid-run and held by a decision. Without this the
+       dispatch and run screens render only their empty states in the sweep, which is
+       where the undefined/NaN and accessible-name checks actually bite. */
+    name: 'slinging, held mid-run',
+    apply(FB, now) {
+      FB.missions.setMode('sling');
+      /* Probe the shape first, then start the run far enough in the past that NOW
+         falls two seconds inside the rule's window — so the held branch is what
+         renders. build() writes nothing, which is what makes this safe. */
+      const probe = FB.missions.build('oliveorchard', now);
+      const into = probe.checks[0].at - probe.startAt + 2000;
+      FB.missions.accept('oliveorchard', now - into);
+      FB.store.set((st) => {
+        st.slinging.completed = 3; st.slinging.kept = 2; st.slinging.broken = 1;
+        st.slinging.earned = 24.6; st.slinging.platform = 2;
+        st.slinging.standing = { oliveorchard: 1, gyropalace: -1 };
+        return st;
+      });
+      FB.missions.tick({ catchUp: true });
+      return {};
+    },
+  },
+  {
     name: 'privacy toggles flipped, hunger 10',
     apply(FB) {
       FB.store.set((st) => {

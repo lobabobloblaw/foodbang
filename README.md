@@ -137,6 +137,27 @@ real books now, and the number growing fastest is NET, in red. BangBux™ pay ou
 whole dollars, expire in seventy-two hours, and are redeemable against fees — where Convenience
 Rounding™ absorbs them entirely.
 
+**And there is another app inside it.** Every delivery app has the toggle, and the line that
+introduces this one has been sitting in the pickup script since the tracker was written: *"No
+Slinger has been assigned. You are the Slinger."* Flip it and the accent moves off the platform's
+red onto sodium vapour, the tab bar is replaced, and the twenty restaurants — which have had
+taglines, opening hours and announcements typed by whoever runs the place since the day they
+shipped, and have never once addressed you — start handing out work.
+
+Each one asks for a delivery with **one rule attached**. Panda Xpress 9000 is unattended and asks
+you not to tap the glass, so the app puts a glass in front of you. Olive Orchard's entire mission is
+*leave*, and refusing a refill is processed as a refill. Golden Wok needs the number ready, and the
+number is in the briefing, and the briefing has a dismiss button. Sunrise Donut only asks before the
+case is done, which means before 1:20 PM, and it pays the least of anything on the board.
+
+A run takes 45 to 75 seconds — remapped from each store's own advertised window, so Dunkinn is still
+the fastest place in the city. Halfway through, the run **holds**: the rule comes due on a clock, and
+if you say nothing it is applied on your behalf. The longer runs get interrupted a second time by
+FoodBang™ itself, which wants something different — and that is the split. **The restaurants own
+your reputation. The platform owns your wallet.** Doing what a chain tells you raises your partner
+standing; doing one of the six independents a favour lowers it, and the platform quietly shows you
+less work. It never explains why.
+
 **Everything else you'd expect:** category browse, filters and sort (including "Desperation"),
 search that reaches into modifier options, per-store carts, delivery/pickup that are now tracked
 differently, scheduling that actually waits for its slot, six working promo codes that are all traps
@@ -169,6 +190,7 @@ js/sim/roster.js         the nine Slingers in your area
 js/sim/standing.js       the loyalty ladder that demotes you
 js/sim/tracker.js        TRACKR™ order simulation, on the wall clock
 js/sim/bodymax.js        BODYMAX™ telemetry — and the 16th screen
+js/sim/missions.js       Slinger Mode — twenty givers, and the 17th and 18th screens
 tools/harness.cjs        loads the whole app headlessly, so npm test can render every screen
 js/data/menus/*.json     one file per restaurant — the source of truth
 js/data/menus.generated.js  bundled by tools/bundle.cjs (validates as it builds)
@@ -179,7 +201,7 @@ build/raw/               2048px source renders, kept for re-encoding
 ```
 
 No framework, no build step, no dependencies. Classic scripts under a `FB` namespace so it runs
-straight from `file://`. `npm test` is thirty-four checks in one script — the pricing invariants, the
+straight from `file://`. `npm test` is fifty-eight checks in one script — the pricing invariants, the
 data, and every screen rendered headlessly against six states at two different hours.
 
 The app's own mark — a bag, and a handle, which on this platform is a separate object and is billed

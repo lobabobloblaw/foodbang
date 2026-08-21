@@ -36,6 +36,18 @@ window.FB = window.FB || {};
           : FB.plural(next, 'point') + ' to the next tier · decays 1 point per day') +
         '</span></span><span class="crow-r">' + FB.icon('fwd', 14) + '</span></button>';
 
+      /* The switch. Every delivery app has it, and the line that introduces it has
+         been in PICKUP_SCRIPT since the tracker was written: "No Slinger has been
+         assigned. You are the Slinger." */
+      var sling = st.mode === 'sling';
+      h += '<div class="modeswitch" role="radiogroup" aria-label="Mode">' +
+        '<button class="ms-opt" role="radio" aria-checked="' + (!sling) + '" data-mode="order">Ordering</button>' +
+        '<button class="ms-opt" role="radio" aria-checked="' + (!!sling) + '" data-mode="sling">Slinging</button>' +
+        '</div>';
+      h += '<p class="ms-note">' + (sling
+        ? 'You are a Fulfilment Partner. This is not a change of employment status, as there was none.'
+        : 'No Slinger has been assigned. You are the Slinger.') + '</p>';
+
       /* BANG+ card */
       if (st.plus.active) {
         h += '<button class="plusbanner" data-go="plus" style="margin-top:16px">' +
@@ -87,6 +99,19 @@ window.FB = window.FB || {};
       return h;
     },
     mount: function (root) {
+      FB.on(root, 'click', '[data-mode]', function (e, t) {
+        var want = t.dataset.mode;
+        if ((FB.S().mode || 'order') === want) return;
+        if (want === 'sling' && FB.S().slinging.run) { FB.nav.go('run'); return; }
+        FB.busy(t, 'save', function () {
+          FB.missions.setMode(want);
+          /* the tab bar it was on may not exist on the other side */
+          FB.nav.tab(want === 'sling' ? 'dispatch' : 'home');
+          FB.toast(want === 'sling'
+            ? 'You are now a Fulfilment Partner. This is not a change of employment status.'
+            : 'Returned to ordering. Your runs are retained.', { ms: 3600 });
+        });
+      });
       FB.on(root, 'click', '[data-standing]', openStanding);
       FB.on(root, 'click', '[data-act="notifs"]', FB.openNotifications);
       FB.on(root, 'click', '[data-act="promos"]', openPromos);
