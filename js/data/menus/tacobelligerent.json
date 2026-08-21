@@ -16,6 +16,7 @@
   "distanceMi": 2.7,
   "priceTier": 1,
   "bangPlus": true,
+  "opensAt": "8:00 AM",
   "closesAt": "4:00 AM",
   "address": "17-B Frontage Loop, Outparcel 4, Behind The Tire Place, Cloverbend Commons, TX 75041",
   "about": "Taco Belligerent™ operates six ingredients under forty-one names. All formats are folded, layered, coned, or wrapped inside another format at our sole discretion. Decisions made on this property after 10 PM are considered final and are not reviewable.",
@@ -710,7 +711,11 @@
             }
           ]
         }
-      ]
+      ],
+      "daypart": {
+        "from": "10:00 PM",
+        "to": "4:00 AM"
+      }
     },
     {
       "id": "aggressive-folds",

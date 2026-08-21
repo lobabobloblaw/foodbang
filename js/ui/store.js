@@ -39,7 +39,8 @@ window.FB = window.FB || {};
           FB.icon('clock', 14) + '<span>' + FB.mins(s.deliveryMin, s.deliveryMax) + '</span>' +
           '<i class="dot-sep"></i>' + FB.icon('bike', 14) +
           '<span>' + (s.deliveryFee === 0 ? '$0 delivery fee' : FB.money(s.deliveryFee) + ' delivery fee') + '</span>' +
-          '<i class="dot-sep"></i><span>Closes ' + FB.esc(s.closesAt) + '</span>' +
+          '<i class="dot-sep"></i><span>' +
+            (FB.catalog.isOpen(s) ? 'Closes ' + FB.esc(s.closesAt) : 'Opens ' + FB.esc(s.opensAt)) + '</span>' +
         '</div>' +
         '<p class="st-about">' + FB.esc(s.about) + '</p>' +
         '<div class="st-quick">' +
@@ -49,6 +50,11 @@ window.FB = window.FB || {};
         '</div>' +
       '</div>';
 
+      if (!FB.catalog.isOpen(s)) {
+        h += '<div class="st-ann st-ann--shut">' + FB.icon('clock', 16) +
+          '<span>The counter is closed. Your order can be scheduled for ' + FB.esc(s.opensAt) +
+          '. Scheduling requires the future, which must be reserved.</span></div>';
+      }
       if (s.announcement) {
         h += '<div class="st-ann">' + FB.icon('alert', 16) + '<span>' + FB.esc(s.announcement) + '</span></div>';
       }
@@ -72,8 +78,14 @@ window.FB = window.FB || {};
       }).join('') + '</div></div>';
 
       h += s.menu.map(function (sec) {
-        return '<section class="msec" id="sec-' + sec.id + '">' +
-          '<h3>' + FB.esc(sec.name) + '</h3>' +
+        /* Five sections already named their own window — "Lunch Specials (Ended at
+           3:00)", "Morning Service Window", "The Fourth Meal Protocol" — and the app
+           served them at every hour regardless. */
+        var live = FB.catalog.sectionOpen(sec);
+        return '<section class="msec' + (live ? '' : ' is-shut') + '" id="sec-' + sec.id + '">' +
+          '<h3>' + FB.esc(sec.name) +
+            (live ? '' : '<span class="msec-off">' + FB.esc(sec.daypart.from) + '–' + FB.esc(sec.daypart.to) +
+              ' · it is ' + FB.esc(FB.clock()) + '</span>') + '</h3>' +
           (sec.blurb ? '<p>' + FB.esc(sec.blurb) + '</p>' : '') +
           sec.items.map(function (it) { return FB.C.menuItem(it, s); }).join('') +
         '</section>';
@@ -159,7 +171,8 @@ window.FB = window.FB || {};
       html: '<div style="padding:0 16px 22px">' +
         '<p style="font:var(--t-body);color:var(--ink-2);line-height:1.55;margin:0 0 16px">' + FB.esc(s.about) + '</p>' +
         row('pin', 'Address', s.address) +
-        row('clock', 'Hours', 'Open now · closes ' + s.closesAt) +
+        row('clock', 'Hours', FB.esc(s.opensAt) + ' – ' + FB.esc(s.closesAt) + ' · ' +
+          (FB.catalog.isOpen(s) ? 'open now' : 'closed now')) +
         row('bike', 'Delivery', FB.mins(s.deliveryMin, s.deliveryMax) + ' · ' + (s.deliveryFee === 0 ? 'No delivery fee' : FB.money(s.deliveryFee) + ' delivery fee')) +
         row('starFill', 'Rating', s.rating.toFixed(1) + ' from ' + FB.int(s.ratingCount) + ' ratings') +
         row('utensils', 'Menu', FB.plural(s.itemCount, 'item') + ' across ' + FB.plural(s.menu.length, 'section')) +

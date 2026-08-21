@@ -10,7 +10,31 @@ const DIR = path.join(ROOT, 'js', 'data', 'menus');
 const OUT = path.join(ROOT, 'js', 'data', 'menus.generated.js');
 
 const REQUIRED = ['slug', 'name', 'tagline', 'cuisine', 'categories', 'rating', 'ratingCount',
-  'deliveryMin', 'deliveryMax', 'deliveryFee', 'distanceMi', 'priceTier', 'closesAt', 'address', 'about', 'menu'];
+  'deliveryMin', 'deliveryMax', 'deliveryFee', 'distanceMi', 'priceTier', 'opensAt', 'closesAt',
+  'address', 'about', 'menu'];
+
+/* "3:45 PM" -> 945. Duplicated from FB.minsOfDay in js/core/util.js rather than
+   required from it: util.js is a browser file that hangs itself off window, and the
+   build has no window. Both sides are covered by the same smoke check. */
+function minsOfDay(str) {
+  const m = /^\s*(\d{1,2}):(\d{2})\s*(AM|PM)?\s*$/i.exec(String(str || ''));
+  if (!m) return null;
+  let h = Number(m[1]);
+  const mi = Number(m[2]);
+  if (h > 23 || mi > 59) return null;
+  const ap = (m[3] || '').toUpperCase();
+  if (ap === 'PM' && h < 12) h += 12;
+  if (ap === 'AM' && h === 12) h = 0;
+  return h * 60 + mi;
+}
+/* Eight of twenty stores close after midnight, so a window is not from < to. The
+   check that matters is wrap-aware containment; `opensAt !== closesAt` would pass
+   a store open for minus nineteen hours. */
+function inWindow(t, from, to) {
+  if (from == null || to == null) return true;
+  if (from === to) return true;
+  return from < to ? (t >= from && t < to) : (t >= from || t < to);
+}
 
 /* This machine has intermittently returned short reads. A menu silently dropped
    from the bundle is worse than a slow build, so verify the parse and retry. */
@@ -56,8 +80,30 @@ for (const f of files) {
   if (m.slug !== slug) problems.push(`${slug}: slug field is "${m.slug}"`);
   if (!Array.isArray(m.menu) || !m.menu.length) { problems.push(`${slug}: no menu sections`); continue; }
 
+  const openMins = minsOfDay(m.opensAt);
+  const closeMins = minsOfDay(m.closesAt);
+  if (m.opensAt !== undefined && openMins === null) problems.push(`${slug}: opensAt "${m.opensAt}" is not a clock time`);
+  if (m.closesAt !== undefined && closeMins === null) problems.push(`${slug}: closesAt "${m.closesAt}" is not a clock time`);
+
   const seen = new Set();
   for (const sec of m.menu) {
+    if (sec.daypart) {
+      const f = minsOfDay(sec.daypart.from), t = minsOfDay(sec.daypart.to);
+      if (f === null || t === null) {
+        problems.push(`${slug}/${sec.id}: daypart is not a pair of clock times`);
+      } else if (f === t) {
+        problems.push(`${slug}/${sec.id}: daypart opens and closes at the same minute`);
+      } else if (openMins !== null && closeMins !== null) {
+        /* the section's whole window must sit inside the store's, wrap and all —
+           a breakfast menu served after the restaurant has shut is not a joke,
+           it is a data slip, and the app's jokes are always explicit */
+        const startsInside = inWindow(f, openMins, closeMins);
+        const endsInside = inWindow((t + 1439) % 1440, openMins, closeMins);
+        if (!startsInside || !endsInside) {
+          problems.push(`${slug}/${sec.id}: daypart ${sec.daypart.from}-${sec.daypart.to} falls outside store hours ${m.opensAt}-${m.closesAt}`);
+        }
+      }
+    }
     if (!Array.isArray(sec.items)) { problems.push(`${slug}/${sec.id}: no items`); continue; }
     for (const it of sec.items) {
       items++;

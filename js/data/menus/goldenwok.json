@@ -16,6 +16,7 @@
   "distanceMi": 3.4,
   "priceTier": 1,
   "bangPlus": false,
+  "opensAt": "11:00 AM",
   "closesAt": "9:40 PM",
   "address": "Unit 4, Northgate Plaza (behind the bank, next to the tax place), 11740 Old Kettering Pike Frontage Road, Meadowbrook Commons",
   "about": "My parents opened Golden Wok Express in 1987 on Delaware Ave and we moved here in 2004 when they put up the plaza. There are 214 items on the paper menu and all of it is still cooked in the back by hand. My mother still makes the wonton soup. Most people call the phone, which is fine with us.",
@@ -3116,7 +3117,11 @@
             }
           ]
         }
-      ]
+      ],
+      "daypart": {
+        "from": "11:00 AM",
+        "to": "3:00 PM"
+      }
     }
   ]
 }

@@ -73,6 +73,8 @@
 }
 :root[data-theme="dark"] .st-ann, :root:not([data-theme="light"]) .st-ann { color: #FF8A73; }
 .st-ann svg { flex: none; margin-top: 1px; }
+/* closed reads as a fact, not as an alarm — the announcement above it is the amber one */
+.st-ann--shut { background: var(--surface-3); color: var(--ink); }
 
 .st-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin: 14px var(--pad) 0; background: var(--surface-2); border-radius: var(--r-pill); padding: 4px; }
 .st-modes button { height: 36px; border-radius: var(--r-pill); font: 600 calc(13.5px * var(--fs)) var(--font); color: var(--ink-2); transition: all var(--fast) var(--sp); }
@@ -202,6 +204,13 @@
 .trk-bar i.on { background: var(--fb); }
 .trk-bar i.cur::after { content: ''; position: absolute; inset: 0; background: var(--fb); transform-origin: left; animation: fill 3s linear infinite; }
 @keyframes fill { from { transform: scaleX(0); } }
+
+/* a section outside its own daypart: still legible, plainly not being served */
+.msec.is-shut { opacity: .5; }
+.msec.is-shut .msec-off {
+  display: block; font: 500 calc(11.5px * var(--fs)) var(--mono); color: var(--ink-3);
+  letter-spacing: .02em; margin-top: 4px; text-transform: none;
+}
 
 .trk-feed { padding: 6px 0 4px; }
 .tf {

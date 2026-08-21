@@ -319,10 +319,18 @@ let RENDERED = null;   /* [{screen, fn, html}] — built once, swept twice */
 
 check('every screen renders under every state fixture', () => {
   const app = harness.loadApp();
-  const { FB } = app;
+  const { FB, clock } = app;
   RENDERED = [];
   const bad = [];
   let n = 0;
+  /* Two hours, because half the catalog is shut at one of them and the closed-store,
+     dayparted-section and overnight-map paths are otherwise never rendered at all. */
+  const HOURS = [
+    ['dinner', new Date(2026, 7, 20, 19, 14, 0).getTime()],
+    ['3 AM', new Date(2026, 7, 20, 3, 4, 0).getTime()],
+  ];
+  for (const [hourName, hourTs] of HOURS) {
+  clock.set(hourTs);
   for (const fx of harness.FIXTURES) {
     FB.store.reset();
     let params;
@@ -334,12 +342,12 @@ check('every screen renders under every state fixture', () => {
       for (const fn of ['appbar', 'render']) {
         if (!def[fn]) continue;
         let out;
-        const where = fx.name + ' / ' + name + '.' + fn + '()';
+        const where = hourName + ' / ' + fx.name + ' / ' + name + '.' + fn + '()';
         try { out = def[fn](p); }
         catch (e) { bad.push(where + ' threw: ' + e.message); continue; }
         if (typeof out !== 'string') { bad.push(where + ' returned ' + typeof out); continue; }
         n++;
-        RENDERED.push({ screen: name, fn: fn, html: out, fixture: fx.name });
+        RENDERED.push({ screen: name, fn: fn, html: out, fixture: hourName + '/' + fx.name });
         /* A field that arrived undefined on an old save, or a total poisoned to NaN,
            reaches the user as these two literal strings and nothing else notices. */
         if (out.indexOf('undefined') > -1) bad.push(where + ' rendered the string "undefined"');
@@ -347,9 +355,11 @@ check('every screen renders under every state fixture', () => {
       }
     }
   }
+  }
+  clock.restore();
   app.dispose();
   if (bad.length) throw new Error(bad.length + ' problem(s):\n          ' + bad.slice(0, 8).join('\n          '));
-  return n + ' renders across ' + harness.FIXTURES.length + ' fixtures, ' + FB.screens.list().length + ' screens';
+  return n + ' renders across ' + harness.FIXTURES.length + ' fixtures × ' + HOURS.length + ' hours, ' + FB.screens.list().length + ' screens';
 });
 
 check('rendered markup keeps its accessible names', () => {
@@ -740,6 +750,63 @@ check('an order runs on the wall clock and survives being abandoned', () => {
     if (L.status !== 'delivered') throw new Error('a schedule-less order did not settle: ' + L.status);
 
     return 'countdown, catch-up, pickup, scheduling and legacy saves';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('every store has hours, and they survive midnight', () => {
+  /* closesAt was printed as decoration: the info sheet hardcoded "Open now", so
+     Sunrise Donut — which shuts at 1:20 PM — was orderable at 3 AM. Eight of the
+     twenty stores close AFTER midnight, so none of this works unless a window is
+     allowed to wrap; a validation of the shape opensAt !== closesAt would pass a
+     store open for minus nineteen hours. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const at = (h, m) => new Date(2026, 7, 20, h, m || 0, 0).getTime();
+    let wrapping = 0, dayparted = 0;
+
+    for (const [slug, m] of Object.entries(SOURCES)) {
+      const o = FB.minsOfDay(m.opensAt), c = FB.minsOfDay(m.closesAt);
+      if (o === null) throw new Error(slug + ': opensAt "' + m.opensAt + '" does not parse');
+      if (c === null) throw new Error(slug + ': closesAt "' + m.closesAt + '" does not parse');
+      if (o === c) throw new Error(slug + ' opens and closes at the same minute');
+      if (c <= o) wrapping++;
+      for (const sec of m.menu) {
+        if (!sec.daypart) continue;
+        dayparted++;
+        const f = FB.minsOfDay(sec.daypart.from), t = FB.minsOfDay(sec.daypart.to);
+        if (f === null || t === null) throw new Error(slug + '/' + sec.id + ': daypart does not parse');
+        /* the section must be servable at its own opening minute */
+        const store = FB.catalog.get(slug);
+        const probe = new Date(2026, 7, 20, Math.floor(f / 60), f % 60, 0).getTime();
+        if (!FB.catalog.isOpen(store, probe)) {
+          throw new Error(slug + '/' + sec.id + ' opens at ' + sec.daypart.from + ', when the store is shut');
+        }
+        if (!FB.catalog.sectionOpen(sec, probe)) throw new Error(slug + '/' + sec.id + ' is not open at its own opening minute');
+      }
+    }
+    /* the wrap branch must actually be exercised by the data, not just supported */
+    if (wrapping < 1) throw new Error('no store spans midnight, so the wrap branch is never tested');
+    if (dayparted < 1) throw new Error('no section carries a daypart');
+
+    /* the specific claims the copy makes */
+    const shut = (slug, t) => !FB.catalog.isOpen(FB.catalog.get(slug), t);
+    if (!shut('sunrisedonut', at(15))) throw new Error('Sunrise Donut is open at 3 PM and closes at 1:20 PM');
+    if (!shut('ssa', at(18))) throw new Error('the Sandwich Authority is open at 6 PM and closes at 4:30 PM');
+    if (shut('tacobelligerent', at(3))) throw new Error('the late-night Tex-Mex place is shut at 3 AM');
+    if (shut('mcronalds', at(1))) throw new Error("McRonald's is shut at 1 AM and closes at 2 AM");
+
+    /* and the city as a whole has to have a shape */
+    const openAt = (h) => FB.catalog.all().filter((s) => FB.catalog.isOpen(s, at(h))).length;
+    if (openAt(3) > 4) throw new Error(openAt(3) + ' stores open at 3 AM');
+    if (openAt(12) !== 20) throw new Error('only ' + openAt(12) + ' stores open at noon');
+
+    /* purity: same store, same instant, same answer, and no state read */
+    const s0 = FB.catalog.get('mcronalds');
+    if (FB.catalog.isOpen(s0, at(12)) !== FB.catalog.isOpen(s0, at(12))) throw new Error('isOpen is not pure');
+
+    return wrapping + ' stores span midnight, ' + dayparted + ' dayparted sections, ' +
+      openAt(3) + ' open at 3 AM and ' + openAt(12) + ' at noon';
   } finally { clock.restore(); app.dispose(); }
 });
 

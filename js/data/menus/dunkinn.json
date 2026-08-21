@@ -17,6 +17,7 @@
   "distanceMi": 1.4,
   "priceTier": 1,
   "bangPlus": true,
+  "opensAt": "4:00 AM",
   "closesAt": "3:00 AM",
   "address": "8801 Frontage Road South, Bay 4, Behind The Other One, Sprawl Ring 6",
   "about": "Dunkinn is a beverage-and-glazed-matter dispensary operating on a continuous morning. Donuts are classified by structural load before dispatch. You are already enrolled in the rewards program and have been since first contact.",
@@ -1092,7 +1093,11 @@
             }
           ]
         }
-      ]
+      ],
+      "daypart": {
+        "from": "4:00 AM",
+        "to": "10:00 AM"
+      }
     },
     {
       "id": "bread-shaped-objects",

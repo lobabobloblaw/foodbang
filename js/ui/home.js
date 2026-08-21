@@ -113,6 +113,7 @@ window.FB = window.FB || {};
         '<button class="chip chip--outline" data-filter="fast"' + (state.filters.fast ? ' aria-pressed="true"' : '') + '>Under 30 min</button>' +
         '<button class="chip chip--outline" data-filter="rated"' + (state.filters.rated ? ' aria-pressed="true"' : '') + '>4.0+</button>' +
         '<button class="chip chip--outline" data-filter="cheap"' + (state.filters.cheap ? ' aria-pressed="true"' : '') + '>$ &amp; $$</button>' +
+        '<button class="chip chip--outline" data-filter="open"' + (state.filters.open ? ' aria-pressed="true"' : '') + '>Open now</button>' +
         '<button class="chip chip--outline" data-filter="local"' + (state.filters.local ? ' aria-pressed="true"' : '') + '>Independent</button>' +
         (state.cat ? '<button class="chip is-on" data-cat="">' + FB.esc(FB.CAT_LABELS[state.cat]) + ' ✕</button>' : '') +
       '</div>';
@@ -179,6 +180,7 @@ window.FB = window.FB || {};
       if (f.rated && s.rating < 4) return false;
       if (f.cheap && s.priceTier > 2) return false;
       if (f.local && !s.local) return false;
+      if (f.open && !FB.catalog.isOpen(s)) return false;
       return true;
     });
   }

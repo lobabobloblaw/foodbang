@@ -10,8 +10,16 @@ window.FB = window.FB || {};
     var out = [];
     if (s.bangPlus) out.push('<span class="badge badge--plus">' + FB.icon('zap', 11) + 'BANG+</span>');
     if (s.local) out.push('<span class="badge badge--glass">LOCAL</span>');
-    if (FB.world.isBusy(s.slug)) out.push('<span class="badge badge--warn">Busy</span>');
+    /* a shut kitchen is not a busy one, and "closing in 18 min" is the only badge
+       here that is worth interrupting someone mid-scroll for */
+    var closing = FB.catalog.closesIn(s);
+    if (closing !== null && closing <= 30) out.push('<span class="badge badge--warn">Closing in ' + closing + ' min</span>');
+    else if (FB.catalog.isOpen(s) && FB.world.isBusy(s.slug)) out.push('<span class="badge badge--warn">Busy</span>');
     return out.join('');
+  };
+
+  C.opensLabel = function (s) {
+    return FB.catalog.opensIn(s) === null ? '' : 'opens ' + FB.esc(s.opensAt || '');
   };
 
   C.storeMeta = function (s) {
@@ -24,12 +32,14 @@ window.FB = window.FB || {};
 
   C.storeCard = function (s) {
     var fee = s.deliveryFee === 0 ? '$0 delivery fee' : FB.moneyShort(s.deliveryFee) + ' delivery fee';
-    return '<button class="storecard pressable" data-go="store" data-params=\'{"slug":"' + s.slug + '"}\'>' +
+    var shut = !FB.catalog.isOpen(s);
+    return '<button class="storecard pressable' + (shut ? ' is-shut' : '') + '" data-go="store" data-params=\'{"slug":"' + s.slug + '"}\'>' +
       '<div class="sc-media">' +
         '<img src="' + s.heroSrc + '" alt="" loading="lazy" onerror="this.style.opacity=0">' +
         '<span class="sc-tags">' + C.storeBadges(s) + '</span>' +
         '<img class="sc-logo" src="' + s.logoSrc + '" alt="" loading="lazy">' +
-        '<span class="sc-eta">' + FB.mins(s.deliveryMin, s.deliveryMax) + '</span>' +
+        (shut ? '<span class="sc-shut">Closed · ' + C.opensLabel(s) + '</span>'
+              : '<span class="sc-eta">' + FB.mins(s.deliveryMin, s.deliveryMax) + '</span>') +
       '</div>' +
       '<div class="sc-body">' +
         '<div class="sc-title"><h3>' + FB.esc(s.name) + '</h3></div>' +

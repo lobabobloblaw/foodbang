@@ -26,6 +26,18 @@ window.FB = window.FB || {};
     return code ? FB.fees.checkPromo(code, sub, FB.S().promo.used) : null;
   }
 
+  /* An order from a shut store is not refused — it is scheduled, at the Temporal
+     Coordination Fee this app already charges for the privilege of the future.
+     DERIVED, never written: co.scheduled is a clock STRING (checkout renders
+     'Scheduled · ' + it, so storing `true` prints "Scheduled · true"), and writing
+     to the cart from a render path would be a state change inside a paint. */
+  function slotFor(p) {
+    var co = FB.cart.co(p.slug);
+    if (co.scheduled) return co.scheduled;
+    var s = FB.catalog.get(p.slug);
+    return (s && !FB.catalog.isOpen(s)) ? s.opensAt : null;
+  }
+
   function calc(p) {
     var s = FB.catalog.get(p.slug);
     var lines = FB.cart.lines(p.slug);
@@ -33,7 +45,7 @@ window.FB = window.FB || {};
     var sub = FB.cart.subtotal(p.slug);
     return FB.fees.compute({
       subtotal: sub, lineCount: lines.length, store: s,
-      mode: co.mode, express: co.express, scheduled: !!co.scheduled,
+      mode: co.mode, express: co.express, scheduled: !!slotFor(p),
       tipPct: co.tipCustom != null ? null : (co.tipPct != null ? co.tipPct : FB.S().settings.autoTipPct),
       tipCustom: co.tipCustom, promo: promoFor(p, sub), plus: FB.store.isPlus(),
       settings: FB.S().settings, distanceMi: s ? s.distanceMi : 2.4,
@@ -87,9 +99,12 @@ window.FB = window.FB || {};
           '<span class="crow-b"><b>Dropoff instructions</b><span>' + FB.esc(addr.instructions || 'None provided') + '</span></span>' +
           '<span class="crow-r">' + FB.icon('fwd', 14) + '</span></button>';
       }
+      var slot = slotFor(p);
+      var forced = !!slot && !co.scheduled;
       h += '<button class="crow" data-schedule>' + FB.icon('clock', 19) +
-        '<span class="crow-b"><b>' + (co.scheduled ? 'Scheduled · ' + FB.esc(co.scheduled) : 'Standard · ' + FB.mins(s.deliveryMin, s.deliveryMax)) + '</b>' +
-        '<span>' + (co.scheduled ? 'Temporal Coordination Fee applies' : 'Arrives around ' + FB.clockIn(s.deliveryMax)) + '</span></span>' +
+        '<span class="crow-b"><b>' + (slot ? 'Scheduled · ' + FB.esc(slot) : 'Standard · ' + FB.mins(s.deliveryMin, s.deliveryMax)) + '</b>' +
+        '<span>' + (forced ? FB.esc(s.name) + ' is closed. The order is held until it opens, which must be reserved.'
+          : slot ? 'Temporal Coordination Fee applies' : 'Arrives around ' + FB.clockIn(s.deliveryMax)) + '</span></span>' +
         '<span class="crow-r">' + FB.icon('fwd', 14) + '</span></button>';
       h += '<button class="switchrow" data-express role="switch" aria-checked="' + co.express + '">' +
         '<span class="sr-b"><b>Express Bang™ · ' + FB.money(5.99) + '</b><span>Places your order ahead of other orders, which are then placed ahead of yours. Reduces arrival by up to 1 minute.</span></span>' +
@@ -320,7 +335,7 @@ window.FB = window.FB || {};
       var g = FB.C.slinger(id);
       var order = {
         id: id, slug: s.slug, storeName: s.name, logo: s.logoSrc,
-        placedAt: Date.now(), mode: co.mode, express: co.express, scheduled: co.scheduled,
+        placedAt: Date.now(), mode: co.mode, express: co.express, scheduled: slotFor(p),
         address: FB.deep(FB.store.address()), payment: FB.deep(FB.store.payment()),
         lines: lines, calc: { subtotal: c.subtotal, feesTotal: c.feesTotal, tax: c.taxLine.amount,
           tip: c.tipLine.amount, total: c.total, nonFood: c.nonFood, multiple: c.multiple,

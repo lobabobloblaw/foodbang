@@ -361,6 +361,16 @@ kbd {
   background: var(--bg); color: var(--ink); border-radius: var(--r-pill);
   padding: 5px 11px; font: 700 calc(12.5px * var(--fs)) var(--font); box-shadow: var(--e2);
 }
+/* a shut store still browses and still adds to a cart — it becomes a scheduled
+   order, not a dead end — so the card is dimmed and labelled, never disabled */
+.sc-shut {
+  position: absolute; right: 10px; bottom: 10px; z-index: 2;
+  background: var(--ink); color: var(--bg); border-radius: var(--r-pill);
+  padding: 5px 11px; font: 700 calc(12.5px * var(--fs)) var(--font); box-shadow: var(--e2);
+}
+.storecard.is-shut .sc-media > img:not(.sc-logo) { filter: grayscale(.72) brightness(.82); }
+.storecard.is-shut .sc-body { opacity: .72; }
+
 .sc-tags { position: absolute; left: 10px; top: 10px; display: flex; gap: 6px; z-index: 2; flex-wrap: wrap; max-width: 78%; }
 .sc-body { padding: 9px 2px 0; }
 .sc-title { display: flex; align-items: center; gap: 6px; }

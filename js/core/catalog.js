@@ -39,6 +39,29 @@ window.FB = window.FB || {};
     return m;
   }
 
+  /* ---------- opening hours ----------
+     closesAt has been on every store since the app shipped and was printed as
+     decoration: the info sheet hardcoded "Open now", so Sunrise Donut — which
+     closes at 1:20 PM — was orderable at 3 AM. This is the largest "this is a
+     mockup" tell the catalog had.
+
+     THE HARD PART IS MIDNIGHT. Eight of the twenty stores close after it, so a
+     window is not simply from < to: when closesAt is at or before opensAt the
+     window wraps, and every containment test has to know that. A validation of the
+     shape `opensAt !== closesAt` would happily pass a store open for minus
+     nineteen hours. */
+  function inWindow(mins, from, to) {
+    if (from == null || to == null) return true;   /* unstated means always */
+    if (from === to) return true;                  /* stated as 24 hours */
+    return from < to ? (mins >= from && mins < to) : (mins >= from || mins < to);
+  }
+  function minsAt(at) {
+    var d = new Date(at || Date.now());
+    return d.getHours() * 60 + d.getMinutes();
+  }
+  /* forward distance from a to b on a 24-hour ring */
+  function untilMins(from, to) { var d = to - from; return d < 0 ? d + 1440 : d; }
+
   /* Settings promises that a raised Hunger Level raises portion defaults one tier,
      and until now nothing here read the number.
 
@@ -104,6 +127,32 @@ window.FB = window.FB || {};
     section: function (slug, secId) {
       var s = bySlug[slug]; if (!s) return null;
       return s.menu.filter(function (x) { return x.id === secId; })[0] || null;
+    },
+
+    /* Pure, DOM-free and state-free, so they are testable headlessly — and read at
+       RENDER time, never cached on decorate(), which runs once at boot and would
+       leave a tab open across a closing time saying "Open now" forever. */
+    isOpen: function (store, at) {
+      if (!store) return false;
+      return inWindow(minsAt(at), FB.minsOfDay(store.opensAt), FB.minsOfDay(store.closesAt));
+    },
+    sectionOpen: function (sec, at) {
+      if (!sec || !sec.daypart) return true;
+      return inWindow(minsAt(at), FB.minsOfDay(sec.daypart.from), FB.minsOfDay(sec.daypart.to));
+    },
+    /** minutes until this store closes, or null if it is already shut */
+    closesIn: function (store, at) {
+      if (!FB.catalog.isOpen(store, at)) return null;
+      var to = FB.minsOfDay(store.closesAt);
+      if (to == null) return null;
+      return untilMins(minsAt(at), to);
+    },
+    /** minutes until this store opens, or null if it is already open */
+    opensIn: function (store, at) {
+      if (FB.catalog.isOpen(store, at)) return null;
+      var from = FB.minsOfDay(store.opensAt);
+      if (from == null) return null;
+      return untilMins(minsAt(at), from);
     },
 
     categories: function () {
