@@ -88,7 +88,7 @@ window.FB = window.FB || {};
       /* A FIFTH. The dispatch queue counts down on the ticker and then becomes a
          person — omit it here and the card renders "Position 4 of 4" once and stays
          there for the whole delivery. */
-      var lastSlinger = slingerBlock(o);
+      var lastPerson = personBlock(o);
       var lastStatus = o.status;
       offTick = FB.tracker.onTick(function () {
         var cur = FB.store.order(p.id);
@@ -124,9 +124,9 @@ window.FB = window.FB || {};
           var nextInc = incidentBlock(cur);
           var incEl = root.querySelector('.trk-inc');
           if (incEl && nextInc !== lastInc) { incEl.innerHTML = nextInc; lastInc = nextInc; }
-          var nextSl = slingerBlock(cur);
+          var nextSl = personBlock(cur);
           var slEl = root.querySelector('.trk-slinger');
-          if (slEl && nextSl !== lastSlinger) { slEl.innerHTML = nextSl; lastSlinger = nextSl; }
+          if (slEl && nextSl !== lastPerson) { slEl.innerHTML = nextSl; lastPerson = nextSl; }
         }
         /* one announcement per step, not one per second */
         if (cur.status !== lastStatus) {
@@ -211,12 +211,17 @@ window.FB = window.FB || {};
       '</div>';
   }
 
-  /* Who is carrying it — or, until somebody is, where you are in the queue.
+  /* `personBlock`, not a name built on the courier noun: tools/rebrand.cjs rewrites
+     that noun on a WORD boundary, and a camelCase identifier has none — the name
+     would silently carry an identity two renames old. Same reason the order field is
+     `personId` and the roster file is `roster.js`. --selfcheck catches it.
+
+     Who is carrying it — or, until somebody is, where you are in the queue.
      The courier has been decided since placement, but the app is not entitled to
      draw them until the beat that introduces them has played: this screen used to
      show a photograph, a name, a rating and a Message button for a median of nine
      seconds before the feed above it mentioned anyone. */
-  function slingerBlock(o) {
+  function personBlock(o) {
     if (o.mode === 'pickup') {
       var store = FB.catalog.get(o.slug);
       return '<div class="slingercard">' +
@@ -308,7 +313,7 @@ window.FB = window.FB || {};
     /* A FIFTH cached fragment — see mount(). The queue below counts down on the
        ticker, so a card that is not patched there is a card that renders once and
        never becomes a person. */
-    h += '<div class="trk-slinger">' + slingerBlock(o) + '</div>';
+    h += '<div class="trk-slinger">' + personBlock(o) + '</div>';
 
     /* feed */
     h += '<div class="trk-feed">' + feedBlock(o) + '</div>';

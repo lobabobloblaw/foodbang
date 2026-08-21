@@ -20,11 +20,16 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose forty-one checks always run together — there is no way to run a
+(`node tools/smoke.cjs`) whose fifty-three checks always run together — there is no way to run a
 single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
 exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
-`clock.set` — pass `opts.now` or the fixture is stamped with the test machine's wall clock.** `node tools/rebrand.cjs --selfcheck` is separate and is only
+`clock.set` — pass `opts.now` or the fixture is stamped with the test machine's wall clock.**
+`addToCart` adds only items that are AVAILABLE today, because scarcity's threshold samples the world
+at a *local* 7 PM whose epoch moves with the zone: a fixture that scooped up a sold-out item turned
+unrelated checks red in Berlin, Tokyo and Honolulu while staying green in Los Angeles. **Run the
+suite under a second `TZ=` before believing it.** `mount()` only *patches* — the initial markup comes
+from `render()`, so asserting a fragment straight after a mount asserts an empty stub. `node tools/rebrand.cjs --selfcheck` is separate and is only
 worth running after editing that file's rules.
 
 Deployed from `main` at repo root via GitHub Pages. Pushing to `main` redeploys.
@@ -180,12 +185,49 @@ one second); `resume()` catches up with `{catchUp:true}` so an order that finish
 here does not fire a toast; and `deliveredAt` records when it happened, not when it was noticed. A
 scheduled order's clock starts at its slot. Pickup has its own script and step labels.
 
+**Who is carrying it is decided at placement; when the app may SAY so is not.** The roster draw is
+seeded on the order id and runs in `place()`, so the courier is derivable from the first moment — but
+the beat that introduces them is `tag`ged `'assign'` (beats are tuples; `ev[3]` is the tag), and
+`FB.tracker.assigned/assignedAt/dispatch` gate every surface on it. All three are **pure**, take
+`now`, and store nothing: making assignment a state transition instead would put a write inside
+`replay()`, where the hold path returns early and two tabs each running `resume()` would both
+increment the roster ledger. Three rules hold this together: **absence means already-assigned** (an
+order with no tagged beat is a legacy save or a fixture, so the gate can only ever withdraw a claim,
+never invent a wait); the monotonic guard `(o.replayed || 0) > i` is consulted **before** the clock,
+so a corrected system clock cannot un-introduce someone the feed has named; and anything keyed on the
+courier is announced off the **tag**, never off the step — the tagged beat is the third of
+`confirmed` and the step changed on the first, so a step-gated push never fires at all.
+
+**A beat that names the courier may not precede the beat that introduces them.** `beatsFor` splices
+`extra` beats at seeded positions; without the barrier the name leaked above its own introduction in
+93 of 160 tier-2/3 orders. Matched on the tag, not on the text, so rewording a line cannot unhook it.
+Each roster member also carries one habit (`FB.slingers.quirk`, keyed by roster **position** — the
+hash collided into five habits across nine people), appended rather than pooled so it always plays,
+and carrying **no drift**: who you got must not change what the order cost.
+
+**An incident's deadline is bounded by the food.** It expires before the earlier of the courier
+taking the bag and the advertised arrival, less `RESOLVE_MARGIN_MS`, and never offers less than
+`INCIDENT_MIN_MS` — a shorter window is pulled *earlier* rather than deleted. `o.deliverAt` is
+computed **above** the incident block: read a line too late it is `undefined`, the bound is `NaN`,
+every comparison against it is false, and the clamp appears to work while doing nothing. The election
+path shifts arrival by the hold actually offered, not by `INCIDENT_MS`.
+
 **`js/data/menus.generated.js` is generated, and is not the source of truth.** `bundle.cjs` strips
 `BUILD_ONLY` fields (`imagePrompt`, `photoStyle`) — they stay verbatim in the JSON by doctrine but
 no screen reads them, and `imagePrompt` was the only thing in the app producing a line over 1 KB.
 It also stamps a sha256 of the sources into the banner, and `npm test` recomputes it, so a
 forgotten `npm run bundle` is a red test rather than a wrong price. **Data checks read
 `js/data/menus/*.json`, never the bundle.**
+
+**One rule, in core, read by every screen that needs it.** The repeated failure in this codebase is
+two screens deciding the same thing separately and drifting: `mode` did it, `scheduled` did it, and
+the fee `ctx` list did it twice. So the derivations live beside the data they read —
+`FB.cart.slot`/`slotAt`/`slotOptions` (a stored slot is a bare clock string and is re-checked against
+the clock on every read), `FB.cart.unsellable`, `FB.notifs.monitored`/`settleDay`, `FB.store.adopt`,
+`FB.nav.pop`, `FB.fees.foodPaid`/`TIP_MAX`, `FB.plusMonths`/`plusRenewsAt`. **Logic that must be
+testable cannot live in `js/app.js`** — the harness skips it because it boots on load, so anything
+parked there is unreachable by every check. `settleDay`, `adopt` and `nav.pop` are all split that
+way: the rule in core, the one-line wiring in the boot file.
 
 **Every fee goes through `fees.compute`, or it cannot be explained.** The `FEE_WHY` walk only reads
 what `compute` returns, so a charge applied anywhere else can never be covered by it — which is why
@@ -210,8 +252,10 @@ wherever it appears as a word, so a *filename* containing it breaks the app (the
 is rewritten; the file on disk is not), and a camelCase suffix slips past the word boundary and
 carries the outgoing brand forever. That is why the roster file is `roster.js` and the order field is
 `personId`. `--selfcheck` finds both; run it after adding a subsystem, not just after editing `RULES`.
+It has since caught a `slingerBlock`/`lastSlinger` pair added to a screen — the noun renames on a word
+boundary and camelCase has none, so **run it after naming anything, not only after adding a file.**
 
-**Run `npm test` before committing.** Forty-one checks. Beyond the original thirteen they cover:
+**Run `npm test` before committing.** Fifty-three checks. Beyond the original thirteen they cover:
 every screen rendering under six state fixtures × two hours with no `undefined`/`NaN` in the markup;
 accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
 pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency
@@ -222,6 +266,25 @@ the cancellation flow growing; the terms getting worse and taking §4.2 with the
 telling the same story; store promotions moving a total; scarcity that never guts a menu; the roster
 and a revised tip keeping three ledgers in agreement; a mid-order incident answered exactly once; and
 the artifact build's regex contract plus its 1 KB line limit.
+
+The twelve added by the edge-case programme are the ones that pin behaviour the app used to only
+*claim*: a schedule slot never offered outside the hours it is for; checkout refusing to place at a
+total it has stopped quoting; an item the restaurant has stopped serving unsellable on every surface;
+every figure a receipt prints reconciling with the ones beside it; a ledger that cannot be
+overwritten, retracted, or written from the wrong basket; the browser buttons agreeing with the
+router; a screen never describing an order it is not showing; the build tools failing loudly rather
+than quietly; an incident expiring while the food is still in the kitchen; nobody driving until
+somebody has been assigned; placing an order being narrated and then waiting; and the same nine
+people bringing their own habits.
+
+**A check that cannot fail is worse than none — prove it with a mutant.** Every check added by that
+programme was validated by breaking the code it guards and confirming it goes red. That found: a
+check returning a `Promise` the synchronous runner never awaited (so every assertion inside it would
+have passed forever); a tip check pinning only the boundaries, so halving every tip survived; a
+`multiple` assertion that was one-sided and could not see an *under*shoot; a hold check that could
+not distinguish a clamped deadline on any store but the two with a 29-minute ETA. Three "survivors"
+turned out to be **mis-specified mutants** rather than weak checks — a survivor is a claim about the
+test, and it is only as good as the mutation.
 
 ## Rebranding
 
