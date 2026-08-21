@@ -1,0 +1,2244 @@
+{
+  "slug": "dunkinn",
+  "name": "Dunkinn",
+  "shortName": "Dunkinn",
+  "tagline": "AMERICA RUNS ON PANIC.",
+  "cuisine": "Coffee & Glazed Matter",
+  "categories": [
+    "coffee",
+    "sweets",
+    "drinks"
+  ],
+  "rating": 4.3,
+  "ratingCount": 41287,
+  "deliveryMin": 7,
+  "deliveryMax": 19,
+  "deliveryFee": 3.49,
+  "distanceMi": 1.4,
+  "priceTier": 1,
+  "gorgePlus": true,
+  "closesAt": "3:00 AM",
+  "address": "8801 Frontage Road South, Bay 4, Behind The Other One, Sprawl Ring 6",
+  "about": "Dunkinn is a beverage-and-glazed-matter dispensary operating on a continuous morning. Donuts are classified by structural load before dispatch. You are already enrolled in the rewards program and have been since first contact.",
+  "announcement": "MORNING IS NOW CONTINUOUS. Breakfast classification is available 24 hours and is not related to the position of the sun.",
+  "promos": [
+    "Buy 2, Get 1 Assigned To You"
+  ],
+  "reviews": [
+    {
+      "name": "Dwayne R.",
+      "stars": 5,
+      "date": "Aug 14",
+      "text": "Ordered a Municipal pour at 4am and it arrived in a vessel I could not lift alone. The Gorger helped. He also could not lift it alone."
+    },
+    {
+      "name": "Priya N.",
+      "stars": 4,
+      "date": "Aug 11",
+      "text": "The glaze arrived adjacent to the donut, which the app had warned me about in writing. I have no complaint, only an observation."
+    },
+    {
+      "name": "Marcus T.",
+      "stars": 5,
+      "date": "Aug 09",
+      "text": "I declined the sprinkles and was charged for declining the sprinkles. Everything was disclosed. Everything was delicious."
+    },
+    {
+      "name": "Lorna V.",
+      "stars": 3,
+      "date": "Aug 03",
+      "text": "Requested my enrollment records and received a laminated card with a date on it from before I was born. The coffee was hot."
+    },
+    {
+      "name": "Bev S.",
+      "stars": 5,
+      "date": "Jul 28",
+      "text": "Two hundred spheres on a sheet pan that I am contractually required to return. I will not be returning it. Five stars."
+    }
+  ],
+  "menu": [
+    {
+      "id": "structural-donut-classifications",
+      "name": "Donuts By Structural Class",
+      "blurb": "Every unit is rated for load, sag, and glaze adhesion at the moment of dispatch.",
+      "items": [
+        {
+          "id": "dkn-001",
+          "name": "Class IV Load-Bearing Glazed",
+          "desc": "The reference donut against which all other donuts in this facility are measured. Certified to support the weight of a second donut for the duration of a normal delivery.",
+          "price": 1.35,
+          "calories": 890,
+          "badges": [
+            "#1 Most Liked",
+            "Contains Food"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a leaning tower of eleven glazed yeast donuts stacked into a single load-bearing column, thick translucent glaze sheeting down the outside in ribbons and pooling on the counter below, the bottom donut visibly compressed and squeezing outward under the mass above it, sugar crackle glinting across every surface. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 85mm three-quarter hero angle, shallow depth of field, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Glaze Adhesion Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Full Adhesion",
+                  "price": 3.85,
+                  "note": "Warranted to remain attached through the second delivery mile."
+                },
+                {
+                  "id": "o2",
+                  "name": "Partial Adhesion",
+                  "price": 2.95,
+                  "note": "Glaze arrives adjacent to the donut."
+                },
+                {
+                  "id": "o3",
+                  "name": "Adhesion Waived",
+                  "price": 3.85,
+                  "note": "Removal is performed by hand and billed as labor. Structural refunds are not available."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Structural Integrity Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Load-Bearing",
+                  "price": 4.4,
+                  "note": "Rated for one additional donut."
+                },
+                {
+                  "id": "o2",
+                  "name": "Semi-Structural",
+                  "price": 3.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Collapsed On Arrival",
+                  "price": 2.25,
+                  "note": "Collapse occurs in transit and is recorded as arrival condition, not damage."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Additional Glazed Matter",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Second Glaze Coat",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Powdered Overlay",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Frosting Slab",
+                  "price": 2.7,
+                  "note": "Applied flat. Does not conform to the donut."
+                },
+                {
+                  "id": "o4",
+                  "name": "Hot Glaze Pour-Over",
+                  "price": 3.95,
+                  "note": "Poured at your door by the Gorger, at the Gorger's discretion."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-002",
+          "name": "Sprinkle Saturation Unit",
+          "desc": "A frosted round carrying the maximum sprinkle load our equipment can apply without a second pass. The donut underneath is present and is not required to be visible.",
+          "price": 1.65,
+          "calories": 1140,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of the crown of a magenta-frosted donut, the frosting cratered and wet-looking and slumping heavily over one side, thousands of pink, orange and white sprinkles packed edge to edge across it and spilling off the rim in a small avalanche onto the counter, individual sugar crystals razor sharp, a bead of frosting hanging mid-drip. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 100mm macro, extremely shallow depth of field, a narrow slice of focus. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sprinkle Density Rating",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Nominal Coverage",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Total Coverage",
+                  "price": 5.35,
+                  "note": "The donut may no longer be visible. The donut is still present."
+                },
+                {
+                  "id": "o3",
+                  "name": "Zero Coverage",
+                  "price": 2.6,
+                  "note": "Sprinkles are withheld at the counter and are billed at the counter."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Enrollment Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Acknowledge Enrollment",
+                  "price": 1.15,
+                  "note": "You were enrolled at first contact."
+                },
+                {
+                  "id": "o2",
+                  "name": "Decline Enrollment",
+                  "price": 2.3,
+                  "note": "Declining is processed as a membership action and is billed as one."
+                },
+                {
+                  "id": "o3",
+                  "name": "Request Enrollment Records",
+                  "price": 3.85,
+                  "note": "Records are furnished in a format of our selection."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sprinkle Overspray",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bag Interior Overspray",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Vehicle Overspray",
+                  "price": 2.15,
+                  "note": "Occurs in the Gorger's vehicle and remains there."
+                },
+                {
+                  "id": "o3",
+                  "name": "Doorstep Overspray",
+                  "price": 3.4,
+                  "note": "Applied to your entryway. Not recoverable."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-003",
+          "name": "Boston-Type Filled Cavity",
+          "desc": "A sealed round with an interior cavity punched, pressurized, and occupied at eleven psi. The chocolate lid is a separate classification and is priced separately.",
+          "price": 1.85,
+          "calories": 1310,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Interior Occupancy",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fully Occupied",
+                  "price": 4.65,
+                  "note": "Filling is pressurized at eleven psi and may present on opening."
+                },
+                {
+                  "id": "o2",
+                  "name": "Partially Occupied",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Vacant Interior",
+                  "price": 4.65,
+                  "note": "The cavity is created regardless. Cavity creation is the billable step."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Frosting Lid Classification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Full Lid",
+                  "price": 2.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Partial Lid",
+                  "price": 2.05,
+                  "note": "Seals approximately sixty percent of the top surface."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Lid",
+                  "price": 2.8,
+                  "note": "The lid is produced and then removed. Both operations are itemized."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Crumb Recovery Service",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Crumb Sleeve",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Crumb Return Program",
+                  "price": 2.15,
+                  "note": "Recovered crumbs are returned to you within nine business days."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-004",
+          "name": "Old Fashioned (Unrevised)",
+          "desc": "The original cake round, unchanged since the recipe was filed. Ridged for beverage displacement and rated for dunking within the posted duration.",
+          "price": 1.45,
+          "calories": 980,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Dunk Duration Rating",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Three Seconds",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Nine Seconds",
+                  "price": 3.4,
+                  "note": "Beyond nine seconds the donut is considered part of the beverage."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Dunking Permitted",
+                  "price": 1.95,
+                  "note": "Enforcement is not provided."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Structural Integrity Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Load-Bearing",
+                  "price": 4.4,
+                  "note": "Rated for one additional donut."
+                },
+                {
+                  "id": "o2",
+                  "name": "Semi-Structural",
+                  "price": 3.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Collapsed On Arrival",
+                  "price": 2.25,
+                  "note": "Collapse occurs in transit and is recorded as arrival condition, not damage."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Napkin Provisioning",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Napkin",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Napkin Bundle",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Napkin Ration Card",
+                  "price": 4.2,
+                  "note": "Redeemable at any participating location during posted hours."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-005",
+          "name": "The Cruller Assembly",
+          "desc": "An extruded ridge assembly with a hollow core, fried until the ridges hold their own shape. Ridge count is selected at order and cannot be amended in transit.",
+          "price": 2.05,
+          "calories": 1220,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Ridge Count Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Twelve Ridges",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reinforced Eighteen Ridges",
+                  "price": 4.1,
+                  "note": "Additional ridges are added inward, not outward."
+                },
+                {
+                  "id": "o3",
+                  "name": "Ridgeless",
+                  "price": 2.45,
+                  "note": "Ridges are extruded and then smoothed. Smoothing is billed."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Enrollment Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Acknowledge Enrollment",
+                  "price": 1.15,
+                  "note": "You were enrolled at first contact."
+                },
+                {
+                  "id": "o2",
+                  "name": "Decline Enrollment",
+                  "price": 2.3,
+                  "note": "Declining is processed as a membership action and is billed as one."
+                },
+                {
+                  "id": "o3",
+                  "name": "Request Enrollment Records",
+                  "price": 3.85,
+                  "note": "Records are furnished in a format of our selection."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Crumb Recovery Service",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Crumb Sleeve",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Crumb Return Program",
+                  "price": 2.15,
+                  "note": "Recovered crumbs are returned to you within nine business days."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-panic-line",
+      "name": "The Panic Line",
+      "blurb": "Coffee dispensed at the velocity of your morning. Volume tiers escalate to municipal scale.",
+      "items": [
+        {
+          "id": "dkn-006",
+          "name": "The Original Iced, Personal Through Watershed",
+          "desc": "Our founding beverage, poured over displaced ice in a vessel sized to your household, your block, or your water district. Watershed pours are scheduled rather than dispensed.",
+          "price": 2.15,
+          "calories": 620,
+          "badges": [
+            "Popular",
+            "Contains Food"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an enormous clear cup of iced coffee photographed straight down into the vessel, cream plunging through the dark coffee in thick curling ribbons that have not yet merged, ice cubes packed so tightly they press up past the rim, a slow whirlpool still turning at the center, condensation beading heavily and running over the lip onto the counter. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 50mm directly overhead, looking down into the cup, shallow depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Vessel Displacement Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 6.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 11.25,
+                  "note": "Requires a level surface at the delivery address."
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional",
+                  "price": 17.6,
+                  "note": "Delivered upright. Cannot be re-tilted once placed."
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed",
+                  "price": 26.4,
+                  "note": "Watershed pours are scheduled, not dispensed. Allow a four-hour window."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ice Displacement Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Displacement",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Maximum Displacement",
+                  "price": 3.6,
+                  "note": "Beverage volume is reduced. Vessel volume is not."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Ice",
+                  "price": 3.6,
+                  "note": "Ice is produced, weighed, and discarded on your behalf."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dairy Posture",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Whole, Poured",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Oat, Poured",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Half-And-Half Column",
+                  "price": 3.4,
+                  "note": "Poured as a single vertical column. Does not integrate."
+                },
+                {
+                  "id": "o4",
+                  "name": "Dairy Declined",
+                  "price": 1.65,
+                  "note": "The dairy is poured into a separate container and retained by us."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Syrup Pump Escalation",
+              "required": false,
+              "min": 0,
+              "max": 8,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Pump",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Six Pumps",
+                  "price": 4.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pump Until Told To Stop",
+                  "price": 8.3,
+                  "note": "You will not be told to stop."
+                },
+                {
+                  "id": "o4",
+                  "name": "Syrup Standpipe Hookup",
+                  "price": 19.85,
+                  "note": "Requires a compatible residence and a municipal beverage variance."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-007",
+          "name": "Hot Coffee, Provenance Unclear",
+          "desc": "Brewed continuously since opening from a bean lot the machine can identify and we cannot. Served at or below the legally permitted ceiling unless the ceiling is waived.",
+          "price": 1.95,
+          "calories": 640,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Panic Calibration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Panic",
+                  "price": 3.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Elevated Panic",
+                  "price": 5.2,
+                  "note": "Not recommended before operating a vehicle, a stroller, or a conversation."
+                },
+                {
+                  "id": "o3",
+                  "name": "Panic Withheld",
+                  "price": 3.45,
+                  "note": "Withholding requires supervisory sign-off and is billed as supervision."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Serving Temperature Ceiling",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Legally Permitted Maximum",
+                  "price": 2.55,
+                  "note": "The maximum is reviewed annually and has never been lowered."
+                },
+                {
+                  "id": "o2",
+                  "name": "Reduced Ceiling",
+                  "price": 1.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Ceiling Unbounded",
+                  "price": 4.3,
+                  "note": "Requires verbal acknowledgement at the door."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Lid Aperture Class",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Aperture",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Widened Aperture",
+                  "price": 1.35,
+                  "note": "For accelerated intake."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Aperture",
+                  "price": 1.85,
+                  "note": "Sealed. The beverage is retained until circumstances change."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-008",
+          "name": "The Fifteen-Shot Morning Compliance Beverage",
+          "desc": "Fifteen shots of unclear provenance in a vessel rated for eleven. Consumption satisfies the morning compliance requirement for one adult for one shift.",
+          "price": 3.05,
+          "calories": 1180,
+          "badges": [
+            "Physician Discouraged",
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Shot Provenance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Domestic, Documented",
+                  "price": 3.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Regional, Undocumented",
+                  "price": 2.4,
+                  "note": "The origin is known to the machine."
+                },
+                {
+                  "id": "o3",
+                  "name": "Provenance Waived",
+                  "price": 3.75,
+                  "note": "The shots are still added."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Panic Calibration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Panic",
+                  "price": 3.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Elevated Panic",
+                  "price": 5.2,
+                  "note": "Not recommended before operating a vehicle, a stroller, or a conversation."
+                },
+                {
+                  "id": "o3",
+                  "name": "Panic Withheld",
+                  "price": 3.45,
+                  "note": "Withholding requires supervisory sign-off and is billed as supervision."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Emotional Pacing Add-Ons",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Steady Hands Packet",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wind-Down Sachet",
+                  "price": 3.15,
+                  "note": "Effective approximately one hour after the shift ends."
+                },
+                {
+                  "id": "o3",
+                  "name": "Nothing, Continue",
+                  "price": 1.05,
+                  "note": "Nothing is added. The selection is recorded."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-009",
+          "name": "Iced Latte, Layered",
+          "desc": "Espresso, dairy, and ice arranged in discrete horizontal strata. Layers may merge during transit, which is normal and is not grounds for reissue.",
+          "price": 2.85,
+          "calories": 760,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Layer Count Agreement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Layers",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Layers",
+                  "price": 4.8,
+                  "note": "Requires a taller vessel at no additional vessel charge."
+                },
+                {
+                  "id": "o3",
+                  "name": "Layers Merged In Transit",
+                  "price": 2.95,
+                  "note": "Merging is expected and is not a defect."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Dairy Posture",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Whole, Poured",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Oat, Poured",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Half-And-Half Column",
+                  "price": 3.4,
+                  "note": "Poured as a single vertical column. Does not integrate."
+                },
+                {
+                  "id": "o4",
+                  "name": "Dairy Declined",
+                  "price": 1.65,
+                  "note": "The dairy is poured into a separate container and retained by us."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Foam Architecture",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cold Foam Cap",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Load-Bearing Foam Lid",
+                  "price": 3.55,
+                  "note": "Replaces the lid. Performs as a lid for up to four minutes."
+                },
+                {
+                  "id": "o3",
+                  "name": "Foam Buttress",
+                  "price": 4.1,
+                  "note": "Adds nine seconds of structural stability."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-010",
+          "name": "Frozen Coffee Slurry, Class B",
+          "desc": "A blended coffee slurry graded by viscosity. Class B is the highest grade that can be moved through a standard straw aperture without equipment.",
+          "price": 3.15,
+          "calories": 1640,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Slurry Viscosity Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pourable",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Spoon-Standing",
+                  "price": 4.9,
+                  "note": "A spoon inserted vertically will remain vertical."
+                },
+                {
+                  "id": "o3",
+                  "name": "Structural",
+                  "price": 6.75,
+                  "note": "Cannot be consumed through the provided aperture. No aperture substitution is offered."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Vessel Displacement Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 6.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 11.25,
+                  "note": "Requires a level surface at the delivery address."
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional",
+                  "price": 17.6,
+                  "note": "Delivered upright. Cannot be re-tilted once placed."
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed",
+                  "price": 26.4,
+                  "note": "Watershed pours are scheduled, not dispensed. Allow a four-hour window."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Syrup Pump Escalation",
+              "required": false,
+              "min": 0,
+              "max": 8,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Pump",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Six Pumps",
+                  "price": 4.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pump Until Told To Stop",
+                  "price": 8.3,
+                  "note": "You will not be told to stop."
+                },
+                {
+                  "id": "o4",
+                  "name": "Syrup Standpipe Hookup",
+                  "price": 19.85,
+                  "note": "Requires a compatible residence and a municipal beverage variance."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bread-shaped-objects",
+      "name": "Sandwiches On Any Bread-Shaped Object",
+      "blurb": "Breakfast is a classification, not a time. Object selection is binding at checkout.",
+      "items": [
+        {
+          "id": "dkn-011",
+          "name": "Egg-Adjacent Round On Bread-Shaped Object",
+          "desc": "A certified round of egg-adjacent protein, four sheets of orange cheese product, and the bread-shaped object of your election. Cheese overhang is engineered, not incidental.",
+          "price": 2.45,
+          "calories": 1490,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a donut shop employee to upload to a food delivery app. Subject: a whole breakfast sandwich on a croissant, egg round, two sheets of orange cheese hanging over the edge and a browned sausage disc inside, sitting on a brown paper takeout bag folded open flat with croissant flakes scattered on it. Harsh direct on-camera flash, hot blown-out hotspot on the cheese, hard black shadow thrown behind the sandwich. Framed slightly crooked and off-centre with the paper bag cut off at the right edge, cluttered background of a donut shop back counter: a coffee urn, a napkin dispenser, a stack of lids and a scratched laminate work surface. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread-Shaped Object Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Croissant-Shaped",
+                  "price": 3.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bagel-Shaped",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Flat Round Object",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Hash Round Substrate",
+                  "price": 4.45,
+                  "note": "Two hash rounds serve as the exterior. Structural performance is not warranted."
+                },
+                {
+                  "id": "o5",
+                  "name": "No Object",
+                  "price": 3.65,
+                  "note": "Contents are delivered in a lined sleeve. The sleeve is not the object."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Egg Format Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Round, Certified",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Folded, Uncertified",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Egg Withheld",
+                  "price": 2.95,
+                  "note": "The round is punched and discarded in your name."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Heat Application Window",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Heated At Store",
+                  "price": 3.3,
+                  "note": "Heat is applied at the restaurant and billed there."
+                },
+                {
+                  "id": "o2",
+                  "name": "Heated In Transit",
+                  "price": 2.15,
+                  "note": "The heat source is the vehicle."
+                },
+                {
+                  "id": "o3",
+                  "name": "Ambient",
+                  "price": 1.85,
+                  "note": "Heat is withheld. Withholding is a service."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Sauce Sachet Deployment",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sachet",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cup",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sleeve Of Twelve",
+                  "price": 6.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Wall-Mounted Dispenser",
+                  "price": 21.4,
+                  "note": "Installed at your residence during a scheduled window. Removal is a separate service."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-012",
+          "name": "The Wake Up Obligation",
+          "desc": "Two objects, one filling, one obligation. Available during Morning, Afternoon Morning, and Night Morning at the classification price posted for each.",
+          "price": 2.25,
+          "calories": 1320,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Morning Classification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Morning",
+                  "price": 2.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Afternoon Morning",
+                  "price": 2.05,
+                  "note": "Identical to Morning. Filed separately."
+                },
+                {
+                  "id": "o3",
+                  "name": "Night Morning",
+                  "price": 2.65,
+                  "note": "Breakfast is a classification, not a time."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bread-Shaped Object Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Croissant-Shaped",
+                  "price": 3.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bagel-Shaped",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Flat Round Object",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Hash Round Substrate",
+                  "price": 4.45,
+                  "note": "Two hash rounds serve as the exterior. Structural performance is not warranted."
+                },
+                {
+                  "id": "o5",
+                  "name": "No Object",
+                  "price": 3.65,
+                  "note": "Contents are delivered in a lined sleeve. The sleeve is not the object."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Protein Column Additions",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Second Sausage Disc",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bacon Strata",
+                  "price": 3.1,
+                  "note": "Laid flat in a single continuous sheet."
+                },
+                {
+                  "id": "o3",
+                  "name": "Third Meat, Unspecified",
+                  "price": 4.25,
+                  "note": "Species is determined at packing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-013",
+          "name": "Sausage Column Sandwich",
+          "desc": "Stacked sausage discs held in vertical alignment by a wooden dowel. The dowel maintains the column and is not food.",
+          "price": 2.95,
+          "calories": 2180,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Column Height Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Discs",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Five Discs",
+                  "price": 6.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Nine Discs, Skewered",
+                  "price": 9.95,
+                  "note": "A wooden dowel maintains alignment and is not food."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Application Window",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Heated At Store",
+                  "price": 3.3,
+                  "note": "Heat is applied at the restaurant and billed there."
+                },
+                {
+                  "id": "o2",
+                  "name": "Heated In Transit",
+                  "price": 2.15,
+                  "note": "The heat source is the vehicle."
+                },
+                {
+                  "id": "o3",
+                  "name": "Ambient",
+                  "price": 1.85,
+                  "note": "Heat is withheld. Withholding is a service."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Napkin Provisioning",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Napkin",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Napkin Bundle",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Napkin Ration Card",
+                  "price": 4.2,
+                  "note": "Redeemable at any participating location during posted hours."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-014",
+          "name": "The Croissant-Shaped Event",
+          "desc": "A laminated object folded the number of times you elect, then filled beyond the fold count it was rated for. Flaking begins at the door and continues indoors.",
+          "price": 3.35,
+          "calories": 1710,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Lamination Count Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Forty Folds",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Hundred Folds",
+                  "price": 5.65,
+                  "note": "Adds fourteen minutes to preparation and is prepared in advance regardless."
+                },
+                {
+                  "id": "o3",
+                  "name": "Unfolded",
+                  "price": 3.15,
+                  "note": "Folding occurs and is then reversed. Both operations are billed."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Enrollment Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Acknowledge Enrollment",
+                  "price": 1.15,
+                  "note": "You were enrolled at first contact."
+                },
+                {
+                  "id": "o2",
+                  "name": "Decline Enrollment",
+                  "price": 2.3,
+                  "note": "Declining is processed as a membership action and is billed as one."
+                },
+                {
+                  "id": "o3",
+                  "name": "Request Enrollment Records",
+                  "price": 3.85,
+                  "note": "Records are furnished in a format of our selection."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sauce Sachet Deployment",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sachet",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cup",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sleeve Of Twelve",
+                  "price": 6.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Wall-Mounted Dispenser",
+                  "price": 21.4,
+                  "note": "Installed at your residence during a scheduled window. Removal is a separate service."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refreshers-in-colors",
+      "name": "Refreshers In Colors",
+      "blurb": "The color is selected by you. The flavor is assigned later by the system.",
+      "items": [
+        {
+          "id": "dkn-015",
+          "name": "Pink, Cold",
+          "desc": "The primary pink. Fruit solids are suspended throughout and are counted before dispatch. Flavor notes are not published because they have not been determined.",
+          "price": 2.65,
+          "calories": 680,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a donut shop employee to upload to a food delivery app. Subject: a large iced pink fruit refresher in a plain clear plastic cup with a dome lid and a straw, crushed ice packed to the top and pale fruit slices suspended through the pink liquid, heavy condensation running down the cup and pooling on the counter. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Cluttered background: a stainless counter, a napkin dispenser, a stack of lids and another cup waiting beside it. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Color Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pink",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Orange",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "A Second Pink",
+                  "price": 3.95,
+                  "note": "Legally distinct from the first pink."
+                },
+                {
+                  "id": "o4",
+                  "name": "Colorless",
+                  "price": 4.25,
+                  "note": "Color is removed through filtration. Filtration is billed by the pass."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Base Fluid Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Green Tea Base",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Lemonade Base",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Coconut Suspension",
+                  "price": 3.85,
+                  "note": "Separates on standing. Re-agitation is the recipient's responsibility."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Base",
+                  "price": 3.25,
+                  "note": "The concentrate is delivered undiluted with a written dilution advisory."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Aftertaste Extension Plan",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Twenty-Minute Extension",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "All-Day Extension",
+                  "price": 3.75,
+                  "note": "Not reversible by water."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-016",
+          "name": "Orange, Colder",
+          "desc": "Orange, held four degrees below Pink for reasons documented internally. Fruit solids are allotted by volume and, where declined, are counted, photographed, and withheld.",
+          "price": 2.65,
+          "calories": 710,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Color Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pink",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Orange",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "A Second Pink",
+                  "price": 3.95,
+                  "note": "Legally distinct from the first pink."
+                },
+                {
+                  "id": "o4",
+                  "name": "Colorless",
+                  "price": 4.25,
+                  "note": "Color is removed through filtration. Filtration is billed by the pass."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fruit Solids Allotment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Allotment",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Municipal Allotment",
+                  "price": 6.9,
+                  "note": "Portion is expressed in cubic feet."
+                },
+                {
+                  "id": "o3",
+                  "name": "Allotment Declined",
+                  "price": 1.85,
+                  "note": "Solids are counted, photographed, and withheld."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Transit Agitation Allowance",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sealed Lid Wrap",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Anti-Sloshing Collar",
+                  "price": 2.45,
+                  "note": "Reduces but does not eliminate arrival volume loss."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-017",
+          "name": "Green (Discontinued, Still Available)",
+          "desc": "This beverage was discontinued in a prior fiscal period and remains available at every location. Acknowledgement of discontinuation is required before preparation begins.",
+          "price": 2.95,
+          "calories": 740,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Discontinuation Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Acknowledge",
+                  "price": 1.85,
+                  "note": "The item remains available."
+                },
+                {
+                  "id": "o2",
+                  "name": "Dispute",
+                  "price": 3.7,
+                  "note": "Disputes are logged and the beverage is prepared anyway."
+                },
+                {
+                  "id": "o3",
+                  "name": "Do Not Inform Me Again",
+                  "price": 1.85,
+                  "note": "You will be informed again."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Base Fluid Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Green Tea Base",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Lemonade Base",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Coconut Suspension",
+                  "price": 3.85,
+                  "note": "Separates on standing. Re-agitation is the recipient's responsibility."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Base",
+                  "price": 3.25,
+                  "note": "The concentrate is delivered undiluted with a written dilution advisory."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Aftertaste Extension Plan",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Twenty-Minute Extension",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "All-Day Extension",
+                  "price": 3.75,
+                  "note": "Not reversible by water."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-018",
+          "name": "Clear Refresher, Unassigned",
+          "desc": "A fully filtered refresher awaiting flavor assignment. If assignment is declined the beverage remains, legally, a beverage.",
+          "price": 3.45,
+          "calories": 610,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Flavor Assignment Window",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Assigned At Packing",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Assigned In Transit",
+                  "price": 3.05,
+                  "note": "Assignment is final at the door."
+                },
+                {
+                  "id": "o3",
+                  "name": "Unassigned",
+                  "price": 4.15,
+                  "note": "The beverage remains, legally, a beverage."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fruit Solids Allotment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Allotment",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Municipal Allotment",
+                  "price": 6.9,
+                  "note": "Portion is expressed in cubic feet."
+                },
+                {
+                  "id": "o3",
+                  "name": "Allotment Declined",
+                  "price": 1.85,
+                  "note": "Solids are counted, photographed, and withheld."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Transit Agitation Allowance",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sealed Lid Wrap",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Anti-Sloshing Collar",
+                  "price": 2.45,
+                  "note": "Reduces but does not eliminate arrival volume loss."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ancillary-glazed-matter",
+      "name": "Ancillary Glazed Matter",
+      "blurb": "Small units and residual product. Sold by the sleeve, the tray, or the civic allotment.",
+      "items": [
+        {
+          "id": "dkn-019",
+          "name": "Munchable Spheres, Assorted",
+          "desc": "Glazed spheres in counts ranging from ten to a municipal tray of two hundred. Assortment may be determined by you, by us, or by the tray at time of packing.",
+          "price": 2.95,
+          "calories": 3240,
+          "badges": [
+            "Limit 1 Per Household",
+            "Contains Food"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a donut shop employee to upload to a food delivery app. Subject: about thirty glazed donut holes heaped and overflowing in a plain white cardboard takeout box with the flaps bent open, a mix of plain glazed, powdered sugar and pink-frosted spheres stuck together with setting glaze, three spheres fallen onto the counter beside the box. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the box and a hard shadow across the counter. Framed crooked and shot from too close, the box cut off at the left edge, sitting on a scratched laminate counter with sugar crumbs, a napkin dispenser and a stack of paper bags cluttering the background. Flat phone-camera look, unretouched, mixed white balance, visible JPEG compression and sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sphere Count Bracket",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ten",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Twenty-Five",
+                  "price": 7.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Fifty",
+                  "price": 14.6,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Municipal Tray, Two Hundred",
+                  "price": 39.5,
+                  "note": "Delivered on a sheet pan. The sheet pan is billed separately and must be returned."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Assortment Determination",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chosen By You",
+                  "price": 2.85,
+                  "note": "Your selection is advisory."
+                },
+                {
+                  "id": "o2",
+                  "name": "Chosen By Us",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Chosen By The Tray",
+                  "price": 2.85,
+                  "note": "The tray decides at packing."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Additional Glazed Matter",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Second Glaze Coat",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Powdered Overlay",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Frosting Slab",
+                  "price": 2.7,
+                  "note": "Applied flat. Does not conform to the spheres."
+                },
+                {
+                  "id": "o4",
+                  "name": "Hot Glaze Pour-Over",
+                  "price": 3.95,
+                  "note": "Poured at your door by the Gorger, at the Gorger's discretion."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-020",
+          "name": "Hash Rounds, Reheated Twice",
+          "desc": "Pressed potato rounds held in the warmer and cycled the number of times you specify. Two cycles is recommended by the facility and by the warmer.",
+          "price": 1.75,
+          "calories": 1120,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Reheat Cycle Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Cycle",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Cycles",
+                  "price": 3.45,
+                  "note": "Recommended."
+                },
+                {
+                  "id": "o3",
+                  "name": "Zero Cycles",
+                  "price": 3.45,
+                  "note": "Removal from the warmer is itself a cycle and is counted as one."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Grease Retention Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Retained",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Partially Drained",
+                  "price": 2.6,
+                  "note": "Drainage occurs over a second order."
+                },
+                {
+                  "id": "o3",
+                  "name": "Fully Drained",
+                  "price": 3.45,
+                  "note": "Drained grease is disposed of by us and itemized to you."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sauce Sachet Deployment",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sachet",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cup",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sleeve Of Twelve",
+                  "price": 6.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Wall-Mounted Dispenser",
+                  "price": 21.4,
+                  "note": "Installed at your residence during a scheduled window. Removal is a separate service."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dkn-021",
+          "name": "Glaze Runoff, Cup Of",
+          "desc": "Glaze recovered from beneath the cooling racks and served warm in a lidded cup. Source disclosure is available in writing at the posted rate.",
+          "price": 0.95,
+          "calories": 1980,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Runoff Source Disclosure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Tray Source",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Blended Trays",
+                  "price": 1.75,
+                  "note": "Multiple trays. One cup."
+                },
+                {
+                  "id": "o3",
+                  "name": "Source Withheld",
+                  "price": 2.95,
+                  "note": "Disclosure is available in writing for a fee."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cup Participation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cup Included",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cup Declined",
+                  "price": 3.15,
+                  "note": "The runoff is still dispensed. The recipient assumes containment duties."
+                },
+                {
+                  "id": "o3",
+                  "name": "Second Cup Around First Cup",
+                  "price": 4.4,
+                  "note": "Recommended above ninety degrees."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Napkin Provisioning",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Napkin",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Napkin Bundle",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Napkin Ration Card",
+                  "price": 4.2,
+                  "note": "Redeemable at any participating location during posted hours."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

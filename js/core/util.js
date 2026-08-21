@@ -1,0 +1,145 @@
+/* DoorGorge — utilities, formatting, DOM helpers */
+window.DG = window.DG || {};
+(function (DG) {
+  'use strict';
+
+  /* ---------- escaping / html ---------- */
+  var ENT = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+  DG.esc = function (s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ENT[c]; });
+  };
+  DG.attr = function (s) { return DG.esc(s).replace(/\n/g, '&#10;'); };
+
+  /* tagged template that escapes interpolations unless wrapped in DG.raw() */
+  function Raw(v) { this.v = v; }
+  DG.raw = function (v) { return new Raw(v); };
+  DG.html = function (strings) {
+    var out = strings[0];
+    for (var i = 1; i < arguments.length; i++) {
+      var v = arguments[i];
+      if (v instanceof Raw) out += v.v;
+      else if (Array.isArray(v)) out += v.map(function (x) { return x instanceof Raw ? x.v : DG.esc(x); }).join('');
+      else if (v === null || v === undefined || v === false) out += '';
+      else out += DG.esc(v);
+      out += strings[i];
+    }
+    return out;
+  };
+
+  /* ---------- money & numbers ---------- */
+  DG.round2 = function (n) { return Math.round((Number(n) + Number.EPSILON) * 100) / 100; };
+  DG.money = function (n, opts) {
+    n = DG.round2(n || 0);
+    var o = opts || {};
+    if (n === 0 && o.free) return 'Free';
+    var neg = n < 0;
+    var s = '$' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if (o.plus && n > 0) s = '+' + s;
+    return neg ? '−' + s : s;
+  };
+  DG.moneyShort = function (n) {
+    n = DG.round2(n || 0);
+    return n % 1 === 0 ? '$' + n.toFixed(0) : '$' + n.toFixed(2);
+  };
+  DG.int = function (n) { return String(Math.round(n || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); };
+  DG.compact = function (n) {
+    n = Number(n) || 0;
+    if (n >= 1e6) return (n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/, '') + 'M';
+    if (n >= 1e3) return (n / 1e3).toFixed(n >= 1e4 ? 0 : 1).replace(/\.0$/, '') + 'K';
+    return String(n);
+  };
+  DG.pct = function (n, d) { return (Number(n) || 0).toFixed(d == null ? 0 : d) + '%'; };
+  DG.clamp = function (v, a, b) { return v < a ? a : v > b ? b : v; };
+  DG.lerp = function (a, b, t) { return a + (b - a) * t; };
+
+  /* ---------- time ---------- */
+  DG.mins = function (a, b) { return b && b !== a ? a + '–' + b + ' min' : a + ' min'; };
+  DG.clock = function (d) {
+    d = d || new Date();
+    var h = d.getHours(), m = d.getMinutes(), ap = h >= 12 ? 'PM' : 'AM';
+    h = h % 12; if (h === 0) h = 12;
+    return h + ':' + (m < 10 ? '0' : '') + m + ' ' + ap;
+  };
+  DG.clockIn = function (minutes) { return DG.clock(new Date(Date.now() + minutes * 60000)); };
+  DG.dayLabel = function (ts) {
+    var d = new Date(ts), now = new Date();
+    var dd = Math.floor((now.setHours(0, 0, 0, 0) - new Date(ts).setHours(0, 0, 0, 0)) / 86400000);
+    if (dd === 0) return 'Today';
+    if (dd === 1) return 'Yesterday';
+    if (dd < 7) return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getDay()];
+    return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate();
+  };
+  DG.ago = function (ts) {
+    var s = Math.max(0, (Date.now() - ts) / 1000);
+    if (s < 60) return 'just now';
+    if (s < 3600) return Math.floor(s / 60) + 'm ago';
+    if (s < 86400) return Math.floor(s / 3600) + 'h ago';
+    return Math.floor(s / 86400) + 'd ago';
+  };
+
+  /* ---------- ids & rng ---------- */
+  var seq = 0;
+  DG.uid = function (p) { seq++; return (p || 'id') + '_' + Date.now().toString(36) + seq.toString(36); };
+  /* deterministic hash-based rng so generated flavour stays stable per key */
+  DG.hash = function (str) {
+    var h = 2166136261;
+    for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return (h >>> 0);
+  };
+  DG.seeded = function (key) {
+    var s = DG.hash(String(key)) || 1;
+    return function () { s ^= s << 13; s ^= s >>> 17; s ^= s << 5; s >>>= 0; return s / 4294967296; };
+  };
+  DG.pick = function (arr, rnd) { return arr[Math.floor((rnd ? rnd() : Math.random()) * arr.length)]; };
+  DG.shuffle = function (arr, rnd) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor((rnd ? rnd() : Math.random()) * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  };
+
+  /* ---------- dom ---------- */
+  DG.qs = function (sel, root) { return (root || document).querySelector(sel); };
+  DG.qsa = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+  DG.frag = function (html) {
+    var t = document.createElement('template'); t.innerHTML = String(html).trim();
+    return t.content;
+  };
+  DG.node = function (html) { return DG.frag(html).firstElementChild; };
+  /* delegated listener; returns an unbind fn */
+  DG.on = function (root, type, sel, fn, opts) {
+    if (typeof sel === 'function') { root.addEventListener(type, sel, fn); return function () { root.removeEventListener(type, sel, fn); }; }
+    function h(e) {
+      var t = e.target.closest ? e.target.closest(sel) : null;
+      if (t && root.contains(t)) fn.call(t, e, t);
+    }
+    root.addEventListener(type, h, opts);
+    return function () { root.removeEventListener(type, h, opts); };
+  };
+  DG.debounce = function (fn, ms) {
+    var t; return function () { var a = arguments, c = this; clearTimeout(t); t = setTimeout(function () { fn.apply(c, a); }, ms || 180); };
+  };
+  DG.raf = function (fn) { return requestAnimationFrame(fn); };
+  DG.nextTick = function (fn) { requestAnimationFrame(function () { requestAnimationFrame(fn); }); };
+
+  /* haptic-ish feedback: a tiny scale pulse is all a browser can honestly offer */
+  DG.tap = function (el) {
+    if (!el || document.documentElement.dataset.motion === 'off') return;
+    if (navigator.vibrate) { try { navigator.vibrate(8); } catch (e) {} }
+  };
+
+  /* ---------- misc ---------- */
+  DG.titleCase = function (s) { return String(s).replace(/(^|[\s-])([a-z])/g, function (m, a, b) { return a + b.toUpperCase(); }); };
+  DG.plural = function (n, s, p) { return n + ' ' + (n === 1 ? s : (p || s + 's')); };
+  DG.groupBy = function (arr, fn) {
+    return arr.reduce(function (acc, x) { var k = fn(x); (acc[k] = acc[k] || []).push(x); return acc; }, {});
+  };
+  DG.sum = function (arr, fn) { return arr.reduce(function (a, x) { return a + (fn ? fn(x) : x); }, 0); };
+  DG.deep = function (o) { return JSON.parse(JSON.stringify(o)); };
+  DG.scrollTop = function (smooth) {
+    var v = document.getElementById('view');
+    if (v) v.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+  };
+})(window.DG);

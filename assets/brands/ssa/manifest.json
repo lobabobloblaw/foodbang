@@ -1,0 +1,54 @@
+{
+  "slug": "ssa",
+  "model": "bytedance/seedream-4.5",
+  "images": [
+    {
+      "file": "logo.webp",
+      "prompt": "Flat vector government-agency seal insignia. A circular official seal centered on the canvas. Inside the seal ring: a long submarine sandwich on a split oval hoagie roll, layered with deli meat and lettuce, tapering to a point at the right end so the whole sandwich reads as a rightward arrow. It is a sub sandwich, NOT a hot dog, no sausage, no wiener, no mustard zigzag. Flanking it, a symmetrical golden laurel wreath of two curved branches. Beneath it, a golden ribbon bar carrying five stars. Colours: bright green and golden yellow on a flat institutional beige field. Crisp bureaucratic vector line work, federal-department styling, perfectly symmetrical, high contrast. Absolutely no floating white arrow, no cursor shape, no pointer graphic anywhere. Full-bleed square: the background colour fills the entire canvas edge to edge. No card, no frame, no rounded container, no drop shadow, no surrounding margin or border. The only text anywhere in the image is exactly: SUBTERRANEAN SANDWICH AUTHORITY, in small clean uppercase letters curving around the inside of the seal ring.",
+      "predictionId": "e3qajryc1srmr0d0460r2am7pm",
+      "predictTime": 12.995356579
+    },
+    {
+      "file": "hero.webp",
+      "prompt": "Cinematic wide interior of a government-office sandwich counter, deserted. Institutional beige tile walls and floor, a long scratched acrylic sneeze guard running the width of the frame over stainless steel bins of shredded lettuce and pressed deli meat, a chrome take-a-number dispenser mounted on a post, a maze of black retractable queue ropes coiling toward the counter, a wall of blank laminated notices in plastic sleeves, worn linoleum. Flat cold overhead fluorescent tube light, no shadow drama, bureaucratic and slightly green, unflattering and honest. Camera: 24mm wide angle, eye level, deep focus, symmetrical one-point perspective, muted desaturated palette of beige, green and dull steel. Deadpan hyperreal realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "qxvnegwt7xrmt0d045yv3appxm",
+      "predictTime": 23.959340454
+    },
+    {
+      "file": "items/01.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: one enormous twelve-inch cold-cut submarine sandwich laid dead straight on a stainless steel prep rail, the lid of bread lifted and propped so shingled folds of pale deli meat spill over both long edges and sag onto the metal, shredded lettuce avalanching out, oil pooling in a bright slick under the loaf. Setting: a laminated stainless prep rail behind a scratched acrylic sneeze guard, institutional beige tile wall, a blank unmarked laminated form taped to the glass. Lighting: flat cold overhead fluorescent tube light, no shadow drama, bureaucratic and slightly green, unflattering and honest. Camera: strict overhead flat-lay, 50mm, deep focus edge to edge, flat clinical contrast, every crumb visible. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "azwvzp1x2hrmw0d045z82n08kr",
+      "predictTime": 12.948690375
+    },
+    {
+      "file": "items/02.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a footlong meatball sandwich straining open, nine oversized meatballs crowded in a split roll, thick red marinara overflowing the sides in slow heavy ropes and puddling on the stainless rail, molten cheese sheeting down and stringing between meatballs, visible steam rising in the cold air. Setting: a laminated stainless prep rail behind a scratched acrylic sneeze guard, institutional beige tile wall, a blank unmarked laminated form taped to the glass. Lighting: flat cold overhead fluorescent tube light, no shadow drama, bureaucratic and slightly green, unflattering and honest. Camera: three-quarter hero angle low to the rail, 85mm, shallow depth of field, glossy specular sheen. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "r1zzb050r5rmt0d045zajvsw18",
+      "predictTime": 20.250219236
+    },
+    {
+      "file": "items/03.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: shot looking straight down into a deep dented stainless institutional bowl heaped far above its rim with a landslide of chopped vegetables, shredded lettuce, tomato discs, raw onion rings, green pepper strips, cucumber coins and black olives, the pile leaning and spilling over one side onto the prep rail, dressing beading on every leaf. Setting: a laminated stainless prep rail behind a scratched acrylic sneeze guard, institutional beige tile wall, a blank unmarked laminated form taped to the glass. Lighting: flat cold overhead fluorescent tube light, no shadow drama, bureaucratic and slightly green, unflattering and honest. Camera: top-down into the vessel, 35mm, deep focus, cold clinical contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "jtr2t30zwdrmy0d045zrzc04t4",
+      "predictTime": 13.332661781
+    },
+    {
+      "file": "items/04.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of a single split garlic bread strip, the crumb open and glistening, a thick lacquer of melted garlic butter running off the crust edge in a slow drip caught mid-fall, coarse minced garlic and parsley flecks in sharp relief, tiny blistered char bubbles across the surface. Setting: a laminated stainless prep rail behind a scratched acrylic sneeze guard, institutional beige tile wall, a blank unmarked laminated form taped to the glass. Lighting: flat cold overhead fluorescent tube light, no shadow drama, bureaucratic and slightly green, unflattering and honest. Camera: 100mm macro, razor-thin depth of field on the drip, background dissolving to beige tile, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "c0ch6gm4m9rmt0d045zv6xxsp4",
+      "predictTime": 11.037039114
+    },
+    {
+      "file": "items/05.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an absurdly tall unlabeled waxed paper fountain cup sweating on a brown fibre cafeteria tray with a plain paper liner, filled past the brim so dark soda foam domes over the rim and runs down the side in three streams, pooling on the liner and soaking it translucent, ice caps breaking the surface, a plain straw leaning. Setting: a laminated stainless prep rail behind a scratched acrylic sneeze guard, institutional beige tile wall, a blank unmarked laminated form taped to the glass. Lighting: flat cold overhead fluorescent tube light, no shadow drama, bureaucratic and slightly green, unflattering and honest. Camera: slightly elevated on-tray angle, 50mm, medium depth of field, condensation crisp. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "t4fs8fpyjnrmw0d045zthev604",
+      "predictTime": 12.571337701
+    },
+    {
+      "file": "items/06.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean vertical cross-section cutaway of a footlong submarine sandwich sliced straight through and stood upright on the stainless rail, every stratum exposed in a compressed geological stack, folded ham, salami, pepperoni, two kinds of cheese, lettuce, tomato, onion, the roll bulging and compressed under the load, a single bead of oil running down the cut face. Setting: a laminated stainless prep rail behind a scratched acrylic sneeze guard, institutional beige tile wall, a blank unmarked laminated form taped to the glass. Lighting: flat cold overhead fluorescent tube light, no shadow drama, bureaucratic and slightly green, unflattering and honest. Camera: straight-on eye-level cross-section, 90mm macro, deep focus across the cut, flat clinical contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "3peb8j9ythrmy0d0460avjxazc",
+      "predictTime": 13.629525797
+    }
+  ]
+}

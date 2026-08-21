@@ -1,0 +1,2411 @@
+{
+  "slug": "pizzahutch",
+  "name": "Pizza Hutch",
+  "shortName": "Pizza Hutch",
+  "tagline": "EVERY CRUST CONTAINS ANOTHER CRUST.",
+  "cuisine": "Pizza & Recursive Dough Products",
+  "categories": [
+    "pizza",
+    "fast-food"
+  ],
+  "rating": 4.2,
+  "ratingCount": 31877,
+  "deliveryMin": 34,
+  "deliveryMax": 62,
+  "deliveryFee": 5.49,
+  "distanceMi": 3.7,
+  "priceTier": 2,
+  "gorgePlus": true,
+  "closesAt": "1:30 AM",
+  "address": "8842 Frontage Access Loop, Pad C, Behind the Former Sears, Grantwood Meadows",
+  "about": "Pizza Hutch has pursued crust innovation continuously since 1993 and has not identified a stopping condition. Every crust manufactured at this location contains at least one additional crust, per internal standard PH-9. Dine-in seating remains available but is no longer recommended.",
+  "announcement": "NOTICE: The salad bar remains under sneeze-guard supervision. Return trips are metered.",
+  "promos": [
+    "Members save $1.10 on this store"
+  ],
+  "reviews": [
+    {
+      "name": "Dwayne K.",
+      "stars": 5,
+      "date": "Aug 14",
+      "text": "Ordered Depth Two. Opened the crust and there was another pizza in there, exactly as described. No complaints, no surprises."
+    },
+    {
+      "name": "Marisol T.",
+      "stars": 4,
+      "date": "Aug 11",
+      "text": "The Cistern arrived at the correct temperature and the correct depth. My table did not survive it, which is on me."
+    },
+    {
+      "name": "Ronnie P.",
+      "stars": 3,
+      "date": "Aug 6",
+      "text": "I declined the box and was billed more than the box costs. The Gorger explained the policy while standing on my porch and it made sense at the time."
+    },
+    {
+      "name": "Aunt Vergie",
+      "stars": 5,
+      "date": "Jul 30",
+      "text": "The Perpetual Stick is thirty inches long and does not end where you think it ends. Excellent value per foot."
+    },
+    {
+      "name": "Tobias W.",
+      "stars": 4,
+      "date": "Jul 22",
+      "text": "Wings were listed as an afterthought and arrived as one. The stained-glass lamp photo they enclosed was a nice touch."
+    }
+  ],
+  "menu": [
+    {
+      "id": "recursive-crust-program",
+      "name": "The Recursive Crust Program",
+      "blurb": "Each pie contains a smaller pie. Depth is elective. Depth is billed.",
+      "items": [
+        {
+          "id": "phz-001",
+          "name": "The Original Hutch Recursion",
+          "desc": "A pepperoni pan pie whose outer crust is stuffed with a complete second pie, sealed and baked in place. The second pie's crust is itself stuffed, though we do not photograph that part.",
+          "price": 6.45,
+          "calories": 4820,
+          "badges": [
+            "#1 Most Liked",
+            "Contains Food"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a thick pepperoni pan pizza whose swollen outer crust ring is stuffed with a second, smaller sealed pizza, the ring split open at one point to reveal molten cheese and a miniature crust nested inside it. Cheese sags in long strands over the rim, pepperoni cups pooled with orange oil, visible steam. Three-quarter hero angle on a chrome pizza stand set on a red-and-white checkered vinyl tablecloth, a stained-glass hanging lamp glowing directly above. Warm stained-glass lamp glow, saturated reds and ambers, nostalgic 1993 dine-in pizza parlor. 85mm lens, shallow depth of field, rich contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Crust Recursion Depth",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Depth One (Crust Within Crust)",
+                  "price": 4.75,
+                  "note": "The factory setting since 1993."
+                },
+                {
+                  "id": "o2",
+                  "name": "Depth Two (Crust Within Crust Within Crust)",
+                  "price": 8.4,
+                  "note": "Adds eleven minutes to the bake and four ounces to the rim."
+                },
+                {
+                  "id": "o3",
+                  "name": "Depth Zero (Suppress Recursion)",
+                  "price": 5.6,
+                  "note": "Recursion cannot be removed, only suppressed. Suppression is billed at the technician rate."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cheese Containment Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Contained",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Partially Contained",
+                  "price": 2.15,
+                  "note": "Cheese may exit the pie during transit. This is anticipated and is not a defect."
+                },
+                {
+                  "id": "o3",
+                  "name": "Uncontained",
+                  "price": 4.9,
+                  "note": "Uncontained cheese is a premium presentation."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Slice Geometry Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Radial, Eight Wedges",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Municipal Grid, Sixteen Rectangles",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Uncut Monolith",
+                  "price": 3.6,
+                  "note": "Cutting is withheld. Withholding is a service."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Pepperoni Census",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Additional Census Pass",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Full Recount",
+                  "price": 4.2,
+                  "note": "Recounts are performed once and are final."
+                },
+                {
+                  "id": "o3",
+                  "name": "Undisclosed Pepperoni Beneath the Cheese",
+                  "price": 2.65,
+                  "note": "You will not be told how many."
+                },
+                {
+                  "id": "o4",
+                  "name": "Cup Overflow Configuration",
+                  "price": 5.4,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-002",
+          "name": "Second-Order Pepperoni",
+          "desc": "Pepperoni on the pie, pepperoni in the crust, and a small quantity of pepperoni in the crust that is inside the crust. Each layer is unaware of the others.",
+          "price": 5.9,
+          "calories": 3940,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Crust Recursion Depth",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Depth One (Crust Within Crust)",
+                  "price": 4.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Depth Two (Crust Within Crust Within Crust)",
+                  "price": 8.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Depth Zero (Suppress Recursion)",
+                  "price": 5.6,
+                  "note": "Suppression is billed at the technician rate."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Grease Blot Protocol",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Blotted Once",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Blotted Twice",
+                  "price": 2.7,
+                  "note": "The second blot is performed by a different employee."
+                },
+                {
+                  "id": "o3",
+                  "name": "Unblotted",
+                  "price": 1.9,
+                  "note": "Approximately forty grams of oil will transfer to the interior of the box."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Topping Tectonics",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Uplift",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Subduction (Toppings Beneath Crust)",
+                  "price": 3.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Fault Line (Half and Half)",
+                  "price": 2.95,
+                  "note": "The fault is not guaranteed to hold."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-003",
+          "name": "Depth Three Supreme",
+          "desc": "Three nested crusts, each fully topped. Internal standard PH-9 permits Depth Three for residential delivery. Depth Four requires a commercial address.",
+          "price": 8.25,
+          "calories": 6180,
+          "badges": [
+            "Limit 1 Per Household",
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Structural Integrity Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Load-Bearing Center",
+                  "price": 6.35,
+                  "note": "Recommended above Depth Two."
+                },
+                {
+                  "id": "o2",
+                  "name": "Unreinforced Center",
+                  "price": 3.95,
+                  "note": "The center may descend during transit."
+                },
+                {
+                  "id": "o3",
+                  "name": "Decline Assessment",
+                  "price": 7.1,
+                  "note": "An unassessed pie is assessed anyway, at a higher rate, later."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cheese Containment Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Contained",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Partially Contained",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Uncontained",
+                  "price": 4.9,
+                  "note": "Uncontained cheese is a premium presentation."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Crust Terminus Treatment",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sealed Terminus",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Open Terminus",
+                  "price": 1.1,
+                  "note": "Visible interior. Some guests prefer to know."
+                },
+                {
+                  "id": "o3",
+                  "name": "Terminus Filled With Additional Crust",
+                  "price": 6.25,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-004",
+          "name": "The Meat Lattice",
+          "desc": "Six cured meats woven into a load-bearing grid across the surface. The lattice is structural and should not be removed before the pie is consumed.",
+          "price": 7.15,
+          "calories": 5470,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Lattice Weave Density",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Weave",
+                  "price": 4.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tight Weave",
+                  "price": 7.85,
+                  "note": "Cheese below the lattice will not be reachable."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Weave (Meat Placed Loosely)",
+                  "price": 5.05,
+                  "note": "Loose placement requires the same labor and is priced accordingly."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Retention Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Retained",
+                  "price": 3.85,
+                  "note": "Heat is generated at the Hutch and billed at the Hutch."
+                },
+                {
+                  "id": "o2",
+                  "name": "Released",
+                  "price": 2.2,
+                  "note": "Heat is released into the vehicle. The vehicle is not credited."
+                },
+                {
+                  "id": "o3",
+                  "name": "Undeclared",
+                  "price": 1.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dip Battery Configuration",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Cell",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four-Cell Rack",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Wall-Mounted Battery",
+                  "price": 9.25,
+                  "note": "Mounting hardware not included."
+                },
+                {
+                  "id": "o4",
+                  "name": "Marinara Mainline Tap",
+                  "price": 21.5,
+                  "note": "Requires a compatible residence and a functioning floor drain."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-005",
+          "name": "Vegetable Acknowledgement Pie",
+          "desc": "Contains vegetables in quantities sufficient for the vegetables to be acknowledged. No further claims are made about the vegetables.",
+          "price": 5.35,
+          "calories": 3110,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Vegetable Acknowledgement Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Acknowledged in Writing",
+                  "price": 2.6,
+                  "note": "A card is enclosed."
+                },
+                {
+                  "id": "o2",
+                  "name": "Acknowledged Verbally at the Door",
+                  "price": 3.95,
+                  "note": "The Gorger will say the vegetables out loud."
+                },
+                {
+                  "id": "o3",
+                  "name": "Unacknowledged",
+                  "price": 2.6,
+                  "note": "The vegetables remain present. Only the acknowledgement is removed."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cardboard Interface",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Box",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reinforced Box",
+                  "price": 4.35,
+                  "note": "Rated to municipal depth."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Box",
+                  "price": 2.95,
+                  "note": "Boxless delivery requires a signed hand-off and a clean flat surface at the residence."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Stained-Glass Lamp Ambience",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lamp Glow Simulated in Transit",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Authentic Lamp Photograph Enclosed",
+                  "price": 2.75,
+                  "note": "Photograph is of this location's actual lamp."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pan-descent-grades",
+      "name": "Pan Descent Grades",
+      "blurb": "Pan. Deep pan. Deeper pan. There is no upper limit, only a lower one.",
+      "items": [
+        {
+          "id": "phz-006",
+          "name": "Grade One Pan",
+          "desc": "The shallowest pan we are still permitted to call a pan. Suitable for guests who are new to descent.",
+          "price": 4.85,
+          "calories": 2740,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Pan Descent Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grade One (Shallow)",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grade Two (Deep)",
+                  "price": 5.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Grade Four (Sub-Floor)",
+                  "price": 9.6,
+                  "note": "Requires a level countertop."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Retention Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Retained",
+                  "price": 3.85,
+                  "note": "Heat is generated at the Hutch and billed at the Hutch."
+                },
+                {
+                  "id": "o2",
+                  "name": "Released",
+                  "price": 2.2,
+                  "note": "Heat is released into the vehicle. The vehicle is not credited."
+                },
+                {
+                  "id": "o3",
+                  "name": "Undeclared",
+                  "price": 1.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Rim Caramelization Request",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Fused Rim",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Aggressively Fused Rim",
+                  "price": 3.1,
+                  "note": "The rim will bond to the pan. The pan is not included."
+                },
+                {
+                  "id": "o3",
+                  "name": "Second Rim Applied Inside the First",
+                  "price": 5.7,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-007",
+          "name": "Grade Two Deep Pan",
+          "desc": "Two and a quarter inches of vertical pie. Stratified in the pan and served in the pan, because the pie will not leave the pan.",
+          "price": 6.95,
+          "calories": 4630,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean vertical cross-section cutaway of an extremely deep pan pizza, one wedge removed to expose stratified layers from top to bottom: a blistered cheese cap, a seam of sausage crumble, a dense cheese band, a second buried crust layer running horizontally through the middle, a thick red sauce stratum, and a fused caramelized crust wall against the black steel pan. Cheese slumps outward from the cut face under its own weight, oil beading on the exposed layers, faint steam. Shot on a red-and-white checkered vinyl tablecloth beside a chrome pizza stand, warm stained-glass lamp glow directly above, saturated reds and ambers, 1993 dine-in pizza parlor. 100mm macro lens, crisp layer separation. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Pan Descent Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grade Two (Deep)",
+                  "price": 5.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grade Four (Sub-Floor)",
+                  "price": 9.6,
+                  "note": "Requires a level countertop."
+                },
+                {
+                  "id": "o3",
+                  "name": "Grade Six (Cistern Class)",
+                  "price": 15.75,
+                  "note": "Excavation surcharge included. Do not attempt to lift by one edge."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Pan Return Obligation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Return the Pan",
+                  "price": 4.1,
+                  "note": "You are responsible for transporting the pan back to Pad C."
+                },
+                {
+                  "id": "o2",
+                  "name": "Keep the Pan",
+                  "price": 6.8,
+                  "note": "Ownership transfers at the door and cannot be reversed."
+                },
+                {
+                  "id": "o3",
+                  "name": "Pan Status Unresolved",
+                  "price": 5.45,
+                  "note": "Unresolved pans are reviewed annually."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dip Battery Configuration",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Cell",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four-Cell Rack",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Wall-Mounted Battery",
+                  "price": 9.25,
+                  "note": "Mounting hardware not included."
+                },
+                {
+                  "id": "o4",
+                  "name": "Marinara Mainline Tap",
+                  "price": 21.5,
+                  "note": "Requires a compatible residence and a functioning floor drain."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-008",
+          "name": "Grade Four Sub-Floor Pan",
+          "desc": "Descends below the plane of the table. Guests report that the last third of this pie is warmer than the first third for reasons the Hutch has not investigated.",
+          "price": 8.6,
+          "calories": 5920,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Pan Descent Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grade Four (Sub-Floor)",
+                  "price": 9.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grade Six (Cistern Class)",
+                  "price": 15.75,
+                  "note": "Excavation surcharge included."
+                },
+                {
+                  "id": "o3",
+                  "name": "Reduce to Grade Two",
+                  "price": 11.2,
+                  "note": "Reduction is performed by removal and is more labor-intensive than descent."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cardboard Interface",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Box",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reinforced Box",
+                  "price": 4.35,
+                  "note": "Rated to municipal depth."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Box",
+                  "price": 2.95,
+                  "note": "Boxless delivery requires a signed hand-off and a clean flat surface."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Arcade Token Allotment",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Tokens",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sleeve of Tokens",
+                  "price": 6.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Legacy Token Bucket",
+                  "price": 12.4,
+                  "note": "Tokens are not currency, cannot be redeemed, and the cabinet was removed in 2009."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-009",
+          "name": "The Cistern",
+          "desc": "Grade Six. Four inches of pie in a welded steel vessel. Sold by the vessel because it cannot be sold by the slice.",
+          "price": 11.4,
+          "calories": 6200,
+          "badges": [
+            "Limit 1 Per Household",
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Vessel Egress Plan",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Served in Vessel, Consumed in Vessel",
+                  "price": 7.9,
+                  "note": "The recommended plan."
+                },
+                {
+                  "id": "o2",
+                  "name": "Inverted Onto a Surface of Your Choosing",
+                  "price": 12.35,
+                  "note": "The Hutch is not liable for the surface."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Plan Filed",
+                  "price": 9.15,
+                  "note": "A plan will be assigned to you at the door."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Household Format Sizing",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 6.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 13.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional",
+                  "price": 24.5,
+                  "note": "Delivered on a pallet."
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed",
+                  "price": 39.75,
+                  "note": "Delivered to the curb. Transport from the curb is the household's responsibility."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Wet Napkin Provisioning",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Napkin",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sleeve",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal Roll",
+                  "price": 7.15,
+                  "note": "Roll is mounted on a cardboard spindle."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "breadstick-covenant",
+      "name": "The Breadstick Covenant",
+      "blurb": "Breadsticks are not purchased. Breadsticks are entered into.",
+      "items": [
+        {
+          "id": "phz-010",
+          "name": "Covenant Breadsticks",
+          "desc": "Twenty garlic-buttered sticks under a standard twelve-month covenant. The covenant governs the sticks, not you, though the distinction is administrative.",
+          "price": 3.75,
+          "calories": 2260,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a dented aluminum sheet tray lined with grease-translucent paper, stacked with twenty thick garlic breadsticks in a leaning, overloaded pile that spills past the tray's edge. Melted butter pools in the liner and soaks a dark ring through the paper, coarse garlic granules and parmesan dust scattered across the surface, one stick torn open to show a soft steaming interior. Tray sits on a red-and-white checkered vinyl tablecloth, chrome pizza stand behind it, stained-glass hanging lamp glowing directly above. Warm stained-glass lamp glow, saturated reds and ambers, nostalgic 1993 dine-in pizza parlor. 50mm lens, low three-quarter angle, gentle depth falloff. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Breadstick Covenant Term",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Twelve-Month Term",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Perpetual Term",
+                  "price": 7.6,
+                  "note": "Renews automatically at the beginning of each meal."
+                },
+                {
+                  "id": "o3",
+                  "name": "Immediate Dissolution",
+                  "price": 4.8,
+                  "note": "Dissolution is processed by a third party and takes ninety days. The sticks arrive today."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Butter Application Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Brushed",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Poured",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Submerged and Drained",
+                  "price": 5.95,
+                  "note": "Draining is partial by design."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dip Battery Configuration",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Cell",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four-Cell Rack",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Wall-Mounted Battery",
+                  "price": 9.25,
+                  "note": "Mounting hardware not included."
+                },
+                {
+                  "id": "o4",
+                  "name": "Marinara Mainline Tap",
+                  "price": 21.5,
+                  "note": "Requires a compatible residence and a functioning floor drain."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-011",
+          "name": "Cheese-Bonded Covenant Sticks",
+          "desc": "The same sticks, fused laterally into a single sheet by cheese. Separation is possible but is not encouraged and is not warrantied.",
+          "price": 4.6,
+          "calories": 3080,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Breadstick Covenant Term",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Twelve-Month Term",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Perpetual Term",
+                  "price": 7.6,
+                  "note": "Renews automatically at the beginning of each meal."
+                },
+                {
+                  "id": "o3",
+                  "name": "Immediate Dissolution",
+                  "price": 4.8,
+                  "note": "Dissolution is processed by a third party."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Lateral Bond Strength",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Separable by Hand",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Separable With Effort",
+                  "price": 3.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Not Separable",
+                  "price": 6.2,
+                  "note": "Sold and consumed as one object."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Crust Terminus Treatment",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sealed Terminus",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Open Terminus",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Terminus Filled With Additional Crust",
+                  "price": 6.25,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-012",
+          "name": "The Perpetual Stick",
+          "desc": "One breadstick, thirty inches, stuffed end to end with a second breadstick. It does not end where the packaging suggests it ends.",
+          "price": 5.25,
+          "calories": 2890,
+          "badges": [
+            "New",
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Stick Length Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Thirty Inches",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sixty Inches, Hinged",
+                  "price": 8.9,
+                  "note": "Hinge is edible but is not the same dough."
+                },
+                {
+                  "id": "o3",
+                  "name": "Length Undeclared",
+                  "price": 5.55,
+                  "note": "An undeclared stick is measured on arrival and reconciled to your account."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Butter Application Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Brushed",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Poured",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Submerged and Drained",
+                  "price": 5.95,
+                  "note": "Draining is partial by design."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Wet Napkin Provisioning",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Napkin",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sleeve",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal Roll",
+                  "price": 7.15,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-013",
+          "name": "Dissolution Knots",
+          "desc": "Garlic knots served to guests who have exited a covenant. Slightly smaller than the sticks, for reasons that are contractual rather than culinary.",
+          "price": 3.4,
+          "calories": 1780,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Knot Tension Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Loose Knot",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standard Knot",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Overtightened Knot",
+                  "price": 4.65,
+                  "note": "Center may remain raw. This is the intended texture."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Retention Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Retained",
+                  "price": 3.85,
+                  "note": "Heat is generated at the Hutch and billed at the Hutch."
+                },
+                {
+                  "id": "o2",
+                  "name": "Released",
+                  "price": 2.2,
+                  "note": "Heat is released into the vehicle. The vehicle is not credited."
+                },
+                {
+                  "id": "o3",
+                  "name": "Undeclared",
+                  "price": 1.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Parmesan Dust Loading",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Light Dusting",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy Dusting",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Airborne Concentration",
+                  "price": 4.9,
+                  "note": "Open the container outdoors or in a ventilated room."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wings-afterthought",
+      "name": "Wings, As An Afterthought",
+      "blurb": "We make wings. We would rather be making crust. The wings are fine.",
+      "items": [
+        {
+          "id": "phz-014",
+          "name": "Bone-Adjacent Wings",
+          "desc": "Twelve wings, sauced and laid out in a grid. Bones are present, adjacent, or withheld depending on your disclosure election below.",
+          "price": 5.8,
+          "calories": 2410,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: twelve heavily sauced chicken wings piled into an aluminium foil tray with its cardboard lid propped open behind it, red-orange sauce pooling in the corrugations of the tray, a few celery batons pushed to one side and a small plastic cup of ranch wedged in beside them. Harsh direct on-camera flash, hot blown-out white hotspot on the sauce, hard black shadow thrown behind the tray. Cluttered background: a stainless prep counter, a napkin dispenser, a stack of lids and another order waiting in a box. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bone Disclosure Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bones Disclosed",
+                  "price": 3.15,
+                  "note": "A count is printed on the receipt."
+                },
+                {
+                  "id": "o2",
+                  "name": "Bones Present, Undisclosed",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bones Withheld",
+                  "price": 4.7,
+                  "note": "Withheld bones remain the property of the Hutch and are retained on site."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Sauce Adhesion Standard",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tossed and Adhered",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sauce Applied Separately",
+                  "price": 3.6,
+                  "note": "Adhesion becomes your responsibility."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce Withheld Entirely",
+                  "price": 2.75,
+                  "note": "Withholding is priced at parity with application."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dip Battery Configuration",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Cell",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four-Cell Rack",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Wall-Mounted Battery",
+                  "price": 9.25,
+                  "note": "Mounting hardware not included."
+                },
+                {
+                  "id": "o4",
+                  "name": "Marinara Mainline Tap",
+                  "price": 21.5,
+                  "note": "Requires a compatible residence and a functioning floor drain."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-015",
+          "name": "Ninety Wings in a Municipal Tray",
+          "desc": "Ninety wings in a foil tray rated for civic events. Sized to serve a block, a shift, or one guest across an extended period.",
+          "price": 14.25,
+          "calories": 6150,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Household Format Sizing",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 6.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 13.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional",
+                  "price": 24.5,
+                  "note": "Delivered on a pallet."
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed",
+                  "price": 39.75,
+                  "note": "Delivered to the curb."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bone Disclosure Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bones Disclosed",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bones Present, Undisclosed",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bones Withheld",
+                  "price": 4.7,
+                  "note": "Withheld bones remain the property of the Hutch."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Tray Lid Policy",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lid Applied",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Lid Enclosed, Unapplied",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Second Tray Used as Lid",
+                  "price": 5.3,
+                  "note": "The second tray is empty and is not a second order."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-016",
+          "name": "Boneless Wing Product",
+          "desc": "A wing-shaped product that has never been a wing and makes no claim to have been one. Popular with guests who dislike ambiguity.",
+          "price": 4.95,
+          "calories": 2080,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Product Origin Statement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Statement Provided",
+                  "price": 2.2,
+                  "note": "One page, front and back."
+                },
+                {
+                  "id": "o2",
+                  "name": "Statement Waived",
+                  "price": 2.2,
+                  "note": "Waiving costs the same as providing. The page is printed either way."
+                },
+                {
+                  "id": "o3",
+                  "name": "Statement Provided Under Seal",
+                  "price": 4.55,
+                  "note": "Do not open the envelope before eating."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Sauce Adhesion Standard",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tossed and Adhered",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sauce Applied Separately",
+                  "price": 3.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce Withheld Entirely",
+                  "price": 2.75,
+                  "note": "Withholding is priced at parity with application."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Parmesan Dust Loading",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Light Dusting",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy Dusting",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Airborne Concentration",
+                  "price": 4.9,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-017",
+          "name": "Wing Ballast",
+          "desc": "The sauce, drippings, and loose fried matter recovered from the bottom of the wing tray, served in a lidded container. Ordered deliberately by a small and consistent group of guests.",
+          "price": 2.85,
+          "calories": 1640,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Recovery Batch Age",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Today's Batch",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Yesterday's Batch",
+                  "price": 3.95,
+                  "note": "Yesterday's batch is more concentrated and costs more."
+                },
+                {
+                  "id": "o3",
+                  "name": "Batch Age Not Specified",
+                  "price": 3.2,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Container Seal Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Snap Lid",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Taped Snap Lid",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Lid",
+                  "price": 1.85,
+                  "note": "Transported upright. Uprightness is attempted, not guaranteed."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Wet Napkin Provisioning",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Napkin",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sleeve",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal Roll",
+                  "price": 7.15,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "household-personal-formats",
+      "name": "Personal Pan Household Formats",
+      "blurb": "Personal means one pan. It has never meant one person.",
+      "items": [
+        {
+          "id": "phz-018",
+          "name": "Personal Pan for a Household of Six",
+          "desc": "The classic personal pan, unchanged since 1993 except in diameter, depth, weight, and the number of crusts inside the crust. Served in the pan it was baked in.",
+          "price": 4.15,
+          "calories": 5240,
+          "badges": [
+            "#1 Most Liked",
+            "Popular"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an oversized deep pepperoni pan pizza still in its blackened steel pan, sitting inside an open corrugated cardboard delivery box on the counter, cheese fused up the pan wall in a crisp ring, pepperoni cups full of orange oil, the thick stuffed crust split open at one point. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Mild motion blur and soft focus, visible JPEG compression artefacts and sensor noise. Flat phone-camera look, unretouched. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Household Format Sizing",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 2.95,
+                  "note": "Serves six."
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 6.4,
+                  "note": "Serves six."
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 13.85,
+                  "note": "Serves a cul-de-sac."
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional",
+                  "price": 24.5,
+                  "note": "Delivered on a pallet."
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed",
+                  "price": 39.75,
+                  "note": "Delivered to the curb. Transport from the curb is the household's responsibility."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Crust Recursion Depth",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Depth One (Crust Within Crust)",
+                  "price": 4.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Depth Two (Crust Within Crust Within Crust)",
+                  "price": 8.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Depth Zero (Suppress Recursion)",
+                  "price": 5.6,
+                  "note": "Recursion cannot be removed, only suppressed. Suppression is billed at the technician rate."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Pan Return Obligation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Return the Pan",
+                  "price": 4.1,
+                  "note": "You are responsible for transporting the pan back to Pad C."
+                },
+                {
+                  "id": "o2",
+                  "name": "Keep the Pan",
+                  "price": 6.8,
+                  "note": "Ownership transfers at the door and cannot be reversed."
+                },
+                {
+                  "id": "o3",
+                  "name": "Pan Status Unresolved",
+                  "price": 5.45,
+                  "note": "Unresolved pans are reviewed annually."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Arcade Token Allotment",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Tokens",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sleeve of Tokens",
+                  "price": 6.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Legacy Token Bucket",
+                  "price": 12.4,
+                  "note": "Tokens are not currency and the cabinet was removed in 2009."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-019",
+          "name": "Single-Occupant Pan",
+          "desc": "Our only pizza intended for one person. It weighs four pounds. The Hutch considers this restrained.",
+          "price": 3.95,
+          "calories": 3320,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Occupancy Verification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Verified Single Occupant",
+                  "price": 2.85,
+                  "note": "Verification is performed at the door by observation."
+                },
+                {
+                  "id": "o2",
+                  "name": "Unverified",
+                  "price": 2.85,
+                  "note": "Priced identically. Verification is not the cost driver."
+                },
+                {
+                  "id": "o3",
+                  "name": "Occupancy Disputed",
+                  "price": 4.4,
+                  "note": "Disputes are logged and do not delay the order."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Retention Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Retained",
+                  "price": 3.85,
+                  "note": "Heat is generated at the Hutch and billed at the Hutch."
+                },
+                {
+                  "id": "o2",
+                  "name": "Released",
+                  "price": 2.2,
+                  "note": "Heat is released into the vehicle. The vehicle is not credited."
+                },
+                {
+                  "id": "o3",
+                  "name": "Undeclared",
+                  "price": 1.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Stained-Glass Lamp Ambience",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lamp Glow Simulated in Transit",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Authentic Lamp Photograph Enclosed",
+                  "price": 2.75,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-020",
+          "name": "Lunch Buffet Recovery Tray",
+          "desc": "Everything remaining on the buffet line at 2:14 PM, consolidated onto one tray and sold at a reduced rate. Composition varies daily and is not disclosed in advance.",
+          "price": 6.7,
+          "calories": 5810,
+          "badges": [
+            "Regionally Legal",
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Consolidation Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Layered by Category",
+                  "price": 3.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Layered by Arrival Time",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Not Layered",
+                  "price": 3.75,
+                  "note": "Unlayered trays are consolidated by gravity during transit."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cardboard Interface",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Box",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reinforced Box",
+                  "price": 4.35,
+                  "note": "Rated to municipal depth."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Box",
+                  "price": 2.95,
+                  "note": "Boxless delivery requires a signed hand-off and a clean flat surface."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Tray Lid Policy",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lid Applied",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Lid Enclosed, Unapplied",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Second Tray Used as Lid",
+                  "price": 5.3,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salad-bar-legacy-terminal",
+      "name": "Salad Bar Legacy Terminal",
+      "blurb": "The bar remains. The sneeze guard remains. Access is metered.",
+      "items": [
+        {
+          "id": "phz-021",
+          "name": "Sneeze Guard Assembly",
+          "desc": "Iceberg base, three bins of your choosing, and whatever has migrated between the bins. Assembled behind the guard by an employee who will not narrate the process.",
+          "price": 4.3,
+          "calories": 1420,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Salad Bar Return Privileges",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Return",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Unlimited Returns",
+                  "price": 8.9,
+                  "note": "Returns must occur during a single unbroken visit. You are not visiting."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Returns",
+                  "price": 2.2,
+                  "note": "Priced at parity. The privilege is issued and then revoked at no discount."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bin Migration Disclosure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Migration Disclosed",
+                  "price": 1.85,
+                  "note": "An itemized list of cross-bin contents is enclosed."
+                },
+                {
+                  "id": "o2",
+                  "name": "Migration Undisclosed",
+                  "price": 1.85,
+                  "note": "The contents are identical. Only the list is withheld."
+                },
+                {
+                  "id": "o3",
+                  "name": "Migration Prevented",
+                  "price": 4.6,
+                  "note": "Prevention requires a dedicated employee and is priced accordingly."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dressing Delivery Pressure",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Drizzle",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Flood",
+                  "price": 3.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pressurized Injection",
+                  "price": 6.9,
+                  "note": "Performed at the Hutch. The salad arrives already injected."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-022",
+          "name": "Cinnamon Adhesion Sticks",
+          "desc": "Dessert sticks under a heavy cinnamon-sugar crust, with icing supplied at a pressure of your choosing. The crust contains a smaller sweetened crust, per standard PH-9.",
+          "price": 3.6,
+          "calories": 2540,
+          "badges": [
+            "Chef Recommended",
+            "Popular"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: about ten thick cinnamon-sugar dessert sticks crowded into a plain white takeout box, heavily crusted in coarse cinnamon sugar, white icing squeezed over them in uneven ribbons and pooling in the bottom corner of the box, loose sugar scattered around. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the box. The box sitting directly on a scratched laminate counter with crumbs and a smear of icing beside it. Flat phone-camera look, unretouched, mixed white balance, slightly noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cinnamon Adhesion Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Class A Adhesion",
+                  "price": 2.85,
+                  "note": "Cinnamon remains on the stick through delivery."
+                },
+                {
+                  "id": "o2",
+                  "name": "Class C Adhesion",
+                  "price": 1.95,
+                  "note": "Cinnamon remains on the stick through the parking lot."
+                },
+                {
+                  "id": "o3",
+                  "name": "Non-Adherent",
+                  "price": 3.4,
+                  "note": "Cinnamon is applied to the interior of the box instead of the sticks."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Icing Delivery Pressure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Drizzle",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Flood",
+                  "price": 3.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pressurized Injection",
+                  "price": 6.9,
+                  "note": "Injected at the Hutch. Sticks may be structurally altered."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Post-Consumption Nap Waiver",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Waiver Signed Digitally",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Waiver Signed at the Door",
+                  "price": 2.3,
+                  "note": "The Gorger carries a clipboard."
+                },
+                {
+                  "id": "o3",
+                  "name": "Waiver Declined",
+                  "price": 3.85,
+                  "note": "Declining does not prevent the nap."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "phz-023",
+          "name": "Fountain Draw, Municipal",
+          "desc": "Thirty-two ounces drawn from the dine-in fountain and sealed for transport. Ice is a separate volumetric decision.",
+          "price": 2.45,
+          "calories": 640,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Refill Doctrine",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Draw",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Unlimited Within Premises",
+                  "price": 4.1,
+                  "note": "You are not on the premises. The doctrine still applies."
+                },
+                {
+                  "id": "o3",
+                  "name": "Refill Declined",
+                  "price": 2.45,
+                  "note": "Declination is processed identically to acceptance."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ice Volumetrics",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Fill",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Ice to the Rim",
+                  "price": 2.6,
+                  "note": "Beverage volume reduces to approximately nine ounces."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Ice",
+                  "price": 1.9,
+                  "note": "Ice removal is performed after filling, by hand."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Lid and Straw Interface",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lid and Straw",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Lid, No Straw",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Straw, No Lid",
+                  "price": 1.35,
+                  "note": "Transported upright by agreement."
+                },
+                {
+                  "id": "o4",
+                  "name": "Souvenir Vessel Upgrade",
+                  "price": 18.4,
+                  "note": "The vessel commemorates a promotion that concluded in 1997."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

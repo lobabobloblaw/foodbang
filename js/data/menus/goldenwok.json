@@ -1,0 +1,3116 @@
+{
+  "slug": "goldenwok",
+  "name": "Golden Wok Express",
+  "shortName": "Golden Wok",
+  "tagline": "PLEASE HAVE YOUR NUMBER READY.",
+  "cuisine": "Chinese · Takeout",
+  "categories": [
+    "asian",
+    "fast-food"
+  ],
+  "rating": 4.6,
+  "ratingCount": 312,
+  "deliveryMin": 42,
+  "deliveryMax": 76,
+  "deliveryFee": 6.49,
+  "distanceMi": 3.4,
+  "priceTier": 1,
+  "gorgePlus": false,
+  "closesAt": "9:40 PM",
+  "address": "Unit 4, Northgate Plaza (behind the bank, next to the tax place), 11740 Old Kettering Pike Frontage Road, Meadowbrook Commons",
+  "about": "My parents opened Golden Wok Express in 1987 on Delaware Ave and we moved here in 2004 when they put up the plaza. There are 214 items on the paper menu and all of it is still cooked in the back by hand. My mother still makes the wonton soup. Most people call the phone, which is fine with us.",
+  "announcement": "WE ARE OPEN. The app says 40 minutes but it is usualy faster if you call. Only some of the 214 items are on here — if you want a number that is not listed please call (330) 555-0148 and ask for Danny. Cash is still preferred but the card machine works again.",
+  "promos": [],
+  "reviews": [
+    {
+      "name": "Ramona V.",
+      "stars": 5,
+      "date": "Aug 16",
+      "text": "We have been ordering from Golden Wok since they were on Delaware and I want to say something about it. The boneless spare ribs are the same as they were when I was in high school, exactly the same, and the woman who makes the wonton soup asked about my son by name last month. Forty minutes is nothing. I would wait two hours. The modifier screen is insane and I pay it every single time."
+    },
+    {
+      "name": "Jeff D.",
+      "stars": 5,
+      "date": "Aug 12",
+      "text": "Ordered the 114 and it came out of the wok so hot it warped the container. Danny told me I should have gotten the 121. Danny was right."
+    },
+    {
+      "name": "Tyler S.",
+      "stars": 1,
+      "date": "Aug 9",
+      "text": "There is nowhere to park in this plaza. Two spots and the tax place takes both of them. Food was great but I am rating the parking."
+    },
+    {
+      "name": "Meiling C.",
+      "stars": 4,
+      "date": "Aug 3",
+      "text": "Charged me $1.10 to not put meat in the fried rice. Owner explained it is a separate pan and honestly that tracked."
+    },
+    {
+      "name": "Doug A.",
+      "stars": 1,
+      "date": "Jul 28",
+      "text": "I called three times and nobody picked up and then I found out I was calling the wrong restaurant. Leaving this up."
+    },
+    {
+      "name": "Priya N.",
+      "stars": 5,
+      "date": "Jul 19",
+      "text": "The egg drop soup description is in all capital letters warning you about the lid and I ignored it and I want everyone to know it was my own fault. Five stars. The soup was excellent, in my car."
+    }
+  ],
+  "local": true,
+  "menu": [
+    {
+      "id": "appetizers-1-24",
+      "name": "Appetizers (1–24)",
+      "blurb": "Numbers 1 through 24 on the paper menu. The app only shows some of them.",
+      "items": [
+        {
+          "id": "gwk-001",
+          "name": "Egg Rolls (Sold in Threes)",
+          "desc": "Pork and cabbage, fried to order. They come in threes because the wrapper comes in threes.",
+          "price": 2.85,
+          "calories": 640,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three large golden-brown egg rolls, blistered and slightly split at one end, sitting on a white paper plate with a small paper cup of orange duck sauce beside them and a scatter of soy sauce packets. Harsh direct on-camera flash, hot blown-out hotspot on the fried shells, hard black shadow thrown behind the plate. Framed slightly crooked with the plate cut off at the right edge, sitting on a scratched stainless counter. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Item Number Confirmation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I said the number correctly",
+                  "price": 0.85,
+                  "note": "Confirming a correct number is still a confirmation."
+                },
+                {
+                  "id": "o2",
+                  "name": "I said a number, it was the wrong one",
+                  "price": 1.95,
+                  "note": "The kitchen will work out which one you meant. It usually can."
+                },
+                {
+                  "id": "o3",
+                  "name": "I did not use a number",
+                  "price": 1.45,
+                  "note": "Someone has to find it on the paper menu, which is in the back."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Egg Roll Count Adjustment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Three, the way it is listed",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two",
+                  "price": 0.95,
+                  "note": "The third one is already fried and it is going in somebody's bag regardless."
+                },
+                {
+                  "id": "o3",
+                  "name": "Four",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Five",
+                  "price": 2.75,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Soy & Duck Sauce Packets",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two of each",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "As many as fit",
+                  "price": 2.6,
+                  "note": "Fit is determined by the bag, not by you."
+                },
+                {
+                  "id": "o3",
+                  "name": "Only soy",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "None, I have a drawer of them at home",
+                  "price": 1.25,
+                  "note": "Everybody says this. They still get counted out and put back, which is labor."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Extra From the Front Case",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two egg rolls that are already fried",
+                  "price": 2.15,
+                  "note": "They have been under the lamp since the lunch rush and honestly they are better like that."
+                },
+                {
+                  "id": "o2",
+                  "name": "Fried wonton strips, big bag",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "A pint of duck sauce",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Almond cookies from the jar",
+                  "price": 1.6,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-002",
+          "name": "Crab Rangoon (6 Pieces)",
+          "desc": "Cream cheese, scallion, a little crab. Fried in the same oil as everything else and we are not going to pretend otherwise.",
+          "price": 3.4,
+          "calories": 720,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Item Number Confirmation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I said the number correctly",
+                  "price": 0.85,
+                  "note": "Confirming a correct number is still a confirmation."
+                },
+                {
+                  "id": "o2",
+                  "name": "I said a number, it was the wrong one",
+                  "price": 1.95,
+                  "note": "The kitchen will work out which one you meant. It usually can."
+                },
+                {
+                  "id": "o3",
+                  "name": "I did not use a number",
+                  "price": 1.45,
+                  "note": "Someone has to find it on the paper menu, which is in the back."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Crispy Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra crispy",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce in a separate cup so it stays crispy",
+                  "price": 2.2,
+                  "note": "The cup is the cost. The crispiness is free."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Notes for the Kitchen",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "No MSG",
+                  "price": 1.9,
+                  "note": "Leaving something out takes the same attention as putting it in."
+                },
+                {
+                  "id": "o2",
+                  "name": "No onion",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra sauce on the side",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Please knock, the bell does not work",
+                  "price": 0.95,
+                  "note": "The bell has not worked since 2019. A man quoted us $340 to fix it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-003",
+          "name": "Fried Dumplings (8 Pieces)",
+          "desc": "Hand folded in the morning by whoever is here first.",
+          "price": 4.1,
+          "calories": 980,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Steamed or Fried",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fried",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Steamed",
+                  "price": 0.75,
+                  "note": "The steamer basket has to come out and go back."
+                },
+                {
+                  "id": "o3",
+                  "name": "Half and half",
+                  "price": 2.1,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chopsticks or Fork",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chopsticks",
+                  "price": 0.6,
+                  "note": "Two sticks, one paper sleeve."
+                },
+                {
+                  "id": "o2",
+                  "name": "Fork",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Both",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Neither",
+                  "price": 0.9,
+                  "note": "Not putting them in is done by hand, same as putting them in."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Notes for the Kitchen",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "No MSG",
+                  "price": 1.9,
+                  "note": "Leaving something out takes the same attention as putting it in."
+                },
+                {
+                  "id": "o2",
+                  "name": "No onion",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra sauce on the side",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Please knock, the bell does not work",
+                  "price": 0.95,
+                  "note": "The bell has not worked since 2019. A man quoted us $340 to fix it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-004",
+          "name": "Boneless Spare Ribs (Pint)",
+          "desc": "Red on the outside, sliced thin. This is the one people drive over for.",
+          "price": 5.95,
+          "calories": 1420,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Size on the Board",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pint",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Quart",
+                  "price": 3.4,
+                  "note": "A real quart. We have been measured."
+                },
+                {
+                  "id": "o3",
+                  "name": "Half tray",
+                  "price": 14.2,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Full tray",
+                  "price": 26.9,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Township tray",
+                  "price": 41.5,
+                  "note": "Feeds forty. Two days notice preferred. We will do it with less notice and we will mention it the whole time."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fortune Cookies in the Bag",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "One for each person",
+                  "price": 1.8,
+                  "note": "Household size is taken at your word and billed at ours."
+                },
+                {
+                  "id": "o3",
+                  "name": "A handful",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "None",
+                  "price": 0.75,
+                  "note": "Taking a cookie out of the bag is the same motion as putting one in."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Grease Sheet Under the Food",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Yes",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "No",
+                  "price": 0.65,
+                  "note": "The sheet is cut either way, at the start of the day."
+                },
+                {
+                  "id": "o3",
+                  "name": "Two sheets",
+                  "price": 1.2,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "From the Cooler",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Can of soda",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Can of soda, cold",
+                  "price": 2.35,
+                  "note": "The cooler on the left is the cold one. The right one is a shelf."
+                },
+                {
+                  "id": "o3",
+                  "name": "Bottle of water",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "The mango drink",
+                  "price": 3.1,
+                  "note": "There is one. There has been one for a while."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "soups-25-39",
+      "name": "Soups (25–39)",
+      "blurb": "My mother makes the wonton soup. She does not make the egg drop and she will tell you that.",
+      "items": [
+        {
+          "id": "gwk-005",
+          "name": "Wonton Soup",
+          "desc": "Pork wontons in clear broth. Same recipe since 1987.",
+          "price": 1.95,
+          "calories": 620,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a full plastic-lidded soup cup of wonton soup with the lid resting beside it, six plump pork wontons and a few slivers of green onion floating in clear golden broth, a small bag of fried wonton strips next to the cup. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above, the cup not centred in the frame. Flat phone-camera look, unretouched, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Wonton Count in the Cup",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Six, which is standard",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Eight",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "However many my mother puts in",
+                  "price": 0.95,
+                  "note": "She does not count. This is priced for the uncertainty, not the wontons."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fried Wonton Strips",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "In a little bag",
+                  "price": 0.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "On top",
+                  "price": 0.8,
+                  "note": "They go soft. Every time. We will still do it."
+                },
+                {
+                  "id": "o3",
+                  "name": "Both",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "None",
+                  "price": 1.1,
+                  "note": "The strips are bagged during prep, before anyone knows what you want."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Notes for the Kitchen",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "No MSG",
+                  "price": 1.9,
+                  "note": "Leaving something out takes the same attention as putting it in."
+                },
+                {
+                  "id": "o2",
+                  "name": "No onion",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra sauce on the side",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Please knock, the bell does not work",
+                  "price": 0.95,
+                  "note": "The bell has not worked since 2019. A man quoted us $340 to fix it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-006",
+          "name": "Hot & Sour Soup (Quart)",
+          "desc": "Tofu, bamboo, black mushroom, egg ribbon. Thick enough to hold a spoon up for about a second.",
+          "price": 3.25,
+          "calories": 780,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Vinegar and Pepper Balance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "More vinegar",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "More pepper",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "More of both",
+                  "price": 1.7,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Time Under the Lamp",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Straight out of the wok",
+                  "price": 2.1,
+                  "note": "This means somebody stands at the wok and waits for you."
+                },
+                {
+                  "id": "o2",
+                  "name": "Normal",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "It can sit, I am still parking",
+                  "price": 1.15,
+                  "note": "Sitting is monitored."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Soy & Duck Sauce Packets",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two of each",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "As many as fit",
+                  "price": 2.6,
+                  "note": "Fit is determined by the bag, not by you."
+                },
+                {
+                  "id": "o3",
+                  "name": "Only soy",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "None, I have a drawer of them at home",
+                  "price": 1.25,
+                  "note": "Everybody says this. They still get counted out and put back, which is labor."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "From the Cooler",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Can of soda",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Can of soda, cold",
+                  "price": 2.35,
+                  "note": "The cooler on the left is the cold one. The right one is a shelf."
+                },
+                {
+                  "id": "o3",
+                  "name": "Bottle of water",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "The mango drink",
+                  "price": 3.1,
+                  "note": "There is one. There has been one for a while."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-007",
+          "name": "Egg Drop Soup",
+          "desc": "IT IS VERY HOT WHEN IT LEAVES HERE. THE LID IS NOT A SEAL. PUT IT ON THE FLOOR OF THE CAR, NOT ON THE SEAT.",
+          "price": 1.85,
+          "calories": 540,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Lid Seal Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I understand the lid is not a seal",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Please tape it",
+                  "price": 1.35,
+                  "note": "Tape is applied by hand, all the way around the rim."
+                },
+                {
+                  "id": "o3",
+                  "name": "Please double cup it",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "I do not acknowledge anything",
+                  "price": 1.1,
+                  "note": "The soup travels the same either way."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fried Wonton Strips",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "In a little bag",
+                  "price": 0.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "On top",
+                  "price": 0.8,
+                  "note": "They go soft. Every time. We will still do it."
+                },
+                {
+                  "id": "o3",
+                  "name": "Both",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "None",
+                  "price": 1.1,
+                  "note": "The strips are bagged during prep, before anyone knows what you want."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Notes for the Kitchen",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "No MSG",
+                  "price": 1.9,
+                  "note": "Leaving something out takes the same attention as putting it in."
+                },
+                {
+                  "id": "o2",
+                  "name": "No onion",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra sauce on the side",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Please knock, the bell does not work",
+                  "price": 0.95,
+                  "note": "The bell has not worked since 2019. A man quoted us $340 to fix it."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "combination-plates",
+      "name": "Combination Plates (101–148)",
+      "blurb": "Comes with pork fried rice and an egg roll. Both of those are included and both are also configured below.",
+      "items": [
+        {
+          "id": "gwk-008",
+          "name": "C-114 General Tso's Chicken Combination Plate",
+          "desc": "Dark, sweet, a little heat, dried chillies left in. The number is 114 and people say it wrong every day.",
+          "price": 6.45,
+          "calories": 1780,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a two-compartment white styrofoam clamshell held open, one side heaped with dark glossy General Tso's chicken and dried red chillies, the other side packed with pork fried rice, an egg roll wedged in at the corner. Bright unflattering daylight coming through a window on one side, blown highlights on the near edge of the styrofoam, mixed white balance. Cluttered background: a stainless prep counter, a stack of container lids, another order waiting in a bag. Flat phone-camera look, unretouched, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Choice of Side",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pork fried rice (as listed)",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White rice",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Vegetable fried rice",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Lo mein",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "French fries",
+                  "price": 1.85,
+                  "note": "Yes we have them. Number 19. Nobody believes us."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Soup That Comes With It",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Egg drop",
+                  "price": 1.6,
+                  "note": "The soup is free. The cup, the lid and the trip are not."
+                },
+                {
+                  "id": "o2",
+                  "name": "Wonton",
+                  "price": 2.25,
+                  "note": "Priced as the difference between free and wonton."
+                },
+                {
+                  "id": "o3",
+                  "name": "Hot and sour",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No soup, thank you",
+                  "price": 1.6,
+                  "note": "The cup was already stacked and counted this morning."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Spice Request (Written on the Lid)",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Not spicy",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "A little spicy",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Spicy",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Spicy the way you make it for yourselves",
+                  "price": 3.75,
+                  "note": "Honored once per customer, then discussed with you at the counter."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Things Danny Recommends",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "The other one, not this one",
+                  "price": 3.2,
+                  "note": "Danny thinks you ordered wrong. He is usually right."
+                },
+                {
+                  "id": "o2",
+                  "name": "A pint of whatever he is eating",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "The thing on the specials board that is not written down",
+                  "price": 6.8,
+                  "note": "It is not written down. It is very good."
+                },
+                {
+                  "id": "o4",
+                  "name": "Nothing, but tell him thank you",
+                  "price": 0.9,
+                  "note": "The message is delivered."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-009",
+          "name": "C-121 Sesame Chicken Combination Plate",
+          "desc": "Same chicken as 114, different sauce, more sesame. Milder. This is the one for the kids.",
+          "price": 6.45,
+          "calories": 1840,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Choice of Side",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pork fried rice (as listed)",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White rice",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Vegetable fried rice",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Lo mein",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "French fries",
+                  "price": 1.85,
+                  "note": "Yes we have them. Number 19. Nobody believes us."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Soup That Comes With It",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Egg drop",
+                  "price": 1.6,
+                  "note": "The soup is free. The cup, the lid and the trip are not."
+                },
+                {
+                  "id": "o2",
+                  "name": "Wonton",
+                  "price": 2.25,
+                  "note": "Priced as the difference between free and wonton."
+                },
+                {
+                  "id": "o3",
+                  "name": "Hot and sour",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No soup, thank you",
+                  "price": 1.6,
+                  "note": "The cup was already stacked and counted this morning."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Crispy Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra crispy",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce in a separate cup so it stays crispy",
+                  "price": 2.2,
+                  "note": "The cup is the cost. The crispiness is free."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "From the Cooler",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Can of soda",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Can of soda, cold",
+                  "price": 2.35,
+                  "note": "The cooler on the left is the cold one. The right one is a shelf."
+                },
+                {
+                  "id": "o3",
+                  "name": "Bottle of water",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "The mango drink",
+                  "price": 3.1,
+                  "note": "There is one. There has been one for a while."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-010",
+          "name": "C-108 Chicken with Broccoli Combination Plate",
+          "desc": "White meat, brown sauce, broccoli cut this morning.",
+          "price": 6.2,
+          "calories": 1310,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Choice of Side",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pork fried rice (as listed)",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White rice",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Vegetable fried rice",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Lo mein",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "French fries",
+                  "price": 1.85,
+                  "note": "Yes we have them. Number 19. Nobody believes us."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Soup That Comes With It",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Egg drop",
+                  "price": 1.6,
+                  "note": "The soup is free. The cup, the lid and the trip are not."
+                },
+                {
+                  "id": "o2",
+                  "name": "Wonton",
+                  "price": 2.25,
+                  "note": "Priced as the difference between free and wonton."
+                },
+                {
+                  "id": "o3",
+                  "name": "Hot and sour",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No soup, thank you",
+                  "price": 1.6,
+                  "note": "The cup was already stacked and counted this morning."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Broccoli Situation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "The normal amount",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra broccoli",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Less broccoli",
+                  "price": 0.95,
+                  "note": "The broccoli was cut for the whole day at six this morning."
+                },
+                {
+                  "id": "o4",
+                  "name": "No broccoli",
+                  "price": 1.85,
+                  "note": "Then it is just beef, which is a different number."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Notes for the Kitchen",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "No MSG",
+                  "price": 1.9,
+                  "note": "Leaving something out takes the same attention as putting it in."
+                },
+                {
+                  "id": "o2",
+                  "name": "No onion",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra sauce on the side",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Please knock, the bell does not work",
+                  "price": 0.95,
+                  "note": "The bell has not worked since 2019. A man quoted us $340 to fix it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-011",
+          "name": "C-133 Shrimp with Lobster Sauce Combination Plate",
+          "desc": "There is no lobster in lobster sauce. There never was. Please stop calling about it.",
+          "price": 7.35,
+          "calories": 1490,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Choice of Side",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pork fried rice (as listed)",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White rice",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Vegetable fried rice",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Lo mein",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "French fries",
+                  "price": 1.85,
+                  "note": "Yes we have them. Number 19. Nobody believes us."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Soup That Comes With It",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Egg drop",
+                  "price": 1.6,
+                  "note": "The soup is free. The cup, the lid and the trip are not."
+                },
+                {
+                  "id": "o2",
+                  "name": "Wonton",
+                  "price": 2.25,
+                  "note": "Priced as the difference between free and wonton."
+                },
+                {
+                  "id": "o3",
+                  "name": "Hot and sour",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No soup, thank you",
+                  "price": 1.6,
+                  "note": "The cup was already stacked and counted this morning."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Shrimp Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "However many go in it",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Count them for me",
+                  "price": 1.95,
+                  "note": "Counted twice, once by whoever cooks it and once by Danny."
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra shrimp",
+                  "price": 5.2,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Things Danny Recommends",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "The other one, not this one",
+                  "price": 3.2,
+                  "note": "Danny thinks you ordered wrong. He is usually right."
+                },
+                {
+                  "id": "o2",
+                  "name": "A pint of whatever he is eating",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "The thing on the specials board that is not written down",
+                  "price": 6.8,
+                  "note": "It is not written down. It is very good."
+                },
+                {
+                  "id": "o4",
+                  "name": "Nothing, but tell him thank you",
+                  "price": 0.9,
+                  "note": "The message is delivered."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-012",
+          "name": "C-140 Pepper Steak with Onion Combination Plate",
+          "desc": "Sliced steak, green pepper, onion, dark sauce. Best on the second day, which we know we should not admit.",
+          "price": 6.9,
+          "calories": 1520,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Choice of Side",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pork fried rice (as listed)",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White rice",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Vegetable fried rice",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Lo mein",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "French fries",
+                  "price": 1.85,
+                  "note": "Yes we have them. Number 19. Nobody believes us."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Soup That Comes With It",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Egg drop",
+                  "price": 1.6,
+                  "note": "The soup is free. The cup, the lid and the trip are not."
+                },
+                {
+                  "id": "o2",
+                  "name": "Wonton",
+                  "price": 2.25,
+                  "note": "Priced as the difference between free and wonton."
+                },
+                {
+                  "id": "o3",
+                  "name": "Hot and sour",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No soup, thank you",
+                  "price": 1.6,
+                  "note": "The cup was already stacked and counted this morning."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Onion Question",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Onion the way it comes",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra onion",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Onion cut bigger",
+                  "price": 1.1,
+                  "note": "Bigger pieces are fewer cuts and cost more. That is correct and we cannot explain it."
+                },
+                {
+                  "id": "o4",
+                  "name": "No onion",
+                  "price": 1.9,
+                  "note": "It is called Pepper Steak with Onion. Without it, it is number 141."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Notes for the Kitchen",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "No MSG",
+                  "price": 1.9,
+                  "note": "Leaving something out takes the same attention as putting it in."
+                },
+                {
+                  "id": "o2",
+                  "name": "No onion",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra sauce on the side",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Please knock, the bell does not work",
+                  "price": 0.95,
+                  "note": "The bell has not worked since 2019. A man quoted us $340 to fix it."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chefs-specialties",
+      "name": "Chef's Specialties (150–186)",
+      "blurb": "These take longer. That is on purpose and it is not going to change.",
+      "items": [
+        {
+          "id": "gwk-013",
+          "name": "Beef with Broccoli",
+          "desc": "Flank steak, velveted, brown sauce. The broccoli is real broccoli and there is a lot of it.",
+          "price": 7.2,
+          "calories": 1180,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a generous aluminium foil tray of beef with broccoli, thin dark beef slices and bright green broccoli florets in a thick brown sauce pooling at one corner, the cardboard lid propped open behind it. Harsh direct on-camera flash, hot blown-out hotspot on the sauce, hard black shadow thrown behind the tray. The tray sitting directly on a scratched laminate counter with crumbs and a smear of sauce beside it. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Broccoli Situation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "The normal amount",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra broccoli",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Less broccoli",
+                  "price": 0.95,
+                  "note": "The broccoli was cut for the whole day at six this morning."
+                },
+                {
+                  "id": "o4",
+                  "name": "No broccoli",
+                  "price": 1.85,
+                  "note": "Then it is just beef, which is a different number."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Vegetable-to-Meat Ratio",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "The way it comes",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "More meat",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "More vegetable",
+                  "price": 1.2,
+                  "note": "Vegetables cost less and take more cutting. It comes out about even."
+                },
+                {
+                  "id": "o4",
+                  "name": "All meat",
+                  "price": 5.4,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Which Container It Goes In",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White takeout box",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil tray with a cardboard lid",
+                  "price": 1.75,
+                  "note": "Holds the heat. Does not hold the sauce."
+                },
+                {
+                  "id": "o3",
+                  "name": "Plastic quart with a lid",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Whatever is on top of the stack",
+                  "price": 1.2,
+                  "note": "This is what happens anyway and it is priced the same as choosing."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Things Danny Recommends",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "The other one, not this one",
+                  "price": 3.2,
+                  "note": "Danny thinks you ordered wrong. He is usually right."
+                },
+                {
+                  "id": "o2",
+                  "name": "A pint of whatever he is eating",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "The thing on the specials board that is not written down",
+                  "price": 6.8,
+                  "note": "It is not written down. It is very good."
+                },
+                {
+                  "id": "o4",
+                  "name": "Nothing, but tell him thank you",
+                  "price": 0.9,
+                  "note": "The message is delivered."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-014",
+          "name": "Happy Family",
+          "desc": "Chicken, beef, shrimp, roast pork and vegetables in brown sauce. It is the biggest thing we make.",
+          "price": 9.8,
+          "calories": 2240,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Who Is In the Family",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chicken, beef and shrimp, standard",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Add roast pork",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Add scallop",
+                  "price": 4.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Everything in the walk-in",
+                  "price": 8.6,
+                  "note": "This is what Happy Family means. We are being literal, for a fee."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Time Under the Lamp",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Straight out of the wok",
+                  "price": 2.1,
+                  "note": "This means somebody stands at the wok and waits for you."
+                },
+                {
+                  "id": "o2",
+                  "name": "Normal",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "It can sit, I am still parking",
+                  "price": 1.15,
+                  "note": "Sitting is monitored."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Size on the Board",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pint",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Quart",
+                  "price": 3.4,
+                  "note": "A real quart. We have been measured."
+                },
+                {
+                  "id": "o3",
+                  "name": "Half tray",
+                  "price": 14.2,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Full tray",
+                  "price": 26.9,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Township tray",
+                  "price": 41.5,
+                  "note": "Feeds forty. Two days notice preferred. We will do it with less notice and we will mention it the whole time."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "From the Cooler",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Can of soda",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Can of soda, cold",
+                  "price": 2.35,
+                  "note": "The cooler on the left is the cold one. The right one is a shelf."
+                },
+                {
+                  "id": "o3",
+                  "name": "Bottle of water",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "The mango drink",
+                  "price": 3.1,
+                  "note": "There is one. There has been one for a while."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-015",
+          "name": "Orange Beef (Crispy)",
+          "desc": "Twice fried, dried orange peel, real heat. Order it if you mean it.",
+          "price": 8.45,
+          "calories": 1960,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Crispy Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra crispy",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce in a separate cup so it stays crispy",
+                  "price": 2.2,
+                  "note": "The cup is the cost. The crispiness is free."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Phone Order Parity Adjustment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I ordered on the app",
+                  "price": 2.4,
+                  "note": "The app takes a percentage. This is that percentage, moved."
+                },
+                {
+                  "id": "o2",
+                  "name": "I would have called but I could not find the number",
+                  "price": 1.6,
+                  "note": "It is (330) 555-0148. It is also on the bag."
+                },
+                {
+                  "id": "o3",
+                  "name": "I called first and then ordered on the app anyway",
+                  "price": 2.9,
+                  "note": "This happens. It is fine. Danny remembers."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Spice Request (Written on the Lid)",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Not spicy",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "A little spicy",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Spicy",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Spicy the way you make it for yourselves",
+                  "price": 3.75,
+                  "note": "Honored once per customer, then discussed with you at the counter."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Notes for the Kitchen",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "No MSG",
+                  "price": 1.9,
+                  "note": "Leaving something out takes the same attention as putting it in."
+                },
+                {
+                  "id": "o2",
+                  "name": "No onion",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra sauce on the side",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Please knock, the bell does not work",
+                  "price": 0.95,
+                  "note": "The bell has not worked since 2019. A man quoted us $340 to fix it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-016",
+          "name": "Salt & Pepper Shrimp",
+          "desc": "Shell on, wok tossed with jalapeño and onion. My father would only make this on Fridays. We make it every day now.",
+          "price": 9.1,
+          "calories": 1240,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Shrimp Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "However many go in it",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Count them for me",
+                  "price": 1.95,
+                  "note": "Counted twice, once by whoever cooks it and once by Danny."
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra shrimp",
+                  "price": 5.2,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Wok Time",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Normal",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Well done",
+                  "price": 1.85,
+                  "note": "Well done holds the wok longer, and the wok is the thing we only have four of."
+                },
+                {
+                  "id": "o3",
+                  "name": "Light",
+                  "price": 1.05,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Chopsticks or Fork",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chopsticks",
+                  "price": 0.6,
+                  "note": "Two sticks, one paper sleeve."
+                },
+                {
+                  "id": "o2",
+                  "name": "Fork",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Both",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Neither",
+                  "price": 0.9,
+                  "note": "Not putting them in is done by hand, same as putting them in."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Things Danny Recommends",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "The other one, not this one",
+                  "price": 3.2,
+                  "note": "Danny thinks you ordered wrong. He is usually right."
+                },
+                {
+                  "id": "o2",
+                  "name": "A pint of whatever he is eating",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "The thing on the specials board that is not written down",
+                  "price": 6.8,
+                  "note": "It is not written down. It is very good."
+                },
+                {
+                  "id": "o4",
+                  "name": "Nothing, but tell him thank you",
+                  "price": 0.9,
+                  "note": "The message is delivered."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pint-and-quart",
+      "name": "By the Pint & Quart",
+      "blurb": "Rice and noodles. The quart is a real quart, we had it checked once.",
+      "items": [
+        {
+          "id": "gwk-017",
+          "name": "Pork Fried Rice (Quart)",
+          "desc": "Roast pork, egg, peas, scallion. More people order this than anything else on 214 items.",
+          "price": 4.85,
+          "calories": 1620,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a plain white takeout box with the flaps folded open, filled to the top and slightly overflowing with pork fried rice, visible cubes of roast pork, scrambled egg, peas and scallion, a plastic fork laid across the counter beside it. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Mild motion blur and soft focus, visible JPEG compression artefacts. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Size on the Board",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pint",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Quart",
+                  "price": 3.4,
+                  "note": "A real quart. We have been measured."
+                },
+                {
+                  "id": "o3",
+                  "name": "Half tray",
+                  "price": 14.2,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Full tray",
+                  "price": 26.9,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Township tray",
+                  "price": 41.5,
+                  "note": "Feeds forty. Two days notice preferred. We will do it with less notice and we will mention it the whole time."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Meat Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Roast pork",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Chicken",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Beef",
+                  "price": 1.7,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Shrimp",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "House special (all of them)",
+                  "price": 4.3,
+                  "note": null
+                },
+                {
+                  "id": "o6",
+                  "name": "No meat",
+                  "price": 1.1,
+                  "note": "Taking the meat out means a separate pan and a separate wash."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Fortune Cookies in the Bag",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "One for each person",
+                  "price": 1.8,
+                  "note": "Household size is taken at your word and billed at ours."
+                },
+                {
+                  "id": "o3",
+                  "name": "A handful",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "None",
+                  "price": 0.75,
+                  "note": "Taking a cookie out of the bag is the same motion as putting one in."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Extra From the Front Case",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two egg rolls that are already fried",
+                  "price": 2.15,
+                  "note": "They have been under the lamp since the lunch rush and honestly they are better like that."
+                },
+                {
+                  "id": "o2",
+                  "name": "Fried wonton strips, big bag",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "A pint of duck sauce",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Almond cookies from the jar",
+                  "price": 1.6,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-018",
+          "name": "Chicken Lo Mein (Quart)",
+          "desc": "Soft noodles, cabbage, carrot, white meat chicken.",
+          "price": 5.4,
+          "calories": 1720,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Noodle Cut",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular lo mein noodle",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Thin noodle",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Rice noodle",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Cut in half so it fits the container",
+                  "price": 0.85,
+                  "note": "Done with scissors. The scissors are shared with the whole kitchen."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Size on the Board",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pint",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Quart",
+                  "price": 3.4,
+                  "note": "A real quart. We have been measured."
+                },
+                {
+                  "id": "o3",
+                  "name": "Half tray",
+                  "price": 14.2,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Full tray",
+                  "price": 26.9,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Township tray",
+                  "price": 41.5,
+                  "note": "Feeds forty. Two days notice preferred. We will do it with less notice and we will mention it the whole time."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Which Container It Goes In",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White takeout box",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil tray with a cardboard lid",
+                  "price": 1.75,
+                  "note": "Holds the heat. Does not hold the sauce."
+                },
+                {
+                  "id": "o3",
+                  "name": "Plastic quart with a lid",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Whatever is on top of the stack",
+                  "price": 1.2,
+                  "note": "This is what happens anyway and it is priced the same as choosing."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "From the Cooler",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Can of soda",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Can of soda, cold",
+                  "price": 2.35,
+                  "note": "The cooler on the left is the cold one. The right one is a shelf."
+                },
+                {
+                  "id": "o3",
+                  "name": "Bottle of water",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "The mango drink",
+                  "price": 3.1,
+                  "note": "There is one. There has been one for a while."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-019",
+          "name": "House Special Fried Rice (Quart)",
+          "desc": "Pork, chicken and shrimp all in one. House special means we did not choose for you.",
+          "price": 6.1,
+          "calories": 1840,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Meat Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Roast pork",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Chicken",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Beef",
+                  "price": 1.7,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Shrimp",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "House special (all of them)",
+                  "price": 4.3,
+                  "note": null
+                },
+                {
+                  "id": "o6",
+                  "name": "No meat",
+                  "price": 1.1,
+                  "note": "Taking the meat out means a separate pan and a separate wash."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Size on the Board",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pint",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Quart",
+                  "price": 3.4,
+                  "note": "A real quart. We have been measured."
+                },
+                {
+                  "id": "o3",
+                  "name": "Half tray",
+                  "price": 14.2,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Full tray",
+                  "price": 26.9,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Township tray",
+                  "price": 41.5,
+                  "note": "Feeds forty. Two days notice preferred. We will do it with less notice and we will mention it the whole time."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Double Bagging Determination",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single bag",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double bag",
+                  "price": 1.3,
+                  "note": "The second bag is for the first bag."
+                },
+                {
+                  "id": "o3",
+                  "name": "No bag, I will carry it out like this",
+                  "price": 1.1,
+                  "note": "Handing food across the counter without a bag takes a different grip."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Notes for the Kitchen",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "No MSG",
+                  "price": 1.9,
+                  "note": "Leaving something out takes the same attention as putting it in."
+                },
+                {
+                  "id": "o2",
+                  "name": "No onion",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra sauce on the side",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Please knock, the bell does not work",
+                  "price": 0.95,
+                  "note": "The bell has not worked since 2019. A man quoted us $340 to fix it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-020",
+          "name": "White Rice (Pint)",
+          "desc": "Rice. It is a pint of rice.",
+          "price": 1.15,
+          "calories": 380,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Which Rice",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Brown (call first)",
+                  "price": 1.85,
+                  "note": "We do have it. It takes forty minutes and nobody has ever ordered it twice."
+                },
+                {
+                  "id": "o3",
+                  "name": "Fried rice instead",
+                  "price": 2.35,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chopsticks or Fork",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chopsticks",
+                  "price": 0.6,
+                  "note": "Two sticks, one paper sleeve."
+                },
+                {
+                  "id": "o2",
+                  "name": "Fork",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Both",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Neither",
+                  "price": 0.9,
+                  "note": "Not putting them in is done by hand, same as putting them in."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Soy & Duck Sauce Packets",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two of each",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "As many as fit",
+                  "price": 2.6,
+                  "note": "Fit is determined by the bag, not by you."
+                },
+                {
+                  "id": "o3",
+                  "name": "Only soy",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "None, I have a drawer of them at home",
+                  "price": 1.25,
+                  "note": "Everybody says this. They still get counted out and put back, which is labor."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lunch-specials",
+      "name": "Lunch Specials (Ended at 3:00)",
+      "blurb": "Served 11:00 to 3:00. It is after 3:00. You may still order these.",
+      "items": [
+        {
+          "id": "gwk-021",
+          "name": "L-12 Sesame Chicken Lunch Special",
+          "desc": "Smaller portion, comes with rice. The board price is still up because the tape is holding the board together.",
+          "price": 5.6,
+          "calories": 1440,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic deli container packed with sesame chicken coated in sticky glaze and sesame seeds over a bed of white rice, the clear lid resting beside it fogged with condensation, a small stack of napkins at the edge. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill. Framed slightly crooked, the container cut off at the bottom edge, sitting on a scratched laminate counter. Flat phone-camera look, unretouched, noisy, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Lunch Special Time Verification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "It is before 3:00",
+                  "price": 1.25,
+                  "note": "It is not."
+                },
+                {
+                  "id": "o2",
+                  "name": "It is after 3:00 and I want it anyway",
+                  "price": 2.4,
+                  "note": "That is fine, it is the same food. The board price is the lunch price, so this is the difference."
+                },
+                {
+                  "id": "o3",
+                  "name": "I do not know what time it is",
+                  "price": 1.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Choice of Side",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pork fried rice (as listed)",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White rice",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Vegetable fried rice",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Lo mein",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "French fries",
+                  "price": 1.85,
+                  "note": "Yes we have them. Number 19. Nobody believes us."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Crispy Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra crispy",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce in a separate cup so it stays crispy",
+                  "price": 2.2,
+                  "note": "The cup is the cost. The crispiness is free."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "From the Cooler",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Can of soda",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Can of soda, cold",
+                  "price": 2.35,
+                  "note": "The cooler on the left is the cold one. The right one is a shelf."
+                },
+                {
+                  "id": "o3",
+                  "name": "Bottle of water",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "The mango drink",
+                  "price": 3.1,
+                  "note": "There is one. There has been one for a while."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gwk-022",
+          "name": "L-04 Chicken Lo Mein Lunch Special",
+          "desc": "Same noodles, smaller container. This is the cheapest hot lunch in the plaza and we have checked.",
+          "price": 5.35,
+          "calories": 1380,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Lunch Special Time Verification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "It is before 3:00",
+                  "price": 1.25,
+                  "note": "It is not."
+                },
+                {
+                  "id": "o2",
+                  "name": "It is after 3:00 and I want it anyway",
+                  "price": 2.4,
+                  "note": "That is fine, it is the same food. The board price is the lunch price, so this is the difference."
+                },
+                {
+                  "id": "o3",
+                  "name": "I do not know what time it is",
+                  "price": 1.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Noodle Cut",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular lo mein noodle",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Thin noodle",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Rice noodle",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Cut in half so it fits the container",
+                  "price": 0.85,
+                  "note": "Done with scissors. The scissors are shared with the whole kitchen."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Soup That Comes With It",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Egg drop",
+                  "price": 1.6,
+                  "note": "The soup is free. The cup, the lid and the trip are not."
+                },
+                {
+                  "id": "o2",
+                  "name": "Wonton",
+                  "price": 2.25,
+                  "note": "Priced as the difference between free and wonton."
+                },
+                {
+                  "id": "o3",
+                  "name": "Hot and sour",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No soup, thank you",
+                  "price": 1.6,
+                  "note": "The cup was already stacked and counted this morning."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Notes for the Kitchen",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "No MSG",
+                  "price": 1.9,
+                  "note": "Leaving something out takes the same attention as putting it in."
+                },
+                {
+                  "id": "o2",
+                  "name": "No onion",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra sauce on the side",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Please knock, the bell does not work",
+                  "price": 0.95,
+                  "note": "The bell has not worked since 2019. A man quoted us $340 to fix it."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

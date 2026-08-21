@@ -1,0 +1,2213 @@
+{
+  "slug": "bobacloud",
+  "name": "Boba Cloud Tea & Snow",
+  "shortName": "Boba Cloud",
+  "tagline": "FORTY-ONE TOPPINGS. TWO PEOPLE.",
+  "cuisine": "Bubble Tea · Dessert",
+  "categories": [
+    "drinks",
+    "sweets",
+    "asian"
+  ],
+  "local": true,
+  "rating": 4.7,
+  "ratingCount": 214,
+  "deliveryMin": 41,
+  "deliveryMax": 76,
+  "deliveryFee": 6.49,
+  "distanceMi": 3.8,
+  "priceTier": 1,
+  "gorgePlus": false,
+  "closesAt": "9:20 PM",
+  "address": "1140 Pinewreath Crossing Plaza, Unit D-6 (behind the nail salon, share the lot with the tax place), Loam Springs",
+  "about": "We opened in 2017 after our old counter on Kessel Road lost its lease. My sister Amy does the snow bowls and I do the tea, and we are both here every day, which is why it sometimes takes a minute. Everything is shaken to order.",
+  "announcement": "THE SEALING MACHINE IS FIXED. Sorry to everybody last week, we were sending drinks out with press lids and they leaked in the bags. Also we can not do half sugar on the snow bowls anymore because it comes out seperate. If something is wrong with your order please call the shop at (555) 0142 before you rate us and we will remake it. - Teresa",
+  "promos": [
+    "FREE CAN OF SODA WITH ORDERS OVER $40"
+  ],
+  "reviews": [
+    {
+      "name": "Priya N.",
+      "stars": 5,
+      "date": "Aug 16",
+      "text": "I have been coming here since the Kessel Road shop and I want to say that the brown sugar pearls are still cooked fresh, which nobody else in this town does anymore. Teresa remembers that I take 25% sugar and she starts it before I finish saying it. The delivery took an hour and eleven minutes and I would do it again."
+    },
+    {
+      "name": "Dale W.",
+      "stars": 1,
+      "date": "Aug 11",
+      "text": "Lot is impossible. The tax place takes every space and there is a truck that parks across two of them all afternoon. Never got a drink."
+    },
+    {
+      "name": "Marisol C.",
+      "stars": 5,
+      "date": "Aug 04",
+      "text": "Ordered the mango snow in Sharing and it arrived as an intact mountain. My kids ate around it for forty minutes. The condensed milk is charged separately and honestly that is fine."
+    },
+    {
+      "name": "Kenji A.",
+      "stars": 4,
+      "date": "Jul 29",
+      "text": "Good tea. I selected No Ice and was billed for displaced volume, which was explained to me on the receipt in a way I did not expect from a bubble tea shop."
+    },
+    {
+      "name": "Brandi S.",
+      "stars": 2,
+      "date": "Jul 19",
+      "text": "Called about a catering order and the phone rang for a long time. Someone finally picked up and said they were both making drinks. I understand it but I still had to go to the other place."
+    },
+    {
+      "name": "Officer T. Rowe",
+      "stars": 5,
+      "date": "Jul 02",
+      "text": "The black sesame is not sweet and the menu says so in capital letters. I read it, I ordered it, I liked it. Everyone complaining did not read it."
+    }
+  ],
+  "menu": [
+    {
+      "id": "milk-tea",
+      "name": "Milk Tea",
+      "blurb": "Brewed in the back every four hours. If the afternoon batch tastes different it is because it is fresher.",
+      "items": [
+        {
+          "id": "bcs-001",
+          "name": "Classic Milk Tea",
+          "desc": "Black tea shaken cold with milk. This is the one to get first. If you do not tell us an ice level we will pick one for you and bill it.",
+          "price": 2.65,
+          "calories": 640,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of light tan milk tea with a thick layer of dark tapioca pearls settled across the bottom, heat-sealed flat film lid on top with a fat pink straw punched through it, condensation running down the outside, the cup standing on a bright white shop counter. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the base of the cup cut off at the bottom edge, a row of clear topping bins and a cup-sealing machine out of focus behind. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cup Volume Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular (16 oz)",
+                  "price": 3.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Large (24 oz)",
+                  "price": 5.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Family Pitcher (64 oz)",
+                  "price": 12.8,
+                  "note": "The pitcher is a deposit item. The deposit is not refundable and is therefore not a deposit."
+                },
+                {
+                  "id": "o4",
+                  "name": "Municipal Cambro (2 gal)",
+                  "price": 26.9,
+                  "note": "Both of us carry it out. The shop is closed for the duration of the handoff."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ice Level Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular Ice",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Less Ice",
+                  "price": 1.35,
+                  "note": "Less ice is more tea, and the tea is the part that costs money."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Ice",
+                  "price": 1.95,
+                  "note": "Ice withheld at your request is still weighed and billed as displaced volume."
+                },
+                {
+                  "id": "o4",
+                  "name": "Extra Ice",
+                  "price": 1.1,
+                  "note": "The cup still fills to the same line."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sugar Percentage Setting",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "100%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "75%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "50%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "25%",
+                  "price": 0.9,
+                  "note": "Partial sweetness needs a second pour and a second measurement."
+                },
+                {
+                  "id": "o5",
+                  "name": "0%",
+                  "price": 1.45,
+                  "note": "Unsweetened comes off a separate batch that we mostly end up pouring out."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Topping Bin Access",
+              "required": false,
+              "min": 0,
+              "max": 6,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tapioca Pearls",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Mini Pearls",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Grass Jelly",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Lychee Jelly",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Aloe",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o6",
+                  "name": "Cheese Foam Cap",
+                  "price": 2.6,
+                  "note": "Goes on top. Do not shake the cup on the way home."
+                },
+                {
+                  "id": "o7",
+                  "name": "All Forty-One Toppings",
+                  "price": 24.75,
+                  "note": "Comes with a spoon and a second empty cup for the overflow."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-002",
+          "name": "Brown Sugar Boba Milk",
+          "desc": "Fresh pearls cooked in brown sugar syrup, striped up the wall of the cup, cold milk poured over. There is no tea in this one, people ask.",
+          "price": 3.4,
+          "calories": 780,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic cup of brown sugar boba milk, thick dark caramel syrup streaked in heavy uneven stripes down the inside wall of the cup, a deep bed of glossy black tapioca pearls at the bottom, white milk filling the rest, no lid yet, standing on a white shop counter. Harsh direct on-camera flash, hot blown-out hotspot on the wet syrup, hard black shadow thrown behind the cup. Shot from too close and slightly above so the cup is not centred in the frame. Flat phone-camera look, unretouched, mixed white balance, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Boba Cook Window",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fresh Batch (straight out of the pot)",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standing Batch (cooked within the hour)",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Next Batch (we hold your order twelve minutes)",
+                  "price": 2.25,
+                  "note": "Your Gorger waits at the counter. We do not control what that does to your delivery estimate."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Brown Sugar Wall Striping",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Stripes",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy Stripes",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Stripes",
+                  "price": 1.2,
+                  "note": "The syrup is still poured. It is poured into the drain."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Milk Substrate Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Whole Milk",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Oat Milk",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Almond Milk",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Non-Dairy Creamer",
+                  "price": 0.85,
+                  "note": "This is what it was made with in 2017 and some people prefer it."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Straw Bore Class",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Boba Straw",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wide Bore",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Two Straws",
+                  "price": 1.6,
+                  "note": "For sharing. We do not recommend sharing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-003",
+          "name": "Taro Milk Tea",
+          "desc": "Purple, thick, cold. We make the real taro in the morning and when it is gone it is gone.",
+          "price": 3.05,
+          "calories": 710,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Taro Preparation Basis",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Taro Powder",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Real Taro, Steamed This Morning",
+                  "price": 2.85,
+                  "note": "Usually out by 2. If it is out we will call the number on the order."
+                },
+                {
+                  "id": "o3",
+                  "name": "Both",
+                  "price": 3.6,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Neither",
+                  "price": 2.85,
+                  "note": "You will receive milk and tea. The taro station is still opened and closed for your order."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cup Volume Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular (16 oz)",
+                  "price": 3.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Large (24 oz)",
+                  "price": 5.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Family Pitcher (64 oz)",
+                  "price": 12.8,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sugar Percentage Setting",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "100%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "50%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "25%",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "0%",
+                  "price": 1.45,
+                  "note": "Taro is already sweet. This is a warning, not an upcharge, but it is also an upcharge."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Topping Bin Access",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tapioca Pearls",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Taro Balls",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Red Bean",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Pudding",
+                  "price": 1.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-004",
+          "name": "Thai Iced Tea",
+          "desc": "Strong orange tea with condensed milk poured over the top so it layers. Stir it or do not, it is your drink.",
+          "price": 2.95,
+          "calories": 690,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Condensed Milk Draw",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Ladle",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Ladles",
+                  "price": 2.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Poured Until Teresa Stops",
+                  "price": 3.45,
+                  "note": "Teresa decides when to stop. There is no appeal."
+                },
+                {
+                  "id": "o4",
+                  "name": "None",
+                  "price": 2.05,
+                  "note": "The can is opened per order regardless and does not keep."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ice Level Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular Ice",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Less Ice",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Ice",
+                  "price": 1.95,
+                  "note": "Ice withheld at your request is still weighed and billed as displaced volume."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Topping Bin Access",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tapioca Pearls",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grass Jelly",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pudding",
+                  "price": 1.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-005",
+          "name": "Matcha Milk Latte",
+          "desc": "Whisked in the cup, not squeezed out of a syrup bottle. It is slightly bitter and that is the point.",
+          "price": 3.55,
+          "calories": 620,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Matcha Grade Statement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "House Tin",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "The Good Tin From The Shelf",
+                  "price": 3.3,
+                  "note": "Amy keeps this one behind the register and counts what is left."
+                },
+                {
+                  "id": "o3",
+                  "name": "Half And Half Of Both Tins",
+                  "price": 2.7,
+                  "note": "Requires opening both tins, so it is billed as opening both tins."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Milk Substrate Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Whole Milk",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Oat Milk",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Almond Milk",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Milk",
+                  "price": 2.15,
+                  "note": "Then it is tea, and tea is priced at the milk rate because the cup is the same cup."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Shake Cycle Count",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Shake",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extended Shake (foam head)",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Whisked By Hand",
+                  "price": 2.35,
+                  "note": "Adds about ninety seconds and one of us is standing there doing it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-006",
+          "name": "Jasmine Milk Green",
+          "desc": "Light and floral. Our most ordered drink by people who say they do not like boba, who then order boba in it.",
+          "price": 2.85,
+          "calories": 610,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Tea Base Steep Length",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Steep",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Long Steep (stronger, more bitter)",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Short Steep",
+                  "price": 1.75,
+                  "note": "The leaves are used once either way, so the short steep wastes more of them."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Sugar Percentage Setting",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "100%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "50%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "25%",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "0%",
+                  "price": 1.45,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Ice Level Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular Ice",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Less Ice",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Ice",
+                  "price": 1.95,
+                  "note": "Ice withheld at your request is still weighed and billed as displaced volume."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Topping Bin Access",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mini Pearls",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Aloe",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Lychee Jelly",
+                  "price": 1.15,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fruit-tea",
+      "name": "Fruit Tea",
+      "blurb": "Real fruit gets cut in the morning. The concentrate ones say concentrate.",
+      "items": [
+        {
+          "id": "bcs-007",
+          "name": "Passionfruit Green Tea",
+          "desc": "Green tea, passionfruit pulp with the seeds left in, a lot of ice. Our best seller in the summer by a wide margin.",
+          "price": 3.2,
+          "calories": 600,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of golden-orange passionfruit green tea packed with ice cubes and dark passionfruit seeds suspended through the liquid, two thin lemon wheels pressed against the inside of the cup, flat heat-sealed film lid, a green straw lying beside it on the counter. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup, mixed white balance. Cluttered background: a stainless prep counter, a stack of lids, another sealed drink waiting behind it. Flat phone-camera look, unretouched, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Fruit Pulp Fraction",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Pulp",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Pulp",
+                  "price": 2.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Strained, No Seeds",
+                  "price": 2.9,
+                  "note": "Straining is a second container and a second wash, so it costs what the extra pulp costs."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ice Level Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular Ice",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Less Ice",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Ice",
+                  "price": 1.95,
+                  "note": "Ice withheld at your request is still weighed and billed as displaced volume."
+                },
+                {
+                  "id": "o4",
+                  "name": "Extra Ice",
+                  "price": 1.1,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Citrus Wheel Count",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Wheels",
+                  "price": 0.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Wheels",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Half A Lemon, Sliced",
+                  "price": 2.7,
+                  "note": "The other half goes on the next order or in the bin."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-008",
+          "name": "Strawberry Lemon Tea",
+          "desc": "Muddled strawberries and lemon over black tea. Tart. If you want it sweet say 100% and mean it.",
+          "price": 3.3,
+          "calories": 640,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Citrus Wheel Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Wheels",
+                  "price": 0.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Wheels",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Half A Lemon, Sliced",
+                  "price": 2.7,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Lemon",
+                  "price": 1.55,
+                  "note": "A lemon is still cut for your order because we cut to order."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Sugar Percentage Setting",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "100%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "50%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "25%",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "0%",
+                  "price": 1.45,
+                  "note": "At zero this drink is lemon and tea and people send it back, and remakes are not free for us either."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Topping Bin Access",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lychee Jelly",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Aloe",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Popping Strawberry Bursts",
+                  "price": 1.55,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-009",
+          "name": "Mango Green Tea",
+          "desc": "Fresh mango when there is fresh mango, purée when there is not. The screen will tell you which one it is today.",
+          "price": 3.1,
+          "calories": 660,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Blender Availability",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Shaken (blender not used)",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Blended Smooth",
+                  "price": 2.35,
+                  "note": "The blender is loud and we have to stop taking phone orders while it runs."
+                },
+                {
+                  "id": "o3",
+                  "name": "Blended Then Shaken",
+                  "price": 3.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cup Volume Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular (16 oz)",
+                  "price": 3.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Large (24 oz)",
+                  "price": 5.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Family Pitcher (64 oz)",
+                  "price": 12.8,
+                  "note": "Blended in four passes. It does not all fit at once."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Topping Bin Access",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mango Popping Bursts",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Mini Pearls",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Aloe",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Cheese Foam Cap",
+                  "price": 2.6,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-010",
+          "name": "Winter Melon Tea",
+          "desc": "Sweet, dark, tastes like caramel more than melon. The cheapest thing on the board and the one we drink ourselves.",
+          "price": 2.45,
+          "calories": 620,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Winter Melon Concentrate Ratio",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "House Ratio",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy Pour",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Light Pour",
+                  "price": 1.85,
+                  "note": "The measure is poured full and the difference goes back in the jug, where it is no longer the same jug."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ice Level Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular Ice",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Less Ice",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Ice",
+                  "price": 1.95,
+                  "note": "Ice withheld at your request is still weighed and billed as displaced volume."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Topping Bin Access",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tapioca Pearls",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grass Jelly",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pudding",
+                  "price": 1.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-011",
+          "name": "Lychee Oolong",
+          "desc": "Listed as a seasonal drink. It has been the seasonal drink since the spring of 2024 and we have stopped taking the sign down.",
+          "price": 3.6,
+          "calories": 630,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Seasonal Status Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I Understand It Is Seasonal",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "I Understand It Has Been Seasonal For Two Years",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Decline To Acknowledge",
+                  "price": 1.85,
+                  "note": "The drink is still made. The sign stays up either way."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Lychee Fruit Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Three Lychees",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Six Lychees",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "The Rest Of The Can",
+                  "price": 4.9,
+                  "note": "An opened can does not go back in the fridge, so you are buying the can."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sugar Percentage Setting",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "100%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "50%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "0%",
+                  "price": 1.45,
+                  "note": "The lychee syrup is sugar. Zero percent means zero added sugar, not zero sugar."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "snow-bowls",
+      "name": "Shaved Snow Bowls",
+      "blurb": "Amy shaves these to order off a frozen block. They melt. Order them last if you are ordering food too.",
+      "items": [
+        {
+          "id": "bcs-012",
+          "name": "Mango Snow Bowl",
+          "desc": "Mango snow shaved into ribbons, fresh mango cubes, condensed milk. Arrives as a mountain if you order the big one.",
+          "price": 4.1,
+          "calories": 1180,
+          "badges": [
+            "#1 Most Liked",
+            "Popular"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic deli container heaped with pale yellow shaved snow in soft ribbons, topped with cubes of fresh mango, a drizzle of condensed milk running down one side, a few dark tapioca pearls tucked at the edge, already softening at the base. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill. The container sitting directly on a scratched laminate counter with crumbs and a smear of syrup beside it, framed a little too close and slightly above. Flat phone-camera look, unretouched, mixed white balance, visible JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bowl Footprint Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Small",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Medium",
+                  "price": 5.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sharing",
+                  "price": 21.4,
+                  "note": "Comes in the round catering bowl with a dome lid. It is a mountain and it will not fit in a normal delivery bag."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Snow Base Flavour",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mango Snow",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Milk Snow",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Half Mango Half Milk",
+                  "price": 2.45,
+                  "note": "Two blocks get mounted and unmounted on the machine for one bowl."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Condensed Milk Draw",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Ladle",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Ladles",
+                  "price": 2.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Poured Until Teresa Stops",
+                  "price": 3.45,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Spoon Class",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Plastic Spoon",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "The Heavy Spoon",
+                  "price": 1.2,
+                  "note": "You are not returning it and we know that."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-013",
+          "name": "Matcha Red Bean Snow",
+          "desc": "Matcha snow, house red bean cooked on Sundays, a lot of it. Amy's favourite and she will say so if you order it at the counter.",
+          "price": 4.35,
+          "calories": 1340,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Snow Block Density",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Shave",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Fine Shave (melts faster)",
+                  "price": 2.2,
+                  "note": "For delivery this is not the one to pick, and we will make it anyway."
+                },
+                {
+                  "id": "o3",
+                  "name": "Coarse Shave (holds longer)",
+                  "price": 2.2,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Red Bean Ladle",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Ladle",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Ladles",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Red Bean",
+                  "price": 1.25,
+                  "note": "Sunday's pot is portioned by the bowl, so the portion is spoken for either way."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Bowl Lid Dome",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Flat Lid",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Dome Lid",
+                  "price": 1.15,
+                  "note": "Needed if the snow stands above the rim, which it does."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-014",
+          "name": "Strawberry Condensed Milk Snow",
+          "desc": "Milk snow, sliced strawberries, condensed milk in ribbons across the top. This is the one children order and finish.",
+          "price": 4.25,
+          "calories": 1260,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Syrup Ribbon Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Three Ribbons",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Six Ribbons",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Ribbons",
+                  "price": 1.15,
+                  "note": "The bottle is picked up and put down for every bowl. That is the charge."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bowl Footprint Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Small",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Medium",
+                  "price": 5.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sharing",
+                  "price": 21.4,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Mochi Piece Count",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Three Pieces",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Six Pieces",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Nine Pieces",
+                  "price": 3.75,
+                  "note": "At nine there is no room left for the strawberries and we will still add the strawberries."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-015",
+          "name": "Black Sesame Snow",
+          "desc": "WARNING: THIS IS NOT SWEET. IT IS SESAME. ADD THE CONDENSED MILK OR DO NOT ORDER IT. WE ARE TELLING YOU BEFORE AND NOT AFTER.",
+          "price": 4.4,
+          "calories": 1290,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sesame Grind Batch",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "This Week's Grind",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Ground Fresh Now",
+                  "price": 3.25,
+                  "note": "The grinder is behind the machine and one of us has to move to reach it."
+                },
+                {
+                  "id": "o3",
+                  "name": "Store-Bought Paste",
+                  "price": 1.55,
+                  "note": "Kept for the days the grinder is down. It is fine. It is not the same."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Snow Peak Height",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Level With The Rim",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Inches Over",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "As High As It Will Stand",
+                  "price": 3.9,
+                  "note": "It will not survive the car. You are paying for the height at the counter, not at the door."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Spoon Class",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Plastic Spoon",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "The Heavy Spoon",
+                  "price": 1.2,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hot-counter",
+      "name": "Hot Drinks",
+      "blurb": "Only two of them. The machine does what it does.",
+      "items": [
+        {
+          "id": "bcs-016",
+          "name": "Hot Oolong Milk Tea",
+          "desc": "Same tea, served hot, in a paper cup. It does not travel well past about twenty minutes and you are forty minutes away.",
+          "price": 2.75,
+          "calories": 600,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Hot Cup Lid Vent",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Vent",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sealed Solid (no vent)",
+                  "price": 1.3,
+                  "note": "Pressure builds. We are required to say that we said this."
+                },
+                {
+                  "id": "o3",
+                  "name": "Lid Left Off",
+                  "price": 1.3,
+                  "note": "The lid is still counted out of the sleeve and cannot go back."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Milk Substrate Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Whole Milk",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Oat Milk",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Non-Dairy Creamer",
+                  "price": 0.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sugar Percentage Setting",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "100%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "50%",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "0%",
+                  "price": 1.45,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-017",
+          "name": "Hot Ginger Honey Tea",
+          "desc": "Sliced ginger, honey, hot water. Teresa's mother made it this way and it is on the menu because customers kept asking what we were drinking.",
+          "price": 2.9,
+          "calories": 610,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Ginger Slice Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Four Slices",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Eight Slices",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Twelve Slices",
+                  "price": 3.1,
+                  "note": "At twelve it is hot in the other sense as well."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Honey Ladle Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Ladle",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Ladles",
+                  "price": 2.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Honey",
+                  "price": 2.05,
+                  "note": "Then it is ginger water, and the honey jar was opened for you regardless."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Hot Cup Lid Vent",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Vent",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sealed Solid (no vent)",
+                  "price": 1.3,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "small-fryer",
+      "name": "From The Small Fryer",
+      "blurb": "One fryer, one basket. If you order food and drinks together the drinks will sit while the food cooks.",
+      "items": [
+        {
+          "id": "bcs-018",
+          "name": "Popcorn Chicken",
+          "desc": "Marinated overnight, fried to order with basil leaves thrown in at the end. The basil is the whole thing, do not pick it out.",
+          "price": 4.75,
+          "calories": 1420,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a generous pile of craggy golden fried popcorn chicken pieces heaped in a paper boat lined with wax paper, crisp dark green fried basil leaves scattered through it, a dusting of reddish pepper seasoning, a small paper cup of pale dipping sauce wedged beside it. Harsh direct on-camera flash, hot blown-out hotspot on the fried coating, hard black shadow thrown behind the boat. Mild motion blur and soft focus, visible JPEG compression artefacts and sensor noise. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Fryer Basket Fill",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Half Basket",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Full Basket",
+                  "price": 6.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Two Baskets Back To Back",
+                  "price": 11.85,
+                  "note": "The second basket adds nine minutes and the fryer has to come back up to temperature."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Seasoning Dust Blend",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "House Pepper Salt",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Spicy",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Plum Powder",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Seasoning",
+                  "price": 1.45,
+                  "note": "The shaker is used over the basket for every order and cannot be un-used."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dipping Cup Count",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sweet Chilli",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Garlic Mayo",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra Cup Of Either",
+                  "price": 0.95,
+                  "note": "Cups are counted at the end of the night against the tickets."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-019",
+          "name": "Hong Kong Egg Puffs",
+          "desc": "Cooked on the iron one at a time, folded into a paper sleeve. They go soft in about fifteen minutes, which is not a defect, it is physics.",
+          "price": 4.2,
+          "calories": 980,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a sheet of golden Hong Kong egg puffs, the round bubble cells clearly formed and slightly browned at the edges, folded loosely into an open paper sleeve standing upright on a white shop counter, one puff broken off beside it showing the hollow inside. Dim warm shop light with the flash off, slightly underexposed and noisy. Framed slightly crooked with the sleeve cut off at the left edge, another order in a sealed cup waiting behind it. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Waffle Cell Crispness",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Soft",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Crisp Edges",
+                  "price": 1.95,
+                  "note": "Another forty seconds on the iron, during which nothing else gets made."
+                },
+                {
+                  "id": "o3",
+                  "name": "Very Crisp",
+                  "price": 2.8,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Sleeve Fold Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Folded In Half",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Rolled",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Flat In A Box",
+                  "price": 2.15,
+                  "note": "The box is a bigger box than this needs and we buy them in fifties."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Egg Batter Rest Period",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Batter",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Overnight Rested Batter",
+                  "price": 1.85,
+                  "note": "Only if there is any left. There usually is not after noon."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bcs-020",
+          "name": "Sweet Potato Fries",
+          "desc": "Cut here, fried twice, dusted with plum powder. They share the fryer with the chicken and we are not going to pretend otherwise.",
+          "price": 3.95,
+          "calories": 1120,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sweet Potato Cut Shape",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Batons",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Thick Wedges",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Whatever Is Cut Already",
+                  "price": 1.3,
+                  "note": "Cheapest for us and priced the same as the standard, which we understand is confusing."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Dipping Cup Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Cup",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Cups",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Cup",
+                  "price": 0.75,
+                  "note": "A cup is pulled from the sleeve when the ticket prints, before anybody reads the ticket."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Seasoning Dust Blend",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Plum Powder",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "House Pepper Salt",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cinnamon Sugar",
+                  "price": 0.85,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

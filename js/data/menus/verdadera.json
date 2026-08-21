@@ -1,0 +1,2346 @@
+{
+  "slug": "verdadera",
+  "name": "La Taqueria Verdadera #2",
+  "shortName": "Taqueria Verdadera",
+  "tagline": "SALSA HECHA CADA MAÑANA. NO ANTES.",
+  "cuisine": "Mexican · Taqueria",
+  "categories": [
+    "mexican",
+    "fast-food"
+  ],
+  "local": true,
+  "rating": 4.7,
+  "ratingCount": 412,
+  "deliveryMin": 41,
+  "deliveryMax": 78,
+  "deliveryFee": 6.49,
+  "distanceMi": 3.6,
+  "priceTier": 1,
+  "gorgePlus": false,
+  "closesAt": "9:20 PM",
+  "address": "14722 Old Bellhaven Ave, Suite D (behind the tire place), Vista Ridge Crossing Phase II",
+  "about": "My mother opened the first La Taqueria Verdadera on Bellhaven Ave in 1994. That location was reclassified in 2011 so this one is #2, we never changed the sign because the sign is painted on the wall. Salsa is made every morning by Señora Elvia, who has worked here since the beginning and does not measure anything.",
+  "announcement": "WE ARE OPEN. The front phone has not worked since Tuesday so if you need us please call the cell 209-555-0148 and let it ring, my son is fixing the other one. No lengua on Mondays becuase the delivery comes Tuesday morning. Thank you for your patience.",
+  "promos": [
+    "FREE EGG ROLL OVER $35 — ASK OR YOU WILL NOT GET IT"
+  ],
+  "reviews": [
+    {
+      "name": "Ruben C.",
+      "stars": 5,
+      "date": "Aug 16",
+      "text": "I have been coming here since the Bellhaven location and I will say the same thing I have said for twenty years, the salsa roja is the best in this county and it is not close. My kids grew up on the asada. Every taco arrives correct."
+    },
+    {
+      "name": "Danielle W.",
+      "stars": 1,
+      "date": "Aug 15",
+      "text": "There is nowhere to park. The tire place takes all of it and one of their guys looked at me."
+    },
+    {
+      "name": "Ofelia M.",
+      "stars": 5,
+      "date": "Aug 12",
+      "text": "They charged me $1.15 for no onions and then wrote my name on a list by the register. I have made my peace with the list."
+    },
+    {
+      "name": "Trevor A.",
+      "stars": 4,
+      "date": "Aug 9",
+      "text": "Quesadilla did not fit in the bag or on my table. Had to eat it on the counter like a person. Would order again."
+    },
+    {
+      "name": "Sandra L.",
+      "stars": 1,
+      "date": "Aug 3",
+      "text": "I called about a catering order and a woman answered and said the phone was broken and hung up. Different restaurant entirely I think."
+    },
+    {
+      "name": "Hector P.",
+      "stars": 5,
+      "date": "Jul 28",
+      "text": "Ask for the consomé. Ask for it every time. That is all."
+    }
+  ],
+  "menu": [
+    {
+      "id": "tacos-por-pieza",
+      "name": "Tacos (por pieza)",
+      "blurb": "Priced by the piece. Everything after the piece is priced separately.",
+      "items": [
+        {
+          "id": "tqv-001",
+          "name": "Taco de Asada",
+          "desc": "Chopped grilled steak, onion, cilantro. Doubled corn tortillas off the comal.",
+          "price": 1.85,
+          "calories": 640,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three generous street tacos on a thin white paper plate, each on doubled corn tortillas heaped with chopped grilled steak, raw white onion and chopped cilantro, two lime wedges beside them, a small clear cup of red salsa. Harsh direct on-camera flash, hot blown-out white hotspot on the meat, hard black shadow thrown behind the plate. Shot from too close and slightly above, the subject not centred, a squeeze bottle of salsa and a stack of napkins at the edge of frame. Flat phone-camera look, unretouched, mixed white balance, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Tortilla Doubling",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Doubled (how we make it)",
+                  "price": 1.4,
+                  "note": "Two tortillas is construction, and construction is billed."
+                },
+                {
+                  "id": "o2",
+                  "name": "Single tortilla",
+                  "price": 1.4,
+                  "note": "Removing the second tortilla does not remove the second tortilla."
+                },
+                {
+                  "id": "o3",
+                  "name": "Flour tortilla",
+                  "price": 1.95,
+                  "note": "Señora Elvia has been informed."
+                },
+                {
+                  "id": "o4",
+                  "name": "Doubled plus a third underneath",
+                  "price": 2.6,
+                  "note": "For the leak."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cebolla y Cilantro Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Both, como siempre",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Onion only",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cilantro only",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Neither",
+                  "price": 1.15,
+                  "note": "We write it down. The list is by the register."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Salsa Assignment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Roja (Elvia, this morning)",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Verde (Elvia, this morning)",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Habanera — read the sign",
+                  "price": 1.6,
+                  "note": "The sign is taped to the register. Ordering is agreement with the sign."
+                },
+                {
+                  "id": "o4",
+                  "name": "No salsa",
+                  "price": 1.25,
+                  "note": "Salsa is portioned before the ticket is read. The declining happens after."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Limón",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One wedge",
+                  "price": 0.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra wedge",
+                  "price": 0.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "The whole half",
+                  "price": 1.2,
+                  "note": "Cut on request. Nobody has requested it twice."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-002",
+          "name": "Taco de Al Pastor",
+          "desc": "Off the trompo. Pineapple is cut from the top of the spit, not from a can.",
+          "price": 1.85,
+          "calories": 610,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Piña Placement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "On top, from the spit",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Underneath the meat",
+                  "price": 1.1,
+                  "note": "Structural. Same price."
+                },
+                {
+                  "id": "o3",
+                  "name": "No pineapple",
+                  "price": 1.35,
+                  "note": "The pineapple is already cut. It is cut at 6am for the whole day."
+                },
+                {
+                  "id": "o4",
+                  "name": "Double pineapple",
+                  "price": 2.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Trompo Position",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Wherever the knife is",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "From the crispy outside",
+                  "price": 1.45,
+                  "note": "There is a limited amount of outside per trompo."
+                },
+                {
+                  "id": "o3",
+                  "name": "From deeper in",
+                  "price": 0.9,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Salsa Assignment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Roja (Elvia, this morning)",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Verde (Elvia, this morning)",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Habanera — read the sign",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No salsa",
+                  "price": 1.25,
+                  "note": "Declining is processed at the counter and the counter is busy."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-003",
+          "name": "Taco de Carnitas",
+          "desc": "Pork simmered since 7am in the copper pot. Ask for maciza or surtida, it makes a difference.",
+          "price": 1.95,
+          "calories": 720,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cut of the Pot",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Maciza (lean)",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Surtida (mixed, better)",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Buche or cuerito",
+                  "price": 1.85,
+                  "note": "Please ask at the counter before you order this."
+                },
+                {
+                  "id": "o4",
+                  "name": "Whatever comes up on the spoon",
+                  "price": 0.95,
+                  "note": "This is the honest option and it is still not free."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Tortilla Warming Duration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard (comal, both sides)",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra time on the comal",
+                  "price": 0.8,
+                  "note": "Adds four minutes to the whole ticket, not just yours."
+                },
+                {
+                  "id": "o3",
+                  "name": "Barely warmed",
+                  "price": 0.6,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Salsa Assignment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Roja (Elvia, this morning)",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Verde (Elvia, this morning)",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No salsa",
+                  "price": 1.25,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-004",
+          "name": "Taco de Lengua",
+          "desc": "Beef tongue, simmered four hours, chopped to order. NOT AVAILABLE MONDAYS.",
+          "price": 2.4,
+          "calories": 680,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Day-of-Week Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I understand it is not Monday",
+                  "price": 0.85,
+                  "note": "Acknowledgement is processed by a person."
+                },
+                {
+                  "id": "o2",
+                  "name": "It is Monday and I accept a substitution",
+                  "price": 1.4,
+                  "note": "Substitution is asada. Asada costs less. The fee is for the substitution, not the asada."
+                },
+                {
+                  "id": "o3",
+                  "name": "Hold my order until Tuesday",
+                  "price": 3.25,
+                  "note": "We will not do this. The fee is for asking."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chop Size",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fine chop",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Larger pieces",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cubed, with the fat left on",
+                  "price": 1.75,
+                  "note": "This is how my father ate it."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cebolla y Cilantro Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Both",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Onion only",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Neither",
+                  "price": 1.15,
+                  "note": "The list by the register."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-005",
+          "name": "Taco de Buche",
+          "desc": "Pork stomach. If you have not had it before, come to the counter and we will give you a piece first.",
+          "price": 2.4,
+          "calories": 700,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Counter Consultation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I have had buche before",
+                  "price": 1.05,
+                  "note": "We believe you. Verification is billed regardless."
+                },
+                {
+                  "id": "o2",
+                  "name": "I have not, send the sample piece",
+                  "price": 1.05,
+                  "note": "The sample piece is free. Sending it is not."
+                },
+                {
+                  "id": "o3",
+                  "name": "Do not consult me about anything",
+                  "price": 1.6,
+                  "note": "Waiving the consultation requires a note on the ticket."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Texture Preference",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tender",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Crisped on the flat top",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "However it comes out",
+                  "price": 0.55,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Salsa Assignment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Verde (Elvia, this morning)",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Roja (Elvia, this morning)",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No salsa",
+                  "price": 1.25,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-006",
+          "name": "Taco de Tripa",
+          "desc": "You have to ask for it well done. If you do not ask, it comes how it comes, and then you will call us.",
+          "price": 2.55,
+          "calories": 760,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Doneness Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Well done, crispy (ask for this)",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Medium",
+                  "price": 1.3,
+                  "note": "We will still crisp it. The fee stands."
+                },
+                {
+                  "id": "o3",
+                  "name": "However it comes",
+                  "price": 1.75,
+                  "note": "Higher because of the phone calls afterward."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Grease Containment Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard paper",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double paper",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Foil under the paper",
+                  "price": 1.45,
+                  "note": "Recommended if the taco is travelling in a vehicle."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cebolla y Cilantro Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Both",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Neither",
+                  "price": 1.15,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burritos-y-quesadillas",
+      "name": "Burritos y Quesadillas",
+      "blurb": "Wrapped in foil at the counter. The foil is part of the item and it is priced that way.",
+      "items": [
+        {
+          "id": "tqv-007",
+          "name": "Burrito de Carne Asada",
+          "desc": "Steak, rice, beans, salsa, wrapped in a large flour tortillia and then in foil. Heavy.",
+          "price": 3.4,
+          "calories": 1640,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: one very large foil-wrapped burrito on a sheet of wax paper, the foil peeled back halfway to show a thick cross section of grilled chopped steak, rice, whole pinto beans and red salsa packed tight inside a flour tortilla, a second wrapped burrito behind it. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the foil, mixed white balance. Framed slightly crooked, the wax paper cut off at the right edge. Flat phone-camera look, unretouched, visible compression artefacts. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Foil Integrity Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single wrap (standard)",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double wrap",
+                  "price": 2.4,
+                  "note": "For deliveries over twenty minutes, which is all of them."
+                },
+                {
+                  "id": "o3",
+                  "name": "No foil",
+                  "price": 2.95,
+                  "note": "The burrito is wrapped before the ticket prints. Unwrapping is labour."
+                },
+                {
+                  "id": "o4",
+                  "name": "Double wrap plus a rubber band",
+                  "price": 3.6,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Rice and Bean Position",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Both, layered",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Beans only",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Rice only",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Neither, all meat",
+                  "price": 4.85,
+                  "note": "Removing the rice and beans means adding the meat that was displacing them."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Guacamole Escrow",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Inside the burrito",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "On the side, in a cup",
+                  "price": 2.65,
+                  "note": "The cup is 40 cents. We do not make the cups."
+                },
+                {
+                  "id": "o3",
+                  "name": "No guacamole",
+                  "price": 1.85,
+                  "note": "Avocados are purchased by the case on Thursday against the week's expected orders."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Cut Service",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cut in half",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cut in thirds",
+                  "price": 1.3,
+                  "note": "Two cuts."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-008",
+          "name": "Burrito Mojado",
+          "desc": "The same burrito, opened, covered in red sauce and melted cheese, served in a foil tray. Eat it here or accept what happens in the car.",
+          "price": 4.1,
+          "calories": 1980,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sauce Flood Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Covered",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy, sauce to the rim",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce on the side",
+                  "price": 2.95,
+                  "note": "A wet burrito served dry requires two vessels and an explanation."
+                },
+                {
+                  "id": "o4",
+                  "name": "No sauce at all",
+                  "price": 2.4,
+                  "note": "Then it is a burrito. It is still on this line of the menu."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cheese Melt Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Under the salamander",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra cheese, twice under",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No cheese",
+                  "price": 1.4,
+                  "note": "The tray is already cheesed."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Lid Seal Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cardboard lid, taped",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cardboard lid, taped on all four sides",
+                  "price": 1.5,
+                  "note": "Recommended. Tape is not free and neither is the taping."
+                },
+                {
+                  "id": "o3",
+                  "name": "No lid",
+                  "price": 1.15,
+                  "note": "We will still tape something over it. We are not sending it open."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-009",
+          "name": "Quesadilla de la Casa",
+          "desc": "One 16-inch flour tortilla, folded, filled edge to edge. It does not fit in the bag. We will tell you this on the phone.",
+          "price": 4.25,
+          "calories": 2240,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an enormous folded flour quesadilla cut into four wedges, filling an aluminium foil tray completely and overhanging one edge, melted white cheese stretched between the wedges, chopped grilled meat visible inside, a small cup of green salsa wedged in the corner, the cardboard lid propped behind. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Cluttered background: a stainless prep counter, a squeeze bottle, a stack of lids, another order waiting. Flat phone-camera look, unretouched, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Portion Escalation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal (16 inch)",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Familiar (two, stacked)",
+                  "price": 7.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal (sheet tray)",
+                  "price": 16.4,
+                  "note": "Requires the big tray. We have four."
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional (two sheet trays)",
+                  "price": 24.75,
+                  "note": "Call ahead. This is not a suggestion, the comal is one comal."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cheese Skirt Decision",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Yes, crisped on the flat top",
+                  "price": 1.9,
+                  "note": "The best part. Everyone knows this."
+                },
+                {
+                  "id": "o2",
+                  "name": "No skirt",
+                  "price": 1.9,
+                  "note": "The skirt forms on its own. Removing it is a step."
+                },
+                {
+                  "id": "o3",
+                  "name": "Skirt on both sides",
+                  "price": 3.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Meat Inside",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cheese only",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Asada",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Al pastor",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Two meats",
+                  "price": 6.1,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Bag Handling",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Diagonal in the largest bag",
+                  "price": 0.75,
+                  "note": "It will still stick out."
+                },
+                {
+                  "id": "o2",
+                  "name": "Two bags, one over the other",
+                  "price": 1.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-010",
+          "name": "Vampiro",
+          "desc": "Corn tortilla toasted hard on the comal, cheese, meat, salsa. Crunchy. Order it last so it is still crunchy.",
+          "price": 2.9,
+          "calories": 880,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Toast Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Hard (correct)",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Very hard",
+                  "price": 1.55,
+                  "note": "It will break. That is the intention."
+                },
+                {
+                  "id": "o3",
+                  "name": "Soft",
+                  "price": 1.35,
+                  "note": "Then it is a taco with cheese. We will still make it."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Meat Inside",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Asada",
+                  "price": 1.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Al pastor",
+                  "price": 1.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Carnitas",
+                  "price": 2.05,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Crunch Preservation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Salsa on the side",
+                  "price": 0.8,
+                  "note": "The only correct answer for delivery."
+                },
+                {
+                  "id": "o2",
+                  "name": "Salsa on top now",
+                  "price": 0,
+                  "note": "It will be soft when it arrives. We told you."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "platos",
+      "name": "Platos",
+      "blurb": "Comes with rice and beans unless you remove them, which costs more than leaving them.",
+      "items": [
+        {
+          "id": "tqv-011",
+          "name": "Plato de Carne Asada",
+          "desc": "Grilled skirt steak, rice, whole beans, grilled onion, nopales, four tortillas. This is the whole dinner.",
+          "price": 5.75,
+          "calories": 1860,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a white styrofoam clamshell packed full, sliced grilled skirt steak across one half, orange rice and whole pinto beans in the other compartments, a whole charred grilled spring onion and a strip of nopal cactus laid on top, a stack of foil-wrapped corn tortillas beside the container. Dim warm interior light with the flash off, slightly underexposed and noisy, mixed white balance. The container sitting directly on a scratched laminate counter with crumbs and a smear of red sauce beside it. Flat phone-camera look, unretouched, soft focus. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Vessel Class (para llevar)",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Styrofoam clamshell",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil tray with cardboard lid",
+                  "price": 1.85,
+                  "note": "Holds heat. Does not hold sauce."
+                },
+                {
+                  "id": "o3",
+                  "name": "Two separate containers",
+                  "price": 2.7,
+                  "note": "So the rice does not sit in the juice. Worth it."
+                },
+                {
+                  "id": "o4",
+                  "name": "Paper plate",
+                  "price": 1.1,
+                  "note": "We will not deliver this. You may still select it."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Grill Char Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Term medio",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bien cocido",
+                  "price": 1.25,
+                  "note": "Longer on the grill is longer on the grill."
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra char on the edges",
+                  "price": 1.9,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Nopal Situation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One strip, grilled",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra nopales",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No nopal",
+                  "price": 1.4,
+                  "note": "The nopal is cleaned by hand in the morning. It was cleaned before you decided."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Tortillas on the Side",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Four corn (included, confirm)",
+                  "price": 0.55,
+                  "note": "Confirmation is a keystroke and the keystroke is billed."
+                },
+                {
+                  "id": "o2",
+                  "name": "Four more",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Flour instead",
+                  "price": 1.7,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-012",
+          "name": "Chile Relleno",
+          "desc": "Poblano, queso fresco, egg batter, red sauce. My aunt makes these on Thursday and Friday only.",
+          "price": 4.6,
+          "calories": 1420,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Availability Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "It is Thursday or Friday",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "It is not, substitute enchiladas",
+                  "price": 1.55,
+                  "note": "The substitution is the fee. The enchiladas are separate."
+                },
+                {
+                  "id": "o3",
+                  "name": "Cancel the whole order if unavailable",
+                  "price": 2.1,
+                  "note": "Cancellation instructions must be printed and stapled to the ticket."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Batter Handling",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra crisp",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No batter",
+                  "price": 1.95,
+                  "note": "Then it is a stuffed pepper. My aunt has been notified."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Rice and Bean Position",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Both",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Beans only",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Neither",
+                  "price": 2.6,
+                  "note": "The plate is portioned to be full. It will be filled with something."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-013",
+          "name": "Enchiladas Rojas",
+          "desc": "Three corn tortillas dipped in guajillo sauce, queso fresco, onion, crema. Rice and beans.",
+          "price": 4.95,
+          "calories": 1580,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Crema Deployment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Drizzled over",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "On the side",
+                  "price": 1.6,
+                  "note": "Requires a cup and a lid."
+                },
+                {
+                  "id": "o4",
+                  "name": "No crema",
+                  "price": 1.35,
+                  "note": "The bottle is already in the hand of the person plating it."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Filling",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Queso fresco",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Shredded chicken",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Both",
+                  "price": 3.55,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sauce Containment Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Deep foil tray",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Deep tray plus an absorbent pad",
+                  "price": 2.05,
+                  "note": "The pad is for the bag, not for you."
+                },
+                {
+                  "id": "o3",
+                  "name": "Shallow tray, at your own risk",
+                  "price": 1.45,
+                  "note": "Same price. Different outcome."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-014",
+          "name": "Torta Ahogada",
+          "desc": "Birote roll, carnitas, dunked in tomato sauce and served in a bag inside a tray. It is going to leak. It is supposed to leak.",
+          "price": 4.4,
+          "calories": 1720,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Drowning Depth",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ahogada (fully dunked)",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Media ahogada",
+                  "price": 1.75,
+                  "note": "Half the sauce, the same dunk, the same person doing it."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce on the side",
+                  "price": 2.45,
+                  "note": "Two vessels and a conversation at the counter."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mild tomato sauce",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Half and half with the árbol",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "All árbol",
+                  "price": 2.15,
+                  "note": "Read the sign taped to the register. Ordering is agreement with the sign."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Bag Handling",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Plastic bag inside a foil tray",
+                  "price": 1.25,
+                  "note": "The only way this survives a car."
+                },
+                {
+                  "id": "o2",
+                  "name": "Tray only",
+                  "price": 1.25,
+                  "note": "It will leak into the bag with everything else."
+                },
+                {
+                  "id": "o3",
+                  "name": "Two bags and a tray",
+                  "price": 2.05,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "caldos-y-antojitos",
+      "name": "Caldos y Antojitos",
+      "blurb": "The consomé is free with the birria and is on this list anyway.",
+      "items": [
+        {
+          "id": "tqv-015",
+          "name": "Consomé de Birria",
+          "desc": "16 oz of the broth, with onion and cilantro and a lime. Ask for it. Hector asks for it every time.",
+          "price": 2.65,
+          "calories": 680,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cup and Lid",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Styrofoam cup, lid pressed",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Styrofoam cup, lid taped",
+                  "price": 1.35,
+                  "note": "For delivery. The tape is 30 cents of it."
+                },
+                {
+                  "id": "o3",
+                  "name": "Double cup, lid taped",
+                  "price": 1.9,
+                  "note": "It is 190 degrees when it leaves here."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fat Layer",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Leave it (correct)",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Skim it",
+                  "price": 1.1,
+                  "note": "Skimming is done cup by cup at the pot."
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra from the top of the pot",
+                  "price": 1.45,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cebolla y Cilantro Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Both",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Neither",
+                  "price": 1.15,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-016",
+          "name": "Quesatacos de Birria (3)",
+          "desc": "Three tortillas dipped in the fat, griddled with cheese, filled with birria. Comes with a cup of consomé for dipping.",
+          "price": 5.2,
+          "calories": 1940,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three red-stained griddled tacos packed with shredded stewed beef and melted cheese, sitting in a clear plastic deli container lined with greasy paper, chopped onion and cilantro scattered over them, a lidded styrofoam cup of dark orange broth beside it with a lime wedge on the lid. The container sits on a scratched stainless prep counter with crumbs, a smear of red grease and a stack of plastic lids beside it. Harsh direct on-camera flash fired point blank, hot blown-out white hotspot burning out the greasy tortillas, hard black shadow thrown behind the container, flat fluorescent tube light overhead with a green-yellow cast. Mild motion blur, soft focus, heavy JPEG compression artefacts and sensor noise, framed slightly crooked with the cup cut off at the edge. Flat unretouched phone-camera look, mixed white balance, ugly and honest. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Consomé Attachment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Included cup (8 oz)",
+                  "price": 1.45,
+                  "note": "The consomé is free. The cup, the lid and the tape are not."
+                },
+                {
+                  "id": "o2",
+                  "name": "Large cup (16 oz)",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No consomé",
+                  "price": 1.75,
+                  "note": "It is poured when the tacos hit the griddle. Pouring it back is not something we do."
+                },
+                {
+                  "id": "o4",
+                  "name": "Two large cups",
+                  "price": 4.55,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Dip Depth",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard dip",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra dip, extra red",
+                  "price": 1.5,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Light dip",
+                  "price": 1.2,
+                  "note": "Less fat used, more attention required."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cheese Skirt Decision",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Skirt on all three",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "No skirt",
+                  "price": 1.6,
+                  "note": "The cheese goes down before the tortilla. There is a skirt."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-017",
+          "name": "Elote en Vaso",
+          "desc": "Corn off the cob in a cup with mayonesa, cotija, chile and lime. My niece makes these after school.",
+          "price": 2.35,
+          "calories": 640,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Layering Order",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mixed through",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Layered, cheese on top",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Everything on the side",
+                  "price": 1.85,
+                  "note": "Four cups. Four lids."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chile Dusting",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Normal",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "None",
+                  "price": 0.95,
+                  "note": "The shaker is above the cup before the ticket is read."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Spoon Provision",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One plastic spoon",
+                  "price": 0.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "No spoon",
+                  "price": 0.35,
+                  "note": "The spoon is already in the bag by the time anyone reads this."
+                },
+                {
+                  "id": "o3",
+                  "name": "Two spoons",
+                  "price": 0.7,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-018",
+          "name": "Frijoles Charros",
+          "desc": "A pint of beans with bacon, chorizo and jalapeño. Good for the next day, better for the day after.",
+          "price": 2.75,
+          "calories": 720,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Container Volume",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pint",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Quart",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal (the whole pot, call first)",
+                  "price": 21.6,
+                  "note": "We have done this for a funeral and for a graduation."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Pork Content",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bacon and chorizo",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra chorizo",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No pork",
+                  "price": 1.9,
+                  "note": "The pot is one pot. This becomes a different pot."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Broth Ratio",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "More broth",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Mostly beans, drained",
+                  "price": 1.25,
+                  "note": "Draining is done with a slotted spoon and time."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salsas-y-bebidas",
+      "name": "Salsas y Bebidas",
+      "blurb": "Salsa is made every morning by Señora Elvia. She starts at 5:30 and does not measure.",
+      "items": [
+        {
+          "id": "tqv-019",
+          "name": "Salsa de la Señora Elvia (8 oz)",
+          "desc": "Roja or verde, by the cup, to take home. WARNING: the habanera is not a flavor, it is a decision, and we will not replace your order after.",
+          "price": 1.6,
+          "calories": 610,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Salsa Maker Attribution",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Elvia — roja (5:30 am)",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Elvia — verde (5:30 am)",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Elvia — habanera (6:10 am, gloves)",
+                  "price": 2.35,
+                  "note": "Read the sign taped to the register. Ordering is agreement with the sign."
+                },
+                {
+                  "id": "o4",
+                  "name": "Whichever was made most recently",
+                  "price": 1.4,
+                  "note": "Someone has to go and look."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Container Volume",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "8 oz cup",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "16 oz cup",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Quart deli container",
+                  "price": 4.9,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed (the four-litre jug, deposit)",
+                  "price": 26.4,
+                  "note": "The jug comes back or it does not, and if it does not we have one less jug."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Lid Seal Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lid pressed",
+                  "price": 0.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Lid taped",
+                  "price": 0.85,
+                  "note": "Do this. It rides in a bag with your tortillas."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-020",
+          "name": "Agua de Horchata",
+          "desc": "Rice, cinnamon, made in the back in the big blue barrel every morning. If it is cloudy that is the rice.",
+          "price": 2.1,
+          "calories": 660,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of pale creamy cinnamon horchata with ice, a domed lid pressed on and a straw pushed through, heavy condensation running down the sides, a second cup of dark red jamaica standing behind it on the counter. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup, mixed white balance. Shot from too close and slightly above, the cup cut off at the top edge, a hand-lettered wall menu blurred out of focus behind. Flat phone-camera look, unretouched, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Portion Escalation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal (16 oz cup)",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Familiar (the jarra)",
+                  "price": 7.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal (two-gallon cooler)",
+                  "price": 18.95,
+                  "note": "Cooler comes back on your next order."
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional (five-gallon)",
+                  "price": 24.8,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed (the blue barrel)",
+                  "price": 31.4,
+                  "note": "That is the barrel we make it in. We would need to make more after you leave."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ice Level (Vaso)",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Normal ice",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Light ice",
+                  "price": 0.85,
+                  "note": "Less ice is more horchata and horchata costs more than ice."
+                },
+                {
+                  "id": "o3",
+                  "name": "No ice",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Extra ice",
+                  "price": 0.45,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Straw Provision",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Straw in the bag",
+                  "price": 0.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "No straw",
+                  "price": 0.25,
+                  "note": "County ordinance requires we ask. Asking has a cost and the cost is this."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-021",
+          "name": "Agua de Jamaica",
+          "desc": "Hibiscus, boiled and strained, not sweet like the other places. Sugar is on the counter.",
+          "price": 2.1,
+          "calories": 600,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sweetness Adjustment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "As we make it",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sweeter",
+                  "price": 1.15,
+                  "note": "Stirred to order, which means stirred."
+                },
+                {
+                  "id": "o3",
+                  "name": "Unsweetened",
+                  "price": 1.15,
+                  "note": "It is already made in the barrel. This requires a second barrel."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ice Level (Vaso)",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Normal ice",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Light ice",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No ice",
+                  "price": 1.4,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Straw Provision",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Straw in the bag",
+                  "price": 0.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "No straw",
+                  "price": 0.25,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tqv-022",
+          "name": "Refresco en Botella",
+          "desc": "Glass bottle from the cooler. Mandarina, tamarindo, toronja, or the cola with the cane sugar.",
+          "price": 2.25,
+          "calories": 620,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bottle Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mandarina",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tamarindo",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Toronja",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Cola, cane sugar",
+                  "price": 1.45,
+                  "note": "We buy these by the case and the case went up again."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bottle Opening",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Opened here",
+                  "price": 0.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Left closed",
+                  "price": 0.4,
+                  "note": "The opener is on a string by the cooler and someone still has to walk over."
+                },
+                {
+                  "id": "o3",
+                  "name": "Opened and capped back on loosely",
+                  "price": 0.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cooler Temperature Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "From the cold cooler",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "From the back stock (room temp)",
+                  "price": 0.65,
+                  "note": "Someone goes to the back."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

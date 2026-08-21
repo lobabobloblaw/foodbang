@@ -1,0 +1,173 @@
+/* DoorGorge — store page */
+window.DG = window.DG || {};
+(function (DG) {
+  'use strict';
+
+  var mode = 'delivery';
+  var activeSec = null;
+  var offScroll = null;
+
+  DG.screens.register('store', {
+    tab: 'home',
+    immersive: true,
+    appbar: function (p) {
+      var s = DG.catalog.get(p.slug); if (!s) return '';
+      return '<div class="st-bar" id="stbar"><div class="bar">' +
+        '<button class="iconbtn" data-back aria-label="Back">' + DG.icon('back', 20) + '</button>' +
+        '<h1 class="trunc1">' + DG.esc(s.name) + '</h1>' +
+        '<button class="iconbtn" data-storeinfo aria-label="Store info">' + DG.icon('info', 19) + '</button>' +
+        '</div></div>';
+    },
+    render: function (p) {
+      var s = DG.catalog.get(p.slug);
+      if (!s) return DG.C.empty({ title: 'Store unavailable', body: 'This location has been reclassified.' });
+      var fav = DG.store.isFav(s.slug);
+
+      var h = '<div class="st-hero"><img src="' + s.heroSrc + '" alt="" onerror="this.style.opacity=0"></div>' +
+        '<div class="st-float">' +
+          '<button class="iconbtn iconbtn--glass" data-back aria-label="Back">' + DG.icon('back', 20) + '</button>' +
+          '<span class="sp"></span>' +
+          '<button class="iconbtn iconbtn--glass" data-share aria-label="Share">' + DG.icon('share', 19) + '</button>' +
+          '<button class="iconbtn iconbtn--glass" data-fav aria-label="Save">' + DG.icon(fav ? 'heartFill' : 'heart', 19) + '</button>' +
+        '</div>';
+
+      h += '<div class="st-head">' +
+        '<img class="st-logo" src="' + s.logoSrc + '" alt="" onerror="this.style.opacity=0">' +
+        '<h1>' + DG.esc(s.name) + '</h1>' +
+        '<div class="st-tag">' + DG.esc(s.tagline) + '</div>' +
+        '<div class="st-facts">' + DG.C.storeMeta(s) + '</div>' +
+        '<div class="st-facts" style="margin-top:5px">' +
+          DG.icon('clock', 14) + '<span>' + DG.mins(s.deliveryMin, s.deliveryMax) + '</span>' +
+          '<i class="dot-sep"></i>' + DG.icon('bike', 14) +
+          '<span>' + (s.deliveryFee === 0 ? '$0 delivery fee' : DG.money(s.deliveryFee) + ' delivery fee') + '</span>' +
+          '<i class="dot-sep"></i><span>Closes ' + DG.esc(s.closesAt) + '</span>' +
+        '</div>' +
+        '<p class="st-about">' + DG.esc(s.about) + '</p>' +
+        '<div class="st-quick">' +
+          '<button class="chip chip--outline" data-storeinfo>' + DG.icon('info', 14) + 'Store info</button>' +
+          '<button class="chip chip--outline" data-reviews>' + DG.icon('starFill', 14) + s.rating.toFixed(1) + ' (' + DG.compact(s.ratingCount) + ')</button>' +
+          (s.gorgePlus ? '<span class="chip badge--plus" style="height:34px">' + DG.icon('zap', 14) + 'GORGE+</span>' : '') +
+        '</div>' +
+      '</div>';
+
+      if (s.announcement) {
+        h += '<div class="st-ann">' + DG.icon('alert', 16) + '<span>' + DG.esc(s.announcement) + '</span></div>';
+      }
+      if (s.promos && s.promos.length) {
+        h += '<div style="padding:12px 16px 0;display:flex;flex-direction:column;gap:7px">' + s.promos.map(function (pr) {
+          return '<div class="badge badge--promo" style="height:auto;padding:8px 11px;font:var(--t-sub);align-self:flex-start">' +
+            DG.icon('tag', 13) + DG.esc(pr) + '</div>';
+        }).join('') + '</div>';
+      }
+
+      h += '<div class="st-modes">' +
+        '<button data-mode="delivery" aria-pressed="' + (mode === 'delivery') + '">Delivery · ' + DG.mins(s.deliveryMin, s.deliveryMax) + '</button>' +
+        '<button data-mode="pickup" aria-pressed="' + (mode === 'pickup') + '">Pickup · ' + s.distanceMi.toFixed(1) + ' mi</button>' +
+      '</div>';
+
+      h += '<div class="catnav"><div class="rail">' + s.menu.map(function (sec, i) {
+        return '<button class="chip' + (i === 0 ? ' is-on' : '') + '" data-jump="' + sec.id + '">' + DG.esc(sec.name) + '</button>';
+      }).join('') + '</div></div>';
+
+      h += s.menu.map(function (sec) {
+        return '<section class="msec" id="sec-' + sec.id + '">' +
+          '<h3>' + DG.esc(sec.name) + '</h3>' +
+          (sec.blurb ? '<p>' + DG.esc(sec.blurb) + '</p>' : '') +
+          sec.items.map(function (it) { return DG.C.menuItem(it, s); }).join('') +
+        '</section>';
+      }).join('');
+
+      h += '<section class="sec" style="padding-top:20px">' + DG.C.sectionHead('Ratings & reviews', s.rating.toFixed(1) + ' from ' + DG.int(s.ratingCount) + ' ratings') +
+        (s.reviews || []).map(function (r) {
+          return '<div class="reviewcard"><div class="rv-h">' +
+            '<span class="rv-a">' + DG.esc(r.name.slice(0, 1)) + '</span>' +
+            '<b>' + DG.esc(r.name) + '</b>' + DG.starRow(r.stars) +
+            '<span class="rv-d">' + DG.esc(r.date) + '</span></div>' +
+            '<p>' + DG.esc(r.text) + '</p></div>';
+        }).join('') + '</section>';
+
+      h += '<div class="fineprint">' + DG.esc(s.name) + ' is a fictional establishment. ' +
+        DG.esc(s.address) + ' is not a place. Menu prices exclude required selections, which are not optional. ' +
+        'Calorie counts are estimates provided by the establishment and are not, in the establishment\'s own words, "load-bearing."</div>';
+
+      return h;
+    },
+
+    mount: function (root, p) {
+      var s = DG.catalog.get(p.slug); if (!s) return;
+
+      DG.on(root, 'click', '[data-mode]', function (e, t) {
+        mode = t.dataset.mode; DG.nav.refresh();
+        DG.toast(mode === 'pickup' ? 'Pickup selected. Retrieval fees now apply.' : 'Delivery selected.');
+      });
+      DG.on(root, 'click', '[data-fav]', function () {
+        DG.store.set(function (st) {
+          var i = st.favorites.indexOf(s.slug);
+          if (i > -1) st.favorites.splice(i, 1); else st.favorites.push(s.slug);
+          return st;
+        });
+        DG.toast(DG.store.isFav(s.slug) ? 'Saved. We will remind you about this.' : 'Removed. We will remind you about this.');
+        DG.nav.refresh();
+      });
+      DG.on(root, 'click', '[data-share]', function () {
+        DG.toast('Link copied. It contains a referral code that benefits us.', { icon: 'share' });
+      });
+      DG.on(root, 'click', '[data-jump]', function (e, t) {
+        var el = document.getElementById('sec-' + t.dataset.jump);
+        if (el) root.scrollTo({ top: el.offsetTop - 96, behavior: 'smooth' });
+      });
+      DG.on(root, 'click', '[data-storeinfo]', function () { openInfo(s); });
+      DG.on(root, 'click', '[data-reviews]', function () {
+        var el = root.querySelector('.sec:last-of-type');
+        if (el) root.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
+      });
+      DG.on(document.getElementById('appbar'), 'click', '[data-storeinfo]', function () { openInfo(s); });
+
+      /* sticky compact bar + category highlight */
+      var bar = document.getElementById('stbar');
+      var chips = DG.qsa('[data-jump]', root);
+      var secs = s.menu.map(function (sec) { return { id: sec.id, el: document.getElementById('sec-' + sec.id) }; });
+      var dev = document.getElementById('device');
+      function onScroll() {
+        var y = root.scrollTop;
+        if (bar) bar.classList.toggle('on', y > 170);
+        dev.classList.toggle('scrolled', y > 170);
+        var cur = secs[0] && secs[0].id;
+        for (var i = 0; i < secs.length; i++) { if (secs[i].el && secs[i].el.offsetTop - 130 <= y) cur = secs[i].id; }
+        if (cur !== activeSec) {
+          activeSec = cur;
+          chips.forEach(function (c) { c.classList.toggle('is-on', c.dataset.jump === cur); });
+          var on = chips.filter(function (c) { return c.dataset.jump === cur; })[0];
+          if (on) on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+        }
+      }
+      offScroll = DG.on(root, 'scroll', onScroll, { passive: true });
+      activeSec = null; onScroll();
+    },
+    unmount: function () {
+      if (offScroll) { offScroll(); offScroll = null; }
+      document.getElementById('device').classList.remove('scrolled');
+    },
+  });
+
+  function openInfo(s) {
+    DG.sheet.open({
+      title: s.name,
+      sub: s.cuisine + ' · ' + s.distanceMi.toFixed(1) + ' mi away',
+      html: '<div style="padding:0 16px 22px">' +
+        '<p style="font:var(--t-body);color:var(--ink-2);line-height:1.55;margin:0 0 16px">' + DG.esc(s.about) + '</p>' +
+        row('pin', 'Address', s.address) +
+        row('clock', 'Hours', 'Open now · closes ' + s.closesAt) +
+        row('bike', 'Delivery', DG.mins(s.deliveryMin, s.deliveryMax) + ' · ' + (s.deliveryFee === 0 ? 'No delivery fee' : DG.money(s.deliveryFee) + ' delivery fee')) +
+        row('starFill', 'Rating', s.rating.toFixed(1) + ' from ' + DG.int(s.ratingCount) + ' ratings') +
+        row('utensils', 'Menu', DG.plural(s.itemCount, 'item') + ' across ' + DG.plural(s.menu.length, 'section')) +
+        row('shield', 'Compliance', 'Inspected. Result withheld pending appeal.') +
+        '</div>',
+      footer: '<button class="btn btn--dark btn--block" data-sheet-close>Close</button>',
+    });
+  }
+  function row(icon, k, v) {
+    return '<div class="crow" style="padding-left:0;padding-right:0">' + DG.icon(icon, 19) +
+      '<span class="crow-b"><b>' + DG.esc(k) + '</b><span>' + DG.esc(v) + '</span></span></div>';
+  }
+})(window.DG);

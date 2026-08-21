@@ -1,0 +1,1903 @@
+{
+  "slug": "sunrisedonut",
+  "name": "Sunrise Donut & Deli",
+  "shortName": "Sunrise Donut",
+  "tagline": "OPEN AT FOUR. DONE WHEN THE CASE IS DONE.",
+  "cuisine": "Donuts · Breakfast",
+  "categories": [
+    "sweets",
+    "coffee",
+    "sandwiches"
+  ],
+  "local": true,
+  "rating": 4.7,
+  "ratingCount": 212,
+  "deliveryMin": 41,
+  "deliveryMax": 76,
+  "deliveryFee": 6.49,
+  "distanceMi": 3.8,
+  "priceTier": 1,
+  "gorgePlus": false,
+  "closesAt": "1:20 PM",
+  "address": "12840 Old Frontage Highway, Unit C, next to the tire place, Sprawl Ring 9",
+  "about": "Sunrise Donut & Deli has been at this address since 1998, first as just Sunrise Donut, then the deli case came in 2004 when my brother-in-law's place over on Vandergrift closed. The donuts are made here starting at 3:15 AM. I am the one who makes them and I am also the one who answers the phone, so please be patient with me on both.",
+  "announcement": "WE OPEN 4:00 AM EVERY DAY. If you want a specific donut after 10 AM please call first, (555) 214-0087, becuase the case gets thin by then and I don't want you disappointed. Cash is fine at the counter. — Ray",
+  "promos": [
+    "Buy 5 drinks, get a stamp. Card printing is paused."
+  ],
+  "reviews": [
+    {
+      "name": "Denise W.",
+      "stars": 5,
+      "date": "Aug 16",
+      "text": "I have been coming here since my kids were small and now they drive themselves here. Ray knows my order, he starts the coffee when he sees the car, and the apple fritter is the size of my hand with the fingers out. The delivery fee is a lot but that is not his fault, that is the app."
+    },
+    {
+      "name": "Marcus L.",
+      "stars": 5,
+      "date": "Aug 12",
+      "text": "Ordered at 4:20 in the morning and it was already made. Twelve separate trips to the case because I picked every single one, and he still put a napkin stack in the box."
+    },
+    {
+      "name": "T. Okonkwo",
+      "stars": 1,
+      "date": "Aug 09",
+      "text": "There is nowhere to park. The tire place takes all of it and one of their guys told me to move. I did not even go inside."
+    },
+    {
+      "name": "Paula R.",
+      "stars": 5,
+      "date": "Aug 04",
+      "text": "The breakfast burrito is wrapped so tight it holds its shape after forty minutes in a car. I do not know how he folds the ends like that."
+    },
+    {
+      "name": "Greg S.",
+      "stars": 2,
+      "date": "Jul 30",
+      "text": "Called three times about a catering order and got a fax tone twice. Food is good. Phone situation is not."
+    },
+    {
+      "name": "Anh D.",
+      "stars": 5,
+      "date": "Jul 22",
+      "text": "Old fashioned, coffee with the cream on the side, out the door for under five dollars before the app got involved. It is the last place around here like this."
+    }
+  ],
+  "menu": [
+    {
+      "id": "the-case",
+      "name": "The Case (Each)",
+      "blurb": "What is in the case is what is in the case. It is thinner after 8 AM.",
+      "items": [
+        {
+          "id": "snd-001",
+          "name": "Glazed Donut",
+          "desc": "Raised yeast donut, glazed off the rack at 4:10 AM. This is the one everybody comes for.",
+          "price": 1.1,
+          "calories": 780,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/01.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three fat glazed yeast donuts sitting on a sheet of white wax paper on a scratched laminate counter, the glaze thick and slightly cracked, one donut shiny where the glaze is still wet, a paper coffee cup and a napkin dispenser at the edge of the frame. Harsh direct on-camera flash, hot blown-out specular hotspot on the glaze, hard black shadow thrown behind the donuts. Shot from too close and slightly above, the subject not centred. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bag Or Wax Paper",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Wax Paper Only",
+                  "price": 0.45,
+                  "note": "It is one donut. This is what I would do."
+                },
+                {
+                  "id": "o2",
+                  "name": "Small Bag",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Bag, Loose In The Order",
+                  "price": 0.75,
+                  "note": "Loose items get hand-placed by me and hand-placement is billed as hand-placement."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Age Of The Donut",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "This Morning's",
+                  "price": 1.25,
+                  "note": "Made at 4:10 AM. Verified by me."
+                },
+                {
+                  "id": "o2",
+                  "name": "From The Back Rack",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Whatever Is Left",
+                  "price": 0.95,
+                  "note": "Priced by the guess. The guess is not always cheaper."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Off The Glaze Pan",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Second Dip",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cinnamon Sugar Shake",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cut In Half",
+                  "price": 0.55,
+                  "note": "I use the deli knife. It is clean."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-002",
+          "name": "Apple Fritter",
+          "desc": "Bigger than the plate it goes on. Chunks of apple in it, not sauce. We make eleven of these a day.",
+          "price": 2.65,
+          "calories": 1420,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/02.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: one enormous craggy apple fritter lying flat and resting directly on a thin white paper plate, its weight pressing down on the plate and hanging over the rim on two sides, deep golden brown with visible apple chunks in the folds, thick uneven glaze pooled in the crevices. The plate sits on a scratched laminate counter. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked and shot from too close, the plate cut off at the right edge, a metal napkin dispenser at the edge of frame. Flat phone-camera look, unretouched, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Fritter Cut",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Whole",
+                  "price": 1.35,
+                  "note": "It does not fit in the small bag."
+                },
+                {
+                  "id": "o2",
+                  "name": "Cut In Two",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cut In Four",
+                  "price": 2.1,
+                  "note": "Four pieces is three cuts and three cuts is three cuts."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Plate Or Bag",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Paper Plate",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Large Bag",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Plate, No Bag",
+                  "price": 1.05,
+                  "note": "Then it rides on wax paper and I have to fold the wax paper around it."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Warm It Up",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Thirty Seconds",
+                  "price": 0.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "One Minute",
+                  "price": 1.1,
+                  "note": "It goes soft. I would not."
+                },
+                {
+                  "id": "o3",
+                  "name": "Butter On The Cut Face",
+                  "price": 1.45,
+                  "note": "This is from the deli side and it is real butter."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-003",
+          "name": "Old Fashioned",
+          "desc": "Cake donut with the ridges. It is made to go in coffee and it does not fall apart when it does.",
+          "price": 1.35,
+          "calories": 690,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Edge Crispness",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Crisp Edges",
+                  "price": 1.15,
+                  "note": "These are the outside ones on the rack."
+                },
+                {
+                  "id": "o2",
+                  "name": "Soft Edges",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Whatever Comes Off The Rack",
+                  "price": 1.05,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Crumb Situation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Crumbs Stay In The Bag",
+                  "price": 0.55,
+                  "note": "They are yours either way."
+                },
+                {
+                  "id": "o2",
+                  "name": "Crumbs Shaken Out",
+                  "price": 0.85,
+                  "note": "Shaking is done over the trash and is billed as shaking."
+                },
+                {
+                  "id": "o3",
+                  "name": "Crumbs Bagged Separately",
+                  "price": 1.2,
+                  "note": "That is a second bag for crumbs. People do order it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-004",
+          "name": "Maple Bar",
+          "desc": "Long raised bar, real maple in the icing, the icing goes all the way to the ends.",
+          "price": 1.45,
+          "calories": 810,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Maple Coverage",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Coat",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy Coat From The Pan",
+                  "price": 2.05,
+                  "note": "It will stick to the bag. That is the trade."
+                },
+                {
+                  "id": "o3",
+                  "name": "Bare",
+                  "price": 1.3,
+                  "note": "The maple is already on it, so bare is a scrape, and a scrape is labor."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Sheet Position",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Front Of The Sheet",
+                  "price": 1.1,
+                  "note": "The front ones are the first ones made."
+                },
+                {
+                  "id": "o2",
+                  "name": "Middle",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Back Of The Sheet",
+                  "price": 1.45,
+                  "note": "The back one is always bigger. I have never known why."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "From The Deli Side",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bacon Strip On Top",
+                  "price": 2.65,
+                  "note": "Full strip, off the griddle, laid on top."
+                },
+                {
+                  "id": "o2",
+                  "name": "Chopped Walnuts",
+                  "price": 1.2,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-005",
+          "name": "Jelly Filled",
+          "desc": "Raspberry. Filled to order at the counter, not in the morning, so it is not soggy.",
+          "price": 1.4,
+          "calories": 760,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Filling Charge Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Pump",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Pumps",
+                  "price": 1.75,
+                  "note": "Two pumps comes out the side. It always comes out the side."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Filling",
+                  "price": 1.15,
+                  "note": "An unfilled one has to be pulled before the filling station, which is a separate trip."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Powdered Sugar",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "On It",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra Heavy",
+                  "price": 1.15,
+                  "note": "You will find it on your shirt later."
+                },
+                {
+                  "id": "o3",
+                  "name": "None",
+                  "price": 0.85,
+                  "note": "They get sugared in one tray together. Keeping one out of the tray is the fee."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "half-dozen-and-dozen",
+      "name": "Half Dozen & Dozen",
+      "blurb": "Boxes are made up as they are ordered. Nothing sits in a box overnight.",
+      "items": [
+        {
+          "id": "snd-006",
+          "name": "Half Dozen, Assorted",
+          "desc": "Six donuts in a box. If you do not tell me what you want, you get a good six.",
+          "price": 6.25,
+          "calories": 4650,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/03.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an open cardboard donut box on a laminate counter holding six assorted donuts packed tight together, a glazed ring, a chocolate frosted with sprinkles, a maple bar, an old fashioned, a jelly filled dusted with powdered sugar and a pink frosted, seen from above at an angle. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the box. Cluttered background: a napkin dispenser, a stack of plastic lids and a coffee urn behind the box. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Box Contents Determination",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "My Choice",
+                  "price": 2.4,
+                  "note": "You will get a good six. I have been doing this since 1998."
+                },
+                {
+                  "id": "o2",
+                  "name": "You Pick Three, I Pick Three",
+                  "price": 5.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "You Pick Every One",
+                  "price": 9.75,
+                  "note": "Six separate trips to the case, and it is only me here."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Pink Box Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pink Box",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Plain White Box",
+                  "price": 1.2,
+                  "note": "I am nearly out of these."
+                },
+                {
+                  "id": "o3",
+                  "name": "Bag Instead Of A Box",
+                  "price": 1.6,
+                  "note": "Six donuts in a bag is a stacking problem and stacking is charged."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Add To The Box",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Four Donut Holes Loose In The Corner",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Napkin Stack",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Box Taped Shut",
+                  "price": 0.65,
+                  "note": "For the drive. The tape is from the register."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-007",
+          "name": "Dozen, Assorted",
+          "desc": "Twelve. If you are ordering this before 6 AM please call, because I may still be glazing.",
+          "price": 11.4,
+          "calories": 6180,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Dozen Selection Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "My Choice",
+                  "price": 3.85,
+                  "note": "Two glazed, two old fashioned, and I fill the rest by what is fresh."
+                },
+                {
+                  "id": "o2",
+                  "name": "Half And Half",
+                  "price": 9.4,
+                  "note": "You name six and I choose six."
+                },
+                {
+                  "id": "o3",
+                  "name": "You Pick Every One",
+                  "price": 18.75,
+                  "note": "Twelve separate trips to the case. It is just me here and the phone still rings."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Thirteenth Donut Policy",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "No Thirteenth",
+                  "price": 1.35,
+                  "note": "There is no thirteenth. This is the fee for confirming that in writing."
+                },
+                {
+                  "id": "o2",
+                  "name": "Thirteenth If One Is Left Over",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Thirteenth Guaranteed",
+                  "price": 4.15,
+                  "note": "Guaranteed means I make one, and making one means firing the fryer."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Coffee With The Dozen",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "The Free Small Coffee",
+                  "price": 0.75,
+                  "note": "The coffee is free. The cup and the lid are the cup and the lid."
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Coffees In A Carrier",
+                  "price": 6.8,
+                  "note": "The carrier is cardboard and it is the last one."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-008",
+          "name": "Donut Holes, 20 Count",
+          "desc": "Glazed and cinnamon sugar mixed together in one bag. Twenty is what fits.",
+          "price": 4.15,
+          "calories": 2100,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Hole Count Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Counted",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Scooped",
+                  "price": 0.85,
+                  "note": "A scoop is about twenty. Sometimes it is twenty-three."
+                },
+                {
+                  "id": "o3",
+                  "name": "Counted Twice",
+                  "price": 2.3,
+                  "note": "I count them twice and on a phone order you can hear me do it."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Container For The Holes",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Paper Bag",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Clear Deli Container With A Lid",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Loose In The Order",
+                  "price": 0.95,
+                  "note": "They roll. Everything in the bag will have sugar on it."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "breakfast-until-we-close",
+      "name": "Breakfast, Until We Close",
+      "blurb": "The griddle goes on at 4 and comes off around 12:45. After that I cannot do eggs.",
+      "items": [
+        {
+          "id": "snd-009",
+          "name": "Breakfast Burrito",
+          "desc": "Egg, potato, cheese, your meat, wrapped in foil so it holds up in a car.",
+          "price": 4.95,
+          "calories": 1180,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/04.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a thick breakfast burrito in aluminium foil peeled halfway back, showing scrambled egg, diced potato, melted orange cheese and sausage packed in a large flour tortilla, sitting in a paper boat lined with wax paper on a laminate counter. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Mild motion blur and soft focus, visible JPEG compression artefacts. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Egg Cook Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Scrambled Soft",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Scrambled Hard",
+                  "price": 1.85,
+                  "note": "This is what most people want in a burrito."
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra Egg",
+                  "price": 3.4,
+                  "note": "Three eggs. It will not close all the way."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Egg",
+                  "price": 2.1,
+                  "note": "A burrito with no egg is a different build and takes me longer, not shorter."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Foil Wrap Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tight, Ends Folded",
+                  "price": 1.15,
+                  "note": "This is the one that survives the drive."
+                },
+                {
+                  "id": "o2",
+                  "name": "Loose",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Foil Plus A Bag",
+                  "price": 1.75,
+                  "note": "The bag is so it does not sweat. It will still sweat."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Hot Sauce From The Box",
+              "required": true,
+              "min": 1,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Packets",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Five Packets",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "A Handful",
+                  "price": 2.2,
+                  "note": "A handful is however many my hand takes. It is not negotiable after."
+                },
+                {
+                  "id": "o4",
+                  "name": "None",
+                  "price": 0.75,
+                  "note": "I still have to open the box and look, so it is the same reach."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-010",
+          "name": "Bacon, Egg & Cheese",
+          "desc": "On a kaiser roll unless you say otherwise. Bacon is cooked in the morning and finished on the griddle.",
+          "price": 3.85,
+          "calories": 890,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "What It Goes On",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Kaiser Roll",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bagel",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Croissant",
+                  "price": 2.25,
+                  "note": "These come in on Tuesday."
+                },
+                {
+                  "id": "o4",
+                  "name": "A Glazed Donut",
+                  "price": 2.6,
+                  "note": "People order this. I make it. I do not comment on it."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cheese Melt Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Melted On The Griddle",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Laid On Cold",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Two Slices",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Cheese",
+                  "price": 1.3,
+                  "note": "The slices get portioned in the morning either way, so the slice is already yours."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "From The Deli Case",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Extra Bacon",
+                  "price": 3.1,
+                  "note": "Two more strips."
+                },
+                {
+                  "id": "o2",
+                  "name": "Avocado",
+                  "price": 2.4,
+                  "note": "Only if it is ready. If it is not ready I will not charge you."
+                },
+                {
+                  "id": "o3",
+                  "name": "Hash Brown Inside The Sandwich",
+                  "price": 1.65,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-011",
+          "name": "Sausage, Egg & Cheese",
+          "desc": "Patty or two links, your call. Same roll, same griddle, same egg.",
+          "price": 3.85,
+          "calories": 960,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Patty Or Links",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Patty",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Links",
+                  "price": 1.95,
+                  "note": "The links roll off the roll. Cut them yourself or ask me to."
+                },
+                {
+                  "id": "o3",
+                  "name": "Both",
+                  "price": 3.45,
+                  "note": "Both is a lot. It is fine. People do it."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Griddle Time",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra Crisp",
+                  "price": 1.75,
+                  "note": "Extra crisp holds up the line behind you and that is what the difference is."
+                },
+                {
+                  "id": "o3",
+                  "name": "Barely",
+                  "price": 1.2,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-012",
+          "name": "Chorizo Breakfast Burrito",
+          "desc": "PLEASE READ THIS. It is not the mild one. Do not order it for a child and do not call me at 6 AM about it, we have had that conversation.",
+          "price": 5.4,
+          "calories": 1310,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Spice Acknowledgement Required",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I Have Had It Before",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "This Is My First Time",
+                  "price": 2.4,
+                  "note": "First time gets a cup of sour cream whether you asked for it or not."
+                },
+                {
+                  "id": "o3",
+                  "name": "I Want It Hotter",
+                  "price": 3.2,
+                  "note": "I will not be making it hotter. This is the fee for asking me."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Second Foil Layer",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Layer",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Layers",
+                  "price": 1.85,
+                  "note": "Two layers is for a drive over twenty minutes and yours is."
+                },
+                {
+                  "id": "o3",
+                  "name": "Three Layers",
+                  "price": 2.95,
+                  "note": "The grease comes through two. It has always come through two."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-013",
+          "name": "Hash Brown Patties (3)",
+          "desc": "Three patties out of the fryer basket. They are better in the first ten minutes and I cannot control that part.",
+          "price": 2.2,
+          "calories": 640,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Fry Basket Order",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fresh Basket",
+                  "price": 2.1,
+                  "note": "Four minutes. You are welcome to wait, other people have."
+                },
+                {
+                  "id": "o2",
+                  "name": "From The Warmer",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Whatever Is Up",
+                  "price": 1.35,
+                  "note": "Whatever is up is sometimes the fresh basket, so this can go either way."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Salt Shaker Passes",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Pass",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Passes",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Salt",
+                  "price": 0.75,
+                  "note": "They come out of the basket salted with the others, so no salt means its own basket."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-deli-side",
+      "name": "The Deli Side (After 10:30)",
+      "blurb": "Meat is sliced when you order it. The slicer is loud and I am sorry about it on the phone.",
+      "items": [
+        {
+          "id": "snd-014",
+          "name": "Italian Cold Cut",
+          "desc": "Ham, salami, capicola, provolone. Oil and vinegar if you want it, and you want it.",
+          "price": 6.95,
+          "calories": 1090,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/05.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a large Italian cold cut sandwich on a seeded roll cut into two halves, sitting in a white styrofoam clamshell container, layers of ham, salami and provolone spilling out with shredded lettuce, tomato and onion. Harsh direct on-camera flash fired straight at it, hot blown-out white hotspot across the roll, hard black shadow thrown behind the clamshell, flat fluorescent green-yellow cast in the corners. Framed crooked and shot from too close, the clamshell cut off at the left edge, sitting directly on a scratched laminate counter with crumbs and a smear of oil beside it. Flat unretouched phone-camera look, harsh, mixed white balance, sensor noise and JPEG compression. Square crop, the photo fills the whole frame with no border. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Slice Thickness At The Slicer",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Thin, Off The Slicer",
+                  "price": 3.2,
+                  "note": "This is how it should be eaten."
+                },
+                {
+                  "id": "o2",
+                  "name": "Thick Cut",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Shaved",
+                  "price": 4.35,
+                  "note": "Shaved takes three times as long and I am standing at the slicer for all of it."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Which Roll",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Seeded Roll",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Plain Roll",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sliced Bread",
+                  "price": 1.2,
+                  "note": "It will not hold this much meat. I will still make it."
+                },
+                {
+                  "id": "o4",
+                  "name": "Wrapped In A Tortilla",
+                  "price": 2.05,
+                  "note": "The tortilla is from the burrito side and it is a large."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "The Whole Works",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Oil And Vinegar",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Hot Peppers",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra Provolone",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Halves Wrapped Separately",
+                  "price": 1.35,
+                  "note": "So the second half is still dry at lunch."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-015",
+          "name": "Turkey & Swiss",
+          "desc": "Oven roasted turkey off the slicer, not the pressed kind. Weighed in front of you at the counter.",
+          "price": 6.4,
+          "calories": 870,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Turkey Portion At The Scale",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Quarter Pound",
+                  "price": 3.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Half Pound",
+                  "price": 5.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "As Much As Fits",
+                  "price": 7.4,
+                  "note": "As much as fits is a judgement I make at the board and it is final."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Lettuce And Tomato Position",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Under The Meat",
+                  "price": 0.95,
+                  "note": "This is correct."
+                },
+                {
+                  "id": "o2",
+                  "name": "On Top",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "In A Separate Bag",
+                  "price": 1.6,
+                  "note": "A separate bag is a second bag and a second bag is a second bag."
+                },
+                {
+                  "id": "o4",
+                  "name": "Neither",
+                  "price": 1.05,
+                  "note": "Both are sliced for the day already, at 9:30, before anybody orders."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-016",
+          "name": "Tuna Salad on Rye",
+          "desc": "Made every morning, celery in it, not too much mayo. If it is gone it is gone and I will not open another can at noon.",
+          "price": 5.85,
+          "calories": 920,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Scoop Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Scoop",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Scoops",
+                  "price": 4.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Three Scoops",
+                  "price": 5.95,
+                  "note": "Three will not stay on the bread. I will still do it and I will still wrap it."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Toaster Decision",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Toasted",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Not Toasted",
+                  "price": 0.95,
+                  "note": "The toaster has been on since four either way."
+                },
+                {
+                  "id": "o3",
+                  "name": "One Slice Toasted",
+                  "price": 1.45,
+                  "note": "Two runs of the toaster, one slice each."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-017",
+          "name": "Ham & American",
+          "desc": "The plain one. This is what the tire place next door orders every single day at 11.",
+          "price": 5.6,
+          "calories": 840,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Mustard Or Mayo",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mustard",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Mayo",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Both",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Neither",
+                  "price": 0.9,
+                  "note": "Neither is a dry sandwich and I have to write DRY on the bag so it does not come back."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "How It Gets Cut",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Straight Across",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "On The Diagonal",
+                  "price": 1.15,
+                  "note": "The diagonal is a longer cut. It is more knife."
+                },
+                {
+                  "id": "o3",
+                  "name": "Not Cut",
+                  "price": 0.95,
+                  "note": "Then I have to wrap it whole, which is more paper."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coffee-and-the-cold-case",
+      "name": "Coffee & The Cold Case",
+      "blurb": "Coffee is made at 3:50 AM and remade about every hour until I stop.",
+      "items": [
+        {
+          "id": "snd-018",
+          "name": "Coffee",
+          "desc": "One kind of coffee. It is hot and it is strong and it is a dollar thirty five.",
+          "price": 1.35,
+          "calories": 610,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cup Size From The Stack",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Small",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Medium",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Large",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "The 32 Ounce",
+                  "price": 3.85,
+                  "note": "That is the soda cup. It holds coffee. Nobody has finished one."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cream And Sugar Handling",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I Put It In",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "On The Side In Little Cups",
+                  "price": 1.1,
+                  "note": "Each little cup takes a little lid and each little lid is a lid."
+                },
+                {
+                  "id": "o3",
+                  "name": "Black",
+                  "price": 0.8,
+                  "note": "Black is still a pour, a lid and a walk to the counter."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sleeve And Lid",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cardboard Sleeve",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Cupped",
+                  "price": 0.75,
+                  "note": "This is what I do for the regulars."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Lid",
+                  "price": 0.95,
+                  "note": "For a delivery I would not. But it is your order."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-019",
+          "name": "Iced Coffee",
+          "desc": "Same coffee, cooled overnight in the back, poured over ice. My daughter set this up in 2019 and now it outsells the hot.",
+          "price": 2.1,
+          "calories": 720,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/06.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. The photograph fills the entire square frame edge to edge with no black border, no white border, no vignette, no frame and no rounded corners. Subject: a tall clear plastic cup of iced coffee with a domed lid and a wide straw, filled to the top with ice and dark coffee, a swirl of cream half mixed through the middle, heavy condensation running down the outside, sitting on a sheet of wax paper on a scratched laminate counter beside a metal napkin dispenser. Harsh direct on-camera flash, hot blown-out hotspot on the wet plastic, hard black shadow thrown behind the cup. Framed slightly crooked with the cup cut off at the top edge. Flat phone-camera look, unretouched, mixed white balance, noisy. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Ice Fill Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "To The Line",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Light Ice",
+                  "price": 1.65,
+                  "note": "Light ice is more coffee, and coffee costs more than ice does."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Ice",
+                  "price": 1.95,
+                  "note": "Then it is cold coffee in a cold cup and it will be warm by the time it reaches you."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Dome Lid Or Flat Lid",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Dome Lid",
+                  "price": 0.75,
+                  "note": "This is the one that fits the straw."
+                },
+                {
+                  "id": "o2",
+                  "name": "Flat Lid",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Both Lids",
+                  "price": 1.3,
+                  "note": "You can only use one of them at a time."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sweet Side",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Pumps Vanilla",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sweetened Condensed Milk",
+                  "price": 1.25,
+                  "note": "This is how my daughter drinks it. It is very sweet."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-020",
+          "name": "Canned Soda",
+          "desc": "Out of the cooler by the door. Whatever is in there is what there is.",
+          "price": 1.55,
+          "calories": 620,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Which Cooler Shelf",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Top Shelf, Coldest",
+                  "price": 1.1,
+                  "note": "The top shelf is coldest and the top shelf goes first."
+                },
+                {
+                  "id": "o2",
+                  "name": "Middle Shelf",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bottom Shelf, Room Temperature",
+                  "price": 0.85,
+                  "note": "That side of the cooler has not been plugged in since 2019."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cup Of Ice With It",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Cup Of Ice",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "No Cup",
+                  "price": 0.6,
+                  "note": "No is still a key on the register and the register is old."
+                },
+                {
+                  "id": "o3",
+                  "name": "Two Cups Of Ice",
+                  "price": 1.55,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "snd-021",
+          "name": "Orange Juice",
+          "desc": "Small bottle from the cold case. I do not squeeze it, I am not going to pretend I do.",
+          "price": 2.25,
+          "calories": 680,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bottle Or Cup",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "The Bottle",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Poured Into A Cup",
+                  "price": 1.75,
+                  "note": "Pouring is pouring, and then there is a cup and a lid."
+                },
+                {
+                  "id": "o3",
+                  "name": "Both, Cup On The Side",
+                  "price": 2.6,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Pulp Disclosure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pulp",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "No Pulp",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "I Do Not Know Which Is In The Case",
+                  "price": 0.45,
+                  "note": "This is the honest option and that is why it is the cheap one."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lottery-counter-only",
+      "name": "Lottery (Counter Only)",
+      "blurb": "The app made me list everything that is on the counter. This is on the counter.",
+      "items": [
+        {
+          "id": "snd-022",
+          "name": "Scratch Ticket",
+          "desc": "You cannot actually order this. The state does not let me put it in a bag and hand it to a driver. It is listed because the app would not let me leave the counter half empty.",
+          "price": 1.85,
+          "calories": 620,
+          "badges": [
+            "Limit 1 Per Household",
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Face Value Reconciliation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Round Up To Two Dollars",
+                  "price": 0.15,
+                  "note": "The state sets the ticket price. I set nothing here."
+                },
+                {
+                  "id": "o2",
+                  "name": "Round Up To Three Dollars",
+                  "price": 1.15,
+                  "note": "The extra dollar is not a tip. I do not know what it is."
+                },
+                {
+                  "id": "o3",
+                  "name": "Leave It As Is",
+                  "price": 0.35,
+                  "note": "Leaving it as is still puts it through the register."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "What Actually Arrives",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "A Photograph Of The Ticket",
+                  "price": 2.25,
+                  "note": "Taken by me on my phone and shown to the driver. The ticket stays here."
+                },
+                {
+                  "id": "o2",
+                  "name": "Nothing",
+                  "price": 1.85,
+                  "note": "Nothing is the accurate option and I want to be honest with you."
+                },
+                {
+                  "id": "o3",
+                  "name": "A Donut Instead",
+                  "price": 2.95,
+                  "note": "This is the one I recommend. It is a glazed."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2220 @@
+{
+  "slug": "mcronalds",
+  "name": "McRonald's",
+  "shortName": "McRonald's",
+  "tagline": "OVER 99 BILLION SERVED. NO REFUNDS ISSUED.",
+  "cuisine": "Burgers & Fried Potato Products",
+  "categories": [
+    "fast-food",
+    "burgers"
+  ],
+  "rating": 4.1,
+  "ratingCount": 218447,
+  "deliveryMin": 12,
+  "deliveryMax": 29,
+  "deliveryFee": 3.49,
+  "distanceMi": 0.8,
+  "priceTier": 1,
+  "gorgePlus": true,
+  "closesAt": "2:00 AM",
+  "address": "18400 Frontage Road West, Pad Site C, Exit 41B Commerce Overlay",
+  "about": "McRonald's has operated continuously since 1974 under an operations manual that has never been revised. Procedures described in this listing are procedures. They are not promises.",
+  "announcement": "NOTICE: The Frozen Dairy Solutions unit is operational. This notice is printed weekly in advance and may not reflect current conditions.",
+  "promos": [
+    "Spend $110, Save $4"
+  ],
+  "reviews": [
+    {
+      "name": "Dale R.",
+      "stars": 5,
+      "date": "Aug 14",
+      "text": "Ordered the Municipal Trough of batons. It was delivered to the curb as described and my neighbors were notified. No complaints."
+    },
+    {
+      "name": "Priya N.",
+      "stars": 4,
+      "date": "Aug 11",
+      "text": "I declined the bun plane and was charged for declining the bun plane. The staff were correct about this and I respect it."
+    },
+    {
+      "name": "Marcus T.",
+      "stars": 2,
+      "date": "Aug 9",
+      "text": "The machine was in its cleaning cycle. I was told the cycle began in 1974. I ordered a shake anyway and received one."
+    },
+    {
+      "name": "Lorraine B.",
+      "stars": 5,
+      "date": "Aug 6",
+      "text": "Breakfast at 9pm. Nobody asked me anything. This is the correct way to run a restaurant."
+    },
+    {
+      "name": "Kenneth O.",
+      "stars": 4,
+      "date": "Jul 31",
+      "text": "My Cheerful Container arrived with no object inside. The receipt confirmed the object had been produced, logged, and destroyed."
+    }
+  ],
+  "menu": [
+    {
+      "id": "the-sandwich-program",
+      "name": "The Sandwich Program",
+      "blurb": "Assembled in the sequence documented in 1974. The sequence has not been reviewed.",
+      "items": [
+        {
+          "id": "mcr-001",
+          "name": "The Big McRonald's",
+          "desc": "Two beef rounds and three bun planes, held together by a sauce whose formula is kept in escrow. The middle plane exists for reasons documented in 1974.",
+          "price": 3.15,
+          "calories": 1180,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a towering three-plane sesame burger, two thick beef rounds slumping outward past the bun edge, orange sauce running in heavy ropes down every side and pooling on the steel below, shredded lettuce spilling out in a ring, melted cheese sheeting off the patty into a hanging curtain, the whole stack leaning under its own weight. Three-quarter hero angle on a stainless steel fast-food prep line, out-of-focus red and yellow molded-plastic seating in the far background. Hard high-key flash photography, the saturated over-lit look of a 1970s laminated menu board, slight color fringing. 85mm lens, shallow depth of field, punchy contrast, glossy sheen. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bun Plane Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Three Planes (Regulation)",
+                  "price": 4.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Planes, Middle Withheld",
+                  "price": 4.6,
+                  "note": "The middle plane is withheld, not removed. Withholding is billed at parity."
+                },
+                {
+                  "id": "o3",
+                  "name": "Four-Plane Escalation",
+                  "price": 6.85,
+                  "note": "Requires a reinforced carton."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Sauce Escrow Release",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Full Release",
+                  "price": 3.4,
+                  "note": "The formula remains sealed. Only the sauce is released."
+                },
+                {
+                  "id": "o2",
+                  "name": "Partial Release",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Escrow Maintained",
+                  "price": 3.4,
+                  "note": "No sauce is released. The formula must still be held, and storage is billed to the guest."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Patty Census",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Rounds (Regulation)",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three Rounds",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Four Rounds, Braced",
+                  "price": 9.6,
+                  "note": "Bracing is edible. Bracing is not a patty."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Condiment Sachet Allotment",
+              "required": false,
+              "min": 0,
+              "max": 6,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ketchup Sachet",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Mustard Sachet",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sealed Sauce Cup",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Sauce Pitcher",
+                  "price": 7.8,
+                  "note": "Pitcher is returnable within twenty minutes of handoff."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Napkin Provision",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Napkin",
+                  "price": 0.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Napkin Bundle (40)",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Industrial Absorbent Sheet",
+                  "price": 5.5,
+                  "note": "Not food-contact rated."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-002",
+          "name": "Quarter Poundage with Cheese Product",
+          "desc": "One quarter pound of beef, measured before cooking, before handling, and before any subsequent events. Cheese product is applied at an angle.",
+          "price": 2.85,
+          "calories": 1040,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a quarter-pound cheeseburger sliced cleanly in half, the flat cut face square to the lens, every stratum readable: thick seared beef round with visible grain, two slabs of molten orange cheese sagging past the edges in a slow drip, slivered onion, four pickle discs, distinct ribbons of ketchup and mustard, the glossy compressed bun. The half stands upright on a stainless steel fast-food prep line, out-of-focus red and yellow molded-plastic seating far behind. Hard high-key flash photography, saturated over-lit 1970s laminated menu board look, slight color fringing. 100mm macro lens, straight-on cross-section, crisp edge detail. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Weight Verification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pre-Cook Weight (Standard)",
+                  "price": 3.95,
+                  "note": "Weight is certified at a moment that has already passed."
+                },
+                {
+                  "id": "o2",
+                  "name": "Post-Cook Weight",
+                  "price": 5.6,
+                  "note": "Post-cook verification requires a scale technician."
+                },
+                {
+                  "id": "o3",
+                  "name": "Decline Verification",
+                  "price": 3.95,
+                  "note": "The weight is still measured. You are simply not told it."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cheese Product Determination",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Sheet",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Sheets, Offset",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Sheet",
+                  "price": 1.85,
+                  "note": "The sheet is unwrapped and discarded in your name. Labor applies."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Onion Provenance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Rehydrated Dice (Regulation)",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Fresh Slivered",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Onion Withheld",
+                  "price": 0.95,
+                  "note": "Withholding requires a separate prep station."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Pickle Disc Allotment",
+              "required": false,
+              "min": 0,
+              "max": 8,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Disc",
+                  "price": 0.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Discs",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Disc Column (14)",
+                  "price": 4.65,
+                  "note": "Column is stacked, not distributed."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Bag Warmth Index",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Warm",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Very Warm",
+                  "price": 3.85,
+                  "note": "Warmth is applied to the bag, not to the food."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-003",
+          "name": "The Filet-o-Protein",
+          "desc": "A square of white protein, breaded, with half a sheet of cheese product because a full sheet was never authorized.",
+          "price": 2.4,
+          "calories": 780,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Protein Origin Statement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "North Atlantic, Presumed",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Freshwater, Documented",
+                  "price": 4.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Origin Not Stated",
+                  "price": 3.25,
+                  "note": "The non-disclosure is drafted, sealed, and filed on your behalf."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cheese Sheet Fraction",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Half Sheet (Regulation)",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Full Sheet, Unauthorized",
+                  "price": 2.65,
+                  "note": "Authorization is granted at checkout and revoked afterward."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Sheet",
+                  "price": 1.4,
+                  "note": "The half sheet is torn in half again and disposed of."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Tartar Volume",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Dollop",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Second Dollop",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Tartar Cup",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Tartar Sleeve",
+                  "price": 9.45,
+                  "note": "Sleeve is not resealable."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-004",
+          "name": "Double Cheese Assembly",
+          "desc": "Two rounds, two sheets, one bun. The assembly is considered complete when it stops moving.",
+          "price": 1.95,
+          "calories": 920,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Assembly Sequence",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Documented 1974 Sequence",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reverse Sequence",
+                  "price": 2.75,
+                  "note": "Same components, different order, same price."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sequence Waived",
+                  "price": 3.9,
+                  "note": "A waived sequence must be observed by a second employee."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Grill Marking",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Visible Marks",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Implied Marks",
+                  "price": 0.95,
+                  "note": "Marks are described to you verbally at handoff."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Marks",
+                  "price": 1.65,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Bun Toasting Interval",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Eleven Seconds (Regulation)",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Twenty-Six Seconds",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Untoasted",
+                  "price": 2.3,
+                  "note": "The toaster was reserved on your behalf and held idle."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-005",
+          "name": "The Crispy Deposition",
+          "desc": "A pressure-fried poultry fillet on a bun, served with a written statement of what happened to it.",
+          "price": 3.05,
+          "calories": 1120,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Deposition Length",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Summary, One Page",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Full Transcript, Nine Pages",
+                  "price": 4.55,
+                  "note": "Printed on the wrapper. The wrapper remains food-contact rated."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sealed Deposition",
+                  "price": 2.1,
+                  "note": "You may not read it. It is still produced."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Application Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Spicy, Regionally Approved",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Spicy, Regionally Unapproved",
+                  "price": 6.4,
+                  "note": "Availability depends on which side of the frontage road you are on."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Slaw Insertion",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Interior Slaw Layer",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Exterior Slaw Layer",
+                  "price": 2.6,
+                  "note": "Applied to the outside of the bun."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fried-potato-products",
+      "name": "Fried Potato Products",
+      "blurb": "All potato products are fried in the same oil, on the same schedule, since 1974.",
+      "items": [
+        {
+          "id": "mcr-006",
+          "name": "World Famous Fried Potato Batons",
+          "desc": "Cut, blanched, frozen, shipped, thawed, and fried. Famous in a manner that has never been independently confirmed.",
+          "price": 1.45,
+          "calories": 1480,
+          "badges": [
+            "Popular",
+            "Contains Food"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an unmarked plain red paper carton crammed with hundreds of golden salted potato batons, shot straight down into the vessel so the packed vertical ends fill the opening, batons overflowing every rim edge and fanning outward, a dozen more fallen onto the metal around the carton, coarse salt crystals glittering on oil-slick surfaces, faint steam rising through the light. The carton sits on a stainless steel fast-food prep line, out-of-focus red and yellow molded-plastic seating far behind. Hard high-key flash photography, saturated over-lit 1970s laminated menu board look, slight color fringing. 50mm lens, overhead into-vessel view, deep contrast, oil sheen. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Vessel Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal Carton",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family Sleeve",
+                  "price": 5.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal Trough",
+                  "price": 12.35,
+                  "note": "Trough is shared with your household and any adjacent household."
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed Hopper",
+                  "price": 24.75,
+                  "note": "Hopper is delivered to the curb. It is not carried inside."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Salt Deposition Rate",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regulation Deposition",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Elevated Deposition",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Salt",
+                  "price": 1.35,
+                  "note": "Salt is applied to a separate batch and withheld from yours."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dip Portfolio",
+              "required": false,
+              "min": 0,
+              "max": 5,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ketchup Cup",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cheese-Type Sauce",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Gravy Ladle",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Sauce Manifold Connection",
+                  "price": 18.6,
+                  "note": "Installation is scheduled separately and is not included."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-007",
+          "name": "Hash Cylinder",
+          "desc": "A compressed potato cylinder fried until the exterior is structural. Served at all hours, the morning designation having been retired.",
+          "price": 1.15,
+          "calories": 640,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Compression Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grade II (Standard)",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grade IV, Load-Bearing",
+                  "price": 3.1,
+                  "note": "Rated for stacking, not for consumption speed."
+                },
+                {
+                  "id": "o3",
+                  "name": "Uncompressed",
+                  "price": 1.55,
+                  "note": "Loose potato, same carton, same charge."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Exterior Integrity",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Intact",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Fractured on Arrival",
+                  "price": 0.95,
+                  "note": "Fracturing is performed at the restaurant to preserve the guest's time."
+                },
+                {
+                  "id": "o3",
+                  "name": "Guaranteed Intact",
+                  "price": 4.25,
+                  "note": "Guarantee expires at handoff."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Grease Retention Level",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Blotted",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Unblotted",
+                  "price": 1.1,
+                  "note": "Retained grease becomes the property of the guest."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-008",
+          "name": "Potato Wedge Allotment",
+          "desc": "Nine wedges, skin-on, seasoned with a proprietary blend that is largely salt.",
+          "price": 2.2,
+          "calories": 1180,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Allotment Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Nine Wedges (Standard)",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Fourteen Wedges",
+                  "price": 4.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Zero Wedges",
+                  "price": 2.45,
+                  "note": "The allotment is reserved in your name and discarded at close."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Seasoning Disclosure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Undisclosed Blend",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Disclosed Blend",
+                  "price": 2.85,
+                  "note": "Disclosure is verbal and occurs at the vehicle."
+                },
+                {
+                  "id": "o3",
+                  "name": "Unseasoned",
+                  "price": 1.6,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Vinegar Sachet Series",
+              "required": false,
+              "min": 0,
+              "max": 6,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Sachet",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Triple Sachet",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Table Decanter",
+                  "price": 5.75,
+                  "note": "Decanter is glass and is not insured in transit."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-009",
+          "name": "The Loaded Basin",
+          "desc": "Fried potato batons in a basin, covered with cheese-type sauce and meat fragments until the batons are no longer visible or provable.",
+          "price": 3.6,
+          "calories": 2340,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Basin Depth",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Shallow (Personal)",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standard (Family)",
+                  "price": 6.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal Depth",
+                  "price": 14.9,
+                  "note": "Basin ships with a lid that will not hold."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Coverage Verification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Batons Visible",
+                  "price": 1.85,
+                  "note": "Visibility is not a guarantee of presence."
+                },
+                {
+                  "id": "o2",
+                  "name": "Batons Not Visible",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Batons Unverified",
+                  "price": 1.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Fragment Class",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bacon-Type Fragments",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sausage Crumb",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unclassified Meat Confetti",
+                  "price": 3.85,
+                  "note": "Classification has been pending since 1981."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "morning-service-window",
+      "name": "Morning Service Window",
+      "blurb": "Breakfast is served from 4:00 AM to 10:35 AM, and also from 10:35 AM to 4:00 AM.",
+      "items": [
+        {
+          "id": "mcr-010",
+          "name": "The Egg McRonald Muffin",
+          "desc": "A round egg, a round sausage round, and a sheet of cheese product on a split muffin. Every component is round for reasons of storage.",
+          "price": 2.1,
+          "calories": 720,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a breakfast muffin sandwich sitting in a paper boat lined with wax paper, the top muffin half tipped slightly to one side so you can see a thick round fried egg, a browned sausage patty and a half-melted orange cheese slice stacked on the toasted English muffin, grease soaked into the wax paper underneath. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Cluttered background: a stainless steel fast-food prep counter, a napkin dispenser, a stack of lids and another order waiting behind it. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Egg Roundness Certification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Certified Round",
+                  "price": 2.95,
+                  "note": "Certified against the 1974 ring template."
+                },
+                {
+                  "id": "o2",
+                  "name": "Approximately Round",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Roundness Waived",
+                  "price": 2.95,
+                  "note": "The ring is still used. It is then washed."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Muffin Bisection Policy",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fork-Split (Regulation)",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Knife-Cut",
+                  "price": 2.85,
+                  "note": "Knife use requires a supervising employee."
+                },
+                {
+                  "id": "o3",
+                  "name": "Unsplit",
+                  "price": 1.65,
+                  "note": "The sandwich is assembled around an intact muffin."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Morning Beverage Correlation",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Coffee, Reheated",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Coffee, Original Batch",
+                  "price": 4.9,
+                  "note": "The original batch was brewed at 4:00 AM and has been maintained since."
+                },
+                {
+                  "id": "o3",
+                  "name": "Orange-Type Beverage",
+                  "price": 3.15,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-011",
+          "name": "Hotcake Stack, Regulation",
+          "desc": "Three hotcakes of equal diameter, stacked in descending order of confidence.",
+          "price": 2.65,
+          "calories": 1310,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Syrup Delivery Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sealed Tub",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Sealed Tubs",
+                  "price": 3.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Poured at the Restaurant",
+                  "price": 5.2,
+                  "note": "Syrup arrives already absorbed."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Syrup",
+                  "price": 1.95,
+                  "note": "The tub is opened and poured into a drain of record."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Butter-Type Substance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Whipped Pat",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Pats",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Substance Withheld",
+                  "price": 1.05,
+                  "note": "The pat is retained by the restaurant for inventory purposes."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Stack Height Escalation",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fourth Hotcake",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sixth Through Ninth Hotcake",
+                  "price": 7.4,
+                  "note": "The fifth hotcake is not available."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-012",
+          "name": "Sausage Biscuit Directive",
+          "desc": "A biscuit and a sausage round, issued together under a standing directive that predates current management.",
+          "price": 1.85,
+          "calories": 860,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Directive Status",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Active Directive",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Directive Under Review",
+                  "price": 2.45,
+                  "note": "The item is identical during review."
+                },
+                {
+                  "id": "o3",
+                  "name": "Directive Rescinded",
+                  "price": 3.7,
+                  "note": "A rescinded directive must be re-issued in order to fulfill your order."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Biscuit Flake Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Flaking",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Excessive Flaking",
+                  "price": 1.35,
+                  "note": "Flakes are not recoverable."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sealed Biscuit, No Flaking",
+                  "price": 3.95,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Jam Dispensation",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grape-Type",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Strawberry-Type",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unnamed Red",
+                  "price": 0.85,
+                  "note": "Flavor is assigned at the plant."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-013",
+          "name": "Breakfast Cylinder, Legacy Formula",
+          "desc": "A tortilla wrapped around eggs, sausage crumb, and peppers to the 1988 formula, which was the last formula.",
+          "price": 2.3,
+          "calories": 940,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Formula Vintage",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "1988 Legacy",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "1988 Legacy, Reconstituted",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Current Formula",
+                  "price": 4.6,
+                  "note": "There is no current formula. The fee reserves one."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Wrap Tension",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Tension",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "High Tension",
+                  "price": 2.7,
+                  "note": "Contents may exit the far end at speed."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Tension",
+                  "price": 1.45,
+                  "note": "The cylinder is delivered flat and is folded by the guest."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Salsa Classification",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mild, Certified",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Medium, Contested",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Hot, Discontinued But Available",
+                  "price": 3.4,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-value-assortment",
+      "name": "The Value Assortment",
+      "blurb": "Every item on this list was priced in 1974 and that price is still on the sign.",
+      "items": [
+        {
+          "id": "mcr-014",
+          "name": "The One Two Three Selection",
+          "desc": "Choose any item from the one-dollar list, the two-dollar list, or the three-dollar list. The lists are the same list.",
+          "price": 1.05,
+          "calories": 610,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "List Enrollment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One-Dollar List",
+                  "price": 3.85,
+                  "note": "List access is billed separately from list contents."
+                },
+                {
+                  "id": "o2",
+                  "name": "Two-Dollar List",
+                  "price": 3.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Three-Dollar List",
+                  "price": 3.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Selection From List",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cheese Assembly",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Personal Baton Carton",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Frozen Dairy Cup",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Employee's Choice",
+                  "price": 4.15,
+                  "note": "Selection is made by whoever is nearest the screen."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Value Verification Receipt",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Printed",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Notarized",
+                  "price": 6.3,
+                  "note": "The notary is on site Tuesdays."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-015",
+          "name": "Poultry Pieces, Six-Shape Assortment",
+          "desc": "Breaded poultry pieces in four approved shapes. The remaining two shapes were retired and their molds destroyed.",
+          "price": 2.75,
+          "calories": 1090,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: about twenty golden breaded chicken nuggets heaped in a white styrofoam clamshell with the lid folded back, two small plastic cups of dipping sauce wedged in beside them, one sauce cup overfull, loose crumbs of breading in the bottom of the container. Harsh direct on-camera flash, hot blown-out hotspot on the breading, hard black shadow thrown behind the clamshell. Framed slightly crooked with the clamshell cut off at the right edge, sitting on a scratched stainless steel prep counter. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise and JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Shape Compliance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Four Approved Shapes",
+                  "price": 3.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Approved Shapes Plus One Retired Shape",
+                  "price": 8.9,
+                  "note": "Retired shapes are reconstructed by hand and are not guaranteed to be shapes."
+                },
+                {
+                  "id": "o3",
+                  "name": "Shape Not Specified",
+                  "price": 3.45,
+                  "note": "Pieces are dispensed in whatever configuration the hopper produces."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Piece Count Escalation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Six Pieces",
+                  "price": 2.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Twenty Pieces",
+                  "price": 7.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Forty Pieces",
+                  "price": 15.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Municipal Bin, 180 Pieces",
+                  "price": 26.9,
+                  "note": "The bin is not refrigerated and is not intended to be."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sauce Cup Federation",
+              "required": false,
+              "min": 0,
+              "max": 6,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sweet-Type Cup",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tangy-Type Cup",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Smoky-Type Cup",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "The 1987 Cup",
+                  "price": 5.45,
+                  "note": "Recipe unchanged. Cup unchanged. Lid improved."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-016",
+          "name": "The Cheerful Container",
+          "desc": "A meal inside a container with a handle, sized for a small person. The handle is rated for the container, not the contents.",
+          "price": 3.4,
+          "calories": 880,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Container Enclosure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Handle",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reinforced Handle",
+                  "price": 3.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Handle",
+                  "price": 2.15,
+                  "note": "The container is sealed and must be carried underhand."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Enclosure Object",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Molded Figure",
+                  "price": 2.85,
+                  "note": "The figure depicts a property we no longer license."
+                },
+                {
+                  "id": "o2",
+                  "name": "Paper Activity",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Object",
+                  "price": 2.85,
+                  "note": "The object is produced, logged, and destroyed."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Small Person Beverage",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Milk-Type, 4 oz",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Juice-Type, 4 oz",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Water, Municipal",
+                  "price": 2.85,
+                  "note": "Sourced from the same tap available to you at home."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-017",
+          "name": "Ceremonial Side Salad",
+          "desc": "Lettuce, two tomato wedges, and shredded orange matter. It is not intended to be eaten. It is intended to be ordered.",
+          "price": 1.75,
+          "calories": 620,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Ceremony Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Silent Ceremony",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Announced at Handoff",
+                  "price": 3.25,
+                  "note": "The Gorger will state aloud that you have ordered a salad."
+                },
+                {
+                  "id": "o3",
+                  "name": "Ceremony Declined",
+                  "price": 1.95,
+                  "note": "The announcement is made regardless, out of earshot."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Dressing Deployment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sachet, Sealed",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sachet, Pre-Opened",
+                  "price": 1.15,
+                  "note": "Opening occurs during transit and cannot be timed."
+                },
+                {
+                  "id": "o3",
+                  "name": "Dressing Withheld",
+                  "price": 1.85,
+                  "note": "Withheld dressing is stored on your behalf for thirty days."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Crouton Deposit",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Six Croutons",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Crouton Layer",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Crouton Ceiling",
+                  "price": 4.95,
+                  "note": "The salad is no longer visible."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frozen-dairy-solutions",
+      "name": "Frozen Dairy Solutions",
+      "blurb": "Equipment status is posted daily and is accurate at the moment of posting.",
+      "items": [
+        {
+          "id": "mcr-018",
+          "name": "Structural Shake",
+          "desc": "A frozen dairy solution thick enough to hold a straw upright and, briefly, a spoon.",
+          "price": 2.55,
+          "calories": 1420,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Machine Status Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Machine Operational",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Machine In Cleaning Cycle",
+                  "price": 3.15,
+                  "note": "The cycle began in 1974 and has not concluded."
+                },
+                {
+                  "id": "o3",
+                  "name": "Status Not Checked",
+                  "price": 2.45,
+                  "note": "The order proceeds. Outcomes vary."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Straw Aperture Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Aperture",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wide Aperture",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Straw",
+                  "price": 1.05,
+                  "note": "The straw is manufactured, counted, and recycled."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Flavor Overlay",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Vanilla-Type",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Chocolate-Type",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Seasonal Green",
+                  "price": 3.85,
+                  "note": "The season is determined by inventory, not by calendar."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-019",
+          "name": "The Vertical Swirl",
+          "desc": "Soft-serve dispensed in seven descending rings. The seventh ring is where the cone meets its limit.",
+          "price": 1.35,
+          "calories": 680,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Swirl Height Authorization",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Seven Rings (Regulation)",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Eleven Rings",
+                  "price": 4.4,
+                  "note": "Rings eight through eleven are unsupported."
+                },
+                {
+                  "id": "o3",
+                  "name": "Three Rings",
+                  "price": 1.85,
+                  "note": "The remaining four rings are dispensed into the drain."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cone Load Rating",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Wafer",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reinforced Wafer",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cup, No Cone",
+                  "price": 1.25,
+                  "note": "The cone is issued to the kitchen and retained there."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dip Shell",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chocolate-Type Shell",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Shell",
+                  "price": 3.55,
+                  "note": "The second shell adheres to the first, not to the dairy."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-020",
+          "name": "Sundae Basin, Municipal",
+          "desc": "Soft-serve in a wide basin with two syrups applied until the rim of the basin is no longer relevant.",
+          "price": 2.95,
+          "calories": 2180,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a big swirl of soft-serve vanilla in a clear plastic deli container, already softening at the edges, thick chocolate fudge and caramel syrup poured over the top and running down the inside walls of the container, a heavy scatter of chopped nuts over the swirl, a plastic spoon laid beside it. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the container. The container sitting directly on a scratched laminate counter with crumbs and a smear of syrup beside it, framed a little crooked. Flat phone-camera look, unretouched, mixed white balance, visible JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Syrup Overflow Allowance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Contained",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Rim Level",
+                  "price": 3.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Overflow (Regulation)",
+                  "price": 5.9,
+                  "note": "Overflow is measured at the tray, not at the basin."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Syrup",
+                  "price": 2.45,
+                  "note": "Syrup is dispensed at the same rate onto the counter."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Basin Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal Basin",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family Basin",
+                  "price": 5.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal Basin",
+                  "price": 11.8,
+                  "note": "Rated for civic use and returned unwashed."
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed Basin",
+                  "price": 22.65,
+                  "note": "Delivered by flatbed. Curbside only."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Particulate Topping",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Nut Fragments",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Candy Gravel",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cookie Aggregate",
+                  "price": 2.05,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Unlabeled Sprinkle Blend",
+                  "price": 2.85,
+                  "note": "Blend composition rotates without notice."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mcr-021",
+          "name": "Warm Apple Sleeve",
+          "desc": "A fried pastry sleeve containing apple-type filling at a temperature the restaurant does not control and cannot predict.",
+          "price": 1.25,
+          "calories": 660,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Interior Temperature Waiver",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Waiver Signed",
+                  "price": 1.45,
+                  "note": "Signature is collected electronically at handoff."
+                },
+                {
+                  "id": "o2",
+                  "name": "Waiver Declined",
+                  "price": 3.9,
+                  "note": "A declined waiver requires the pastry to be cooled and reheated by a supervisor."
+                },
+                {
+                  "id": "o3",
+                  "name": "Waiver Not Offered",
+                  "price": 1.45,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Crust Blistering Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Light Blistering",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Full Blistering",
+                  "price": 2.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Blistering",
+                  "price": 1.15,
+                  "note": "Blistering is performed on a decoy pastry."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sleeve Insulation",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Paper Sleeve",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Sleeve",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Insulated Pouch",
+                  "price": 3.95,
+                  "note": "The pouch retains heat longer than the pastry retains structure."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

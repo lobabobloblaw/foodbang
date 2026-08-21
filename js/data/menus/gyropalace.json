@@ -1,0 +1,2311 @@
+{
+  "slug": "gyropalace",
+  "name": "Gyro Palace #3",
+  "shortName": "Gyro Palace #3",
+  "tagline": "OVER RICE SINCE 1998.",
+  "cuisine": "Mediterranean · Halal",
+  "categories": [
+    "sandwiches",
+    "chicken",
+    "fast-food"
+  ],
+  "local": true,
+  "rating": 4.6,
+  "ratingCount": 217,
+  "deliveryMin": 41,
+  "deliveryMax": 79,
+  "deliveryFee": 6.49,
+  "distanceMi": 3.4,
+  "priceTier": 1,
+  "gorgePlus": false,
+  "closesAt": "10:20 PM",
+  "address": "8814-B Route 9 South, Unit 12 (behind the car wash), Northgate Crossing Shoppes, Exit 27",
+  "about": "Gyro Palace was opened in 1998 on Route 9 by my father. That building is a phone store now. This is the third one and it is the only one still open, same recipes, same white sauce, my brother Emre runs the grill six days. We do not use a commissary and we never have.",
+  "announcement": "WE ARE OPEN. The app says 45 minutes but on Friday it is closer to an hour, we have one grill. If you need it faster please call the store direct at (555) 018-4471 and ask for Sami, do not put it in the notes because the printer cuts them off. Sorry for the incovenience.",
+  "promos": [
+    "$2 OFF IF YOU ORDER ON THE PHONE INSTEAD"
+  ],
+  "reviews": [
+    {
+      "name": "Denise Okafor",
+      "stars": 5,
+      "date": "Aug 16",
+      "text": "I have been ordering the chicken over rice from these guys for nine years, first when they were on Route 9 and now here behind the car wash. The portion is still big enough that I eat it twice and the white sauce is still made in the back and not bought. Sami remembers that I don't want onions and he has never once gotten it wrong. The only thing I will say is the app charges you to not have rice, which Sami told me is not his doing."
+    },
+    {
+      "name": "M. Trevino",
+      "stars": 1,
+      "date": "Aug 14",
+      "text": "There is nowhere to park. The car wash people yell at you. Food was excellent."
+    },
+    {
+      "name": "Anthony R.",
+      "stars": 5,
+      "date": "Aug 11",
+      "text": "Ordered the mixed grill for four people and it fed six. Lamb chops were pink in the middle like I asked."
+    },
+    {
+      "name": "Priya S.",
+      "stars": 2,
+      "date": "Aug 8",
+      "text": "I called three times and nobody picked up. Then I walked in and there were two people working and both of them were on the grill, so I understand now."
+    },
+    {
+      "name": "Big Ray",
+      "stars": 5,
+      "date": "Aug 3",
+      "text": "The hot sauce warning on the menu is not a joke and I want everyone to know that I respect them for putting it in writing."
+    },
+    {
+      "name": "Carolyn W.",
+      "stars": 1,
+      "date": "Jul 29",
+      "text": "This is not the Greek place with the blue awning by the highway. That one closed. I keep ordering here by mistake and it is better anyway, but I am leaving one star for the confusion."
+    }
+  ],
+  "menu": [
+    {
+      "id": "over-rice",
+      "name": "Over Rice",
+      "blurb": "Yellow rice, salad, white sauce. Comes in a container with a lid that fits.",
+      "items": [
+        {
+          "id": "gyp-001",
+          "name": "Chicken Over Rice",
+          "desc": "Chopped chicken off the spit over yellow rice with lettuce and tomato. This is what most people order and it has not changed.",
+          "price": 5.25,
+          "calories": 1980,
+          "badges": [
+            "#1 Most Liked",
+            "Popular"
+          ],
+          "photo": "items/01.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a heaped portion of chopped seasoned chicken over yellow rice in a white styrofoam clamshell, shredded lettuce and tomato wedges pushed to one side, a heavy zigzag of white sauce over everything and one thin stripe of red hot sauce, the lid propped open behind it. Harsh direct on-camera flash, hot blown-out hotspot on the white sauce, hard black shadow thrown behind the container. Framed slightly crooked with the clamshell cut off at the right edge, sitting on a scratched stainless prep counter next to a stack of lids. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Rice Foundation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Yellow Rice",
+                  "price": 1.85,
+                  "note": "The standard. Priced separately since the app update."
+                },
+                {
+                  "id": "o2",
+                  "name": "White Rice",
+                  "price": 1.85,
+                  "note": "Different pot, same charge."
+                },
+                {
+                  "id": "o3",
+                  "name": "Half Rice Half Salad",
+                  "price": 2.6,
+                  "note": "Two scoops means two utensils."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Rice",
+                  "price": 2.95,
+                  "note": "Rice is portioned when the ticket prints. Removing it is an extra step and is billed as one."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Sauce Application",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White Sauce",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White Sauce And Hot Sauce",
+                  "price": 1.7,
+                  "note": "Two bottles, two people."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce On The Side",
+                  "price": 1.45,
+                  "note": "Cups are counted at close."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Sauce",
+                  "price": 1.25,
+                  "note": "The bottle is still picked up and set down."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Portion Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Large",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Family (Two Containers)",
+                  "price": 7.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Municipal (Feeds A Shift)",
+                  "price": 14.9,
+                  "note": "Please call the store first. After 9 PM this is not possible."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Extra From The Spit",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Extra Chicken",
+                  "price": 3.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Add Lamb",
+                  "price": 4.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Add Falafel (3)",
+                  "price": 2.2,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-002",
+          "name": "Lamb Over Rice",
+          "desc": "Gyro lamb sliced off the cone over yellow rice. Heavier than the chicken. Emre cuts it thin.",
+          "price": 6.4,
+          "calories": 2240,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Rice Foundation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Yellow Rice",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White Rice",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Half Rice Half Fries",
+                  "price": 3.15,
+                  "note": "The fryer is separate from the grill."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Rice",
+                  "price": 2.95,
+                  "note": "Declining the rice does not un-cook the rice."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Spit Position",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Outside Cut (Crispy)",
+                  "price": 1.9,
+                  "note": "There is a limited amount of outside on a cone."
+                },
+                {
+                  "id": "o2",
+                  "name": "Middle Cut",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Preference",
+                  "price": 1.35,
+                  "note": "Someone still has to decide, and that person is Emre."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sauce Application",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White Sauce",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Both Sauces",
+                  "price": 1.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Sauce",
+                  "price": 1.25,
+                  "note": "Dry orders are marked in red pen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-003",
+          "name": "Chicken And Lamb Over Rice",
+          "desc": "Both. The container is filled to the corners and the lid does not sit flat. That is normal.",
+          "price": 7.1,
+          "calories": 2610,
+          "badges": [
+            "Popular",
+            "Contains Food"
+          ],
+          "photo": "items/02.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a very full aluminium foil tray with a cardboard lid folded back, packed with a mound of chopped chicken on one half and sliced gyro lamb on the other, yellow rice underneath showing at the corners, shredded iceberg lettuce and tomato at one end, white sauce drizzled in wide loops. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above so the tray is not centred and one corner of the lid runs out of frame. Flat phone-camera look, unretouched, visible JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Meat Ratio",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Half And Half",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Mostly Chicken",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Mostly Lamb",
+                  "price": 2.85,
+                  "note": "Lamb is the expensive one and always has been."
+                },
+                {
+                  "id": "o4",
+                  "name": "Whatever Is Ready",
+                  "price": 1.2,
+                  "note": "Fastest option. Not a discount."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Rice Foundation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Yellow Rice",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Half Rice Half Salad",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Rice",
+                  "price": 2.95,
+                  "note": "The rice is already in the container. It comes back out by hand."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Foil And Container",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Foil Tray",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Wrapped For Travel",
+                  "price": 1.4,
+                  "note": "Recommended past Exit 31."
+                },
+                {
+                  "id": "o3",
+                  "name": "Styrofoam Clamshell",
+                  "price": 0.9,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-004",
+          "name": "Falafel Over Rice",
+          "desc": "Six falafel, fried when you order, over yellow rice with salad and tahini. Vegetarian.",
+          "price": 5.75,
+          "calories": 1740,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Rice Foundation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Yellow Rice",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White Rice",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Rice",
+                  "price": 2.95,
+                  "note": "See the note on the chicken. It is the same rice."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fryer Timing",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fried To Order",
+                  "price": 1.45,
+                  "note": "Adds four minutes and is worth it."
+                },
+                {
+                  "id": "o2",
+                  "name": "From The Warming Tray",
+                  "price": 1.05,
+                  "note": "Faster. Softer."
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra Crispy",
+                  "price": 1.95,
+                  "note": "The fryer runs a second cycle and the second cycle is metered."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sauce Application",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tahini",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White Sauce",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Sauce",
+                  "price": 1.25,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-005",
+          "name": "Kofta Kebab Over Rice",
+          "desc": "Two seasoned beef and lamb kofta off the char grill over rice. Ask for it with the grilled onions.",
+          "price": 7.85,
+          "calories": 2080,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Char Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Normal",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Well Charred",
+                  "price": 1.6,
+                  "note": "Occupies the grill longer. The grill is one grill."
+                },
+                {
+                  "id": "o3",
+                  "name": "Light",
+                  "price": 1.25,
+                  "note": "Has to be watched, which is more work than not watching it."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Rice Foundation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Yellow Rice",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Half Rice Half Salad",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Rice",
+                  "price": 2.95,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Grilled Onion Question",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Yes, Grilled Onions",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Raw Onion Instead",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Onion At All",
+                  "price": 1.3,
+                  "note": "The onions are already on the flat top. They are moved aside for you."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sandwiches",
+      "name": "Sandwiches",
+      "blurb": "In pita or on a hero roll. Wrapped in foil and then in paper.",
+      "items": [
+        {
+          "id": "gyp-006",
+          "name": "Gyro Sandwich",
+          "desc": "Lamb and beef gyro in warm pita with lettuce, tomato, onion and white sauce. The original item.",
+          "price": 5.9,
+          "calories": 1420,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/03.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a fat gyro sandwich in warm pita, half unwrapped from crumpled aluminium foil and sitting on a white paper plate, sliced lamb spilling out of the open end with shredded lettuce, tomato and raw onion, white sauce running down onto the foil. Dim warm restaurant light with the flash off, slightly underexposed and noisy, mixed white balance. Cluttered background: a napkin dispenser, a stack of lids and another wrapped order waiting on the counter behind it. Flat phone-camera look, unretouched, soft focus. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Warm Pita",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Hero Roll",
+                  "price": 1.95,
+                  "note": "Comes from the bakery on Tuesdays and Fridays."
+                },
+                {
+                  "id": "o3",
+                  "name": "Wrapped In Lettuce",
+                  "price": 2.35,
+                  "note": "More lettuce is used than you would think."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread, In A Container",
+                  "price": 1.75,
+                  "note": "The pita is still warmed. It is warmed and then not used."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Sauce Application",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White Sauce",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White And Hot",
+                  "price": 1.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Tzatziki",
+                  "price": 1.55,
+                  "note": "Made Sunday. Runs out Thursday."
+                },
+                {
+                  "id": "o4",
+                  "name": "Nothing On It",
+                  "price": 1.25,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Wrap And Cut",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Foil, Whole",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil, Cut In Half",
+                  "price": 1.1,
+                  "note": "The knife is washed after each cut. That is the charge."
+                },
+                {
+                  "id": "o3",
+                  "name": "Foil And Paper, Whole",
+                  "price": 0.95,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-007",
+          "name": "Chicken Shawarma Sandwich",
+          "desc": "Marinated chicken off the spit in pita with pickles and garlic sauce.",
+          "price": 5.6,
+          "calories": 1310,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Warm Pita",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Hero Roll",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Bread, In A Container",
+                  "price": 1.75,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Pickle Allocation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Pickles",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra Pickles",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pickles On The Side",
+                  "price": 1.15,
+                  "note": "A cup is a cup whether it is inside or outside the sandwich."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Pickles",
+                  "price": 0.95,
+                  "note": "The jar is opened either way."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sauce Application",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Garlic Sauce",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White Sauce",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Both",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Neither",
+                  "price": 1.25,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-008",
+          "name": "Falafel Sandwich",
+          "desc": "Five falafel crushed into pita with salad, tahini and hot sauce if you want it. Cheapest thing on the menu that fills you up.",
+          "price": 4.85,
+          "calories": 1120,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Warm Pita",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Hero Roll",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Bread, In A Container",
+                  "price": 1.75,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fryer Timing",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fried To Order",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "From The Warming Tray",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra Crispy",
+                  "price": 1.95,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Salad Situation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lettuce, Tomato, Onion",
+                  "price": 0.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Add Cucumber And Turnip",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Meat Only, No Salad",
+                  "price": 1.05,
+                  "note": "There is no meat in this item. The option is the same option on every screen and we cannot edit it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-009",
+          "name": "Kofta Sandwich",
+          "desc": "Two kofta off the char grill in pita with grilled onion and parsley.",
+          "price": 6.25,
+          "calories": 1490,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Warm Pita",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Hero Roll",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Bread",
+                  "price": 1.75,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Char Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Normal",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Well Charred",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Light",
+                  "price": 1.25,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Wrap And Cut",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Foil, Whole",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil, Cut In Half",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Foil And Paper, Whole",
+                  "price": 0.95,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-010",
+          "name": "Philly-Style Chicken Sandwich",
+          "desc": "Chopped chicken, peppers, onions and American cheese on a hero. My son put this on the menu in 2019 and it sells more than the shawarma, which he reminds me of.",
+          "price": 6.75,
+          "calories": 1660,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cheese Decision",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "American",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double American",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Feta Instead",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Cheese",
+                  "price": 1.35,
+                  "note": "The slice is removed from the stack and returned to the stack."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Flat Top Additions",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Peppers And Onions",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Onions Only",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Mushrooms Added",
+                  "price": 2.25,
+                  "note": "We buy the mushrooms separately for this one sandwich."
+                },
+                {
+                  "id": "o4",
+                  "name": "Plain",
+                  "price": 1.05,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Wrap And Cut",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Foil, Whole",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil, Cut In Half",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Foil And Paper, Whole",
+                  "price": 0.95,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "from-the-grill",
+      "name": "From The Grill",
+      "blurb": "Platters come with rice, salad and two pita. These take longer, please read the announcement.",
+      "items": [
+        {
+          "id": "gyp-011",
+          "name": "Mixed Grill Platter",
+          "desc": "Chicken kebab, kofta, gyro and one lamb chop over rice with salad. Meant for two people. It is regularly ordered by one person.",
+          "price": 11.2,
+          "calories": 3480,
+          "badges": [
+            "Chef Recommended",
+            "Contains Food"
+          ],
+          "photo": "items/04.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a large aluminium foil takeout tray crowded with grilled meats over yellow rice, two chicken kebab skewers, two dark seared kofta logs, a pile of sliced gyro and one lamb chop, chopped salad packed into one corner, two folded pita laid across the top, juices pooling in the foil. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the tray, mixed white balance. Mild motion blur and soft focus with visible JPEG compression artefacts and sensor noise. Flat phone-camera look, unretouched. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Portion Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular (Two People)",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Large (Three To Four)",
+                  "price": 6.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Family Tray",
+                  "price": 12.6,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Municipal Pan (Feeds A Crew)",
+                  "price": 19.85,
+                  "note": "Half sheet pan. Two hours notice."
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed Pan",
+                  "price": 34.5,
+                  "note": "Full pan. This shuts down the grill for everyone else and that is what you are paying for."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Char Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Normal",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Well Charred",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Light",
+                  "price": 1.25,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Foil And Container",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Foil Tray",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Wrapped For Travel",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Split Into Two Trays",
+                  "price": 2.3,
+                  "note": "Two trays, two lids, two of everything."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Off The Cooler",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Can Of Soda",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Ayran",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bottle Of Water",
+                  "price": 1.75,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-012",
+          "name": "Lamb Chops (4)",
+          "desc": "Four chops on the char grill with rice and salad. Priced the same as 2016 and I am aware of what lamb costs now.",
+          "price": 13.75,
+          "calories": 2340,
+          "badges": [
+            "Chef Recommended",
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Temperature Request",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Medium",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Medium Well",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pink In The Middle",
+                  "price": 1.95,
+                  "note": "Requires standing at the grill and not walking away."
+                },
+                {
+                  "id": "o4",
+                  "name": "Cook It Through",
+                  "price": 1.55,
+                  "note": "Longer on the grill is longer on the grill."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chop Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Four",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Six",
+                  "price": 6.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Eight",
+                  "price": 12.75,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Salad Situation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Chopped Salad",
+                  "price": 0.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "With Feta And Olives",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Skip The Salad",
+                  "price": 1.05,
+                  "note": "It is made in the morning in one big bowl. Skipping does not un-make it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-013",
+          "name": "Chicken Kebab Platter",
+          "desc": "Two skewers of marinated chicken breast over rice with salad and two pita.",
+          "price": 8.9,
+          "calories": 2160,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Skewer Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Skewers",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three Skewers",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Four Skewers",
+                  "price": 8.2,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Rice Foundation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Yellow Rice",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Half Rice Half Salad",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Rice",
+                  "price": 2.95,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Pita Handling",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Warm Pita",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Warm Pita",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Pita",
+                  "price": 1.25,
+                  "note": "They go on the grill with the order. They come off with the order."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-014",
+          "name": "Half Rotisserie Chicken With Rice",
+          "desc": "Half a chicken off the vertical rotisserie, cut in the back, over rice. Available until it runs out, usually around 8.",
+          "price": 9.45,
+          "calories": 2520,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cutting Instruction",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cut Into Pieces",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Left Whole",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pulled Off The Bone",
+                  "price": 3.4,
+                  "note": "This is ten minutes of somebody's evening."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Rice Foundation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Yellow Rice",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White Rice",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Rice",
+                  "price": 2.95,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sauce Application",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Garlic Sauce",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "White Sauce",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Sauce",
+                  "price": 1.25,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sides-and-dips",
+      "name": "Sides, Salads And Dips",
+      "blurb": "Everything here is made in the back except the fries, which are also made in the back.",
+      "items": [
+        {
+          "id": "gyp-015",
+          "name": "Hummus With Pita",
+          "desc": "Made every other morning. Comes with two pita and a drizzle of olive oil.",
+          "price": 3.85,
+          "calories": 890,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cup Size",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "8 oz",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "16 oz",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Quart",
+                  "price": 8.45,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Pita Handling",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Warm Pita",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Warm Pita",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Pita",
+                  "price": 1.25,
+                  "note": "The pita is part of the item. Removing it is a modification and modifications are priced."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Lid Fitment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Snap Lid",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Snap Lid With Tape",
+                  "price": 0.85,
+                  "note": "For deliveries past the traffic circle."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-016",
+          "name": "French Fries",
+          "desc": "Fresh cut, fried twice, salted while hot. Ask for them over the rice if that is the kind of person you are.",
+          "price": 3.1,
+          "calories": 1240,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/05.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a generous overflowing pile of thick fresh-cut french fries in a red plastic diner basket lined with checkered paper, visible coarse salt, a few darker crispy ends on top, a small paper cup of white sauce wedged in beside them. Harsh direct on-camera flash, hot blown-out hotspot on the fries and the sauce cup, hard black shadow thrown behind the basket. The basket sitting directly on a scratched laminate counter with crumbs and a smear of sauce beside it. Flat phone-camera look, unretouched, mixed white balance, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Fry Salt Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Salted",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra Salt",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Salt",
+                  "price": 1.2,
+                  "note": "Unsalted fries are dropped in a separate basket to avoid contact with the salt station."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fryer Timing",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Well Done",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Soft",
+                  "price": 1.1,
+                  "note": "Has to be pulled early, which means watching a timer that is already set."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cup Of Something",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White Sauce Cup",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Garlic Sauce Cup",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Feta Crumbled Over Top",
+                  "price": 1.9,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-017",
+          "name": "Stuffed Grape Leaves (6)",
+          "desc": "Rolled by my aunt on Sundays. When they are gone they are gone until Sunday.",
+          "price": 4.4,
+          "calories": 620,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Six",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Twelve",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Twenty Four",
+                  "price": 9.6,
+                  "note": "This is most of a Sunday."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Serving Temperature",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cold, From The Case",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Warmed Under The Lamp",
+                  "price": 1.15,
+                  "note": "The lamp is on a meter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Room Temperature",
+                  "price": 0.85,
+                  "note": "Requires taking them out early and remembering that we did."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Lemon Wedge Status",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Wedges",
+                  "price": 0.5,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Wedges",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Lemon",
+                  "price": 0.7,
+                  "note": "The lemon is cut in the morning regardless of who wants it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-018",
+          "name": "Greek Salad",
+          "desc": "Lettuce, tomato, cucumber, onion, olives, feta, oregano, oil and vinegar. Big bowl.",
+          "price": 4.95,
+          "calories": 740,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Feta Weight",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Normal",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Feta",
+                  "price": 1.15,
+                  "note": "The block is unwrapped and rewrapped."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Dressing Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Dressed In The Bowl",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Dressing On The Side",
+                  "price": 1.2,
+                  "note": "Two more cups and two more lids."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Dressing",
+                  "price": 0.9,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Add Protein Off The Spit",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chicken",
+                  "price": 3.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Lamb",
+                  "price": 4.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Falafel (3)",
+                  "price": 2.2,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-019",
+          "name": "Hot Sauce (2 oz Cup)",
+          "desc": "DO NOT ORDER THIS IF YOU HAVE NOT HAD IT BEFORE. IT IS NOT LIKE OTHER HOT SAUCE. ASK FOR THE WHITE SAUCE INSTEAD. WE HAVE PUT THIS IN WRITING.",
+          "price": 1.05,
+          "calories": 90,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I Have Had It Before",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "I Have Not Had It Before",
+                  "price": 1.35,
+                  "note": "Includes a second cup of white sauce that you will use."
+                },
+                {
+                  "id": "o3",
+                  "name": "It Is For Someone Else",
+                  "price": 0.85,
+                  "note": "We would like it on the record that you were told."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cup Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Cup",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Cups",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Four Cups",
+                  "price": 2.85,
+                  "note": "Limit four. This is a house rule and not a legal one."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Lid Fitment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Snap Lid",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Snap Lid With Tape",
+                  "price": 0.85,
+                  "note": "Strongly recommended for this item specifically."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case-and-cooler",
+      "name": "The Case And The Cooler",
+      "blurb": "The case is by the register. The cooler is next to the door and it hums.",
+      "items": [
+        {
+          "id": "gyp-020",
+          "name": "Baklava",
+          "desc": "Walnut, honey, made by the bakery on Grand. Been in the case since this morning, which is how it is supposed to be.",
+          "price": 2.35,
+          "calories": 610,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/06.webp",
+          "photoStyle": "amateur",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: four dense diamond-cut pieces of walnut baklava packed tightly into a small clear plastic deli container, layers of golden filo visible at the cut edges, honey syrup pooled and sticky in the bottom of the container, crushed walnut on top, the clear lid resting beside it. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the container cut off at the bottom edge and another wrapped order sitting behind it on the counter. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Piece Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Pieces",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Pieces",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Tray Of Twelve",
+                  "price": 9.4,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Case Age Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "From This Morning",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "From The Back, Fresher",
+                  "price": 1.85,
+                  "note": "Someone has to go to the back."
+                },
+                {
+                  "id": "o3",
+                  "name": "Whichever Is In Front",
+                  "price": 0.6,
+                  "note": "This is what we would pick."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Lid Fitment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Clear Snap Lid",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Clear Snap Lid With Tape",
+                  "price": 0.85,
+                  "note": "The honey travels."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-021",
+          "name": "Rice Pudding",
+          "desc": "Cinnamon on top. Made in the same rice cooker on Mondays after close.",
+          "price": 2.6,
+          "calories": 520,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cup Size",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "8 oz",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "16 oz",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Quart",
+                  "price": 8.45,
+                  "note": "Ask on Monday."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cinnamon Application",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Dusting",
+                  "price": 0.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "None",
+                  "price": 0.65,
+                  "note": "The shaker is already in hand."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Lid Fitment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Snap Lid",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Snap Lid With Tape",
+                  "price": 0.85,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gyp-022",
+          "name": "Canned Soda",
+          "desc": "Whatever is in the cooler. If we are out of what you picked we will send the closest one and we will not charge you again for it.",
+          "price": 1.45,
+          "calories": 160,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "What Is In The Cooler",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cola",
+                  "price": 0.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Diet Cola",
+                  "price": 0.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Orange",
+                  "price": 0.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Ginger Ale",
+                  "price": 0.55,
+                  "note": "Bottom shelf, back left."
+                },
+                {
+                  "id": "o5",
+                  "name": "Surprise Me",
+                  "price": 0.75,
+                  "note": "Choosing on your behalf is a decision and decisions are billed."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Can Temperature",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cold From The Cooler",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Room Temperature From The Case",
+                  "price": 0.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cold With Ice Cup",
+                  "price": 1.25,
+                  "note": "The ice machine is in the back and it is loud."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Bag Doubling",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Bag",
+                  "price": 0.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Bagged",
+                  "price": 0.6,
+                  "note": "Cans are heavy and the handles are not."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

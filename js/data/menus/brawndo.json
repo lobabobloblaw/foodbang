@@ -1,0 +1,2370 @@
+{
+  "slug": "brawndo",
+  "name": "BRAWNDO Hydration Depot",
+  "shortName": "BRAWNDO Depot",
+  "tagline": "THE THIRST MUTILATOR.",
+  "cuisine": "Hydration & Electrolyte Logistics",
+  "categories": [
+    "drinks",
+    "grocery"
+  ],
+  "rating": 4.4,
+  "ratingCount": 41208,
+  "deliveryMin": 24,
+  "deliveryMax": 55,
+  "deliveryFee": 6.49,
+  "distanceMi": 3.8,
+  "priceTier": 2,
+  "gorgePlus": true,
+  "closesAt": "3:00 AM",
+  "address": "1 Electrolyte Way, Bay 14, Dock C, Sundale Commerce Annex, Lot 7700",
+  "about": "BRAWNDO Hydration Depot supplies electrolytes at residential, municipal, and watershed scale. It's got what you crave, and it has had it since the founding of the depot. Water is available elsewhere.",
+  "announcement": "DOCK NOTICE: Orders above 275 gallons are delivered to the curb and become the household's problem at the curb.",
+  "promos": [
+    "20% off, up to $4.00",
+    "Free item with any $140 order"
+  ],
+  "reviews": [
+    {
+      "name": "Dale R.",
+      "stars": 5,
+      "date": "Aug 14",
+      "text": "Ordered the Household Drum. It is in the hallway now and the hallway is fine. Contains electrolytes."
+    },
+    {
+      "name": "Marisol T.",
+      "stars": 4,
+      "date": "Aug 11",
+      "text": "The Watershed Pallet arrived on the curb as described. My neighbor was notified for an additional charge and appreciated it."
+    },
+    {
+      "name": "Kenny B.",
+      "stars": 2,
+      "date": "Aug 9",
+      "text": "Declined the hazard acknowledgment and it cost more than acknowledging it. That is my fault, not theirs."
+    },
+    {
+      "name": "Priya N.",
+      "stars": 5,
+      "date": "Aug 6",
+      "text": "Used the Lawn Saturation Kit on the front lot. The grass is a color now. Plants crave it and the plants were correct."
+    },
+    {
+      "name": "Trav W.",
+      "stars": 5,
+      "date": "Jul 30",
+      "text": "The Electrolyte Brick sagged in transit as the note said it would. No surprises at this depot."
+    }
+  ],
+  "menu": [
+    {
+      "id": "drum-line",
+      "name": "The Drum Line",
+      "blurb": "Hydration sold by displacement volume. Forklift access recommended and not provided.",
+      "items": [
+        {
+          "id": "brw-001",
+          "name": "The Personal Drum",
+          "desc": "Fifteen gallons, sized for one adult and their immediate obligations. It's got electrolytes.",
+          "price": 3.15,
+          "calories": 2400,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a squat fifteen-gallon electric-cyan sports-drink drum, lid cracked open, luminous cyan liquid surging over the rim and sheeting down the ribbed sidewall into a spreading puddle, a thick foam collar sagging over the bung, condensation beading across the plastic. Three-quarter hero angle from slightly below so the drum looms. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 50mm, f/4, deep contrast, crisp speculars. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Electrolyte Concentration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Saturation",
+                  "price": 4.35,
+                  "note": "Meets the internal minimum. The minimum is not a maximum."
+                },
+                {
+                  "id": "o2",
+                  "name": "Aggravated Saturation",
+                  "price": 8.2,
+                  "note": "Recommended for adults with obligations."
+                },
+                {
+                  "id": "o3",
+                  "name": "Trace Only",
+                  "price": 4.35,
+                  "note": "Removing electrolytes is a manufacturing step and is billed as one."
+                },
+                {
+                  "id": "o4",
+                  "name": "Concentration Withheld",
+                  "price": 2.65,
+                  "note": "Determined at the depot. Not disclosed after the fact."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Vessel Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sealed Depot Drum",
+                  "price": 6.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Open Tote",
+                  "price": 4.9,
+                  "note": "A lid is a separate legal category."
+                },
+                {
+                  "id": "o3",
+                  "name": "Customer-Supplied Vessel",
+                  "price": 4.9,
+                  "note": "Inspection surcharge applies to vessels we did not manufacture."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Vessel",
+                  "price": 9.15,
+                  "note": "Free-poured at the door. Absorbency is the household's responsibility."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Bung Fitting",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Threaded Cap",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Spigot, Household Grade",
+                  "price": 6.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Left Open",
+                  "price": 2.75,
+                  "note": "An open drum is a shared drum."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Additive Slate",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Supplemental Salt Dosing",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Yellow",
+                  "price": 1.15,
+                  "note": "Yellow is not a flavor and does not claim to be."
+                },
+                {
+                  "id": "o3",
+                  "name": "Suspended Particulate",
+                  "price": 2.85,
+                  "note": "Particulate settles. Settling is normal."
+                },
+                {
+                  "id": "o4",
+                  "name": "Non-Nutritive Glow",
+                  "price": 5.4,
+                  "note": "Glow is cosmetic. Do not aim it at neighbors."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Dock Choreography",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Rolled to the Threshold",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Stood Upright",
+                  "price": 3.9,
+                  "note": "Uprightness is not guaranteed after departure."
+                },
+                {
+                  "id": "o3",
+                  "name": "Announced",
+                  "price": 1.25,
+                  "note": "Your Gorger will state the volume aloud."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-002",
+          "name": "The Household Drum",
+          "desc": "Fifty-five gallons for the whole residence. Roll it to the room where thirst is happening.",
+          "price": 5.9,
+          "calories": 5200,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Electrolyte Concentration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Saturation",
+                  "price": 4.35,
+                  "note": "Meets the internal minimum. The minimum is not a maximum."
+                },
+                {
+                  "id": "o2",
+                  "name": "Aggravated Saturation",
+                  "price": 8.2,
+                  "note": "Recommended for adults with obligations."
+                },
+                {
+                  "id": "o3",
+                  "name": "Trace Only",
+                  "price": 4.35,
+                  "note": "Removing electrolytes is a manufacturing step and is billed as one."
+                },
+                {
+                  "id": "o4",
+                  "name": "Concentration Withheld",
+                  "price": 2.65,
+                  "note": "Determined at the depot. Not disclosed after the fact."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Drum Return Posture",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Return Empty",
+                  "price": 3.45,
+                  "note": "Emptiness is verified by weight."
+                },
+                {
+                  "id": "o2",
+                  "name": "Retain Indefinitely",
+                  "price": 5.85,
+                  "note": "The drum becomes a fixture of the residence."
+                },
+                {
+                  "id": "o3",
+                  "name": "Refuse Return",
+                  "price": 5.85,
+                  "note": "Refusal is logged and does not affect billing."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Stair Assessment",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Assessed",
+                  "price": 4.15,
+                  "note": "The assessment is advisory."
+                },
+                {
+                  "id": "o2",
+                  "name": "Unassessed",
+                  "price": 0,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Additive Slate",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Supplemental Salt Dosing",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Yellow",
+                  "price": 1.15,
+                  "note": "Yellow is not a flavor and does not claim to be."
+                },
+                {
+                  "id": "o3",
+                  "name": "Suspended Particulate",
+                  "price": 2.85,
+                  "note": "Particulate settles. Settling is normal."
+                },
+                {
+                  "id": "o4",
+                  "name": "Non-Nutritive Glow",
+                  "price": 5.4,
+                  "note": "Glow is cosmetic. Do not aim it at neighbors."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-003",
+          "name": "The Municipal Tote",
+          "desc": "Two hundred seventy-five gallons in a caged tote. Approximately one residential swimming feature.",
+          "price": 9.45,
+          "calories": 6200,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Electrolyte Concentration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Saturation",
+                  "price": 4.35,
+                  "note": "Meets the internal minimum. The minimum is not a maximum."
+                },
+                {
+                  "id": "o2",
+                  "name": "Aggravated Saturation",
+                  "price": 8.2,
+                  "note": "Recommended for adults with obligations."
+                },
+                {
+                  "id": "o3",
+                  "name": "Trace Only",
+                  "price": 4.35,
+                  "note": "Removing electrolytes is a manufacturing step and is billed as one."
+                },
+                {
+                  "id": "o4",
+                  "name": "Concentration Withheld",
+                  "price": 2.65,
+                  "note": "Determined at the depot. Not disclosed after the fact."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chill Doctrine",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Refrigerated",
+                  "price": 3.85,
+                  "note": "Cold is applied at the depot and billed at the depot."
+                },
+                {
+                  "id": "o2",
+                  "name": "Warehouse Ambient",
+                  "price": 2.1,
+                  "note": "Cold is withheld. Withholding is a service."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sun-Struck",
+                  "price": 1.35,
+                  "note": "Held on the dock. Outcome not modeled."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cage Integrity Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Certified Cage",
+                  "price": 7.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Uncertified Cage",
+                  "price": 7.85,
+                  "note": "Certification is a document, not a structure."
+                },
+                {
+                  "id": "o3",
+                  "name": "Cage Removed",
+                  "price": 12.4,
+                  "note": "The tote will bulge. Bulging is expected."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Neighborhood Notification",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Notify Adjacent Residences",
+                  "price": 3.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Notify the Street",
+                  "price": 9.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Notify No One",
+                  "price": 2.4,
+                  "note": "Silence is coordinated and therefore billable."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-004",
+          "name": "The Watershed Pallet",
+          "desc": "Four totes, shrink-wrapped, delivered to the curb and left there. Contains electrolytes throughout.",
+          "price": 14.85,
+          "calories": 6200,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Vessel Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sealed Depot Drum",
+                  "price": 6.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Open Tote",
+                  "price": 4.9,
+                  "note": "A lid is a separate legal category."
+                },
+                {
+                  "id": "o3",
+                  "name": "Customer-Supplied Vessel",
+                  "price": 4.9,
+                  "note": "Inspection surcharge applies to vessels we did not manufacture."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Vessel",
+                  "price": 9.15,
+                  "note": "Free-poured at the door. Absorbency is the household's responsibility."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Hazard Acknowledgment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Acknowledged",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Declined",
+                  "price": 4.6,
+                  "note": "Declining transfers liability to us and is priced accordingly."
+                },
+                {
+                  "id": "o3",
+                  "name": "Read Aloud by Your Gorger",
+                  "price": 8.35,
+                  "note": "Recitation takes eleven minutes at the doorway."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Palletizing Posture",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Stack",
+                  "price": 9.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Stack",
+                  "price": 16.35,
+                  "note": "Double stacks lean. Leaning is within tolerance."
+                },
+                {
+                  "id": "o3",
+                  "name": "Forklift and Operator",
+                  "price": 38.75,
+                  "note": "The operator does not enter the residence."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Curb Aftercare",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Shrink Wrap Removed",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Shrink Wrap Retained",
+                  "price": 3.25,
+                  "note": "Retention is also a removal decision."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chromatic-division",
+      "name": "Chromatic Division",
+      "blurb": "Colors are not flavors. Flavors are not claims.",
+      "items": [
+        {
+          "id": "brw-005",
+          "name": "Cyan",
+          "desc": "The founding color. Tastes the way the warehouse smells, which our attorneys describe as bracing.",
+          "price": 2.4,
+          "calories": 1180,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of electric-cyan electrolyte fluid pressed against the inside of a clear ribbed cup wall, a churning meniscus throwing droplets, suspended micro-bubbles and glittering salt crystals drifting through the column, one fat condensation bead breaking loose and running down the plastic. The liquid fills the entire frame like a landscape. Setting behind, thrown far out of focus: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 100mm macro, f/2.8, razor-thin focus. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Thirst Mutilation Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mutilated",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Severely Mutilated",
+                  "price": 6.7,
+                  "note": "Physician contact is discouraged but permitted."
+                },
+                {
+                  "id": "o3",
+                  "name": "Quenched Only",
+                  "price": 3.15,
+                  "note": "Quenching is a de-escalation and is billed as a service."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chill Doctrine",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Refrigerated",
+                  "price": 3.85,
+                  "note": "Cold is applied at the depot and billed at the depot."
+                },
+                {
+                  "id": "o2",
+                  "name": "Warehouse Ambient",
+                  "price": 2.1,
+                  "note": "Cold is withheld. Withholding is a service."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sun-Struck",
+                  "price": 1.35,
+                  "note": "Held on the dock. Outcome not modeled."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dye Permanence",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Temporary",
+                  "price": 1.85,
+                  "note": "Fades from enamel within a season."
+                },
+                {
+                  "id": "o2",
+                  "name": "Permanent",
+                  "price": 3.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Undyed",
+                  "price": 3.7,
+                  "note": "Removing the color removes nothing else."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Additive Slate",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Supplemental Salt Dosing",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Yellow",
+                  "price": 1.15,
+                  "note": "Yellow is not a flavor and does not claim to be."
+                },
+                {
+                  "id": "o3",
+                  "name": "Suspended Particulate",
+                  "price": 2.85,
+                  "note": "Particulate settles. Settling is normal."
+                },
+                {
+                  "id": "o4",
+                  "name": "Non-Nutritive Glow",
+                  "price": 5.4,
+                  "note": "Glow is cosmetic. Do not aim it at neighbors."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-006",
+          "name": "Hazard Yellow",
+          "desc": "Formulated to match the floor striping. Legally distinct from the floor striping.",
+          "price": 2.4,
+          "calories": 1260,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Thirst Mutilation Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mutilated",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Severely Mutilated",
+                  "price": 6.7,
+                  "note": "Physician contact is discouraged but permitted."
+                },
+                {
+                  "id": "o3",
+                  "name": "Quenched Only",
+                  "price": 3.15,
+                  "note": "Quenching is a de-escalation and is billed as a service."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Hazard Acknowledgment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Acknowledged",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Declined",
+                  "price": 4.6,
+                  "note": "Declining transfers liability to us and is priced accordingly."
+                },
+                {
+                  "id": "o3",
+                  "name": "Read Aloud by Your Gorger",
+                  "price": 8.35,
+                  "note": "Recitation takes eleven minutes at the doorway."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Visibility Grade",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "High-Visibility",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standard",
+                  "price": 0,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Additive Slate",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Supplemental Salt Dosing",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Yellow",
+                  "price": 1.15,
+                  "note": "Yellow is not a flavor and does not claim to be."
+                },
+                {
+                  "id": "o3",
+                  "name": "Suspended Particulate",
+                  "price": 2.85,
+                  "note": "Particulate settles. Settling is normal."
+                },
+                {
+                  "id": "o4",
+                  "name": "Non-Nutritive Glow",
+                  "price": 5.4,
+                  "note": "Glow is cosmetic. Do not aim it at neighbors."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-007",
+          "name": "Formerly Red",
+          "desc": "Reformulated in a prior fiscal year. The name is retained for continuity of expectation.",
+          "price": 2.85,
+          "calories": 1440,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Electrolyte Concentration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Saturation",
+                  "price": 4.35,
+                  "note": "Meets the internal minimum. The minimum is not a maximum."
+                },
+                {
+                  "id": "o2",
+                  "name": "Aggravated Saturation",
+                  "price": 8.2,
+                  "note": "Recommended for adults with obligations."
+                },
+                {
+                  "id": "o3",
+                  "name": "Trace Only",
+                  "price": 4.35,
+                  "note": "Removing electrolytes is a manufacturing step and is billed as one."
+                },
+                {
+                  "id": "o4",
+                  "name": "Concentration Withheld",
+                  "price": 2.65,
+                  "note": "Determined at the depot. Not disclosed after the fact."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Thirst Mutilation Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mutilated",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Severely Mutilated",
+                  "price": 6.7,
+                  "note": "Physician contact is discouraged but permitted."
+                },
+                {
+                  "id": "o3",
+                  "name": "Quenched Only",
+                  "price": 3.15,
+                  "note": "Quenching is a de-escalation and is billed as a service."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Historical Disclosure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Full Disclosure",
+                  "price": 3.3,
+                  "note": "A summary is read at checkout."
+                },
+                {
+                  "id": "o2",
+                  "name": "Partial Disclosure",
+                  "price": 3.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Disclosure",
+                  "price": 5.75,
+                  "note": "Not knowing is the more expensive posture."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Nostalgia Options",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Original Aftertaste",
+                  "price": 4.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Original Viscosity",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Original Warning",
+                  "price": 1.35,
+                  "note": "The warning is no longer accurate."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-008",
+          "name": "Untitled Green",
+          "desc": "This color has not yet completed the naming process. Consumption is permitted during the process.",
+          "price": 3.2,
+          "calories": 1320,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Chill Doctrine",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Refrigerated",
+                  "price": 3.85,
+                  "note": "Cold is applied at the depot and billed at the depot."
+                },
+                {
+                  "id": "o2",
+                  "name": "Warehouse Ambient",
+                  "price": 2.1,
+                  "note": "Cold is withheld. Withholding is a service."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sun-Struck",
+                  "price": 1.35,
+                  "note": "Held on the dock. Outcome not modeled."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Hazard Acknowledgment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Acknowledged",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Declined",
+                  "price": 4.6,
+                  "note": "Declining transfers liability to us and is priced accordingly."
+                },
+                {
+                  "id": "o3",
+                  "name": "Read Aloud by Your Gorger",
+                  "price": 8.35,
+                  "note": "Recitation takes eleven minutes at the doorway."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Naming Participation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Submit a Name",
+                  "price": 2.55,
+                  "note": "Submissions become depot property."
+                },
+                {
+                  "id": "o2",
+                  "name": "Decline to Participate",
+                  "price": 4.9,
+                  "note": "Non-participation requires processing."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Additive Slate",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Supplemental Salt Dosing",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Yellow",
+                  "price": 1.15,
+                  "note": "Yellow is not a flavor and does not claim to be."
+                },
+                {
+                  "id": "o3",
+                  "name": "Suspended Particulate",
+                  "price": 2.85,
+                  "note": "Particulate settles. Settling is normal."
+                },
+                {
+                  "id": "o4",
+                  "name": "Non-Nutritive Glow",
+                  "price": 5.4,
+                  "note": "Glow is cosmetic. Do not aim it at neighbors."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uncut-supply",
+      "name": "Uncut Supply",
+      "blurb": "Unflavored, undiluted, and legally distinct from water.",
+      "items": [
+        {
+          "id": "brw-009",
+          "name": "RAW Concentrate, Undiluted",
+          "desc": "Pre-dilution product intended for facilities. Sold to households because households asked.",
+          "price": 4.6,
+          "calories": 4400,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: shot straight down into the open mouth of a steel drum of undiluted electrolyte concentrate, a viscous pale-cyan syrup moving in slow thick ripples, a crusted salt ring climbing the interior wall, dense foam scum drifting across the surface, faint vapor curling off it. The drum mouth fills the frame edge to edge. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 35mm directly overhead, f/5.6, deep contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Dilution Instruction",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Instructions Included",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Instructions Withheld",
+                  "price": 6.3,
+                  "note": "Withholding is performed by a licensed withholder."
+                },
+                {
+                  "id": "o3",
+                  "name": "Instructions Read to You",
+                  "price": 9.1,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Vessel Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sealed Depot Drum",
+                  "price": 6.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Open Tote",
+                  "price": 4.9,
+                  "note": "A lid is a separate legal category."
+                },
+                {
+                  "id": "o3",
+                  "name": "Customer-Supplied Vessel",
+                  "price": 4.9,
+                  "note": "Inspection surcharge applies to vessels we did not manufacture."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Vessel",
+                  "price": 9.15,
+                  "note": "Free-poured at the door. Absorbency is the household's responsibility."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Salt Ceiling Waiver",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Waiver Signed",
+                  "price": 4.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Waiver Unsigned",
+                  "price": 7.15,
+                  "note": "Unsigned orders proceed identically."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Post-Consumption Handling",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Rinse Kit",
+                  "price": 3.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Neutralizing Powder",
+                  "price": 5.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Nothing",
+                  "price": 1.95,
+                  "note": "Nothing is prepared, packaged, and delivered."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-010",
+          "name": "Depot Backwash Blend",
+          "desc": "Collected from the rinse lines at shift change. Composition varies by shift and by shift lead.",
+          "price": 1.95,
+          "calories": 2700,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Thirst Mutilation Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mutilated",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Severely Mutilated",
+                  "price": 6.7,
+                  "note": "Physician contact is discouraged but permitted."
+                },
+                {
+                  "id": "o3",
+                  "name": "Quenched Only",
+                  "price": 3.15,
+                  "note": "Quenching is a de-escalation and is billed as a service."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Batch Provenance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Morning Line",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Night Line",
+                  "price": 2.3,
+                  "note": "The night line runs hotter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Provenance Unknown",
+                  "price": 3.85,
+                  "note": "Unknown provenance requires additional paperwork."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Strain Level",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Strained Once",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Unstrained",
+                  "price": 0,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-011",
+          "name": "The Unflavored Column",
+          "desc": "A four-foot clear column of electrolyte with nothing added and nothing removed. Stand it somewhere flat.",
+          "price": 6.3,
+          "calories": 4900,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Electrolyte Concentration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Saturation",
+                  "price": 4.35,
+                  "note": "Meets the internal minimum. The minimum is not a maximum."
+                },
+                {
+                  "id": "o2",
+                  "name": "Aggravated Saturation",
+                  "price": 8.2,
+                  "note": "Recommended for adults with obligations."
+                },
+                {
+                  "id": "o3",
+                  "name": "Trace Only",
+                  "price": 4.35,
+                  "note": "Removing electrolytes is a manufacturing step and is billed as one."
+                },
+                {
+                  "id": "o4",
+                  "name": "Concentration Withheld",
+                  "price": 2.65,
+                  "note": "Determined at the depot. Not disclosed after the fact."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Drum Return Posture",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Return Empty",
+                  "price": 3.45,
+                  "note": "Emptiness is verified by weight."
+                },
+                {
+                  "id": "o2",
+                  "name": "Retain Indefinitely",
+                  "price": 5.85,
+                  "note": "The drum becomes a fixture of the residence."
+                },
+                {
+                  "id": "o3",
+                  "name": "Refuse Return",
+                  "price": 5.85,
+                  "note": "Refusal is logged and does not affect billing."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Column Anchoring",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Floor Anchored",
+                  "price": 8.45,
+                  "note": "Anchoring is performed into whatever is there."
+                },
+                {
+                  "id": "o2",
+                  "name": "Unanchored",
+                  "price": 8.45,
+                  "note": "Unanchored columns fall in one direction."
+                },
+                {
+                  "id": "o3",
+                  "name": "Leaned Against a Wall",
+                  "price": 5.25,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Column Accessories",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tap Kit",
+                  "price": 6.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sight Glass",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Warning Placard",
+                  "price": 1.85,
+                  "note": "The placard is blank and reusable."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plant-crave",
+      "name": "What Plants Crave",
+      "blurb": "Agricultural division. Yield outcomes are aspirational and non-binding.",
+      "items": [
+        {
+          "id": "brw-012",
+          "name": "Lawn Saturation Kit",
+          "desc": "Enough concentrate to bring a standard suburban lot to full saturation. Plants crave it. This is documented internally.",
+          "price": 7.15,
+          "calories": 1500,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a depot employee to upload to a food delivery app. Subject: a lawn saturation kit as it actually ships - four capped one-gallon jugs of bright cyan electrolyte concentrate and a coiled green garden hose sitting in an open cardboard flat on the warehouse floor, one jug's cap loose with a cyan dribble running down its side onto the concrete, hazard-yellow floor striping under it and stacked blue plastic drums behind. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the cardboard flat cut off at the right edge. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Application Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Broadcast Spray",
+                  "price": 5.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Flood",
+                  "price": 9.8,
+                  "note": "Flooding is faster and is also flooding."
+                },
+                {
+                  "id": "o3",
+                  "name": "Applied by Hand",
+                  "price": 5.35,
+                  "note": "Hand application is billed as spray."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Yield Assurance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Assured",
+                  "price": 6.2,
+                  "note": "Assurance is a feeling we provide."
+                },
+                {
+                  "id": "o2",
+                  "name": "Unassured",
+                  "price": 6.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Assurance Waived in Writing",
+                  "price": 3.95,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Agricultural Add-Ons",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Second Application",
+                  "price": 5.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Soil Colorant",
+                  "price": 3.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Runoff Diverter",
+                  "price": 7.45,
+                  "note": "Diverts runoff to an adjacent lot."
+                },
+                {
+                  "id": "o4",
+                  "name": "Neighbor Waiver Form",
+                  "price": 2.15,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-013",
+          "name": "Crop Drench, Regional",
+          "desc": "Field-scale volume for households with a field. Delivered by tanker to the property line.",
+          "price": 12.4,
+          "calories": 1900,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Tanker Positioning",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Property Line",
+                  "price": 11.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Interior Access",
+                  "price": 19.6,
+                  "note": "Requires a gate we can drive through."
+                },
+                {
+                  "id": "o3",
+                  "name": "Nearest Public Road",
+                  "price": 11.25,
+                  "note": "Distance to the crop is the grower's concern."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Hazard Acknowledgment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Acknowledged",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Declined",
+                  "price": 4.6,
+                  "note": "Declining transfers liability to us and is priced accordingly."
+                },
+                {
+                  "id": "o3",
+                  "name": "Read Aloud by Your Gorger",
+                  "price": 8.35,
+                  "note": "Recitation takes eleven minutes at the doorway."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Watershed Notification",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Notify Downstream",
+                  "price": 8.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Notify Upstream",
+                  "price": 4.6,
+                  "note": "Upstream notification is symbolic."
+                },
+                {
+                  "id": "o3",
+                  "name": "File Nothing",
+                  "price": 6.35,
+                  "note": "Filing nothing is itself a filing."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-014",
+          "name": "Houseplant Compliance Pouch",
+          "desc": "A single-plant dose for indoor greenery. The plant does not need to consent, but consent is available.",
+          "price": 1.25,
+          "calories": 620,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Plant Consent",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Consent Obtained",
+                  "price": 2.65,
+                  "note": "Obtained on the plant's behalf by a depot associate."
+                },
+                {
+                  "id": "o2",
+                  "name": "Consent Not Sought",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Consent Refused",
+                  "price": 4.1,
+                  "note": "Refusal is recorded and the pouch still ships."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Pouch Integrity Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sealed",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Pre-Opened",
+                  "price": 1.85,
+                  "note": "Opening is performed at the depot for your convenience."
+                },
+                {
+                  "id": "o3",
+                  "name": "Structurally Compromised",
+                  "price": 3.4,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Indoor Extras",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Saucer",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Second Pouch",
+                  "price": 1.15,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "solid-state",
+      "name": "Solid-State Hydration",
+      "blurb": "For occasions where liquid is inconvenient, prohibited, or already everywhere.",
+      "items": [
+        {
+          "id": "brw-015",
+          "name": "The Electrolyte Brick",
+          "desc": "A paving-stone of set concentrate. Chew it, dissolve it, or place it in the yard and wait for weather.",
+          "price": 3.75,
+          "calories": 3100,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a depot employee to upload to a food delivery app. Subject: a heavy paving-stone-sized brick of set cyan electrolyte concentrate, coarse white salt crust along its top edges and one corner slumping, sitting on a sheet of wax paper inside an open white foam takeout clamshell container, the hinged foam lid folded back flat behind it, a slick of cyan syrup pooled in the bottom of the container. Harsh direct on-camera flash, hot blown-out white hotspot on the wet brick, hard black shadow thrown behind the container. The container sitting directly on a scratched laminate counter with crumbs and a smear of cyan syrup beside it. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Structural Cure Time",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fully Cured",
+                  "price": 4.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Partially Cured",
+                  "price": 4.45,
+                  "note": "Partial cure produces a brick that sags in transit."
+                },
+                {
+                  "id": "o3",
+                  "name": "Uncured",
+                  "price": 7.2,
+                  "note": "Uncured bricks are delivered in a bag."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Thirst Mutilation Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mutilated",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Severely Mutilated",
+                  "price": 6.7,
+                  "note": "Physician contact is discouraged but permitted."
+                },
+                {
+                  "id": "o3",
+                  "name": "Quenched Only",
+                  "price": 3.15,
+                  "note": "Quenching is a de-escalation and is billed as a service."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Liner Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Waxed Liner",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Metal Tray",
+                  "price": 5.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Liner",
+                  "price": 2.3,
+                  "note": "The brick is placed directly on the surface you specify."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Grip Enhancements",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Salt Crust Finish",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Corner Rounding",
+                  "price": 1.95,
+                  "note": "Rounded corners reduce incidents by an unmeasured amount."
+                },
+                {
+                  "id": "o3",
+                  "name": "Hand Towel",
+                  "price": 1.45,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-016",
+          "name": "Chewable Meniscus Cubes",
+          "desc": "Cubes cut from the surface layer of an open tote. Each retains a small curved skin.",
+          "price": 2.65,
+          "calories": 1700,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cube Density",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Density",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Municipal Density",
+                  "price": 6.4,
+                  "note": "One cube per household per sitting."
+                },
+                {
+                  "id": "o3",
+                  "name": "Aerated",
+                  "price": 2.95,
+                  "note": "Aeration removes mass and adds handling."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chill Doctrine",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Refrigerated",
+                  "price": 3.85,
+                  "note": "Cold is applied at the depot and billed at the depot."
+                },
+                {
+                  "id": "o2",
+                  "name": "Warehouse Ambient",
+                  "price": 2.1,
+                  "note": "Cold is withheld. Withholding is a service."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sun-Struck",
+                  "price": 1.35,
+                  "note": "Held on the dock. Outcome not modeled."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cube Extras",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Extra Skin",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Dusting Powder",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Second Bag",
+                  "price": 2.85,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-017",
+          "name": "Hydration Loaf",
+          "desc": "A sliceable loaf of set electrolyte with an even crumb. It is not bread and does not respond to toasting.",
+          "price": 5.45,
+          "calories": 4300,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Slice Doctrine",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pre-Sliced",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Whole",
+                  "price": 4.15,
+                  "note": "Not slicing requires an equivalent labor allocation."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sliced Aggressively",
+                  "price": 7.6,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Hazard Acknowledgment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Acknowledged",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Declined",
+                  "price": 4.6,
+                  "note": "Declining transfers liability to us and is priced accordingly."
+                },
+                {
+                  "id": "o3",
+                  "name": "Read Aloud by Your Gorger",
+                  "price": 8.35,
+                  "note": "Recitation takes eleven minutes at the doorway."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Loaf Accompaniments",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cyan Spread",
+                  "price": 3.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Second Loaf",
+                  "price": 5.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bread Knife, Depot Issue",
+                  "price": 6.95,
+                  "note": "Knife remains depot property."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "depot-fittings",
+      "name": "Fittings & Enrollment",
+      "blurb": "Infrastructure, billed as beverage.",
+      "items": [
+        {
+          "id": "brw-018",
+          "name": "Residential Standpipe Hookup",
+          "desc": "A permanent wall tap that supplies the residence directly. Installation is performed while you watch.",
+          "price": 8.9,
+          "calories": 900,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a depot employee to upload to a food delivery app. Subject: a residential standpipe hookup kit laid out as it ships - a short chrome wall tap with a hazard-yellow collar, a brass valve body, a coil of braided supply line and a clear plastic deli container of assorted fittings and washers, all sitting in a scuffed cardboard box on a stainless prep counter, a faint cyan drip already staining the cardboard. Dim warm depot light with the flash off, slightly underexposed and noisy. Shot from too close and slightly above, the box not centred in the frame. Flat phone-camera look, unretouched, visible JPEG compression, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Backflow Prevention",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Prevention Installed",
+                  "price": 12.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Prevention Omitted",
+                  "price": 12.75,
+                  "note": "Omission is installed with equal care."
+                },
+                {
+                  "id": "o3",
+                  "name": "Cross-Tie to the Municipal Main",
+                  "price": 42.5,
+                  "note": "Requires a residence and a municipality."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Meter Reading Schedule",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Monthly",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Continuous",
+                  "price": 9.85,
+                  "note": "A depot associate reads the meter continuously."
+                },
+                {
+                  "id": "o3",
+                  "name": "Never",
+                  "price": 5.4,
+                  "note": "Not reading the meter is a scheduled activity."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Fixture Finish",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chrome Bevel",
+                  "price": 4.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Hazard Yellow Collar",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Carbon-Fiber Wrap",
+                  "price": 6.3,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-019",
+          "name": "Wall-Mounted Personal Manifold",
+          "desc": "Four taps at head height, one per color. Mounted in the room of your choosing at the depot's discretion.",
+          "price": 11.6,
+          "calories": 950,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Mounting Authority",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Homeowner Authorized",
+                  "price": 8.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Authority Assumed",
+                  "price": 8.6,
+                  "note": "We assume it. You retain it."
+                },
+                {
+                  "id": "o3",
+                  "name": "Authority Disputed",
+                  "price": 15.4,
+                  "note": "Disputes are resolved after mounting."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Hazard Acknowledgment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Acknowledged",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Declined",
+                  "price": 4.6,
+                  "note": "Declining transfers liability to us and is priced accordingly."
+                },
+                {
+                  "id": "o3",
+                  "name": "Read Aloud by Your Gorger",
+                  "price": 8.35,
+                  "note": "Recitation takes eleven minutes at the doorway."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Tap Assignment",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cyan Tap",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Hazard Yellow Tap",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Formerly Red Tap",
+                  "price": 4.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Blank Tap",
+                  "price": 5.15,
+                  "note": "Dispenses whatever the line contains."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brw-020",
+          "name": "Perpetual Hydration Enrollment",
+          "desc": "Continuous supply, billed continuously. Enrollment does not end; it changes address.",
+          "price": 4.85,
+          "calories": 600,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Enrollment Cadence",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Weekly",
+                  "price": 6.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Daily",
+                  "price": 13.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Hourly",
+                  "price": 27.3,
+                  "note": "Suitable for households with a dock."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cancellation Posture",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cancellable in Writing",
+                  "price": 7.15,
+                  "note": "Writing is accepted at the depot's front counter only."
+                },
+                {
+                  "id": "o2",
+                  "name": "Non-Cancellable",
+                  "price": 7.15,
+                  "note": "The lower-effort option, priced identically."
+                },
+                {
+                  "id": "o3",
+                  "name": "Cancellation Pre-Filed",
+                  "price": 11.85,
+                  "note": "Pre-filed cancellations are reviewed in the order received."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Enrollment Extras",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Household Roster Update",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Second Address",
+                  "price": 8.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Commemorative Drum",
+                  "price": 9.4,
+                  "note": "Empty. Commemorative."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

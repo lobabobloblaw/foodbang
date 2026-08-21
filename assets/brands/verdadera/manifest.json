@@ -1,0 +1,62 @@
+{
+  "slug": "verdadera",
+  "model": "bytedance/seedream-4.5",
+  "photoStyle": "amateur",
+  "images": [
+    {
+      "file": "logo.webp",
+      "prompt": "A photograph of a hand-painted sign on a warm cream stucco exterior wall, shot straight on in warm late afternoon daylight, filling the whole frame. Hand-lettered by a family member, not a designer: thick deep red brush letters with a hand-drawn green outline, uneven letter spacing, one letter slightly larger than the rest, paint sun-faded and slightly chalky, small chips where the stucco has flaked, a small crudely painted green cactus with two arms beside the lettering. Visible stucco texture, a hairline crack, a faint water stain low on the wall. Flat unretouched phone-camera look, slightly crooked crop. The stucco wall fills the entire canvas edge to edge, corner to corner: NO card, NO panel, NO plaque, NO tile, NO frame, NO border, NO drop shadow, NO white margin. The only text anywhere in the image is exactly: La Taqueria Verdadera #2 . No other letters, words, numbers or symbols may appear anywhere.",
+      "predictionId": "gy4d8pys7drmy0d0469ss1rmqm"
+    },
+    {
+      "file": "hero.webp",
+      "prompt": "Amateur wide smartphone photo taken inside a small family taqueria, no people anywhere in frame. A short order counter with a worn laminate top, a steam table behind sneeze glass with metal pans of stewed meat and rice, a tall stack of thin white paper plates, a squeeze bottle of red salsa and a napkin dispenser, a bowl of limes, a small blank whiteboard and a blank unpainted board on the wall above with no writing on them, a domed drink barrel with a spigot at the end of the counter, a fly strip, a wall calendar turned to a blank page, scuffed terracotta floor tile, a plastic bin of foil sheets. Dim warm interior light with the flash off, slightly underexposed and noisy, mixed white balance, one window blowing out on the left. Slightly crooked horizon, flat unretouched phone-camera look, visible sensor noise. Wide 16:9 crop. No text anywhere, no writing, no readable signage, no logos, no labels, no watermarks, no hands, no people.",
+      "predictionId": "q8fz701sgnrmw0d046aagbwffr"
+    },
+    {
+      "file": "items/01.webp",
+      "itemId": "tqv-001",
+      "itemName": "Taco de Asada",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three generous street tacos on a thin white paper plate, each on doubled corn tortillas heaped with chopped grilled steak, raw white onion and chopped cilantro, two lime wedges beside them, a small clear cup of red salsa. Harsh direct on-camera flash, hot blown-out white hotspot on the meat, hard black shadow thrown behind the plate. Shot from too close and slightly above, the subject not centred, a squeeze bottle of salsa and a stack of napkins at the edge of frame. Flat phone-camera look, unretouched, mixed white balance, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "t486g8mzkhrmw0d046abdykt3g"
+    },
+    {
+      "file": "items/02.webp",
+      "itemId": "tqv-007",
+      "itemName": "Burrito de Carne Asada",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: one very large foil-wrapped burrito on a sheet of wax paper, the foil peeled back halfway to show a thick cross section of grilled chopped steak, rice, whole pinto beans and red salsa packed tight inside a flour tortilla, a second wrapped burrito behind it. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the foil, mixed white balance. Framed slightly crooked, the wax paper cut off at the right edge. Flat phone-camera look, unretouched, visible compression artefacts. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "qm0zdxej7xrmr0d046a9jaqv5g"
+    },
+    {
+      "file": "items/03.webp",
+      "itemId": "tqv-009",
+      "itemName": "Quesadilla de la Casa",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an enormous folded flour quesadilla cut into four wedges, filling an aluminium foil tray completely and overhanging one edge, melted white cheese stretched between the wedges, chopped grilled meat visible inside, a small cup of green salsa wedged in the corner, the cardboard lid propped behind. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Cluttered background: a stainless prep counter, a squeeze bottle, a stack of lids, another order waiting. Flat phone-camera look, unretouched, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "dpkp901d4hrmt0d046atz867hw"
+    },
+    {
+      "file": "items/04.webp",
+      "itemId": "tqv-011",
+      "itemName": "Plato de Carne Asada",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a white styrofoam clamshell packed full, sliced grilled skirt steak across one half, orange rice and whole pinto beans in the other compartments, a whole charred grilled spring onion and a strip of nopal cactus laid on top, a stack of foil-wrapped corn tortillas beside the container. Dim warm interior light with the flash off, slightly underexposed and noisy, mixed white balance. The container sitting directly on a scratched laminate counter with crumbs and a smear of red sauce beside it. Flat phone-camera look, unretouched, soft focus. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "kevaq7k4m9rmw0d046arj3meq4"
+    },
+    {
+      "file": "items/05.webp",
+      "itemId": "tqv-016",
+      "itemName": "Quesatacos de Birria (3)",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three red-stained griddled tacos packed with shredded stewed beef and melted cheese, sitting in a clear plastic deli container lined with greasy paper, chopped onion and cilantro scattered over them, a lidded styrofoam cup of dark orange broth beside it with a lime wedge on the lid. The container sits on a scratched stainless prep counter with crumbs, a smear of red grease and a stack of plastic lids beside it. Harsh direct on-camera flash fired point blank, hot blown-out white hotspot burning out the greasy tortillas, hard black shadow thrown behind the container, flat fluorescent tube light overhead with a green-yellow cast. Mild motion blur, soft focus, heavy JPEG compression artefacts and sensor noise, framed slightly crooked with the cup cut off at the edge. Flat unretouched phone-camera look, mixed white balance, ugly and honest. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "56q1nbpzzdrmt0d046baxqcdd8",
+      "regenerated": true,
+      "supersededPredictionId": "km02z2652nrmy0d046arp02gqm",
+      "reason": "first take read as polished advertising photography (crisp focus, dark glossy backdrop, no flash fault); reshot with point-blank on-camera flash, fluorescent cast and a cluttered prep counter"
+    },
+    {
+      "file": "items/06.webp",
+      "itemId": "tqv-020",
+      "itemName": "Agua de Horchata",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of pale creamy cinnamon horchata with ice, a domed lid pressed on and a straw pushed through, heavy condensation running down the sides, a second cup of dark red jamaica standing behind it on the counter. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup, mixed white balance. Shot from too close and slightly above, the cup cut off at the top edge, a hand-lettered wall menu blurred out of focus behind. Flat phone-camera look, unretouched, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "csejqhr67hrmt0d046b9xmz2vr"
+    }
+  ]
+}

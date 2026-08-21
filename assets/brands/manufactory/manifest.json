@@ -1,0 +1,54 @@
+{
+  "slug": "manufactory",
+  "model": "bytedance/seedream-4.5",
+  "images": [
+    {
+      "file": "logo.webp",
+      "prompt": "An ornate gold-leaf Egyptian-revival cartouche framing a stylized cheesecake wedge, on a full-bleed deep bronze field, embossed art-deco luxury styling, fine engraved hairlines, lotus and papyrus motifs in the cartouche border, warm metallic gold on dark bronze. Full-bleed square: the deep bronze background colour fills the entire canvas edge to edge. No card, no frame, no rounded container, no drop shadow, no surrounding margin or border. The only text anywhere in the image is exactly: THE CHEESECAKE MANUFACTORY. Set that wordmark in an elegant engraved art-deco serif beneath the cartouche on exactly two lines: line one reads THE CHEESECAKE, line two reads MANUFACTORY. Critical correction: a previous attempt wrongly repeated the word CHEESECAKE on a duplicate third line. The word CHEESECAKE must appear exactly once in the whole image. Exactly three words total, two lines total, no duplicated line, no extra line of type, no subtitle, no tagline.",
+      "predictionId": "zh1jnbabx9rmy0d0460ve9rr74",
+      "predictTime": 10.042486471
+    },
+    {
+      "file": "hero.webp",
+      "prompt": "Cinematic architectural interior photography. The interior of a cavernous faux-Egyptian revival restaurant: towering marble columns with gold-leaf capitals, hanging amber glass lamps, endless booth seating receding into darkness, a coffered ceiling lost in shadow, one impossibly large dessert on a distant table catching a single pool of light. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 24mm wide angle, f/4, deep perspective down the center aisle, subtle haze in the air. Deadpan hyperreal cinematic realism, completely deserted. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "vpm5zwhgmnrmw0d045zbxchgcg",
+      "predictTime": 9.519462478
+    },
+    {
+      "file": "items/01.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean cross-section cutaway through a stacked service of three warm loaves, two nearly black molasses-dark loaves crusted with rolled oats and one pale loaf, sliced flat to expose dense steaming crumb, thick slabs of butter melting down the cut face and pooling on the board beneath. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 100mm macro, f/5.6, straight-on cross-section view, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "sch4nfcgtsrmt0d045z8hd5egc",
+      "predictTime": 23.227244729
+    },
+    {
+      "file": "items/02.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an enormous mound of tortilla chips built into a load-bearing dome, straining under molten yellow cheese that sheets over the edges in thick ropes, black beans and diced tomato avalanching down the flanks, a sagging crown of sour cream and guacamole at the summit, one chip visibly buckling under the mass. Three-quarter hero angle from just below the rim so the pile towers. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 50mm, f/2.8, shallow depth of field, rich contrast, visible cheese sheen. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "4gc4a5zj5srmw0d045zbpe2q2w",
+      "predictTime": 13.108655258
+    },
+    {
+      "file": "items/03.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: two thick seared chicken cutlets buried under a caramel-brown madeira reduction and glossy sauteed mushrooms, melted mozzarella draping over the edges in heavy folds, roasted asparagus spears pinned beneath, the whole thing resting on a dented steel banquet tray lined with white paper that is soaking through and darkening as sauce runs to the tray rim. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 35mm, f/4, elevated forty-five degree angle across the tray, crisp specular sauce highlights. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "5af5k6332hrmw0d045zrgf77t4",
+      "predictTime": 25.939760318
+    },
+    {
+      "file": "items/04.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a deep white ceramic bowl shot straight down into its interior, the rim framing the edge of the frame, filled past capacity with fettuccine in a thick cream reduction, blackened chicken cutlets and whole shrimp half submerged and glistening, sauce climbing and clinging to the inner walls, hot steam curling up out of the vessel, several strands hanging over one edge under their own weight. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 45mm, f/4, looking directly down inside the vessel, soft steam bloom. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "avygvj6janrmy0d045zrqczsmc",
+      "predictTime": 12.502595557
+    },
+    {
+      "file": "items/05.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a strict overhead flat-lay of a wide shallow platter mounded with an enormous chopped salad, corn, black beans, avocado, diced chicken, tomato, and tortilla strips packed into rigid parallel rows, the rows heaped so high they slump against one another and spill over the platter rim onto the stone beneath, a small ramekin of dressing sweating beside it, a second empty platter waiting alongside. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 50mm, f/8, dead overhead, even sharp detail across the frame. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "67zgc49ykhrmr0d0460a04awb0",
+      "predictTime": 19.245578534
+    },
+    {
+      "file": "items/06.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro detail of the freshly cut face of one towering wedge of dense New York style cheesecake, pale custard showing fine curd structure and a faint drag mark from the knife, a thick compressed graham crust base shedding loose crumbs, a smooth sour cream cap on top, and a glossy strawberry glaze breaking over the top edge and running down the cut face in one slow heavy bead. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 100mm macro, f/4, extreme close focus on the crumb and the glaze bead, creamy background falloff. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "2k7369mhn1rmy0d046090zhbbc",
+      "predictTime": 14.239353853
+    }
+  ]
+}

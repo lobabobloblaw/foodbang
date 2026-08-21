@@ -1,0 +1,10 @@
+# build output — regenerate with `npm run bundle && npm run artifact`
+build/
+
+# os / editor
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+node_modules/

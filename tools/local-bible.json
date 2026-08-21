@@ -1,0 +1,168 @@
+{
+  "_readme": "Addendum to brand-bible.json. Same menuSchema, same pricingDoctrine, same voice — but these are INDEPENDENT restaurants, and everything about their presentation is lower-budget. Read brand-bible.json first; only the deltas are here.",
+
+  "independentDoctrine": {
+    "principle": "A real delivery feed is mostly independents, not chains. These stores must feel hand-run: no marketing department, no brand guidelines, no photographer. That is the joke AND the realism.",
+    "storeFields": {
+      "local": "true — REQUIRED on every store in this file. Add this key to the menu JSON.",
+      "rating": "Wildly variable. Some are 4.8, some are 3.1. Independents are rated by people with opinions.",
+      "ratingCount": "SMALL: 38 to 940. Never four or five digits. This is the single strongest signal of an independent.",
+      "deliveryFee": "HIGHER than the chains: 5.49 to 7.99. No volume deal.",
+      "deliveryMin/Max": "Longer and wider: e.g. 38-71 min. One store should have a max over 80.",
+      "priceTier": "1 or 2. Independents are cheap and it is the only advantage they have.",
+      "gorgePlus": "false for five of the six. Exactly one may be true, and the copy should note it was a mistake.",
+      "closesAt": "Odd and specific: '2:45 PM', '9:20 PM', '4:00 AM'. Never a round hour.",
+      "announcement": "Should read like it was typed by the owner: sentence case or ALL CAPS, one typo permitted per store, a phone number, a reason.",
+      "promos": "Zero or one, and it should be self-run and slightly sad: 'FREE CAN OF SODA WITH ORDERS OVER $40'.",
+      "about": "First person or third person, inconsistent. Mentions a family member, a year, or a former location.",
+      "reviews": "Mix of very long five-star reviews from regulars and one-star reviews about something unrelated (parking, a phone call, a different restaurant)."
+    },
+    "menuVoice": "Menu items are named plainly and correctly — these people can actually cook. The satire is in the MODIFIER pricing (same doctrine as the chains) and in the operational notes, not in silly dish names. Descriptions are short, sometimes ALL CAPS, occasionally include an aside from the owner. One item per store should have a description that is just a warning."
+  },
+
+  "amateurPhotoRecipe": {
+    "_why": "Real delivery-app menus are mostly photos taken by restaurant staff on a phone under the restaurant's own lighting. They are honest, unflattering, and instantly recognisable. Getting this right is the single biggest realism win in the whole app.",
+    "structure": "1) 'Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app.' 2) 'Subject:' the dish, sitting in its actual to-go vessel. 3) The lighting/venue clause. 4) The camera-fault clause. 5) 'Square crop.' 6) The no-text closing clause.",
+    "vesselOptions": ["a white styrofoam clamshell", "an aluminium foil tray with a cardboard lid", "a clear plastic deli container", "a paper boat lined with wax paper", "a white paper plate", "a brown paper takeout bag folded open", "a plain white takeout box", "a plastic-lidded soup cup", "a red plastic diner basket with checkered paper"],
+    "lightingOptions": [
+      "harsh direct on-camera flash, hot blown-out specular hotspot on the food, hard black shadow thrown behind the container",
+      "flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance",
+      "dim warm restaurant light with the flash off, slightly underexposed and noisy",
+      "bright unflattering daylight through a window on one side, blown highlights on the near edge"
+    ],
+    "faultOptions": [
+      "framed slightly crooked, the container cut off at one edge",
+      "shot from too close and slightly above, the subject not centred",
+      "mild motion blur and soft focus, visible JPEG compression artefacts and sensor noise",
+      "cluttered background: a stainless prep counter, a napkin dispenser, a stack of lids, another order waiting",
+      "the container sitting directly on a scratched laminate counter with crumbs and a smear of sauce beside it"
+    ],
+    "closing": "Unstyled, unretouched, honest and a little unappetising. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+    "hardRules": [
+      "NEVER use words like 'ultra-premium', 'commercial', 'studio', 'cinematic', 'macro', 'shallow depth of field', 'specular highlights', 'appetising' — those produce the polished look this recipe exists to avoid.",
+      "DO say 'smartphone photo', 'phone camera', 'flat', 'unretouched', 'fluorescent', 'flash'.",
+      "The food should still be identifiable and reasonably generous — this is a real restaurant that cooks real food, not a joke about bad food.",
+      "Vary vessel + lighting + fault across a store's photos so the six do not look identical.",
+      "Every prompt still ends with the no-text clause."
+    ],
+    "exampleFull": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a generous pile of chopped seasoned chicken over yellow rice in a white styrofoam clamshell, drizzled heavily with white sauce and a stripe of red hot sauce, a small pita wedge on the side. Harsh direct on-camera flash, hot blown-out specular hotspot on the sauce, hard black shadow thrown behind the container. Framed slightly crooked with the clamshell cut off at the right edge, sitting on a scratched stainless prep counter next to a stack of lids. Flat phone-camera look, visible JPEG compression and sensor noise, mixed white balance. Unstyled, unretouched, honest. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+  },
+
+  "amateurLogoRecipe": {
+    "_why": "Independents do not have a designed logo. They have a sign, a vinyl banner, or something a relative made in 2009.",
+    "rules": [
+      "The logo image is a PHOTOGRAPH of a real-world sign, or a scan of cheap printed artwork — not a vector mark.",
+      "Still full-bleed square, edge to edge, no card or frame.",
+      "The wordmark must read EXACTLY the store name, spelled correctly. State it explicitly: 'The only text anywhere in the image is exactly: <NAME>'.",
+      "Permitted looks: hand-painted storefront sign; sun-faded coroplast yard sign; vinyl banner with zip-tie grommets; a 2009-era clip-art mark with a bevel and drop shadow printed on a laminated menu; hand-lettered paint on stucco.",
+      "Slight imperfection is the point: sun fade, a scuff, a slightly crooked crop, uneven letter spacing."
+    ]
+  },
+
+  "amateurHeroRecipe": {
+    "rules": [
+      "The hero is a phone photo, not a cinematic plate.",
+      "Good subjects: a strip-mall storefront shot from a parked car; a small counter with a laminated menu board; a takeout window at night; a half-empty display case under fluorescent light.",
+      "Include ordinary reality: a parking lot, a handwritten sign taped to the glass, a security grille, a soda cooler, worn floor tile.",
+      "Wide 16:9. Slightly crooked horizon is fine. No text, no readable signage, no people."
+    ]
+  },
+
+  "brands": [
+    {
+      "slug": "gyropalace", "prefix": "gyp", "name": "Gyro Palace #3", "local": true,
+      "concept": "The third and only surviving Gyro Palace. The menu board is laminated and has been amended twice with tape. Portions are enormous and the prices have not changed since 2016.",
+      "palette": { "primary": "#1B6EC2", "secondary": "#F2C230", "ink": "#10243B", "paper": "#FFFDF5" },
+      "cuisine": "Mediterranean · Halal",
+      "categories": ["sandwiches", "chicken", "fast-food"],
+      "artDirection": {
+        "logo": "A hand-painted storefront sign, deep Greek blue lettering with a yellow shadow on a white painted board, slightly sun-faded, a small painted meat-spit graphic beside the words, photographed straight on in flat daylight",
+        "setting": "a scratched stainless prep counter under a warming lamp, a stack of foil containers and a squeeze bottle of white sauce just out of frame",
+        "lighting": "flat overhead fluorescent tube light with a green-yellow cast, or harsh direct on-camera flash",
+        "hero": "A strip-mall Mediterranean takeout storefront at dusk photographed from a parked car through a slightly dirty windshield: lit blue-and-white sign glow, a security grille half open, an empty parking space, a handwritten sign taped inside the glass"
+      },
+      "menuThemes": "Chicken or lamb over rice in three sizes, gyro and falafel sandwiches, combo platters, a white sauce and a hot sauce with a written warning, baklava that has been in the case a while, canned soda."
+    },
+    {
+      "slug": "wingbunker", "prefix": "wgb", "name": "Wing Bunker", "local": true,
+      "concept": "Operates out of the back counter of a working gas station. This is disclosed prominently because customers keep calling to ask. The wings are, against all reason, excellent.",
+      "palette": { "primary": "#E8480C", "secondary": "#1A1A1A", "ink": "#20120B", "paper": "#FFF1E6" },
+      "cuisine": "Wings · American",
+      "categories": ["chicken", "fast-food"],
+      "artDirection": {
+        "logo": "A crude 2009-era clip-art chicken wing with a hard bevel, a drop shadow and an orange-to-yellow gradient, printed slightly off-centre on a plain white laminated sheet, one corner curling",
+        "setting": "a gas-station food counter: a scratched laminate surface, a stack of napkins, a hot-case light glowing at the edge of frame",
+        "lighting": "harsh direct on-camera flash with a hot blown-out hotspot on the sauce and a hard black shadow behind",
+        "hero": "The interior counter of a working gas station at night: a small hot case and fryer behind the counter, a menu board taped above it, snack racks and a soda cooler visible to the side, worn floor tile, fluorescent light"
+      },
+      "menuThemes": "Wings by count from 6 to 100, flats-only as a paid upgrade, a heat scale with a legal warning at the top, fried pickles, a bucket called The Whole Thing, ranch and blue cheese priced per cup."
+    },
+    {
+      "slug": "verdadera", "prefix": "tqv", "name": "La Taqueria Verdadera #2", "local": true,
+      "concept": "A family taqueria. Number 2 because number 1 was reclassified. The menu is hand-lettered on the wall and has never been reprinted. The salsa is made every morning by someone's mother, who is named on the menu.",
+      "palette": { "primary": "#C1121F", "secondary": "#2E7D32", "ink": "#2A0E0B", "paper": "#FFF8E7" },
+      "cuisine": "Mexican · Taqueria",
+      "categories": ["mexican", "fast-food"],
+      "artDirection": {
+        "logo": "Hand-painted lettering on a warm stucco wall, deep red with a green outline and a small painted cactus, the paint slightly uneven and weathered, photographed straight on in warm afternoon daylight",
+        "setting": "a small counter with a paper plate or a foil-wrapped item on it, a squeeze bottle of salsa and a stack of napkins nearby, a hand-lettered wall menu blurred behind",
+        "lighting": "dim warm interior light with the flash off, slightly underexposed and noisy, or bright daylight through a window on one side",
+        "hero": "A small family taqueria counter photographed on a phone: a hand-lettered menu board on the wall, a steam table behind the glass, a stack of paper plates, a hand-written cash-preferred sign taped to the register, warm dim light"
+      },
+      "menuThemes": "Tacos by the piece with six meats including two you must ask about, burritos wrapped in foil, a quesadilla the size of a wheel, consomé in a styrofoam cup, aguas frescas, salsa by heat and by named maker."
+    },
+    {
+      "slug": "bobacloud", "prefix": "bcs", "name": "Boba Cloud Tea & Snow", "local": true,
+      "concept": "Bubble tea and shaved snow with forty-one toppings. Everything is customisable across five axes, which means the modifier screen is longer than the menu. Run by two people who are always both there.",
+      "palette": { "primary": "#6DBEA8", "secondary": "#F7A8C4", "ink": "#123029", "paper": "#FFFFFF" },
+      "cuisine": "Bubble Tea · Dessert",
+      "categories": ["drinks", "sweets", "asian"],
+      "artDirection": {
+        "logo": "A cute rounded cartoon cloud mascot with a boba straw and two dot eyes, mint green and pink, printed on a slightly wrinkled vinyl banner with a visible grommet at one corner, photographed flat under shop light",
+        "setting": "a bright white shop counter with a cup-sealing machine and a row of topping containers softly out of focus behind",
+        "lighting": "bright flat overhead LED shop light, high key, slight green cast, condensation on the cup",
+        "hero": "The interior of a small bubble tea shop photographed on a phone: a laminated photo menu board above the counter, a cup sealing machine, a row of clear topping bins, two stools by the window, very bright flat light"
+      },
+      "menuThemes": "Milk teas and fruit teas, ice level, sugar level, forty-one toppings priced individually, shaved snow bowls sized S/M/'Sharing', a seasonal drink that has been seasonal for two years."
+    },
+    {
+      "slug": "goldenwok", "prefix": "gwk", "name": "Golden Wok Express", "local": true,
+      "concept": "Family American-Chinese takeout with 214 numbered items. Here since before the strip mall. The phone still gets more orders than the app and the owner mentions this.",
+      "palette": { "primary": "#B3121C", "secondary": "#E8B923", "ink": "#2A0B0C", "paper": "#FFF9EC" },
+      "cuisine": "Chinese · Takeout",
+      "categories": ["asian", "fast-food"],
+      "artDirection": {
+        "logo": "A red-and-gold takeout-menu masthead with a stylised dragon and a pagoda, the kind printed on a folded paper menu, slightly photocopied and misregistered, on a cream paper field",
+        "setting": "a white takeout box or a foil tray with a cardboard lid sitting on a stainless counter, a stack of soy sauce packets and a plastic fork beside it",
+        "lighting": "flat overhead fluorescent light, mixed white balance, mild green cast, no fill",
+        "hero": "A small Chinese takeout counter photographed on a phone: a bulletproof-glass pass-through, a wall of numbered menu items above the register, a lottery machine, a bench with two chairs, red awning light coming through the window"
+      },
+      "menuThemes": "Numbered combination plates with a choice of side, lunch specials that ended at 3, General Tso and its four relatives, pork fried rice by the quart, egg rolls sold in odd numbers, a soup that comes free and is not free."
+    },
+    {
+      "slug": "sunrisedonut", "prefix": "snd", "name": "Sunrise Donut & Deli", "local": true,
+      "concept": "Donuts, breakfast burritos, lottery tickets and one fax machine. Opens at 4:00 AM. One person works here and it is always the same person.",
+      "palette": { "primary": "#F28C28", "secondary": "#6A4C93", "ink": "#2B1A08", "paper": "#FFF6EA" },
+      "cuisine": "Donuts · Breakfast",
+      "categories": ["sweets", "coffee", "sandwiches"],
+      "artDirection": {
+        "logo": "A sun with a donut for a face, orange and purple, printed on a sun-bleached coroplast yard sign with a visible corrugation texture and a scuffed corner, photographed slightly crooked in daylight",
+        "setting": "a sheet of wax paper on a laminate counter, a paper coffee cup and a napkin dispenser at the edge of frame",
+        "lighting": "flat overhead fluorescent light at 5am, slightly green, no warmth, or harsh on-camera flash",
+        "hero": "The interior of a small donut shop at 5am photographed on a phone: a glass display case half emptied of donuts, a coffee urn, a lottery ticket dispenser, a hand-written sign taped to the case, fluorescent light, nobody there"
+      },
+      "menuThemes": "Donuts by the each, half dozen and dozen, an apple fritter the size of a plate, breakfast burritos wrapped in foil, a bacon egg and cheese on any bread, coffee in three sizes, a lottery section that cannot be ordered."
+    }
+  ],
+
+  "reshootPlan": {
+    "_what": "Which existing national-chain item photos get replaced with amateur staff phone photos. Chains with big marketing budgets keep more studio shots; grimier chains keep fewer. This produces the mixed feed a real app has.",
+    "keepStudioThenReshoot": {
+      "mcronalds": [4, 5, 6], "starbux": [4, 5, 6], "dunkinn": [4, 5, 6],
+      "brawndo": [4, 5, 6], "pizzahutch": [4, 5, 6],
+      "tacobelligerent": [3, 4, 5, 6], "chipoltergeist": [3, 4, 5, 6], "entirefoods": [3, 4, 5, 6],
+      "cluckingham": [2, 3, 4, 5, 6], "manufactory": [2, 3, 4, 5, 6], "applebeez": [2, 3, 4, 5, 6],
+      "pandaxpress": [2, 3, 4, 5, 6], "ssa": [2, 3, 4, 5, 6], "oliveorchard": [2, 3, 4, 5, 6]
+    }
+  }
+}

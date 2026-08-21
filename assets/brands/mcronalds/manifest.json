@@ -1,0 +1,54 @@
+{
+  "slug": "mcronalds",
+  "model": "bytedance/seedream-4.5",
+  "images": [
+    {
+      "file": "logo.webp",
+      "prompt": "Flat vector franchise logo, 1974 corporate identity, printed directly onto one solid crimson surface. Two thick golden-yellow arches, comically swollen and sagging at the tips as if slowly melting, glossy highlight, centered, with a small clean wordmark below them. CRITICAL CORRECTION: a previous attempt wrongly placed the artwork on a raised rounded square card with a drop shadow. There must be NO card, NO rounded panel, NO plaque, NO tile, NO frame, NO border, NO drop shadow, NO inner margin. Full-bleed square: the crimson background colour fills the entire canvas edge to edge, corner to corner, one single flat unbroken field. The only text anywhere in the image is exactly: McRonald's. No other letters, words, numbers or symbols may appear anywhere.",
+      "predictionId": "em5j0cdp11rmy0d0462ba650gr",
+      "predictTime": 12.996532468
+    },
+    {
+      "file": "hero.webp",
+      "prompt": "Cinematic wide architectural photograph: a sun-bleached suburban fast-food storefront at high noon, low beige brick building with a red mansard roof band, an enormous pair of golden-yellow arches on a tall pole sign rising above it, a completely empty asphalt parking lot with faded white stall lines, heat shimmer rippling off the asphalt, a bare flagpole, dry scrub at the lot edge, bleached blue sky with no clouds. Aggressively cheerful and completely deserted. Harsh overhead midday sun, blown highlights, deep short shadows, saturated 1970s Kodachrome color, slight color fringing. 24mm lens, deadpan straight-on composition. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "767ctgnty5rmt0d0460tq7e35m",
+      "predictTime": 10.469369619
+    },
+    {
+      "file": "items/01.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a towering three-plane sesame burger, two thick beef rounds slumping outward past the bun edge, orange sauce running in heavy ropes down every side and pooling on the steel below, shredded lettuce spilling out in a ring, melted cheese sheeting off the patty into a hanging curtain, the whole stack leaning under its own weight. Three-quarter hero angle on a stainless steel fast-food prep line, out-of-focus red and yellow molded-plastic seating in the far background. Hard high-key flash photography, the saturated over-lit look of a 1970s laminated menu board, slight color fringing. 85mm lens, shallow depth of field, punchy contrast, glossy sheen. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "z11jv1gpbxrmw0d04619z220z4",
+      "predictTime": 11.258154472
+    },
+    {
+      "file": "items/02.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a quarter-pound cheeseburger sliced cleanly in half, the flat cut face square to the lens, every stratum readable: thick seared beef round with visible grain, two slabs of molten orange cheese sagging past the edges in a slow drip, slivered onion, four pickle discs, distinct ribbons of ketchup and mustard, the glossy compressed bun. The half stands upright on a stainless steel fast-food prep line, out-of-focus red and yellow molded-plastic seating far behind. Hard high-key flash photography, saturated over-lit 1970s laminated menu board look, slight color fringing. 100mm macro lens, straight-on cross-section, crisp edge detail. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "hn68wyvewnrmr0d04619trm49m",
+      "predictTime": 12.538481813
+    },
+    {
+      "file": "items/03.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an unmarked plain red paper carton crammed with hundreds of golden salted potato batons, shot straight down into the vessel so the packed vertical ends fill the opening, batons overflowing every rim edge and fanning outward, a dozen more fallen onto the metal around the carton, coarse salt crystals glittering on oil-slick surfaces, faint steam rising through the light. The carton sits on a stainless steel fast-food prep line, out-of-focus red and yellow molded-plastic seating far behind. Hard high-key flash photography, saturated over-lit 1970s laminated menu board look, slight color fringing. 50mm lens, overhead into-vessel view, deep contrast, oil sheen. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "wbnx7veg8drmy0d0461aarqxxm",
+      "predictTime": 11.910206166
+    },
+    {
+      "file": "items/04.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro detail of a breakfast muffin sandwich, the frame entirely filled by the seam where a perfectly circular fried egg, a thick griddled sausage round and a half-melted sheet of orange cheese meet and slide apart, cheese pulling into fine glossy strands, molten butter beading and running down the toasted muffin crumb, egg white edges lightly blistered, visible steam curling off the cut. Resting on a stainless steel fast-food prep line, out-of-focus red and yellow molded-plastic seating far behind. Hard high-key flash photography, saturated over-lit 1970s laminated menu board look, slight color fringing. 100mm macro lens, razor-thin depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "qfw3em1f5srmy0d0461tmfvepg",
+      "predictTime": 11.661056645
+    },
+    {
+      "file": "items/05.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a brown paper tray liner on a dented amber cafeteria tray, holding roughly sixty golden breaded poultry pieces piled into an unstable mound that has already collapsed toward one side, pieces spilling across the liner and off the tray edge, craggy blistered fried crust, grease darkening the paper in spreading rings, four open sauce cups with thick sauce domed above their rims and one overflowing. The tray sits on a stainless steel fast-food prep line; far behind, only out-of-focus red and yellow molded-plastic seating and blank stainless panels. CRITICAL: the background must contain NO menu board, NO signage, NO poster, NO price list, NO writing of any kind. Hard high-key flash photography, saturated over-lit 1970s laminated menu board look, slight color fringing. 35mm lens, elevated tray-level angle, crisp texture. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "7yj8t2zrw1rmr0d0462s2n57am",
+      "predictTime": 11.575945434
+    },
+    {
+      "file": "items/06.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of a wide fluted plastic basin heaped with soft-serve vanilla, the swirl already slumping and melting into a glossy pool, thick hot fudge and caramel poured over until both run past the rim in four separate streams and spread across the metal beneath, a heavy scatter of nut fragments sinking into the surface, condensation beading on the basin wall. Shot from directly above on a stainless steel fast-food prep line, out-of-focus red and yellow molded-plastic seating far behind. Hard high-key flash photography, saturated over-lit 1970s laminated menu board look, slight color fringing. 50mm lens, flat overhead composition, high sheen. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "enked8renxrmt0d0462bqzebfr",
+      "predictTime": 12.218854681
+    }
+  ]
+}

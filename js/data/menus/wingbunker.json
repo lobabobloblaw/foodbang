@@ -1,0 +1,2112 @@
+{
+  "slug": "wingbunker",
+  "local": true,
+  "name": "Wing Bunker",
+  "shortName": "Wing Bunker",
+  "tagline": "IN THE GAS STATION. FRIED TO ORDER.",
+  "cuisine": "Wings · American",
+  "categories": [
+    "chicken",
+    "fast-food"
+  ],
+  "rating": 4.6,
+  "ratingCount": 312,
+  "deliveryMin": 39,
+  "deliveryMax": 76,
+  "deliveryFee": 6.49,
+  "distanceMi": 5.2,
+  "priceTier": 1,
+  "gorgePlus": false,
+  "closesAt": "10:40 PM",
+  "address": "Inside the Vandergrift Fuel Stop, 11840 South Frontage Road at Exit 41B, Use The Door By The Air Pump, Wexler Township",
+  "about": "We are the wing counter at the back of the gas station. My father ran the fryer at the Route 9 location from 1996 until it closed in 2011 and this is the same fryer, we moved it ourselves. Everything is fried to order which is why it takes as long as it takes. The pumps are not us.",
+  "announcement": "YES WE ARE INSIDE THE GAS STATION. Kitchen is in the back past the coffee, keep walking. We do not sell the gas and we cannot fix the pump receipt printer, that is corporate. Wings are fried to order, 18 to 20 minutes, the app time is not our time. Drivers: use the side door by the air pump, the main door alarm goes off after 8. If you cant find it call (330) 555-0164 and I will come out. Thank you. - Ray",
+  "promos": [],
+  "reviews": [
+    {
+      "name": "Dennis K.",
+      "stars": 5,
+      "date": "Aug 14",
+      "text": "I have been getting wings here every Friday for four years and I have brought my brother, my crew, my ex-wife's new husband and a guy I met at the tire place. It is a gas station. I understand that this bothers people. The wings are better than any sit-down wing place within thirty miles and Ray sorts the flats by hand if you pay the flats charge, which I do, every week, and I have never once regretted it. Order the 20 and get the Bunker tier and do not eat one standing up."
+    },
+    {
+      "name": "Marisol A.",
+      "stars": 5,
+      "date": "Aug 11",
+      "text": "Fried to order means fried to order, so stop leaving one stars because it took twenty minutes. The blue cheese is made in house on Tuesdays and you can taste that it is."
+    },
+    {
+      "name": "Wayne T.",
+      "stars": 1,
+      "date": "Aug 06",
+      "text": "The receipt printer on pump 4 has been out of paper since June and the man behind the counter told me he does not work for the gas station. Then who does. I did not order food."
+    },
+    {
+      "name": "Brianna S.",
+      "stars": 4,
+      "date": "Jul 30",
+      "text": "Docked one star because I was charged $1.15 to decline the dip cup and the note said the cups are ordered by the sleeve either way. Which is fair. The wings were excellent."
+    },
+    {
+      "name": "Reggie D.",
+      "stars": 5,
+      "date": "Jul 22",
+      "text": "Got The Whole Thing for my kid's graduation. Lid does not stay on, he tells you that on the app, and he is right. Fed nineteen people and the fire department stopped by for the rest."
+    },
+    {
+      "name": "Otis P.",
+      "stars": 2,
+      "date": "Jul 15",
+      "text": "Called three times about a catering order and a woman kept picking up and saying this is the deli. This is the second wing place I have had this problem with."
+    }
+  ],
+  "menu": [
+    {
+      "id": "wings-by-the-count",
+      "name": "Wings By The Count",
+      "blurb": "Fried to order in the back. Sauce goes on in the pan after, never in the fryer.",
+      "items": [
+        {
+          "id": "wgb-001",
+          "name": "6 Wings",
+          "desc": "Six wings, fried to order. This is the smallest order the basket will hold without the wings floating.",
+          "price": 4.15,
+          "calories": 690,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Flats Or Drums",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mixed, However They Come",
+                  "price": 0.95,
+                  "note": "Whatever is on top of the bin."
+                },
+                {
+                  "id": "o2",
+                  "name": "All Flats",
+                  "price": 3.4,
+                  "note": "Ray sorts these by hand at the counter. It takes him a while."
+                },
+                {
+                  "id": "o3",
+                  "name": "All Drums",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Preference",
+                  "price": 1.25,
+                  "note": "Reading the no-preference off the ticket is still a step."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Tier (Signed)",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tier 1 — Mild",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tier 2 — Medium",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Tier 3 — Hot",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Tier 4 — Bunker",
+                  "price": 2.75,
+                  "note": "Selecting this is your signature. Warning is posted at the counter and on the app."
+                },
+                {
+                  "id": "o5",
+                  "name": "Plain, No Sauce",
+                  "price": 1.65,
+                  "note": "Unsauced wings mean the pan gets washed on its own."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dip Cup Allocation",
+              "required": true,
+              "min": 1,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ranch, One Cup",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Blue Cheese, One Cup",
+                  "price": 1.55,
+                  "note": "Made Tuesdays. Sometimes Wednesday."
+                },
+                {
+                  "id": "o3",
+                  "name": "Both Cups",
+                  "price": 2.7,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Dip",
+                  "price": 1.15,
+                  "note": "Cups are ordered by the sleeve either way."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-002",
+          "name": "10 Wings",
+          "desc": "Ten wings, tossed in the pan and packed in a clamshell with celery. This is what most people order and it is what we are known for.",
+          "price": 6.35,
+          "calories": 1150,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: ten generously sauced chicken wings piled in a white styrofoam clamshell, glossy orange buffalo sauce pooling in the bottom corner, a small plastic cup of ranch wedged in beside them and two celery sticks. Harsh direct on-camera flash, hot blown-out hotspot on the sauce, hard black shadow thrown behind the clamshell, flat fluorescent room light behind it. Framed slightly crooked and shot from too close, the clamshell cut off at the right edge, sitting on a plain scratched laminate counter next to a stack of napkins. Plain blank background: bare counter and an out-of-focus stainless surface only, no signs, no posters, no menu boards, no printed packaging anywhere in the frame. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop, no border, no frame, no filter effect. Absolutely no text, no letters, no numbers, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Flats Or Drums",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mixed, However They Come",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "All Flats",
+                  "price": 4.65,
+                  "note": "Hand sorted. Ten flats is most of a bin."
+                },
+                {
+                  "id": "o3",
+                  "name": "All Drums",
+                  "price": 3.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Preference",
+                  "price": 1.4,
+                  "note": "Someone still has to decide, and it ends up being Ray."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Tier (Signed)",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tier 1 — Mild",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tier 2 — Medium",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Tier 3 — Hot",
+                  "price": 1.7,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Tier 4 — Bunker",
+                  "price": 3.15,
+                  "note": "There is a laminated sheet by the register. By tapping this you have read it."
+                },
+                {
+                  "id": "o5",
+                  "name": "Half And Half, Two Sauces",
+                  "price": 4.2,
+                  "note": "Two pans, two washes."
+                },
+                {
+                  "id": "o6",
+                  "name": "Plain, No Sauce",
+                  "price": 1.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dip Cup Allocation",
+              "required": true,
+              "min": 1,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ranch, One Cup",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Blue Cheese, One Cup",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra Cup Of Either",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Dip",
+                  "price": 1.15,
+                  "note": "Cups are ordered by the sleeve either way."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Celery Position",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Celery Under The Wings",
+                  "price": 0.6,
+                  "note": "It will be wet. Everyone knows this and orders it anyway."
+                },
+                {
+                  "id": "o2",
+                  "name": "Celery In Its Own Bag",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Carrots Instead",
+                  "price": 0.9,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-003",
+          "name": "20 Wings",
+          "desc": "Twenty wings in a foil tray. Two sauces allowed. Cooked in two baskets so the second half is hotter, that is just how it works.",
+          "price": 11.4,
+          "calories": 2280,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Flats Or Drums",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mixed, However They Come",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "All Flats",
+                  "price": 8.4,
+                  "note": "Twenty flats empties the bin and the next order has none. That is what this covers."
+                },
+                {
+                  "id": "o3",
+                  "name": "All Drums",
+                  "price": 5.75,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Preference",
+                  "price": 2.1,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Tier (Signed)",
+              "required": true,
+              "min": 1,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tier 1 — Mild",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tier 2 — Medium",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Tier 3 — Hot",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Tier 4 — Bunker",
+                  "price": 4.6,
+                  "note": "Signed at the tier, not the wing. Twenty wings is one signature."
+                },
+                {
+                  "id": "o5",
+                  "name": "Plain, No Sauce",
+                  "price": 2.55,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Tray Liner",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Foil Tray",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil Tray With Cardboard Lid",
+                  "price": 2.4,
+                  "note": "The lid is what keeps them hot to the car."
+                },
+                {
+                  "id": "o3",
+                  "name": "Double Tray, Nested",
+                  "price": 3.6,
+                  "note": "For anyone who has had a tray fail on the passenger seat."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Liner, Straight In The Tray",
+                  "price": 1.05,
+                  "note": "We still line it. This is the charge for not asking us to."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-004",
+          "name": "50 Wings",
+          "desc": "WARNING. THIS IS FIFTY WINGS. IT DOES NOT FIT IN A DELIVERY BAG AND THE DRIVER WILL HAVE TO CARRY IT IN TWO HANDS.",
+          "price": 26.75,
+          "calories": 5600,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sauce Split",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Sauce, All Fifty",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Sauces, Split 25/25",
+                  "price": 5.3,
+                  "note": "Two pans."
+                },
+                {
+                  "id": "o3",
+                  "name": "Three Sauces",
+                  "price": 8.15,
+                  "note": "Three pans and we own four."
+                },
+                {
+                  "id": "o4",
+                  "name": "Sauce On The Side",
+                  "price": 6.4,
+                  "note": "Fifty wings of sauce in cups is more cups than you think."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cook Time Acknowledgment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I Understand It Is 35 Minutes",
+                  "price": 1.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Call Me When It Goes In The Fryer",
+                  "price": 3.25,
+                  "note": "Ray will call. He will not text."
+                },
+                {
+                  "id": "o3",
+                  "name": "Do Not Call Me",
+                  "price": 2.85,
+                  "note": "Not calling is a decision the counter has to remember, and remembering is the charge."
+                },
+                {
+                  "id": "o4",
+                  "name": "I Am Already Parked Outside",
+                  "price": 4.15,
+                  "note": "Does not make it faster. Fryer is the fryer."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Bone Disposal Plan",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Empty Tray For Bones",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bag Of Wet Wipes",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Roll Of Paper Towels",
+                  "price": 3.45,
+                  "note": "It is a whole roll off the shelf out front."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-005",
+          "name": "Boneless Wings (10)",
+          "desc": "Breaded white meat, sauced in the same pan. They are not wings and we have never said they were.",
+          "price": 5.9,
+          "calories": 1240,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Heat Tier (Signed)",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tier 1 — Mild",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tier 2 — Medium",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Tier 3 — Hot",
+                  "price": 1.7,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Tier 4 — Bunker",
+                  "price": 3.15,
+                  "note": "Breading holds more sauce. Consider that before you tap it."
+                },
+                {
+                  "id": "o5",
+                  "name": "Plain, No Sauce",
+                  "price": 1.8,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Terminology Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Call Them Boneless Wings",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Call Them Chicken Nuggets",
+                  "price": 1.35,
+                  "note": "Accurate. Charged the same as inaccurate."
+                },
+                {
+                  "id": "o3",
+                  "name": "Do Not Call Them Anything",
+                  "price": 1.55,
+                  "note": "The ticket still has to say something, so Ray writes BW and the charge covers that."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dip Cup Allocation",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ranch, One Cup",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Blue Cheese, One Cup",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Honey Mustard, One Cup",
+                  "price": 1.4,
+                  "note": "Bought, not made. He is honest about it."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-whole-thing",
+      "name": "The Whole Thing",
+      "blurb": "A customer named this in 2014 and we never changed it. Call ahead for anything on this page.",
+      "items": [
+        {
+          "id": "wgb-006",
+          "name": "The Whole Thing",
+          "desc": "One hundred wings in a bucket. The lid does not stay on. We are telling you now so you are not surprised at the counter.",
+          "price": 39.6,
+          "calories": 6200,
+          "badges": [
+            "#1 Most Liked",
+            "Limit 1 Per Household"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an enormous heap of sauced chicken wings filling a big plain white plastic bucket to well above the rim, orange buffalo sauce running down the outside of the bucket, a crooked lid resting on top at an angle, a few loose wings on the counter beside it. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above so the bucket is not centred, cluttered background of a stainless prep counter with a stack of lids, a napkin dispenser and another order waiting in a foil tray. Flat phone-camera look, unretouched, visible JPEG compression and sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bucket Transport Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bucket As Is",
+                  "price": 3.2,
+                  "note": "It is heavy and it is greasy on the outside."
+                },
+                {
+                  "id": "o2",
+                  "name": "Bucket In A Second Bucket",
+                  "price": 6.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bucket Taped Shut",
+                  "price": 5.4,
+                  "note": "Tape is from the register roll. It does not come off clean."
+                },
+                {
+                  "id": "o4",
+                  "name": "Two-Trip Handoff At The Side Door",
+                  "price": 12.6,
+                  "note": "Ray meets the driver by the air pump. Both trips are counted."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Sauce Volume",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sauced In Two Pans, One Flavor",
+                  "price": 4.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sauced In Four Separate Pans",
+                  "price": 12.4,
+                  "note": "Every pan in the building is now in the sink."
+                },
+                {
+                  "id": "o3",
+                  "name": "Lightly Sauced",
+                  "price": 5.6,
+                  "note": "Same pans. Less sauce. Same work."
+                },
+                {
+                  "id": "o4",
+                  "name": "Sauce In Quart Containers On The Side",
+                  "price": 9.3,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Heat Tier (Signed)",
+              "required": true,
+              "min": 1,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tier 1 — Mild",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tier 2 — Medium",
+                  "price": 3.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Tier 3 — Hot",
+                  "price": 4.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Tier 4 — Bunker, One Hundred Wings",
+                  "price": 9.8,
+                  "note": "Nobody has finished this. Two people have tried and one of them was Ray."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-007",
+          "name": "The Whole Thing With Fries",
+          "desc": "The bucket plus fries in a separate tray, because fries under wings turn to paste in eleven minutes.",
+          "price": 43.8,
+          "calories": 6200,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Fry Volume",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Tray",
+                  "price": 3.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Trays",
+                  "price": 6.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "The Bus Tub",
+                  "price": 15.9,
+                  "note": "It is a clean bus tub. You bring it back or you do not."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fryer Queue Position",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fries After The Wings",
+                  "price": 2.15,
+                  "note": "Correct order. Fries arrive hot."
+                },
+                {
+                  "id": "o2",
+                  "name": "Fries Before The Wings",
+                  "price": 2.95,
+                  "note": "Wrong order. We will do it."
+                },
+                {
+                  "id": "o3",
+                  "name": "Both At Once, Two Baskets",
+                  "price": 5.7,
+                  "note": "The oil drops forty degrees and everything after you waits."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Preference On Order",
+                  "price": 2.35,
+                  "note": "Then it goes wings first, and this is what deciding costs."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Salt Election",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Salted",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavily Salted",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Salt Packets On The Side",
+                  "price": 0.85,
+                  "note": "From the rack by the coffee. Not ours, technically."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-008",
+          "name": "Bunker Party Pack",
+          "desc": "Forty wings, two trays of fries and a tray of fried pickles. This is the one we do for graduations and shift changes at the plant.",
+          "price": 21.3,
+          "calories": 6100,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Head Count Ray Is Cooking For",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 2.4,
+                  "note": "One person, forty wings. He will not comment."
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 7.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 16.3,
+                  "note": "A shift, a department, or a street."
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional",
+                  "price": 24.75,
+                  "note": "Requires the second fryer, which he will turn on for you."
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed",
+                  "price": 38.6,
+                  "note": "Everyone downstream of the retention pond. Call first, the number is at the top."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Pickup Window",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "As Soon As It Is Ready",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Hold It In The Hot Case",
+                  "price": 3.4,
+                  "note": "Twenty minutes maximum. After that the breading goes soft and he will not send it."
+                },
+                {
+                  "id": "o3",
+                  "name": "Scheduled For A Specific Time",
+                  "price": 4.85,
+                  "note": "Written on the wall calendar in pencil."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Window, I Will Show Up",
+                  "price": 2.6,
+                  "note": "The uncertainty is the charge."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Napkin Provision",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Stack Of Napkins",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Stacks",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "The Dispenser Itself",
+                  "price": 6.9,
+                  "note": "It comes back. It always comes back."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "out-of-the-fryer",
+      "name": "Out Of The Fryer",
+      "blurb": "Same oil as the wings. If that matters to you it should matter here.",
+      "items": [
+        {
+          "id": "wgb-009",
+          "name": "Fries",
+          "desc": "Crinkle cut. We have tried three other kinds and customers complained every time, so it is crinkle cut.",
+          "price": 2.85,
+          "calories": 940,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Basket Size",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regular",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Large",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "The Tray",
+                  "price": 5.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Grease Barrier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Wax Paper Liner",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Wax Paper",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Liner",
+                  "price": 0.95,
+                  "note": "Then the bag goes translucent and the bag is the charge."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Seasoning",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Salt",
+                  "price": 0.5,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wing Seasoning Dusted On Top",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce Drizzled Over",
+                  "price": 1.6,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-010",
+          "name": "Onion Rings",
+          "desc": "Hand battered in the morning. When they are gone they are gone and the app does not know that.",
+          "price": 3.95,
+          "calories": 1120,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Ring Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Six Rings",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Ten Rings",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "However Many Are Left",
+                  "price": 3.1,
+                  "note": "Could be four. Could be nineteen. Charged the same."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Batter Condition",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extra Crisp, Back In The Oil",
+                  "price": 2.15,
+                  "note": "Ninety more seconds. It is a different onion ring."
+                },
+                {
+                  "id": "o3",
+                  "name": "Pulled Early, Softer",
+                  "price": 1.35,
+                  "note": "He does not recommend it and will not be responsible for it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-011",
+          "name": "Fried Pickles",
+          "desc": "Dill chips, cornmeal breading, ranch on the side. These outsell the boneless wings four to one.",
+          "price": 3.65,
+          "calories": 880,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a generous pile of golden cornmeal-breaded fried pickle chips in a plain paper boat lined with wax paper, a small plastic cup of ranch beside it with a dribble down the side, a few chips fallen out onto the counter. Bright unflattering daylight through a window on one side, blown highlights on the near edge and a dull grey shadow on the other side. The paper boat sitting directly on a scratched laminate counter with crumbs and a smear of orange sauce beside it, framed slightly crooked and off-centre. Plain empty background: bare counter and a blank painted wall only, no signs, no posters, no stickers, no printed packaging in the frame. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop, no border, no frame, no filter effect. Absolutely no text, no letters, no numbers, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Pickle Thickness",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Chip",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Thick Cut",
+                  "price": 2.25,
+                  "note": "Different jar, kept under the counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Spears Instead",
+                  "price": 3.4,
+                  "note": "Takes longer in the oil and holds heat like a battery."
+                },
+                {
+                  "id": "o4",
+                  "name": "Whatever Is Open",
+                  "price": 1.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ranch Density",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Cup",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Cups",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Ranch Poured Over The Top",
+                  "price": 2.05,
+                  "note": "He will do it. He does not want to."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Ranch",
+                  "price": 1.2,
+                  "note": "The cup was already pulled off the sleeve when the ticket printed."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-012",
+          "name": "Mozzarella Sticks",
+          "desc": "Six sticks, marinara in a cup. From a box, cooked properly, and we are not going to pretend otherwise.",
+          "price": 4.3,
+          "calories": 1060,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cheese Pull Expectation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Eat Them Immediately",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Twenty Minute Drive",
+                  "price": 1.95,
+                  "note": "They will not pull. Nothing can be done about that at this counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Reheating Them Later",
+                  "price": 2.4,
+                  "note": "Instructions go in the bag on a receipt slip."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Marinara Handling",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cup On The Side",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Cups",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Marinara",
+                  "price": 1.25,
+                  "note": "The cup is warmed in the same pan whether you take it or not."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-013",
+          "name": "Fried Mushrooms",
+          "desc": "WARNING. THESE COME OUT OF THE OIL AT 350 AND THEY HOLD IT. DO NOT EAT ONE IN THE CAR.",
+          "price": 3.8,
+          "calories": 820,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cooling Period",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Straight Into The Bag",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Minutes On The Rack First",
+                  "price": 1.85,
+                  "note": "The rack is the top of the fryer. It is still hot."
+                },
+                {
+                  "id": "o3",
+                  "name": "Lid Off, Vented",
+                  "price": 1.45,
+                  "note": "Cooler and soggier. Pick one."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Cooling Period Requested",
+                  "price": 1.35,
+                  "note": "The warning was still read to you and reading it is a step."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Dip Selection",
+              "required": true,
+              "min": 1,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ranch",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Horseradish Sauce",
+                  "price": 1.7,
+                  "note": "Made here. Two people order it and they order it every time."
+                },
+                {
+                  "id": "o3",
+                  "name": "Nothing",
+                  "price": 1.1,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sandwiches-and-baskets",
+      "name": "Sandwiches & Baskets",
+      "blurb": "Buns come from the bread rack out front. Same bread the whole station sells.",
+      "items": [
+        {
+          "id": "wgb-014",
+          "name": "Fried Chicken Sandwich",
+          "desc": "Whole breast, buttermilk dredge, pickles and slaw on a potato roll. Added it in 2019 and now it is a third of what we sell.",
+          "price": 5.45,
+          "calories": 1180,
+          "badges": [
+            "New"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a thick fried chicken breast sandwich on a soft potato roll, the craggy crust hanging well past the edges of the bun, pickle slices and pale slaw pushing out of one side, the sandwich sitting half unwrapped in a sheet of foil on a plain white paper plate. Harsh direct on-camera flash straight at the sandwich, hot blown-out hotspot on the bun, hard black shadow thrown behind the plate, flat fluorescent ceiling light in the room. Framed a little too close and slightly above so the plate is cut off at the bottom, slightly crooked. Plain scratched laminate counter, bare background. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise and JPEG compression. Full-bleed square crop with no border, no black edges, no vignette, no torn frame, no grunge edges, no retro filter, no film effect. Absolutely no text, no letters, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Rack Selection",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Potato Roll",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sesame Bun",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Texas Toast",
+                  "price": 2.1,
+                  "note": "Griddled on the flat top, which is next to the fryer and always busy."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread",
+                  "price": 1.65,
+                  "note": "The roll is pulled off the rack when the ticket prints. It cannot go back on the rack."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Sauce Application",
+              "required": true,
+              "min": 1,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tossed In Buffalo Before The Bun",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sauce On The Bun Only",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce In A Cup",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Dry, No Sauce",
+                  "price": 1.3,
+                  "note": "The pan is still hot and still gets scraped."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Slaw Position",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Slaw On The Sandwich",
+                  "price": 0.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Slaw In A Cup",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Double Slaw",
+                  "price": 1.9,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-015",
+          "name": "Buffalo Chicken Wrap",
+          "desc": "Chopped tenders, lettuce, blue cheese, flour tortilla, griddled shut. Cut in half unless you tell us not to.",
+          "price": 5.75,
+          "calories": 1090,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Wrap Tension",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Rolled Tight",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Rolled Loose",
+                  "price": 1.4,
+                  "note": "It will come apart in the bag. That is what you are choosing."
+                },
+                {
+                  "id": "o3",
+                  "name": "Double Tortilla",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Preference On Roll",
+                  "price": 1.25,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cut Style",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cut In Half",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cut On The Diagonal",
+                  "price": 1.15,
+                  "note": "Same knife, more care."
+                },
+                {
+                  "id": "o3",
+                  "name": "Not Cut",
+                  "price": 1.05,
+                  "note": "The knife still gets washed. It gets washed either way."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Foil Wrap Class",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Foil",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil Then Wax Paper",
+                  "price": 1.25,
+                  "note": "Holds heat to Exit 44 easily."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-016",
+          "name": "Chicken Tender Basket",
+          "desc": "Four hand-breaded tenders, fries, one dip cup, one slice of white bread. The bread is not optional and it is not explained.",
+          "price": 6.1,
+          "calories": 1520,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Tender Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Four",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Six",
+                  "price": 3.5,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Eight",
+                  "price": 5.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Twelve",
+                  "price": 9.4,
+                  "note": "That is the whole tray and the tray is what the dinner rush comes out of."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Basket Liner",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Checkered Paper In A Red Basket",
+                  "price": 1.1,
+                  "note": "Dine in only, and there is one table."
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil Tray For Travel",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Styrofoam Clamshell",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Liner Or Vessel Preference",
+                  "price": 1.2,
+                  "note": "Something has to hold it. Ray picks, and picking is billed."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sides-and-dips",
+      "name": "Sides & Dips",
+      "blurb": "Dips are made here except the honey mustard, which is not.",
+      "items": [
+        {
+          "id": "wgb-017",
+          "name": "Loaded Fries",
+          "desc": "Fries, cheese sauce, bacon, scallion, ranch over the top. Ray's daughter put this on the board in high school and it stayed.",
+          "price": 5.2,
+          "calories": 1740,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a heavy portion of crinkle-cut fries in a clear plastic deli container with the lid off beside it, buried under bright orange cheese sauce, chopped bacon and green scallion, white ranch drizzled across the top and running down into the corner. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance, no fill shadow. Cluttered background: a scratched stainless prep counter, a napkin dispenser, a stack of plastic lids and another order waiting in a foil tray, the container framed off-centre and cut off at the left edge. Flat phone-camera look, unretouched, visible sensor noise and JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cheese Coverage",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Ladle",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Ladles",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cheese In A Cup On The Side",
+                  "price": 2.1,
+                  "note": "Travels better. Nobody orders it."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Cheese",
+                  "price": 1.55,
+                  "note": "The well is up to temperature regardless and the well is what this covers."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bacon Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bacon",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Bacon",
+                  "price": 4.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Bacon",
+                  "price": 1.85,
+                  "note": "It is chopped in the morning for the whole day. Yours is already chopped."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Container Depth",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Deli Container",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Quart Container",
+                  "price": 2.15,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-018",
+          "name": "Mac & Cheese",
+          "desc": "Made in a hotel pan every afternoon at two. If you order it at ten in the morning you are getting yesterday's, reheated, and he will tell you that on the phone.",
+          "price": 3.4,
+          "calories": 980,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Mac Vessel",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Soup Cup With Lid",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Pint Container",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Quart Container",
+                  "price": 4.6,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Whatever Is Clean",
+                  "price": 1.2,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Top Treatment",
+              "required": true,
+              "min": 1,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Wing Seasoning On Top",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bacon On Top",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce On Top",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Plain, Nothing On Top",
+                  "price": 0.9,
+                  "note": "The shaker still gets picked up and put back down."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-019",
+          "name": "Celery & Carrots",
+          "desc": "Cut in the morning, kept in water. Order it with the 50 and you will feel better about the 50.",
+          "price": 2.1,
+          "calories": 610,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cut Ratio",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Half Celery, Half Carrot",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "All Celery",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "All Carrot",
+                  "price": 1.35,
+                  "note": "Carrots are peeled by hand and the peeling is the difference."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Preference",
+                  "price": 0.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Stem Policy",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Leaves Left On",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Leaves Trimmed Off",
+                  "price": 1.1,
+                  "note": "Trimming is done at the counter while you wait."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Position On Leaves",
+                  "price": 0.8,
+                  "note": "Then they are left on, and this is what not deciding costs."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-cooler",
+      "name": "The Cooler",
+      "blurb": "The coolers belong to the gas station. The tea does not.",
+      "items": [
+        {
+          "id": "wgb-020",
+          "name": "Canned Soda",
+          "desc": "From the cooler by the door. If it is out there it is in stock, and if it is not, it is not.",
+          "price": 1.35,
+          "calories": 640,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cooler Door",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Door 1, The Cold One",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Door 2",
+                  "price": 0.55,
+                  "note": "Runs warm. Has run warm since spring."
+                },
+                {
+                  "id": "o3",
+                  "name": "Door 3, Behind The Ice",
+                  "price": 1.1,
+                  "note": "Requires moving the ice bags."
+                },
+                {
+                  "id": "o4",
+                  "name": "Any Door",
+                  "price": 0.75,
+                  "note": "He will walk to whichever one is closest and that walk is out of the kitchen."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bag Placement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "In With The Food",
+                  "price": 0.5,
+                  "note": "It will cool the food. It always does."
+                },
+                {
+                  "id": "o2",
+                  "name": "Separate Bag",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Bag, Loose",
+                  "price": 0.7,
+                  "note": "The driver has to carry it in one hand and that is a decision you are making for him."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wgb-021",
+          "name": "Sweet Tea (Quart)",
+          "desc": "Brewed here in the morning in a five gallon urn. It is sweet the way it is supposed to be sweet and we will not adjust it.",
+          "price": 2.95,
+          "calories": 720,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic quart cup of dark iced sweet tea with a domed lid pressed on and heavy condensation running down the side, packed with ice, standing on a scratched laminate gas-station counter beside a paper-wrapped straw and a folded napkin. Harsh direct on-camera flash, hot blown-out hotspot on the wet plastic and a hard black shadow thrown behind the cup, glass cooler doors dark and reflective in the background. Framed slightly crooked with the cup cut off at the bottom edge, shot from too close. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Ice Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Ice",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Light Ice",
+                  "price": 1.05,
+                  "note": "More tea, so more tea."
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra Ice",
+                  "price": 0.85,
+                  "note": "From the bagged ice, not the machine. The machine is the gas station's."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Ice",
+                  "price": 1.35,
+                  "note": "It will be room temperature by Exit 43 and we have said so."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Lid Seal",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Domed Lid",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Flat Lid, Taped",
+                  "price": 1.25,
+                  "note": "Tape from the register roll. Recommended for anyone taking the frontage road."
+                },
+                {
+                  "id": "o3",
+                  "name": "Lid Not Pressed Down",
+                  "price": 0.95,
+                  "note": "This has gone badly for other people and it will go badly for you."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Straw Provision",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Wrapped Straw",
+                  "price": 0.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Straws",
+                  "price": 0.65,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,322 @@
+{
+  "app": {
+    "name": "DoorGorge",
+    "legalName": "DoorGorge Nutrition Logistics, Inc.",
+    "tagline": "EVERY DOOR IS A MOUTH.",
+    "subscription": "GORGE+ INFINITY PRIME ELITE",
+    "courierNoun": "Gorger",
+    "currency": "GorgeBux",
+    "tracker": "TRACKR",
+    "health": "BODYMAX",
+    "voice": "Deadpan corporate-dystopian. The satire is in the pricing, the modifiers, and the total sincerity of the copy. Never wink at the camera. Brands believe in themselves completely. Idiocracy-adjacent: aggressive trademarks, legally-hedged claims, portions described in civic-infrastructure units, wellness framed as compliance."
+  },
+  "pricingDoctrine": {
+    "principle": "Base item prices are absurdly LOW so the menu looks cheap. The money is hidden in REQUIRED modifier groups where every option costs money, including the option to decline. The final total should land 5-10x the advertised base price.",
+    "rules": [
+      "Every item has 2-4 REQUIRED groups. In at least one required group, EVERY option has a nonzero price, including 'No' / 'None' / 'Decline'.",
+      "Declining something costs the same as, or more than, accepting it. Give the fee a bureaucratic justification in the option's `note`.",
+      "Prices use precise, unrounded amounts: 4.25, 7.10, 13.75, 0.85. Never a suspiciously round number above $1.",
+      "Portion/size tiers escalate non-linearly and end in a civic-scale unit: Personal / Family / Municipal / Regional / Watershed.",
+      "At least one option per store is priced above $18 and is presented as completely normal.",
+      "Optional add-on groups are where the pure comedy lives; required groups are where the money lives."
+    ]
+  },
+  "menuSchema": {
+    "_comment": "Write EXACTLY this shape to js/data/menus/<slug>.json. No extra top-level keys.",
+    "slug": "string, matches brand slug",
+    "name": "string, full brand name",
+    "shortName": "string, <= 18 chars, used in cart chips",
+    "tagline": "string, ALL CAPS slogan",
+    "cuisine": "string",
+    "categories": ["2-4 home-feed category slugs from the app category list"],
+    "rating": "number 1.0-5.0 with one decimal (most should be 3.4-4.7; one store should be under 2.5 and beloved anyway)",
+    "ratingCount": "integer, formatted later. e.g. 18402",
+    "deliveryMin": "integer minutes",
+    "deliveryMax": "integer minutes",
+    "deliveryFee": "number, e.g. 4.99 or 0",
+    "distanceMi": "number one decimal",
+    "priceTier": "1|2|3|4 (renders as $ signs)",
+    "gorgePlus": "boolean",
+    "closesAt": "string like '11:45 PM' or '3:00 AM'",
+    "address": "string, absurd suburban-sprawl address",
+    "about": "string, 1-3 deadpan sentences of corporate 'about' copy",
+    "announcement": "string or null — a banner shown at top of store page",
+    "promos": ["1-3 strings, e.g. 'Spend $95, Save $3'"],
+    "reviews": [{ "name": "string", "stars": "integer 1-5", "date": "string like 'Aug 12'", "text": "string, 1-2 deadpan sentences" }],
+    "menu": [
+      {
+        "id": "kebab-case section id",
+        "name": "section name",
+        "blurb": "string or null, one line",
+        "items": [
+          {
+            "id": "slugprefix-001",
+            "name": "item name",
+            "desc": "1-2 sentence deadpan description",
+            "price": "number, the LOW base price",
+            "calories": "integer, absurd but plausible-looking (600-6200)",
+            "badges": ["0-2 of: '#1 Most Liked', 'Popular', 'New', 'Contains Food', 'Limit 1 Per Household', 'Regionally Legal', 'Chef Recommended', 'Physician Discouraged'"],
+            "photo": "either 'items/01.webp' ... 'items/06.webp' for the SIX photographed items, or null for the rest",
+            "imagePrompt": "REQUIRED only for the six photographed items. See imagePromptRecipe. null otherwise.",
+            "groups": [
+              {
+                "id": "g1",
+                "name": "group name",
+                "required": "boolean",
+                "min": "integer",
+                "max": "integer (1 = radio, >1 = checkbox)",
+                "options": [
+                  { "id": "o1", "name": "option name", "price": "number, may be 0", "note": "string or null — small grey subtext, this is where the bureaucratic justification goes" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "menuRequirements": {
+    "sections": "4-6 sections per store, with names specific to that brand's world (not generic 'Entrees').",
+    "items": "18-24 items total per store. Every item needs groups. Six items — spread across different sections, including the two most iconic — get photo + imagePrompt.",
+    "ids": "Use a 3-letter brand prefix, zero-padded: mcr-001, tbg-001, etc. Group ids g1..gn scoped per item. Option ids o1..on scoped per group.",
+    "variety": "No two stores may reuse a modifier group name. Invent brand-native ones."
+  },
+  "imagePromptRecipe": {
+    "model": "bytedance/seedream-4.5",
+    "structure": "1) 'Ultra-premium commercial food photography for a delivery-app menu tile.' 2) 'Subject:' the dish, described physically and with its excess made literal. 3) The brand's artDirection.setting and artDirection.lighting verbatim-ish. 4) Camera: lens, depth of field, contrast. 5) 'Square crop, subject centered and filling the frame.' 6) Closing: 'Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.'",
+    "length": "80-130 words. Concrete nouns beat adjectives.",
+    "hardRules": [
+      "ALWAYS end with the no-text/no-logo/no-hands clause — a stray wordmark ruins the tile.",
+      "Never name a real brand in the prompt.",
+      "Make the excess VISUAL, not just described: overhang, sag, overflow, structural strain, steam, sheen, quantity.",
+      "Each of a store's six prompts must differ in composition (overhead flat-lay / three-quarter hero / extreme macro / on-tray / in-vessel / cross-section) so the six tiles do not look like one shoot."
+    ]
+  },
+  "appCategories": ["fast-food", "burgers", "mexican", "chicken", "pizza", "coffee", "asian", "sandwiches", "grocery", "drinks", "sweets", "italian", "casual-dining", "healthy"],
+  "brands": [
+    {
+      "slug": "mcronalds",
+      "prefix": "mcr",
+      "name": "McRonald's",
+      "parodyOf": "McDonald's",
+      "concept": "The oldest, largest, most legally entrenched burger franchise. Speaks in the voice of a 1974 franchise operations manual that has never been revised.",
+      "palette": { "primary": "#E4002B", "secondary": "#FFC72C", "ink": "#2B0A0E", "paper": "#FFF6E3" },
+      "artDirection": {
+        "logo": "Two thick golden-yellow arches, comically swollen and sagging at the tips as if slowly melting, on a full-bleed crimson field. Flat vector, glossy, 1974 franchise identity.",
+        "setting": "a stainless steel fast-food prep line, out-of-focus red and yellow molded-plastic seating in the far background",
+        "lighting": "hard high-key flash photography, the saturated over-lit look of a 1970s laminated menu board, slight color fringing",
+        "hero": "A sun-bleached suburban McRonald's storefront at high noon, enormous golden arches sign, empty parking lot, heat shimmer off asphalt, aggressively cheerful and completely deserted"
+      },
+      "categories": ["fast-food", "burgers"],
+      "menuThemes": "Burgers, fried potato products, breakfast served at hours that make no sense, a 'value' menu that is not, milkshake-adjacent frozen dairy solutions."
+    },
+    {
+      "slug": "tacobelligerent",
+      "prefix": "tbg",
+      "name": "Taco Belligerent",
+      "parodyOf": "Taco Bell",
+      "concept": "Late-night Tex-Mex engineered for 2am decision-making. Everything is a variation of the same six ingredients folded differently and given an aggressive name.",
+      "palette": { "primary": "#6B1FA0", "secondary": "#FF2FB0", "ink": "#180A22", "paper": "#F4ECFF" },
+      "artDirection": {
+        "logo": "A neon-magenta bell shape ringing so hard it has cracked, on a full-bleed deep violet field, chrome bevel edge, 90s extreme-sports energy",
+        "setting": "wet black asphalt at 2am under a drive-thru canopy, magenta and violet neon reflecting in puddles, chrome trim",
+        "lighting": "neon rim light, magenta key with ultraviolet fill, deep crushed blacks, anamorphic flare",
+        "hero": "A neon-drenched Tex-Mex drive-thru at 2am, wet asphalt mirroring magenta and violet neon, angular chrome-and-purple building, steam from a roof vent, one lonely car in the lane"
+      },
+      "categories": ["fast-food", "mexican"],
+      "menuThemes": "Folded objects, layered objects, objects wrapped in another object, a fourth meal, sauce tiers, things served in a cone."
+    },
+    {
+      "slug": "chipoltergeist",
+      "prefix": "cpg",
+      "name": "Chipoltergeist",
+      "parodyOf": "Chipotle",
+      "concept": "Fast-casual burritos assembled in front of you by staff who will not make eye contact. The building is haunted. This is disclosed.",
+      "palette": { "primary": "#A81612", "secondary": "#C8A05A", "ink": "#241A14", "paper": "#F2E9DC" },
+      "artDirection": {
+        "logo": "A dried chili pepper shape rendered as a translucent pale spectral silhouette, faintly glowing, on a full-bleed matte charcoal-brown field, minimal artisanal kraft-paper aesthetic",
+        "setting": "a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background",
+        "lighting": "single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows",
+        "hero": "A dimly lit fast-casual burrito counter, matte black steel and raw wood, one warm spotlight over an empty serving line, faint spectral vapor drifting through the frame, nobody present"
+      },
+      "categories": ["fast-food", "mexican", "healthy"],
+      "menuThemes": "Bowls, wrapped cylinders of enormous mass, guacamole priced as a controlled substance, a 'lifestyle' section, protein tiers."
+    },
+    {
+      "slug": "starbux",
+      "prefix": "sbx",
+      "name": "STARBUX Refuel Terminal",
+      "parodyOf": "Starbucks",
+      "concept": "Not a coffee shop — a refueling terminal. Beverages are dispensed by volume through hoses. Sizes have outgrown language.",
+      "palette": { "primary": "#00654A", "secondary": "#D4B483", "ink": "#0B1F19", "paper": "#F5F1E8" },
+      "artDirection": {
+        "logo": "A circular seal containing a stylized siren whose face has been replaced by a fuel-nozzle silhouette, cream on a full-bleed deep forest green field, engraved vintage seal styling",
+        "setting": "a polished white marble counter with industrial brass dispensing hoses and gauges mounted behind it, warm cafe bokeh",
+        "lighting": "soft north-facing window light with a warm amber bounce, gentle contrast, premium lifestyle photography",
+        "hero": "A cavernous coffee terminal interior: marble counters, brass fuel-pump-style dispensing hoses on retractable reels, a queue rope maze with nobody in it, warm morning light through tall windows"
+      },
+      "categories": ["coffee", "drinks", "sweets"],
+      "menuThemes": "Volumetric beverages, syrup pump counts as a pricing axis, seasonal drinks tied to nonexistent seasons, a food case of pastries under glass, cold foam as a structural layer."
+    },
+    {
+      "slug": "cluckingham",
+      "prefix": "clk",
+      "name": "Colonel Cluckingham's Poultry Compound",
+      "parodyOf": "KFC / Popeyes",
+      "concept": "A pressure-frying facility with a hospitality license. The Colonel is a rank, not a name, and it is currently vacant.",
+      "palette": { "primary": "#B31217", "secondary": "#F4EDE4", "ink": "#2A100F", "paper": "#FBF3E7" },
+      "artDirection": {
+        "logo": "A white goateed colonel silhouette in a bucket-shaped cameo, on a full-bleed red-and-white vertical striped field, Southern-gothic engraved styling",
+        "setting": "a stainless fryer station with red-and-white vertical stripes softly out of focus behind, a dented aluminum sheet tray in the foreground",
+        "lighting": "warm Southern-gothic tungsten raking in from the left, visible fryer haze, oil sheen, rich shadow",
+        "hero": "A roadside fried chicken compound at dusk: red-and-white striped awning, an oversized rotating bucket sign, fryer steam venting from the roof, gravel lot, one flickering neon OPEN glow"
+      },
+      "categories": ["fast-food", "chicken"],
+      "menuThemes": "Buckets sized by population served, bone-in vs bone-adjacent, biscuits with structural claims, gravy by the gallon, a spice level scale with a legal disclaimer."
+    },
+    {
+      "slug": "manufactory",
+      "prefix": "ckm",
+      "name": "The Cheesecake Manufactory",
+      "parodyOf": "The Cheesecake Factory",
+      "concept": "A 412-page menu inside a faux-Egyptian revival palace. Portions are architectural. There is one exit.",
+      "palette": { "primary": "#6B4A2F", "secondary": "#C8A24A", "ink": "#1E140C", "paper": "#F6EEDC" },
+      "artDirection": {
+        "logo": "An ornate gold-leaf Egyptian-revival cartouche framing a stylized cheesecake wedge, on a full-bleed deep bronze field, embossed art-deco luxury styling",
+        "setting": "a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind",
+        "lighting": "dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive",
+        "hero": "The interior of a cavernous faux-Egyptian revival restaurant: marble columns, gold-leaf capitals, amber glass lamps, endless booth seating receding into darkness, one impossibly large dessert on a distant table"
+      },
+      "categories": ["casual-dining", "sweets"],
+      "menuThemes": "A menu with numbered pages, appetizers that serve six, entrees named after places, forty cheesecakes, a 'Skinnylicious' section that is not."
+    },
+    {
+      "slug": "applebeez",
+      "prefix": "apz",
+      "name": "Applebeez Neighborhood Feeding Trough",
+      "parodyOf": "Applebee's",
+      "concept": "A neighborhood bar and grill where the neighborhood is a parking lot. Flair on the walls, televisions on every surface, riblets always.",
+      "palette": { "primary": "#1E5631", "secondary": "#7C1F1F", "ink": "#101A12", "paper": "#F0EDE4" },
+      "artDirection": {
+        "logo": "A green apple silhouette with a bite taken out of it, the bite shaped like a human jaw, on a full-bleed oxblood field, 1990s casual-dining routed-wood-sign styling",
+        "setting": "a sticky laminate table with a green vinyl booth behind, antique tin signs and lacrosse sticks blurred on the wall, television glow washing over everything",
+        "lighting": "dim green-and-amber bar lighting with cold blue television flicker as fill, slightly grimy, nostalgic 1998 casual dining",
+        "hero": "The interior of a suburban bar and grill at 4pm: green vinyl booths, Tiffany-style hanging lamps, walls crowded with antique signs and sports memorabilia, a dozen televisions all showing the same frozen frame, completely empty"
+      },
+      "categories": ["casual-dining", "burgers", "drinks"],
+      "menuThemes": "Riblets, apps sampler platters, a 2-for-$ deal that is not, boneless wings, a drink of the month in a souvenir vessel, endless salad-adjacent."
+    },
+    {
+      "slug": "pizzahutch",
+      "prefix": "phz",
+      "name": "Pizza Hutch",
+      "parodyOf": "Pizza Hut",
+      "concept": "Crust innovation has gone too far and cannot be stopped. Every crust contains another crust.",
+      "palette": { "primary": "#C8102E", "secondary": "#F2E205", "ink": "#2A0A0F", "paper": "#FFF8E1" },
+      "artDirection": {
+        "logo": "A red trapezoidal roof silhouette over a yellow wordmark bar, on a full-bleed checkered red-and-white vinyl-tablecloth field, 1993 franchise identity",
+        "setting": "a red-and-white checkered vinyl tablecloth with a stained-glass hanging lamp glowing above, a chrome pizza stand in frame",
+        "lighting": "warm stained-glass lamp glow from directly above, saturated reds and ambers, nostalgic 1993 dine-in pizza parlor",
+        "hero": "A 1990s dine-in pizza parlor with a red trapezoidal roof visible through the window, checkered tablecloths, stained-glass hanging lamps, an arcade cabinet in the corner, a salad bar with a sneeze guard, nobody there"
+      },
+      "categories": ["pizza", "fast-food"],
+      "menuThemes": "Recursive stuffed crusts, pan vs deep vs deeper, breadstick covenants, a personal pan sized for a household, wings as an afterthought."
+    },
+    {
+      "slug": "pandaxpress",
+      "prefix": "pdx",
+      "name": "Panda Xpress 9000",
+      "parodyOf": "Panda Express",
+      "concept": "Mall food court American-Chinese, dispensed from steam tables by a system that has been running unattended for some time.",
+      "palette": { "primary": "#C8102E", "secondary": "#FFB81C", "ink": "#22090C", "paper": "#FFF4E0" },
+      "artDirection": {
+        "logo": "A stylized panda head rendered as a chrome robotic mask with glowing red eye slits, on a full-bleed lacquer-red field, gold pinstripe border, mall-signage styling",
+        "setting": "a stainless steel steam table line with sneeze guard, glossy red-and-gold lacquer panels behind, chrome serving trays",
+        "lighting": "cold mall-food-court fluorescent overhead light with warm glow from the steam table heat lamps, high sheen, visible steam",
+        "hero": "A mall food court counter at closing time: a long stainless steam table under heat lamps, red and gold lacquer panels, a chrome robotic panda mask sign glowing above, security gate half lowered, nobody there"
+      },
+      "categories": ["asian", "fast-food"],
+      "menuThemes": "Orange chicken and its legally distinct variants, entree-plus-side plate math, a 'wok smart' section, fortune cookies with liability text."
+    },
+    {
+      "slug": "ssa",
+      "prefix": "ssa",
+      "name": "Subterranean Sandwich Authority",
+      "parodyOf": "Subway",
+      "concept": "A federally chartered sandwich agency. Your sandwich is an application. It may be denied.",
+      "palette": { "primary": "#009639", "secondary": "#FFC61E", "ink": "#0E1A10", "paper": "#F4F2E7" },
+      "artDirection": {
+        "logo": "A government-style seal: an arrow-shaped sandwich in a laurel wreath with a bar of stars, yellow and green on a full-bleed institutional beige field, official agency insignia styling",
+        "setting": "a laminated stainless prep rail behind a scratched acrylic sneeze guard, institutional beige tile wall, a laminated form taped to the glass",
+        "lighting": "flat cold overhead fluorescent tube light, no shadow drama, bureaucratic and slightly green, unflattering and honest",
+        "hero": "The interior of a government-office sandwich counter: beige tile, a long acrylic sneeze guard over stainless bins, a take-a-number dispenser, fluorescent tubes, a queue rope maze, a wall of laminated notices"
+      },
+      "categories": ["sandwiches", "fast-food"],
+      "menuThemes": "Sandwiches as applications with processing tiers, bread eligibility, vegetable allotments, a footlong measured to federal standard, a $5 promotion that has been discontinued but is still advertised."
+    },
+    {
+      "slug": "entirefoods",
+      "prefix": "efm",
+      "name": "Entire Foods Market",
+      "parodyOf": "Whole Foods",
+      "concept": "Technically, everything is food. Aggressively wholesome. Chalkboard hand-lettering. Prices in a serif face so you feel better about them.",
+      "palette": { "primary": "#4C6B3C", "secondary": "#C9A227", "ink": "#1B2418", "paper": "#EFE7D8" },
+      "artDirection": {
+        "logo": "A hand-drawn chalk wreath of leaves encircling a stylized sprout, cream chalk on a full-bleed deep sage-green field, artisanal chalkboard hand-lettering styling",
+        "setting": "a raw reclaimed-wood market table with woven baskets, burlap, and a small chalkboard price card just out of focus behind",
+        "lighting": "soft diffuse north daylight through a large window, gentle shadows, matte natural texture, earnest farmers-market styling",
+        "hero": "The produce section of an upscale natural grocery: raw wood crates, hand-lettered chalkboard signs, misted greens under warm daylight, burlap sacks, a single wildly overpriced item on a pedestal under a spotlight"
+      },
+      "categories": ["grocery", "healthy"],
+      "menuThemes": "Single-origin everything, a hot bar priced by weight class, water with a provenance, supplements adjacent to snacks, a section of items whose only claim is that they are 'raw'."
+    },
+    {
+      "slug": "brawndo",
+      "prefix": "brw",
+      "name": "BRAWNDO Hydration Depot",
+      "parodyOf": "Gatorade / Brawndo (Idiocracy)",
+      "concept": "The thirst mutilator. It's got electrolytes. It's what plants crave. Sold by the drum.",
+      "palette": { "primary": "#00E5FF", "secondary": "#FFE600", "ink": "#04121A", "paper": "#E8FBFF" },
+      "artDirection": {
+        "logo": "A jagged electric-cyan lightning bolt striking through a hazard-yellow chevron, on a full-bleed carbon-fiber black field, extreme-sports energy-drink styling with a chrome bevel",
+        "setting": "an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping",
+        "lighting": "hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography",
+        "hero": "An industrial hydration warehouse: pallets of glowing cyan drums stacked to the ceiling, hazard-yellow floor striping, an electrical arc flickering off a pipe, harsh cyan light, an overhead crane"
+      },
+      "categories": ["drinks", "grocery"],
+      "menuThemes": "Electrolyte concentration tiers, volumes measured in drums and totes, flavors named after colors that are not flavors, an unflavored 'raw' variant with a warning, a hydration subscription."
+    },
+    {
+      "slug": "dunkinn",
+      "prefix": "dkn",
+      "name": "Dunkinn",
+      "parodyOf": "Dunkin'",
+      "concept": "America runs on panic. Everything is orange, pink, glazed, and moving slightly faster than you are.",
+      "palette": { "primary": "#FF6E0C", "secondary": "#E11383", "ink": "#2B1206", "paper": "#FFF3E6" },
+      "artDirection": {
+        "logo": "A magenta coffee cup silhouette vibrating with orange motion lines, on a full-bleed hot-orange field, bubbly rounded 1980s wordmark styling",
+        "setting": "a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface",
+        "lighting": "flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery",
+        "hero": "A bright pink-and-orange donut shop counter at 6am: glossy bakery case packed with donuts, coffee urns steaming, an enormous menu board of orange and magenta, sprinkles on every surface, harsh cheerful light"
+      },
+      "categories": ["coffee", "sweets", "drinks"],
+      "menuThemes": "Donuts by structural class, coffee measured in shots of unclear provenance, a breakfast sandwich on any bread-shaped object, refreshers in colors, a rewards program you are already enrolled in."
+    },
+    {
+      "slug": "oliveorchard",
+      "prefix": "olo",
+      "name": "Olive Orchard",
+      "parodyOf": "Olive Garden",
+      "concept": "When you're here, you can't leave. The breadsticks are endless and this is a binding arrangement.",
+      "palette": { "primary": "#8C6239", "secondary": "#6B8E23", "ink": "#231A10", "paper": "#F7F0E2" },
+      "artDirection": {
+        "logo": "A single olive branch arcing over a terracotta roof-tile silhouette, olive-green and cream on a full-bleed warm terracotta field, faux-Tuscan script-adjacent styling",
+        "setting": "a rustic stucco-and-terracotta table setting with a woven bread basket, a painted Tuscan mural softly out of focus behind",
+        "lighting": "warm golden-hour light through a shuttered window, honeyed highlights, olive-toned shadows, faux-Mediterranean warmth",
+        "hero": "The dining room of a faux-Tuscan chain restaurant: stucco arches, a painted countryside mural, wicker-wrapped bottles, terracotta floors, a bread basket on every empty table, warm golden light through shutters"
+      },
+      "categories": ["italian", "casual-dining"],
+      "menuThemes": "Endless breadsticks with terms, unlimited soup-salad arrangements, pasta by the pound, a wine list with two entries, a 'take home a second one' program you cannot decline."
+    }
+  ]
+}

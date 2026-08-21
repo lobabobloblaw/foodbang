@@ -1,0 +1,2247 @@
+{
+  "slug": "entirefoods",
+  "name": "Entire Foods Market",
+  "shortName": "Entire Foods",
+  "tagline": "TECHNICALLY, EVERYTHING IS FOOD.",
+  "cuisine": "Natural Grocery & Prepared Wellness",
+  "categories": [
+    "grocery",
+    "healthy"
+  ],
+  "rating": 4.4,
+  "ratingCount": 26418,
+  "deliveryMin": 34,
+  "deliveryMax": 71,
+  "deliveryFee": 6.49,
+  "distanceMi": 2.7,
+  "priceTier": 4,
+  "gorgePlus": true,
+  "closesAt": "10:15 PM",
+  "address": "1 Heirloom Commons, Pasture Ridge Power Center, Building D, Exit 14B",
+  "about": "Entire Foods Market is a certified whole-adjacent provisioning environment. Every item we carry is food, and every item we do not carry is also food, which is why we do not carry it. Our prices are set in a serif typeface by a committee that meets seasonally.",
+  "announcement": "SEASONAL NOTICE: The chalkboards are being rewritten this week. Prices shown may be lower than the prices being written.",
+  "promos": [
+    "Save $5 when you spend $210"
+  ],
+  "reviews": [
+    {
+      "name": "Dana R.",
+      "stars": 5,
+      "date": "Aug 14",
+      "text": "I asked for no bun and was charged for the bun's absence. The staff explained it to me until I agreed."
+    },
+    {
+      "name": "Marcus V.",
+      "stars": 4,
+      "date": "Aug 9",
+      "text": "The Warm Bar arrived at Municipal weight class and would not fit through the door frame. Flavor was excellent."
+    },
+    {
+      "name": "Priya N.",
+      "stars": 5,
+      "date": "Aug 2",
+      "text": "Bought water with a documented aquifer. The aquifer sent a follow-up card. I have not responded."
+    },
+    {
+      "name": "Terrence O.",
+      "stars": 3,
+      "date": "Jul 27",
+      "text": "The Raw Wheel is raw and it is a wheel. No further claims were made and none were needed."
+    },
+    {
+      "name": "Sylvie B.",
+      "stars": 5,
+      "date": "Jul 19",
+      "text": "I declined wellness and was billed for the decision, which felt fair on reflection."
+    }
+  ],
+  "menu": [
+    {
+      "id": "the-warm-bar",
+      "name": "The Warm Bar (By Weight Class)",
+      "blurb": "Priced by weight class, not by weight. Weight class is assigned at the counter and is final.",
+      "items": [
+        {
+          "id": "efm-001",
+          "name": "The Warm Bar Container",
+          "desc": "A compostable clamshell loaded until the hinge surrenders. Contents are seasonal, rotational, and not itemized on any receipt.",
+          "price": 3.85,
+          "calories": 2480,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a compostable clamshell hot-bar container packed far past its hinge, glossy roasted root vegetables, turmeric-stained cauliflower, wild rice, braised greens and chickpeas heaped into a straining dome that has forced the lid open, sauce sliding down the outer wall onto the table, steam rising in visible ribbons. Shot from directly above and slightly inside the vessel, looking down into the food so the container walls frame every edge. A raw reclaimed-wood market table with woven baskets, burlap and a small blank chalkboard card just out of focus behind. Soft diffuse north daylight through a large window, gentle shadows, matte natural texture, earnest farmers-market styling. 90mm macro, f/4. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Weight Class Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 5.4,
+                  "note": "One adult, standing."
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 11.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 19.8,
+                  "note": "Serves a block. Block size is not defined by us."
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed",
+                  "price": 28.4,
+                  "note": "Requires a level surface at the delivery address."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Container Stewardship",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Compostable Clamshell",
+                  "price": 2.35,
+                  "note": "Compostable in a facility that has not been built."
+                },
+                {
+                  "id": "o2",
+                  "name": "Bring Your Own Vessel",
+                  "price": 2.35,
+                  "note": "The vessel is inspected. Inspection is billed."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Container",
+                  "price": 3.1,
+                  "note": "Food is placed directly onto the transaction."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Warmth Custody",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Held Warm",
+                  "price": 3.05,
+                  "note": "Warmth is maintained by us and charged to you."
+                },
+                {
+                  "id": "o2",
+                  "name": "Released to Ambient",
+                  "price": 1.6,
+                  "note": "Release is a supervised process."
+                },
+                {
+                  "id": "o3",
+                  "name": "Warm on Arrival Only",
+                  "price": 2.2,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Micro-Green Canopy",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Light Dusting",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Full Canopy",
+                  "price": 4.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Structural Thicket",
+                  "price": 9.4,
+                  "note": "May require trimming to fit the vehicle."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-002",
+          "name": "Cauliflower That Has Been Addressed",
+          "desc": "A whole head of cauliflower, roasted and then addressed at length. The address is not transcribed.",
+          "price": 4.15,
+          "calories": 860,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Address Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lightly Addressed",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Fully Addressed",
+                  "price": 6.45,
+                  "note": "Approximately eleven minutes."
+                },
+                {
+                  "id": "o3",
+                  "name": "Left Unaddressed",
+                  "price": 6.45,
+                  "note": "Unaddressed cauliflower is prepared identically and then deliberately not addressed."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Char Commitment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Blistered",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Deeply Charred",
+                  "price": 3.8,
+                  "note": "Char is a flavour, a texture, and a fee."
+                },
+                {
+                  "id": "o3",
+                  "name": "Uncharred",
+                  "price": 2.15,
+                  "note": "The oven runs regardless."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Tahini Drift",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Drizzle",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Flood",
+                  "price": 3.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Reservoir",
+                  "price": 7.25,
+                  "note": "Served in a secondary vessel that is also billed."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-003",
+          "name": "Braised Ancient Grain Ballast",
+          "desc": "Dense braised grain served by the hold. Intended to sit at the bottom of a larger order and stabilize it.",
+          "price": 3.4,
+          "calories": 1180,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Grain Era",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ancient",
+                  "price": 2.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Very Ancient",
+                  "price": 5.35,
+                  "note": "Predates the store, the center, and Exit 14B."
+                },
+                {
+                  "id": "o3",
+                  "name": "Contemporary",
+                  "price": 2.9,
+                  "note": "Modern grain carries a modernity surcharge."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ballast Volume",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Half Hold",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Full Hold",
+                  "price": 5.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Overloaded",
+                  "price": 9.15,
+                  "note": "Vehicle stability becomes the recipient's responsibility."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Herb Situation",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Parsley Event",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Dill Incident",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Entire Bunch, Untrimmed",
+                  "price": 3.25,
+                  "note": "Includes the band."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-004",
+          "name": "The Rotisserie Object",
+          "desc": "Something has been rotating in the window since opening. It is finished now. It is wholesome.",
+          "price": 6.2,
+          "calories": 3020,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Object Identification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Identified",
+                  "price": 4.1,
+                  "note": "We will tell you what it is."
+                },
+                {
+                  "id": "o2",
+                  "name": "Unidentified",
+                  "price": 4.1,
+                  "note": "We will not."
+                },
+                {
+                  "id": "o3",
+                  "name": "Identified Later",
+                  "price": 5.75,
+                  "note": "Identification arrives separately, by mail."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Skin Doctrine",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Rendered Crisp",
+                  "price": 3.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Left Soft",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Removed and Retained by Store",
+                  "price": 2.2,
+                  "note": "Removal is performed for you. The skin remains with us."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Jus Volume",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ladle",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Pitcher",
+                  "price": 4.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bucket",
+                  "price": 11.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Trough Hookup",
+                  "price": 22.6,
+                  "note": "Requires a drainable floor at the residence."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "single-origin-aisle",
+      "name": "The Single-Origin Aisle",
+      "blurb": "Every ingredient in this section can name its parents.",
+      "items": [
+        {
+          "id": "efm-005",
+          "name": "Single-Origin Grain Bowl, Documented",
+          "desc": "Farro, black quinoa, roasted squash and shaved fennel, each with an individual point of origin on file. The file is available for purchase.",
+          "price": 5.75,
+          "calories": 1740,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an enormous shallow ceramic bowl of grains built into a leaning tower, farro, black quinoa, roasted squash wedges, shaved fennel, pickled onion, a thick tahini pour cascading over one side and pooling on the wood, microgreens overhanging the rim by several inches, the bowl visibly straining under the load. Three-quarter hero angle, camera slightly above table height, background falling away. A raw reclaimed-wood market table with woven baskets, burlap and a small blank chalkboard card blurred behind. Soft diffuse north daylight through a large window, gentle shadows, matte natural texture, earnest farmers-market styling. 50mm, f/2.8, shallow depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Provenance Documentation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Certificate",
+                  "price": 3.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extended Dossier",
+                  "price": 7.9,
+                  "note": "Includes soil pH and the farmer's stated mood."
+                },
+                {
+                  "id": "o3",
+                  "name": "Undocumented",
+                  "price": 4.4,
+                  "note": "Undocumented grain requires additional paperwork."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bowl Architecture",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Layered",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sectioned",
+                  "price": 3.15,
+                  "note": "Sections are maintained by a divider that is retained by us."
+                },
+                {
+                  "id": "o3",
+                  "name": "Amalgamated",
+                  "price": 1.95,
+                  "note": "Structure is not guaranteed after transit."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Seed & Crunch Layer",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Toasted Pepita",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Buckwheat Gravel",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Whole Sunflower Head",
+                  "price": 6.8,
+                  "note": "Sold as-is. De-seeding is not included."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-006",
+          "name": "Terroir Toast",
+          "desc": "One slice of bread from a named field. The field is not open to visitors.",
+          "price": 4.6,
+          "calories": 720,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Lineage",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sourdough of Record",
+                  "price": 3.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sprouted Millet Slab",
+                  "price": 4.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Bread",
+                  "price": 3.6,
+                  "note": "The toppings are assembled in the shape of bread."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fat Position",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cultured Butter",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Estate Olive Oil Finish",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Neither, Firmly",
+                  "price": 2.85,
+                  "note": "A position on fat must still be taken and filed."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Avocado Escalation",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Half",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Two Halves",
+                  "price": 8.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "A Whole Avocado, Unopened",
+                  "price": 6.9,
+                  "note": "Opening is not included at this tier."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-007",
+          "name": "One Avocado, Fully Traceable",
+          "desc": "A single avocado accompanied by its complete travel history. Ripeness is scheduled, not observed.",
+          "price": 6.4,
+          "calories": 640,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Ripeness Window",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ready Now",
+                  "price": 4.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Ready Thursday",
+                  "price": 3.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Ready Retroactively",
+                  "price": 3.1,
+                  "note": "Was ready. Is no longer. Was, though."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Pit Status",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pit Included",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Pit Removed",
+                  "price": 4.7,
+                  "note": "Removal is a labour line item."
+                },
+                {
+                  "id": "o3",
+                  "name": "Pit Removed and Returned Separately",
+                  "price": 5.85,
+                  "note": "The pit travels in its own bag."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Flake Salt Terroir",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Coastal",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Inland",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Volcanic",
+                  "price": 2.85,
+                  "note": "Sourced downwind."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-008",
+          "name": "Heritage Legume Assembly",
+          "desc": "Beans with a documented lineage, braised in their own liquor. Assembly refers to the beans, not to furniture.",
+          "price": 5.1,
+          "calories": 1040,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Legume Ancestry",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Documented Heirloom",
+                  "price": 3.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Rescued Cultivar",
+                  "price": 5.2,
+                  "note": "Rescued from a competitor."
+                },
+                {
+                  "id": "o3",
+                  "name": "Anonymous Bean",
+                  "price": 3.85,
+                  "note": "Anonymity is preserved at cost."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Soak Duration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Overnight",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Ceremonial",
+                  "price": 4.6,
+                  "note": "The ceremony is performed off-site and is not attended."
+                },
+                {
+                  "id": "o3",
+                  "name": "Unsoaked",
+                  "price": 2.15,
+                  "note": "Unsoaked legumes are billed at the soaked rate for parity."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Aromatic Ballast",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bay Leaf, Left In",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Whole Garlic Head",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Onion, Uncut",
+                  "price": 3.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "waters-of-record",
+      "name": "Waters of Record",
+      "blurb": "All water has a history. Ours has representation.",
+      "items": [
+        {
+          "id": "efm-009",
+          "name": "Aquifer Water, Vintage Undisclosed",
+          "desc": "Drawn from a single aquifer of record and bottled under seal. Caloric content is disclosed as a precaution.",
+          "price": 4.75,
+          "calories": 610,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a grocery store employee to upload to a food delivery app. Subject: a heavy plain smooth amber glass water bottle with a wax-dipped cork top standing upright on a scratched laminate counter, cold condensation running down the completely blank glass, the water inside faintly greenish, a second identical bottle lying on its side behind it, this is the prepared-foods back counter of a natural grocery store with a wooden crate and a stack of paper bags at the edge of frame. Harsh direct on-camera flash, hot blown-out hotspot on the curve of the glass, hard black shadow thrown behind the bottle. Framed slightly crooked, the bottle cut off at the top edge, shot from too close. Flat phone-camera look, unretouched, noisy, mixed white balance, no filter, no border, no vignette, no rounded corners, image fills the whole frame edge to edge. Square crop. No text, no lettering, no embossed letters, no signage, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Aquifer of Record",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Named Aquifer",
+                  "price": 4.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Unnamed Aquifer",
+                  "price": 4.2,
+                  "note": "The aquifer has declined to be named."
+                },
+                {
+                  "id": "o3",
+                  "name": "Aquifer Under Dispute",
+                  "price": 6.35,
+                  "note": "Includes a litigation surcharge."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Glass Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Flint",
+                  "price": 2.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy Amber",
+                  "price": 4.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Returnable, Not Returned",
+                  "price": 3.4,
+                  "note": "The deposit is collected. Return is not offered."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Mineral Load",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Trace",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Assertive",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Structural",
+                  "price": 5.6,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Sediment Visible",
+                  "price": 8.9,
+                  "note": "Sediment is part of the story."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-010",
+          "name": "Glacial Runoff, Filed",
+          "desc": "Meltwater collected under permit and filed on arrival. The filing is the product.",
+          "price": 5.3,
+          "calories": 620,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Melt Date",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "This Season",
+                  "price": 4.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Pre-Industrial",
+                  "price": 9.8,
+                  "note": "Predates the concept of a fee, but not this one."
+                },
+                {
+                  "id": "o3",
+                  "name": "Undetermined",
+                  "price": 4.35,
+                  "note": "Determination is available for purchase separately."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chill Custody",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cold on Arrival",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cold at Dispatch Only",
+                  "price": 1.9,
+                  "note": "Temperature after dispatch is a shared responsibility."
+                },
+                {
+                  "id": "o3",
+                  "name": "Room Temperature by Design",
+                  "price": 3.25,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Effervescence Tier",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Still",
+                  "price": 0,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Lightly Agitated",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Violently Carbonated",
+                  "price": 4.4,
+                  "note": "Open at a distance."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-011",
+          "name": "Alkaline Escalation Flask",
+          "desc": "Water raised to a pH of your choosing in a returnable flask. Each tier is achieved by machinery.",
+          "price": 6.15,
+          "calories": 640,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "pH Target",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "8.5",
+                  "price": 3.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "9.5",
+                  "price": 6.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "11.0",
+                  "price": 12.85,
+                  "note": "Not recommended with food, or without."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Flask Deposit Philosophy",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Deposit Paid",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Deposit Waived",
+                  "price": 3.15,
+                  "note": "The waiver is administered at cost."
+                },
+                {
+                  "id": "o3",
+                  "name": "Flask Retained by Customer",
+                  "price": 5.4,
+                  "note": "You now own a flask. This was your decision."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Electrolyte Rider",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Enhanced",
+                  "price": 3.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Agricultural Grade",
+                  "price": 7.95,
+                  "note": "Formulated for fields. Sold to households."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-012",
+          "name": "Municipal Water, Reframed",
+          "desc": "Water from the municipal supply, poured into glass and reframed by our team. The water is unchanged.",
+          "price": 3.25,
+          "calories": 610,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Framing",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Reframed",
+                  "price": 2.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavily Reframed",
+                  "price": 4.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Presented Without Comment",
+                  "price": 2.8,
+                  "note": "The silence is prepared by our team."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Source Disclosure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Disclosed",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Withheld",
+                  "price": 2.45,
+                  "note": "Withholding is performed by a licensed professional."
+                },
+                {
+                  "id": "o3",
+                  "name": "Disclosed in Part",
+                  "price": 3.6,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Citrus Suspension",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Wedge",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three Wedges",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Whole Fruit, Submerged",
+                  "price": 4.75,
+                  "note": "Displacement is expected."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strictly-raw",
+      "name": "Strictly Raw",
+      "blurb": "The only claim these items make is that they are raw. No further claim is made or implied.",
+      "items": [
+        {
+          "id": "efm-013",
+          "name": "The Raw Wheel",
+          "desc": "A pressed wheel of cashew, date and cacao that has never been heated. Cut with a warmed wire, which is disclosed.",
+          "price": 7.4,
+          "calories": 3860,
+          "badges": [
+            "Chef Recommended",
+            "Limit 1 Per Household"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a grocery store employee to upload to a food delivery app. Empty deserted stockroom, nobody present. Subject: a thick round no-bake cashew and date cake sitting alone on a white paper plate in the middle of a scratched stainless steel counter, one wedge already cut out and leaning beside it, showing dense layers of dark pressed date base, pale cashew filling, a green pistachio seam and a soft dark cacao topping that has sagged over the cut edge, crumbs scattered on the plate, a plastic knife lying on the counter beside the plate. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from high above and too close, looking down at the counter, the plate not centred and cut off at one edge, only the counter surface visible around it. Flat phone-camera look, unretouched, noisy, no filter, no border, no vignette. Square crop. No text, no signage, no logos, no packaging labels, no watermarks, no hands, no fingers, no arms, no bodies, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Unheated Verification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Verified Under 104°F",
+                  "price": 4.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Verified Under 118°F",
+                  "price": 3.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unverified",
+                  "price": 4.85,
+                  "note": "The verification is withheld, not the temperature."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Wheel Diameter",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 3.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Household",
+                  "price": 8.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 16.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed",
+                  "price": 26.75,
+                  "note": "Delivered flat. Assembly is not offered."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cacao Sag Layer",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Thin",
+                  "price": 2.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Generous",
+                  "price": 5.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Structurally Unwise",
+                  "price": 9.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-014",
+          "name": "Unheated Sprout Terrine",
+          "desc": "Sprouts pressed into a terrine at ambient temperature. It continues to grow slightly in the bag.",
+          "price": 5.95,
+          "calories": 1220,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sprout Age",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Day Three",
+                  "price": 3.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Day Seven",
+                  "price": 5.85,
+                  "note": "Older sprouts have more to say."
+                },
+                {
+                  "id": "o3",
+                  "name": "Age Not Established",
+                  "price": 3.35,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bind Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chia Matrix",
+                  "price": 2.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Psyllium Scaffold",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unbound",
+                  "price": 2.7,
+                  "note": "Unbound terrine is delivered as a volume rather than a shape."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Fermented Corner",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Kraut Shoulder",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Kimchi Quarter",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Active Culture, Live",
+                  "price": 6.55,
+                  "note": "Continues to develop in transit."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-015",
+          "name": "Raw Bar Slab, Unbaked",
+          "desc": "A dense pressed bar the length of a forearm. It has never met an oven and never will.",
+          "price": 4.35,
+          "calories": 1480,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sweetener Doctrine",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Date Only",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Date and Maple",
+                  "price": 4.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sweetener Declined",
+                  "price": 3.25,
+                  "note": "The dates remain. Only the doctrine changes."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Slab Thickness",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double",
+                  "price": 4.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Load-Bearing",
+                  "price": 8.7,
+                  "note": "Rated for shelving. Not rated for shelves."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Surface Treatment",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Rolled in Hemp",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Rolled in Cacao",
+                  "price": 1.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pressed Whole Almonds, Visible",
+                  "price": 3.65,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-016",
+          "name": "Cold-Pressed Root Cylinder",
+          "desc": "Roots pressed at pressure into a self-supporting cylinder. Colour varies by root and is not adjustable.",
+          "price": 6.7,
+          "calories": 940,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Press Interval",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Press",
+                  "price": 3.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extended Press",
+                  "price": 6.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Press Interrupted",
+                  "price": 3.55,
+                  "note": "Interruption occurs on our schedule, not yours."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Root Ratio",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Beet-Forward",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Carrot-Forward",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Undisclosed Root",
+                  "price": 4.2,
+                  "note": "The root is on file with the store."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Ginger Aggression",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Present",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Assertive",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Hostile",
+                  "price": 5.8,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "compliance-shelf",
+      "name": "The Compliance Shelf",
+      "blurb": "Supplements are shelved beside snacks because the distinction is not ours to make.",
+      "items": [
+        {
+          "id": "efm-017",
+          "name": "Adaptogen Cluster Tray",
+          "desc": "Dozens of bound clusters of seed, mushroom powder and honey on a lined tray. Wellness is applied at the tray level.",
+          "price": 4.9,
+          "calories": 2180,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a grocery store employee to upload to a food delivery app. Subject: an aluminium foil tray lined with a sheet of parchment and packed with dozens of dark seed and mushroom powder energy clusters, cocoa-dusted domes and amber honey-bound bars, loose hemp seeds scattered across the parchment, one cluster broken in half, the cardboard lid propped against the side of the tray, this is the prepared-foods back counter of a natural grocery store. Dim warm store light with the flash off, slightly underexposed and noisy. Cluttered background: a stainless prep counter, a napkin dispenser, a stack of lids and a wooden crate waiting behind. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Compliance Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Baseline Wellness",
+                  "price": 4.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Enhanced Wellness",
+                  "price": 8.3,
+                  "note": "Enhancement is monitored."
+                },
+                {
+                  "id": "o3",
+                  "name": "Wellness Declined",
+                  "price": 4.45,
+                  "note": "Declining wellness is itself a wellness decision and is billed as one."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Tray Liner",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Unbleached Parchment",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Compostable Waxed Sheet",
+                  "price": 2.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Liner",
+                  "price": 1.95,
+                  "note": "The tray is lined conceptually."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Adaptogen Loadout",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ashwagandha",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reishi",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Lion's Mane",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Practitioner-Grade Stack",
+                  "price": 19.6,
+                  "note": "Requires a compatible constitution."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-018",
+          "name": "Compliance Gummies, Unflavored",
+          "desc": "A daily obligation in chewable form. Flavour was considered and then formally excluded.",
+          "price": 5.45,
+          "calories": 940,
+          "badges": [
+            "Physician Discouraged",
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Dosage Schedule",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Daily",
+                  "price": 3.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Twice Daily",
+                  "price": 6.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "As Directed",
+                  "price": 3.9,
+                  "note": "Direction is provided separately and is not included."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Flavour Position",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Unflavored",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Unflavored, Intensified",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Flavour Requested",
+                  "price": 5.35,
+                  "note": "Requests are recorded. Flavour is not added."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Delivery Format",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chewable",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Dissolvable",
+                  "price": 1.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sublingual Wafer",
+                  "price": 3.1,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-019",
+          "name": "Protein Brick, Ambient",
+          "desc": "A rectangular protein mass stored at room temperature indefinitely. It does not soften and it does not spoil.",
+          "price": 3.95,
+          "calories": 1420,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Protein Origin",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pea",
+                  "price": 3.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cricket",
+                  "price": 4.6,
+                  "note": "Regionally legal in this district."
+                },
+                {
+                  "id": "o3",
+                  "name": "Undeclared",
+                  "price": 3.05,
+                  "note": "Non-declaration is processed at the same rate."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Brick Density",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reinforced",
+                  "price": 4.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Masonry Grade",
+                  "price": 9.9,
+                  "note": "Not for load-bearing use without consultation."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Exterior Coating",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Carob Shell",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sea Salt Dust",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Edible Wax Seal",
+                  "price": 2.95,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bulk-corridor",
+      "name": "The Bulk Corridor",
+      "blurb": "Scoop volumes are advisory. Allocation is binding.",
+      "items": [
+        {
+          "id": "efm-020",
+          "name": "Bulk Bin Allocation, Scooped",
+          "desc": "Your allotment from the corridor bins, bagged and weighed against a chart that is not posted.",
+          "price": 4.05,
+          "calories": 2740,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a grocery store employee to upload to a food delivery app. Subject: six brown kraft paper bags folded open and overfilled with bulk goods lined up on the counter, steel-cut oats, black lentils, dried mulberries, cacao nibs, whole almonds and pink salt crystals, grains spilled around the bases of the bags, a plain wooden scoop lying on its side in one bag, this is the bulk aisle counter of a natural grocery store. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the paper bags. The bags sitting directly on a scratched laminate counter with crumbs and spilled seeds beside them. Flat phone-camera look, unretouched, noisy, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Scoop Authority",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Scooped by Staff",
+                  "price": 3.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Scooped by You, Remotely",
+                  "price": 3.45,
+                  "note": "You will be informed of when you scooped."
+                },
+                {
+                  "id": "o3",
+                  "name": "Scoop Foregone",
+                  "price": 4.9,
+                  "note": "Contents are poured instead. Pouring is a premium service."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bin Allocation Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Bin",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Corridor Allocation",
+                  "price": 7.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal Draw",
+                  "price": 15.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed Draw",
+                  "price": 24.2,
+                  "note": "Delivered on a pallet to the curb."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Bag Material",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Kraft Paper",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reusable Cotton",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Burlap, Historically Accurate",
+                  "price": 5.7,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-021",
+          "name": "The Nut Butter Extrusion, Live-Ground",
+          "desc": "Ground in front of you by a machine that has not been switched off since installation. Volume is determined at the nozzle.",
+          "price": 5.85,
+          "calories": 3240,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Grind Duration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ninety Seconds",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Continuous",
+                  "price": 7.15,
+                  "note": "The machine does not stop for your order."
+                },
+                {
+                  "id": "o3",
+                  "name": "Pre-Ground",
+                  "price": 3.4,
+                  "note": "Ground previously, at the same rate."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Extrusion Volume",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Jar",
+                  "price": 4.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Column",
+                  "price": 9.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal Feed",
+                  "price": 18.9,
+                  "note": "Requires an approved receiving surface."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Oil Separation Policy",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Stirred In",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Left Separated",
+                  "price": 1.85,
+                  "note": "Separation is natural and is billed as a feature."
+                },
+                {
+                  "id": "o3",
+                  "name": "Oil Removed and Sold Back",
+                  "price": 4.55,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "efm-022",
+          "name": "Trail Mixture, Unsorted",
+          "desc": "A mixture intended for trails. No trail is included and no trail is implied.",
+          "price": 3.7,
+          "calories": 2320,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sorting Status",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Unsorted",
+                  "price": 2.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Partially Sorted",
+                  "price": 4.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sorted, Then Recombined",
+                  "price": 5.95,
+                  "note": "Recombination restores the original state at additional cost."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ratio Governance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Ratio",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Chocolate-Dominant",
+                  "price": 4.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Raisin-Dominant",
+                  "price": 2.2,
+                  "note": "Raisin dominance is not a discount."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Foreign Inclusion",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Wasabi Pea",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Yogurt-Adjacent Coating",
+                  "price": 2.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Freeze-Dried Fruit Shards",
+                  "price": 3.15,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

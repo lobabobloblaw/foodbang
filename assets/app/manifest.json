@@ -1,0 +1,76 @@
+{
+  "scope": "app",
+  "app": "DoorGorge",
+  "model": "bytedance/seedream-4.5",
+  "generated": "2026-08-20",
+  "images": [
+    {
+      "file": "gorger-1.webp",
+      "aspect": "1:1",
+      "predictionId": "sypprfc3zdrmy0d046190v48pw",
+      "prompt": "Portrait of a food delivery courier for a profile bubble: a tired man in his 20s wearing a plain red thermal-bag harness over a t-shirt, photographed sitting in a car at night, dashboard glow on his face, phone light from below, caught mid-blink, faintly resigned. Candid smartphone snapshot realism, shallow depth of field, centered head and shoulders. No text, no logos, no packaging labels, no watermarks."
+    },
+    {
+      "file": "gorger-2.webp",
+      "aspect": "1:1",
+      "predictionId": "dhsv5rdjtxrmt0d0461a5y760c",
+      "prompt": "Portrait of a food delivery courier for a profile bubble: a woman in her 40s in a plain red insulated jacket standing in an apartment stairwell under a bare fluorescent bulb, holding a stack of three plain thermal delivery bags, blank patient expression. Candid smartphone snapshot realism, shallow depth of field, centered head and shoulders. No text, no logos, no packaging labels, no watermarks."
+    },
+    {
+      "file": "gorger-3.webp",
+      "aspect": "1:1",
+      "predictionId": "0vrtcj28w1rmw0d04639fbjk04",
+      "prompt": "Portrait of a food delivery courier for a profile bubble: a man in his 60s in a plain red cap and plain red windbreaker sitting on an e-bike at dusk in an empty strip-mall parking lot, squinting down at a phone, plain grey thermal bag strapped to the handlebars. Tight head and shoulders framing, the courier fills the frame, the background is heavily blurred into soft bokeh with no signage or storefronts visible. Candid smartphone snapshot realism, shallow depth of field, centered. No text, no signs, no lettering, no logos, no packaging labels, no watermarks.",
+      "regenerated": "v1 contained a legible storefront wordmark in the background"
+    },
+    {
+      "file": "user-avatar.webp",
+      "aspect": "1:1",
+      "predictionId": "r0yhk4amzdrmt0d0461rjbt0fr",
+      "prompt": "A profile photo of an ordinary suburban American in their 30s, taken on a phone in poor lighting in a kitchen, slightly off-centre framing, caught mid-sentence, a stack of plain paper delivery bags visible on the counter behind them. Candid low-quality snapshot realism, mixed overhead and window light, head and shoulders. No text, no logos, no packaging labels, no watermarks."
+    },
+    {
+      "file": "proof-delivery.webp",
+      "aspect": "1:1",
+      "predictionId": "akw5n6bywnrmt0d0461t4ay7ew",
+      "prompt": "Proof of delivery photo taken by a courier: a large plain red paper delivery bag left on a suburban concrete doorstep at night, harsh on-camera flash blowing out the front door, the bag has tipped over and one paper cup has rolled onto the doormat, a small puddle spreading across the concrete. Flat phone-flash snapshot, slightly crooked framing, deep black night behind. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+    },
+    {
+      "file": "gorgeplus-hero.webp",
+      "aspect": "16:9",
+      "predictionId": "dek699dpw9rmt0d0461vg3qhm0",
+      "prompt": "Premium subscription promo art: an obsidian-black credit-card-shaped slab floating in a red-lit void, its blank surface machined with fine concentric rings, a faint red volumetric glow beneath it, heavy studio product photography, luxury fintech advertising. The slab surface is completely blank and unmarked. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+    },
+    {
+      "file": "promo-1.webp",
+      "aspect": "16:9",
+      "predictionId": "97s74grg3hrmy0d0462b8cv6h0",
+      "prompt": "Home-feed promo banner: a mountain of golden fried potato batons avalanching out of a plain red paper carton and spilling across a seamless red studio backdrop, the quantity wildly beyond a single serving, batons tumbling and piling in drifts, glossy crisp surfaces catching hard commercial studio light, salt crystals visible, faint steam. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+    },
+    {
+      "file": "promo-2.webp",
+      "aspect": "16:9",
+      "predictionId": "9p39nckmp1rmy0d0463acheaz4",
+      "prompt": "Home-feed promo banner: a colossal soft-serve ice cream tower, many stacked coils tall, leaning and buckling sideways as it melts, standing on a glossy seamless cyan studio backdrop, thick creamy drips frozen mid-fall in the air, pale melt pooling and spreading wide across the floor, the structure straining under its own weight. High-key saturated colour, hard commercial studio light, appetising and slightly alarming. Seamless empty backdrop, no lamps or equipment visible in frame. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "regenerated": "v1 showed studio light fixtures inside the frame and a single cone rather than a tower"
+    },
+    {
+      "file": "promo-3.webp",
+      "aspect": "16:9",
+      "predictionId": "yv8vevdxssrmr0d0462bq6az7r",
+      "prompt": "Home-feed promo banner: a perfectly overhead flat-lay of forty identical small plain paper sauce cups arranged in a flawless rectangular grid on a matte red surface, each cup filled with a slightly different shade of sauce ranging from pale cream to deep brown-red, obsessive symmetry, soft even diffused light, minimal shadows. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+    },
+    {
+      "file": "bodymax-hero.webp",
+      "aspect": "16:9",
+      "predictionId": "2t31cjgyhxrmr0d0462tj1dcq0",
+      "prompt": "Health-telemetry header art: a translucent anatomical human torso rendered as a glowing medical scan in red and amber, backlit against a black clinical background, faint grid lines and small calibration tick marks around it, cold scientific data-visualisation aesthetic, volumetric glow, ribcage and organ silhouettes faintly visible through the translucent shell. No text, no numerals, no logos, no packaging labels, no watermarks, no hands, no people."
+    },
+    {
+      "file": "empty-state.webp",
+      "aspect": "1:1",
+      "predictionId": "tb74fnj839rmt0d0462rark050",
+      "prompt": "A single empty plain red paper delivery bag standing upright and slightly crumpled in the exact centre of a vast seamless bone-white studio void, one soft shadow pooling beneath it, minimalist, melancholy, generous negative space all around, soft even light. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+    }
+  ]
+}

@@ -1,0 +1,2034 @@
+{
+  "slug": "manufactory",
+  "name": "The Cheesecake Manufactory",
+  "shortName": "Manufactory",
+  "tagline": "A MENU SO LARGE IT HAS PAGE NUMBERS.",
+  "cuisine": "Palatial American",
+  "categories": [
+    "casual-dining",
+    "sweets"
+  ],
+  "rating": 4.4,
+  "ratingCount": 61847,
+  "deliveryMin": 55,
+  "deliveryMax": 95,
+  "deliveryFee": 7.49,
+  "distanceMi": 6.8,
+  "priceTier": 3,
+  "gorgePlus": true,
+  "closesAt": "12:30 AM",
+  "address": "1 Cheesecake Concourse, Pavilion Level 2, Outparcel 7, Sunridge Galleria Ring Road, Vestibule Township, CA 91708",
+  "about": "The Cheesecake Manufactory operates a 412-page menu inside a climate-stabilized Egyptian-revival dining palace. Portions are specified by our structural department and are not adjustable at the table. There is one exit and it is located at the rear of the Cheesecake Vault.",
+  "announcement": "MENU PAGES 96-141 ARE CURRENTLY UNDER LOAD REVIEW. ITEMS ON THOSE PAGES REMAIN ORDERABLE AND REMAIN LARGE.",
+  "promos": [
+    "Free upgrade to Family (Family is smaller)"
+  ],
+  "reviews": [
+    {
+      "name": "Dwayne T.",
+      "stars": 5,
+      "date": "Aug 14",
+      "text": "The pasta arrived in a vessel I now store firewood in. Portioning was, as advertised, architectural."
+    },
+    {
+      "name": "Marisol V.",
+      "stars": 4,
+      "date": "Aug 11",
+      "text": "I declined the bread and was billed for the bread. The staff explained the baking had already occurred. I found this reasonable."
+    },
+    {
+      "name": "Kev",
+      "stars": 5,
+      "date": "Aug 8",
+      "text": "Ordered from page 388. Have not finished it. Have not left."
+    },
+    {
+      "name": "Prudence O.",
+      "stars": 3,
+      "date": "Aug 3",
+      "text": "The Skinnyluscious chopped salad exceeded the weight limit of my dining table. The calorie attestation was still honored."
+    },
+    {
+      "name": "R. Halvorsen",
+      "stars": 5,
+      "date": "Jul 29",
+      "text": "Six adults could not defeat one appetizer. We were four adults. We were warned."
+    }
+  ],
+  "menu": [
+    {
+      "id": "bread-antechamber",
+      "name": "Pages 1-14: The Bread Antechamber",
+      "blurb": "Bread is baked upon seating and is not complimentary.",
+      "items": [
+        {
+          "id": "ckm-001",
+          "name": "The Original Brown Loaf Service",
+          "desc": "Two molasses-dark loaves and one pale loaf delivered warm on a plank, with a chilled butter medallion of notable mass. The plank remains the property of the Manufactory.",
+          "price": 3.75,
+          "calories": 1840,
+          "badges": [
+            "#1 Most Liked"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean cross-section cutaway through a stacked service of three warm loaves, two nearly black molasses-dark loaves crusted with rolled oats and one pale loaf, sliced flat to expose dense steaming crumb, thick slabs of butter melting down the cut face and pooling on the board beneath. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 100mm macro, f/5.6, straight-on cross-section view, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Load-Bearing Bread Service",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Loaves (Standard Span)",
+                  "price": 6.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Loaves (Reinforced Span)",
+                  "price": 11.8,
+                  "note": "Requires a table rated for 40 lbs of distributed load."
+                },
+                {
+                  "id": "o3",
+                  "name": "Decline Bread",
+                  "price": 6.25,
+                  "note": "Baking commenced when your order was received. Declination is billed at the baked rate."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Butter Delivery Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chilled Medallion",
+                  "price": 2.4,
+                  "note": "Reaches spreadable condition in approximately 22 minutes."
+                },
+                {
+                  "id": "o2",
+                  "name": "Whipped, Ambient",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Butter Withheld",
+                  "price": 2.4,
+                  "note": "Withholding is performed by a staffed position and is billed accordingly."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Seed Adhesion",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Rolled Oat Crust",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cracked Wheat Dust",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Supplemental Molasses Lacquer",
+                  "price": 2.75,
+                  "note": "Increases loaf mass by approximately nine percent."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-002",
+          "name": "Sesame Roll Buttress (Six-Count)",
+          "desc": "Six glossy rolls arranged in a self-supporting arch. Consumption from the center is discouraged by our structural department.",
+          "price": 2.95,
+          "calories": 980,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Basket Renewal Terms",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Issuance",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Perpetual Renewal",
+                  "price": 16.9,
+                  "note": "Renewal continues until the party physically vacates the delivery address."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Renewal",
+                  "price": 3.4,
+                  "note": "The renewal system must still be disarmed by an employee."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Roll Density Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Class II (Pillowed)",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Class IV (Compacted)",
+                  "price": 3.6,
+                  "note": "Denser than water. Will not float."
+                },
+                {
+                  "id": "o3",
+                  "name": "Class VII (Monolithic)",
+                  "price": 5.85,
+                  "note": "Sold as a food item. Performs as a paving material."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Preheat Attestation",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Warm on Arrival (Aspirational)",
+                  "price": 1.25,
+                  "note": "Not a guarantee. An intention."
+                },
+                {
+                  "id": "o2",
+                  "name": "Certified Warm",
+                  "price": 4.7,
+                  "note": "Temperature attested by an employee who was present."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "appetizer-colonnade",
+      "name": "Pages 15-92: The Appetizer Colonnade",
+      "blurb": "Every appetizer is portioned for six adults. Parties smaller than six are permitted.",
+      "items": [
+        {
+          "id": "ckm-003",
+          "name": "Manufactory Nachos, Load-Rated",
+          "desc": "A dome of tortilla chips engineered to hold its own weight under molten cheese, beans, and a summit of dairy. Rated for one table hour.",
+          "price": 6.4,
+          "calories": 4120,
+          "badges": [
+            "Popular",
+            "Limit 1 Per Household"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a heavy pile of tortilla chips loaded with melted yellow cheese, black beans, diced tomato, sour cream and guacamole, filling a large black plastic to-go container with its clear lid propped off to one side, cheese pooling in the corners of the container. Harsh direct on-camera flash, hot blown-out hotspot on the cheese, hard black shadow thrown behind the container. Framed slightly crooked with the container cut off at the left edge, on a stainless expo counter. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Chip Structural Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Grade",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Load-Rated (Serves Nine)",
+                  "price": 19.25,
+                  "note": "Certified to support the full dairy crown for 61 minutes."
+                },
+                {
+                  "id": "o3",
+                  "name": "Ungraded",
+                  "price": 4.15,
+                  "note": "Grading is skipped, not omitted. The inspector is still dispatched."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Queso Head Pressure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Low Head (Drizzle)",
+                  "price": 2.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Municipal Head (Sheeting)",
+                  "price": 8.45,
+                  "note": "Delivered at a pressure consistent with residential plumbing."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Queso",
+                  "price": 2.7,
+                  "note": "The line must be purged whether or not it is used."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sour Cream Escarpment",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Dollop",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Terraced Ridge",
+                  "price": 4.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Continuous Slope to Plate Edge",
+                  "price": 11.6,
+                  "note": "Plate edge containment is the responsibility of the household."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Exit Routing",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Routing (Page 412)",
+                  "price": 2.25,
+                  "note": "The only exit. Applies to dine-in and, for consistency, delivery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-004",
+          "name": "Fried Avocado Cylinders",
+          "desc": "Six sealed cylinders of avocado, fried until the exterior can be tapped with a fork and heard. Interior temperature is not disclosed.",
+          "price": 5.85,
+          "calories": 1960,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Avocado Authorization",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Authorized (Standard Fill)",
+                  "price": 7.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Authorized (Enhanced Fill)",
+                  "price": 13.45,
+                  "note": "Avocado is a market-priced controlled commodity at this location."
+                },
+                {
+                  "id": "o3",
+                  "name": "Authorization Declined",
+                  "price": 7.3,
+                  "note": "The authorization review is conducted regardless of outcome."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fry Duration Bracket",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bracket A (110 seconds)",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bracket C (240 seconds)",
+                  "price": 4.35,
+                  "note": "Produces an audible exterior."
+                },
+                {
+                  "id": "o3",
+                  "name": "Bracket F (Operator Discretion)",
+                  "price": 0.95,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dipping Reservoir Count",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tamarind Cashew Ramekin",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Honey Cilantro Basin",
+                  "price": 3.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Shared Household Reservoir",
+                  "price": 9.95,
+                  "note": "One vessel. All parties. No dividers are supplied."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-005",
+          "name": "Buffalo Cauliflower Ziggurat",
+          "desc": "Battered florets stacked in four descending tiers and lacquered in cayenne butter. The tiers are load-bearing and should be dismantled from the top.",
+          "price": 5.2,
+          "calories": 2340,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Heat Jurisdiction",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Municipal (Mild)",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "County (Assertive)",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "State (Contested)",
+                  "price": 6.7,
+                  "note": "Legality varies by delivery address. Delivery constitutes acceptance."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Floret Census",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Counted (28 Florets)",
+                  "price": 3.55,
+                  "note": "Counted by hand at the fry station."
+                },
+                {
+                  "id": "o2",
+                  "name": "Counted (61 Florets)",
+                  "price": 9.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Uncounted",
+                  "price": 3.55,
+                  "note": "The census is conducted. The result is simply not shared."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Celery Allotment",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Ribs",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "A Quantity of Celery",
+                  "price": 5.25,
+                  "note": "Quantity determined at the stalk, not at the rib."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-006",
+          "name": "Thai Lettuce Assembly Kit (Serves Six)",
+          "desc": "Component parts arrive separately on a tiered rack for assembly at the table. Assembly instructions appear on menu page 71.",
+          "price": 7.1,
+          "calories": 1720,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Assembly Labor Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Self-Assembly",
+                  "price": 4.6,
+                  "note": "Labor is performed by you and billed by us."
+                },
+                {
+                  "id": "o2",
+                  "name": "Pre-Assembled at Facility",
+                  "price": 8.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Assembly Waived",
+                  "price": 4.6,
+                  "note": "Components arrive in unassembled condition. The waiver is processed by hand."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Leaf Integrity Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grade B (Some Tearing)",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grade AA (Intact Cups)",
+                  "price": 5.4,
+                  "note": "Each cup inspected against the light."
+                },
+                {
+                  "id": "o3",
+                  "name": "Grade Unassigned",
+                  "price": 1.75,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Peanut Deposition",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Light Scatter",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Heavy Scatter",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Poured Until Audible",
+                  "price": 6.85,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "distant-places",
+      "name": "Pages 93-214: Entrees of Distant Places",
+      "blurb": "Each entree is named for a place. No claim of origin is made.",
+      "items": [
+        {
+          "id": "ckm-007",
+          "name": "Chicken Madeira Escarpment",
+          "desc": "Two seared cutlets set into a slope of madeira reduction and mushrooms, capped with mozzarella and pinned with asparagus. Served with a mashed potato foundation of specified depth.",
+          "price": 9.75,
+          "calories": 3480,
+          "badges": [
+            "#1 Most Liked",
+            "Popular"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: two seared chicken cutlets under brown madeira sauce and sliced mushrooms with melted mozzarella over the top and four asparagus spears, packed into an aluminium foil tray with the cardboard lid leaning against it, a big scoop of mashed potato in the other half of the tray, sauce already running into the potatoes. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Cluttered background: a stainless expo counter under a heat lamp, a stack of lids, another order bagged and waiting. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Portion Architecture",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 5.9,
+                  "note": "Serves two to four."
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 14.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 27.6,
+                  "note": "Requires a flat delivery surface of at least 30 inches."
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed",
+                  "price": 48.75,
+                  "note": "Portioned to the drainage basin. Not portioned to the household."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Mashed Potato Foundation Depth",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Shallow Bed (1 inch)",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Deep Bed (4 inches)",
+                  "price": 7.85,
+                  "note": "Recommended where sauce volume exceeds plate capacity."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Foundation",
+                  "price": 3.15,
+                  "note": "The entree will be plated directly onto ceramic, which our engineers advise against."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Leftover Custody",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Household Retains Custody",
+                  "price": 2.85,
+                  "note": "Container is issued whether or not leftovers occur."
+                },
+                {
+                  "id": "o2",
+                  "name": "Manufactory Retains Custody",
+                  "price": 4.4,
+                  "note": "Uneaten portions return with the Gorger."
+                },
+                {
+                  "id": "o3",
+                  "name": "Custody Unresolved",
+                  "price": 2.85,
+                  "note": "Filed for later determination. Filing is billable."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Mushroom Overburden",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Additional Cremini Layer",
+                  "price": 3.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Second Cheese Course, Applied Hot",
+                  "price": 5.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sauce Poured Table-Side Until Refusal",
+                  "price": 12.4,
+                  "note": "Refusal must be verbal and must be repeated."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-008",
+          "name": "Shepherd's Pie of Greater Sacramento",
+          "desc": "A sealed pie the diameter of a manhole cover, lidded in browned potato and vented at four points. Steam is released on a schedule.",
+          "price": 8.6,
+          "calories": 3960,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Vessel Retention",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Vessel Returns With Gorger",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Household Keeps Vessel",
+                  "price": 21.5,
+                  "note": "The vessel is cast iron and is inventoried."
+                },
+                {
+                  "id": "o3",
+                  "name": "Vessel Status Undeclared",
+                  "price": 3.95,
+                  "note": "An undeclared vessel is assumed retained by us and billed as though it were not."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Crust Lid Thickness",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Lid",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reinforced Lid",
+                  "price": 6.1,
+                  "note": "Will support a dinner plate placed on top of it."
+                },
+                {
+                  "id": "o3",
+                  "name": "Lid Omitted",
+                  "price": 2.45,
+                  "note": "The lid is produced, then removed, then discarded by staff."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Gravy Watershed",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Boat",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Carafe",
+                  "price": 6.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal Standpipe Connection",
+                  "price": 24.8,
+                  "note": "Requires a compatible residence and a ground-floor faucet."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-009",
+          "name": "Miso Salmon of the Interior",
+          "desc": "A salmon fillet lacquered in miso and set on a rice substrate of declared area. Snow peas are included and are not negotiable.",
+          "price": 10.4,
+          "calories": 2180,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sear Attestation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Seared, Attested",
+                  "price": 4.65,
+                  "note": "Attested by the individual who performed the sear."
+                },
+                {
+                  "id": "o2",
+                  "name": "Seared, Unattested",
+                  "price": 2.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sear Waived",
+                  "price": 4.65,
+                  "note": "The waiver requires the same signature as the attestation."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Rice Substrate",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White, One Square Foot",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Brown, One Square Foot",
+                  "price": 4.15,
+                  "note": "Denser. Same footprint. Greater tonnage."
+                },
+                {
+                  "id": "o3",
+                  "name": "Substrate Omitted",
+                  "price": 3.4,
+                  "note": "Rice is cooked in a shared vessel and cannot be un-cooked on request."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Miso Lacquer Coats",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Additional Coat",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three Additional Coats",
+                  "price": 5.3,
+                  "note": "Cure time extends delivery by up to 18 minutes."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sesame Deposition",
+                  "price": 1.2,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-010",
+          "name": "Bourbon Steak, Kentucky-Adjacent",
+          "desc": "A glazed steak beneath a stratum of onion straws tall enough to obscure it entirely. The steak is confirmed to be present.",
+          "price": 12.85,
+          "calories": 3120,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Doneness Filing",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Filed: Medium Rare",
+                  "price": 3.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Filed: Medium Well",
+                  "price": 3.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Filing Submitted",
+                  "price": 5.45,
+                  "note": "Absent a filing, the kitchen selects, and the review fee is higher."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Onion Stratum",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Thin Stratum (2 inches)",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Full Stratum (7 inches)",
+                  "price": 7.2,
+                  "note": "Steak will not be visible from any seated angle."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Stratum",
+                  "price": 2.65,
+                  "note": "The straws are fried, then set aside, then disposed of on premises."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Butter Puck Placement",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Centered Puck",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Corners",
+                  "price": 6.4,
+                  "note": "A steak has no corners. Four are assigned."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-011",
+          "name": "Chicken Bellagio of Unincorporated Bellagio",
+          "desc": "Crisp cutlets over basil cream pasta, roofed with cured ham and dressed arugula. The arugula is structural and should not be removed first.",
+          "price": 9.95,
+          "calories": 3640,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Prosciutto Coverage Ratio",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "40% Coverage",
+                  "price": 4.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "100% Coverage",
+                  "price": 11.35,
+                  "note": "The plate below becomes inaccessible without excavation."
+                },
+                {
+                  "id": "o3",
+                  "name": "0% Coverage",
+                  "price": 4.9,
+                  "note": "Slices are sliced, weighed, then withdrawn."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Basil Cream Volume",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Quart",
+                  "price": 3.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "One Gallon",
+                  "price": 9.85,
+                  "note": "Delivered in a lidded carafe alongside the entree."
+                },
+                {
+                  "id": "o3",
+                  "name": "Volume Unspecified",
+                  "price": 3.55,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Asparagus Count",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Four Spears",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Twelve Spears",
+                  "price": 6.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "A Bundle, Untied",
+                  "price": 13.5,
+                  "note": "The twine is removed at the facility and is not returned."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pasta-concourse",
+      "name": "Pages 215-268: The Pasta Concourse",
+      "blurb": "Pasta is sold by displaced volume, not by weight.",
+      "items": [
+        {
+          "id": "ckm-012",
+          "name": "Louisiana Chicken Pasta, Municipal Pour",
+          "desc": "Fettuccine in a cream reduction poured into the bowl until the bowl objects. Blackened chicken and shrimp are submerged at the time of pouring.",
+          "price": 8.95,
+          "calories": 4460,
+          "badges": [
+            "Popular",
+            "Contains Food"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: fettuccine in thick cream sauce heaped into a big clear plastic to-go container, blackened chicken strips and whole shrimp half buried in the pasta, the fogged clear lid resting beside it with condensation on the inside. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Mild motion blur and soft focus, visible JPEG compression artefacts, the container not centred in frame and sitting on a scratched counter. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Pasta Volume Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal Pour (1.2 qt)",
+                  "price": 6.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family Pour (3.4 qt)",
+                  "price": 15.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal Pour (9 qt)",
+                  "price": 31.9,
+                  "note": "Poured under supervision. Bowl is filled to the point of surface tension."
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional Pour (22 qt)",
+                  "price": 62.4,
+                  "note": "Two Gorgers are dispatched. Both are billed."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cream Reduction Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grade 2 (Pourable)",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grade 5 (Coating)",
+                  "price": 5.8,
+                  "note": "Coats the back of a spoon and then the front."
+                },
+                {
+                  "id": "o3",
+                  "name": "Reduction Skipped",
+                  "price": 3.25,
+                  "note": "The reduction is performed and then discarded at the stove."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Shrimp Census",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Six Additional",
+                  "price": 4.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Eighteen Additional",
+                  "price": 12.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Uncountable",
+                  "price": 26.75,
+                  "note": "Quantity is not disclosed and cannot be disputed after delivery."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-013",
+          "name": "Four Cheese Pasta, Structurally Cheesed",
+          "desc": "Baked pasta in which the cheese is the primary structural member and the pasta is the aggregate. Cuts like masonry.",
+          "price": 7.65,
+          "calories": 3880,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cheese Application Volume",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Four Cheeses",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Nine Cheeses",
+                  "price": 12.95,
+                  "note": "The item name is not updated. The cheeses are."
+                },
+                {
+                  "id": "o3",
+                  "name": "Cheese Withheld",
+                  "price": 5.4,
+                  "note": "The blend is prepared to spec and then not applied."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Noodle Integrity Clause",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Clause Accepted (Firm)",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Clause Accepted (Yielding)",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Clause Refused",
+                  "price": 4.75,
+                  "note": "Refusal is recorded and reviewed by a manager who is not present."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Breadcrumb Overlay",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Toasted Crust",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Second Crust Applied Over the First",
+                  "price": 5.1,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-014",
+          "name": "Fettuccini Alfredo, Undiluted",
+          "desc": "Cream, butter, and cheese, served with a quantity of pasta sufficient to justify the sauce. No water is added at any stage.",
+          "price": 6.9,
+          "calories": 4020,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sauce Reservoir Depth",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "2 Inches",
+                  "price": 4.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "6 Inches",
+                  "price": 9.6,
+                  "note": "Pasta will float and must be retrieved."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Reservoir",
+                  "price": 4.05,
+                  "note": "Sauce is made in the same pan and cannot be unmade."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fork Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Fork",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Six Forks",
+                  "price": 4.2,
+                  "note": "Recommended by our portioning department."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Forks",
+                  "price": 1.45,
+                  "note": "Fork suppression requires an additional handling step."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Pepper Jurisdiction",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Table Grind",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Continuous Grind Until Instructed to Stop",
+                  "price": 7.95,
+                  "note": "Instruction must be given aloud. The Gorger will not stop on gesture."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skinnyluscious",
+      "name": "Pages 269-318: The Skinnyluscious® Compliance Menu",
+      "blurb": "Every item is under 590 calories as measured at the moment it leaves the kitchen.",
+      "items": [
+        {
+          "id": "ckm-015",
+          "name": "Skinnyluscious® Grilled Chicken, Attested",
+          "desc": "Grilled chicken with asparagus, served under a compliance attestation valid for the duration of transit. The attestation expires on arrival.",
+          "price": 8.25,
+          "calories": 590,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Skinnyluscious® Attestation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Attestation",
+                  "price": 3.95,
+                  "note": "Valid until the vehicle door closes."
+                },
+                {
+                  "id": "o2",
+                  "name": "Extended Attestation",
+                  "price": 8.7,
+                  "note": "Valid until the food is looked at."
+                },
+                {
+                  "id": "o3",
+                  "name": "Decline Attestation",
+                  "price": 3.95,
+                  "note": "The item remains under 590 calories. It simply cannot be described that way."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Caloric Disclosure Waiver",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sign the Waiver",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Do Not Sign the Waiver",
+                  "price": 6.35,
+                  "note": "Unsigned orders require manual caloric handling."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Off-Menu Enrichment",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Butter Finish (Post-Measurement)",
+                  "price": 3.4,
+                  "note": "Applied after the calorie count is recorded."
+                },
+                {
+                  "id": "o2",
+                  "name": "Cream Sauce (Post-Measurement)",
+                  "price": 5.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Second Portion (Unmeasured)",
+                  "price": 11.2,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-016",
+          "name": "Skinnyluscious® Chopped Salad, Volumetric",
+          "desc": "Corn, beans, avocado, chicken, and tortilla strips arranged in strict rows across a platter of specified diameter. Compliance is maintained by row, not by mass.",
+          "price": 7.4,
+          "calories": 580,
+          "badges": [
+            "New",
+            "Limit 1 Per Household"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a big chopped salad in a white styrofoam clamshell with the lid folded back, rows of corn, black beans, diced avocado, chopped chicken, tomato and tortilla strips heaped past the rim and spilling over one edge, a small plastic cup of dressing wedged in the corner. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the clamshell. Shot from too close and slightly above, the clamshell not centred and cut off at the top of the frame. Flat phone-camera look, unretouched, mixed white balance, visible noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Wellness Compliance Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Level 1 (Monitored)",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Level 3 (Supervised)",
+                  "price": 7.45,
+                  "note": "A member of staff observes the plating."
+                },
+                {
+                  "id": "o3",
+                  "name": "Non-Compliant",
+                  "price": 2.85,
+                  "note": "Non-compliance is processed through the same department and takes the same time."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Dressing Deployment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ramekin, Side",
+                  "price": 1.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Applied Under Pressure",
+                  "price": 6.25,
+                  "note": "Penetrates all rows simultaneously."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Dressing",
+                  "price": 1.9,
+                  "note": "The ramekin is filled, sealed, and held at the facility on your behalf."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Platter Diameter Upgrade",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "18 inch",
+                  "price": 4.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "26 inch",
+                  "price": 13.85,
+                  "note": "Will not fit through a standard interior doorway when carried flat."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-017",
+          "name": "Skinnyluscious® Veggie Burger, Certified Light",
+          "desc": "A grain and vegetable patty on a bun subject to eligibility review. Certified light by weight of the certificate.",
+          "price": 6.75,
+          "calories": 560,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Patty Provenance Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Declared (Grain Forward)",
+                  "price": 3.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Declared (Vegetable Forward)",
+                  "price": 3.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Declaration Withheld",
+                  "price": 5.95,
+                  "note": "Withheld declarations are stored for seven years at your expense."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bun Eligibility Review",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Eligible, Toasted",
+                  "price": 4.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Eligible, Untoasted",
+                  "price": 4.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Found Ineligible",
+                  "price": 4.1,
+                  "note": "The review fee is identical regardless of finding. No bun is issued."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Ambient Lamp Allocation",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Amber Lamp Hour",
+                  "price": 2.15,
+                  "note": "Applies to the dining room. Included here for consistency."
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Amber Lamp Hours",
+                  "price": 7.6,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cheesecake-vault",
+      "name": "Pages 319-412: The Cheesecake Vault",
+      "blurb": "Forty-one cheesecakes. Page 412 is the exit.",
+      "items": [
+        {
+          "id": "ckm-018",
+          "name": "The Original Cheesecake, Full Wedge",
+          "desc": "One wedge of the original formulation, cut to a fixed interior angle on a compressed graham foundation. Height is not adjustable.",
+          "price": 5.95,
+          "calories": 1620,
+          "badges": [
+            "#1 Most Liked",
+            "Popular"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: one tall wedge of dense New York style cheesecake on a white paper plate, thick graham crust, a swirl of whipped cream and red strawberry glaze running down the cut face, the wedge leaning slightly, crumbs on the plate. Harsh direct on-camera flash, hot blown-out hotspot on the glaze, hard black shadow thrown behind the plate. The plate sitting directly on a scratched laminate counter with crumbs and a smear of glaze beside it, framed slightly crooked. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Slice Geometry",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Wedge (45 degrees)",
+                  "price": 6.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wide Wedge (90 degrees)",
+                  "price": 14.25,
+                  "note": "One quarter of the wheel. Plated as a single serving."
+                },
+                {
+                  "id": "o3",
+                  "name": "Full Wheel",
+                  "price": 52.6,
+                  "note": "Arrives in a locking transport ring. The ring is ours."
+                },
+                {
+                  "id": "o4",
+                  "name": "Geometry Unspecified",
+                  "price": 6.8,
+                  "note": "The knife operator selects. The operator is billed to you either way."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Crumb Foundation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Graham Base",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double-Compacted Base",
+                  "price": 5.4,
+                  "note": "Rated to support the wedge in an upright position."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Base",
+                  "price": 2.95,
+                  "note": "The base is pressed, baked, and then separated from the cake by hand."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Whipped Dairy Elevation",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Rosette",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Elevated Column (4 inches)",
+                  "price": 4.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Applied Until the Plate Is Concealed",
+                  "price": 10.75,
+                  "note": "The dessert remains beneath and is not removed."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Berry Deposition",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Three Strawberries, Fanned",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Glaze Poured to Plate Rim",
+                  "price": 6.3,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-019",
+          "name": "Belgian-Grade Chocolate Cheesecake Monolith",
+          "desc": "A single dark slab finished in ganache and roofed with chocolate curls. Served upright because it will not lie flat.",
+          "price": 7.2,
+          "calories": 2240,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Ganache Head",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Skim Coat",
+                  "price": 3.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Flood Coat",
+                  "price": 8.9,
+                  "note": "Poured until the plate is no longer visible from above."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Ganache",
+                  "price": 3.65,
+                  "note": "The ganache is tempered, held at temperature, and then not used."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chocolate Curl Density",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sparse",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Dense",
+                  "price": 5.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Structural",
+                  "price": 12.4,
+                  "note": "Curls become the primary roof of the dessert."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Caramel Hydrology",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Drizzle",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standing Pool",
+                  "price": 4.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Continuous Feed",
+                  "price": 18.6,
+                  "note": "A sealed carafe accompanies the dessert and is refilled on request."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ckm-020",
+          "name": "Thirty-Layer Carrot Cake Cheesecake",
+          "desc": "Alternating strata of carrot cake and cheesecake, layer count certified at the facility. Layers are counted from the plate upward.",
+          "price": 6.85,
+          "calories": 2680,
+          "badges": [
+            "Chef Recommended",
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Layer Count Certification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Certified 30 Layers",
+                  "price": 5.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Certified 58 Layers",
+                  "price": 16.4,
+                  "note": "Exceeds the height of a standard dessert plate by 11 inches."
+                },
+                {
+                  "id": "o3",
+                  "name": "Uncertified",
+                  "price": 5.25,
+                  "note": "The layers are still counted. The count is simply not certified."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cream Cheese Density",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Density",
+                  "price": 2.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "High Density",
+                  "price": 6.15,
+                  "note": "Fork resistance increases measurably."
+                },
+                {
+                  "id": "o3",
+                  "name": "Density Waived",
+                  "price": 4.35,
+                  "note": "Waiver processed by the same department that assigns density."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Silverware Weight Class",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Fork",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reinforced Fork",
+                  "price": 4.55,
+                  "note": "Recommended above 40 layers."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

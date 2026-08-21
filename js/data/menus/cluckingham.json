@@ -1,0 +1,2476 @@
+{
+  "slug": "cluckingham",
+  "name": "Colonel Cluckingham's Poultry Compound",
+  "shortName": "Cluckingham",
+  "tagline": "THE RANK IS VACANT. THE FRYERS ARE NOT.",
+  "cuisine": "Pressure-Fried Poultry",
+  "categories": [
+    "fast-food",
+    "chicken"
+  ],
+  "rating": 4.3,
+  "ratingCount": 41208,
+  "deliveryMin": 27,
+  "deliveryMax": 52,
+  "deliveryFee": 5.49,
+  "distanceMi": 3.8,
+  "priceTier": 2,
+  "gorgePlus": true,
+  "closesAt": "1:30 AM",
+  "address": "44190 Frontage Access Road, Bay 6, Behind the Retention Pond, Grimsley Township",
+  "about": "Colonel Cluckingham's Poultry Compound is a pressure-frying facility operating under a hospitality license. The title of Colonel is a rank conferred internally and is presently vacant; the recipe survives the officer. All poultry is processed on site under pressure that is monitored but not published.",
+  "announcement": "NOTICE: The Compound's gravy line is now connected to the township's secondary main. Residents may experience taste in their tap water. This is expected.",
+  "promos": [
+    "Spend $140, Save $4",
+    "Second entree at Municipal pricing"
+  ],
+  "reviews": [
+    {
+      "name": "Denton R.",
+      "stars": 5,
+      "date": "Aug 12",
+      "text": "Ordered the Municipal Bucket for four people. Fed eleven and a dog. The dog has not been the same, which I take as a compliment."
+    },
+    {
+      "name": "Marguerite O.",
+      "stars": 4,
+      "date": "Aug 09",
+      "text": "I declined the bun and was charged for declining the bun. The charge was explained to me clearly and I accepted it."
+    },
+    {
+      "name": "Vance T.",
+      "stars": 5,
+      "date": "Aug 04",
+      "text": "The Load-Bearing Biscuit held up a bookshelf for six days. Ate it on the seventh. Ten out of ten."
+    },
+    {
+      "name": "Priscilla H.",
+      "stars": 2,
+      "date": "Jul 28",
+      "text": "Selected the Standpipe Hookup without a compatible residence. That was on me. The lawn is fine now."
+    },
+    {
+      "name": "Odell B.",
+      "stars": 5,
+      "date": "Jul 21",
+      "text": "Tier Nine is unrated for a reason and I would like the Compound to know I understand that reason now."
+    }
+  ],
+  "menu": [
+    {
+      "id": "the-bucket-program",
+      "name": "The Bucket Program",
+      "blurb": "Buckets are sized by the population they are expected to pacify.",
+      "items": [
+        {
+          "id": "clk-001",
+          "name": "The Municipal Bucket",
+          "desc": "Pressure-fried poultry in the quantity a small municipality is understood to require. The bucket is filled above the rim as a matter of policy.",
+          "price": 6.45,
+          "calories": 5400,
+          "badges": [
+            "#1 Most Liked",
+            "Limit 1 Per Household"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a plain paper bucket of pressure-fried chicken shot from directly overhead, straight down into the vessel. Craggy mahogany crust, torn breading shards, a thigh wedged upright against the rim, the pile heaped several inches above the lip and slumping over one side, steam curling off the crevices, oil pooling in every fissure. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 50mm, shallow depth of field, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "name": "Headcount Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Personal",
+                  "price": 2.15,
+                  "note": "One person. Declared under penalty of appetite.",
+                  "id": "o1"
+                },
+                {
+                  "name": "Family",
+                  "price": 6.4,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Municipal",
+                  "price": 13.75,
+                  "note": "Serves a block, a shift, or a small volunteer department.",
+                  "id": "o3"
+                },
+                {
+                  "name": "Regional",
+                  "price": 21.5,
+                  "note": "Serves a census tract.",
+                  "id": "o4"
+                },
+                {
+                  "name": "Watershed",
+                  "price": 34.9,
+                  "note": "Serves everyone downstream of you.",
+                  "id": "o5"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Bucket Custody",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Retain Bucket",
+                  "price": 4.6,
+                  "note": "The bucket becomes a household asset and is taxed as one.",
+                  "id": "o1"
+                },
+                {
+                  "name": "Surrender Bucket at Door",
+                  "price": 4.6,
+                  "note": "Surrender is processed as a retrieval and billed as a retrieval.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Bucketless Presentation",
+                  "price": 5.25,
+                  "note": "Food arrives in the shape of a bucket, without a bucket.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Spice Tier Waiver",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Tier One, Hospitable",
+                  "price": 1.35,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Tier Three, Southern Assertive",
+                  "price": 2.6,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Tier Six, Compound Heat",
+                  "price": 4.8,
+                  "note": "Signature is collected at the door.",
+                  "id": "o3"
+                },
+                {
+                  "name": "Tier Nine, Unrated",
+                  "price": 7.25,
+                  "note": "Unrated because no rating body will attend the Compound.",
+                  "id": "o4"
+                }
+              ],
+              "id": "g3"
+            },
+            {
+              "name": "Gravy Delivery Method",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "name": "Thimble",
+                  "price": 0.85,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Cup",
+                  "price": 2.45,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Gallon Jug",
+                  "price": 9.6,
+                  "note": null,
+                  "id": "o3"
+                },
+                {
+                  "name": "Municipal Standpipe Hookup",
+                  "price": 24.75,
+                  "note": "Requires a compatible residence and a downhill lawn.",
+                  "id": "o4"
+                }
+              ],
+              "id": "g4"
+            },
+            {
+              "name": "Napkin Allocation",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "name": "Single Napkin",
+                  "price": 0.65,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Napkin Bloc of Twelve",
+                  "price": 2.85,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Napkin Pallet, Four Hundred",
+                  "price": 11.4,
+                  "note": "Delivered flat, to the curb. Not delivered upstairs.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g5"
+            }
+          ]
+        },
+        {
+          "id": "clk-002",
+          "name": "Bucket of Assorted Segments",
+          "desc": "Segments are assorted at the Compound. The assortment is not disclosed, reviewed, or appealed.",
+          "price": 4.85,
+          "calories": 3900,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Bone Policy",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Bone-In",
+                  "price": 3.4,
+                  "note": "Bones are inventory and are billed as inventory.",
+                  "id": "o1"
+                },
+                {
+                  "name": "Bone-Adjacent",
+                  "price": 3.4,
+                  "note": "Bones are present in the vicinity. Not in the food.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Bone-Free",
+                  "price": 4.15,
+                  "note": "De-boning is a labor event and is staffed accordingly.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Dark Meat Entitlement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "White Meat",
+                  "price": 4.05,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Dark Meat",
+                  "price": 3.55,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Assigned by Facility",
+                  "price": 2.45,
+                  "note": "Assignment is final and is not disclosed in advance.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Crust Adhesion Class",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Class A, Adhered",
+                  "price": 1.15,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Class B, Sheds Freely",
+                  "price": 0.75,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Class D, Detached and Bagged Separately",
+                  "price": 3.4,
+                  "note": "Crust arrives as a separate product with a separate temperature.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            }
+          ]
+        },
+        {
+          "id": "clk-003",
+          "name": "The Watershed Bucket",
+          "desc": "Our largest declared vessel. Intended for gatherings that have already exceeded their original purpose.",
+          "price": 9.1,
+          "calories": 6200,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Headcount Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Personal",
+                  "price": 2.15,
+                  "note": "One person. Declared under penalty of appetite.",
+                  "id": "o1"
+                },
+                {
+                  "name": "Family",
+                  "price": 6.4,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Municipal",
+                  "price": 13.75,
+                  "note": "Serves a block, a shift, or a small volunteer department.",
+                  "id": "o3"
+                },
+                {
+                  "name": "Regional",
+                  "price": 21.5,
+                  "note": "Serves a census tract.",
+                  "id": "o4"
+                },
+                {
+                  "name": "Watershed",
+                  "price": 34.9,
+                  "note": "Serves everyone downstream of you.",
+                  "id": "o5"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Warmth Retention Plan",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Insulated Sleeve",
+                  "price": 2.65,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Ambient Transit",
+                  "price": 1.8,
+                  "note": "Heat is withheld at the Compound and remains there.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Reheat Entitlement",
+                  "price": 3.1,
+                  "note": "Redeemable at the Compound, in person, during the shift you were not present for.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Post-Consumption Waiver",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Standard Waiver",
+                  "price": 2.9,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Extended Waiver",
+                  "price": 5.45,
+                  "note": "Covers the following morning.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Waiver Declined",
+                  "price": 6.8,
+                  "note": "Declining requires additional processing and a second signature.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            },
+            {
+              "name": "Cutlery Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "name": "One Spork",
+                  "price": 0.55,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Spork Set of Six",
+                  "price": 2.3,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Ceremonial Spork",
+                  "price": 8.15,
+                  "note": "Not food-safe. Ceremonial.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g4"
+            }
+          ]
+        },
+        {
+          "id": "clk-004",
+          "name": "Half Bucket, Sealed",
+          "desc": "A bucket that has been reduced by half and then sealed, in that order. The seal is applied while the contents are still working.",
+          "price": 3.95,
+          "calories": 2400,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Steam Release Consent",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Vented at the Compound",
+                  "price": 2.2,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Vents in the Vehicle",
+                  "price": 1.9,
+                  "note": "The Gorger has consented on your behalf.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Vents in Your Residence",
+                  "price": 3.05,
+                  "note": "Consent is recorded at checkout and cannot be revoked.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Bucket Custody",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Retain Bucket",
+                  "price": 4.6,
+                  "note": "The bucket becomes a household asset and is taxed as one.",
+                  "id": "o1"
+                },
+                {
+                  "name": "Surrender Bucket at Door",
+                  "price": 4.6,
+                  "note": "Surrender is processed as a retrieval and billed as a retrieval.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Bucketless Presentation",
+                  "price": 5.25,
+                  "note": "Food arrives in the shape of a bucket, without a bucket.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Freshness Attestation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Attested Today",
+                  "price": 2.2,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Attested This Week",
+                  "price": 1.05,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Attestation Waived",
+                  "price": 0.6,
+                  "note": "No claim is made in either direction.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            },
+            {
+              "name": "Napkin Allocation",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "name": "Single Napkin",
+                  "price": 0.65,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Napkin Bloc of Twelve",
+                  "price": 2.85,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Napkin Pallet, Four Hundred",
+                  "price": 11.4,
+                  "note": "Delivered flat, to the curb. Not delivered upstairs.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bone-in-bone-adjacent",
+      "name": "Bone-In, Bone-Adjacent",
+      "blurb": "Bone status is declared at checkout and is binding on both parties.",
+      "items": [
+        {
+          "id": "clk-005",
+          "name": "The Pressure Doctrine Sandwich",
+          "desc": "A whole pressure-cycled breast on a bun rated for approximately sixty percent of it. The overhang is intentional and is not a defect.",
+          "price": 5.25,
+          "calories": 1980,
+          "badges": [
+            "Popular",
+            "Contains Food"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an enormous pressure-fried chicken sandwich sitting in a white styrofoam clamshell with the lid folded back, the craggy breaded fillet overhanging the small bun on every side, pickle slices sliding out one edge, a smear of hot honey on the styrofoam, a few crust shards fallen beside it. Harsh direct on-camera flash, hot blown-out hotspot on the top bun, hard black shadow thrown behind the clamshell. Framed slightly crooked with the clamshell cut off at the right edge, sitting on a scratched stainless prep counter beside a squeeze bottle. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "name": "Pressure Cycle Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Standard Cycle, Eleven Minutes",
+                  "price": 2.75,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Extended Cycle",
+                  "price": 4.35,
+                  "note": "Longer under pressure. Same bird.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Cycle Interrupted",
+                  "price": 3.6,
+                  "note": "Interruption occurs at the Compound's discretion and is billed as a full cycle.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Spice Tier Waiver",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Tier One, Hospitable",
+                  "price": 1.35,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Tier Three, Southern Assertive",
+                  "price": 2.6,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Tier Six, Compound Heat",
+                  "price": 4.8,
+                  "note": "Signature is collected at the door.",
+                  "id": "o3"
+                },
+                {
+                  "name": "Tier Nine, Unrated",
+                  "price": 7.25,
+                  "note": "Unrated because no rating body will attend the Compound.",
+                  "id": "o4"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Bun Ratification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Bun Ratified",
+                  "price": 4.35,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Bun Denied",
+                  "price": 4.35,
+                  "note": "Denial is a documented event and is staffed identically.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Bun Substituted with Biscuit Shell",
+                  "price": 5.9,
+                  "note": "The shell is load-rated separately.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            },
+            {
+              "name": "Crust Adhesion Class",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Class A, Adhered",
+                  "price": 1.15,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Class B, Sheds Freely",
+                  "price": 0.75,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Class D, Detached and Bagged Separately",
+                  "price": 3.4,
+                  "note": "Crust arrives as a separate product with a separate temperature.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g4"
+            },
+            {
+              "name": "Honey Application Rights",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Drizzle License",
+                  "price": 1.25,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Saturation License",
+                  "price": 3.95,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Perpetual Honey Easement",
+                  "price": 12.6,
+                  "note": "Runs with the land. Transfers with the property.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g5"
+            }
+          ]
+        },
+        {
+          "id": "clk-006",
+          "name": "Bone-Adjacent Tenders, Six",
+          "desc": "Six tenders, prepared within reasonable proximity of a bone. No bone is included, and none is promised.",
+          "price": 4.4,
+          "calories": 1740,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: six long pressure-fried chicken tenders piled in a paper boat lined with wax paper, thick craggy breading, a small paper cup of pale peppered gravy wedged in beside them, breading crumbs scattered across the wax paper. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above with the boat off-centre, cluttered background of a stainless prep counter, a stack of lids and a napkin dispenser. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "name": "Bone Policy",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Bone-In",
+                  "price": 3.4,
+                  "note": "Bones are inventory and are billed as inventory.",
+                  "id": "o1"
+                },
+                {
+                  "name": "Bone-Adjacent",
+                  "price": 3.4,
+                  "note": "Bones are present in the vicinity. Not in the food.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Bone-Free",
+                  "price": 4.15,
+                  "note": "De-boning is a labor event and is staffed accordingly.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Serving Vessel Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Waxed Boat",
+                  "price": 1.75,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Dented Sheet Tray",
+                  "price": 3.2,
+                  "note": "Tray is Compound property and is expected back within thirty days.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Open Palm Presentation",
+                  "price": 2.6,
+                  "note": "Vessel omitted. Omission is itemized.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Gravy Delivery Method",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "name": "Thimble",
+                  "price": 0.85,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Cup",
+                  "price": 2.45,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Gallon Jug",
+                  "price": 9.6,
+                  "note": null,
+                  "id": "o3"
+                },
+                {
+                  "name": "Municipal Standpipe Hookup",
+                  "price": 24.75,
+                  "note": "Requires a compatible residence and a downhill lawn.",
+                  "id": "o4"
+                }
+              ],
+              "id": "g3"
+            },
+            {
+              "name": "Napkin Allocation",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "name": "Single Napkin",
+                  "price": 0.65,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Napkin Bloc of Twelve",
+                  "price": 2.85,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Napkin Pallet, Four Hundred",
+                  "price": 11.4,
+                  "note": "Delivered flat, to the curb. Not delivered upstairs.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g4"
+            }
+          ]
+        },
+        {
+          "id": "clk-007",
+          "name": "Unsegmented Wings",
+          "desc": "Wings delivered in their original configuration. Separation is available and is billed as a separation.",
+          "price": 5.6,
+          "calories": 2260,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Wing Segmentation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Flats Only",
+                  "price": 3.15,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Drums Only",
+                  "price": 3.15,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Unsegmented",
+                  "price": 2.85,
+                  "note": "Segmentation is then performed by you, at home, with your hands.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Spice Tier Waiver",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Tier One, Hospitable",
+                  "price": 1.35,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Tier Three, Southern Assertive",
+                  "price": 2.6,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Tier Six, Compound Heat",
+                  "price": 4.8,
+                  "note": "Signature is collected at the door.",
+                  "id": "o3"
+                },
+                {
+                  "name": "Tier Nine, Unrated",
+                  "price": 7.25,
+                  "note": "Unrated because no rating body will attend the Compound.",
+                  "id": "o4"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Marrow Disclosure",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Disclosed",
+                  "price": 1.1,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Undisclosed",
+                  "price": 2.15,
+                  "note": "Non-disclosure is the more expensive of the two options.",
+                  "id": "o2"
+                }
+              ],
+              "id": "g3"
+            }
+          ]
+        },
+        {
+          "id": "clk-008",
+          "name": "Thigh, Singular",
+          "desc": "One thigh. The Compound considers this a complete meal and has said so in writing.",
+          "price": 2.3,
+          "calories": 880,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Dark Meat Entitlement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "White Meat",
+                  "price": 4.05,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Dark Meat",
+                  "price": 3.55,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Assigned by Facility",
+                  "price": 2.45,
+                  "note": "Assignment is final and is not disclosed in advance.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Fryer Lineage Disclosure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Standard Vat",
+                  "price": 1.6,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Heritage Vat, Established Tuesday",
+                  "price": 3.85,
+                  "note": "Older oil, deeper character, same oil.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Lineage Withheld",
+                  "price": 0.95,
+                  "note": "Withholding is a service and is priced as a service.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Skin Integrity Plan",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Intact",
+                  "price": 1.95,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Rendered Crisp",
+                  "price": 2.75,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Removed and Returned to You in a Bag",
+                  "price": 4.3,
+                  "note": "The bag is not resealable.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            }
+          ]
+        },
+        {
+          "id": "clk-009",
+          "name": "The Colonel's Vacancy Platter",
+          "desc": "Served in honor of the sitting Colonel. The rank is currently vacant and the platter is served regardless.",
+          "price": 7.15,
+          "calories": 4100,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Pressure Cycle Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Standard Cycle, Eleven Minutes",
+                  "price": 2.75,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Extended Cycle",
+                  "price": 4.35,
+                  "note": "Longer under pressure. Same bird.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Cycle Interrupted",
+                  "price": 3.6,
+                  "note": "Interruption occurs at the Compound's discretion and is billed as a full cycle.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Post-Consumption Waiver",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Standard Waiver",
+                  "price": 2.9,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Extended Waiver",
+                  "price": 5.45,
+                  "note": "Covers the following morning.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Waiver Declined",
+                  "price": 6.8,
+                  "note": "Declining requires additional processing and a second signature.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Grease Reclamation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Reclaimed at Compound",
+                  "price": 2.05,
+                  "note": "Oil returns to the vat of its birth.",
+                  "id": "o1"
+                },
+                {
+                  "name": "Retained by Customer",
+                  "price": 3.3,
+                  "note": "The grease travels with you and becomes your responsibility.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Reclamation Declined",
+                  "price": 3.3,
+                  "note": "Declining is processed by hand and billed by hand.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            },
+            {
+              "name": "Cutlery Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "name": "One Spork",
+                  "price": 0.55,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Spork Set of Six",
+                  "price": 2.3,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Ceremonial Spork",
+                  "price": 8.15,
+                  "note": "Not food-safe. Ceremonial.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "load-bearing-biscuits",
+      "name": "Load-Bearing Biscuits",
+      "blurb": "Biscuits are rated, not described.",
+      "items": [
+        {
+          "id": "clk-010",
+          "name": "The Load-Bearing Biscuit",
+          "desc": "Certified in the parking lot against a cinderblock of known mass. Passed. The cinderblock did not.",
+          "price": 2.85,
+          "calories": 1120,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: two big split buttermilk biscuits on a white paper plate, a pat of butter melting into the top one, dense flaky layers visible at the split, crumbs scattered across the plate. Dim warm restaurant light with the flash off, slightly underexposed and noisy. The plate sitting directly on a scratched laminate counter with crumbs and a smear of gravy beside it, framed slightly crooked. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "name": "Biscuit Load Rating",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Rated to Four Pounds",
+                  "price": 2.35,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Rated to Forty Pounds",
+                  "price": 5.7,
+                  "note": "Certified against a cinderblock in the parking lot.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Load Rating Waived",
+                  "price": 5.7,
+                  "note": "An unrated biscuit is still a biscuit. It is simply unrated.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Steam Release Consent",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Vented at the Compound",
+                  "price": 2.2,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Vents in the Vehicle",
+                  "price": 1.9,
+                  "note": "The Gorger has consented on your behalf.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Vents in Your Residence",
+                  "price": 3.05,
+                  "note": "Consent is recorded at checkout and cannot be revoked.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Butter Deployment",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "name": "Pat",
+                  "price": 0.8,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Ladle",
+                  "price": 2.55,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Butter Column",
+                  "price": 7.85,
+                  "note": "Arrives standing. Remains standing for approximately nine minutes.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            },
+            {
+              "name": "Crumb Yield Agreement",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Crumbs Retained by Customer",
+                  "price": 0.7,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Crumbs Returned to Facility",
+                  "price": 2.95,
+                  "note": "Return shipping is your obligation.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Yield Unmeasured",
+                  "price": 1.6,
+                  "note": null,
+                  "id": "o3"
+                }
+              ],
+              "id": "g4"
+            }
+          ]
+        },
+        {
+          "id": "clk-011",
+          "name": "Biscuit Course, Stacked Four",
+          "desc": "Four biscuits stacked vertically and held that way by their own compression. No adhesive is used or required.",
+          "price": 4.7,
+          "calories": 2380,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Biscuit Load Rating",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Rated to Four Pounds",
+                  "price": 2.35,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Rated to Forty Pounds",
+                  "price": 5.7,
+                  "note": "Certified against a cinderblock in the parking lot.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Load Rating Waived",
+                  "price": 5.7,
+                  "note": "An unrated biscuit is still a biscuit. It is simply unrated.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Warmth Retention Plan",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Insulated Sleeve",
+                  "price": 2.65,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Ambient Transit",
+                  "price": 1.8,
+                  "note": "Heat is withheld at the Compound and remains there.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Reheat Entitlement",
+                  "price": 3.1,
+                  "note": "Redeemable at the Compound, in person, during the shift you were not present for.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Crumb Yield Agreement",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Crumbs Retained by Customer",
+                  "price": 0.7,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Crumbs Returned to Facility",
+                  "price": 2.95,
+                  "note": "Return shipping is your obligation.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Yield Unmeasured",
+                  "price": 1.6,
+                  "note": null,
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            }
+          ]
+        },
+        {
+          "id": "clk-012",
+          "name": "Gravy-Bearing Biscuit Slab",
+          "desc": "A biscuit saturated to a declared index. At the upper index it is no longer classified as a biscuit.",
+          "price": 5.95,
+          "calories": 2740,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Gravy Saturation Index",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Surface",
+                  "price": 2.6,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Structural",
+                  "price": 4.9,
+                  "note": "Saturation reaches the load-bearing layers.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Total",
+                  "price": 8.35,
+                  "note": "Product is no longer legally a biscuit and is sold as a fluid.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Biscuit Load Rating",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Rated to Four Pounds",
+                  "price": 2.35,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Rated to Forty Pounds",
+                  "price": 5.7,
+                  "note": "Certified against a cinderblock in the parking lot.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Load Rating Waived",
+                  "price": 5.7,
+                  "note": "An unrated biscuit is still a biscuit. It is simply unrated.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Napkin Allocation",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "name": "Single Napkin",
+                  "price": 0.65,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Napkin Bloc of Twelve",
+                  "price": 2.85,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Napkin Pallet, Four Hundred",
+                  "price": 11.4,
+                  "note": "Delivered flat, to the curb. Not delivered upstairs.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            }
+          ]
+        },
+        {
+          "id": "clk-013",
+          "name": "Biscuit, Unrated",
+          "desc": "This biscuit has not been rated. It has not been tested, weighed, or asked about.",
+          "price": 1.95,
+          "calories": 760,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Biscuit Load Rating",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Rated to Four Pounds",
+                  "price": 2.35,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Rated to Forty Pounds",
+                  "price": 5.7,
+                  "note": "Certified against a cinderblock in the parking lot.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Load Rating Waived",
+                  "price": 5.7,
+                  "note": "An unrated biscuit is still a biscuit. It is simply unrated.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Freshness Attestation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Attested Today",
+                  "price": 2.2,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Attested This Week",
+                  "price": 1.05,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Attestation Waived",
+                  "price": 0.6,
+                  "note": "No claim is made in either direction.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Butter Deployment",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "name": "Pat",
+                  "price": 0.8,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Ladle",
+                  "price": 2.55,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Butter Column",
+                  "price": 7.85,
+                  "note": "Arrives standing. Remains standing for approximately nine minutes.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gravy-and-ancillary-fluids",
+      "name": "Gravy & Ancillary Fluids",
+      "blurb": "Gravy is measured in the same units as municipal water, because it is.",
+      "items": [
+        {
+          "id": "clk-014",
+          "name": "Gravy, By the Gallon",
+          "desc": "One gallon of peppered sausage gravy, drawn from the line at the pressure the line happens to be running.",
+          "price": 8.25,
+          "calories": 4600,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a translucent plastic gallon jug filled to the neck with thick pale peppered sausage gravy, the screw cap sitting loose beside it, and an open plastic-lidded soup cup of the same gravy showing black pepper flecks and sausage crumbles, gravy dripped down the side of the jug and smeared on the counter. Harsh direct on-camera flash, hot blown-out hotspot on the jug, hard black shadow thrown behind it, everything evenly lit and flat. Framed crooked with the jug cut off at the top of the frame, on a cluttered stainless prep counter with a stack of lids and a roll of paper towel. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise and JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "name": "Fluid Containment Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Sealed Jug",
+                  "price": 3.75,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Open Vessel",
+                  "price": 2.9,
+                  "note": "Open vessels are transported upright when convenient.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Uncontained",
+                  "price": 6.5,
+                  "note": "Uncontained fluid is delivered to the floor of your vehicle or entryway.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Headcount Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Personal",
+                  "price": 2.15,
+                  "note": "One person. Declared under penalty of appetite.",
+                  "id": "o1"
+                },
+                {
+                  "name": "Family",
+                  "price": 6.4,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Municipal",
+                  "price": 13.75,
+                  "note": "Serves a block, a shift, or a small volunteer department.",
+                  "id": "o3"
+                },
+                {
+                  "name": "Regional",
+                  "price": 21.5,
+                  "note": "Serves a census tract.",
+                  "id": "o4"
+                },
+                {
+                  "name": "Watershed",
+                  "price": 34.9,
+                  "note": "Serves everyone downstream of you.",
+                  "id": "o5"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Napkin Allocation",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "name": "Single Napkin",
+                  "price": 0.65,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Napkin Bloc of Twelve",
+                  "price": 2.85,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Napkin Pallet, Four Hundred",
+                  "price": 11.4,
+                  "note": "Delivered flat, to the curb. Not delivered upstairs.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            },
+            {
+              "name": "Cutlery Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "name": "One Spork",
+                  "price": 0.55,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Spork Set of Six",
+                  "price": 2.3,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Ceremonial Spork",
+                  "price": 8.15,
+                  "note": "Not food-safe. Ceremonial.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g4"
+            }
+          ]
+        },
+        {
+          "id": "clk-015",
+          "name": "Slaw Reservoir",
+          "desc": "Slaw held at a declared hydration level. Levels above Standard are managed, not corrected.",
+          "price": 3.1,
+          "calories": 940,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Slaw Hydration Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Drained",
+                  "price": 0.9,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Standard",
+                  "price": 1.35,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Aquifer",
+                  "price": 5.2,
+                  "note": "Slaw arrives with its own water table.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Serving Vessel Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Waxed Boat",
+                  "price": 1.75,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Dented Sheet Tray",
+                  "price": 3.2,
+                  "note": "Tray is Compound property and is expected back within thirty days.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Open Palm Presentation",
+                  "price": 2.6,
+                  "note": "Vessel omitted. Omission is itemized.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Freshness Attestation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Attested Today",
+                  "price": 2.2,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Attested This Week",
+                  "price": 1.05,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Attestation Waived",
+                  "price": 0.6,
+                  "note": "No claim is made in either direction.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            },
+            {
+              "name": "Cutlery Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "name": "One Spork",
+                  "price": 0.55,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Spork Set of Six",
+                  "price": 2.3,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Ceremonial Spork",
+                  "price": 8.15,
+                  "note": "Not food-safe. Ceremonial.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g4"
+            }
+          ]
+        },
+        {
+          "id": "clk-016",
+          "name": "Mashed Aggregate with Gravy Head",
+          "desc": "Compacted potato aggregate with a gravy head poured to depth. Settling during transit is expected and is not compensable.",
+          "price": 3.65,
+          "calories": 1580,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Fluid Containment Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Sealed Jug",
+                  "price": 3.75,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Open Vessel",
+                  "price": 2.9,
+                  "note": "Open vessels are transported upright when convenient.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Uncontained",
+                  "price": 6.5,
+                  "note": "Uncontained fluid is delivered to the floor of your vehicle or entryway.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Warmth Retention Plan",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Insulated Sleeve",
+                  "price": 2.65,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Ambient Transit",
+                  "price": 1.8,
+                  "note": "Heat is withheld at the Compound and remains there.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Reheat Entitlement",
+                  "price": 3.1,
+                  "note": "Redeemable at the Compound, in person, during the shift you were not present for.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Gravy Delivery Method",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "name": "Thimble",
+                  "price": 0.85,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Cup",
+                  "price": 2.45,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Gallon Jug",
+                  "price": 9.6,
+                  "note": null,
+                  "id": "o3"
+                },
+                {
+                  "name": "Municipal Standpipe Hookup",
+                  "price": 24.75,
+                  "note": "Requires a compatible residence and a downhill lawn.",
+                  "id": "o4"
+                }
+              ],
+              "id": "g3"
+            }
+          ]
+        },
+        {
+          "id": "clk-017",
+          "name": "Sauce Flight, Nine",
+          "desc": "Nine sauces presented in sequence. Three of them are the same sauce at different temperatures.",
+          "price": 4.15,
+          "calories": 1210,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Sauce Containment Protocol",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Individually Lidded",
+                  "price": 3.25,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Communal Trough",
+                  "price": 5.4,
+                  "note": "One trough. Nine sauces. One outcome.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Lids Withheld",
+                  "price": 3.25,
+                  "note": "Lids are retained by the Compound and remain the property of the Compound.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Post-Consumption Waiver",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Standard Waiver",
+                  "price": 2.9,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Extended Waiver",
+                  "price": 5.45,
+                  "note": "Covers the following morning.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Waiver Declined",
+                  "price": 6.8,
+                  "note": "Declining requires additional processing and a second signature.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Napkin Allocation",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "name": "Single Napkin",
+                  "price": 0.65,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Napkin Bloc of Twelve",
+                  "price": 2.85,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Napkin Pallet, Four Hundred",
+                  "price": 11.4,
+                  "note": "Delivered flat, to the curb. Not delivered upstairs.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-commissary",
+      "name": "The Commissary",
+      "blurb": "Non-poultry inventory, offered without enthusiasm.",
+      "items": [
+        {
+          "id": "clk-018",
+          "name": "Compound Fry Aggregate",
+          "desc": "Thick-cut fries dispensed by volume rather than by count. The carton is a suggestion and is quickly overruled.",
+          "price": 3.4,
+          "calories": 2120,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a big heap of thick-cut fries in a brown paper takeout bag folded open, fries mounded well above the fold with a few spilled onto the counter, coarse salt visible, grease darkening the paper. Harsh direct on-camera flash, hot blown-out hotspot on the fries, hard black shadow thrown behind the bag. Cluttered background: a stainless prep counter, a stack of lids and another order bagged and waiting at the edge of frame. Flat phone-camera look, unretouched, mixed white balance, visible noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "name": "Serving Vessel Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Waxed Boat",
+                  "price": 1.75,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Dented Sheet Tray",
+                  "price": 3.2,
+                  "note": "Tray is Compound property and is expected back within thirty days.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Open Palm Presentation",
+                  "price": 2.6,
+                  "note": "Vessel omitted. Omission is itemized.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Grease Reclamation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Reclaimed at Compound",
+                  "price": 2.05,
+                  "note": "Oil returns to the vat of its birth.",
+                  "id": "o1"
+                },
+                {
+                  "name": "Retained by Customer",
+                  "price": 3.3,
+                  "note": "The grease travels with you and becomes your responsibility.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Reclamation Declined",
+                  "price": 3.3,
+                  "note": "Declining is processed by hand and billed by hand.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Salt Distribution Plan",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "name": "Even Distribution",
+                  "price": 0.85,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Concentrated at One End",
+                  "price": 1.45,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Applied at Destination by You",
+                  "price": 3.7,
+                  "note": "Salt is supplied loose, in the bag, unbagged.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            },
+            {
+              "name": "Crust Adhesion Class",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Class A, Adhered",
+                  "price": 1.15,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Class B, Sheds Freely",
+                  "price": 0.75,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Class D, Detached and Bagged Separately",
+                  "price": 3.4,
+                  "note": "Crust arrives as a separate product with a separate temperature.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g4"
+            }
+          ]
+        },
+        {
+          "id": "clk-019",
+          "name": "Sweet Tea, Municipal",
+          "desc": "Brewed in the same room as the gravy, on the same schedule, by the same person.",
+          "price": 2.05,
+          "calories": 720,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Beverage Pressure Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Still",
+                  "price": 1.45,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Carbonated",
+                  "price": 2.3,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Overcarbonated",
+                  "price": 4.65,
+                  "note": "Open outdoors, or over a drain, or not at all.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Ice Doctrine",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Ice Included",
+                  "price": 1.2,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Ice Withheld",
+                  "price": 2.4,
+                  "note": "Withheld ice is stored on your behalf at the facility.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Ice Delivered Separately",
+                  "price": 3.55,
+                  "note": "Arrives after the beverage, by design.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Sweetness Compliance Band",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Within Range",
+                  "price": 1.85,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Above Range",
+                  "price": 3.7,
+                  "note": "Above-range sweetness is reported quarterly to no one.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Uncharted",
+                  "price": 6.25,
+                  "note": "Band exceeded. Compound accepts no position on the outcome.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            }
+          ]
+        },
+        {
+          "id": "clk-020",
+          "name": "Half-Gallon Lemonade Draw",
+          "desc": "Drawn by the half gallon. The Compound does not sell smaller quantities and does not discuss why.",
+          "price": 3.85,
+          "calories": 1340,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Ice Doctrine",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Ice Included",
+                  "price": 1.2,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Ice Withheld",
+                  "price": 2.4,
+                  "note": "Withheld ice is stored on your behalf at the facility.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Ice Delivered Separately",
+                  "price": 3.55,
+                  "note": "Arrives after the beverage, by design.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Fluid Containment Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Sealed Jug",
+                  "price": 3.75,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Open Vessel",
+                  "price": 2.9,
+                  "note": "Open vessels are transported upright when convenient.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Uncontained",
+                  "price": 6.5,
+                  "note": "Uncontained fluid is delivered to the floor of your vehicle or entryway.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Beverage Pressure Grade",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Still",
+                  "price": 1.45,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Carbonated",
+                  "price": 2.3,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Overcarbonated",
+                  "price": 4.65,
+                  "note": "Open outdoors, or over a drain, or not at all.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            }
+          ]
+        },
+        {
+          "id": "clk-021",
+          "name": "Pecan Compliance Pie",
+          "desc": "A pie kept within its sweetness band by continuous monitoring. Monitoring stops at the door.",
+          "price": 3.55,
+          "calories": 1490,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "name": "Sweetness Compliance Band",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Within Range",
+                  "price": 1.85,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Above Range",
+                  "price": 3.7,
+                  "note": "Above-range sweetness is reported quarterly to no one.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Uncharted",
+                  "price": 6.25,
+                  "note": "Band exceeded. Compound accepts no position on the outcome.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g1"
+            },
+            {
+              "name": "Post-Consumption Waiver",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "name": "Standard Waiver",
+                  "price": 2.9,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Extended Waiver",
+                  "price": 5.45,
+                  "note": "Covers the following morning.",
+                  "id": "o2"
+                },
+                {
+                  "name": "Waiver Declined",
+                  "price": 6.8,
+                  "note": "Declining requires additional processing and a second signature.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g2"
+            },
+            {
+              "name": "Butter Deployment",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "name": "Pat",
+                  "price": 0.8,
+                  "note": null,
+                  "id": "o1"
+                },
+                {
+                  "name": "Ladle",
+                  "price": 2.55,
+                  "note": null,
+                  "id": "o2"
+                },
+                {
+                  "name": "Butter Column",
+                  "price": 7.85,
+                  "note": "Arrives standing. Remains standing for approximately nine minutes.",
+                  "id": "o3"
+                }
+              ],
+              "id": "g3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+/* DoorGorge — GORGE+ subscription, and the cancellation flow */
+window.DG = window.DG || {};
+(function (DG) {
+  'use strict';
+
+  var FEATURES = [
+    ['zap',    '$0 delivery fees', 'On orders over $312.00. Below that threshold the fee is reduced by 30%.'],
+    ['bike',   'Priority Gorger assignment', 'Your order is assigned to a Gorger first, and then reassigned.'],
+    ['tag',    'Member pricing', 'Applies to 4 items across the catalogue. The items rotate weekly and are not listed.'],
+    ['gift',   'GorgeBux™ back', '2% back on fees, redeemable against fees.'],
+    ['shield', 'Fee Protection™', 'Protects you from fee increases above 40% in a single month.'],
+    ['clock',  'Extended support hours', 'Support is available 24 hours a day, in a window we select.'],
+  ];
+
+  DG.screens.register('plus', {
+    tab: 'account',
+    hideCartBar: true,
+    appbar: function () {
+      return '<div class="bar"><button class="iconbtn" data-back>' + DG.icon('back', 20) + '</button>' +
+        '<h1 style="font:var(--t-head)">GORGE+</h1></div>';
+    },
+    render: function () {
+      var st = DG.S();
+      var active = st.plus.active;
+      var months = Math.max(1, Math.round((Date.now() - (st.plus.since || Date.now())) / 2592000000) || 1);
+      var h = '';
+
+      h += '<div class="plushero">' +
+        (active ? '' : '<img src="assets/app/gorgeplus-hero.webp" alt="" onerror="this.remove()">') +
+        '<div class="ph-k">' + (active ? 'MEMBERSHIP ACTIVE' : 'INFINITY PRIME ELITE') + '</div>' +
+        '<h1>' + (active ? 'You are a member' : 'Pay a fee to reduce your fees') + '</h1>' +
+        '<p>' + (active
+          ? 'Member since ' + DG.dayLabel(st.plus.since) + '. ' + DG.plural(months, 'month') + ' billed. ' + DG.money(st.plus.saved || 0) + ' saved.'
+          : '$19.99 per month. Waives the delivery fee on orders over $312.00, which is more than you have ever spent in one order.') +
+        '</p></div>';
+
+      if (active) {
+        var paid = DG.round2(19.99 * months);
+        h += '<div class="statgrid">' +
+          '<div><b>' + DG.money(paid) + '</b><span>PAID IN DUES</span></div>' +
+          '<div><b style="color:var(--good)">' + DG.money(st.plus.saved || 0) + '</b><span>SAVED</span></div>' +
+          '<div><b style="color:var(--bad)">' + DG.money(paid - (st.plus.saved || 0)) + '</b><span>NET</span></div></div>' +
+          '<p style="font:var(--t-cap);color:var(--ink-3);padding:12px 16px;line-height:1.5">' +
+          'Net figure is shown for transparency and is subject to the Fee Transparency Fee.</p>';
+      }
+
+      h += '<div style="border-top:8px solid var(--surface-2);margin-top:' + (active ? '8px' : '0') + '">' +
+        DG.C.sectionHead('What is included') +
+        FEATURES.map(function (f) {
+          return '<div class="plusfeat">' + DG.icon(f[0], 19) +
+            '<span><b>' + DG.esc(f[1]) + '</b><span>' + DG.esc(f[2]) + '</span></span></div>';
+        }).join('') + '</div>';
+
+      h += '<div style="border-top:8px solid var(--surface-2);margin-top:10px">' +
+        DG.C.sectionHead('What is not included') +
+        ['The Service Fee', 'The Regulatory Response Fee', 'The Bag Fee', 'The Bag Handle Fee',
+         'The Peak Demand Multiplier', 'Convenience Rounding™', 'The GORGE+ Benefit Realization Fee ($1.99, members only)']
+          .map(function (t) {
+            return '<div class="plusfeat" style="opacity:.72">' + DG.icon('x', 19) + '<span><b style="font-weight:400">' + DG.esc(t) + '</b></span></div>';
+          }).join('') + '</div>';
+
+      if (active) {
+        h += '<div style="padding:20px 16px 8px"><button class="btn btn--ghost btn--block" data-cancel>Manage membership</button></div>';
+      } else {
+        h += '<div style="padding:20px 16px 8px">' +
+          '<button class="btn btn--dark btn--lg btn--block" data-join>Start 30-day free trial</button>' +
+          '<p style="text-align:center;font:var(--t-cap);color:var(--ink-3);margin:10px 0 0;line-height:1.5">' +
+          'Then $19.99/month. Cancel anytime. Cancellation takes effect after the following billing cycle.</p></div>';
+      }
+
+      h += '<div class="fineprint">GORGE+ INFINITY PRIME ELITE™ is a subscription. Subscriptions renew. Renewal is automatic and is ' +
+        'the only automatic part of this service.</div>';
+      return h;
+    },
+    mount: function (root) {
+      DG.on(root, 'click', '[data-join]', function () {
+        DG.store.set(function (st) {
+          st.plus.active = true; st.plus.since = Date.now(); st.plus.trialUsed = true;
+          st.plus.renewsOn = DG.dayLabel(Date.now() + 30 * 86400000) + ', automatically';
+          st.plus.saved = 0;
+          return st;
+        });
+        DG.toast('GORGE+ activated. Your first billing occurs in 30 days, or sooner.', { kind: 'plus', ms: 3800 });
+        DG.nav.refresh();
+      });
+      DG.on(root, 'click', '[data-cancel]', function () { cancelStep(1); });
+    },
+  });
+
+  /* ---------- the cancellation flow ---------- */
+  function cancelStep(n) {
+    var st = DG.S();
+    if (n === 1) {
+      DG.sheet.open({
+        title: 'Manage membership',
+        html: '<div class="mrow">' + DG.icon('card', 19) + '<span class="mr-b"><b>Billing</b><span>$19.99 monthly · ' + DG.esc(st.plus.renewsOn || 'renews automatically') + '</span></span></div>' +
+          '<div class="mrow">' + DG.icon('gift', 19) + '<span class="mr-b"><b>GorgeBux™</b><span>' + DG.money(st.credits) + ' available</span></span></div>' +
+          '<button class="mrow" data-next>' + DG.icon('x', 19) + '<span class="mr-b"><b>Cancel membership</b><span>Available online.</span></span>' +
+          '<span class="mr-r">' + DG.icon('fwd', 15) + '</span></button>',
+        onMount: function (b, h) { DG.on(b, 'click', '[data-next]', function () { h.close(); setTimeout(function () { cancelStep(2); }, 220); }); },
+      });
+    } else if (n === 2) {
+      DG.sheet.open({
+        title: 'Before you go',
+        sub: 'Here is what you would lose.',
+        html: FEATURES.map(function (f) {
+          return '<div class="plusfeat">' + DG.icon(f[0], 19) + '<span><b>' + DG.esc(f[1]) + '</b><span>' + DG.esc(f[2]) + '</span></span></div>';
+        }).join('') +
+        '<div style="padding:18px 16px 8px"><p style="font:var(--t-sub);color:var(--ink-2);line-height:1.55;margin:0">' +
+        'You have saved ' + DG.money(st.plus.saved || 0) + ' with GORGE+. Members save an average of ' + DG.money(41.20) +
+        ', which is an average of all members, including members who spend more than you.</p></div>',
+        footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
+          '<button class="btn btn--dark btn--block" data-keep>Keep my membership</button>' +
+          '<button class="linkbtn" data-next style="color:var(--ink-3);font-size:12.5px;text-align:center">Continue to cancel</button></div>',
+        onMount: function (b, h) {
+          DG.on(h.el, 'click', '[data-keep]', function () { h.close(); DG.toast('Membership retained. Thank you.'); });
+          DG.on(h.el, 'click', '[data-next]', function () { h.close(); setTimeout(function () { cancelStep(3); }, 220); });
+        },
+      });
+    } else if (n === 3) {
+      DG.sheet.open({
+        title: 'A one-time offer',
+        sub: 'Available to you only, and to everyone.',
+        html: '<div style="padding:6px 16px 18px">' +
+          '<div style="background:var(--plus);color:var(--bg);border-radius:18px;padding:20px;text-align:center">' +
+          '<div style="font:var(--t-micro);letter-spacing:.16em;color:var(--gold)">RETENTION OFFER</div>' +
+          '<div style="font:900 32px/1.06 var(--display);letter-spacing:-1px;margin:8px 0 6px">50% off</div>' +
+          '<div style="font:var(--t-sub);opacity:.75">for two months, then $24.99/month</div></div>' +
+          '<p style="font:var(--t-cap);color:var(--ink-3);margin:14px 0 0;line-height:1.5">' +
+          'The post-promotional rate reflects a scheduled price adjustment that would have applied regardless.</p></div>',
+        footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
+          '<button class="btn btn--primary btn--block" data-accept>Accept 50% off</button>' +
+          '<button class="linkbtn" data-next style="color:var(--ink-3);font-size:12.5px;text-align:center">No thanks, cancel</button></div>',
+        onMount: function (b, h) {
+          DG.on(h.el, 'click', '[data-accept]', function () {
+            h.close();
+            DG.store.set(function (s) { s.plus.retentionUsed = true; return s; });
+            DG.toast('Discount applied for two months. Your rate then becomes $24.99.', { kind: 'plus', ms: 3600 });
+          });
+          DG.on(h.el, 'click', '[data-next]', function () { h.close(); setTimeout(function () { cancelStep(4); }, 220); });
+        },
+      });
+    } else if (n === 4) {
+      var REASONS = ['Too expensive', 'I do not order enough', 'I never reached the $312 threshold',
+        'The benefits did not apply to me', 'I did not know I had this', 'Other'];
+      var pick = null;
+      DG.sheet.open({
+        title: 'Why are you cancelling?', sub: 'A selection is required to continue.',
+        html: REASONS.map(function (r, i) {
+          return '<button class="opt" role="radio" aria-checked="false" data-reason="' + i + '">' +
+            '<span class="mark"></span><span class="opt-b"><b>' + DG.esc(r) + '</b></span></button>';
+        }).join(''),
+        footer: '<button class="btn btn--dark btn--block" data-next disabled>Continue</button>',
+        onMount: function (b, h) {
+          DG.on(b, 'click', '[data-reason]', function (e, t) {
+            pick = t.dataset.reason;
+            DG.qsa('[data-reason]', b).forEach(function (x) { x.setAttribute('aria-checked', x.dataset.reason === pick); });
+            var btn = h.el.querySelector('[data-next]'); if (btn) btn.disabled = false;
+          });
+          DG.on(h.el, 'click', '[data-next]', function () {
+            if (pick == null) return;
+            h.close(); setTimeout(function () { cancelStep(5); }, 220);
+          });
+        },
+      });
+    } else if (n === 5) {
+      DG.sheet.open({
+        title: 'One more step',
+        html: '<div style="padding:6px 16px 18px">' +
+          '<p style="font:var(--t-body);color:var(--ink-2);line-height:1.6;margin:0 0 16px">' +
+          'To complete cancellation, call the Membership Retention Line during business hours.</p>' +
+          '<div style="background:var(--surface-2);border-radius:14px;padding:18px;text-align:center">' +
+          '<div style="font:800 22px var(--mono);letter-spacing:-.5px">1-800-GORGE-NO</div>' +
+          '<div style="font:var(--t-cap);color:var(--ink-3);margin-top:6px">Tue &amp; Thu, 10:15 AM – 10:40 AM</div></div>' +
+          '<p style="font:var(--t-cap);color:var(--ink-3);margin:16px 0 0;line-height:1.5">' +
+          'Average hold time is not published. Business hours are observed in a time zone we have not disclosed.</p></div>',
+        footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
+          '<button class="btn btn--dark btn--block" data-keep>Never mind, keep it</button>' +
+          '<button class="linkbtn" data-finish style="color:var(--ink-3);font-size:12.5px;text-align:center">Cancel online instead</button></div>',
+        onMount: function (b, h) {
+          DG.on(h.el, 'click', '[data-keep]', function () { h.close(); DG.toast('Membership retained. Thank you.'); });
+          DG.on(h.el, 'click', '[data-finish]', function () {
+            h.close();
+            DG.store.set(function (s) {
+              s.plus.active = false; s.plus.cancelAttempts = (s.plus.cancelAttempts || 0) + 1;
+              s.plus.since = null; s.plus.renewsOn = null;
+              return s;
+            });
+            setTimeout(function () {
+              DG.modal.open({
+                html: '<h2>Membership cancelled</h2>' +
+                  '<p>Your cancellation takes effect after the following billing cycle. You have been charged for that cycle. ' +
+                  'You may continue to use GORGE+ benefits, none of which are currently active.</p>' +
+                  '<div class="modal-acts"><button class="btn btn--dark btn--block" data-ok>Understood</button></div>',
+                onMount: function (bb, hh) { DG.on(bb, 'click', '[data-ok]', function () { hh.close(); DG.nav.refresh(); }); },
+              });
+            }, 260);
+          });
+        },
+      });
+    }
+  }
+})(window.DG);

@@ -1,0 +1,54 @@
+{
+  "slug": "entirefoods",
+  "model": "bytedance/seedream-4.5",
+  "images": [
+    {
+      "file": "logo.webp",
+      "prompt": "Flat vector brand logo artwork rendered EDGE TO EDGE. The deep sage-green background colour must reach and touch all four edges of the square canvas: no cream border, no off-white margin, no inner panel, no card, no frame, no rounded container, no drop shadow, no outline. On that green field: a hand-drawn chalk wreath of leaves encircling a stylized two-leaf sprout, drawn in cream chalk with visible chalk dust texture and a gold-ochre accent on the sprout stem, artisanal chalkboard hand-lettering styling. Beneath the sprout, inside the wreath, a wordmark hand-lettered in cream chalk serif capitals on two lines. The leaves must be completely blank with nothing written on them, and the word must appear once only, never repeated or duplicated anywhere in the image. The only text anywhere in the image is exactly: ENTIRE FOODS",
+      "predictionId": "1yrw0dqqmxrmy0d0461t9fp5ac",
+      "predictTime": 13.716015202
+    },
+    {
+      "file": "hero.webp",
+      "prompt": "Cinematic wide establishing photograph. The produce section of an upscale natural grocery: raw wood crates of misted greens glistening, burlap sacks stacked at the aisle end, and a single wildly overpriced item alone on a wooden pedestal under a narrow spotlight in the centre of the aisle. Deep sage-green and gold-ochre palette. Soft diffuse north daylight through tall windows, gentle shadows, matte natural texture, earnest farmers-market styling. 24mm, f/5.6, deep focus, gentle natural contrast, faint haze in the air. Completely empty of people. Deadpan hyperreal commercial realism. Critically important: every surface is completely blank and unmarked. Remove all signage, all chalkboard price cards, all tags, all stickers, all writing and all numbers from the scene. No text, no letters, no numbers, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "pe3vn9v31xrmt0d0461ray4ybc",
+      "predictTime": 11.883408136
+    },
+    {
+      "file": "items/01.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a compostable clamshell hot-bar container packed far past its hinge, glossy roasted root vegetables, turmeric-stained cauliflower, wild rice, braised greens and chickpeas heaped into a straining dome that has forced the lid open, sauce sliding down the outer wall onto the table, steam rising in visible ribbons. Shot from directly above and slightly inside the vessel, looking down into the food so the container walls frame every edge. A raw reclaimed-wood market table with woven baskets, burlap and a small blank chalkboard card just out of focus behind. Soft diffuse north daylight through a large window, gentle shadows, matte natural texture, earnest farmers-market styling. 90mm macro, f/4. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "3ebrvkgpf9rmr0d04608zgzndr",
+      "predictTime": 26.503822758
+    },
+    {
+      "file": "items/02.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an enormous shallow ceramic bowl of grains built into a leaning tower, farro, black quinoa, roasted squash wedges, shaved fennel, pickled onion, a thick tahini pour cascading over one side and pooling on the wood, microgreens overhanging the rim by several inches, the bowl visibly straining under the load. Three-quarter hero angle, camera slightly above table height, background falling away. A raw reclaimed-wood market table with woven baskets, burlap and a small blank chalkboard card blurred behind. Soft diffuse north daylight through a large window, gentle shadows, matte natural texture, earnest farmers-market styling. 50mm, f/2.8, shallow depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "exy4e3nfthrmr0d0460b272z5m",
+      "predictTime": 14.848459882
+    },
+    {
+      "file": "items/03.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of the shoulder of a heavy unlabelled amber-tinted glass water bottle, beaded with cold condensation, one droplet caught mid-fall, the water inside faintly mineral and greenish, a cork-and-wax seal entering the top edge of frame. It rests on a raw reclaimed-wood market table beside damp burlap and the tight weave of a basket, a small blank chalkboard card melting into bokeh behind. Soft diffuse north daylight through a large window, gentle shadows, matte natural texture, earnest farmers-market styling. 100mm macro, f/2.8, razor-thin focal plane on the droplets, cool highlights against warm wood. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "7z6pk20tbsrmt0d0460sshj90m",
+      "predictTime": 11.961870041
+    },
+    {
+      "file": "items/04.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean cross-section cutaway of an immense unbaked cashew-and-date wheel with one quarter removed to reveal dense stratified layers, a dark compressed date base, a pale cultured cashew body, a bright green pistachio seam, and glossy raw cacao ganache on top sagging heavily over the cut edge, a slow bead of coconut oil running down the exposed face. The wheel sits on a raw reclaimed-wood market table with burlap, woven baskets and a small blank chalkboard card out of focus behind. Soft diffuse north daylight through a large window, gentle shadows, matte natural texture, earnest farmers-market styling. 85mm, f/5.6, straight on to the cut face, crisp layer separation. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "xb7bfsvrv5rmr0d0460v6shxsr",
+      "predictTime": 12.15407528
+    },
+    {
+      "file": "items/05.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a battered natural-wood serving tray lined with unbleached parchment, overloaded with dozens of dark seed-and-mushroom-powder clusters, ashy cocoa-dusted domes, amber honey-bound bars and loose scatters of hemp seed spilling off the liner onto the table, one cluster split open to show a glossy binder, a faint powder haze hanging in the air. Overhead three-quarter view of the tray with the parchment edges curling. A raw reclaimed-wood market table with woven baskets and burlap, a small blank chalkboard card blurred behind. Soft diffuse north daylight through a large window, gentle shadows, matte natural texture, earnest farmers-market styling. 65mm, f/4, tactile grain. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "ne8bbcyr5srmr0d0460v1adsp8",
+      "predictTime": 12.166205488
+    },
+    {
+      "file": "items/06.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a perfectly overhead flat-lay of a bulk-bin allocation, eight open kraft-paper bags slumped and overfilled with steel-cut oats, black beluga lentils, dried mulberries, cacao nibs, buckwheat, pink salt crystals, whole almonds and rolled spelt, grains spilling in wide fans across the boards, a wooden scoop half buried in one bag, the corner of a burlap sack and the rim of a woven basket entering the frame. A raw reclaimed-wood market table, a small blank chalkboard card out of focus at the edge. Soft diffuse north daylight through a large window, gentle shadows, matte natural texture, earnest farmers-market styling. 35mm directly overhead, f/8, even sharpness corner to corner. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "jj0wy8sqyxrmw0d046193jnd6r",
+      "predictTime": 18.391299234
+    }
+  ]
+}

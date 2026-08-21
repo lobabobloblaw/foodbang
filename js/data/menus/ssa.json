@@ -1,0 +1,3406 @@
+{
+  "slug": "ssa",
+  "name": "Subterranean Sandwich Authority",
+  "shortName": "Sandwich Authority",
+  "tagline": "YOUR SANDWICH IS AN APPLICATION.",
+  "cuisine": "Sandwiches",
+  "categories": [
+    "sandwiches",
+    "fast-food"
+  ],
+  "rating": 2.3,
+  "ratingCount": 41287,
+  "deliveryMin": 38,
+  "deliveryMax": 74,
+  "deliveryFee": 5.49,
+  "distanceMi": 2.3,
+  "priceTier": 2,
+  "gorgePlus": true,
+  "closesAt": "4:30 PM",
+  "address": "1 Federal Sandwich Plaza, Sublevel 3, Suite B-0, Grandview Commons Office Park, Exit 41B",
+  "about": "The Subterranean Sandwich Authority is a federally chartered agency responsible for the intake, review, and issuance of sandwiches within this jurisdiction. Submitting an application does not guarantee a sandwich. Determinations are final and are not disclosed.",
+  "announcement": "The $5 Footlong promotion concluded in 2016. Signage removal is scheduled and funded. Pricing is unaffected.",
+  "promos": [
+    "Spend $60, Save $2.50"
+  ],
+  "reviews": [
+    {
+      "name": "Denise R.",
+      "stars": 2,
+      "date": "Aug 14",
+      "text": "My application was denied at the counter and I was billed for the denial. The sandwich I eventually received was excellent."
+    },
+    {
+      "name": "Marcus H.",
+      "stars": 4,
+      "date": "Aug 11",
+      "text": "Waited fifty-one minutes in the rope maze. The take-a-number dispenser was fully stocked, which I appreciated."
+    },
+    {
+      "name": "P. Vandergriff",
+      "stars": 1,
+      "date": "Aug 9",
+      "text": "Closes at 4:30 PM. I work until 5. I have not eaten here in four years and I continue to order."
+    },
+    {
+      "name": "Tonya B.",
+      "stars": 3,
+      "date": "Aug 6",
+      "text": "I declined the bun and was charged for the bun. Staff explained the bake had already occurred. That is fair."
+    },
+    {
+      "name": "Gerald Okonkwo",
+      "stars": 5,
+      "date": "Aug 2",
+      "text": "The meatball determination came back favorable. Sauce reached my mailbox before I did."
+    }
+  ],
+  "menu": [
+    {
+      "id": "form-6b-footlong-determinations",
+      "name": "Form 6-B: Footlong Determinations",
+      "blurb": "Twelve inches as defined by federal standard. Standard subject to revision without notice.",
+      "items": [
+        {
+          "id": "ssa-001",
+          "name": "The Federally Measured Footlong",
+          "desc": "A submarine sandwich measured against the Authority's reference rail. If it measures short, the rail is recalibrated and the sandwich is issued.",
+          "price": 6.15,
+          "calories": 1840,
+          "badges": [
+            "#1 Most Liked",
+            "Regionally Legal"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: one enormous twelve-inch cold-cut submarine sandwich laid dead straight on a stainless steel prep rail, the lid of bread lifted and propped so shingled folds of pale deli meat spill over both long edges and sag onto the metal, shredded lettuce avalanching out, oil pooling in a bright slick under the loaf. Setting: a laminated stainless prep rail behind a scratched acrylic sneeze guard, institutional beige tile wall, a blank unmarked laminated form taped to the glass. Lighting: flat cold overhead fluorescent tube light, no shadow drama, bureaucratic and slightly green, unflattering and honest. Camera: strict overhead flat-lay, 50mm, deep focus edge to edge, flat clinical contrast, every crumb visible. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Eligibility Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White, Standard Issue",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wheat, Whole-Grain Compliant",
+                  "price": 4.65,
+                  "note": "Compliance is verified at the oven, not at the counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Herb & Cheese, Restricted Distribution",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread (Open-Face Determination)",
+                  "price": 4.15,
+                  "note": "The loaf is baked regardless. You are billed for the bake, not the receipt."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Length Determination",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Six-Inch, Provisional",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Twelve-Inch, Federal Standard",
+                  "price": 6.9,
+                  "note": "Measured to standard. Standard is measured separately."
+                },
+                {
+                  "id": "o3",
+                  "name": "Fifteen-Inch, Regional Tolerance",
+                  "price": 11.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed Length, Thirty-Six Inch",
+                  "price": 24.75,
+                  "note": "Requires a level surface and a second adult."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Processing Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Review",
+                  "price": 2.35,
+                  "note": "Fourteen to twenty minutes. Not a guarantee."
+                },
+                {
+                  "id": "o2",
+                  "name": "Expedited Review",
+                  "price": 6.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Provisional Approval, Appealable",
+                  "price": 1.95,
+                  "note": "May be revoked while you are eating."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Vegetable Allotment Level",
+              "required": false,
+              "min": 0,
+              "max": 6,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lettuce Ration",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tomato Quota, Two Discs",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Onion Disbursement",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Green Pepper Entitlement",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Cucumber Surplus Release",
+                  "price": 1.05,
+                  "note": "Released only when surplus exists."
+                },
+                {
+                  "id": "o6",
+                  "name": "Full Allotment Override",
+                  "price": 9.45,
+                  "note": "Waives per-vegetable review. Does not waive review."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Condiment Discharge Rate",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Metered Drizzle",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standard Discharge",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unmetered",
+                  "price": 7.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Municipal Standpipe Coupling",
+                  "price": 19.45,
+                  "note": "Requires a residence with a certified backflow preventer."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ssa-002",
+          "name": "Cold Cut Combination, Tier III",
+          "desc": "Three classifications of pressed deli meat, folded into a roll by an employee holding a clipboard. Tier assignment is final.",
+          "price": 5.45,
+          "calories": 1620,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Eligibility Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White, Standard Issue",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wheat, Whole-Grain Compliant",
+                  "price": 4.65,
+                  "note": "Compliance is verified at the oven, not at the counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Herb & Cheese, Restricted Distribution",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread (Open-Face Determination)",
+                  "price": 4.15,
+                  "note": "The loaf is baked regardless. You are billed for the bake, not the receipt."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Protein Density Filing",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Density",
+                  "price": 3.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Filing",
+                  "price": 8.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Reduced Density, Appeal Pending",
+                  "price": 3.85,
+                  "note": "Reduction is a modification. Modifications are billed at parity."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Toasting Warrant",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Toasted",
+                  "price": 3.1,
+                  "note": "Heat applied under warrant."
+                },
+                {
+                  "id": "o2",
+                  "name": "Untoasted",
+                  "price": 3.1,
+                  "note": "The warrant is filed either way."
+                },
+                {
+                  "id": "o3",
+                  "name": "Partially Toasted, Contested",
+                  "price": 1.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Vegetable Allotment Level",
+              "required": false,
+              "min": 0,
+              "max": 6,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lettuce Ration",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tomato Quota, Two Discs",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Onion Disbursement",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Green Pepper Entitlement",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Cucumber Surplus Release",
+                  "price": 1.05,
+                  "note": "Released only when surplus exists."
+                },
+                {
+                  "id": "o6",
+                  "name": "Full Allotment Override",
+                  "price": 9.45,
+                  "note": "Waives per-vegetable review. Does not waive review."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Napkin Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One (1)",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three (3)",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bulk Entitlement, Two Hundred Count",
+                  "price": 8.75,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ssa-003",
+          "name": "Tuna Reserve Sandwich, Vault Stock",
+          "desc": "Drawn from the Authority's strategic tuna reserve. The reserve is rotated annually and is currently full.",
+          "price": 5.95,
+          "calories": 1490,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Eligibility Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White, Standard Issue",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wheat, Whole-Grain Compliant",
+                  "price": 4.65,
+                  "note": "Compliance is verified at the oven, not at the counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Herb & Cheese, Restricted Distribution",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread (Open-Face Determination)",
+                  "price": 4.15,
+                  "note": "The loaf is baked regardless. You are billed for the bake, not the receipt."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Filing Fee Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Filing Fee",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reduced Filing Fee, Hardship",
+                  "price": 2.85,
+                  "note": "Hardship status does not alter the fee. It alters the form."
+                },
+                {
+                  "id": "o3",
+                  "name": "Filing Fee Waiver Application",
+                  "price": 4.95,
+                  "note": "The waiver application carries its own fee."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Chain of Custody Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Handler",
+                  "price": 2.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Dual Handler, Witnessed",
+                  "price": 5.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Untracked",
+                  "price": 3.75,
+                  "note": "Untracked custody requires a supervisory sign-off, billed hourly at fifteen-minute minimum."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Condiment Discharge Rate",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Metered Drizzle",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standard Discharge",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unmetered",
+                  "price": 7.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Municipal Standpipe Coupling",
+                  "price": 19.45,
+                  "note": "Requires a residence with a certified backflow preventer."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Sodium Disclosure Election",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Waive Disclosure",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Printed Disclosure",
+                  "price": 2.15,
+                  "note": "Printing is billed at agency rate."
+                },
+                {
+                  "id": "o3",
+                  "name": "Disclosure Read Aloud by Staff",
+                  "price": 4.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ssa-004",
+          "name": "Spicy Italian, Restricted Distribution",
+          "desc": "Cured meats of a heat class requiring an on-file acknowledgement. Acknowledgement is collected at checkout and retained indefinitely.",
+          "price": 6.35,
+          "calories": 1970,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Eligibility Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White, Standard Issue",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wheat, Whole-Grain Compliant",
+                  "price": 4.65,
+                  "note": "Compliance is verified at the oven, not at the counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Herb & Cheese, Restricted Distribution",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread (Open-Face Determination)",
+                  "price": 4.15,
+                  "note": "The loaf is baked regardless. You are billed for the bake, not the receipt."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Toasting Warrant",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Toasted",
+                  "price": 3.1,
+                  "note": "Heat applied under warrant."
+                },
+                {
+                  "id": "o2",
+                  "name": "Untoasted",
+                  "price": 3.1,
+                  "note": "The warrant is filed either way."
+                },
+                {
+                  "id": "o3",
+                  "name": "Partially Toasted, Contested",
+                  "price": 1.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Signature Requirement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Digital Signature",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wet Signature, On Premises",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Signature Waived",
+                  "price": 4.1,
+                  "note": "Waivers require a countersignature, which is billed."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Vegetable Allotment Level",
+              "required": false,
+              "min": 0,
+              "max": 6,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lettuce Ration",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tomato Quota, Two Discs",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Onion Disbursement",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Green Pepper Entitlement",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Cucumber Surplus Release",
+                  "price": 1.05,
+                  "note": "Released only when surplus exists."
+                },
+                {
+                  "id": "o6",
+                  "name": "Full Allotment Override",
+                  "price": 9.45,
+                  "note": "Waives per-vegetable review. Does not waive review."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Appeal Rights Election",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Reserve Right to Appeal",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Waive Appeal Rights",
+                  "price": 1.2,
+                  "note": "Waiver is permanent and applies to future sandwiches."
+                },
+                {
+                  "id": "o3",
+                  "name": "Expedited Appeal Hearing",
+                  "price": 12.65,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ssa-005",
+          "name": "Turkey Breast, Provisional Grade",
+          "desc": "Poultry approved for issue pending final grading. Final grading has been pending since the facility opened.",
+          "price": 4.95,
+          "calories": 1180,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Eligibility Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White, Standard Issue",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wheat, Whole-Grain Compliant",
+                  "price": 4.65,
+                  "note": "Compliance is verified at the oven, not at the counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Herb & Cheese, Restricted Distribution",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread (Open-Face Determination)",
+                  "price": 4.15,
+                  "note": "The loaf is baked regardless. You are billed for the bake, not the receipt."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Length Determination",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Six-Inch, Provisional",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Twelve-Inch, Federal Standard",
+                  "price": 6.9,
+                  "note": "Measured to standard. Standard is measured separately."
+                },
+                {
+                  "id": "o3",
+                  "name": "Fifteen-Inch, Regional Tolerance",
+                  "price": 11.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed Length, Thirty-Six Inch",
+                  "price": 24.75,
+                  "note": "Requires a level surface and a second adult."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Queue Position Assignment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Rope Lane",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Priority Rope Lane",
+                  "price": 5.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Rear Entry, Unsupervised",
+                  "price": 0.85,
+                  "note": "Unsupervised entry voids all determinations."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Cheese Determination",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Processed Triangles, Two",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Shredded Blend, Metered",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cheese Rider, Amendment C",
+                  "price": 5.85,
+                  "note": "Attaches to the application, not the sandwich."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Napkin Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One (1)",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three (3)",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bulk Entitlement, Two Hundred Count",
+                  "price": 8.75,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heated-line-determinations",
+      "name": "Heated Line Determinations",
+      "blurb": "Heat is applied only after the warming review clears. The review is a formality that takes time.",
+      "items": [
+        {
+          "id": "ssa-006",
+          "name": "Meatball Marinara Determination",
+          "desc": "Nine spheres of ground beef held in a warming cabinet at a temperature recorded on a clipboard nobody reads. Sauce is applied at volume.",
+          "price": 5.85,
+          "calories": 2340,
+          "badges": [
+            "#1 Most Liked",
+            "Popular"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a footlong sub roll split open on a white paper plate, packed with nine large meatballs in thick red marinara sauce, melted shredded mozzarella laid over the top and going patchy where it cooled, sauce soaking into the roll and running onto the plate, a plastic fork beside it. It sits on a scratched stainless prep counter in a plain sandwich shop with beige tile on the wall behind. Harsh direct on-camera flash, hot blown-out hotspot on the sauce, hard black shadow thrown behind the plate. Framed slightly crooked with the plate cut off at the right edge. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Eligibility Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White, Standard Issue",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wheat, Whole-Grain Compliant",
+                  "price": 4.65,
+                  "note": "Compliance is verified at the oven, not at the counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Herb & Cheese, Restricted Distribution",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread (Open-Face Determination)",
+                  "price": 4.15,
+                  "note": "The loaf is baked regardless. You are billed for the bake, not the receipt."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Application Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Warming Cabinet, Full Cycle",
+                  "price": 4.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Warming Cabinet, Partial Cycle",
+                  "price": 2.45,
+                  "note": "Cycle terminated early at agency discretion."
+                },
+                {
+                  "id": "o3",
+                  "name": "Ambient Determination",
+                  "price": 2.45,
+                  "note": "Heat is withheld. Withholding is a service."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Marinara Containment Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sealed Containment",
+                  "price": 3.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standard Seepage",
+                  "price": 2.15,
+                  "note": "Seepage is expected and is not a defect."
+                },
+                {
+                  "id": "o3",
+                  "name": "Uncontained, Waiver Signed",
+                  "price": 5.75,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Cheese Determination",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Processed Triangles, Two",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Shredded Blend, Metered",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cheese Rider, Amendment C",
+                  "price": 5.85,
+                  "note": "Attaches to the application, not the sandwich."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Condiment Discharge Rate",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Metered Drizzle",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standard Discharge",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unmetered",
+                  "price": 7.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Municipal Standpipe Coupling",
+                  "price": 19.45,
+                  "note": "Requires a residence with a certified backflow preventer."
+                }
+              ]
+            }
+          ],
+          "photoStyle": "amateur"
+        },
+        {
+          "id": "ssa-007",
+          "name": "Steak & Cheese Product Filing",
+          "desc": "Shaved beef and a cheese-adjacent product that satisfies the Authority's melt criteria. The product is not required to satisfy any other criteria.",
+          "price": 7.25,
+          "calories": 2110,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Eligibility Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White, Standard Issue",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wheat, Whole-Grain Compliant",
+                  "price": 4.65,
+                  "note": "Compliance is verified at the oven, not at the counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Herb & Cheese, Restricted Distribution",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread (Open-Face Determination)",
+                  "price": 4.15,
+                  "note": "The loaf is baked regardless. You are billed for the bake, not the receipt."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Heat Application Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Warming Cabinet, Full Cycle",
+                  "price": 4.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Warming Cabinet, Partial Cycle",
+                  "price": 2.45,
+                  "note": "Cycle terminated early at agency discretion."
+                },
+                {
+                  "id": "o3",
+                  "name": "Ambient Determination",
+                  "price": 2.45,
+                  "note": "Heat is withheld. Withholding is a service."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Protein Density Filing",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Density",
+                  "price": 3.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Filing",
+                  "price": 8.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Reduced Density, Appeal Pending",
+                  "price": 3.85,
+                  "note": "Reduction is a modification. Modifications are billed at parity."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Vegetable Allotment Level",
+              "required": false,
+              "min": 0,
+              "max": 6,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lettuce Ration",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tomato Quota, Two Discs",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Onion Disbursement",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Green Pepper Entitlement",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Cucumber Surplus Release",
+                  "price": 1.05,
+                  "note": "Released only when surplus exists."
+                },
+                {
+                  "id": "o6",
+                  "name": "Full Allotment Override",
+                  "price": 9.45,
+                  "note": "Waives per-vegetable review. Does not waive review."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Utensil Requisition",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fork, Provisional",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Spork, Dual-Use Certified",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Full Setting, Sealed",
+                  "price": 3.45,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ssa-008",
+          "name": "Chicken Teriyaki, Conditionally Approved",
+          "desc": "Approved on the condition that it is consumed on the day of issue. The condition is not enforced but is recorded.",
+          "price": 6.45,
+          "calories": 1760,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Eligibility Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White, Standard Issue",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wheat, Whole-Grain Compliant",
+                  "price": 4.65,
+                  "note": "Compliance is verified at the oven, not at the counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Herb & Cheese, Restricted Distribution",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread (Open-Face Determination)",
+                  "price": 4.15,
+                  "note": "The loaf is baked regardless. You are billed for the bake, not the receipt."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Processing Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Review",
+                  "price": 2.35,
+                  "note": "Fourteen to twenty minutes. Not a guarantee."
+                },
+                {
+                  "id": "o2",
+                  "name": "Expedited Review",
+                  "price": 6.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Provisional Approval, Appealable",
+                  "price": 1.95,
+                  "note": "May be revoked while you are eating."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Glaze Viscosity Schedule",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Schedule A, Thin",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Schedule B, Standard",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Schedule C, Structural",
+                  "price": 6.55,
+                  "note": "Sets firm during transit. This is normal."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Vegetable Allotment Level",
+              "required": false,
+              "min": 0,
+              "max": 6,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lettuce Ration",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tomato Quota, Two Discs",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Onion Disbursement",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Green Pepper Entitlement",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Cucumber Surplus Release",
+                  "price": 1.05,
+                  "note": "Released only when surplus exists."
+                },
+                {
+                  "id": "o6",
+                  "name": "Full Allotment Override",
+                  "price": 9.45,
+                  "note": "Waives per-vegetable review. Does not waive review."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Sodium Disclosure Election",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Waive Disclosure",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Printed Disclosure",
+                  "price": 2.15,
+                  "note": "Printing is billed at agency rate."
+                },
+                {
+                  "id": "o3",
+                  "name": "Disclosure Read Aloud by Staff",
+                  "price": 4.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ssa-009",
+          "name": "Rotisserie-Style Poultry Disbursement",
+          "desc": "Poultry that has been near a rotisserie. Proximity is documented in the file and available upon written request.",
+          "price": 6.75,
+          "calories": 1930,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Eligibility Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White, Standard Issue",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wheat, Whole-Grain Compliant",
+                  "price": 4.65,
+                  "note": "Compliance is verified at the oven, not at the counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Herb & Cheese, Restricted Distribution",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread (Open-Face Determination)",
+                  "price": 4.15,
+                  "note": "The loaf is baked regardless. You are billed for the bake, not the receipt."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Wrapper Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Paper, Agency Issue",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil, Thermal Retention",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unwrapped, Hand-Carry Release",
+                  "price": 3.65,
+                  "note": "Unwrapped transport requires a signed release, printed on site at agency rate."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Heat Application Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Warming Cabinet, Full Cycle",
+                  "price": 4.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Warming Cabinet, Partial Cycle",
+                  "price": 2.45,
+                  "note": "Cycle terminated early at agency discretion."
+                },
+                {
+                  "id": "o3",
+                  "name": "Ambient Determination",
+                  "price": 2.45,
+                  "note": "Heat is withheld. Withholding is a service."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Cheese Determination",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Processed Triangles, Two",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Shredded Blend, Metered",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cheese Rider, Amendment C",
+                  "price": 5.85,
+                  "note": "Attaches to the application, not the sandwich."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Appeal Rights Election",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Reserve Right to Appeal",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Waive Appeal Rights",
+                  "price": 1.2,
+                  "note": "Waiver is permanent and applies to future sandwiches."
+                },
+                {
+                  "id": "o3",
+                  "name": "Expedited Appeal Hearing",
+                  "price": 12.65,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vegetable-allotment-window",
+      "name": "Vegetable Allotment Window",
+      "blurb": "Vegetables are allotted, not given. The window closes at the discretion of the window.",
+      "items": [
+        {
+          "id": "ssa-010",
+          "name": "Standard Vegetable Allotment Bowl",
+          "desc": "The full weekly allotment issued at once in a stainless bowl. Applicants are advised not to request a second bowl in the same fiscal week.",
+          "price": 4.35,
+          "calories": 890,
+          "badges": [
+            "Popular",
+            "Regionally Legal"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic deli container filled to the brim with a heaped chopped salad, shredded iceberg lettuce, tomato slices, raw onion rings, green pepper strips, cucumber coins and black olives, the clear lid sitting upside down next to it, a little dressing pooled in the bottom of the container. It stands on a beige-tiled sandwich shop counter next to a stainless bin rail. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above so the container is not centred in the frame. Flat phone-camera look, unretouched, visible JPEG compression and sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Portion Scale Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 6.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 14.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional",
+                  "price": 22.4,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed",
+                  "price": 38.9,
+                  "note": "Delivered to the curb. Interior placement is a separate filing."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bowl Return Obligation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bowl Returned Within Seven Days",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bowl Retained Permanently",
+                  "price": 6.85,
+                  "note": "Retention is a transfer of federal property and is priced accordingly."
+                },
+                {
+                  "id": "o3",
+                  "name": "Bowl Status Unreported",
+                  "price": 4.25,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Chain of Custody Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Handler",
+                  "price": 2.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Dual Handler, Witnessed",
+                  "price": 5.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Untracked",
+                  "price": 3.75,
+                  "note": "Untracked custody requires a supervisory sign-off, billed hourly at fifteen-minute minimum."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Condiment Discharge Rate",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Metered Drizzle",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standard Discharge",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unmetered",
+                  "price": 7.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Municipal Standpipe Coupling",
+                  "price": 19.45,
+                  "note": "Requires a residence with a certified backflow preventer."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Utensil Requisition",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fork, Provisional",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Spork, Dual-Use Certified",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Full Setting, Sealed",
+                  "price": 3.45,
+                  "note": null
+                }
+              ]
+            }
+          ],
+          "photoStyle": "amateur"
+        },
+        {
+          "id": "ssa-011",
+          "name": "Pickle Chip Allocation",
+          "desc": "Seven discs, counted twice. A recount may be requested and will produce seven.",
+          "price": 0.95,
+          "calories": 60,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Disc Count Verification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Counted Once",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Counted Twice, Witnessed",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Uncounted",
+                  "price": 1.95,
+                  "note": "Uncounted allocations are audited later at applicant expense."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Brine Retention Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Brine Retained in Vessel",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Brine Drained",
+                  "price": 2.45,
+                  "note": "Draining is performed by hand and is billed as labor."
+                },
+                {
+                  "id": "o3",
+                  "name": "Brine Issued Separately",
+                  "price": 3.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Napkin Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One (1)",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three (3)",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bulk Entitlement, Two Hundred Count",
+                  "price": 8.75,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ssa-012",
+          "name": "Surplus Olive Disbursement",
+          "desc": "Olives in excess of projected regional demand, released to the public. Provenance is stated but not verified.",
+          "price": 2.25,
+          "calories": 240,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Olive Provenance Statement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Provenance Stated",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Provenance Withheld",
+                  "price": 1.75,
+                  "note": "Withholding a statement requires drafting the statement first."
+                },
+                {
+                  "id": "o3",
+                  "name": "Provenance Disputed",
+                  "price": 4.45,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Filing Fee Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Filing Fee",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reduced Filing Fee, Hardship",
+                  "price": 2.85,
+                  "note": "Hardship status does not alter the fee. It alters the form."
+                },
+                {
+                  "id": "o3",
+                  "name": "Filing Fee Waiver Application",
+                  "price": 4.95,
+                  "note": "The waiver application carries its own fee."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Utensil Requisition",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fork, Provisional",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Spork, Dual-Use Certified",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Full Setting, Sealed",
+                  "price": 3.45,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Sodium Disclosure Election",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Waive Disclosure",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Printed Disclosure",
+                  "price": 2.15,
+                  "note": "Printing is billed at agency rate."
+                },
+                {
+                  "id": "o3",
+                  "name": "Disclosure Read Aloud by Staff",
+                  "price": 4.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ancillary-filings-baked-riders",
+      "name": "Ancillary Filings & Baked Riders",
+      "blurb": "Items that attach to a primary application. They may also be filed alone, at a penalty.",
+      "items": [
+        {
+          "id": "ssa-013",
+          "name": "Garlic Bread Eligibility Strip",
+          "desc": "A single strip of bread demonstrating that you are eligible to receive bread. The strip is edible and constitutes proof.",
+          "price": 2.85,
+          "calories": 640,
+          "badges": [
+            "New",
+            "Popular"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: two long strips of garlic bread, split and toasted, wet with garlic butter and flecked with dried parsley, laid in a paper boat lined with wax paper, a small paper cup of marinara sauce beside them. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Cluttered background: a stainless prep counter, a napkin dispenser, a stack of plastic lids and another order waiting in a paper bag. Flat phone-camera look, unretouched, mixed white balance, soft focus. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bake Window Assignment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Morning Window",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Afternoon Window",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Window Unassigned",
+                  "price": 2.85,
+                  "note": "An unassigned window is reviewed manually."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Crumb Liability Acceptance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Accept Liability",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Decline Liability",
+                  "price": 3.4,
+                  "note": "Declined liability reverts to the Authority and is surcharged."
+                },
+                {
+                  "id": "o3",
+                  "name": "Liability Undetermined",
+                  "price": 2.3,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Butter Saturation Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grade One, Surface",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grade Two, Penetrating",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Grade Three, Saturated",
+                  "price": 6.15,
+                  "note": "Strip may not survive transit. Survival is not warranted."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Napkin Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One (1)",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three (3)",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bulk Entitlement, Two Hundred Count",
+                  "price": 8.75,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Appeal Rights Election",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Reserve Right to Appeal",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Waive Appeal Rights",
+                  "price": 1.2,
+                  "note": "Waiver is permanent and applies to future sandwiches."
+                },
+                {
+                  "id": "o3",
+                  "name": "Expedited Appeal Hearing",
+                  "price": 12.65,
+                  "note": null
+                }
+              ]
+            }
+          ],
+          "photoStyle": "amateur"
+        },
+        {
+          "id": "ssa-014",
+          "name": "Cheese Rider, Amendment C",
+          "desc": "An amendment attaching additional cheese to any prior determination. Retroactive application is not available.",
+          "price": 3.45,
+          "calories": 720,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Amendment Filing Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Amendment",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Emergency Amendment",
+                  "price": 7.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Amendment Withdrawn",
+                  "price": 2.65,
+                  "note": "Withdrawal is itself an amendment and is filed as one."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Signature Requirement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Digital Signature",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wet Signature, On Premises",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Signature Waived",
+                  "price": 4.1,
+                  "note": "Waivers require a countersignature, which is billed."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cheese Determination",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Processed Triangles, Two",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Shredded Blend, Metered",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cheese Rider, Amendment C",
+                  "price": 5.85,
+                  "note": "Attaches to the application, not the sandwich."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Sodium Disclosure Election",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Waive Disclosure",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Printed Disclosure",
+                  "price": 2.15,
+                  "note": "Printing is billed at agency rate."
+                },
+                {
+                  "id": "o3",
+                  "name": "Disclosure Read Aloud by Staff",
+                  "price": 4.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ssa-015",
+          "name": "Compliance Cookie, Double Chocolate",
+          "desc": "Issued upon completion of a sandwich application. Consumption is voluntary and is logged.",
+          "price": 1.85,
+          "calories": 540,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bake Window Assignment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Morning Window",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Afternoon Window",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Window Unassigned",
+                  "price": 2.85,
+                  "note": "An unassigned window is reviewed manually."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Crumb Liability Acceptance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Accept Liability",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Decline Liability",
+                  "price": 3.4,
+                  "note": "Declined liability reverts to the Authority and is surcharged."
+                },
+                {
+                  "id": "o3",
+                  "name": "Liability Undetermined",
+                  "price": 2.3,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Compliance Logging Preference",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Log Under My Name",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Log Anonymously",
+                  "price": 3.45,
+                  "note": "Anonymous logging requires your name to establish anonymity."
+                },
+                {
+                  "id": "o3",
+                  "name": "Do Not Log",
+                  "price": 5.25,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ssa-016",
+          "name": "Chip Requisition, Family Size",
+          "desc": "A sealed bag of fried potato product requisitioned from the ancillary stores. Fragmentation occurs in transit and is anticipated.",
+          "price": 2.45,
+          "calories": 1120,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Fragmentation Class Accepted",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Whole Only",
+                  "price": 4.65,
+                  "note": "Whole-only requisitions are frequently denied at the shelf."
+                },
+                {
+                  "id": "o2",
+                  "name": "Whole and Partial",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Fragments Accepted",
+                  "price": 1.55,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Wrapper Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Paper, Agency Issue",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil, Thermal Retention",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unwrapped, Hand-Carry Release",
+                  "price": 3.65,
+                  "note": "Unwrapped transport requires a signed release, printed on site at agency rate."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Crumb Liability Acceptance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Accept Liability",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Decline Liability",
+                  "price": 3.4,
+                  "note": "Declined liability reverts to the Authority and is surcharged."
+                },
+                {
+                  "id": "o3",
+                  "name": "Liability Undetermined",
+                  "price": 2.3,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Napkin Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One (1)",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three (3)",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bulk Entitlement, Two Hundred Count",
+                  "price": 8.75,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "authorized-beverage-schedule",
+      "name": "Authorized Beverage Schedule",
+      "blurb": "Beverages appearing on the schedule are authorized. The schedule is posted behind the counter.",
+      "items": [
+        {
+          "id": "ssa-017",
+          "name": "Municipal Fountain Draw",
+          "desc": "Carbonated beverage drawn under municipal pressure into a vessel exceeding your daily authorized volume. Overfill is standard practice.",
+          "price": 1.95,
+          "calories": 980,
+          "badges": [
+            "Popular",
+            "Physician Discouraged"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an enormous plain waxed-paper fountain soda cup filled with dark cola and ice, a domed plastic lid pressed on and a straw poking through, condensation running down the sides, the cup standing on a brown fibre cafeteria tray with a paper liner going translucent where it is wet. A beige tile wall and a stainless counter behind. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup. Mild motion blur and soft focus, visible JPEG compression artefacts and sensor noise. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Portion Scale Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 6.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 14.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional",
+                  "price": 22.4,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed",
+                  "price": 38.9,
+                  "note": "Delivered to the curb. Interior placement is a separate filing."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cup Custody Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cup Retained by Applicant",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cup Surrendered at Door",
+                  "price": 2.35,
+                  "note": "Surrender does not reduce the custody fee."
+                },
+                {
+                  "id": "o3",
+                  "name": "Cup Waiver, Beverage in Hand",
+                  "price": 3.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Ice Allocation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Full Ice",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "No Ice",
+                  "price": 1.55,
+                  "note": "Ice removal is a manual process and is billed as labor."
+                },
+                {
+                  "id": "o3",
+                  "name": "Ice on the Side, Separate Vessel",
+                  "price": 2.45,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Refill Rights",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One (1) Refill",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Unlimited Within Premises",
+                  "price": 6.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extraterritorial Refill Rights",
+                  "price": 15.25,
+                  "note": "Honored at participating jurisdictions only."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Napkin Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One (1)",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three (3)",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bulk Entitlement, Two Hundred Count",
+                  "price": 8.75,
+                  "note": null
+                }
+              ]
+            }
+          ],
+          "photoStyle": "amateur"
+        },
+        {
+          "id": "ssa-018",
+          "name": "Bottled Water, Form W",
+          "desc": "Water that has been filed. Filing does not alter the water.",
+          "price": 1.65,
+          "calories": 0,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cup Custody Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cup Retained by Applicant",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cup Surrendered at Door",
+                  "price": 2.35,
+                  "note": "Surrender does not reduce the custody fee."
+                },
+                {
+                  "id": "o3",
+                  "name": "Cup Waiver, Beverage in Hand",
+                  "price": 3.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Seal Integrity Attestation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Seal Intact at Issue",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Seal Broken at Issue",
+                  "price": 2.85,
+                  "note": "Breaking a seal on your behalf is a supervised act."
+                },
+                {
+                  "id": "o3",
+                  "name": "Seal Status Not Attested",
+                  "price": 1.95,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Appeal Rights Election",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Reserve Right to Appeal",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Waive Appeal Rights",
+                  "price": 1.2,
+                  "note": "Waiver is permanent and applies to future sandwiches."
+                },
+                {
+                  "id": "o3",
+                  "name": "Expedited Appeal Hearing",
+                  "price": 12.65,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Sodium Disclosure Election",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Waive Disclosure",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Printed Disclosure",
+                  "price": 2.15,
+                  "note": "Printing is billed at agency rate."
+                },
+                {
+                  "id": "o3",
+                  "name": "Disclosure Read Aloud by Staff",
+                  "price": 4.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ssa-019",
+          "name": "Reconstituted Citrus Allocation",
+          "desc": "Citrus concentrate returned to volume with municipal water. The original citrus is no longer traceable and does not need to be.",
+          "price": 2.15,
+          "calories": 760,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Ice Allocation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Full Ice",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "No Ice",
+                  "price": 1.55,
+                  "note": "Ice removal is a manual process and is billed as labor."
+                },
+                {
+                  "id": "o3",
+                  "name": "Ice on the Side, Separate Vessel",
+                  "price": 2.45,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cup Custody Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cup Retained by Applicant",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cup Surrendered at Door",
+                  "price": 2.35,
+                  "note": "Surrender does not reduce the custody fee."
+                },
+                {
+                  "id": "o3",
+                  "name": "Cup Waiver, Beverage in Hand",
+                  "price": 3.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Refill Rights",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One (1) Refill",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Unlimited Within Premises",
+                  "price": 6.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extraterritorial Refill Rights",
+                  "price": 15.25,
+                  "note": "Honored at participating jurisdictions only."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Utensil Requisition",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fork, Provisional",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Spork, Dual-Use Certified",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Full Setting, Sealed",
+                  "price": 3.45,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sunset-promotions-signage-retained",
+      "name": "Sunset Promotions (Signage Retained)",
+      "blurb": "These promotions have concluded. Removal of the signage is scheduled and funded.",
+      "items": [
+        {
+          "id": "ssa-020",
+          "name": "The $5 Footlong (Discontinued)",
+          "desc": "The celebrated five-dollar footlong, discontinued in 2016. The sandwich is still produced. The price is not.",
+          "price": 6.15,
+          "calories": 2050,
+          "badges": [
+            "#1 Most Liked",
+            "Regionally Legal"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a footlong cold cut submarine sandwich cut into two halves and set cut-face up in a red plastic diner basket lined with checkered paper, thick folds of ham, salami and pepperoni, two kinds of cheese, shredded lettuce, tomato slices and raw onion spilling out of the roll, a few pickle chips on the paper. Harsh direct on-camera flash, hot blown-out hotspot on the cheese, hard black shadow thrown behind the basket. The basket sitting directly on a scratched laminate counter with crumbs and a smear of sauce beside it. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread Eligibility Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White, Standard Issue",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wheat, Whole-Grain Compliant",
+                  "price": 4.65,
+                  "note": "Compliance is verified at the oven, not at the counter."
+                },
+                {
+                  "id": "o3",
+                  "name": "Herb & Cheese, Restricted Distribution",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread (Open-Face Determination)",
+                  "price": 4.15,
+                  "note": "The loaf is baked regardless. You are billed for the bake, not the receipt."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Legacy Pricing Acknowledgement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "I Acknowledge the Promotion Has Ended",
+                  "price": 3.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "I Dispute That the Promotion Has Ended",
+                  "price": 8.45,
+                  "note": "Disputes are heard quarterly and have never been sustained."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Position",
+                  "price": 3.35,
+                  "note": "A neutral position still requires a filing."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Length Determination",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Six-Inch, Provisional",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Twelve-Inch, Federal Standard",
+                  "price": 6.9,
+                  "note": "Measured to standard. Standard is measured separately."
+                },
+                {
+                  "id": "o3",
+                  "name": "Fifteen-Inch, Regional Tolerance",
+                  "price": 11.4,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed Length, Thirty-Six Inch",
+                  "price": 24.75,
+                  "note": "Requires a level surface and a second adult."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Condiment Discharge Rate",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Metered Drizzle",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standard Discharge",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unmetered",
+                  "price": 7.35,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Municipal Standpipe Coupling",
+                  "price": 19.45,
+                  "note": "Requires a residence with a certified backflow preventer."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Appeal Rights Election",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Reserve Right to Appeal",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Waive Appeal Rights",
+                  "price": 1.2,
+                  "note": "Waiver is permanent and applies to future sandwiches."
+                },
+                {
+                  "id": "o3",
+                  "name": "Expedited Appeal Hearing",
+                  "price": 12.65,
+                  "note": null
+                }
+              ]
+            }
+          ],
+          "photoStyle": "amateur"
+        },
+        {
+          "id": "ssa-021",
+          "name": "Regional-Scale Party Platter, Six Feet",
+          "desc": "A single continuous sandwich measured in feet and delivered on a load-bearing board. Interior placement is a separate filing.",
+          "price": 18.65,
+          "calories": 9400,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Portion Scale Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 6.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 14.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional",
+                  "price": 22.4,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed",
+                  "price": 38.9,
+                  "note": "Delivered to the curb. Interior placement is a separate filing."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chain of Custody Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Handler",
+                  "price": 2.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Dual Handler, Witnessed",
+                  "price": 5.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Untracked",
+                  "price": 3.75,
+                  "note": "Untracked custody requires a supervisory sign-off, billed hourly at fifteen-minute minimum."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Board Deposit Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Deposit Paid, Refundable in Theory",
+                  "price": 9.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Deposit Waived, Board Retained",
+                  "price": 13.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Board Declined, Sandwich Loose",
+                  "price": 6.45,
+                  "note": "Loose delivery transfers all structural risk to the applicant."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Vegetable Allotment Level",
+              "required": false,
+              "min": 0,
+              "max": 6,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lettuce Ration",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tomato Quota, Two Discs",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Onion Disbursement",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Green Pepper Entitlement",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Cucumber Surplus Release",
+                  "price": 1.05,
+                  "note": "Released only when surplus exists."
+                },
+                {
+                  "id": "o6",
+                  "name": "Full Allotment Override",
+                  "price": 9.45,
+                  "note": "Waives per-vegetable review. Does not waive review."
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Utensil Requisition",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fork, Provisional",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Spork, Dual-Use Certified",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Full Setting, Sealed",
+                  "price": 3.45,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ssa-022",
+          "name": "Employee Family Allotment Box",
+          "desc": "The box issued to staff households, made available to the public following a policy review. The review is ongoing.",
+          "price": 8.95,
+          "calories": 4300,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Portion Scale Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 6.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 14.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Regional",
+                  "price": 22.4,
+                  "note": null
+                },
+                {
+                  "id": "o5",
+                  "name": "Watershed",
+                  "price": 38.9,
+                  "note": "Delivered to the curb. Interior placement is a separate filing."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Filing Fee Election",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Filing Fee",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Reduced Filing Fee, Hardship",
+                  "price": 2.85,
+                  "note": "Hardship status does not alter the fee. It alters the form."
+                },
+                {
+                  "id": "o3",
+                  "name": "Filing Fee Waiver Application",
+                  "price": 4.95,
+                  "note": "The waiver application carries its own fee."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Queue Position Assignment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Rope Lane",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Priority Rope Lane",
+                  "price": 5.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Rear Entry, Unsupervised",
+                  "price": 0.85,
+                  "note": "Unsupervised entry voids all determinations."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Napkin Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One (1)",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three (3)",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bulk Entitlement, Two Hundred Count",
+                  "price": 8.75,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g5",
+              "name": "Sodium Disclosure Election",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Waive Disclosure",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Printed Disclosure",
+                  "price": 2.15,
+                  "note": "Printing is billed at agency rate."
+                },
+                {
+                  "id": "o3",
+                  "name": "Disclosure Read Aloud by Staff",
+                  "price": 4.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

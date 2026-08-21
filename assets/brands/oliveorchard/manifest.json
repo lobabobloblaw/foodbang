@@ -1,0 +1,54 @@
+{
+  "slug": "oliveorchard",
+  "model": "bytedance/seedream-4.5",
+  "images": [
+    {
+      "file": "logo.webp",
+      "prompt": "Flat vector restaurant logo mark. A single slender olive branch with olive-green leaves and three dark olives, arcing over a cream silhouette of a stacked terracotta roof tile, centered on a warm terracotta field. Beneath the branch, faux-Tuscan serif lettering with a script-adjacent italic feel, in cream. Full-bleed square: the background colour fills the entire canvas edge to edge. No card, no frame, no rounded container, no drop shadow, no surrounding margin or border. The only text anywhere in the image is exactly: Olive Orchard. Clean high-contrast print reproduction, crisp edges, flat colour, no gradients, no photographic texture.",
+      "predictionId": "j0yhy67gexrmt0d0463sbgxpvr",
+      "predictTime": 10.753
+    },
+    {
+      "file": "hero.webp",
+      "prompt": "Cinematic wide interior photograph of the empty dining room of a faux-Tuscan chain restaurant: stucco arches, a painted countryside mural of cypress hills along the back wall, wicker-wrapped bottles on ledges, terracotta floor tiles, dark wood booths with green upholstery, a woven bread basket heaped with breadsticks on every single empty table. Warm golden-hour light through wooden shutters, honeyed highlights, olive-toned shadows, dust suspended in the light beams. Camera: 24mm wide, eye-level, deep focus, deadpan symmetrical composition, muted olive and terracotta palette, subtle film grain. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "x427jktcq9rmt0d0464a20h3n4",
+      "predictTime": 10.345
+    },
+    {
+      "file": "items/01.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a woven bread basket overloaded with forty glossy garlic breadsticks, packed upright until the weave splits and the rest spill sideways in drifts across a rustic stucco-and-terracotta table setting, butter sheen pooling on the cloth, coarse salt and herb flecks scattered, two more refilled baskets crowding the frame edge, a corner of a painted Tuscan mural blurred at the top of frame. Warm golden-hour light through a shuttered window, honeyed highlights, olive-toned shadows, faux-Mediterranean warmth. Camera: overhead flat-lay, 50mm, deep focus, high micro-contrast, honeyed colour. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "zedzk7x8j1rmr0d046493jszzg",
+      "predictTime": 11.93
+    },
+    {
+      "file": "items/02.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a ceramic pasta bowl the width of a wash basin, shot straight down into it, filled past the rim with fettuccine in alfredo, marinara terraced in bands, sauce climbing the interior wall, strands sagging over the lip toward the table, steam rising, grated hard cheese drifted across the surface like snowfall, olive oil beading. It sits on a rustic stucco-and-terracotta table beside a woven bread basket. Warm golden-hour light through a shuttered window, honeyed highlights, olive-toned shadows. Camera: top-down into the vessel, 35mm, shallow depth of field on the rim. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "4gksycg88nrmw0d0464r9p8xyg",
+      "predictTime": 12.321
+    },
+    {
+      "file": "items/03.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: two thick grilled chicken breasts stacked and offset, deep charred grill marks, herb oil running down the sides and flooding the plate, rosemary sprigs wedged between the layers, a heaped bed of buttered fettuccine sagging under the weight, visible steam. Plated on a rustic stucco-and-terracotta table setting with a woven bread basket, a painted Tuscan mural softly out of focus behind. Warm golden-hour light through a shuttered window, honeyed highlights, olive-toned shadows, faux-Mediterranean warmth. Camera: three-quarter hero angle, 85mm, shallow depth of field, glossy specular highlights on the char. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "vdpswd378nrmr0d0464sh46r1c",
+      "predictTime": 12.173
+    },
+    {
+      "file": "items/04.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean cross-section cutaway of a lasagna slab standing on end, fourteen countable strata of pasta sheet, ricotta, meat sauce and melted cheese, molten layers sagging outward at the cut face, a cheese blanket overhanging the edge and touching the plate, sauce creeping from between the strata. Cut on a rustic stucco-and-terracotta table setting with a woven bread basket, a painted Tuscan mural softly out of focus behind. Warm golden-hour light through a shuttered window, honeyed highlights, olive-toned shadows, faux-Mediterranean warmth. Camera: straight-on cross-section, 100mm macro, deep focus across the cut face, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "5mtr8we8a9rmw0d0464v9x7d7r",
+      "predictTime": 12.292
+    },
+    {
+      "file": "items/05.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro detail of a heavy glass decanter of deep red berry sangria, condensation beads sliding down the glass, orange wheels and halved strawberries suspended and pressed against the inside, a spire of ice breaching the surface, a dark wine ripple caught mid-swirl. Behind it, blurred beyond recognition, a rustic stucco-and-terracotta table setting with a woven bread basket, a painted Tuscan mural softly out of focus behind, plus a wicker-wrapped bottle. Warm golden-hour light through a shuttered window, honeyed highlights, olive-toned shadows, faux-Mediterranean warmth. Camera: 100mm macro, razor-thin depth of field, jewel-like refraction. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "y94q7m1b9nrmw0d0465a68j3zc",
+      "predictTime": 12.445
+    },
+    {
+      "file": "items/06.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a leaning tiramisu tower of nineteen countable strata of espresso-soaked ladyfinger and mascarpone, sagging at the middle, a wooden skewer bracing it, cocoa dust heaped on top and dusted across the surface below, one stratum slumping free at the base. Presented on a scalloped paper liner on a dark metal serving tray, set on a rustic stucco-and-terracotta table setting with a woven bread basket, a painted Tuscan mural softly out of focus behind. Warm golden-hour light through a shuttered window, honeyed highlights, olive-toned shadows, faux-Mediterranean warmth. Camera: low three-quarter tray-level view, 65mm, moderate depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "pehbanw98srmr0d0465azz9kz0",
+      "predictTime": 11.459
+    }
+  ]
+}

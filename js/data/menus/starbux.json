@@ -1,0 +1,2119 @@
+{
+  "slug": "starbux",
+  "name": "STARBUX Refuel Terminal",
+  "shortName": "STARBUX",
+  "tagline": "SIZES HAVE OUTGROWN LANGUAGE.",
+  "cuisine": "Coffee & Volumetric Beverage",
+  "categories": [
+    "coffee",
+    "drinks",
+    "sweets"
+  ],
+  "rating": 4.4,
+  "ratingCount": 208417,
+  "deliveryMin": 11,
+  "deliveryMax": 29,
+  "deliveryFee": 3.49,
+  "distanceMi": 0.4,
+  "priceTier": 2,
+  "gorgePlus": true,
+  "closesAt": "11:45 PM",
+  "address": "4400 Frontage Access Road, Bay 7, Pump Court Commons, Loam Springs",
+  "about": "STARBUX Refuel Terminal is a beverage refueling facility operating under a hospitality license. Product is dispensed by volume through calibrated brass hoses rather than poured. Vessel classes above Municipal require a compatible residence and a floor drain.",
+  "announcement": "Watershed dispense is temporarily suspended at this terminal pending a drain inspection. Regional remains fully available and is, in most respects, larger.",
+  "promos": [
+    "Free drink, drink not included"
+  ],
+  "reviews": [
+    {
+      "name": "Delphine R.",
+      "stars": 5,
+      "date": "Aug 14",
+      "text": "Ordered a Municipal and they asked for my building's drain certificate. Extremely professional. I did not have one."
+    },
+    {
+      "name": "Corwin B.",
+      "stars": 4,
+      "date": "Aug 09",
+      "text": "The foam deck held a spoon upright for the entire commute. Only complaint is that the spoon was billed separately."
+    },
+    {
+      "name": "Marisol T.",
+      "stars": 5,
+      "date": "Jul 31",
+      "text": "I declined syrup and was charged the same as accepting it. The receipt explained why in a way I found persuasive."
+    },
+    {
+      "name": "Hollis K.",
+      "stars": 3,
+      "date": "Jul 22",
+      "text": "Good product. The hose reel retracted while I was still under it and that is on me."
+    },
+    {
+      "name": "Aggie W.",
+      "stars": 5,
+      "date": "Jul 06",
+      "text": "My Gorger delivered eleven gallons in a tote and left without speaking. Correct temperature throughout."
+    }
+  ],
+  "menu": [
+    {
+      "id": "bulk-dispense-bay",
+      "name": "Bulk Dispense Bay",
+      "blurb": "Hose-fed product, metered at the nozzle. Bring a vessel or lease one at the counter.",
+      "items": [
+        {
+          "id": "sbx-001",
+          "name": "Terminal Latte",
+          "desc": "Espresso and steamed dairy substrate delivered through the primary dispensing hose at a regulated fourteen liters per minute. The vessel is filled until the vessel objects.",
+          "price": 2.85,
+          "calories": 2140,
+          "badges": [
+            "#1 Most Liked",
+            "Contains Food"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a colossal clear glass latte vessel the size of a bucket, shot as a three-quarter hero, filled past the rim with stratified espresso and steamed milk, a thick sagging dome of microfoam swelling over the lip and slumping down the outside in slow white ropes, condensation beading on the glass, milk runnels pooling on the stone, a heavy brass dispensing nozzle still dripping directly above it. Setting: a polished white marble counter with industrial brass dispensing hoses and pressure gauges mounted behind it, warm cafe bokeh. Lighting: soft north-facing window light with a warm amber bounce, gentle contrast, premium lifestyle photography. Camera: 85mm, f/2.0, shallow depth of field, creamy falloff. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Vessel Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal (32 oz)",
+                  "price": 4.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family (96 oz)",
+                  "price": 11.4,
+                  "note": "Two-hand carry advised."
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal (2.5 gal)",
+                  "price": 21.6,
+                  "note": "Dispensed at the bay, not the counter."
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed (11.4 gal)",
+                  "price": 47.25,
+                  "note": "Requires a compatible residence and a floor drain."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Syrup Pump Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Four Pumps",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Eleven Pumps",
+                  "price": 5.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Twenty-Six Pumps",
+                  "price": 9.1,
+                  "note": "Beverage becomes structurally self-supporting."
+                },
+                {
+                  "id": "o4",
+                  "name": "Zero Pumps",
+                  "price": 2.4,
+                  "note": "Withheld syrup is still metered, logged, and billed at parity."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Foam Deck Additions",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Salted Cold Foam Slab",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Second Foam Deck",
+                  "price": 4.4,
+                  "note": "Load-bearing. Rated to one pastry."
+                },
+                {
+                  "id": "o3",
+                  "name": "Cinnamon Sediment Layer",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Caramel Drizzle Vector",
+                  "price": 2.05,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-002",
+          "name": "Nitrogen Standpipe Cold Brew",
+          "desc": "Twenty-hour cold extraction charged with nitrogen and released through the standpipe coupling. The cascade continues for the first four minutes and is not a defect.",
+          "price": 3.4,
+          "calories": 640,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: shot straight down into the open mouth of a tall brushed-steel refuel vessel brimming with nitrogen-infused cold brew, a dense cascading surge of microbubbles climbing the near-black liquid in visible banded waves, a thick tan crema head domed above the rim under surface tension and just beginning to weep over one edge, a brass hose coupling clamped to the vessel collar at the frame edge, cold condensation streaking the steel. Setting: a polished white marble counter with industrial brass dispensing hoses and pressure gauges mounted behind it, warm cafe bokeh. Lighting: soft north-facing window light with a warm amber bounce, gentle contrast, premium lifestyle photography. Camera: 50mm, f/4, top-down, crisp surface detail. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Nozzle Diameter",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard 8mm",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wide-Bore 19mm",
+                  "price": 6.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Fire-Rated 38mm",
+                  "price": 12.9,
+                  "note": "The bay is cleared before dispense."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ice Displacement Ratio",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ice-Dominant",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Standard Displacement",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Ice",
+                  "price": 3.05,
+                  "note": "Volume you did not lose is billed as retained product."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cascade Additives",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sweet Cream Injection",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Second Nitrogen Charge",
+                  "price": 4.1,
+                  "note": "Cascade duration extends to nine minutes."
+                },
+                {
+                  "id": "o3",
+                  "name": "Cocoa Dust Fall",
+                  "price": 1.35,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-003",
+          "name": "Flat Volume White",
+          "desc": "A flat white scaled up until flatness became a structural claim rather than a texture. Surface is level to within two millimeters across the vessel.",
+          "price": 3.1,
+          "calories": 1480,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Dairy Substrate",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Whole Substrate",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Oat Substrate",
+                  "price": 3.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Almond Substrate",
+                  "price": 3.6,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Substrate Withheld",
+                  "price": 2.35,
+                  "note": "Substrate is prepared, withheld, and disposed of. Disposal is a service."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Vessel Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal (32 oz)",
+                  "price": 4.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family (96 oz)",
+                  "price": 11.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal (2.5 gal)",
+                  "price": 21.6,
+                  "note": "Levelling tolerance no longer guaranteed above Family."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Aroma Release",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lid Vented at Handoff",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Full Aroma Release in Bay",
+                  "price": 3.9,
+                  "note": "Aroma is released on premises and does not travel with the order."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-004",
+          "name": "Americano, Metered",
+          "desc": "Espresso and municipal-grade hot water combined at a ratio declared by you and recorded by us. The declaration is binding for the duration of the order.",
+          "price": 2.15,
+          "calories": 690,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Water Ratio Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Declared 1:3",
+                  "price": 1.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Declared 1:9",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Declared 1:31",
+                  "price": 4.2,
+                  "note": "Beverage is legally water with a history."
+                },
+                {
+                  "id": "o4",
+                  "name": "Decline to Declare",
+                  "price": 4.85,
+                  "note": "Undeclared ratios are assigned by the terminal at a premium."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Shot Multiplication",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Shots",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Six Shots",
+                  "price": 5.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Nineteen Shots",
+                  "price": 13.75,
+                  "note": "Physician discouraged. Physician not consulted."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Stir Implement Class",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Wooden Paddle",
+                  "price": 0.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Brass Agitator Rod",
+                  "price": 5.3,
+                  "note": "Returned at the terminal or retained at full replacement value."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-005",
+          "name": "Drip Coffee, Continuous Feed",
+          "desc": "Standard roast supplied on an open line for a duration you select. The line does not stop early and cannot be paused once opened.",
+          "price": 1.85,
+          "calories": 620,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Continuous Feed Duration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ninety Seconds",
+                  "price": 3.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Six Minutes",
+                  "price": 8.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Standing Feed (Until Close)",
+                  "price": 24.5,
+                  "note": "Feed terminates at 11:45 PM regardless of vessel state."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Reel Extension Length",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Counter Reach (4 ft)",
+                  "price": 1.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Lobby Reach (22 ft)",
+                  "price": 4.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Curbside Reach (140 ft)",
+                  "price": 16.4,
+                  "note": "Hose crosses the sidewalk. Pedestrians are notified by sign."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Vessel Return Election",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Return Vessel to Terminal",
+                  "price": 2.25,
+                  "note": "Return processing fee. The vessel remains ours."
+                },
+                {
+                  "id": "o2",
+                  "name": "Retain Vessel Indefinitely",
+                  "price": 7.8,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pressure-vessels",
+      "name": "Espresso Pressure Vessels",
+      "blurb": "Small format. Nine bars minimum. Priced by what it took to get there.",
+      "items": [
+        {
+          "id": "sbx-006",
+          "name": "Quadruple Ristretto Cartridge",
+          "desc": "Four short-drawn shots sealed into a thick-walled glass cartridge and rated to internal pressure. Crema depth exceeds liquid depth by design.",
+          "price": 3.75,
+          "calories": 610,
+          "badges": [
+            "Chef Recommended",
+            "Physician Discouraged"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of four ristretto shots crowded into a small thick-walled glass pressure cartridge, mottled tiger-striped crema swelling above the rim in a taut convex meniscus, individual oil droplets and micro-bubbles rendered razor sharp, one amber thread of espresso still falling into the surface and denting it, a hairline of coffee film creeping down the outer glass. Setting: a polished white marble counter with industrial brass dispensing hoses and pressure gauges mounted behind it, warm cafe bokeh. Lighting: soft north-facing window light with a warm amber bounce, gentle contrast, premium lifestyle photography. Camera: 100mm macro, f/3.5, paper-thin plane of focus, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cartridge Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Cartridge",
+                  "price": 3.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Three Cartridges",
+                  "price": 9.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Bandolier of Nine",
+                  "price": 26.15,
+                  "note": "Supplied in a shoulder rack. Rack is not returnable."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Extraction Aggression",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Gentle",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Assertive",
+                  "price": 3.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Punitive",
+                  "price": 6.7,
+                  "note": "Grounds are compacted to a disc and disposed of as aggregate."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Crema Skim",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Crema Left Intact",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Crema Skimmed and Bottled Separately",
+                  "price": 4.65,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-007",
+          "name": "Macchiato, Marked",
+          "desc": "Espresso marked with dairy to a depth you specify. The mark is measured before handoff and the measurement appears on the receipt.",
+          "price": 2.6,
+          "calories": 720,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Mark Depth",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "3mm Mark",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "22mm Mark",
+                  "price": 4.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Full-Column Mark",
+                  "price": 8.15,
+                  "note": "At this depth the beverage is a latte. It is still a macchiato."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Mark",
+                  "price": 1.95,
+                  "note": "The mark is measured, recorded as zero, and billed as a measurement."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Foam Cap Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grade C, Loose",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grade A, Dense",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Grade AA, Rigid",
+                  "price": 5.9,
+                  "note": "Cap must be broken with an implement before drinking."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sweetener Schedule",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Raw Sugar Packets (4)",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Vanilla Volume",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Terminal Syrup Blend",
+                  "price": 3.45,
+                  "note": "Formulation is proprietary and changes without notice."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-008",
+          "name": "Cortado Compliance Unit",
+          "desc": "Equal parts espresso and warmed dairy, verified by a scale at the counter. Units failing verification are dispensed anyway and noted.",
+          "price": 2.95,
+          "calories": 830,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Compliance Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Self-Attested",
+                  "price": 2.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Counter-Verified",
+                  "price": 4.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Witnessed and Countersigned",
+                  "price": 9.35,
+                  "note": "A second employee observes the pour and signs the ticket."
+                },
+                {
+                  "id": "o4",
+                  "name": "Compliance Waived",
+                  "price": 4.6,
+                  "note": "Waiver is processed by the same staff at the same cost."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Milk Temperature Band",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Band 1 (Tepid)",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Band 3 (Standard)",
+                  "price": 2.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Band 6 (Scalding)",
+                  "price": 5.15,
+                  "note": "Band 6 is offered and is not recommended."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Saucer Provision",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Paper Coaster",
+                  "price": 0.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Weighted Brass Saucer",
+                  "price": 11.2,
+                  "note": "Saucer weighs more than the beverage. This is intentional."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-009",
+          "name": "Espresso Reserve Draw",
+          "desc": "A single draw from the reserve line, which is kept behind glass and opened on request. Provenance is attested rather than proven.",
+          "price": 4.1,
+          "calories": 600,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bean Attestation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Attested Single Origin",
+                  "price": 3.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Attested Single Hillside",
+                  "price": 7.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Attested Single Shrub",
+                  "price": 18.6,
+                  "note": "The shrub is identified by number and is not visitable."
+                },
+                {
+                  "id": "o4",
+                  "name": "Attestation Declined",
+                  "price": 3.9,
+                  "note": "The attestation is prepared regardless and filed unread."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Draw Volume",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Single Draw",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Draw",
+                  "price": 4.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Reserve Line Purge",
+                  "price": 15.8,
+                  "note": "The entire reserve line is emptied into your vessel."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Tasting Notes Recital",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Printed Notes Card",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Notes Read Aloud at Handoff",
+                  "price": 4.5,
+                  "note": "Recital lasts ninety seconds and cannot be shortened."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cold-foam-structures",
+      "name": "Cold Foam Structural Systems",
+      "blurb": "Foam is a layer, a material, and a line item. Decks are rated before they leave the bay.",
+      "items": [
+        {
+          "id": "sbx-010",
+          "name": "Salted Foam Deck Mocha",
+          "desc": "Chocolate sludge, espresso, and dairy in declared strata beneath a salted cold foam deck rated to support one standard pastry. Do not exceed the rating.",
+          "price": 3.65,
+          "calories": 2860,
+          "badges": [
+            "Popular",
+            "Physician Discouraged"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a cafe employee to upload to a food delivery app. Subject: a tall iced mocha in a plain clear plastic to-go cup, dark chocolate syrup at the bottom, a band of espresso, milk above it and a thick pale layer of salted cold foam on top with caramel drizzled over it running down the inside of the cup, condensation on the plastic, a clear domed lid lying upside down beside it. Dim warm cafe light with the flash off, slightly underexposed and noisy. Shot from too close and slightly above so the cup is not centred in the frame, a stainless espresso machine and steel milk jugs blurred behind on the counter. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cold Foam Structural Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grade I (Decorative)",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grade III (Load-Bearing)",
+                  "price": 4.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Grade V (Rated to One Pastry)",
+                  "price": 8.4,
+                  "note": "Rating assumes a level vessel and no lateral movement."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Deck",
+                  "price": 2.3,
+                  "note": "The deck is whipped, graded, and discarded. Grading is billable."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Drizzle Vector Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Vectors",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Nine Vectors",
+                  "price": 3.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Full Lattice",
+                  "price": 6.25,
+                  "note": "Lattice is applied by machine and cannot be reversed."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Chocolate Sediment",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cocoa Dust",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Chocolate Shard Fill",
+                  "price": 2.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sludge Reinforcement at Base",
+                  "price": 4.35,
+                  "note": "Adds mass at the bottom to resist tipping."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-011",
+          "name": "Vanilla Sweet Cream Overburden",
+          "desc": "Cold brew beneath an overburden of sweet cream measured in vertical inches. Overburden depth is set at the bay and cannot be adjusted afterward.",
+          "price": 3.25,
+          "calories": 1930,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Overburden Depth",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Inch",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Inches",
+                  "price": 5.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Nine Inches",
+                  "price": 10.45,
+                  "note": "Beverage is majority overburden by volume."
+                },
+                {
+                  "id": "o4",
+                  "name": "Overburden Omitted",
+                  "price": 2.2,
+                  "note": "Omission is a depth of zero and is measured like any other depth."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Vessel Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal (32 oz)",
+                  "price": 4.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family (96 oz)",
+                  "price": 11.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Regional (6 gal)",
+                  "price": 33.8,
+                  "note": "Delivered in a wheeled tote by a second Gorger."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cream Origin Statement",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Regional Statement",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Notarized Statement",
+                  "price": 6.9,
+                  "note": "Notary attends the terminal on Tuesdays."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-012",
+          "name": "Matcha Substrate Column",
+          "desc": "Ceremonial-adjacent green powder suspended in dairy substrate and held as a standing column. The column settles within eleven minutes and this is expected.",
+          "price": 3.95,
+          "calories": 1240,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Powder Dosage",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Scoops",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Seven Scoops",
+                  "price": 6.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Full Tin",
+                  "price": 14.95,
+                  "note": "The column will not settle. It will remain a column."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Powder",
+                  "price": 2.85,
+                  "note": "Dosage is weighed out, returned to the tin, and billed as handling."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Whisk Labor",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Machine Agitated",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Hand Whisked, 40 Seconds",
+                  "price": 4.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Hand Whisked, Four Minutes",
+                  "price": 12.6,
+                  "note": "Labor is billed by the minute at terminal rate."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Green Intensity Advisory",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Advisory Printed on Ticket",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Advisory Delivered Verbally",
+                  "price": 2.6,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-013",
+          "name": "Chai Load-Bearing Latte",
+          "desc": "Spiced concentrate and steamed substrate assembled to a stated load rating. Ratings are conservative and assume the vessel remains upright.",
+          "price": 3.3,
+          "calories": 1760,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Load Rating",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Rated to a Straw",
+                  "price": 1.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Rated to a Spoon",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Rated to a Second Beverage",
+                  "price": 9.8,
+                  "note": "Stacking beyond two vessels voids the rating."
+                },
+                {
+                  "id": "o4",
+                  "name": "Unrated",
+                  "price": 3.95,
+                  "note": "An unrated beverage is still inspected. Inspection is the charge."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Spice Deck",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Deck",
+                  "price": 1.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Doubled Deck",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Terminal Deck",
+                  "price": 7.15,
+                  "note": "Contains clove at a concentration disclosed on request."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Honey Injection Points",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Injection",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Injections",
+                  "price": 3.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Perimeter Injection Ring",
+                  "price": 6.55,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seasons-not-occurring",
+      "name": "Seasons Not Currently Occurring",
+      "blurb": "Seasonal product tied to intervals the calendar does not recognize. Availability is continuous.",
+      "items": [
+        {
+          "id": "sbx-014",
+          "name": "Pumpkin Interval Latte",
+          "desc": "The flagship seasonal beverage of an interval that has not been observed since 1997. Served with a whipped canopy that exceeds the vessel in every direction.",
+          "price": 4.05,
+          "calories": 3140,
+          "badges": [
+            "#1 Most Liked",
+            "Limit 1 Per Household"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a cafe employee to upload to a food delivery app. Subject: a hot orange-brown spiced pumpkin latte in a plain white paper to-go cup, a heavy pile of whipped cream heaped above the rim and dusted with cinnamon, some cream slumped down one side of the cup, the plastic lid lying next to it on the counter. Harsh direct on-camera flash, hot blown-out hotspot on the whipped cream, hard black shadow thrown behind the cup. Cluttered background: a stainless steel counter, a stack of lids, a rack of syrup bottles and another drink waiting. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Season Attestation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Attest the Season Is Occurring",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Attest the Season Is Approaching",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Attest Nothing",
+                  "price": 5.4,
+                  "note": "The terminal will attest on your behalf and bill the same."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Whip Canopy",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Flush Canopy",
+                  "price": 2.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Overhanging Canopy",
+                  "price": 4.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cantilevered Canopy",
+                  "price": 9.25,
+                  "note": "Canopy extends beyond the vessel and is not covered by spill policy."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Topping Sediment",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Spice Dusting",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Candied Gourd Fragments",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sediment Layer, Full Depth",
+                  "price": 5.75,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-015",
+          "name": "Peppermint Quarter Cocoa",
+          "desc": "Cocoa formulated for a fiscal quarter rather than a month. Peppermint content is fixed by policy and cannot be reduced.",
+          "price": 3.45,
+          "calories": 2410,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Quarter Designation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Q4 Formulation",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Q7 Formulation",
+                  "price": 5.35,
+                  "note": "Q7 does not exist. The formulation does."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Designation",
+                  "price": 2.6,
+                  "note": "Undesignated cocoa is designated by the terminal at the same rate."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cocoa Density",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pourable",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Spoonable",
+                  "price": 4.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sliceable",
+                  "price": 8.6,
+                  "note": "Supplied with a serrated implement at no additional charge."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Candy Shard Distribution",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Surface Scatter",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Suspended Throughout",
+                  "price": 3.95,
+                  "note": "Shards do not dissolve within the delivery window."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-016",
+          "name": "Second Harvest Maple Fog",
+          "desc": "A steamed maple beverage finished with an aerosolized fog layer. The fog persists for the duration of transit under normal conditions.",
+          "price": 3.85,
+          "calories": 1580,
+          "badges": [
+            "New"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Harvest Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "First Harvest",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Second Harvest",
+                  "price": 4.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Harvest Unknown",
+                  "price": 4.9,
+                  "note": "An unknown harvest is researched, not resolved, and billed as research."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fog Opacity",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Light Haze",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Working Fog",
+                  "price": 3.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Advisory Fog",
+                  "price": 7.4,
+                  "note": "Vessel contents will not be visible at handoff."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Maple Provenance Sticker",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Sticker",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil Sticker with Serial",
+                  "price": 2.85,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-017",
+          "name": "Unseasonal Red Refresher",
+          "desc": "A chilled beverage in a red that does not correspond to any fruit currently in season. Freeze-dried inclusions are added at the bay.",
+          "price": 2.95,
+          "calories": 980,
+          "badges": [],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Flavor Provenance Waiver",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sign the Waiver",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sign the Extended Waiver",
+                  "price": 4.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Refuse the Waiver",
+                  "price": 4.8,
+                  "note": "Refusal is documented, filed, and processed at the extended rate."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Fruit Inclusion Declaration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Freeze-Dried Inclusions",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Inclusions to the Rim",
+                  "price": 4.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Inclusions Only, No Liquid",
+                  "price": 6.9,
+                  "note": "Supplied dry in the vessel. Liquid may be purchased separately."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Effervescence Assist",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sparkling Water Base",
+                  "price": 1.5,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Coconut Substrate Base",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pressurized Assist at Handoff",
+                  "price": 5.6,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-glass-case",
+      "name": "The Glass Case",
+      "blurb": "Baked goods held under glass at ambient temperature. Retrieval is a separate operation.",
+      "items": [
+        {
+          "id": "sbx-018",
+          "name": "Structural Cinnamon Coil",
+          "desc": "A twelve-revolution cinnamon coil baked as a single continuous member. Glaze is applied by volume and runs off the edges by design.",
+          "price": 4.35,
+          "calories": 3980,
+          "badges": [
+            "Popular",
+            "Physician Discouraged"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a cafe employee to upload to a food delivery app. Subject: one very large cinnamon roll with many tight coils, thick white glaze poured over the top and pooled around the base, dark cinnamon filling visible between the coils, sitting on a plain white paper plate. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the paper plate cut off at the bottom edge, sitting on a scratched laminate counter with crumbs and a sticky smear of glaze beside it. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Warming Protocol",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ambient Hold",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Case Oven, 40 Seconds",
+                  "price": 3.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Case Oven, Four Minutes",
+                  "price": 7.55,
+                  "note": "The coil will lose its shape and will still be delivered."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Warming",
+                  "price": 1.95,
+                  "note": "The oven is cycled regardless. Cycling is billed as warming."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Glaze Saturation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Coat",
+                  "price": 1.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Saturated",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Submerged and Drained",
+                  "price": 9.6,
+                  "note": "Drain time is thirty minutes and occurs after your order is placed."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Crumb Containment",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Paper Liner",
+                  "price": 0.8,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Rigid Containment Tray",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sealed Containment Sleeve",
+                  "price": 5.45,
+                  "note": "Recommended for coils above the Family class."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-019",
+          "name": "Cake Pop, Load-Rated",
+          "desc": "A spherical cake mass on a stick certified to a stated load. The certification is for the stick, not the sphere.",
+          "price": 1.95,
+          "calories": 640,
+          "badges": [
+            "Limit 1 Per Household"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Load-Rated Stick Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Paper Stick",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Hardwood Stick",
+                  "price": 2.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Steel Stick",
+                  "price": 8.45,
+                  "note": "Steel is rated to nine spheres. Nine spheres are not included."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Stick",
+                  "price": 2.9,
+                  "note": "The sphere is certified without a stick at the hardwood rate."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Case Retrieval Method",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tongs",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Gloved Retrieval",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Full Case Opening",
+                  "price": 6.3,
+                  "note": "The entire case is opened and the ambient temperature is reset."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sprinkle Density",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sparse",
+                  "price": 0.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Complete Coverage",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Second Sprinkle Layer",
+                  "price": 3.7,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-020",
+          "name": "Laminated Butter Slab",
+          "desc": "A rectangular laminated pastry sold by the slab. Layer count is declared at order and is audited at the bakery, not at the terminal.",
+          "price": 3.6,
+          "calories": 2740,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Lamination Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "81 Layers",
+                  "price": 2.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "243 Layers",
+                  "price": 5.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "729 Layers",
+                  "price": 13.4,
+                  "note": "Slab weight approaches that of a Personal vessel."
+                },
+                {
+                  "id": "o4",
+                  "name": "Layer Count Unspecified",
+                  "price": 5.7,
+                  "note": "Unspecified slabs are counted after baking and billed at the median."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Butter Disclosure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Disclosure",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Itemized Disclosure",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Full Disclosure with Weights",
+                  "price": 6.85,
+                  "note": "Disclosure is longer than this menu section."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Slab Bisection",
+              "required": false,
+              "min": 0,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Bisected Once",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bisected Into Nine",
+                  "price": 4.6,
+                  "note": "Bisection into nine is performed with a bench scraper and is imprecise."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sbx-021",
+          "name": "Breakfast Sandwich, Terminal Grade",
+          "desc": "Egg product, a protein disc, and a cheese analogue assembled on a bread-shaped object of your choosing. Griddle assignment determines finish quality.",
+          "price": 3.15,
+          "calories": 1620,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bread-Shaped Object",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Split Round",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Folded Flat",
+                  "price": 2.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Croissant-Adjacent Shell",
+                  "price": 4.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "No Bread-Shaped Object",
+                  "price": 2.75,
+                  "note": "Contents are supplied stacked. Stacking is a preparation."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Griddle Assignment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Rear Griddle",
+                  "price": 1.3,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Front Griddle",
+                  "price": 3.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Reserved Griddle",
+                  "price": 8.9,
+                  "note": "The griddle is cleared of all other orders for the duration."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Protein Duplication",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Second Disc",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Third Disc",
+                  "price": 3.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Cheese Analogue, Doubled",
+                  "price": 1.95,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

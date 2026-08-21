@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#FF2D14">
+<title>DoorGorge™ — Every Door Is A Mouth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..900&family=Archivo:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/screens.css">
+</head>
+<body>
+
+<div id="bezel">
+  <div id="device">
+    <div id="device-notch" aria-hidden="true"></div>
+    <div id="statusbar" aria-hidden="true">
+      <span class="sb-time">9:41</span>
+      <span class="sb-right">
+        <svg viewBox="0 0 18 12" class="sb-ico"><path d="M1 9h2v3H1zM5 6.5h2V12H5zM9 4h2v8H9zM13 1.5h2V12h-2z"/></svg>
+        <svg viewBox="0 0 16 12" class="sb-ico"><path d="M8 10.2 6.1 8.3a2.7 2.7 0 0 1 3.8 0zM3.3 5.5 1.4 3.6a9.3 9.3 0 0 1 13.2 0l-1.9 1.9a6.6 6.6 0 0 0-9.4 0m1.4 1.4a4.6 4.6 0 0 1 6.6 0l-1.4 1.4a2.6 2.6 0 0 0-3.8 0z"/></svg>
+        <span class="sb-batt"><i></i></span>
+      </span>
+    </div>
+
+    <div id="screen">
+      <header id="appbar"></header>
+      <main id="view" tabindex="-1"></main>
+      <div id="cartbar"></div>
+      <nav id="tabbar" aria-label="Primary"></nav>
+    </div>
+
+    <div id="overlay-root" aria-live="polite"></div>
+    <div id="toast-root" aria-live="assertive"></div>
+    <div id="device-home" aria-hidden="true"></div>
+  </div>
+
+  <aside id="deskside">
+    <div class="ds-brand">
+      <div class="ds-mark">DG</div>
+      <div>
+        <b>DoorGorge™</b>
+        <span>Every Door Is A Mouth.</span>
+      </div>
+    </div>
+    <p class="ds-note">A satirical, entirely fictional food-delivery simulation. Every restaurant, item, price, fee and modifier below is invented. Any resemblance to a real chain is parody.</p>
+    <div class="ds-keys">
+      <div><kbd>D</kbd> theme</div>
+      <div><kbd>/</kbd> search</div>
+      <div><kbd>Esc</kbd> back</div>
+      <div><kbd>R</kbd> reset data</div>
+    </div>
+    <div id="ds-stats"></div>
+    <p class="ds-legal">Prices shown are not real. Fees shown are, regrettably, only slightly exaggerated.</p>
+  </aside>
+</div>
+
+<script src="js/data/menus.generated.js"></script>
+<script src="js/core/util.js"></script>
+<script src="js/core/icons.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/core/catalog.js"></script>
+<script src="js/core/fees.js"></script>
+<script src="js/core/cart.js"></script>
+<script src="js/ui/shell.js"></script>
+<script src="js/ui/components.js"></script>
+<script src="js/ui/home.js"></script>
+<script src="js/ui/store.js"></script>
+<script src="js/ui/item.js"></script>
+<script src="js/ui/cart-screen.js"></script>
+<script src="js/ui/checkout.js"></script>
+<script src="js/ui/search.js"></script>
+<script src="js/ui/orders.js"></script>
+<script src="js/ui/account.js"></script>
+<script src="js/ui/plus.js"></script>
+<script src="js/sim/tracker.js"></script>
+<script src="js/sim/bodymax.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

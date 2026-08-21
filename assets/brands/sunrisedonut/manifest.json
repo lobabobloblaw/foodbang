@@ -1,0 +1,97 @@
+{
+  "slug": "sunrisedonut",
+  "name": "Sunrise Donut & Deli",
+  "local": true,
+  "model": "bytedance/seedream-4.5",
+  "size": "2K",
+  "generated": "2026-08-20",
+  "images": [
+    {
+      "file": "logo.webp",
+      "kind": "logo",
+      "aspect": "1:1",
+      "prompt": "Extreme close-up phone photograph of the flat printed face of a sun-bleached white coroplast plastic sign. The sign surface completely fills the square frame and bleeds off all four edges: no sky, no ground, no parking lot, no sign edges, no stakes, no border, no frame, no margin, no drop shadow, nothing but the printed plastic surface from corner to corner. Printed on it: a simple cartoon sun with orange triangular rays whose face is a purple-outlined donut with a hole in the middle, and beneath it hand-set block lettering with slightly uneven spacing. The only text anywhere in the image is exactly: Sunrise Donut & Deli. Visible vertical corrugated flute lines through the plastic, faded chalky ink, a scuff and a faint dirt smear across one corner. Flat overcast daylight, slightly crooked crop, unretouched, flat phone-camera look. No other text, no logos, no watermarks, no people, no hands.",
+      "predictionId": "15s7ff8ks1rmw0d046ctpm1pxr",
+      "raw": "build/raw/sunrisedonut/logo.jpg",
+      "note": "Regenerated once: first attempt (mepswf1xjsrmw0d046avfhrdd4) photographed the sign as an object with sky and parking lot around it, not full-bleed. Final raw centre-cropped to 88% to remove residual background slivers at the left and right edges."
+    },
+    {
+      "file": "hero.webp",
+      "kind": "hero",
+      "aspect": "16:9",
+      "prompt": "Amateur smartphone photo taken by a shop owner, wide 16:9. The interior of a small independent donut shop at 5am: a long glass display case half emptied, several bare metal trays showing through and a few donuts left on one tray, a stainless coffee urn, a metal napkin dispenser, a stack of plain unprinted white bakery boxes, a scuffed formica counter, worn checkerboard vinyl floor tile, an old chest cooler. Every surface is completely blank: no menu board, no posters, no printed packaging, no labels, no lettering anywhere in the room. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill. Slightly crooked horizon, framed a little off centre, mild sensor noise and JPEG compression, unretouched, flat phone-camera look, mixed white balance. Nobody there. No text, no signage, no writing, no numbers, no logos, no watermarks, no people, no hands.",
+      "predictionId": "mbppvn4mn9rmy0d046cvsbfesc",
+      "raw": "build/raw/sunrisedonut/hero.jpg",
+      "note": "Regenerated once: first attempt (8yr2yax2hxrmr0d046asv680z8) contained a garbled menu board and printed pink boxes."
+    },
+    {
+      "file": "items/01.webp",
+      "kind": "item",
+      "aspect": "1:1",
+      "itemId": "snd-001",
+      "itemName": "Glazed Donut",
+      "photoStyle": "amateur",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three fat glazed yeast donuts sitting on a sheet of white wax paper on a scratched laminate counter, the glaze thick and slightly cracked, one donut shiny where the glaze is still wet, a paper coffee cup and a napkin dispenser at the edge of the frame. Harsh direct on-camera flash, hot blown-out specular hotspot on the glaze, hard black shadow thrown behind the donuts. Shot from too close and slightly above, the subject not centred. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "kyq4e900cnrmt0d046b8qccc74",
+      "raw": "build/raw/sunrisedonut/item-01.jpg"
+    },
+    {
+      "file": "items/02.webp",
+      "kind": "item",
+      "aspect": "1:1",
+      "itemId": "snd-002",
+      "itemName": "Apple Fritter",
+      "photoStyle": "amateur",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: one enormous craggy apple fritter lying flat and resting directly on a thin white paper plate, its weight pressing down on the plate and hanging over the rim on two sides, deep golden brown with visible apple chunks in the folds, thick uneven glaze pooled in the crevices. The plate sits on a scratched laminate counter. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked and shot from too close, the plate cut off at the right edge, a metal napkin dispenser at the edge of frame. Flat phone-camera look, unretouched, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "c3agb906f5rmw0d046d8q7sayw",
+      "raw": "build/raw/sunrisedonut/item-02.jpg",
+      "note": "Regenerated once: first attempt (6h9yseap6xrmy0d046b9414zb0) had the fritter levitating above the plate. Final raw centre-cropped to 90% to remove a beige Instagram-style photo frame the model added."
+    },
+    {
+      "file": "items/03.webp",
+      "kind": "item",
+      "aspect": "1:1",
+      "itemId": "snd-006",
+      "itemName": "Half Dozen, Assorted",
+      "photoStyle": "amateur",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an open cardboard donut box on a laminate counter holding six assorted donuts packed tight together, a glazed ring, a chocolate frosted with sprinkles, a maple bar, an old fashioned, a jelly filled dusted with powdered sugar and a pink frosted, seen from above at an angle. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the box. Cluttered background: a napkin dispenser, a stack of plastic lids and a coffee urn behind the box. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "7nebn3xd01rmy0d046b8fyaw0g",
+      "raw": "build/raw/sunrisedonut/item-03.jpg"
+    },
+    {
+      "file": "items/04.webp",
+      "kind": "item",
+      "aspect": "1:1",
+      "itemId": "snd-009",
+      "itemName": "Breakfast Burrito",
+      "photoStyle": "amateur",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a thick breakfast burrito in aluminium foil peeled halfway back, showing scrambled egg, diced potato, melted orange cheese and sausage packed in a large flour tortilla, sitting in a paper boat lined with wax paper on a laminate counter. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Mild motion blur and soft focus, visible JPEG compression artefacts. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "1sb9m2scwnrmw0d046bspysws8",
+      "raw": "build/raw/sunrisedonut/item-04.jpg"
+    },
+    {
+      "file": "items/05.webp",
+      "kind": "item",
+      "aspect": "1:1",
+      "itemId": "snd-014",
+      "itemName": "Italian Cold Cut",
+      "photoStyle": "amateur",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a large Italian cold cut sandwich on a seeded roll cut into two halves, sitting in a white styrofoam clamshell container, layers of ham, salami and provolone spilling out with shredded lettuce, tomato and onion. Harsh direct on-camera flash fired straight at it, hot blown-out white hotspot across the roll, hard black shadow thrown behind the clamshell, flat fluorescent green-yellow cast in the corners. Framed crooked and shot from too close, the clamshell cut off at the left edge, sitting directly on a scratched laminate counter with crumbs and a smear of oil beside it. Flat unretouched phone-camera look, harsh, mixed white balance, sensor noise and JPEG compression. Square crop, the photo fills the whole frame with no border. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "b9wan649phrmw0d046d8z84qvg",
+      "raw": "build/raw/sunrisedonut/item-05.jpg",
+      "note": "Regenerated once: first attempt (75qqb2m739rmr0d046br0tb4mc) read as polished advertising photography; reshot with on-camera flash and a crooked crop."
+    },
+    {
+      "file": "items/06.webp",
+      "kind": "item",
+      "aspect": "1:1",
+      "itemId": "snd-019",
+      "itemName": "Iced Coffee",
+      "photoStyle": "amateur",
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. The photograph fills the entire square frame edge to edge with no black border, no white border, no vignette, no frame and no rounded corners. Subject: a tall clear plastic cup of iced coffee with a domed lid and a wide straw, filled to the top with ice and dark coffee, a swirl of cream half mixed through the middle, heavy condensation running down the outside, sitting on a sheet of wax paper on a scratched laminate counter beside a metal napkin dispenser. Harsh direct on-camera flash, hot blown-out hotspot on the wet plastic, hard black shadow thrown behind the cup. Framed slightly crooked with the cup cut off at the top edge. Flat phone-camera look, unretouched, mixed white balance, noisy. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "predictionId": "9n66fq0xrdrmr0d046dv5n7fng",
+      "raw": "build/raw/sunrisedonut/item-06.jpg",
+      "note": "Regenerated once: first attempt (8v6knj70fnrmy0d046bsj7ba58) had a heavy black photo border. Final raw centre-cropped to 86% to remove a white Instagram-style frame."
+    }
+  ]
+}

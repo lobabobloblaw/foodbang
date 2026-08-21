@@ -1,0 +1,56 @@
+{
+  "slug": "dunkinn",
+  "model": "bytedance/seedream-4.5",
+  "images": [
+    {
+      "file": "logo.webp",
+      "prompt": "Flat vector brand logo, bubbly rounded 1980s franchise identity styling. Solid hot-orange background covering 100 percent of the image, running off all four sides of the canvas with zero black border and zero empty margin. Do NOT draw a rounded square badge, sticker, card, tile, frame, outline or shadow around the artwork, and do NOT place the artwork on a dark backdrop. Centered on the orange: a bold magenta takeaway coffee cup silhouette, slightly tilted, vibrating, with three thick orange motion lines radiating off each side; beneath the cup a chunky rounded soft-geometric wordmark in the same magenta. Crisp flat colour, no gradients. Full-bleed square: the background colour fills the entire canvas edge to edge. No card, no frame, no rounded container, no drop shadow, no surrounding margin or border. The only text anywhere in the image is exactly: Dunkinn",
+      "predictionId": "031vcyd5zdrmw0d0465br642m4",
+      "predictTime": 11.51,
+      "note": "Second generation. First attempt (6k7wrra5p9rmw0d0463s1fr8n8) rendered a rounded orange card on a black field; this one was center-cropped 1740x1740 from 2048 to remove a residual rounded black edge."
+    },
+    {
+      "file": "hero.webp",
+      "prompt": "Cinematic wide establishing shot of a bright pink-and-orange donut shop counter at 6am. A long glossy bakery case packed shelf to shelf with glazed and sprinkled donuts, stainless coffee urns venting steam behind it, loose pink and orange sprinkles scattered across every surface and across the tiled floor. Above the counter hangs one enormous menu board that is a completely blank flat magenta panel with an orange frame: absolutely no writing, no letters, no numbers, no symbols, no squiggles or scribbles on it or anywhere else in the room. Flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Completely empty, nobody present. 24mm anamorphic, deep focus, deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "c29jyvesmhrmt0d0465858sbz0",
+      "predictTime": 10.43,
+      "note": "Second generation. First attempt (g2jqexkm59rmt0d0463ss1d5km) put garbled faux-text rows on the menu board."
+    },
+    {
+      "file": "items/01.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a leaning tower of eleven glazed yeast donuts stacked into a single load-bearing column, thick translucent glaze sheeting down the outside in ribbons and pooling on the counter below, the bottom donut visibly compressed and squeezing outward under the mass above it, sugar crackle glinting across every surface. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 85mm three-quarter hero angle, shallow depth of field, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "c1rrt8zhnhrmw0d0463vadbzt4",
+      "predictTime": 14.81
+    },
+    {
+      "file": "items/02.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an enormous clear cup of iced coffee photographed straight down into the vessel, cream plunging through the dark coffee in thick curling ribbons that have not yet merged, ice cubes packed so tightly they press up past the rim, a slow whirlpool still turning at the center, condensation beading heavily and running over the lip onto the counter. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 50mm directly overhead, looking down into the cup, shallow depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "j105z6hkgsrmw0d0464bf2yfrw",
+      "predictTime": 12.36
+    },
+    {
+      "file": "items/03.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of the crown of a magenta-frosted donut, the frosting cratered and wet-looking and slumping heavily over one side, thousands of pink, orange and white sprinkles packed edge to edge across it and spilling off the rim in a small avalanche onto the counter, individual sugar crystals razor sharp, a bead of frosting hanging mid-drip. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 100mm macro, extremely shallow depth of field, a narrow slice of focus. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "ydymp550exrmt0d04648bd38bc",
+      "predictTime": 23.03
+    },
+    {
+      "file": "items/04.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean vertical cross-section of a breakfast sandwich sliced with a hot blade, croissant-style bun with visible lamination layers, three stacked folded egg rounds inside, four sheets of melted orange cheese sagging and stringing well past the bread edge, two thick sausage discs, the interior stack standing twice as tall as the bun and bulging outward under its own weight, one cheese thread hanging mid-drip. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sheen, cheerful and jittery. Camera: 100mm straight-on, flat to the cut face, deep focus, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "5a1463g2d1rmw0d0464rga6838",
+      "predictTime": 11.63
+    },
+    {
+      "file": "items/05.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a tall clear cup of vivid pink refresher standing on a pleated paper liner on a lined metal tray, pale fruit slices suspended in dense suspension throughout the liquid, crushed ice piled well above the rim in a heaped dome, a second soaked liner beside it stained deep pink, a spreading condensation ring darkening the paper under the cup. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 50mm slightly elevated, the tray filling the frame edge to edge, shallow depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "z23bww37s5rmy0d0464rth739r",
+      "predictTime": 12.23
+    },
+    {
+      "file": "items/06.webp",
+      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of roughly two hundred glazed donut spheres filling a sheet tray far past capacity, spheres spilling over all four tray edges onto the counter in loose drifts, glaze pooling and setting in the tray corners, a few spheres split open showing dense yellow crumb, pink and orange sugar shells mixed through the pile. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: perfectly perpendicular overhead flat-lay, 35mm, deep focus, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+      "predictionId": "ytjddh4y2srmr0d0464v038d7g",
+      "predictTime": 12.28
+    }
+  ]
+}

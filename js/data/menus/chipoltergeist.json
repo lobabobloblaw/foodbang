@@ -1,0 +1,2442 @@
+{
+  "slug": "chipoltergeist",
+  "name": "Chipoltergeist",
+  "shortName": "Chipoltergeist",
+  "tagline": "THE BUILDING IS HAUNTED. THE LINE MOVES ANYWAY.",
+  "cuisine": "Fast-Casual Mexican",
+  "categories": [
+    "fast-food",
+    "mexican",
+    "healthy"
+  ],
+  "rating": 4.3,
+  "ratingCount": 26418,
+  "deliveryMin": 24,
+  "deliveryMax": 51,
+  "deliveryFee": 3.99,
+  "distanceMi": 2.3,
+  "priceTier": 2,
+  "gorgePlus": true,
+  "closesAt": "10:45 PM",
+  "address": "8814 Outparcel Loop, Bay 3, Sunhaven Commons Power Center, Exit 219B",
+  "about": "Chipoltergeist assembles wrapped cylinders and open vessels in full view of the guest, using constituents sourced from suppliers who have signed something. The premises are haunted; this disclosure satisfies all applicable notice requirements and no further action is available. Staff will not make eye contact, which is a service standard and not a mood.",
+  "announcement": "PARANORMAL DISCLOSURE POSTED. Cold spots between the salsa well and the register are known, documented, and priced into the menu. Service continues.",
+  "promos": [
+    "$0 delivery fee on your 9th order"
+  ],
+  "reviews": [
+    {
+      "name": "Deshaun P.",
+      "stars": 5,
+      "date": "Aug 12",
+      "text": "Ordered the Municipal Cylinder and it arrived on a dolly. The Gorger did not speak and I respected that."
+    },
+    {
+      "name": "Marguerite V.",
+      "stars": 4,
+      "date": "Aug 9",
+      "text": "I declined the tortilla and was charged for the tortilla. The note explained why, so I have no complaint."
+    },
+    {
+      "name": "Toby L.",
+      "stars": 5,
+      "date": "Aug 4",
+      "text": "The whispering in the bag was faint and did not affect the food. Guacamole license expired before I got home."
+    },
+    {
+      "name": "Renata K.",
+      "stars": 3,
+      "date": "Jul 29",
+      "text": "Vessel arrived overfilled past the rim as advertised. My car is also overfilled past the rim now."
+    },
+    {
+      "name": "Alonzo B.",
+      "stars": 5,
+      "date": "Jul 21",
+      "text": "I selected Enforced Silence and my entire household was quiet for eleven minutes. Worth $5.15."
+    },
+    {
+      "name": "Priya S.",
+      "stars": 4,
+      "date": "Jul 16",
+      "text": "Cold-Pressed Residue tastes exactly like the name. The sediment disclosure card was informative."
+    }
+  ],
+  "menu": [
+    {
+      "id": "wrapped-cylinders",
+      "name": "Wrapped Cylinders",
+      "blurb": "Assembled in front of you. Commentary is not included.",
+      "items": [
+        {
+          "id": "cpg-001",
+          "name": "The Standard Cylinder",
+          "desc": "Our foundational wrapped cylinder, compressed to specification and sealed in foil. Mass is guaranteed; contents are directional.",
+          "price": 6.25,
+          "calories": 1980,
+          "badges": [
+            "#1 Most Liked",
+            "Popular"
+          ],
+          "photo": "items/01.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: one enormous foil-wrapped burrito the diameter of a fence post, foil peeled back in a spiral to expose a packed cylinder of rice, black beans, charred meat and melted cheese under visible internal pressure, the tortilla stretched thin and shining at the seams, a slow bead of orange fat running down the side, steam rising in a thin column. Placed on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 85mm lens at three-quarter hero angle, shallow depth of field, high micro-contrast, deep blacks. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Tortilla Disposition",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tortilla Applied",
+                  "price": 4.6,
+                  "note": "Wrapping is performed at the counter and invoiced at the counter."
+                },
+                {
+                  "id": "o2",
+                  "name": "Tortilla Withheld",
+                  "price": 4.6,
+                  "note": "Withholding requires the same labor. No structural refund is issued."
+                },
+                {
+                  "id": "o3",
+                  "name": "Spectral Tortilla",
+                  "price": 2.35,
+                  "note": "Present in the order. Not present in the bag."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Protein Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tier One — Adjacent Chicken",
+                  "price": 4.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Tier Two — Barbacoa, Attributed",
+                  "price": 6.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Tier Three — Carnitas, Unattributed",
+                  "price": 7.4,
+                  "note": "Origin is a matter of record we do not keep."
+                },
+                {
+                  "id": "o4",
+                  "name": "Protein Abstention",
+                  "price": 3.1,
+                  "note": "Abstention is a tier."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Assembly Witness Policy",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Non-Contact Assembly",
+                  "price": 1.85,
+                  "note": "Staff will not make eye contact. This is the included experience."
+                },
+                {
+                  "id": "o2",
+                  "name": "Narrated Assembly",
+                  "price": 5.3,
+                  "note": "Each ingredient will be named aloud once."
+                },
+                {
+                  "id": "o3",
+                  "name": "Assembly Performed Out Of View",
+                  "price": 3.95,
+                  "note": "You waive the right to know the order of operations."
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Counter Superstitions",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Salt Line Around The Bag",
+                  "price": 1.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Foil Blessed By Shift Lead",
+                  "price": 2.75,
+                  "note": "Shift Lead availability is not guaranteed."
+                },
+                {
+                  "id": "o3",
+                  "name": "Order Placed Face-Down",
+                  "price": 0.65,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-002",
+          "name": "Double-Wrapped Load-Bearing Burrito",
+          "desc": "Two tortillas, one payload. Rated for transport in a vehicle without a cupholder.",
+          "price": 8.4,
+          "calories": 2740,
+          "badges": [
+            "Popular",
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Wrap Torque",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Torque",
+                  "price": 3.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Load-Bearing Torque",
+                  "price": 6.85,
+                  "note": "Certified against sag for the first eleven minutes."
+                },
+                {
+                  "id": "o3",
+                  "name": "Untorqued",
+                  "price": 3.2,
+                  "note": "The burrito will open. This is not a defect."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Bean Ledger",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Black Beans, Recorded",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Pinto Beans, Recorded",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Beans Declined",
+                  "price": 2.9,
+                  "note": "Declined beans are still weighed, logged, and billed."
+                },
+                {
+                  "id": "o4",
+                  "name": "Beans Unspecified",
+                  "price": 1.7,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Foil Integrity Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Class A — Sealed",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Class B — Mostly Sealed",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Class C — Foil Present Nearby",
+                  "price": 0.95,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Additional Manifestations",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cold Spot In The Bag",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Faint Whispering, Interior",
+                  "price": 3.6,
+                  "note": "Language not specified."
+                },
+                {
+                  "id": "o3",
+                  "name": "Second Receipt, Unrequested",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Extra Foil Sheet",
+                  "price": 1.1,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-003",
+          "name": "The Quiet Burrito",
+          "desc": "Identical to the Standard Cylinder, prepared without acknowledgement. Most guests report no difference.",
+          "price": 5.75,
+          "calories": 1840,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Silence Tier",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ambient Silence",
+                  "price": 2.6,
+                  "note": "The default. Billed because it is maintained."
+                },
+                {
+                  "id": "o2",
+                  "name": "Enforced Silence",
+                  "price": 5.15,
+                  "note": "Adjacent guests will also be silenced."
+                },
+                {
+                  "id": "o3",
+                  "name": "Silence Waived",
+                  "price": 2.6,
+                  "note": "Waiving silence does not reduce the cost of silence."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Rice Substrate",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "White Rice, Cilantro-Marked",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Brown Rice, Structural",
+                  "price": 2.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Substrate",
+                  "price": 3.05,
+                  "note": "The cylinder will be assembled around an absence."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Lime Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "One Wedge",
+                  "price": 0.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Wedge, Already Squeezed",
+                  "price": 1.3,
+                  "note": "Squeezing occurred earlier today."
+                },
+                {
+                  "id": "o3",
+                  "name": "Lime Rights, Perpetual",
+                  "price": 9.45,
+                  "note": "Non-transferable between households."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-004",
+          "name": "Cylinder, Municipal Grade",
+          "desc": "Sized to the standards of a mid-sized water district. Requires two hands and a flat surface.",
+          "price": 11.2,
+          "calories": 4310,
+          "badges": [
+            "Limit 1 Per Household",
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Portion Escalation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Personal",
+                  "price": 3.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Family",
+                  "price": 8.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Municipal",
+                  "price": 15.6,
+                  "note": "Serves a household or a small board meeting."
+                },
+                {
+                  "id": "o4",
+                  "name": "Watershed",
+                  "price": 24.8,
+                  "note": "Delivery requires an unobstructed doorway."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Structural Reinforcement",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Internal Rice Spine",
+                  "price": 4.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Double Foil Chassis",
+                  "price": 6.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unreinforced",
+                  "price": 4.1,
+                  "note": "The failure point will be near the middle."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Heat Custody",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Heat Retained",
+                  "price": 3.85,
+                  "note": "Retention is performed on premises and billed on premises."
+                },
+                {
+                  "id": "o2",
+                  "name": "Heat Released",
+                  "price": 1.95,
+                  "note": "Release is a service."
+                },
+                {
+                  "id": "o3",
+                  "name": "Custody Unassigned",
+                  "price": 1.15,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Handling Instructions",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Printed Card, Two Steps",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Verbal Warning At Handoff",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sandbag Included",
+                  "price": 7.9,
+                  "note": "Sandbag is not food."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-005",
+          "name": "The Half-Cylinder (Structural Remainder)",
+          "desc": "The unsold half of an earlier cylinder, resealed. Priced to reflect its history.",
+          "price": 4.1,
+          "calories": 1120,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Remainder Provenance",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Today's Remainder",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Yesterday's Remainder",
+                  "price": 1.85,
+                  "note": "Refrigerated for most of the interval."
+                },
+                {
+                  "id": "o3",
+                  "name": "Provenance Not Disclosed",
+                  "price": 2.55,
+                  "note": "Disclosure is a separate product."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cut Face Treatment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Sealed With Foil",
+                  "price": 2.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Sealed With Cheese",
+                  "price": 3.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Left Open",
+                  "price": 2.05,
+                  "note": "Open cut faces are billed at the sealed rate."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sentimental Add-Ons",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "A Note From The Previous Order",
+                  "price": 1.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Original Timestamp",
+                  "price": 0.9,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "open-vessels",
+      "name": "Open Vessels",
+      "blurb": "A burrito with the tortilla converted into a fee.",
+      "items": [
+        {
+          "id": "cpg-006",
+          "name": "The Vessel",
+          "desc": "Our signature open-format bowl, filled past the rim by policy. The rim is a suggestion the kitchen has declined.",
+          "price": 7.35,
+          "calories": 2260,
+          "badges": [
+            "#1 Most Liked",
+            "Popular"
+          ],
+          "photo": "items/02.webp",
+          "imagePrompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a deep matte-black bowl shot straight down into, filled far past its rim with cilantro-flecked rice, glossy black beans, charred red peppers, shredded meat and a pale mound of guacamole, the contents domed above the rim and sagging over one edge onto the counter, a thin salsa slick pooling beneath, faint steam curling off the surface. Set on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 50mm directly overhead, tight top-down framing, moderate depth of field, rich shadow detail. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Vessel Class",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Matte Vessel",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Deep Vessel",
+                  "price": 6.2,
+                  "note": "Depth is measured before filling."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Vessel",
+                  "price": 3.95,
+                  "note": "Contents will be placed directly in the bag. This costs the same."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Overfill Authorization",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Authorized Overfill",
+                  "price": 4.55,
+                  "note": "Contents will exceed the rim by up to two inches."
+                },
+                {
+                  "id": "o2",
+                  "name": "Unauthorized Overfill",
+                  "price": 6.9,
+                  "note": "Same result. Different paperwork."
+                },
+                {
+                  "id": "o3",
+                  "name": "Fill To Rim Only",
+                  "price": 4.55,
+                  "note": "Restraint is billed at the overfill rate."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Salsa Authorization",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Mild, Cleared",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Medium, Cleared",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Hot, Conditionally Cleared",
+                  "price": 3.15,
+                  "note": "Clearance may be revoked at handoff."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Salsa",
+                  "price": 1.75,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Surface Finishes",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cotija Dust",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cilantro, Applied Wet",
+                  "price": 0.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Pickled Onion Ring, Single",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Crema Spiral",
+                  "price": 2.6,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-007",
+          "name": "Overfilled Vessel, Family Draw",
+          "desc": "One vessel, four spoons, no partition. Distribution is negotiated at the table and is not our concern.",
+          "price": 12.6,
+          "calories": 5180,
+          "badges": [
+            "Popular"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Bowl Depth",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Depth",
+                  "price": 4.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Extended Depth",
+                  "price": 7.75,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Depth Not Guaranteed",
+                  "price": 4.35,
+                  "note": "The vessel will be a vessel."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Distribution Protocol",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Undivided",
+                  "price": 2.9,
+                  "note": "Household resolves its own allocation."
+                },
+                {
+                  "id": "o2",
+                  "name": "Nominally Divided",
+                  "price": 5.45,
+                  "note": "Lines are drawn in crema and will not hold."
+                },
+                {
+                  "id": "o3",
+                  "name": "Arbitrated",
+                  "price": 11.3,
+                  "note": "An arbitration summary is emailed within nine days."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Utensil Entitlement",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Four Forks",
+                  "price": 1.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "One Fork, Contested",
+                  "price": 0.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Serving Implement, Municipal",
+                  "price": 6.4,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-008",
+          "name": "Bowl With Nothing Withheld",
+          "desc": "Every constituent on the line, in one vessel, in the order they were reached. Nothing is omitted and nothing is arranged.",
+          "price": 9.15,
+          "calories": 3960,
+          "badges": [
+            "New",
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Constituent Sweep",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Full Sweep",
+                  "price": 8.2,
+                  "note": "Every container on the line contributes."
+                },
+                {
+                  "id": "o2",
+                  "name": "Partial Sweep",
+                  "price": 5.65,
+                  "note": "Containers are skipped at the server's discretion."
+                },
+                {
+                  "id": "o3",
+                  "name": "Sweep Declined",
+                  "price": 8.2,
+                  "note": "The sweep is performed and then discarded. Billed as performed."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Layer Sequence",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Left To Right",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Right To Left",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sequence Determined By The Building",
+                  "price": 3.7,
+                  "note": "The building's preference has been consistent since 2019."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Absorption Aids",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chip Raft",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Secondary Empty Vessel",
+                  "price": 3.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Extra Liner",
+                  "price": 0.95,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-009",
+          "name": "The Salad Vessel",
+          "desc": "Lettuce is used as a base rather than a garnish. The remaining contents are unchanged in every respect.",
+          "price": 6.9,
+          "calories": 2410,
+          "badges": [
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Lettuce Substrate Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grade One — Whole Leaf",
+                  "price": 3.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grade Two — Shredded",
+                  "price": 2.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Lettuce Omitted",
+                  "price": 3.55,
+                  "note": "Omission is graded and billed as Grade One."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Dressing Disposition",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Vinaigrette, Poured",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Vinaigrette, Adjacent",
+                  "price": 2.65,
+                  "note": "Supplied in a sealed container you will not open."
+                },
+                {
+                  "id": "o3",
+                  "name": "Undressed",
+                  "price": 3.4,
+                  "note": "Dry salads require additional handling."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Perceived Health Markers",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Visible Seeds",
+                  "price": 1.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Green Item, Unspecified",
+                  "price": 1.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Nutrition Card, Laminated",
+                  "price": 2.95,
+                  "note": "Figures on the card are illustrative."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loose-constituents",
+      "name": "Loose Constituents",
+      "blurb": "Ingredients sold outside of any structure.",
+      "items": [
+        {
+          "id": "cpg-010",
+          "name": "Chips, By The Sleeve",
+          "desc": "Thick-cut corn chips, salted to a fixed grade and issued by the sleeve. Sleeve is torn at the counter by policy.",
+          "price": 3.85,
+          "calories": 1640,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/03.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a heaped serving of thick-cut fried corn tortilla chips spilling out of a torn brown paper sleeve that has been folded open and laid on its side, chips piled high and dusted with coarse salt and fried corn crumbs, a small clear plastic cup of red salsa sitting beside the sleeve with a lid resting next to it, this is a fast-casual burrito counter kitchen. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Cluttered background: a stainless prep counter, a napkin dispenser, a stack of lids and another order waiting in a foil-wrapped bundle. Flat phone-camera look, unretouched, noisy, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Sleeve Volume",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Half Sleeve",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Full Sleeve",
+                  "price": 4.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Reservoir Sleeve",
+                  "price": 12.75,
+                  "note": "Approximately the volume of a small planter."
+                },
+                {
+                  "id": "o4",
+                  "name": "Sleeve Declined",
+                  "price": 2.45,
+                  "note": "The sleeve is filled and retained by us."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Chip Salinity Grade",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Grade Standard",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Grade Coastal",
+                  "price": 2.6,
+                  "note": "Measurably more salt. Not measured by us."
+                },
+                {
+                  "id": "o3",
+                  "name": "Unsalted",
+                  "price": 1.9,
+                  "note": "Removal of salt is a process."
+                },
+                {
+                  "id": "o4",
+                  "name": "Salinity Unmonitored",
+                  "price": 0.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Breakage Class",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Whole Chips Prioritized",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Fragments Only, Discounted Elsewhere",
+                  "price": 1.05,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-011",
+          "name": "Salsa Flight, Four Positions",
+          "desc": "Four salsas presented in a fixed order. The order does not correspond to heat, age, or ingredient.",
+          "price": 5.4,
+          "calories": 620,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Salsa Position Count",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Two Positions",
+                  "price": 3.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Positions",
+                  "price": 5.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Six Positions",
+                  "price": 9.2,
+                  "note": "Two positions will be duplicates."
+                },
+                {
+                  "id": "o4",
+                  "name": "Positions Withheld",
+                  "price": 3.1,
+                  "note": "Cups are still filled."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Cup Occupancy",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Filled To Line",
+                  "price": 2.05,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Filled Past Line",
+                  "price": 3.45,
+                  "note": "Lids will not seat."
+                },
+                {
+                  "id": "o3",
+                  "name": "Occupancy Unverified",
+                  "price": 1.4,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Flight Documentation",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Tasting Card",
+                  "price": 1.75,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Verbal Introduction",
+                  "price": 2.85,
+                  "note": "Delivered at the door, briefly."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-012",
+          "name": "Rice Overrun",
+          "desc": "The rice prepared in excess of forecast demand. Sold at cost plus the cost of forecasting.",
+          "price": 2.95,
+          "calories": 1380,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Grain Overrun Policy",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Today's Overrun",
+                  "price": 2.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cumulative Overrun",
+                  "price": 4.85,
+                  "note": "Multiple batches, one container."
+                },
+                {
+                  "id": "o3",
+                  "name": "Overrun Refused",
+                  "price": 2.7,
+                  "note": "Refusal does not reduce the overrun."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Container Return Posture",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Container Retained By Guest",
+                  "price": 1.95,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Container Returned",
+                  "price": 3.4,
+                  "note": "Return is scheduled by us and not by you."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Container",
+                  "price": 1.95,
+                  "note": "Rice will be placed in the bag."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Grain Enhancements",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lime Juice, Aerosolized",
+                  "price": 1.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cilantro Stems",
+                  "price": 0.8,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Second Rice",
+                  "price": 3.15,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controlled-substances",
+      "name": "Controlled Substances",
+      "blurb": "Licensed constituents. Availability is regulated internally.",
+      "items": [
+        {
+          "id": "cpg-013",
+          "name": "Guacamole, Licensed Portion",
+          "desc": "Hand-crushed avocado issued under a single-use household license. The license expires when the container is opened.",
+          "price": 4.75,
+          "calories": 640,
+          "badges": [
+            "#1 Most Liked",
+            "Limit 1 Per Household"
+          ],
+          "photo": "items/04.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a generous scoop of chunky hand-mashed green guacamole filling a small clear plastic deli container to the brim, visible avocado chunks, flecks of red onion, chopped cilantro and lime pulp on the rough surface, the clear snap lid sitting upside down beside it, a few tortilla chips laid next to the container, this is a fast-casual burrito counter kitchen. Harsh direct on-camera flash, hot blown-out hotspot on the plastic rim, hard black shadow thrown behind the container. The container sitting directly on a scratched laminate counter with crumbs and a smear of red sauce beside it. Flat phone-camera look, unretouched, noisy, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Guacamole Licensure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Standard Household License",
+                  "price": 5.9,
+                  "note": "Valid for one address for one evening."
+                },
+                {
+                  "id": "o2",
+                  "name": "Extended License",
+                  "price": 11.45,
+                  "note": "Valid until the container is empty or forgotten."
+                },
+                {
+                  "id": "o3",
+                  "name": "License Declined",
+                  "price": 5.9,
+                  "note": "The portion is prepared and destroyed. Fee unchanged."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Crush Coarseness",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Coarse, Visible Chunks",
+                  "price": 2.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Fine, Uniform",
+                  "price": 3.6,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Coarseness Not Recorded",
+                  "price": 1.75,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Ripeness Attestation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Attested Ripe",
+                  "price": 3.15,
+                  "note": "Attestation is verbal and not retained."
+                },
+                {
+                  "id": "o2",
+                  "name": "Attested Nearly Ripe",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "No Attestation Offered",
+                  "price": 2.2,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Preservation Theater",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pit Placed On Top",
+                  "price": 1.3,
+                  "note": "Has no effect. Included for confidence."
+                },
+                {
+                  "id": "o2",
+                  "name": "Plastic Pressed To Surface",
+                  "price": 0.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Container Sealed In Front Of You",
+                  "price": 2.75,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-014",
+          "name": "Queso, Regulated Flow",
+          "desc": "Molten cheese dispensed at a metered rate. The meter is on our side of the counter.",
+          "price": 5.2,
+          "calories": 1290,
+          "badges": [
+            "Popular",
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Queso Flow Rate",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Restricted Flow",
+                  "price": 3.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Nominal Flow",
+                  "price": 5.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unrestricted Flow",
+                  "price": 13.65,
+                  "note": "Vessel is filled until an employee decides otherwise."
+                },
+                {
+                  "id": "o4",
+                  "name": "Flow Halted",
+                  "price": 3.85,
+                  "note": "The pump still runs."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Congealment Window",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Wide Window",
+                  "price": 4.2,
+                  "note": "Remains liquid for most of the trip."
+                },
+                {
+                  "id": "o2",
+                  "name": "Narrow Window",
+                  "price": 2.55,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Window Not Offered",
+                  "price": 2.55,
+                  "note": "Product will arrive as a solid disc."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Dipping Infrastructure",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chip Allotment, Small",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Chip Allotment, Municipal",
+                  "price": 8.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Spoon",
+                  "price": 0.7,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-015",
+          "name": "Guacamole, Watershed Allocation",
+          "desc": "A regional-scale guacamole allocation delivered in a lidded pail. Requires flat floor space and one adult.",
+          "price": 16.4,
+          "calories": 3820,
+          "badges": [
+            "Limit 1 Per Household",
+            "Regionally Legal"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Allocation Volume",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "District",
+                  "price": 9.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Municipal",
+                  "price": 16.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Watershed",
+                  "price": 27.4,
+                  "note": "Approved for one address per calendar month."
+                },
+                {
+                  "id": "o4",
+                  "name": "Allocation Suspended",
+                  "price": 9.7,
+                  "note": "Pail is filled and held in our facility."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Oxidation Liability",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Liability Retained By Us",
+                  "price": 6.25,
+                  "note": "We accept that it will turn brown."
+                },
+                {
+                  "id": "o2",
+                  "name": "Liability Transferred To Guest",
+                  "price": 3.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Liability Unassigned",
+                  "price": 3.9,
+                  "note": "It will still turn brown."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Pail Accessories",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Handle",
+                  "price": 1.85,
+                  "note": "Pails do not include handles by default."
+                },
+                {
+                  "id": "o2",
+                  "name": "Second Lid",
+                  "price": 2.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Dolly, Loaner",
+                  "price": 14.2,
+                  "note": "Returnable within four days."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lifestyle-compliance",
+      "name": "Lifestyle Compliance",
+      "blurb": "Wellness outcomes, documented and enforced.",
+      "items": [
+        {
+          "id": "cpg-016",
+          "name": "The Lifestyle Bowl™",
+          "desc": "A compliant configuration of grains, greens and attributed protein. Compliance is assessed at assembly and not thereafter.",
+          "price": 8.95,
+          "calories": 1740,
+          "badges": [
+            "New",
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Compliance Level",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Level One — Observed",
+                  "price": 4.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Level Two — Documented",
+                  "price": 6.8,
+                  "note": "A record is generated and stored indefinitely."
+                },
+                {
+                  "id": "o3",
+                  "name": "Level Three — Enforced",
+                  "price": 12.35,
+                  "note": "Substitutions will be refused at the door."
+                },
+                {
+                  "id": "o4",
+                  "name": "Non-Compliant",
+                  "price": 4.15,
+                  "note": "Assessed anyway. Billed at Level One."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Macro Attestation",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Attested Figures",
+                  "price": 3.45,
+                  "note": "Figures are produced by an internal estimate."
+                },
+                {
+                  "id": "o2",
+                  "name": "Rounded Figures",
+                  "price": 2.3,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Figures Withheld",
+                  "price": 2.3,
+                  "note": "Withheld figures were still calculated."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Wellness Signifiers",
+              "required": false,
+              "min": 0,
+              "max": 4,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Quinoa, Visible",
+                  "price": 2.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Half Avocado, Fanned",
+                  "price": 4.1,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Lemon Wedge On Rim",
+                  "price": 1.05,
+                  "note": null
+                },
+                {
+                  "id": "o4",
+                  "name": "Sprouts, Structural",
+                  "price": 1.9,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-017",
+          "name": "Macro-Attested Protein Column™",
+          "desc": "A vertical stack of grilled protein plated without accompaniment. Each layer is weighed and the weight is reported to you once.",
+          "price": 10.3,
+          "calories": 2980,
+          "badges": [
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Column Height",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Four Layers",
+                  "price": 5.55,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Seven Layers",
+                  "price": 9.4,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Column, Municipal",
+                  "price": 18.75,
+                  "note": "Delivered lying down."
+                },
+                {
+                  "id": "o4",
+                  "name": "Column Collapsed",
+                  "price": 5.55,
+                  "note": "Assembled, then collapsed. Same labor."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Attestation Format",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Spoken Once At Handoff",
+                  "price": 2.85,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Printed On Receipt",
+                  "price": 3.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Attestation Waived",
+                  "price": 2.85,
+                  "note": "The weighing still occurs."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Sauce Suppression",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Fully Suppressed",
+                  "price": 3.3,
+                  "note": "Sauce is prepared and withheld."
+                },
+                {
+                  "id": "o2",
+                  "name": "Partially Suppressed",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Suppression Lifted",
+                  "price": 4.6,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g4",
+              "name": "Presentation Extras",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Kraft Liner, Branded Blank",
+                  "price": 1.35,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Skewer, Load-Bearing",
+                  "price": 2.2,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Rosemary Sprig, Decorative Only",
+                  "price": 1.75,
+                  "note": "Not food."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-018",
+          "name": "Compliance Wrap (Lettuce Statement)",
+          "desc": "The full cylinder contents rolled in lettuce instead of flour. Filed as a statement of intent rather than a meal.",
+          "price": 7.15,
+          "calories": 1310,
+          "badges": [
+            "New",
+            "Regionally Legal"
+          ],
+          "photo": "items/05.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: two thick lettuce-leaf wraps cut in half and sitting on a white paper plate, romaine and iceberg leaves rolled tightly around white rice, black beans, grilled chopped chicken, salsa and shredded cheese, the filling bulging out of the cut ends and a little juice soaking into the paper plate, a lime wedge tucked at the side, this is a fast-casual burrito counter kitchen. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Shot from too close and slightly above, the plate not centred and cut off at the bottom edge, mild soft focus with visible JPEG compression artefacts. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Lettuce Statement Format",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Short Statement — Two Leaves",
+                  "price": 3.7,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Full Statement — Four Leaves",
+                  "price": 5.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Statement Withdrawn",
+                  "price": 3.7,
+                  "note": "Leaves are rolled and then unrolled."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Structural Honesty",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Disclosed — It Will Leak",
+                  "price": 2.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Undisclosed",
+                  "price": 3.55,
+                  "note": "You will discover this in the vehicle."
+                },
+                {
+                  "id": "o3",
+                  "name": "Reinforced With A Second Wrap",
+                  "price": 6.3,
+                  "note": "The second wrap is flour."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cut Presentation",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cut On The Diagonal",
+                  "price": 1.65,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Cut Cross-Section, Photographed",
+                  "price": 3.2,
+                  "note": "Photograph is retained by us."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-019",
+          "name": "The Cleanse Cylinder",
+          "desc": "A burrito containing only items classified internally as restorative. Duration of effect is fixed at the time of ordering.",
+          "price": 6.55,
+          "calories": 990,
+          "badges": [
+            "Chef Recommended"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Cleanse Duration",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Six Hours",
+                  "price": 3.25,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "One Day",
+                  "price": 5.7,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Indefinite",
+                  "price": 14.9,
+                  "note": "Cancellation requires written notice."
+                },
+                {
+                  "id": "o4",
+                  "name": "No Cleanse",
+                  "price": 3.25,
+                  "note": "The duration is still assigned."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Restorative Classification",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Classified By Kitchen",
+                  "price": 2.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Classified By Guest",
+                  "price": 4.35,
+                  "note": "Your classification will be reviewed."
+                },
+                {
+                  "id": "o3",
+                  "name": "Unclassified",
+                  "price": 2.9,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Supplementary Assurances",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Verbal Assurance",
+                  "price": 1.2,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Written Assurance",
+                  "price": 3.05,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Assurance, Notarized",
+                  "price": 11.6,
+                  "note": "Notary is not on site."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ambient-beverages",
+      "name": "Ambient Beverages",
+      "blurb": "Liquids issued at counter temperature unless otherwise purchased.",
+      "items": [
+        {
+          "id": "cpg-020",
+          "name": "Agua Fresca, Undisclosed Fruit",
+          "desc": "A pale fruit water blended daily. The fruit is known to the kitchen and is not published.",
+          "price": 3.4,
+          "calories": 610,
+          "badges": [
+            "Popular"
+          ],
+          "photo": "items/06.webp",
+          "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a large clear plastic takeout cup filled to the top with cloudy pale pink agua fresca, ice cubes floating and fruit pulp suspended in the haze, a flat plastic lid pressed on crooked with a paper straw poked through it, condensation running down the cup and a wet ring on the counter, a second empty cup stacked behind it, standing on the stainless steel prep counter of a small burrito shop, plain blank stainless wall and a steam table behind it. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup. Framed slightly crooked with the cup cut off at the right edge. Flat phone-camera look, unretouched, noisy, mixed white balance. Square crop. No text, no signage, no menu board, no posters, no pictures on the wall, no logos, no packaging labels, no watermarks, no hands, no people.",
+          "photoStyle": "amateur",
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Fruit Disclosure",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Undisclosed",
+                  "price": 2.15,
+                  "note": "The included tier."
+                },
+                {
+                  "id": "o2",
+                  "name": "Disclosed At Handoff",
+                  "price": 4.7,
+                  "note": "One word, spoken quietly."
+                },
+                {
+                  "id": "o3",
+                  "name": "Disclosure Sealed",
+                  "price": 3.25,
+                  "note": "Fruit identity is recorded and locked."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ice Provision",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ice Included",
+                  "price": 2.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Ice Omitted",
+                  "price": 2.45,
+                  "note": "Ice is produced, counted, and discarded."
+                },
+                {
+                  "id": "o3",
+                  "name": "Ice Delivered Separately",
+                  "price": 5.8,
+                  "note": "Arrives in its own bag, later."
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Cup Ceremony",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Lid Seated",
+                  "price": 1.1,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Straw, Paper, Collapsing",
+                  "price": 0.85,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Second Cup, Empty",
+                  "price": 1.95,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-021",
+          "name": "Fountain Access",
+          "desc": "A time-limited right to operate the self-service fountain. The cup is a separate product.",
+          "price": 2.85,
+          "calories": 760,
+          "badges": [
+            "Contains Food"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Access Window",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Ninety Seconds",
+                  "price": 2.6,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Four Minutes",
+                  "price": 4.95,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unlimited, Supervised",
+                  "price": 13.4,
+                  "note": "Supervision is remote."
+                },
+                {
+                  "id": "o4",
+                  "name": "Access Revoked",
+                  "price": 2.6,
+                  "note": "The window is scheduled regardless."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Vessel Provision",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Cup Supplied",
+                  "price": 3.15,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Bring Your Own Vessel",
+                  "price": 3.15,
+                  "note": "Inspection fee applies and is included here."
+                },
+                {
+                  "id": "o3",
+                  "name": "No Vessel",
+                  "price": 1.85,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Fountain Etiquette Options",
+              "required": false,
+              "min": 0,
+              "max": 2,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pre-Fill Ice Advisory",
+                  "price": 0.9,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Mixing Rights, All Nozzles",
+                  "price": 4.25,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cpg-022",
+          "name": "Cold-Pressed Residue",
+          "desc": "The pressed remainder of the day's citrus program, strained once and chilled. Sold as a beverage.",
+          "price": 4.65,
+          "calories": 660,
+          "badges": [
+            "New",
+            "Physician Discouraged"
+          ],
+          "photo": null,
+          "imagePrompt": null,
+          "groups": [
+            {
+              "id": "g1",
+              "name": "Residue Handling",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Strained Once",
+                  "price": 3.4,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Strained Twice",
+                  "price": 5.15,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Unstrained",
+                  "price": 3.4,
+                  "note": "Straining occurs and is reversed."
+                }
+              ]
+            },
+            {
+              "id": "g2",
+              "name": "Ambient Temperature Assignment",
+              "required": true,
+              "min": 1,
+              "max": 1,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Chilled",
+                  "price": 2.95,
+                  "note": "Chilling is performed here and billed here."
+                },
+                {
+                  "id": "o2",
+                  "name": "Counter Temperature",
+                  "price": 1.6,
+                  "note": "Temperature is assigned, not measured."
+                },
+                {
+                  "id": "o3",
+                  "name": "Temperature Unassigned",
+                  "price": 1.05,
+                  "note": null
+                }
+              ]
+            },
+            {
+              "id": "g3",
+              "name": "Residue Companions",
+              "required": false,
+              "min": 0,
+              "max": 3,
+              "options": [
+                {
+                  "id": "o1",
+                  "name": "Pulp, Additional",
+                  "price": 1.45,
+                  "note": null
+                },
+                {
+                  "id": "o2",
+                  "name": "Peel Twist",
+                  "price": 1.9,
+                  "note": null
+                },
+                {
+                  "id": "o3",
+                  "name": "Sediment Disclosure Card",
+                  "price": 2.3,
+                  "note": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
