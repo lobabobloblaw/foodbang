@@ -9,6 +9,8 @@ no dependencies. See `README.md` for what it is; this file is for editing it.
 npm start          # preview on http://127.0.0.1:8899 (no-cache server)
 npm run bundle     # js/data/menus/*.json  ->  js/data/menus.generated.js
 npm run artifact   # single-file build     ->  build/foodbang.html
+npm test           # smoke-test the invariants below (exits 1 on regression)
+npm run check      # rebundle, then smoke-test
 node tools/rebrand.cjs --dry   # preview an app-wide rename
 ```
 
@@ -53,10 +55,14 @@ That mix is the realism, not an inconsistency. Recipe: `tools/local-bible.json`
 **Fee order matters.** `js/core/fees.js` computes: subtotal → discounts → itemised fee stack →
 Peak Demand ×1.4 applied to the *whole stack* → tax on (subtotal + fees) → tip on the *subtotal*
 → round total up to the next $5. Reordering these breaks the joke, which is that $12 of food
-lands at exactly $60.00. There is a smoke test for that number in the README.
+lands at exactly $60.00. `npm test` asserts it, along with the multiplier being applied to the
+whole stack and the tip being computed on the subtotal.
 
 **Every fee needs an entry in `FEE_WHY`.** The `?` next to a fee line reads from it; a fee
-without one renders a dead button.
+without one renders a dead button. `npm test` checks this.
+
+**Run `npm test` before committing.** It covers all of the above plus asset presence (including
+zero-byte dataless files), the amateur/studio photo mix, and stale brand strings after a rename.
 
 ## Rebranding
 

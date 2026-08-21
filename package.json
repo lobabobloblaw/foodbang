@@ -2,12 +2,14 @@
   "name": "foodbang",
   "version": "1.0.0",
   "private": true,
-  "description": "FoodBang™ — a satirical, entirely fictional clone of a modern food-delivery app",
+  "description": "FoodBang\u2122 \u2014 a satirical, entirely fictional clone of a modern food-delivery app",
   "type": "module",
   "scripts": {
     "start": "node tools/serve.mjs 8899",
     "build": "node tools/bundle.cjs",
     "bundle": "node tools/bundle.cjs",
-    "artifact": "node tools/bundle.cjs && node tools/build-artifact.cjs"
+    "artifact": "node tools/bundle.cjs && node tools/build-artifact.cjs",
+    "test": "node tools/smoke.cjs",
+    "check": "node tools/bundle.cjs && node tools/smoke.cjs"
   }
 }
