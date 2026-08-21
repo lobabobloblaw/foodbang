@@ -599,6 +599,21 @@ kbd {
 .fineprint { padding: 18px var(--pad) 30px; color: var(--ink-3); font: 400 calc(11px * var(--fs))/1.55 var(--font); }
 .fineprint b { color: var(--ink-2); }
 
+/* a control waiting on the network — see js/core/latency.js. currentColor so the
+   spinner is legible on the dark primary button and on a plain list row alike. */
+.is-busy { position: relative; pointer-events: none; opacity: .62; }
+.is-busy::after {
+  content: ''; position: absolute; right: 12px; top: 50%; width: 14px; height: 14px; margin-top: -7px;
+  border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; opacity: .8;
+  animation: fbspin .62s linear infinite;
+}
+@keyframes fbspin { to { transform: rotate(360deg); } }
+/* a spinner frozen by a motion override is worse than none: the dimming still reads */
+:root[data-motion="off"] .is-busy::after { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="on"]) .is-busy::after { display: none; }
+}
+
 .callout {
   margin: 10px var(--pad); padding: 12px 14px; border-radius: var(--r-md);
   background: var(--surface-2); font: var(--t-sub); color: var(--ink-2);

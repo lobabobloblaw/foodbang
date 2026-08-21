@@ -360,6 +360,23 @@ window.FB = window.FB || {};
   };
 
   /* ===================== toasts ===================== */
+  /* The visible half of js/core/latency.js. A control that goes quiet for half a
+     second with no response reads as broken, which is the opposite of the point —
+     so anything that waits says that it is waiting, and cannot be fired twice
+     while it does. The element is usually thrown away by the nav.refresh() that
+     follows, so this restores nothing: it only has to hold until then. */
+  FB.busy = function (el, kind, fn) {
+    if (!el) return FB.latency.run(kind, fn);
+    if (el.dataset.busy === '1') return function () {};   /* already in flight */
+    el.dataset.busy = '1';
+    el.classList.add('is-busy');
+    return FB.latency.run(kind, function () {
+      el.dataset.busy = '';
+      el.classList.remove('is-busy');
+      fn();
+    });
+  };
+
   FB.toast = function (msg, opts) {
     opts = opts || {};
     var root = el('toast-root');

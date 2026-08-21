@@ -106,6 +106,11 @@ window.FB = window.FB || {};
     }
 
     var footerWired = false;
+    /* FB.busy's own guard lives on the element, and the qty stepper calls
+       setFooter(), which replaces that element — so tapping +, then Add again
+       while the first Add is still in flight would hand back a fresh unguarded
+       button and commit twice. One order per tap, whatever the DOM does. */
+    var committing = false;
     function wire(root, h) {
       function repaint() {
         /* .sheet-body IS the scroll container: clearing its children clamps
@@ -128,7 +133,11 @@ window.FB = window.FB || {};
           qty = FB.clamp(qty + Number(t.dataset.q), 1, 99);
           hh.setFooter(foot());
         });
-        FB.on(f, 'click', '[data-add]', function () { commit(hh); });
+        FB.on(f, 'click', '[data-add]', function (e, t) {
+          if (committing) return;
+          committing = true;
+          FB.busy(t, 'cartAdd', function () { committing = false; commit(hh); });
+        });
       }
 
       FB.on(root, 'click', '[data-opt]', function (e, t) {

@@ -108,10 +108,15 @@ window.FB = window.FB || {};
         FB.cart.update(p.slug, l.lid, { qty: l.qty + Number(t.dataset.d) });
         if (!FB.cart.lines(p.slug).length) FB.nav.back(); else FB.nav.refresh();
       });
+      /* The stepper next to this is deliberately instant — you tap + three times in
+         a row and a real app answers optimistically. Removal is the one that asks. */
       FB.on(root, 'click', '[data-rm]', function (e, t) {
-        FB.cart.remove(p.slug, t.dataset.rm);
-        FB.toast('Removed. The Menu Digitization Surcharge for this item is non-refundable.');
-        if (!FB.cart.lines(p.slug).length) FB.nav.back(); else FB.nav.refresh();
+        var lid = t.dataset.rm;
+        FB.busy(t.closest('.cartline') || t, 'cartRemove', function () {
+          FB.cart.remove(p.slug, lid);
+          FB.toast('Removed. The Menu Digitization Surcharge for this item is non-refundable.');
+          if (!FB.cart.lines(p.slug).length) FB.nav.back(); else FB.nav.refresh();
+        });
       });
       FB.on(root, 'click', '[data-edit]', function (e, t) {
         var l = FB.cart.lines(p.slug).filter(function (x) { return x.lid === t.dataset.edit; })[0];

@@ -195,6 +195,10 @@ window.FB = window.FB || {};
         seg('language', s.language, [['en-US', 'American'], ['en-US-LOUD', 'American (Loud)']]) +
         '</div>' +
         sw('soundEffects', s.soundEffects, 'Sound effects', 'There are none. The setting remains available.') +
+        sw('instantInterface', s.instantInterface, 'Instant Interface',
+          s.instantInterface
+            ? 'On. Confirmation is displayed before it is obtained. Adds the Interface Acceleration Fee ($1.95) to each order.'
+            : 'Off. Requests are performed at the speed at which they are performed.') +
         '</div>';
 
       h += '<div class="fineprint">Settings are stored in this browser only. Changing a setting may change a price. ' +
@@ -311,10 +315,11 @@ window.FB = window.FB || {};
         '<textarea class="textarea" id="f-instructions" data-f="instructions" placeholder="Gate code, floor, warnings…">' + FB.esc(a.instructions) + '</textarea></div>',
       footer: '<button class="btn btn--primary btn--block" data-save>Save address</button>',
       onMount: function (b, h) {
-        FB.on(h.el, 'click', '[data-save]', function () {
+        FB.on(h.el, 'click', '[data-save]', function (e, t) {
           var vals = {};
           FB.qsa('[data-f]', b).forEach(function (i) { vals[i.dataset.f] = i.value.trim(); });
           if (!vals.line1) { FB.toast('A street address is required.', { kind: 'bad' }); return; }
+          FB.busy(t, 'save', function () {
           FB.store.set(function (st) {
             if (id) {
               var x = st.addresses.filter(function (y) { return y.id === id; })[0];
@@ -328,6 +333,7 @@ window.FB = window.FB || {};
             return st;
           });
           h.close(); FB.nav.refresh(); FB.toast('Address saved.');
+          });
         });
       },
     });
@@ -408,16 +414,18 @@ window.FB = window.FB || {};
         field('Nickname', 'nick', '', 'Personal'),
       footer: '<button class="btn btn--primary btn--block" data-save>Add card</button>',
       onMount: function (b, h) {
-        FB.on(h.el, 'click', '[data-save]', function () {
+        FB.on(h.el, 'click', '[data-save]', function (e, t) {
           var v = {}; FB.qsa('[data-f]', b).forEach(function (i) { v[i.dataset.f] = i.value.trim(); });
           var digits = (v.num || '').replace(/\D/g, '');
           if (digits.length < 4) { FB.toast('Enter at least 4 digits.', { kind: 'bad' }); return; }
+          FB.busy(t, 'save', function () {
           FB.store.set(function (st) {
             st.payments.push({ id: FB.uid('p'), brand: digits[0] === '4' ? 'Visa' : digits[0] === '5' ? 'Mastercard' : 'BangCard',
               last4: digits.slice(-4), exp: v.exp || '01/30', nickname: v.nick || 'Card', isDefault: false });
             return st;
           });
           h.close(); FB.nav.refresh(); FB.toast('Card added.');
+          });
         });
       },
     });
@@ -451,10 +459,12 @@ window.FB = window.FB || {};
       html: field('Name', 'name', u.name, '') + field('Email', 'email', u.email, '') + field('Phone', 'phone', u.phone, ''),
       footer: '<button class="btn btn--primary btn--block" data-save>Save</button>',
       onMount: function (b, h) {
-        FB.on(h.el, 'click', '[data-save]', function () {
+        FB.on(h.el, 'click', '[data-save]', function (e, t) {
           var v = {}; FB.qsa('[data-f]', b).forEach(function (i) { v[i.dataset.f] = i.value.trim(); });
-          FB.store.set(function (st) { Object.keys(v).forEach(function (k) { if (v[k]) st.user[k] = v[k]; }); return st; });
-          h.close(); FB.nav.refresh(); FB.toast('Profile updated.');
+          FB.busy(t, 'save', function () {
+            FB.store.set(function (st) { Object.keys(v).forEach(function (k) { if (v[k]) st.user[k] = v[k]; }); return st; });
+            h.close(); FB.nav.refresh(); FB.toast('Profile updated.');
+          });
         });
       },
     });

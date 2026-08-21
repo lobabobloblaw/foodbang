@@ -270,12 +270,17 @@ window.FB = window.FB || {};
             var input = body.querySelector('[data-code]');
             var msg = body.querySelector('[data-msg]');
             FB.on(body, 'click', '[data-try]', function (e, t) { input.value = t.dataset.try; });
-            FB.on(h.el, 'click', '[data-apply]', function () {
-              var r = FB.fees.checkPromo(input.value, FB.cart.subtotal(pp.slug), FB.S().promo.used);
-              if (!r) { h.close(); return; }
-              if (!r.valid) { msg.className = 'field-err'; msg.textContent = r.error; return; }
-              FB.cart.setCo(pp.slug, { promoCode: r.code }); h.close(); FB.nav.refresh();
-              FB.toast('Promo ' + r.code + ' applied.', { icon: 'checkFill' });
+            FB.on(h.el, 'click', '[data-apply]', function (e, t) {
+              var typed = input.value;
+              msg.className = 'field-hint';
+              msg.textContent = 'Checking the code against the conditions attached to it…';
+              FB.busy(t, 'promo', function () {
+                var r = FB.fees.checkPromo(typed, FB.cart.subtotal(pp.slug), FB.S().promo.used);
+                if (!r) { h.close(); return; }
+                if (!r.valid) { msg.className = 'field-err'; msg.textContent = r.error; return; }
+                FB.cart.setCo(pp.slug, { promoCode: r.code }); h.close(); FB.nav.refresh();
+                FB.toast('Promo ' + r.code + ' applied.', { icon: 'checkFill' });
+              });
             });
           },
         });

@@ -32,6 +32,7 @@ window.FB = window.FB || {};
     opacity: 'You have elected not to see the fees. Concealment requires active maintenance and is priced accordingly.',
     upsell: 'Suppressing recommendations removes a revenue stream. The stream is restored here.',
     restraint: 'A reduced Hunger Level reduces recommended volume. The shortfall is billed.',
+    accel: 'Requests take the time they take. Acceleration is applied to the display of the request, which is the part you are present for.',
     data: 'Your behavioral data was subsidizing your food. You have withdrawn the subsidy.',
     pickupA: 'You are retrieving the order yourself. Facilitating your retrieval is a service.',
     pickupB: 'A vehicle was deployed and then stood down. Deployment is billed at deployment.',
@@ -125,6 +126,7 @@ window.FB = window.FB || {};
          context that passes no hungerLevel — the headless $12 → $60.00 case — is
          untouched by this branch. */
       if (s.hungerLevel <= 2) lines.push(line('restraint', 'Restraint Accommodation Fee', 2.40, 'A reduced Hunger Level reduces recommended volume.'));
+      if (s.instantInterface) lines.push(line('accel', 'Interface Acceleration Fee', 1.95, 'Waiting is removed from the interface, not from the process.'));
       if (!s.dataSharing) lines.push(line('data', 'Data Sovereignty Fee', 4.10, 'You have withdrawn the subsidy.'));
       if (ctx.scheduled) lines.push(line('schedule', 'Temporal Coordination Fee', 2.60, null));
       if (ctx.express) lines.push(line('express', 'Express Bang™', 5.99, 'Reduces estimated arrival by up to 1 minute.'));

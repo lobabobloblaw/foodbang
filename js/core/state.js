@@ -29,6 +29,7 @@ window.FB = window.FB || {};
         reduceUpsells: false,    /* so does this */
         dataSharing: true,       /* turning this off costs money too */
         soundEffects: true,
+        instantInterface: false,   /* suppressing the wait costs money. see fees.js */
         autoTipPct: 42,
         notifications: {
           orderUpdates: true, promos: true, slingerMessages: true,

@@ -255,6 +255,7 @@ window.FB = window.FB || {};
         onMount: function (b, h) {
           FB.on(b, 'click', '[data-tipup]', function (e, t) {
             var n = Number(t.dataset.tipup);
+            FB.busy(t, 'tipBoost', function () {
             FB.store.set(function (st) {
               var oo = st.orders.filter(function (x) { return x.id === o.id; })[0];
               if (oo) { oo.calc.tip = FB.round2(oo.calc.tip + n); oo.calc.total = FB.round2(oo.calc.total + n); oo.etaDrift += 1; }
@@ -265,6 +266,7 @@ window.FB = window.FB || {};
             h.close();
             FB.toast('Tip increased by ' + FB.money(n) + '. Estimate updated. Arrival unchanged.');
             FB.nav.refresh();
+            });
           });
         },
       });
@@ -274,18 +276,21 @@ window.FB = window.FB || {};
 
     FB.on(root, 'click', '[data-rate]', function (e, t) {
       var n = Number(t.dataset.rate);
-      FB.store.set(function (st) {
-        var oo = st.orders.filter(function (x) { return x.id === o.id; })[0];
-        if (oo) oo.rated = n;
-        return st;
+      FB.busy(t.parentNode || t, 'rate', function () {
+        FB.store.set(function (st) {
+          var oo = st.orders.filter(function (x) { return x.id === o.id; })[0];
+          if (oo) oo.rated = n;
+          return st;
+        });
+        FB.toast(n >= 4 ? 'Thank you. Your rating has been forwarded.' : 'Received. Your rating has been forwarded to the Slinger with your name attached.');
+        FB.nav.refresh();
       });
-      FB.toast(n >= 4 ? 'Thank you. Your rating has been forwarded.' : 'Received. Your rating has been forwarded to the Slinger with your name attached.');
-      FB.nav.refresh();
     });
 
-    FB.on(root, 'click', '[data-reorder]', function () {
+    FB.on(root, 'click', '[data-reorder]', function (e, t) {
       var store = FB.catalog.get(o.slug);
       if (!store) { FB.toast('This store is no longer available in your region.'); return; }
+      FB.busy(t, 'reorder', function () {
       var added = 0;
       o.lines.forEach(function (l) {
         var it = FB.catalog.item(o.slug, l.itemId);
@@ -293,6 +298,7 @@ window.FB = window.FB || {};
       });
       FB.toast(added ? 'Re-added ' + FB.plural(added, 'item') + '. Prices have been refreshed.' : 'Those items are no longer offered.');
       if (added) FB.nav.go('cart', { slug: o.slug });
+      });
     });
 
     FB.on(root, 'click', '[data-support]', function () {

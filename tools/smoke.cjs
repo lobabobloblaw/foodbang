@@ -15,6 +15,16 @@ function check(label, fn) {
     console.log('  FAIL  ' + label + '\n          ' + e.message);
   }
 }
+/* The source greps below must not match their own explanations. This codebase
+   comments in /* … *\/ blocks whose continuation lines start with plain spaces, so
+   a "does this line start with a star" test does not see them. Block comments are
+   replaced with blank lines rather than removed, to keep line numbers honest. */
+function codeOnly(src) {
+  return src
+    .replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ' '))
+    .replace(/^\s*\/\/.*$/gm, '');
+}
+
 function eq(actual, expected, what) {
   if (actual !== expected) throw new Error(what + ': expected ' + expected + ', got ' + actual);
   return String(actual);
@@ -58,6 +68,7 @@ check('every fee line has a FEE_WHY entry, in every context', () => {
     { subtotal: 400, lineCount: 3, plus: true },
     { subtotal: 40, lineCount: 3, settings: { ...base, feeTransparency: false, reduceUpsells: true, dataSharing: false } },
     { subtotal: 40, lineCount: 3, settings: { ...base, hungerLevel: 1 } },
+    { subtotal: 40, lineCount: 3, settings: { ...base, instantInterface: true } },
   ];
   const seen = new Set(), missing = new Set();
   for (const ctx of contexts) {
@@ -167,9 +178,8 @@ check('screens bind through FB.on, never addEventListener', () => {
     for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.js'))) {
       if (exempt.has(f)) continue;
       n++;
-      const src = fs.readFileSync(path.join(dir, f), 'utf8');
-      src.split('\n').forEach((line, i) => {
-        if (/\.addEventListener\(/.test(line) && !/^\s*(\*|\/\/|\/\*)/.test(line)) hits.push(d + '/' + f + ':' + (i + 1));
+      codeOnly(fs.readFileSync(path.join(dir, f), 'utf8')).split('\n').forEach((line, i) => {
+        if (/\.addEventListener\(/.test(line)) hits.push(d + '/' + f + ':' + (i + 1));
       });
     }
   }
@@ -468,6 +478,60 @@ check('every promo code burns, and says something specific when it does', () => 
   const low = FB.fees.checkPromo('HALFOFF', 10, ['HALFOFF']);
   if (/short/.test(low.error)) throw new Error('a spent code below its minimum reports the shortfall instead');
   return codes.length + ' codes, each single-use with its own justification';
+});
+
+check('randomness is seeded everywhere but its own implementation', () => {
+  /* FB.seeded/FB.hash drive feed order, busy flags, photo shuffles and now
+     interaction latency, so a re-render or a reload never reshuffles the app.
+     util.js implements the fallback inside FB.pick/FB.shuffle and is exempt; a
+     bare Math.random() anywhere else is a re-render that disagrees with itself. */
+  const dirs = ['js/core', 'js/ui', 'js/sim'];
+  const exempt = new Set(['util.js']);
+  const hits = [];
+  for (const d of dirs) {
+    for (const f of fs.readdirSync(path.join(ROOT, d)).filter((f) => f.endsWith('.js'))) {
+      if (exempt.has(f)) continue;
+      codeOnly(fs.readFileSync(path.join(ROOT, d, f), 'utf8')).split('\n').forEach((line, i) => {
+        if (/Math\.random\(/.test(line)) hits.push(d + '/' + f + ':' + (i + 1));
+      });
+    }
+  }
+  codeOnly(fs.readFileSync(path.join(ROOT, 'js/app.js'), 'utf8')).split('\n').forEach((line, i) => {
+    if (/Math\.random\(/.test(line)) hits.push('js/app.js:' + (i + 1));
+  });
+  if (hits.length) throw new Error('unseeded randomness in: ' + hits.join(', '));
+  return 'seeded outside util.js';
+});
+
+check('interaction latency stays small, varies, and can be bought off', () => {
+  /* The delays exist so the app reads as an app rather than as a diagram of one.
+     They are believable only while they stay short and stop being identical. */
+  const app = harness.loadApp();
+  const { FB } = app;
+  const kinds = Object.keys(FB.latency.KINDS);
+  try {
+    for (const k of kinds) {
+      const [lo, hi] = FB.latency.KINDS[k];
+      if (!(lo > 0 && hi > lo)) throw new Error(k + ' has a bad range [' + lo + ',' + hi + ']');
+      if (hi > 1500) throw new Error(k + ' waits ' + hi + 'ms — that is a hang, not a delay');
+      const seen = new Set();
+      for (let i = 0; i < 12; i++) {
+        const ms = FB.latency.ms(k);
+        if (ms < lo || ms > hi) throw new Error(k + ' returned ' + ms + 'ms, outside [' + lo + ',' + hi + ']');
+        seen.add(ms);
+      }
+      if (seen.size < 4) throw new Error(k + ' returned only ' + seen.size + ' distinct delays in 12 calls');
+    }
+    /* the platform is quicker to take money than to give it back */
+    if (FB.latency.KINDS.cartAdd[1] >= FB.latency.KINDS.cartRemove[0]) {
+      throw new Error('removing from the cart is not slower than adding to it');
+    }
+    FB.store.set((st) => { st.settings.instantInterface = true; return st; });
+    for (const k of kinds) {
+      if (FB.latency.ms(k) !== 0) throw new Error(k + ' still waits with Instant Interface on');
+    }
+  } finally { app.dispose(); }
+  return kinds.length + ' kinds, ' + FB.latency.KINDS.cartAdd[0] + '-' + FB.latency.KINDS.plusCancel[1] + 'ms';
 });
 
 console.log('');

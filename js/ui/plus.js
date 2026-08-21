@@ -73,7 +73,8 @@ window.FB = window.FB || {};
       return h;
     },
     mount: function (root) {
-      FB.on(root, 'click', '[data-join]', function () {
+      FB.on(root, 'click', '[data-join]', function (e, t) {
+        FB.busy(t, 'plusJoin', function () {
         FB.store.set(function (st) {
           st.plus.active = true; st.plus.since = Date.now(); st.plus.trialUsed = true;
           st.plus.renewsOn = FB.dayLabel(Date.now() + 30 * 86400000) + ', automatically';
@@ -82,8 +83,12 @@ window.FB = window.FB || {};
         });
         FB.toast('BANG+ activated. Your first billing occurs in 30 days, or sooner.', { kind: 'plus', ms: 3800 });
         FB.nav.refresh();
+        });
       });
-      FB.on(root, 'click', '[data-cancel]', function () { cancelStep(1); });
+      /* and every step of leaving is the slowest interaction in the app */
+      FB.on(root, 'click', '[data-cancel]', function (e, t) {
+        FB.busy(t, 'plusCancel', function () { cancelStep(1); });
+      });
     },
   });
 
@@ -97,7 +102,7 @@ window.FB = window.FB || {};
           '<div class="mrow">' + FB.icon('gift', 19) + '<span class="mr-b"><b>BangBux™</b><span>' + FB.money(st.credits) + ' available</span></span></div>' +
           '<button class="mrow" data-next>' + FB.icon('x', 19) + '<span class="mr-b"><b>Cancel membership</b><span>Available online.</span></span>' +
           '<span class="mr-r">' + FB.icon('fwd', 15) + '</span></button>',
-        onMount: function (b, h) { FB.on(b, 'click', '[data-next]', function () { h.close(); setTimeout(function () { cancelStep(2); }, 220); }); },
+        onMount: function (b, h) { FB.on(b, 'click', '[data-next]', function () { h.close(); FB.latency.run('plusCancel', function () { cancelStep(2); }); }); },
       });
     } else if (n === 2) {
       FB.sheet.open({
@@ -114,7 +119,7 @@ window.FB = window.FB || {};
           '<button class="linkbtn" data-next style="color:var(--ink-3);font-size:calc(12.5px * var(--fs));text-align:center">Continue to cancel</button></div>',
         onMount: function (b, h) {
           FB.on(h.el, 'click', '[data-keep]', function () { h.close(); FB.toast('Membership retained. Thank you.'); });
-          FB.on(h.el, 'click', '[data-next]', function () { h.close(); setTimeout(function () { cancelStep(3); }, 220); });
+          FB.on(h.el, 'click', '[data-next]', function () { h.close(); FB.latency.run('plusCancel', function () { cancelStep(3); }); });
         },
       });
     } else if (n === 3) {
@@ -137,7 +142,7 @@ window.FB = window.FB || {};
             FB.store.set(function (s) { s.plus.retentionUsed = true; return s; });
             FB.toast('Discount applied for two months. Your rate then becomes $24.99.', { kind: 'plus', ms: 3600 });
           });
-          FB.on(h.el, 'click', '[data-next]', function () { h.close(); setTimeout(function () { cancelStep(4); }, 220); });
+          FB.on(h.el, 'click', '[data-next]', function () { h.close(); FB.latency.run('plusCancel', function () { cancelStep(4); }); });
         },
       });
     } else if (n === 4) {
@@ -159,7 +164,7 @@ window.FB = window.FB || {};
           });
           FB.on(h.el, 'click', '[data-next]', function () {
             if (pick == null) return;
-            h.close(); setTimeout(function () { cancelStep(5); }, 220);
+            h.close(); FB.latency.run('plusCancel', function () { cancelStep(5); });
           });
         },
       });
