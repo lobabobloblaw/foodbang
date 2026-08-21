@@ -137,11 +137,20 @@ window.FB = window.FB || {};
           /* The write is unconditional — cancelling it would silently drop a removal
              the user tapped — but it must not navigate a screen the user has since
              left. It must still RESYNC one: a checkout that came from this cart is
-             now quoting, and would place, an order the cart no longer holds. */
+             now quoting, and would place, an order the cart no longer holds.
+             Only CHECKOUT is ejected, and only when the cart is empty. A store page
+             renders perfectly well with no cart — that is the state you are in the
+             moment you open one — so throwing the user to Home from it was the
+             half-second delay popping a screen out from under them all over again,
+             and nav.tab() cleared the stack so Back could not undo it. */
           if (here.params && here.params.slug === p.slug &&
               (here.name === 'checkout' || here.name === 'store')) {
-            if (!FB.cart.lines(p.slug).length) FB.nav.tab('home');
-            else FB.nav.refresh();
+            if (here.name === 'checkout' && !FB.cart.lines(p.slug).length) {
+              FB.toast('That was the last item. The checkout has been withdrawn.');
+              FB.nav.back();
+            } else {
+              FB.nav.refresh();
+            }
           }
         });
       });

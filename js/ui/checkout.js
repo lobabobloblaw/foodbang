@@ -280,7 +280,9 @@ window.FB = window.FB || {};
         for (var i = 1; i <= 8; i++) slots.push(FB.clockIn(s.deliveryMax + i * 45));
         FB.sheet.open({
           title: 'Schedule delivery',
-          sub: shut ? FB.esc(s.name) + ' is closed. A time must be reserved.'
+          /* raw, not FB.esc: mkOverlay escapes cfg.sub itself (shell.js), so
+             pre-escaping renders "Colonel Cluckingham&#39;s" as literal text */
+          sub: shut ? s.name + ' is closed. A time must be reserved.'
                     : 'Scheduling requires the future, which must be reserved.',
           html: (shut ? '' :
             '<button class="opt" role="radio" aria-checked="' + (!picked) + '" data-slot="">' +

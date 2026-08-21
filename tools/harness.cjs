@@ -41,6 +41,11 @@ function stubEl(tag) {
     replaceChild(a, b) {
       const i = el.children.indexOf(b);
       if (i > -1) el.children[i] = a; else el.children.push(a);
+      /* reparent, or the SECOND paint throws: shell.js's freshRoot() does
+         el.parentNode.replaceChild(next, el) every time, so the replacement must
+         inherit the parent or navigating twice is untestable */
+      if (a) a.parentNode = el;
+      if (b) b.parentNode = null;
       return b;
     },
     get firstElementChild() { return el.children[0] || null; },

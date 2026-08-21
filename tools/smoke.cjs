@@ -1846,6 +1846,26 @@ check('the app boots', () => {
   /* a fresh install */
   boot(null);
 
+  /* navigating repeatedly must keep working: paint() replaces #view and #appbar in
+     their parent every time, so the second navigation is the one that catches a
+     root that was not reparented */
+  (function () {
+    const app = harness.loadApp();
+    app.clock.set(T0);
+    app.run(appSrc);
+    const FB = app.FB;
+    try {
+      harness.addToCart(FB, 'pizzahutch', 1);
+      const trail = ['store', 'cart', 'store', 'search', 'orders', 'account', 'home'];
+      for (const name of trail) FB.nav.go(name, name === 'store' || name === 'cart' ? { slug: 'pizzahutch' } : {});
+      if (FB.nav.current().name !== 'home') throw new Error('a seven-screen walk did not end where it was sent');
+      /* and back out again */
+      let guard = 0;
+      while (FB.nav.depth() > 0 && guard++ < 20) FB.nav.back();
+      if (guard >= 20) throw new Error('nav.back() would not unwind the stack');
+    } finally { app.clock.restore(); app.dispose(); }
+  })();
+
   /* and a save with an order abandoned a day ago, which is what makes boot do work:
      tracker.resume() catches it up, standing decays, the backlog is synthesised */
   const withOrder = boot((FB, now) => {
@@ -1866,6 +1886,31 @@ check('the app boots', () => {
   if (!withOrder) throw new Error('the seeded order did not survive boot');
 
   return 'fresh install and a day-old abandoned order, both reaching home';
+});
+
+check('nothing escapes a sheet subtitle twice', () => {
+  /* mkOverlay escapes cfg.title and cfg.sub itself, so a caller that pre-escapes
+     renders "Colonel Cluckingham&#39;s" as visible entity text. Four of the twenty
+     store names carry an escapable character, and the render sweep never opens a
+     sheet, so nothing else can see this. */
+  const bad = [];
+  for (const d of ['js/ui', 'js/sim']) {
+    for (const f of fs.readdirSync(path.join(ROOT, d)).filter((x) => x.endsWith('.js'))) {
+      codeOnly(fs.readFileSync(path.join(ROOT, d, f), 'utf8')).split('\n').forEach((line, i) => {
+        if (/\b(sub|title):\s*[^,]*FB\.esc\(/.test(line)) bad.push(d + '/' + f + ':' + (i + 1));
+      });
+    }
+  }
+  if (bad.length) throw new Error('pre-escaped overlay title/sub in: ' + bad.join(', '));
+
+  /* and prove the double-escape really is visible, so this check keeps its point */
+  const app = harness.loadApp();
+  try {
+    const once = app.FB.esc("Colonel Cluckingham's Poultry Compound");
+    const twice = app.FB.esc(once);
+    if (once === twice) throw new Error('FB.esc is idempotent, so this check guards nothing');
+  } finally { app.dispose(); }
+  return 'no overlay pre-escapes its own title or subtitle';
 });
 
 console.log('');

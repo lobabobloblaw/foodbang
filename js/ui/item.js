@@ -19,7 +19,8 @@ window.FB = window.FB || {};
     var armed = (FB.S().restock || []).indexOf(item.id) > -1;
     FB.sheet.open({
       title: item.name,
-      sub: FB.esc(store.name) + ' · unavailable today',
+      /* raw: mkOverlay escapes cfg.sub itself. Pre-existing, and the same bug. */
+      sub: store.name + ' · unavailable today',
       html: '<div style="padding:2px 16px 18px">' +
         '<p style="font:var(--t-body);color:var(--ink-2);line-height:1.6;margin:0 0 4px">' +
         FB.esc(item.scarce.charAt(0).toUpperCase() + item.scarce.slice(1)) + '.</p>' +
