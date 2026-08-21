@@ -161,8 +161,8 @@ window.FB = window.FB || {};
     tab: 'account',
     hideCartBar: true,
     appbar: function () {
-      return '<div class="bar"><button class="iconbtn" data-back>' + FB.icon('back', 20) + '</button>' +
-        '<h1>BODYMAX™</h1><button class="iconbtn" data-bmhelp>' + FB.icon('help', 19) + '</button></div>';
+      return '<div class="bar"><button class="iconbtn" data-back aria-label="Back">' + FB.icon('back', 20) + '</button>' +
+        '<h1>BODYMAX™</h1><button class="iconbtn" data-bmhelp aria-label="About BODYMAX">' + FB.icon('help', 19) + '</button></div>';
     },
     render: function () {
       var m = FB.bodymax.metrics();

@@ -16,7 +16,7 @@ window.FB = window.FB || {};
     tab: 'account',
     hideCartBar: true,
     appbar: function () {
-      return '<div class="bar"><button class="iconbtn" data-back>' + FB.icon('back', 20) + '</button>' +
+      return '<div class="bar"><button class="iconbtn" data-back aria-label="Back">' + FB.icon('back', 20) + '</button>' +
         '<h1 style="font:var(--t-head)">BANG+</h1></div>';
     },
     render: function () {
