@@ -186,6 +186,7 @@ kbd {
 .bar .bar-sub { font: var(--t-cap); color: var(--ink-3); }
 
 .iconbtn {
+  position: relative;   /* the notification dot is absolutely placed inside the bell */
   width: 38px; height: 38px; border-radius: var(--r-pill); flex: none;
   display: grid; place-items: center; color: var(--ink);
   background: var(--surface-2); transition: transform var(--fast) var(--sp), background var(--fast);
@@ -370,6 +371,15 @@ kbd {
 }
 .storecard.is-shut .sc-media > img:not(.sc-logo) { filter: grayscale(.72) brightness(.82); }
 .storecard.is-shut .sc-body { opacity: .72; }
+
+.belldot {
+  position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--fb); box-shadow: 0 0 0 2px var(--bg);
+}
+.ndot {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--fb); margin-right: 7px; vertical-align: middle;
+}
 
 .sc-tags { position: absolute; left: 10px; top: 10px; display: flex; gap: 6px; z-index: 2; flex-wrap: wrap; max-width: 78%; }
 .sc-body { padding: 9px 2px 0; }

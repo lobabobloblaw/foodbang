@@ -140,6 +140,9 @@ function loadApp(opts) {
   const run = (code) => vm.runInContext(code, ctx, { filename: 'harness-eval' });
   const clock = {
     set(ts) { run('Date.now = function () { return ' + ts + '; };'); return ts; },
+    /* the realm's clock, not Node's — reaching for Date.now() out here is the trap */
+    now() { return run('Date.now()'); },
+    advance(ms) { return clock.set(clock.now() + ms); },
     restore() { run('delete Date.now;'); },
   };
   return { win: sandbox, FB, files, skipped, doc, dispose, run, clock };
@@ -252,6 +255,7 @@ const FIXTURES = [
         return st;
       });
       FB.bodymax.ingest(o);
+      FB.notifs.push({ id: 'fixture:1', kind: 'order', icon: 'bike', title: 'Delivered', body: 'Photo attached.', go: 'track', params: { id: o.id } });
       FB.cart.clear('starbux');
       return { id: o.id, slug: 'starbux' };
     },

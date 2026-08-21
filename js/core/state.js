@@ -58,6 +58,8 @@ window.FB = window.FB || {};
       activeOrderId: null,
       favorites: [],
       recentSearches: [],
+      notifs: [],           /* the notification centre. see js/core/notifs.js */
+      notifsThrough: 0,     /* how far the boot backlog has synthesised */
       promo: { applied: null, used: [] },
       seen: {},
       bodymax: { history: [], badges: [], firstTs: null, dismissed: [] },

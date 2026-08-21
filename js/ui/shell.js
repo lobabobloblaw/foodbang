@@ -147,6 +147,19 @@ window.FB = window.FB || {};
   /* The world's state, on the device, for CSS to read. Called from paint() and
      again on the boot clock's interval, so a tab left open through a weather change
      catches up without anyone navigating. */
+  /* The bell lives in the app bar, which this subscriber does NOT repaint — only
+     #view and #tabbar are its business — so the dot is patched directly or it
+     simply never appears until you navigate. */
+  function renderBell() {
+    if (!barEl) return;
+    var btn = barEl.querySelector('[data-notifs]');
+    if (!btn) return;
+    var dot = btn.querySelector('.belldot');
+    var want = FB.notifs && FB.notifs.unreadCount() > 0;
+    if (want && !dot) btn.insertAdjacentHTML('beforeend', '<i class="belldot"></i>');
+    else if (!want && dot && dot.parentNode) dot.parentNode.removeChild(dot);
+  }
+
   function stampWorld() {
     var dev = document.getElementById('device');
     if (!dev) return;
@@ -455,8 +468,8 @@ window.FB = window.FB || {};
         else if (e.key === 'R' && e.shiftKey && (e.metaKey || e.ctrlKey) === false) { FB.hardReset(); }
       });
 
-      FB.store.sub(function () { renderTabs(); renderCartBar(); FB.updateDeskStats(); });
+      FB.store.sub(function () { renderTabs(); renderCartBar(); renderBell(); FB.updateDeskStats(); });
     },
-    repaintChrome: function () { renderTabs(); renderCartBar(); },
+    repaintChrome: function () { renderTabs(); renderCartBar(); renderBell(); },
   };
 })(window.FB);

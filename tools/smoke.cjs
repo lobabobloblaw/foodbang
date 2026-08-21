@@ -810,6 +810,81 @@ check('every store has hours, and they survive midnight', () => {
   } finally { clock.restore(); app.dispose(); }
 });
 
+check('notifications accumulate, back-date, and never stay read', () => {
+  /* The bell opened a module-local array of six rows with the ages "2m" and "31m"
+     baked in. The backlog is COMPUTED at boot from what the save already knows
+     rather than accrued by a timer — which is what makes three days away produce
+     three days of correctly back-dated nagging at no storage cost, and is also why
+     it has to be idempotent. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T0);
+    if (FB.notifs.unreadCount() !== 0) throw new Error('a fresh install already has notifications');
+
+    /* an order emits one per STEP, not one per beat, and never twice */
+    harness.addToCart(FB, 'mcronalds', 2);
+    const o = harness.makeOrder(FB, 'mcronalds', { now: T0 });
+    o.etaDrift = 0; o.events = [];
+    FB.tracker.build(o);
+    FB.cart.clear('mcronalds');
+    FB.store.set((st) => { st.orders.unshift(o); st.activeOrderId = o.id; return st; });
+    for (let t = 0; t <= 160; t += 2) { clock.set(o.startAt + t * 1000); FB.tracker.tick(); }
+    const afterOrder = FB.notifs.list().length;
+    if (afterOrder < 3) throw new Error('an entire order produced only ' + afterOrder + ' notifications');
+    if (afterOrder > 6) throw new Error(afterOrder + ' notifications for one order — that is per beat, not per step');
+    FB.tracker.tick(); FB.tracker.tick();
+    if (FB.notifs.list().length !== afterOrder) throw new Error('re-ticking duplicated notifications');
+    for (const n of FB.notifs.list()) {
+      if (!n.ts || n.ts > clock.now()) throw new Error('a notification is stamped in the future');
+      if (n.go && !FB.screens.get(n.go)) throw new Error('a notification points at a screen that does not exist: ' + n.go);
+      if (!FB.icon(n.icon, 12)) throw new Error('a notification uses an icon that does not exist: ' + n.icon);
+    }
+
+    /* three days away is three days of back-dated nagging, and running it twice is not six */
+    FB.store.reset();
+    clock.set(T0);
+    FB.store.set((st) => { st.orders = [{ placedAt: T0 }]; st.notifsThrough = 0; return st; });
+    clock.set(T0 + 3 * 86400000);
+    const first = FB.notifs.backfill();
+    if (first !== 3) throw new Error('three days away produced ' + first + ' notifications');
+    if (FB.notifs.backfill() !== 0) throw new Error('running the backlog twice produced duplicates');
+    const miss = FB.notifs.list().filter((n) => n.kind === 'miss');
+    const bodies = new Set(miss.map((n) => n.body));
+    if (bodies.size !== miss.length) throw new Error('the backlog sent the same sentence more than once');
+    /* each is dated at the day it would have been sent, and reports the gap as it was THEN */
+    if (!miss.some((n) => /in 1 day\b/.test(n.body))) throw new Error('no nag reports the gap as it was on day one');
+
+    /* the cap holds */
+    FB.notifs.pushMany(Array.from({ length: 100 }, (_, i) => ({ id: 'bulk:' + i, kind: 'order', title: 'x', body: 'y', ts: T0 + i })));
+    if (FB.notifs.list().length !== FB.notifs.CAP) throw new Error('the cap is ' + FB.notifs.list().length + ', not ' + FB.notifs.CAP);
+
+    /* a switch that is off gates its kind */
+    FB.store.reset();
+    clock.set(T0);
+    FB.store.set((st) => { st.settings.notifications.reengagement = false; st.orders = [{ placedAt: T0 }]; return st; });
+    clock.set(T0 + 3 * 86400000);
+    if (FB.notifs.backfill() !== 0) throw new Error('re-engagement is switched off and still notified');
+
+    /* and the joke: marked as read, then unread again, one at a time */
+    FB.store.reset();
+    clock.set(T0);
+    FB.store.set((st) => { st.orders = [{ placedAt: T0 }]; return st; });
+    clock.set(T0 + 3 * 86400000);
+    FB.notifs.backfill();
+    const n0 = FB.notifs.unreadCount();
+    FB.notifs.markAllRead();
+    if (FB.notifs.unreadCount() !== 0) throw new Error('Mark all as read did not');
+    clock.advance(60000);
+    if (FB.notifs.unreadCount() !== 1) throw new Error('they came back all at once, or not at all');
+    clock.advance(600000);
+    if (FB.notifs.unreadCount() !== n0) throw new Error('they did not all come back');
+
+    return 'per step, back-dated, capped at ' + FB.notifs.CAP + ', gated, and always unread';
+  } finally { clock.restore(); app.dispose(); }
+});
+
 console.log('');
 if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
 console.log('all checks passed');

@@ -470,25 +470,43 @@ window.FB = window.FB || {};
     });
   }
 
-  var NOTIFS = [
-    ['zap', 'Peak demand is in effect', 'It has been in effect since March 2019.', '2m'],
-    ['tag', 'Your saved store raised its prices', 'You saved it, so we are telling you.', '31m'],
-    ['activity', 'BODYMAX™ threshold crossed', 'Sodium Saturation exceeded 100%. No action is available.', '1h'],
-    ['bell', 'We miss you', 'You have not ordered in 90 minutes.', '2h'],
-    ['gift', 'A promo code expired', 'You did not use it. It has been noted.', '5h'],
-    ['bike', 'Rate your last Slinger', 'Ratings below 4 are shared with the Slinger and with you.', '1d'],
+  /* Shown on a fresh install, and beneath whatever real events have accumulated:
+     an empty notification centre is the one screen this platform would never allow.
+     They carry no timestamp because they are not events — they are the weather. */
+  var STANDING = [
+    ['zap', 'Peak demand is in effect', 'It has been in effect since March 2019.'],
+    ['tag', 'Your saved stores raised their prices', 'You saved them, so we are telling you.'],
   ];
+
   FB.openNotifications = function () {
+    var list = FB.notifs.list();
+    var unread = FB.notifs.unreadCount();
     FB.sheet.open({
-      title: 'Notifications', sub: NOTIFS.length + ' unread · they are always unread',
-      html: NOTIFS.map(function (n) {
-        return '<div class="mrow" style="align-items:flex-start">' + FB.icon(n[0], 19) +
+      title: 'Notifications',
+      sub: list.length
+        ? FB.plural(list.length, 'notification') + ' · ' + unread + ' unread · they are always unread'
+        : 'Nothing has happened to you yet.',
+      html: list.map(function (n) {
+        var fresh = FB.notifs.isUnread(n);
+        return '<button class="mrow" style="align-items:flex-start"' +
+            (n.go ? ' data-go="' + FB.attr(n.go) + '"' + (n.params ? " data-params='" + FB.attr(JSON.stringify(n.params)) + "'" : '') : '') + '>' +
+          FB.icon(n.icon, 19) +
+          '<span class="mr-b"><b>' + (fresh ? '<i class="ndot" aria-hidden="true"></i>' : '') + FB.esc(n.title) + '</b>' +
+          '<span>' + FB.esc(n.body) + '</span></span>' +
+          '<span class="mr-r">' + FB.esc(FB.ago(n.ts)) + '</span></button>';
+      }).join('') +
+      STANDING.map(function (n) {
+        return '<div class="mrow" style="align-items:flex-start;opacity:.72">' + FB.icon(n[0], 19) +
           '<span class="mr-b"><b>' + FB.esc(n[1]) + '</b><span>' + FB.esc(n[2]) + '</span></span>' +
-          '<span class="mr-r">' + n[3] + '</span></div>';
+          '<span class="mr-r">ongoing</span></div>';
       }).join('') +
       '<div style="padding:16px"><button class="btn btn--ghost btn--block" data-clearn>Mark all as read</button></div>',
       onMount: function (b, h) {
-        FB.on(b, 'click', '[data-clearn]', function () { FB.toast('Marked as read. They will return.'); h.close(); });
+        FB.on(b, 'click', '[data-clearn]', function () {
+          FB.notifs.markAllRead();
+          FB.toast('Marked as read. Some will be marked unread again shortly.');
+          h.close();
+        });
       },
     });
   };

@@ -182,6 +182,11 @@ window.FB = window.FB || {};
     for (var i = 0; i < STEPS.length; i++) if (STEPS[i].key === key) return i;
     return 0;
   }
+  function labelFor(o, key) {
+    var steps = FB.tracker.steps(o);
+    for (var i = 0; i < steps.length; i++) if (steps[i].key === key) return steps[i].label;
+    return key;
+  }
 
   /* Replay every beat that is now in the past. Returns 'done' if this pass
      delivered the order, true if anything changed, false otherwise. */
@@ -198,6 +203,16 @@ window.FB = window.FB || {};
          the exact thing the wall clock exists to prevent */
       o.events.unshift({ step: b.step, text: b.text, sub: b.sub, ts: b.at });
       if (b.drift) { o.etaDrift += b.drift; o.deliverAt += b.drift * SIM_MS_PER_MIN; }
+      /* one notification per STEP, not per beat — eighteen beats an order would be
+         a notification centre nobody reads twice. Stamped from the timetable, and
+         keyed by order and step so a catch-up cannot produce duplicates. */
+      if (b.step !== o.status && FB.notifs) {
+        FB.notifs.push({
+          id: 'ord:' + o.id + ':' + b.step, kind: 'order', icon: 'bike',
+          title: labelFor(o, b.step), body: b.text, ts: b.at,
+          go: 'track', params: { id: o.id },
+        });
+      }
       o.step = stepIndex(b.step);
       o.status = b.step;
       changed = true;
@@ -207,6 +222,13 @@ window.FB = window.FB || {};
       o.status = 'delivered';
       o.deliveredAt = o.deliverAt;   /* when it happened, not when we noticed */
       o.events.unshift({ step: 'delivered', text: o.finalBeat.text, sub: o.finalBeat.sub, ts: o.deliverAt });
+      if (FB.notifs) {
+        FB.notifs.push({
+          id: 'ord:' + o.id + ':delivered', kind: 'order', icon: 'checkFill',
+          title: labelFor(o, 'delivered'), body: o.finalBeat.sub || o.finalBeat.text, ts: o.deliverAt,
+          go: 'track', params: { id: o.id },
+        });
+      }
       return 'done';
     }
     return changed;

@@ -51,7 +51,8 @@ window.FB = window.FB || {};
       '</button>' +
       (st.plus.active ? '<span class="badge badge--plus" style="height:26px;padding:0 9px">' + FB.icon('zap', 11) + 'BANG+</span>'
         : '<button class="btn btn--sm btn--dark" data-go="plus">Try BANG+</button>') +
-      '<button class="iconbtn" data-notifs aria-label="Notifications">' + FB.icon('bell', 19) + '</button>' +
+      '<button class="iconbtn" data-notifs aria-label="Notifications">' + FB.icon('bell', 19) +
+        (FB.notifs.unreadCount() ? '<i class="belldot"></i>' : '') + '</button>' +
     '</div>';
   }
 

@@ -125,9 +125,18 @@ window.FB = window.FB || {};
         fresh.forEach(function (b) { s.bodymax.badges.push(b.id); });
         return s;
       });
-      fresh.forEach(function (b, i) {
-        setTimeout(function () { FB.toast(b.icon + '  Achievement: ' + b.name, { kind: 'plus', ms: 3600 }); }, 700 + i * 900);
-      });
+      /* All of them land in the notification centre; only the first interrupts.
+         A stack of staggered toasts reads as a bug rather than as a reward. */
+      if (FB.notifs) {
+        FB.notifs.pushMany(fresh.map(function (b) {
+          return { id: 'badge:' + b.id, kind: 'body', icon: 'trophy',
+                   title: b.icon + '  ' + b.name, body: b.hint, go: 'bodymax' };
+        }));
+      }
+      setTimeout(function () {
+        FB.toast(fresh[0].icon + '  Achievement: ' + fresh[0].name +
+          (fresh.length > 1 ? '  (+' + (fresh.length - 1) + ' more)' : ''), { kind: 'plus', ms: 3600 });
+      }, 700);
     },
   };
 

@@ -88,6 +88,9 @@
     /* opening a fee explainer is an achievement, because of course it is */
     FB.on(document, 'click', '[data-why]', function () { FB.bodymax.flag('readFees'); });
 
+    /* three days away is three days of correctly back-dated nagging, computed from
+       what the save already knows rather than accrued by a timer */
+    FB.notifs.backfill();
     FB.nav.go('home', {}, { silent: true });
     FB.tracker.resume();
     FB.updateDeskStats();
