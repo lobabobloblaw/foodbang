@@ -16,7 +16,23 @@ button { border: 0; background: none; cursor: pointer; padding: 0; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
-:focus-visible { outline: none; box-shadow: var(--ring); border-radius: var(--r-sm); }
+/* An outline, deliberately, not a box-shadow: .btn--primary, .stepper button and
+   .input:focus all set box-shadow of their own and were silently winning the
+   cascade, so the app's most important controls had no focus indicator at all.
+   Nothing else in this file sets `outline`. The 2px offset is load-bearing — it
+   puts the ring on the surface behind the control, where --focus is measured
+   against --bg (12.6:1 light, 15.9:1 dark) rather than against a red button. */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  box-shadow: var(--ring);
+  border-radius: var(--r-sm);
+}
+/* box-shadow is forced to none in forced-colors; the outline survives and is
+   repainted in the system highlight color. */
+@media (forced-colors: active) {
+  :focus-visible { outline: 3px solid Highlight; outline-offset: 2px; }
+}
 ::selection { background: var(--fb); color: #fff; }
 
 /* ---------- desktop staging ---------------------------------- */
@@ -54,7 +70,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 #statusbar {
   height: 54px; flex: none; z-index: 55; position: relative;
   display: flex; align-items: flex-end; justify-content: space-between;
-  padding: 0 30px 5px; font: 600 14px/1 var(--font); letter-spacing: .2px;
+  padding: 0 30px 5px; font: 600 calc(14px * var(--fs))/1 var(--font); letter-spacing: .2px;
   background: var(--bg); color: var(--ink); transition: background var(--mid) var(--ez), color var(--mid);
 }
 #statusbar.on-media { color: #fff; background: transparent; }
@@ -100,13 +116,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .fb-tile--flat { box-shadow: none; }
 .fb-mark { display: block; }
-.fb-word { font: 800 17px/1.1 var(--display); letter-spacing: -.4px; white-space: nowrap; }
+.fb-word { font: 800 calc(17px * var(--fs))/1.1 var(--display); letter-spacing: -.4px; white-space: nowrap; }
 .fb-word sup { font-size: .5em; font-weight: 700; vertical-align: super; margin-left: .5px; }
 .fb-lock { display: flex; align-items: center; gap: 11px; }
 .fb-lock--stack { flex-direction: column; gap: 14px; text-align: center; }
 .fb-lock-sub {
   display: block; margin-top: 3px; color: var(--ink-3);
-  font: 700 9.5px/1.4 var(--font); letter-spacing: .14em; text-transform: uppercase;
+  font: 700 calc(9.5px * var(--fs))/1.4 var(--font); letter-spacing: .14em; text-transform: uppercase;
 }
 
 /* first paint. Every app of this kind shows you its own name before it shows
@@ -123,20 +139,28 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 #deskside { width: 290px; color: #EDEDF2; font: var(--t-sub); }
 .ds-brand { display: flex; gap: 12px; align-items: center; margin-bottom: 18px; }
 .ds-mark { --tile: 44px; border-radius: 13px; }
-.ds-brand b { display: block; font: 700 17px/1.2 var(--display); }
-.ds-brand span { color: #8A8A96; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; }
+.ds-brand b { display: block; font: 700 calc(17px * var(--fs))/1.2 var(--display); }
+.ds-brand span { color: #8A8A96; font-size: calc(11.5px * var(--fs)); letter-spacing: .08em; text-transform: uppercase; }
 .ds-note { color: #9A9AA6; line-height: 1.55; border-left: 2px solid #FF2D14; padding-left: 12px; }
 .ds-keys { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 20px 0; }
-.ds-keys div { color: #9A9AA6; font-size: 12px; display: flex; align-items: center; gap: 7px; }
+.ds-keys div { color: #9A9AA6; font-size: calc(12px * var(--fs)); display: flex; align-items: center; gap: 7px; }
+/* theme-aware by default so the shortcut list in Settings reads in light mode;
+   the desktop sidebar sits on a permanently dark stage and keeps its own values */
 kbd {
-  background: #1D1D22; border: 1px solid #33333C; border-bottom-width: 2px;
-  border-radius: 5px; padding: 2px 7px; font: 600 11px var(--mono); color: #D6D6E0;
+  background: var(--surface-3); border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  border-radius: 5px; padding: 2px 7px; font: 600 calc(11px * var(--fs)) var(--mono); color: var(--ink-2);
 }
+.ds-keys kbd { background: #1D1D22; border-color: #33333C; color: #D6D6E0; }
+
+/* shortcut list inside the app (Settings › Accessibility) */
+.keyrow { display: flex; flex-direction: column; gap: 8px; }
+.keyrow div { display: flex; align-items: center; gap: 6px; font: var(--t-sub); color: var(--ink-2); }
+.keyrow span { color: var(--ink-2); margin-left: 2px; }
 #ds-stats { display: grid; gap: 1px; background: #24242B; border: 1px solid #24242B; border-radius: 12px; overflow: hidden; }
 .dss { background: #121216; padding: 11px 13px; display: flex; justify-content: space-between; align-items: baseline; }
-.dss b { font: 700 15px var(--mono); color: #FF6A55; }
-.dss span { color: #8A8A96; font-size: 11.5px; }
-.ds-legal { color: #5A5A64; font-size: 11px; margin-top: 18px; line-height: 1.5; }
+.dss b { font: 700 calc(15px * var(--fs)) var(--mono); color: #FF6A55; }
+.dss span { color: #8A8A96; font-size: calc(11.5px * var(--fs)); }
+.ds-legal { color: #5A5A64; font-size: calc(11px * var(--fs)); margin-top: 18px; line-height: 1.5; }
 
 @media (max-width: 940px) { #deskside { display: none; } }
 @media (max-width: 520px), (max-height: 900px) and (max-width: 940px) {
@@ -180,7 +204,7 @@ kbd {
 /* address selector — the home app bar */
 .addrbar { display: flex; align-items: center; gap: 8px; padding: 2px var(--pad) 10px; }
 .addrpick { display: flex; align-items: center; gap: 5px; min-width: 0; flex: 1; }
-.addrpick .ap-mode { font: 700 15px/1 var(--font); }
+.addrpick .ap-mode { font: 700 calc(15px * var(--fs))/1 var(--font); }
 .addrpick .ap-line { display: flex; align-items: center; gap: 4px; min-width: 0; }
 .addrpick .ap-addr { display: block; font: var(--t-sub); color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .addrpick svg { width: 15px; height: 15px; flex: none; color: var(--ink-2); }
@@ -227,10 +251,10 @@ kbd {
 .cartpill:active { transform: scale(.975); }
 .cartpill .cp-n {
   width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.24);
-  display: grid; place-items: center; font: 700 13px var(--font); flex: none;
+  display: grid; place-items: center; font: 700 calc(13px * var(--fs)) var(--font); flex: none;
 }
-.cartpill .cp-t { flex: 1; text-align: left; font: 600 14.5px var(--font); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.cartpill .cp-p { font: 700 15px var(--font); }
+.cartpill .cp-t { flex: 1; text-align: left; font: 600 calc(14.5px * var(--fs)) var(--font); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cartpill .cp-p { font: 700 calc(15px * var(--fs)) var(--font); }
 @keyframes rise { from { transform: translateY(26px) scale(.94); opacity: 0; } }
 
 /* ===========================================================
@@ -239,7 +263,7 @@ kbd {
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   height: 48px; padding: 0 20px; border-radius: var(--r-pill);
-  font: 700 15.5px var(--font); letter-spacing: -.1px;
+  font: 700 calc(15.5px * var(--fs)) var(--font); letter-spacing: -.1px;
   background: var(--surface-2); color: var(--ink);
   transition: transform var(--fast) var(--sp), background var(--fast), opacity var(--fast);
   user-select: none; white-space: nowrap;
@@ -253,11 +277,11 @@ kbd {
 .btn--ghost { background: transparent; border: 1.5px solid var(--line-strong); }
 .btn--danger { background: var(--bad-tint); color: var(--bad); }
 .btn--block { display: flex; width: 100%; }
-.btn--sm { height: 36px; padding: 0 14px; font: 600 13.5px var(--font); }
-.btn--lg { height: 54px; font-size: 16.5px; }
+.btn--sm { height: 36px; padding: 0 14px; font: 600 calc(13.5px * var(--fs)) var(--font); }
+.btn--lg { height: 54px; font-size: calc(16.5px * var(--fs)); }
 .btn--split { justify-content: space-between; }
 
-.linkbtn { color: var(--fb); font: 600 14px var(--font); }
+.linkbtn { color: var(--fb); font: 600 calc(14px * var(--fs)) var(--font); }
 .linkbtn:active { opacity: .6; }
 
 /* ===========================================================
@@ -274,14 +298,14 @@ kbd {
 .chip {
   flex: none; display: inline-flex; align-items: center; gap: 6px; height: 34px;
   padding: 0 13px; border-radius: var(--r-pill); background: var(--surface-2);
-  font: 600 13.5px var(--font); color: var(--ink); white-space: nowrap;
+  font: 600 calc(13.5px * var(--fs)) var(--font); color: var(--ink); white-space: nowrap;
   border: 1px solid transparent; transition: all var(--fast) var(--sp);
 }
 .chip:active { transform: scale(.94); }
 .chip svg { width: 15px; height: 15px; }
 .chip[aria-pressed="true"], .chip.is-on { background: var(--ink); color: var(--bg); }
 .chip--outline { background: transparent; border-color: var(--line-strong); }
-.chip--count::after { content: attr(data-count); font-size: 11px; opacity: .7; }
+.chip--count::after { content: attr(data-count); font-size: calc(11px * var(--fs)); opacity: .7; }
 
 /* category tiles (home) */
 .cats { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding: 4px var(--pad) 10px; }
@@ -335,7 +359,7 @@ kbd {
 .sc-eta {
   position: absolute; right: 10px; bottom: 10px; z-index: 2;
   background: var(--bg); color: var(--ink); border-radius: var(--r-pill);
-  padding: 5px 11px; font: 700 12.5px var(--font); box-shadow: var(--e2);
+  padding: 5px 11px; font: 700 calc(12.5px * var(--fs)) var(--font); box-shadow: var(--e2);
 }
 .sc-tags { position: absolute; left: 10px; top: 10px; display: flex; gap: 6px; z-index: 2; flex-wrap: wrap; max-width: 78%; }
 .sc-body { padding: 9px 2px 0; }
@@ -343,7 +367,7 @@ kbd {
 .sc-title h3 { font: var(--t-head); margin: 0; letter-spacing: -.25px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sc-meta { display: flex; align-items: center; gap: 6px; margin-top: 3px; color: var(--ink-2); font: var(--t-sub); flex-wrap: wrap; }
 .sc-meta .dot-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-3); }
-.sc-promo { margin-top: 5px; color: var(--fb); font: 600 13px var(--font); display: flex; align-items: center; gap: 5px; }
+.sc-promo { margin-top: 5px; color: var(--fb); font: 600 calc(13px * var(--fs)) var(--font); display: flex; align-items: center; gap: 5px; }
 
 .hcards { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; padding: 0 var(--pad) 6px; scroll-snap-type: x mandatory; }
 .hcards::-webkit-scrollbar { display: none; }
@@ -380,7 +404,7 @@ kbd {
 .badge--glass { background: rgba(16,16,20,.6); color: #fff; backdrop-filter: blur(10px); }
 .badge--outline { background: transparent; box-shadow: inset 0 0 0 1px var(--line-strong); }
 
-.stars { display: inline-flex; align-items: center; gap: 3px; font: 600 13.5px var(--font); }
+.stars { display: inline-flex; align-items: center; gap: 3px; font: 600 calc(13.5px * var(--fs)) var(--font); }
 .stars svg { width: 13px; height: 13px; color: var(--ink); }
 
 /* ===========================================================
@@ -431,13 +455,15 @@ kbd {
 #toast-root { position: absolute; left: 0; right: 0; bottom: calc(var(--tab-h) + 96px); z-index: 95; padding: 0 var(--pad); pointer-events: none; display: flex; flex-direction: column; gap: 8px; align-items: center; }
 .toast {
   pointer-events: auto; background: var(--ink); color: var(--bg); border-radius: var(--r-md);
-  padding: 11px 15px; font: 500 13.5px var(--font); box-shadow: var(--e3);
+  padding: 11px 15px; font: 500 calc(13.5px * var(--fs)) var(--font); box-shadow: var(--e3);
   animation: toastin var(--mid) var(--sp) both; max-width: 100%;
   display: flex; align-items: center; gap: 9px;
 }
 .toast.out { animation: toastout var(--mid) var(--ez) both; }
 .toast svg { width: 17px; height: 17px; flex: none; }
-.toast--bad { background: var(--bad); color: #fff; }
+/* --on-bad, not #fff: --bad is a light coral in dark mode and white on it measures
+   2.8:1. This is the toast the app fires most often. */
+.toast--bad { background: var(--bad); color: var(--on-bad); }
 .toast--plus { background: linear-gradient(120deg,#1B1B22,#000); color: #fff; box-shadow: 0 12px 32px -10px rgba(0,0,0,.9); }
 @keyframes toastin { from { transform: translateY(18px) scale(.94); opacity: 0; } }
 @keyframes toastout { to { transform: translateY(-8px); opacity: 0; } }
@@ -453,7 +479,7 @@ kbd {
   transition: border-color var(--fast), background var(--fast); -webkit-appearance: none; appearance: none;
 }
 .input::placeholder, .textarea::placeholder { color: var(--ink-3); }
-.input:focus, .textarea:focus, .select:focus { outline: none; border-color: var(--ink); background: var(--bg); box-shadow: none; }
+.input:focus, .textarea:focus, .select:focus { border-color: var(--ink); background: var(--bg); }
 .textarea { min-height: 82px; resize: vertical; line-height: 1.45; }
 .select { background-image: none; padding-right: 36px; }
 .field-hint { font: var(--t-cap); color: var(--ink-3); margin-top: 6px; }
@@ -465,7 +491,7 @@ kbd {
   width: 100%; height: 42px; border-radius: var(--r-pill); border: 0; background: var(--surface-2);
   padding: 0 40px 0 42px; font: var(--t-body); color: var(--ink);
 }
-.searchbox input:focus { outline: none; background: var(--surface-3); }
+.searchbox input:focus { background: var(--surface-3); }
 .searchbox .sb-clear { position: absolute; right: 26px; top: 11px; width: 20px; height: 20px; border-radius: 50%; background: var(--ink-3); color: var(--bg); display: grid; place-items: center; }
 .searchbox .sb-clear svg { position: static; width: 11px; height: 11px; color: inherit; }
 
@@ -479,7 +505,7 @@ kbd {
 .opt-b { flex: 1; min-width: 0; }
 .opt-b b { display: block; font: var(--t-body); font-weight: 500; }
 .opt-b span { display: block; font: var(--t-cap); color: var(--ink-3); margin-top: 2px; line-height: 1.35; }
-.opt-p { font: 600 14px var(--font); color: var(--ink-2); flex: none; }
+.opt-p { font: 600 calc(14px * var(--fs)) var(--font); color: var(--ink-2); flex: none; }
 .opt-p.free { color: var(--good); }
 .opt-p.big { color: var(--fb); }
 .mark {
@@ -519,10 +545,12 @@ kbd {
 .stepper button:active { transform: scale(.85); }
 .stepper button[disabled] { opacity: .35; pointer-events: none; box-shadow: none; }
 .stepper svg { width: 15px; height: 15px; }
-.stepper b { min-width: 30px; text-align: center; font: 700 15px var(--font); }
+.stepper b { min-width: 30px; text-align: center; font: 700 calc(15px * var(--fs)) var(--font); }
 
 /* slider */
-.slider { -webkit-appearance: none; appearance: none; width: 100%; height: 5px; border-radius: 3px; background: var(--surface-3); outline: none; }
+/* no `outline: none` here: it existed to suppress the old UA ring, and now that
+   :focus-visible owns the indicator it would cancel the only one the sliders get */
+.slider { -webkit-appearance: none; appearance: none; width: 100%; height: 5px; border-radius: 3px; background: var(--surface-3); }
 .slider::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--bg); box-shadow: var(--e2), 0 0 0 1px var(--line); cursor: grab; }
 .slider::-moz-range-thumb { width: 26px; height: 26px; border: 0; border-radius: 50%; background: var(--bg); box-shadow: var(--e2), 0 0 0 1px var(--line); }
 
@@ -532,13 +560,21 @@ kbd {
 .receipt { padding: 4px var(--pad) 0; }
 .rl { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; font: var(--t-body); }
 .rl-l { flex: 1; min-width: 0; color: var(--ink-2); display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
-.rl-l .why { width: 15px; height: 15px; border-radius: 50%; background: var(--surface-3); color: var(--ink-3); font: 700 10px/15px var(--font); text-align: center; flex: none; }
+.rl-l .why {
+  position: relative; width: calc(15px * var(--fs)); height: calc(15px * var(--fs)); border-radius: 50%;
+  background: var(--surface-3); color: var(--ink-2);
+  font: 700 calc(10px * var(--fs))/calc(15px * var(--fs)) var(--font);
+  text-align: center; flex: none;
+}
+/* the app's signature control was a 15x15 target. The disc stays 15px so no
+   receipt row reflows; the tappable area is grown to 24x24 underneath it. */
+.rl-l .why::after { content: ''; position: absolute; inset: -4.5px; border-radius: 50%; }
 .rl-r { font-variant-numeric: tabular-nums; font-weight: 500; flex: none; }
 .rl--strike .rl-r { text-decoration: line-through; color: var(--ink-3); }
 .rl--free .rl-r { color: var(--good); font-weight: 700; }
 .rl--total { border-top: 1px solid var(--line); margin-top: 6px; padding-top: 12px; font: var(--t-head); }
 .rl--total .rl-l { color: var(--ink); }
-.rl--total .rl-r { font: 700 19px var(--display); }
+.rl--total .rl-r { font: 700 calc(19px * var(--fs)) var(--display); }
 .rl-note { font: var(--t-cap); color: var(--ink-3); padding: 0 0 8px; margin-top: -4px; line-height: 1.4; }
 
 /* ===========================================================
@@ -555,7 +591,7 @@ kbd {
 .skel { background: linear-gradient(100deg, var(--surface-2) 30%, var(--surface-3) 50%, var(--surface-2) 70%); background-size: 240% 100%; animation: shim 1.25s infinite linear; border-radius: var(--r-sm); }
 @keyframes shim { to { background-position: -140% 0; } }
 
-.fineprint { padding: 18px var(--pad) 30px; color: var(--ink-3); font: 400 11px/1.55 var(--font); }
+.fineprint { padding: 18px var(--pad) 30px; color: var(--ink-3); font: 400 calc(11px * var(--fs))/1.55 var(--font); }
 .fineprint b { color: var(--ink-2); }
 
 .callout {
@@ -588,3 +624,42 @@ kbd {
 .storecard { min-width: 0; max-width: 100%; }
 .sc-body { min-width: 0; }
 .sc-meta { min-width: 0; }
+
+/* ===========================================================
+   Desktop pointer layer
+   The app is mostly looked at on a desktop, through a phone frame, with a mouse.
+   It had thirteen :active rules and not one :hover — every card, row and chip was
+   inert under the cursor until you clicked it. Guarded on (hover: hover) and
+   (pointer: fine) so a tap on iOS Safari cannot leave a stuck hover behind.
+   Transitions are already declared on these classes, and the reduced-motion block
+   in tokens.css already neutralizes them.
+   =========================================================== */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover:not([disabled]) { filter: brightness(.96); }
+  .btn--ghost:hover:not([disabled]) { filter: none; background: var(--surface-2); border-color: var(--ink-3); }
+  /* :not(.iconbtn--glass) — the glass buttons sit on a hero photograph and carry their
+     own translucent fill; a --surface-2 wash turns them into white-on-white and the
+     store page's back chevron disappears under the cursor */
+  .iconbtn:hover:not(.iconbtn--glass), .row:hover, .crow:hover, .mrow:hover, .opt:hover,
+  .orderrow:hover, .recentrow:hover, .switchrow:hover { background: var(--surface-2); }
+  .iconbtn--glass:hover { background: rgba(20,20,24,.72); }
+  /* a selected chip is ink-on-bg; washing only its background left white on white */
+  .chip:hover:not([aria-pressed="true"]):not(.is-on) { background: var(--surface-2); }
+  .chip--outline:hover:not([aria-pressed="true"]):not(.is-on) { background: var(--surface-2); border-color: var(--ink-3); }
+
+  /* the hero only — .sc-logo is a badge pinned inside the same box and must not drift */
+  .storecard:hover .sc-media > img:not(.sc-logo), .dishtile:hover img, .promo:hover img { transform: scale(1.03); }
+  .storecard .sc-media > img:not(.sc-logo), .dishtile img, .promo img { transition: transform var(--mid) var(--ez); }
+  .storecard:hover .sc-title h3, .dishtile:hover b { text-decoration: underline; text-underline-offset: 2px; }
+
+  /* .cat i has no border, so border-color was a no-op — use the ring the selected
+     state already uses (see .cat[aria-pressed="true"] i), one step quieter */
+  .cat:hover i { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--line-strong); }
+  /* never dim the tab that is already current — it would read as less selected */
+  .tab:hover:not([aria-current="page"]) { color: var(--ink-2); }
+  .cartpill:hover { filter: brightness(1.08); }
+  .tipbtn:hover:not([aria-pressed="true"]) { border-color: var(--ink-3); }
+  .linkbtn:hover { text-decoration: underline; }
+  .rl-l .why:hover { background: var(--ink-3); color: var(--bg); }
+  .reviewcard:hover { background: var(--surface-2); }
+}

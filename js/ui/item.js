@@ -1,4 +1,4 @@
-/* FoodBang — item customisation sheet.
+/* FoodBang — item customization sheet.
    The base price is the advertisement. This screen is the invoice. */
 window.FB = window.FB || {};
 (function (FB) {
@@ -8,7 +8,7 @@ window.FB = window.FB || {};
     'Noted. Special instructions are read by a system that summarises them, and the summary is discarded.',
     'Received. Your request has been forwarded to a queue that is not monitored.',
     'Understood. This text will be printed on a ticket that faces away from the kitchen.',
-    'Logged. Requests are honoured in the order they are ignored.',
+    'Logged. Requests are honored in the order they are ignored.',
     'Thank you. Your instructions have been added to your permanent profile.',
   ];
 

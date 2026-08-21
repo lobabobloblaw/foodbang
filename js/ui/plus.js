@@ -111,7 +111,7 @@ window.FB = window.FB || {};
         ', which is an average of all members, including members who spend more than you.</p></div>',
         footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
           '<button class="btn btn--dark btn--block" data-keep>Keep my membership</button>' +
-          '<button class="linkbtn" data-next style="color:var(--ink-3);font-size:12.5px;text-align:center">Continue to cancel</button></div>',
+          '<button class="linkbtn" data-next style="color:var(--ink-3);font-size:calc(12.5px * var(--fs));text-align:center">Continue to cancel</button></div>',
         onMount: function (b, h) {
           FB.on(h.el, 'click', '[data-keep]', function () { h.close(); FB.toast('Membership retained. Thank you.'); });
           FB.on(h.el, 'click', '[data-next]', function () { h.close(); setTimeout(function () { cancelStep(3); }, 220); });
@@ -124,13 +124,13 @@ window.FB = window.FB || {};
         html: '<div style="padding:6px 16px 18px">' +
           '<div style="background:var(--plus);color:var(--bg);border-radius:18px;padding:20px;text-align:center">' +
           '<div style="font:var(--t-micro);letter-spacing:.16em;color:var(--gold)">RETENTION OFFER</div>' +
-          '<div style="font:900 32px/1.06 var(--display);letter-spacing:-1px;margin:8px 0 6px">50% off</div>' +
+          '<div style="font:900 calc(32px * var(--fs))/1.06 var(--display);letter-spacing:-1px;margin:8px 0 6px">50% off</div>' +
           '<div style="font:var(--t-sub);opacity:.75">for two months, then $24.99/month</div></div>' +
           '<p style="font:var(--t-cap);color:var(--ink-3);margin:14px 0 0;line-height:1.5">' +
           'The post-promotional rate reflects a scheduled price adjustment that would have applied regardless.</p></div>',
         footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
           '<button class="btn btn--primary btn--block" data-accept>Accept 50% off</button>' +
-          '<button class="linkbtn" data-next style="color:var(--ink-3);font-size:12.5px;text-align:center">No thanks, cancel</button></div>',
+          '<button class="linkbtn" data-next style="color:var(--ink-3);font-size:calc(12.5px * var(--fs));text-align:center">No thanks, cancel</button></div>',
         onMount: function (b, h) {
           FB.on(h.el, 'click', '[data-accept]', function () {
             h.close();
@@ -170,13 +170,13 @@ window.FB = window.FB || {};
           '<p style="font:var(--t-body);color:var(--ink-2);line-height:1.6;margin:0 0 16px">' +
           'To complete cancellation, call the Membership Retention Line during business hours.</p>' +
           '<div style="background:var(--surface-2);border-radius:14px;padding:18px;text-align:center">' +
-          '<div style="font:800 22px var(--mono);letter-spacing:-.5px">1-800-BANG-NO</div>' +
+          '<div style="font:800 calc(22px * var(--fs)) var(--mono);letter-spacing:-.5px">1-800-BANG-NO</div>' +
           '<div style="font:var(--t-cap);color:var(--ink-3);margin-top:6px">Tue &amp; Thu, 10:15 AM – 10:40 AM</div></div>' +
           '<p style="font:var(--t-cap);color:var(--ink-3);margin:16px 0 0;line-height:1.5">' +
           'Average hold time is not published. Business hours are observed in a time zone we have not disclosed.</p></div>',
         footer: '<div style="flex:1;display:flex;flex-direction:column;gap:10px">' +
           '<button class="btn btn--dark btn--block" data-keep>Never mind, keep it</button>' +
-          '<button class="linkbtn" data-finish style="color:var(--ink-3);font-size:12.5px;text-align:center">Cancel online instead</button></div>',
+          '<button class="linkbtn" data-finish style="color:var(--ink-3);font-size:calc(12.5px * var(--fs));text-align:center">Cancel online instead</button></div>',
         onMount: function (b, h) {
           FB.on(h.el, 'click', '[data-keep]', function () { h.close(); FB.toast('Membership retained. Thank you.'); });
           FB.on(h.el, 'click', '[data-finish]', function () {

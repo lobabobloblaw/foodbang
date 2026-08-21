@@ -28,7 +28,7 @@ window.FB = window.FB || {};
       });
     });
     if (m.priceFrom === Infinity) m.priceFrom = 0;
-    /* deterministic per-store flavour that the data files don't carry */
+    /* deterministic per-store flavor that the data files don't carry */
     var rnd = FB.seeded(m.slug);
     m.busy = rnd() > 0.55;
     m.recentOrders = 40 + Math.floor(rnd() * 1800);

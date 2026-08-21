@@ -35,14 +35,17 @@
   /* --- text ------------------------------------------------- */
   --ink:          #0E0E10;
   --ink-2:        #55555F;
-  --ink-3:        #85858F;
+  --ink-3:        #6E6E78;
   --ink-inv:      #FFFFFF;
 
   /* --- status ----------------------------------------------- */
-  --good:         #1B8A4B;
-  --warn:         #B26A00;
+  /* darkened just enough to clear 4.5:1 on their own tints — .badge is 10.5px, which
+     is normal-size text, and the old pair sat at 3.94 and 3.83 */
+  --good:         #177A42;
+  --warn:         #A05F00;
   --bad:          #C2261A;
-  --info:         #1D63C8;
+  /* the ink to use when --bad is the BACKGROUND rather than the text (.toast--bad) */
+  --on-bad:       #FFFFFF;
   --good-tint:    #E8F6EE;
   --warn-tint:    #FDF2E0;
   --bad-tint:     #FDEBE9;
@@ -52,14 +55,20 @@
   --display: 'Archivo', 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
 
-  --t-hero:   700 27px/1.14 var(--display);
-  --t-title:  700 21px/1.2  var(--display);
-  --t-head:   700 17px/1.25 var(--font);
-  --t-body:   400 15px/1.45 var(--font);
-  --t-body-m: 500 15px/1.4  var(--font);
-  --t-sub:    400 13.5px/1.4 var(--font);
-  --t-cap:    500 12px/1.35 var(--font);
-  --t-micro:  600 10.5px/1.3 var(--font);
+  /* One factor drives the whole ramp. The Text size setting used to redefine two of
+     these eight by hand, which inverted the hierarchy at "Larger" — body text grew
+     past the headings meant to sit above it. Every hardcoded px font size in
+     app.css and screens.css is multiplied by --fs too. */
+  --fs: 1;
+
+  --t-hero:   700 calc(27px * var(--fs))/1.14 var(--display);
+  --t-title:  700 calc(21px * var(--fs))/1.2  var(--display);
+  --t-head:   700 calc(17px * var(--fs))/1.25 var(--font);
+  --t-body:   400 calc(15px * var(--fs))/1.45 var(--font);
+  --t-body-m: 500 calc(15px * var(--fs))/1.4  var(--font);
+  --t-sub:    400 calc(13.5px * var(--fs))/1.4 var(--font);
+  --t-cap:    500 calc(12px * var(--fs))/1.35 var(--font);
+  --t-micro:  600 calc(10.5px * var(--fs))/1.3 var(--font);
 
   /* --- geometry --------------------------------------------- */
   --r-xs: 6px;  --r-sm: 10px; --r-md: 14px;
@@ -73,7 +82,12 @@
   --e2: 0 2px 6px rgba(14,14,16,.08), 0 1px 2px rgba(14,14,16,.05);
   --e3: 0 8px 24px rgba(14,14,16,.12), 0 2px 6px rgba(14,14,16,.06);
   --e4: 0 -8px 32px rgba(14,14,16,.16);
-  --ring: 0 0 0 3px rgba(255,45,20,.28);
+  /* Two-tone focus ring: --ring paints the gap between the control and the outline
+     in the page background, so the outline reads even on a photo (.iconbtn--glass)
+     or on a red button. --focus is the outline itself; ink is the only color in the
+     system that clears 3:1 against every surface the app paints, in both themes. */
+  --focus: #0E0E10;
+  --ring: 0 0 0 2px var(--bg);
 
   /* --- motion ----------------------------------------------- */
   --sp: cubic-bezier(.2,.9,.28,1.06);     /* springy */
@@ -101,7 +115,14 @@
     --line-strong:#3A3A44;
     --ink:       #F4F4F7;
     --ink-2:     #A6A6B2;
-    --ink-3:     #74747F;
+    --ink-3:     #8E8E9A;
+    /* the tints below got dark values and the ink painted on them never did:
+       the danger badge was landing at 2.99:1, under even the 3:1 floor */
+    --good:      #3DD07E;
+    --warn:      #F0A62B;
+    --bad:       #FF6B5E;
+    --on-bad:    #2C1210;
+    --focus:     #F4F4F7;
     --fb-tint:#2A0F0A;
     --good-tint: #10281B;
     --warn-tint: #2A2010;
@@ -125,7 +146,14 @@
   --line-strong:#3A3A44;
   --ink:       #F4F4F7;
   --ink-2:     #A6A6B2;
-  --ink-3:     #74747F;
+  --ink-3:     #8E8E9A;
+  /* the tints below got dark values and the ink painted on them never did:
+     the danger badge was landing at 2.99:1, under even the 3:1 floor */
+  --good:      #3DD07E;
+  --warn:      #F0A62B;
+  --bad:       #FF6B5E;
+  --on-bad:    #2C1210;
+  --focus:     #F4F4F7;
   --fb-tint:#2A0F0A;
   --good-tint: #10281B;
   --warn-tint: #2A2010;
@@ -153,9 +181,9 @@
   }
 }
 
-/* user setting: text size */
-:root[data-textsize="l"]  { --t-body: 400 16.5px/1.45 var(--font); --t-sub: 400 15px/1.4 var(--font); }
-:root[data-textsize="xl"] { --t-body: 400 18px/1.45 var(--font);   --t-sub: 400 16px/1.4 var(--font); --t-head: 700 19px/1.25 var(--font); }
+/* user setting: text size — one factor, so the ramp keeps its proportions */
+:root[data-textsize="l"]  { --fs: 1.1; }
+:root[data-textsize="xl"] { --fs: 1.2; }
 
 /* TRACKR map palette */
 :root {

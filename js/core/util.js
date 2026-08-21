@@ -80,7 +80,7 @@ window.FB = window.FB || {};
   /* ---------- ids & rng ---------- */
   var seq = 0;
   FB.uid = function (p) { seq++; return (p || 'id') + '_' + Date.now().toString(36) + seq.toString(36); };
-  /* deterministic hash-based rng so generated flavour stays stable per key */
+  /* deterministic hash-based rng so generated flavor stays stable per key */
   FB.hash = function (str) {
     var h = 2166136261;
     for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }

@@ -17,7 +17,7 @@ window.FB = window.FB || {};
   var SCRIPT = {
     placed: [
       ['Order received by FoodBang™', 'Your order has entered the system.', 0],
-      ['Payment authorised', 'A hold has been placed for the total, plus a margin for the total.', 0],
+      ['Payment authorized', 'A hold has been placed for the total, plus a margin for the total.', 0],
     ],
     confirmed: [
       ['{store} has acknowledged your existence', null, 0],
@@ -162,6 +162,8 @@ window.FB = window.FB || {};
         '.rt{stroke:var(--fb);stroke-width:4.5;fill:none;stroke-linecap:round;' +
           'filter:drop-shadow(0 0 5px rgba(255,45,20,.55))}' +
         '.rtbg{stroke:var(--map-roadcase);stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:2 8}' +
+        /* SVG user units inside a viewBox — the map already scales as a whole, so this
+           one must NOT take --fs as well or the pin labels scale twice */
         '.pinlab{font:700 8px var(--font);fill:var(--ink);letter-spacing:.06em}' +
       '</style>' +
       '<rect width="400" height="268" fill="var(--map-bg)"/>' + blocks + casing + roads +
