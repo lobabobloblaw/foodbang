@@ -113,7 +113,14 @@ function assetScript(map) {
 const title = (html.match(/<title>([\s\S]*?)<\/title>/) || [, 'FoodBang'])[1];
 const themeColor = (html.match(/<meta name="theme-color"[^>]*>/) || [''])[0];
 
-const out = '<title>' + title + '</title>\n' + themeColor + '\n' + FONTS + '\n<style>\n' + css + '\n</style>\n' + GUARD + body +
+/* The published Artifact wraps this file in its own <!doctype>/<head> skeleton, so
+   these tags are redundant there — but README tells you to open build/foodbang.html
+   directly, and without them that lands in quirks mode with no viewport scaling. A
+   duplicated charset/viewport inside a wrapper is harmless; quirks mode is not. */
+const HEAD = '<!doctype html>\n<meta charset="utf-8">\n' +
+  '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n';
+
+const out = HEAD + '<title>' + title + '</title>\n' + themeColor + '\n' + FONTS + '\n<style>\n' + css + '\n</style>\n' + GUARD + body +
   '\n<script>\n' + assetScript(assets) + '\n</script>\n' +
   '<script>' + SHIM + '</script>\n<script>\n' + js + '\n</script>\n';
 

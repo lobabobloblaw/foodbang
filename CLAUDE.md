@@ -15,12 +15,14 @@ npm run bundle     # js/data/menus/*.json  ->  js/data/menus.generated.js   (npm
 npm run artifact   # bundle, then single-file build  ->  build/foodbang.html
 npm test           # smoke-test the invariants below (exits 1 on regression)
 npm run check      # rebundle, then smoke-test
-node tools/rebrand.cjs --dry   # preview an app-wide rename
+node tools/rebrand.cjs --dry         # preview an app-wide rename
+node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand behind
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose eight checks always run together — there is no way to run a single
-one short of editing the file.
+(`node tools/smoke.cjs`) whose thirteen checks always run together — there is no way to run a
+single one short of editing the file. `node tools/rebrand.cjs --selfcheck` is separate and is only
+worth running after editing that file's rules.
 
 Deployed from `main` at repo root via GitHub Pages. Pushing to `main` redeploys.
 
@@ -28,10 +30,10 @@ Deployed from `main` at repo root via GitHub Pages. Pushing to `main` redeploys.
 
 ```
 index.html            shell: phone frame, status bar, tab bar, and the ordered <script> list
-css/tokens.css        64 design tokens — light/dark, three-state theming
+css/tokens.css        67 design tokens — light/dark, three-state theming; --fs scales the type ramp
 css/app.css           component library      css/screens.css   per-screen styles
 js/core/              util · icons · state · catalog · fees · cart      (no DOM access)
-js/ui/                shell (router/sheets/toasts) · components · item sheet · 15 screens
+js/ui/                shell (router/sheets/toasts) · components · item sheet · 16 screens
 js/sim/               tracker.js (TRACKR™)   bodymax.js (BODYMAX™ — and the 16th screen)
 js/app.js             boot: catalog.init -> shell.init -> nav.go('home') -> tracker.resume
 js/data/menus/*.json  one file per restaurant — THE source of truth
@@ -59,14 +61,22 @@ saved state predates, so bump `VERSION` only for a genuinely breaking change (it
 **Screens are self-registering and never reach into each other.**
 `FB.screens.register(name, { tab, appbar, render, mount, unmount, immersive, hideCartBar, viewClass })`.
 `render(params)` returns an HTML string; `mount(viewEl, params)` wires delegated listeners with
-`FB.on(root, 'click', sel, fn)` — **bind through `FB.on`, never `addEventListener`**: the shell
-records everything bound during a mount and unbinds it on the next paint. `#view` and `#appbar`
-outlive every screen, so a listener that escapes that bookkeeping fires again on the next render,
-and again on the one after that. Navigate via `FB.nav.go/replace/tab/back`, or declaratively with
-the globally delegated `data-go="screen" data-params='{"slug":"x"}'` / `data-back` attributes,
-which any screen can emit without knowing who handles them. After a state change a screen calls
-`FB.nav.refresh()` and re-renders wholesale — scroll position is preserved, there is no diffing
-and no per-component state. `unmount` exists for screens that start timers (`track`).
+`FB.on(root, 'click', sel, fn)` — **bind through `FB.on`, never `addEventListener`**, which
+`npm test` now greps for. Two things stop a listener outliving its screen: the shell records
+everything bound during a mount and unbinds it on the next paint, *and* `paint()` replaces the
+`#view` and `#appbar` nodes outright, so the old elements and everything attached to them are
+garbage. The node is replaced rather than wrapped because `#view` is the scroll container —
+screens read `root.scrollTop` and bind `root` `'scroll'`, and a non-scrolling wrapper would break
+both silently. Navigate via `FB.nav.go/replace/tab/back`, or declaratively with the globally
+delegated `data-go="screen" data-params='{"slug":"x"}'` / `data-back` attributes, which any screen
+can emit without knowing who handles them. After a state change a screen calls `FB.nav.refresh()`
+and re-renders wholesale — scroll position is preserved, keyboard focus is restored by signature
+when the session is keyboard-driven, there is no diffing and no per-component state. `unmount`
+exists for screens that start timers (`track`).
+
+**A `<span>` with block children is a bug.** Padding, `max-width` and `text-overflow` on an inline
+box do not reach block-level children, which escape it — this has now bitten the app-bar address
+line and the promo cards. If a wrapper is styled as a box, give it `display: block`.
 
 **Item detail is a sheet, not a screen** — `js/ui/item.js` exposes `FB.openItem` and
 `FB.wireItemOpeners`. Sheets and modals (`FB.sheet`, `FB.modal`, `FB.confirm`, `FB.why`) stack in
@@ -74,7 +84,7 @@ and no per-component state. `unmount` exists for screens that start timers (`tra
 
 **`js/core/catalog.js` owns everything derived from the menu JSON.**
 `FB.catalog.init(window.FB_MENUS)` decorates each store in place with `logoSrc` / `heroSrc` /
-`photoSrc`, `itemCount`, `priceFrom` and per-store flavour, then indexes every item. Pricing
+`photoSrc`, `itemCount`, `priceFrom` and per-store flavor, then indexes every item. Pricing
 (`unitPrice`, `defaultSel`, `validate`), search ranking (name > description > modifier option),
 sorting and the BODYMAX nutrition estimate all live here, not in screens. Asset paths it builds
 are always root-relative `assets/brands/<slug>/…` strings — the single-file build keys its inlined
@@ -103,12 +113,22 @@ partial bundle**.
 explicit no-text clause. Consequence: renaming a restaurant requires regenerating exactly one
 image (its logo); its entire photo set survives. Renaming the *app* requires regenerating nothing.
 
-**The amateur/studio photo split is deliberate.** 75 of 120 menu photos are staff-phone-style
-(styrofoam, flash hotspot, fluorescent cast, crooked framing); 45 are chain marketing shots.
-That mix is the realism, not an inconsistency. Recipe: `tools/local-bible.json`
-→ `amateurPhotoRecipe`. Do not "clean them up."
+**The amateur/studio photo split is deliberate.** 87 of 120 menu photos are staff-phone-style
+(styrofoam, flash hotspot, fluorescent cast, crooked framing); 33 are chain marketing shots. That
+mix is the realism, not an inconsistency. Recipe: `tools/local-bible.json` → `amateurPhotoRecipe`.
+Do not "clean them up."
 
-**Fee order matters.** `js/core/fees.js` computes: subtotal → discounts → itemised fee stack →
+**Every photo states its `photoStyle`; absence is not a value.** 45 photos used to carry no
+`photoStyle` at all, so "not amateur" silently meant "studio" — and seven that *were* labelled
+amateur are visibly studio work. All 120 were classified by eye in Aug 2026; `bundle.cjs` now
+refuses to build a photo without the field, and `npm test` asserts the exact 87/33 split rather
+than a band wide enough to hide the drift. All six independents are amateur-only by doctrine
+(`tools/local-bible.json` -> `independentDoctrine`). Each manifest entry carries a `styleObserved`, and a
+`promptDrift` note where the recorded prompt disagrees with the pixels — 54 chain photos were
+reshot in amateur style and the prompt was never updated, six came back studio from an amateur
+brief. The prompts stay verbatim: they record what was actually sent.
+
+**Fee order matters.** `js/core/fees.js` computes: subtotal → discounts → itemized fee stack →
 Peak Demand ×1.4 applied to the *whole stack* → tax on (subtotal + fees) → tip on the *subtotal*
 → round total up to the next $5. Reordering these breaks the joke, which is that $12 of food
 lands at exactly $60.00. `FB.fees.compute(ctx)` is pure — no DOM, no state reads beyond
@@ -128,9 +148,12 @@ would make renaming the app an image job again, and a linked `.svg` favicon does
 inlined into the single-file build. Restaurant logos stay raster — only the app's own identity is
 code.
 
-**Run `npm test` before committing.** It covers all of the above plus asset presence (including
-zero-byte dataless files), the amateur/studio photo mix, every item being orderable, and stale
-brand strings after a rename.
+**Run `npm test` before committing.** Thirteen checks: the $60.00 total, the fee stack order, a
+`FEE_WHY` entry for every fee id across six contexts, the bundle matching its sources, asset
+presence (including zero-byte dataless files), the exact photo split, the advertised delivery fee
+being the one charged, distinct rating counts, reachable modifier caps, no raw `addEventListener`
+in a screen, mount/unmount listener idempotence, every item orderable, and stale brand strings
+after a rename.
 
 ## Rebranding
 
@@ -139,6 +162,14 @@ brand strings after a rename.
 successive renames stay accurate — edit only `TO`. Rules are derived from `ns` / `courier` / `sub`,
 so CSS classes, settings keys, data fields and asset filenames follow automatically. Restaurants
 are excluded by design; `menus.generated.js` and `tools/retired-brands.json` are skipped.
+
+**`--selfcheck` is how you know the rules are complete.** It rebuilds every rule against a
+synthetic identity, applies them to every file in memory, and lists each place a `FROM` value
+survives the pass. Run it after editing `RULES`; it writes nothing. It is what found the promo-code
+prefix (`FROM.sub` ends in `+`, which escapes to a literal plus and so can never match a code) and
+the namespace CSS classes (`.fb-tile`, `.fb-word`, `data-fb-mark`, which the `--fb` token rule does
+not cover). It also means this file must not spell a brand out even in prose, because the check
+cannot tell a comment from code — which is the right instinct anyway.
 
 **Every rule must be derived from `FROM`, never spelled out.** A literal `/\bGorger\b/` cannot
 rewrite itself — the backslashes on either side kill the word boundaries — so a hard-coded rule

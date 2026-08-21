@@ -92,12 +92,121 @@ check('every photographed item has its asset on disk', () => {
   return n + ' photos';
 });
 
-check('the amateur/studio photo mix is preserved', () => {
+check('every photo declares its style, and the mix is preserved', () => {
+  /* This used to assert a 50-75% band against a field that 45 of 120 photos simply
+     omitted, so "not amateur" silently meant "studio" and the band absorbed it. Every
+     photo now states its style, so the split can be asserted exactly. The numbers come
+     from looking at all 120: seven were labelled amateur and were visibly studio work, and
+     La Taqueria Verdadera's three studio-looking photos were reshot to its own doctrine. */
   const items = Object.values(MENUS).flatMap(m => m.menu.flatMap(s => s.items)).filter(i => i.photo);
+  const bad = items.filter(i => i.photoStyle !== 'amateur' && i.photoStyle !== 'studio');
+  if (bad.length) throw new Error(bad.length + ' photo(s) with no/unknown photoStyle, e.g. ' + bad[0].id);
   const amateur = items.filter(i => i.photoStyle === 'amateur').length;
-  const pct = amateur / items.length;
-  if (pct < 0.5 || pct > 0.75) throw new Error('amateur share is ' + Math.round(pct * 100) + '%, expected 50-75%');
-  return amateur + '/' + items.length + ' amateur';
+  eq(items.length, 120, 'photographed items');
+  eq(amateur, 87, 'amateur photos');
+  return amateur + ' amateur / ' + (items.length - amateur) + ' studio';
+});
+
+check('the advertised delivery fee is the one charged', () => {
+  /* fees.js used to invent its own base and ignore store.deliveryFee entirely, so the
+     number on the store card and the number on the receipt were unrelated. */
+  let n = 0;
+  for (const [slug, m] of Object.entries(MENUS)) {
+    const c = FB.fees.compute({ subtotal: 30, lineCount: 3, store: m, settings: FB.S().settings });
+    const d = c.feeLines.find(l => l.id === 'delivery');
+    if (!d) throw new Error(slug + ': no delivery line');
+    if (d.amount < m.deliveryFee - 0.005) {
+      throw new Error(slug + ' advertises ' + FB.money(m.deliveryFee) + ' but is charged ' + FB.money(d.amount));
+    }
+    n++;
+  }
+  return n + ' stores, advertised fee is the floor';
+});
+
+check('no two stores share a ratingCount', () => {
+  const seen = new Map();
+  for (const [slug, m] of Object.entries(MENUS)) {
+    if (seen.has(m.ratingCount)) throw new Error(slug + ' and ' + seen.get(m.ratingCount) + ' both show ' + m.ratingCount);
+    seen.set(m.ratingCount, slug);
+  }
+  return seen.size + ' distinct counts';
+});
+
+check('no modifier group offers a cap it cannot reach', () => {
+  /* "Optional · up to 8" printed over four checkboxes reads as a data slip, and the
+     app's jokes are always explicit — an unreachable cap is not one of them. */
+  const bad = [];
+  for (const [slug, m] of Object.entries(MENUS)) {
+    for (const it of m.menu.flatMap(s => s.items)) {
+      for (const g of it.groups || []) {
+        const n = (g.options || []).length;
+        if (g.max != null && g.max > n) bad.push(slug + '/' + it.id + '/' + g.id + ' max ' + g.max + ' > ' + n);
+      }
+    }
+  }
+  if (bad.length) throw new Error(bad.length + ' group(s), e.g. ' + bad[0]);
+  return 'all caps reachable';
+});
+
+check('screens bind through FB.on, never addEventListener', () => {
+  /* The shell records everything bound during a mount and unbinds it on the next
+     paint. A raw addEventListener escapes that bookkeeping, so the listener outlives
+     its screen and fires again on the next render, and the one after that. Two of the
+     confirmed criticals in this app were exactly that. shell.js owns the boot-time
+     document/window listeners and util.js implements FB.on, so both are exempt. */
+  const dir = path.join(ROOT, 'js/ui');
+  const exempt = new Set(['shell.js']);
+  const hits = [];
+  for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.js'))) {
+    if (exempt.has(f)) continue;
+    const src = fs.readFileSync(path.join(dir, f), 'utf8');
+    src.split('\n').forEach((line, i) => {
+      if (/\.addEventListener\(/.test(line) && !/^\s*(\*|\/\/|\/\*)/.test(line)) hits.push(f + ':' + (i + 1));
+    });
+  }
+  if (hits.length) throw new Error('raw addEventListener in: ' + hits.join(', '));
+  return fs.readdirSync(dir).length - exempt.size + ' screen files clean';
+});
+
+check('a re-mount does not accumulate listeners', () => {
+  /* The DOM-free half of the mount/unmount contract. There is no test framework and
+     no dependencies here by design, so rather than shim a DOM, this exercises the
+     actual mechanism: FB.on records every listener bound while FB._binds is parked,
+     and the shell calls those unbind fns before the next paint. Mount twice, assert
+     one live listener. The other half — that screens never bypass FB.on — is the
+     addEventListener check above. */
+  const live = [];
+  const fakeRoot = {
+    addEventListener: (t, h, o) => live.push({ t, h, o }),
+    removeEventListener: (t, h) => {
+      const i = live.findIndex(x => x.t === t && x.h === h);
+      if (i > -1) live.splice(i, 1);
+    },
+    contains: () => true,
+  };
+  function mountOnce() {
+    const binds = FB._binds = [];
+    FB.on(fakeRoot, 'click', '[data-x]', () => {});
+    FB.on(fakeRoot, 'scroll', () => {});
+    FB._binds = null;
+    return binds;
+  }
+  let binds = mountOnce();
+  eq(live.length, 2, 'listeners after first mount');
+  eq(binds.length, 2, 'recorded unbind fns');
+
+  /* what paint() does: unbind the previous mount, then mount again */
+  binds.forEach(off => off());
+  binds = mountOnce();
+  eq(live.length, 2, 'listeners after re-mount');
+
+  /* and ten more re-mounts must not drift */
+  for (let i = 0; i < 10; i++) { binds.forEach(off => off()); binds = mountOnce(); }
+  eq(live.length, 2, 'listeners after twelve mounts');
+
+  binds.forEach(off => off());
+  eq(live.length, 0, 'listeners after unmount');
+  return 'twelve mounts, two listeners';
 });
 
 check('every item is orderable (required groups resolvable)', () => {

@@ -13,7 +13,12 @@ const TYPES = {
 };
 
 createServer(async (req, res) => {
-  let p = decodeURIComponent(req.url.split('?')[0]);
+  /* decodeURIComponent throws a URIError on any malformed escape, and this handler
+     is async — the rejection was unhandled and took the whole process down, so one
+     bad URL ended the preview session. Decode inside the guard. */
+  let p;
+  try { p = decodeURIComponent(req.url.split('?')[0]); }
+  catch { res.writeHead(400, { 'Content-Type': 'text/plain' }).end('400 malformed URL'); return; }
   if (p === '/') p = '/index.html';
   const file = join(ROOT, normalize(p).replace(/^(\.\.[/\\])+/, ''));
   if (!file.startsWith(ROOT)) { res.writeHead(403).end('forbidden'); return; }

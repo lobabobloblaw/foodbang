@@ -35,8 +35,14 @@ function readJSON(p, tries) {
 }
 
 const out = {};
+/* Two severities. `problems` blocks the write — a bundle that ships one of these is
+   a silently broken app. `warnings` are printed and shipped: things that are wrong
+   but not load-bearing. Everything used to be advisory, including duplicate ids and
+   non-numeric prices, and the build exited 0 on all of it. */
 const problems = [];
-let items = 0, photos = 0, groups = 0, options = 0, amateur = 0;
+const warnings = [];
+let items = 0, photos = 0, groups = 0, options = 0, amateur = 0, studio = 0;
+const ratingSeen = new Map();
 
 const files = fs.readdirSync(DIR).filter(f => f.endsWith('.json')).sort();
 for (const f of files) {
@@ -59,17 +65,27 @@ for (const f of files) {
       if (typeof it.price !== 'number') problems.push(`${slug}/${it.id}: price is not a number`);
       if (it.photo) {
         photos++;
+        /* photoStyle must be stated, never inferred from absence. Half the photos
+           used to carry no value at all, so "not amateur" silently meant "studio"
+           and eighteen staff-phone shots were counted as marketing photography. */
         if (it.photoStyle === 'amateur') amateur++;
+        else if (it.photoStyle === 'studio') studio++;
+        else if (it.photoStyle === undefined) problems.push(`${slug}/${it.id}: photo has no photoStyle ("amateur" or "studio")`);
+        else problems.push(`${slug}/${it.id}: unknown photoStyle "${it.photoStyle}"`);
         if (!fs.existsSync(path.join(ROOT, 'assets', 'brands', slug, it.photo))) {
           problems.push(`${slug}/${it.id}: missing asset ${it.photo}`);
         }
       }
       for (const g of (it.groups || [])) {
         groups++;
-        options += (g.options || []).length;
+        const n = (g.options || []).length;
+        options += n;
         for (const o of (g.options || [])) {
           if (typeof o.price !== 'number') problems.push(`${slug}/${it.id}/${g.id}/${o.id}: option price is not a number`);
         }
+        /* a cap above the option count prints "Optional · up to 8" over four checkboxes */
+        if (g.max != null && g.max > n) warnings.push(`${slug}/${it.id}/${g.id}: max ${g.max} exceeds ${n} options`);
+        if (g.min != null && g.min > n) problems.push(`${slug}/${it.id}/${g.id}: min ${g.min} exceeds ${n} options`);
       }
       if (!(it.groups || []).length) problems.push(`${slug}/${it.id}: no modifier groups`);
     }
@@ -77,13 +93,31 @@ for (const f of files) {
   for (const asset of ['logo.webp', 'hero.webp']) {
     if (!fs.existsSync(path.join(ROOT, 'assets', 'brands', slug, asset))) problems.push(`${slug}: missing ${asset}`);
   }
+
+  /* ratingCount is the strongest signal of chain-vs-independent in the whole feed
+     (local-bible.json: independents are three digits, never four or five), and two
+     stores sitting side by side with the same count reads as placeholder data. */
+  const [lo, hi] = m.local ? [38, 999] : [20000, 400000];
+  if (typeof m.ratingCount !== 'number' || m.ratingCount < lo || m.ratingCount > hi) {
+    warnings.push(`${slug}: ratingCount ${m.ratingCount} outside the ${m.local ? 'independent' : 'chain'} band ${lo}-${hi}`);
+  }
+  if (ratingSeen.has(m.ratingCount)) warnings.push(`${slug}: ratingCount ${m.ratingCount} collides with ${ratingSeen.get(m.ratingCount)}`);
+  else ratingSeen.set(m.ratingCount, slug);
+
   out[slug] = m;
 }
 
-/* a bundle missing a store is a silent corruption — fail loudly instead */
-if (Object.keys(out).length !== files.length) {
-  console.error('\nREFUSING TO WRITE: bundled ' + Object.keys(out).length + ' of ' + files.length + ' menus.');
+/* A bundle missing a store is a silent corruption, and so is one carrying a duplicate
+   item id or a price that is not a number — the app renders NaN and nobody notices.
+   Everything in `problems` stops the write; previously only the first case did, and
+   the rest were printed under a heading and shipped with exit code 0. */
+if (Object.keys(out).length !== files.length || problems.length) {
+  const short = Object.keys(out).length !== files.length
+    ? 'bundled ' + Object.keys(out).length + ' of ' + files.length + ' menus'
+    : problems.length + ' validation ' + (problems.length === 1 ? 'problem' : 'problems');
+  console.error('\nREFUSING TO WRITE: ' + short + '.');
   problems.forEach(p => console.error('  ! ' + p));
+  warnings.forEach(w => console.error('  ~ ' + w));
   process.exit(1);
 }
 
@@ -95,8 +129,8 @@ fs.writeFileSync(OUT, banner + 'window.FB_MENUS = ' + JSON.stringify(out, null, 
 
 const locals = Object.values(out).filter(m => m.local).length;
 console.log(`stores      ${Object.keys(out).length}  (${locals} local, ${Object.keys(out).length - locals} chain)`);
-console.log(`items       ${items}  (${photos} photographed, ${amateur} amateur-style)`);
+console.log(`items       ${items}  (${photos} photographed: ${amateur} amateur, ${studio} studio)`);
 console.log(`modifiers   ${groups} groups / ${options} options`);
 console.log(`bundle      ${(fs.readFileSync(OUT).length / 1024).toFixed(0)} KB -> js/data/menus.generated.js`);
-if (problems.length) { console.log(`\nPROBLEMS (${problems.length}):`); problems.slice(0, 40).forEach(p => console.log('  ! ' + p)); }
+if (warnings.length) { console.log(`\nWARNINGS (${warnings.length}):`); warnings.slice(0, 40).forEach(w => console.log('  ~ ' + w)); }
 else console.log('\nno problems');

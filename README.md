@@ -77,7 +77,7 @@ Tip defaults to 42% and is computed on the subtotal, before you have read any of
 **$12.00 of food arrives as a $60.00 total.** Every fee has a "?" that opens its official
 justification.
 
-The **Settings → Privacy** screen is the tightest version of the gag: showing itemised fees costs
+The **Settings → Privacy** screen is the tightest version of the gag: showing itemized fees costs
 $0.85 per order, hiding them costs $2.85, reducing recommendations costs $3.25, and withdrawing
 your data costs $4.10. There is no configuration of that screen that is free.
 
@@ -97,8 +97,8 @@ The independents carry their own signals: two- and three-digit rating counts, hi
 
 **187 generated images**, all `bytedance/seedream-4.5` via Replicate, each brand given its own art
 direction — 1974 franchise flash, 2am neon drive-thru, faux-Egyptian revival, institutional
-fluorescent, gas-station hot case. Menu photography is deliberately **mixed**: 45 polished chain
-marketing shots and **75 amateur staff phone photos** — styrofoam clamshells, hard on-camera flash,
+fluorescent, gas-station hot case. Menu photography is deliberately **mixed**: 33 polished chain
+marketing shots and **87 amateur staff phone photos** — styrofoam clamshells, hard on-camera flash,
 green fluorescent cast, crooked framing, cluttered prep counters — because that is what a real
 delivery feed looks like.
 
@@ -118,7 +118,7 @@ delivery feed looks like.
 **Everything else you'd expect:** category browse, filters and sort (including "Desperation"),
 search that reaches into modifier options, per-store carts, delivery/pickup, scheduling, six working
 promo codes that are all traps, address and payment CRUD, order history, reorder, ratings, a
-notification centre, light/dark/system theming, three text sizes, a Hunger Level slider that
+notification center, light/dark/system theming, three text sizes, a Hunger Level slider that
 changes how hard the app upsells you — and BANG+ INFINITY PRIME ELITE™, whose five-step
 cancellation flow ends by telling you to call 1-800-BANG-NO during a 25-minute window on Tuesdays.
 
@@ -128,11 +128,11 @@ cancellation flow ends by telling you to call 1-800-BANG-NO during a 25-minute w
 
 ```
 index.html               shell — phone frame, status bar, tab bar
-css/tokens.css           64 design tokens; light + dark, three-state theming
+css/tokens.css           67 design tokens; light + dark, three-state theming
 css/app.css              component library
 css/screens.css          screen-specific styles
 js/core/                 util · icons (and the drawn brand mark) · state (localStorage) · catalog · fees · cart
-js/ui/                   shell (router, sheets, toasts) · components · item sheet · 15 screens
+js/ui/                   shell (router, sheets, toasts) · components · item sheet · 16 screens
 js/sim/tracker.js        TRACKR™ order simulation
 js/sim/bodymax.js        BODYMAX™ telemetry — and the 16th screen
 js/data/menus/*.json     one file per restaurant — the source of truth
