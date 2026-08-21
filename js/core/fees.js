@@ -11,6 +11,9 @@ window.FB = window.FB || {};
   var SERVICE_PCT = 0.185;
   var SERVICE_MIN = 3.99;
   var PEAK_MULT = 1.40;
+  /* Named because the pay statement charges the same rate against a courier's gross.
+     Spelled out in two places, the two would drift the way `mode` and `scheduled` did. */
+  var FX_PCT = 0.025;
 
   /* Every fee's public justification. Tapping the (?) shows these verbatim. */
   var WHY = {
@@ -75,6 +78,22 @@ window.FB = window.FB || {};
   function upkeep(tier) {
     var i = Math.max(0, Math.min(STANDING_UPKEEP.length - 1, Math.round(tier) || 0));
     return STANDING_UPKEEP[i];
+  }
+
+  /* The gross at which a statement first pays out, solved from the tables rather
+     than written down, so the fineprint that quotes it cannot drift from the
+     arithmetic. Piecewise because the Service Fee has a floor: below a gross of
+     SERVICE_MIN/SERVICE_PCT the floor binds and the fee is flat, above it the fee
+     scales. Solving only the scaling form reports a break-even the floor would
+     actually have reached earlier, and solving only the flat form reports one that
+     sits above where the floor stops applying — both are wrong on one side. */
+  function breakEven(access) {
+    var flat = 0, i;
+    for (i = 0; i < FB.fees.RUN_DEDUCTIONS.length; i++) flat += FB.fees.RUN_DEDUCTIONS[i][2];
+    if (access) for (i = 0; i < FB.fees.ACCESS_DEDUCTIONS.length; i++) flat += FB.fees.ACCESS_DEDUCTIONS[i][2];
+    var floored = PEAK_MULT * (flat + SERVICE_MIN) / (1 - PEAK_MULT * FX_PCT);
+    if (floored <= SERVICE_MIN / SERVICE_PCT) return FB.round2(floored);
+    return FB.round2(PEAK_MULT * flat / (1 - PEAK_MULT * (SERVICE_PCT + FX_PCT)));
   }
 
   function line(id, label, amount, note, kind) {
@@ -185,7 +204,7 @@ window.FB = window.FB || {};
         lines.push(line('labor', 'Courier Emotional Labor Fee', 2.25, null));
       }
       lines.push(line('offpeak', 'Off-Peak Underutilization Fee', 1.75, 'Applied concurrently with Peak Demand.'));
-      lines.push(line('fx', 'Currency Conversion (USD → USD)', sub * 0.025, '2.5%'));
+      lines.push(line('fx', 'Currency Conversion (USD → USD)', sub * FX_PCT, '2.5%'));
 
       if (s.feeTransparency) lines.push(line('transparency', 'Fee Transparency Fee', 0.85, 'The fee for displaying the fees.'));
       else lines.push(line('opacity', 'Fee Opacity Fee', 2.85, 'Concealment requires active maintenance.'));
@@ -283,6 +302,123 @@ window.FB = window.FB || {};
         plusPaid: plusPaid,
         scripUsed: scripUsed,
         scripEarned: Math.min(SCRIP_MAX_PER_ORDER, Math.round(FB.round2(stack + peak) * SCRIP_RATE)),
+      };
+    },
+
+    /* ---------------- the other side of the same engine ----------------
+       A run pays, and then the same fee stack is run against the payment. Every
+       amount below except the Tip Processing Fee is the customer's own price, read
+       off the branches above: bag 0.35, handle 0.60, thermal 1.60, pickupA 3.75,
+       pickupB 2.20, labor 2.25, regulatory 2.10, offpeak 1.75, reconciliation 1.20,
+       transparency 0.85, standing upkeep(1), service max(3.99, 18.5%), fx 2.5%, and
+       Peak Demand on the whole stack. That is the point: tapping the (?) on a pay
+       statement opens the identical paragraph it opens on a receipt, because it IS
+       the same id. There are no new FEE_WHY entries in this file for that reason.
+
+       WHY.labor is kept byte-identical — "Your Slinger will experience your order
+       emotionally. This fee compensates FoodBang™ for that experience." — with both
+       possessives still addressed to the customer. That was decided, not defaulted:
+       the platform never rewrote its boilerplate for the person it is deducting
+       from, and that is the joke. Do not "fix" the pronouns. */
+
+    /* Charged on every statement. */
+    RUN_DEDUCTIONS: [
+      ['bag', 'Bag Fee', 0.35, null],
+      ['handle', 'Bag Handle Fee', 0.60, 'Licensed separately from the bag.'],
+      ['thermal', 'Temperature Maintenance Fee', 1.60, null],
+    ],
+    /* Charged once per calendar day, on the first statement of that day. These are
+       the standing costs of being PERMITTED to work rather than costs of the run,
+       which is why they do not scale with it and why the first statement of a day
+       never pays out. */
+    ACCESS_DEDUCTIONS: [
+      ['pickupA', 'Retrieval Facilitation Fee', 3.75, null],
+      ['pickupB', 'Vehicle Deployment Fee', 2.20, 'A vehicle was deployed and then stood down.'],
+      ['labor', 'Courier Emotional Labor Fee', 2.25, null],
+      ['regulatory', 'Regulatory Response Fee', 2.10, null],
+      ['offpeak', 'Off-Peak Underutilization Fee', 1.75, 'Applied concurrently with Peak Demand.'],
+      /* Hard-coded at tier 1, and payout accepts no tier field. Taking one would let
+         a restaurant's rule reach the pay axis through the standing ledger, which is
+         the one separation this mode is built on. The clearance is PROVISIONAL and
+         never advances — which is what the dispatch header has said all along. */
+      ['standing', 'Standing Maintenance Fee', STANDING_UPKEEP[1], 'Assessed at the tier you hold.'],
+      ['reconciliation', 'Reconciliation Fee', 1.20, null],
+      ['transparency', 'Fee Transparency Fee', 0.85, 'The fee for displaying the fees.'],
+      /* The only figure here that was chosen rather than inherited. WHY.tip has told
+         customers for this app's entire life that a Tip Processing Fee comes out of
+         the Slinger's tip; no line in compute has ever charged it to anybody. */
+      ['tip', 'Tip Processing Fee', 4.50, 'Tips processed: $0.00.'],
+    ],
+
+    /* Is this the first statement of a local calendar day? Lives here beside the
+       money it gates rather than in the screen that asks, for the reason settleDay
+       and adopt live in core: a rule two surfaces decide separately is a rule that
+       drifts. Stamped from the run's own end time, never Date.now(), so a catch-up
+       books the day the run actually ended on. LOCAL day on purpose — the whole app
+       buckets on a local clock — which is why the suite is run under a second TZ. */
+    accessDue: function (accessAt, now) {
+      if (!accessAt) return true;
+      var a = new Date(accessAt), b = new Date(now);
+      return a.getFullYear() !== b.getFullYear() || a.getMonth() !== b.getMonth() || a.getDate() !== b.getDate();
+    },
+
+    /**
+     * ctx = { gross, access }  — deliberately two scalars and nothing else.
+     * It takes no store, no outcome, no slug and no tier, so a restaurant's rule
+     * CANNOT reach pay through this function. The separation is unexpressible here
+     * rather than merely unexpressed, which is the only kind that survives editing.
+     */
+    payout: function (ctx) {
+      var gross = FB.round2((ctx && ctx.gross) || 0);
+      var access = !!(ctx && ctx.access);
+      var lines = [];
+      var push = function (t) { lines.push(line(t[0], t[1], t[2], t[3])); };
+
+      FB.fees.RUN_DEDUCTIONS.forEach(push);
+      if (access) FB.fees.ACCESS_DEDUCTIONS.forEach(push);
+      /* Same table, same rule, same floor as the receipt. On every run this mode can
+         produce the floor binds, so "It scales with your order because larger orders
+         require more assessment" never once scales. Left unremarked. */
+      lines.push(line('service', 'Service Fee', Math.max(SERVICE_MIN, gross * SERVICE_PCT),
+        '18.5% of gross, minimum ' + FB.money(SERVICE_MIN) + '.'));
+      lines.push(line('fx', 'Currency Conversion (USD → USD)', gross * FX_PCT, '2.5%'));
+
+      /* Peak Demand lands on the whole stack, in the same position in the order as
+         it does on a receipt. Reordering these breaks the joke at both ends. */
+      var stack = FB.sum(lines, function (l) { return l.amount; });
+      var peak = FB.round2(stack * (PEAK_MULT - 1));
+      lines.push(line('peak', 'Peak Demand ×' + PEAK_MULT.toFixed(1), peak, 'Applied to all deductions above.'));
+      var deductionsGross = FB.round2(stack + peak);
+
+      /* A statement may not pay out less than nothing. The shortfall is not charged
+         and it is not forgiven — it is settled in a currency, at the same rate and
+         the same one-per-document cap compute grants a customer, which on every
+         statement this mode can produce comes to a single BangBux. */
+      var netPre = FB.round2(gross - deductionsGross);
+      var settlement = netPre < -0.004
+        ? line('scrip', 'BangBux™ Settlement', netPre, 'Excess deductions are settled in BangBux™.')
+        : null;
+      var deductionsTotal = FB.round2(deductionsGross + (settlement ? settlement.amount : 0));
+
+      return {
+        gross: gross,
+        access: access,
+        /* The platform's published justification for what it pays a person to cross
+           a city, in full, is "Other." — the one WHY key no line has ever emitted. */
+        incomeLine: line('other', 'Run Pay', gross, null, 'income'),
+        lines: lines,
+        stack: FB.round2(stack),
+        peak: peak,
+        deductionsGross: deductionsGross,
+        settlement: settlement,
+        deductionsTotal: deductionsTotal,
+        netPre: netPre,
+        net: FB.round2(gross - deductionsTotal),
+        scrip: settlement ? Math.min(SCRIP_MAX_PER_ORDER, Math.round(deductionsGross * SCRIP_RATE)) : 0,
+        /* How many times the pay the deductions came to — the receipt's own
+           "3.5× the price of the food", pointed the other way. */
+        multiple: gross > 0 ? deductionsGross / gross : 0,
+        breakEven: breakEven(access),
       };
     },
 

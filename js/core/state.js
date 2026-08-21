@@ -90,7 +90,15 @@ window.FB = window.FB || {};
         completed: 0,
         kept: 0,
         broken: 0,
+        /* `earned` is NET of the statement, because that is what was paid. `deducted`
+           is the running total the statement took back, and it is the only figure in
+           this mode that climbs on every run — net is $0.00 on any run below the
+           break-even and on the first statement of every day. `accessAt` stamps the
+           last day the access block was charged. */
         earned: 0,
+        deducted: 0,
+        scrip: 0,
+        accessAt: null,
         standing: {},
         platform: 0,      /* what the platform makes of the company you keep */
         log: [],          /* finished runs, newest first, capped in migrate() */

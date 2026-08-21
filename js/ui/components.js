@@ -175,6 +175,45 @@ window.FB = window.FB || {};
     return h;
   };
 
+  /* ---------- the pay statement ----------
+     The same .rl rows as C.receipt, carrying the same data-why pair, so C.wireWhy
+     opens the identical paragraph on both documents. The minus signs are drawn
+     here: line() writes a `kind` but NOTHING in this app reads it — no renderer
+     and no check — so a row cannot be trusted to know which direction it points. */
+  C.statement = function (p) {
+    var runRows = FB.fees.RUN_DEDUCTIONS.length;
+    var row = function (l, neg) {
+      return '<div class="rl"><span class="rl-l">' + FB.esc(l.label) +
+        (FB.FEE_WHY[l.id] ? '<button class="why" data-why="' + l.id + '" data-whylabel="' + FB.attr(l.label) + '" aria-label="Why this deduction?">?</button>' : '') +
+        '</span><span class="rl-r">' + (neg ? '−' : '') + FB.money(Math.abs(l.amount)) + '</span></div>' +
+        (l.note ? '<div class="rl-note">' + FB.esc(l.note) + '</div>' : '');
+    };
+
+    var h = '<div class="receipt stmt">';
+    h += row(p.incomeLine, false);
+    h += '<div class="stmt-hd">Deductions</div>';
+    p.lines.forEach(function (l, i) {
+      /* The access block gets a header, because a statement of fifteen rows followed
+         by statements of five with no stated reason reads as a bug rather than as a
+         condition of access. */
+      if (p.access && i === runRows) h += '<div class="stmt-hd">Conditions of access</div>';
+      h += row(l, true);
+    });
+    if (p.settlement) {
+      h += '<div class="stmt-hd">Settlement</div>' + row(p.settlement, false);
+    }
+    h += '<div class="rl rl--total"><span class="rl-l">Net Pay</span><span class="rl-r">' + FB.money(p.net) + '</span></div>';
+
+    /* the receipt's own line, pointed the other way */
+    if (p.gross > 0) {
+      h += '<div class="rl-note" style="padding-top:8px">You have been assessed <b>' +
+        p.multiple.toFixed(1) + '×</b> the pay. A statement pays out above ' +
+        FB.money(p.breakEven) + '.</div>';
+    }
+    h += '</div>';
+    return h;
+  };
+
   /* wire the (?) buttons inside any container */
   C.wireWhy = function (root) {
     FB.on(root, 'click', '[data-why]', function (e, t) {

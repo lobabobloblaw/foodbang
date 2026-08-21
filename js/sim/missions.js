@@ -628,10 +628,21 @@ window.FB = window.FB || {};
          standing with the platform; doing one of the six a favour lowers it — and the
          platform decides which work you are shown. Nobody says any of this out loud. */
       var plat = m.local ? (kept ? -1 : 1) : (kept ? 1 : -1);
+      /* The statement is stamped from the run's own end time, not from Date.now(),
+         so a catch-up books the access block against the day the run ENDED — the
+         same rule the tracker replays its beats under. */
+      var access = FB.fees.accessDue(FB.S().slinging.accessAt, run.endAt);
+      var pay = FB.fees.payout({ gross: run.pay, access: access });
       var row = {
         id: run.id, slug: run.slug, title: run.title, at: run.endAt,
         outcome: run.outcome, elected: !!rule.elected, pay: run.pay,
         adjusted: run.adjusted || 0, local: !!m.local, platform: plat,
+        /* Frozen totals. The ROWS are re-derived from (pay, access) because payout is
+           a pure function of exactly those two, so forty statements do not need forty
+           copies of the same fifteen labels in localStorage. The totals are frozen
+           anyway, so an edit to the deduction tables is DETECTABLE against an old
+           statement rather than silently rewriting what it once paid. */
+        access: access, net: pay.net, deducted: pay.deductionsTotal, scrip: pay.scrip,
       };
       FB.store.set(function (st) {
         var s = st.slinging;
@@ -640,15 +651,21 @@ window.FB = window.FB || {};
         if (s.log.length > 40) s.log.length = 40;
         s.completed = (s.completed || 0) + 1;
         if (kept) s.kept = (s.kept || 0) + 1; else s.broken = (s.broken || 0) + 1;
-        s.earned = FB.round2((s.earned || 0) + run.pay);
+        /* what was PAID, which is not what was earned */
+        s.earned = FB.round2((s.earned || 0) + pay.net);
+        s.deducted = FB.round2((s.deducted || 0) + pay.deductionsTotal);
+        s.scrip = (s.scrip || 0) + pay.scrip;
+        if (access) s.accessAt = run.endAt;
         s.standing[run.slug] = (s.standing[run.slug] || 0) + (kept ? 1 : -1);
         s.platform = (s.platform || 0) + plat;
         return st;
       });
       stop();
       if (!(opts && opts.catchUp) && FB.toast) {
-        FB.toast(kept ? 'Rule kept. ' + FB.money(run.pay) + ' earned.'
-                      : 'Rule broken. ' + FB.money(run.pay) + ' earned.',
+        /* The toast quotes the NET, because quoting the gross and then paying the net
+           is the one place this app would be lying to the player rather than to the
+           character. The gross is on the statement, one row above the deductions. */
+        FB.toast((kept ? 'Rule kept. ' : 'Rule broken. ') + FB.money(pay.net) + ' paid.',
           { kind: kept ? 'plus' : 'bad', ms: 3600 });
       }
       return row;
@@ -725,7 +742,8 @@ window.FB = window.FB || {};
       h += '<div class="statgrid">' +
         '<div><b>' + FB.int(st.slinging.completed || 0) + '</b><span>RUNS</span></div>' +
         '<div><b>' + FB.int(st.slinging.kept || 0) + '</b><span>RULES KEPT</span></div>' +
-        '<div><b style="color:var(--fb)">' + FB.money(st.slinging.earned || 0) + '</b><span>EARNED</span></div>' +
+        '<div><b style="color:var(--fb)">' + FB.money(st.slinging.earned || 0) + '</b>' +
+          '<span>PAID' + (st.slinging.deducted ? ' · NET OF ' + FB.money(st.slinging.deducted) : '') + '</span></div>' +
         '</div>';
 
       /* The platform's opinion of you, stated as flatly as everything else it says.
@@ -888,13 +906,32 @@ window.FB = window.FB || {};
       var st = FB.S();
       if (!run) {
         var last = (st.slinging.log || [])[0];
-        return FB.C.empty({
-          title: last ? 'No run in progress' : 'Nothing to run',
-          body: last
-            ? 'Your last run was ' + last.title + ', and the rule was ' + (last.outcome === 'kept' ? 'kept.' : 'broken.')
-            : 'Dispatch has the list. Each restaurant wants something specific.',
-          cta: 'Dispatch', go: 'dispatch',
-        });
+        if (!last) {
+          return FB.C.empty({
+            title: 'Nothing to run',
+            body: 'Dispatch has the list. Each restaurant wants something specific.',
+            cta: 'Dispatch', go: 'dispatch',
+          });
+        }
+        /* The statement for the run that just finished. Rows are re-derived, totals
+           were frozen at settle — see the note on the log row. */
+        var pay = FB.fees.payout({ gross: last.pay, access: !!last.access });
+        var h = '<div class="disp-hd"><i>STATEMENT OF PARTNER EARNINGS</i>' +
+          '<b>' + FB.esc(last.title) + '</b>' +
+          '<span>The rule was ' + (last.outcome === 'kept' ? 'kept.' : 'broken.') +
+          ' Both answers are paid.</span></div>';
+        h += FB.C.statement(pay);
+        /* Only reachable after the deduction tables are edited under a saved log.
+           Saying so is better than redrawing an old statement at today's prices. */
+        if (FB.round2(pay.net) !== FB.round2(last.net != null ? last.net : pay.net)) {
+          h += '<div class="fineprint">This statement was issued under a schedule of ' +
+            'deductions that is no longer in effect. ' + FB.money(last.net) + ' was paid.</div>';
+        }
+        h += '<div style="padding:12px var(--pad)">' +
+          '<button class="btn btn--primary btn--block" data-go="dispatch">Dispatch</button></div>';
+        h += '<div class="fineprint">Deductions are assessed per statement. ' +
+          'Conditions of access are assessed once per day, on the first statement of that day.</div>';
+        return h;
       }
       var now = Date.now();
       var h = '<div class="trk-map">' + FB.tracker.mapSvg(
@@ -908,6 +945,11 @@ window.FB = window.FB || {};
       return h;
     },
     mount: function (root, p) {
+      /* ABOVE the early return: with no live run this screen is showing a pay
+         statement, which is fifteen rows each offering a (?) that would open
+         nothing. The achievement still fired — app.js delegates on document — so
+         the tap looked handled while the explanation never appeared. */
+      FB.C.wireWhy(root);
       var run = M.run();
       if (!run) return;
       FB.tracker.placeCourier(root, { id: run.id }, 0);

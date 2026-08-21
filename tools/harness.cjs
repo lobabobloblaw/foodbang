@@ -348,6 +348,21 @@ const FIXTURES = [
     },
   },
   {
+    /* A run that has FINISHED, so the run screen renders the pay statement rather
+       than either empty state. The live-run fixture above cannot reach it: settle()
+       nulls the run, so the statement branch is only reachable from a log row, and
+       it is fifteen rows of money that nothing else in the sweep would ever draw. */
+    name: 'slinging, statement issued',
+    apply(FB, now) {
+      FB.missions.setMode('sling');
+      const probe = FB.missions.build('manufactory', now);
+      /* start it far enough back that the whole timetable is in the past */
+      FB.missions.accept('manufactory', now - (probe.endAt - probe.startAt) - 5000);
+      FB.missions.tick({ catchUp: true });
+      return {};
+    },
+  },
+  {
     name: 'privacy toggles flipped, hunger 10',
     apply(FB) {
       FB.store.set((st) => {

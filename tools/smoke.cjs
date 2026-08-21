@@ -102,8 +102,25 @@ check('every fee line has a FEE_WHY entry, in every context', () => {
       if (!FB.FEE_WHY[l.id]) missing.add(l.id);
     }
   }
+  /* The pay statement runs the same engine against a courier's gross and renders
+     through the same (?) markup, so an id it emits without an explanation fails in
+     exactly the same silent way. Both access branches, and a gross above the
+     break-even so the settlement row is present in one and absent in the other. */
+  const payCtxs = [{ gross: 5.53, access: true }, { gross: 12.35 }, { gross: 60, access: true }];
+  for (const ctx of payCtxs) {
+    const p = FB.fees.payout(ctx);
+    for (const l of [p.incomeLine].concat(p.lines, p.settlement ? [p.settlement] : [])) {
+      seen.add(l.id);
+      if (!FB.FEE_WHY[l.id]) missing.add(l.id);
+    }
+  }
   if (missing.size) throw new Error('missing explanations for: ' + [...missing].join(', '));
-  return seen.size + ' distinct fee ids across ' + contexts.length + ' contexts';
+  /* Both sides must actually have been walked, or this check quietly becomes the
+     receipt-only check it used to be. */
+  for (const id of ['other', 'scrip', 'pickupA', 'labor']) {
+    if (!seen.has(id)) throw new Error('the walk never reached ' + id);
+  }
+  return seen.size + ' distinct fee ids across ' + (contexts.length + payCtxs.length) + ' contexts';
 });
 
 check('the bundle was built from exactly these sources', () => {
@@ -4091,6 +4108,288 @@ check('the dispatch board is a pure function of the clock', () => {
     }
     return moved + ' of 12 buckets differ, ' + FB.missions.board(T).length + ' rows, no writes';
   } finally { clock.restore(); app.dispose(); }
+});
+
+check('a run pays, and then the same engine takes most of it back', () => {
+  /* fees.js is required at the top with only util.js loaded, so this is the same
+     numbers-in/numbers-out contract the $12 -> $60.00 case runs under. */
+  const P = (g, a) => FB.fees.payout({ gross: g, access: a });
+
+  /* Every reachable gross: the twenty stores' own pay, and the platform deltas that
+     can actually land. A run is 4.10 + minutes * 0.11, and the platform check is only
+     PLACED on a span long enough to hold it — which six of the twenty never are — so
+     sweeping deltas across all twenty would test grosses the mode cannot produce. */
+  const mins = Object.values(MENUS).map(s => Math.round((s.deliveryMin + s.deliveryMax) / 2));
+  const DELTAS = [1.10, 0, -0.60, -0.75, -0.85, -1.40, -1.95];
+  const grosses = [];
+  for (const m of mins) {
+    const base = FB.round2(4.10 + m * 0.11);
+    grosses.push(base);
+    if (m >= 40) for (const d of DELTAS) grosses.push(FB.round2(Math.max(0, base + d)));
+  }
+
+  let paidOut = 0, zeroed = 0;
+  for (const g of grosses) {
+    for (const access of [false, true]) {
+      const p = P(g, access);
+      /* A statement may never pay out less than nothing, and may never invent money. */
+      if (p.net < 0) throw new Error('net ' + p.net + ' at gross ' + g + (access ? ' (access)' : ''));
+      if (p.net > g + 0.004) throw new Error('net ' + p.net + ' exceeds gross ' + g);
+      if (isNaN(p.net) || isNaN(p.deductionsTotal)) throw new Error('NaN at gross ' + g);
+      /* THE RECONCILIATION, as an equality. An inequality survives a dropped row;
+         this does not. Every row the statement prints must telescope to the gap
+         between what was earned and what was paid. */
+      const printed = FB.round2(p.lines.reduce((t, l) => t + l.amount, 0) + (p.settlement ? p.settlement.amount : 0));
+      if (printed !== FB.round2(p.gross - p.net)) {
+        throw new Error('rows sum to ' + printed + ' but gross - net is ' + FB.round2(p.gross - p.net) + ' at ' + g);
+      }
+      /* and the income row is the gross, not a restated one */
+      if (p.incomeLine.amount !== p.gross) throw new Error('income row ' + p.incomeLine.amount + ' != gross ' + p.gross);
+      if (p.net > 0.004) paidOut++; else zeroed++;
+    }
+  }
+  /* The mode's money must not be a constant. A table that lands every statement on
+     $0.00 makes every one of these rows unobservable, and no mutation to any amount
+     could ever be caught. Both outcomes have to be reachable. */
+  if (!paidOut) throw new Error('no reachable run ever pays out — the deduction table is inert');
+  if (!zeroed) throw new Error('no reachable run is ever zeroed');
+
+  /* The break-even is straddled by two ADJACENT real stores, so it is pinned from
+     both sides on grosses the board actually offers: pizzahutch $9.38 falls under it
+     and entirefoods $9.93 clears it. Pinning one side only cannot see the line move. */
+  const be = P(10, false).breakEven;
+  eq(be, 9.49, 'ordinary break-even');
+  eq(P(9.38, false).net, 0, 'pizzahutch nets nothing');
+  eq(P(9.93, false).net, 0.42, 'entirefoods clears the line');
+  /* and the access-day break-even is solved in the OTHER regime — above it the
+     Service Fee has stopped being its floor, so a single-regime solve is wrong here */
+  eq(P(10, true).breakEven, 43.13, 'access break-even');
+  eq(P(43.13, true).netPre, 0, 'the access break-even actually zeroes');
+
+  /* Strictly more gross, strictly more taken. Halving every amount in the table
+     survives a check that only pins the ends. */
+  if (!(P(20, false).deductionsGross > P(10, false).deductionsGross)) throw new Error('deductions do not rise with pay');
+  if (!(P(10, true).deductionsGross > P(10, false).deductionsGross)) throw new Error('the access block costs nothing');
+
+  /* BangBux are granted by the SAME formula compute grants them by, against the
+     deduction stack — which is monotone. Granting on the shortfall instead put a
+     cliff at $25.00 of it, so the best-paid run in the app was the only one
+     compensated with nothing. */
+  let last = -1;
+  for (const g of grosses.slice().sort((a, b) => a - b)) {
+    const sc = P(g, true).scrip;
+    if (sc < last) throw new Error('BangBux fall as pay rises, at gross ' + g);
+    last = sc;
+  }
+  eq(P(12.35, true).scrip, 1, 'the best run is still settled');
+  eq(P(5.53, true).scrip, 1, 'and so is the worst');
+  eq(P(12.35, false).scrip, 0, 'nothing to settle when it pays out');
+
+  /* TWO AXES. payout takes a gross and a flag and NOTHING else, so a restaurant's
+     rule cannot reach pay through it. Asserted against the signature rather than
+     against the branch that calls it: fields naming the other axis are ignored. */
+  const plain = P(9.93, false);
+  const smuggled = FB.fees.payout({ gross: 9.93, access: false, outcome: 'broken', slug: 'dunkinn', standingTier: 4, tier: 4, standing: -9 });
+  eq(smuggled.net, plain.net, 'standing reached the pay axis');
+  eq(smuggled.deductionsTotal, plain.deductionsTotal, 'standing reached the deductions');
+  /* the Standing Maintenance Fee is on the statement, and is pinned to tier 1 */
+  const stand = P(9.93, true).lines.filter(l => l.id === 'standing')[0];
+  if (!stand) throw new Error('no Standing Maintenance Fee on an access statement');
+  eq(stand.amount, FB.fees.STANDING_UPKEEP[1], 'the clearance advanced');
+
+  /* Every amount except the Tip Processing Fee is the customer's own price, read off
+     the same tables — that is what makes the (?) show the same sentence beside the
+     same number on both documents. */
+  const byId = {};
+  P(9.93, true).lines.forEach(l => { byId[l.id] = l.amount; });
+  eq(byId.bag, 0.35, 'bag');
+  eq(byId.handle, 0.60, 'handle');
+  eq(byId.thermal, 1.60, 'thermal');
+  eq(byId.labor, 2.25, 'emotional labor');
+  eq(byId.pickupA, 3.75, 'retrieval');
+  eq(byId.pickupB, 2.20, 'deployment');
+  eq(byId.service, FB.round2(Math.max(3.99, 9.93 * 0.185)), 'service, same floor');
+  eq(byId.fx, FB.round2(9.93 * 0.025), 'fx, same rate');
+  /* Peak Demand lands on the whole stack, in the same position as on a receipt */
+  const stack = FB.round2(P(9.93, true).lines.filter(l => l.id !== 'peak').reduce((t, l) => t + l.amount, 0));
+  eq(byId.peak, FB.round2(stack * 0.4), 'peak on the whole stack');
+
+  /* The access block is a LOCAL calendar day. Stamped from the run's end, so a
+     catch-up books the day it ended on rather than the day it was noticed. */
+  const d1 = new Date(2026, 7, 20, 23, 30, 0).getTime();
+  const d2 = new Date(2026, 7, 21, 0, 30, 0).getTime();
+  if (FB.fees.accessDue(d1, d1 + 60000)) throw new Error('access charged twice in one day');
+  if (!FB.fees.accessDue(d1, d2)) throw new Error('access not charged on a new day');
+  if (!FB.fees.accessDue(null, d1)) throw new Error('the first statement ever must charge access');
+
+  return grosses.length + ' reachable grosses, ' + paidOut + ' pay out and ' + zeroed +
+    ' are zeroed; break-even $' + be.toFixed(2);
+});
+
+check('the pay statement and the receipt explain themselves with one sentence', () => {
+  /* The whole point of reusing the ids: the (?) on a deduction opens the paragraph
+     the customer already read. If a future edit gives the pay statement its own
+     copy of a sentence, this goes red. */
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    clock.set(new Date(2026, 7, 20, 19, 14, 0).getTime());
+    FB.store.reset();
+    const p = FB.fees.payout({ gross: 9.93, access: true });
+    const html = FB.C.statement(p);
+    /* every row that carries a (?) must resolve to a real sentence */
+    const ids = [...html.matchAll(/data-why="([a-zA-Z0-9]+)"/g)].map(m => m[1]);
+    if (ids.length < 15) throw new Error('only ' + ids.length + ' rows are explainable');
+    for (const id of ids) {
+      if (!FB.FEE_WHY[id]) throw new Error('the statement offers an explanation for ' + id + ' and there is none');
+    }
+    /* the two the app had never charged anybody are now both live */
+    if (!ids.includes('other')) throw new Error('the income row does not carry its explanation');
+    if (!ids.includes('tip')) throw new Error('the Tip Processing Fee is not on the statement');
+    /* deductions are drawn with a minus by the RENDERER: line() writes a `kind` that
+       nothing in this app reads, so a row cannot be trusted to know its own sign */
+    if (!html.includes('−')) throw new Error('the deductions are not signed');
+    /* and the statement says what it netted */
+    if (!html.includes('Net Pay')) throw new Error('the statement does not total');
+    if (/undefined|NaN/.test(html)) throw new Error('the statement prints undefined or NaN');
+
+    /* A LOG ROW WRITTEN BEFORE ANY OF THIS EXISTED. fillDefaults backfills every key
+       a save is missing at any depth, but an array in a save is the user's data and
+       is never merged into — so a row from an older build carries no net, no access
+       and no deducted, and the screen still has to draw it. */
+    FB.store.set((st) => {
+      st.mode = 'sling';
+      st.slinging.log = [{ id: 'run_legacy', slug: 'oliveorchard', title: 'An older run',
+        at: Date.now() - 60000, outcome: 'kept', elected: true, pay: 10.48, adjusted: 0,
+        local: false, platform: 1 }];
+      return st;
+    });
+    const legacy = FB.screens.get('run').render({});
+    if (/undefined|NaN/.test(legacy)) throw new Error('an old log row prints undefined or NaN');
+    if (!legacy.includes('Net Pay')) throw new Error('an old log row does not draw a statement');
+    /* and it must NOT claim the schedule changed — it never had a net to disagree with */
+    if (legacy.includes('no longer in effect')) throw new Error('an old row was reported as a changed schedule');
+
+    return ids.length + ' explainable rows, all shared with the receipt; an old row still draws';
+  } finally { app.dispose(); }
+});
+
+check('the statement is what gets booked, and access is charged by the day the run ended', () => {
+  /* payout() being right is not the same as settle() BOOKING it. This drives real
+     runs through the ticker and reads the ledgers back. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const day1 = new Date(2026, 7, 20, 22, 0, 0).getTime();
+
+    function finish(slug, at) {
+      const run = FB.missions.accept(slug, at);
+      clock.set(run.endAt + 2000);
+      for (let i = 0; i < 30; i++) FB.missions.tick({ catchUp: true });
+      return FB.S().slinging.log[0];
+    }
+
+    clock.set(day1);
+    FB.store.reset();
+    FB.missions.setMode('sling');
+
+    /* first statement of the day carries the access block and is zeroed by it */
+    const a = finish('manufactory', day1);
+    if (!a) throw new Error('the first run did not settle');
+    if (!a.access) throw new Error('the first statement of a day did not charge access');
+    const pa = FB.fees.payout({ gross: a.pay, access: true });
+    eq(a.net, pa.net, 'the row froze a net the engine does not agree with');
+    eq(a.deducted, pa.deductionsTotal, 'the row froze the wrong deductions');
+    eq(a.net, 0, 'an access statement paid out');
+
+    /* second run the same day: no access block, and it is the one that pays */
+    let st = FB.S();
+    const earnedAfterA = st.slinging.earned;
+    eq(earnedAfterA, 0, 'the ledger booked something on a statement that paid nothing');
+    const b = finish('manufactory', FB.S().slinging.accessAt + 60000);
+    if (b.access) throw new Error('access was charged twice in one day');
+    const pb = FB.fees.payout({ gross: b.pay, access: false });
+    eq(b.net, pb.net, 'the second row froze the wrong net');
+    if (!(b.net > 0)) throw new Error('an ordinary run on the best store still paid nothing');
+
+    /* THE LEDGERS. `earned` is what was PAID — booking the gross here is the whole
+       failure this feature exists to fix, and it is invisible from payout() alone. */
+    st = FB.S();
+    const rows = st.slinging.log;
+    const netSum = FB.round2(rows.reduce((t, r) => t + r.net, 0));
+    const grossSum = FB.round2(rows.reduce((t, r) => t + r.pay, 0));
+    eq(st.slinging.earned, netSum, 'earned does not equal the statements');
+    if (st.slinging.earned === grossSum) throw new Error('earned is the gross — the deductions were never booked');
+    eq(st.slinging.deducted, FB.round2(rows.reduce((t, r) => t + r.deducted, 0)), 'deducted does not equal the statements');
+    /* and the two must reconcile against the gross the runs advertised */
+    eq(FB.round2(st.slinging.earned + st.slinging.deducted), grossSum, 'paid + deducted is not the gross');
+
+    /* ACCESS IS STAMPED FROM THE RUN, NOT THE WALL CLOCK. A run that ended before
+       midnight but is settled after it belongs to the day it ended on — the same
+       rule the tracker replays beats under. Stamping Date.now() charges the access
+       block twice for one day, on the catch-up path nobody is present for. */
+    clock.set(day1);
+    FB.store.reset();
+    FB.missions.setMode('sling');
+    const first = finish('dunkinn', new Date(2026, 7, 20, 22, 0, 0).getTime());
+    if (!first.access) throw new Error('the first statement did not charge access');
+    /* a run that ends at 23:50, replayed at 01:00 the next day */
+    const late = new Date(2026, 7, 20, 23, 50, 0).getTime();
+    const run = FB.missions.accept('dunkinn', late);
+    clock.set(new Date(2026, 7, 21, 1, 0, 0).getTime());
+    for (let i = 0; i < 30; i++) FB.missions.tick({ catchUp: true });
+    const c = FB.S().slinging.log[0];
+    if (c.access) throw new Error('a run that ended yesterday charged today its access block');
+    if (c.at !== run.endAt) throw new Error('the row was stamped when it was noticed, not when it happened');
+
+    /* and a run that genuinely ends on the next day charges it again */
+    const d = finish('dunkinn', new Date(2026, 7, 21, 9, 0, 0).getTime());
+    if (!d.access) throw new Error('a new day did not charge its access block');
+
+    return rows.length + ' statements booked; paid $' + st.slinging.earned.toFixed(2) +
+      ' of $' + grossSum.toFixed(2) + ' gross';
+  } finally { app.dispose(); }
+});
+
+check('a screen that offers an explanation is wired to give one', () => {
+  /* The (?) is delegated per-container by C.wireWhy, so a screen can render fifteen
+     of them and hand back nothing when they are tapped. It fails silently in the
+     worst way: app.js delegates the "Read The Fees" achievement on DOCUMENT, so the
+     tap fires a toast and looks handled while no explanation ever opens. Checked
+     generically — any future screen that renders one is covered without being named. */
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    const offenders = [];
+    for (const [hourName, ts] of [['dinner', new Date(2026, 7, 20, 19, 14, 0).getTime()]]) {
+      clock.set(ts);
+      for (const fx of harness.FIXTURES) {
+        FB.store.reset();
+        let params;
+        try { params = fx.apply(FB, ts) || {}; } catch (e) { continue; }
+        for (const name of FB.screens.list()) {
+          const def = FB.screens.get(name);
+          if (!def.render) continue;
+          const p = harness.paramsFor(name, params);
+          let html;
+          try { html = def.render(p); } catch (e) { continue; }
+          if (!/data-why=/.test(html)) continue;
+          /* it renders one — mounting it must wire one */
+          let wired = 0;
+          const real = FB.C.wireWhy;
+          FB.C.wireWhy = function (r) { wired++; return real.apply(this, arguments); };
+          try { if (def.mount) def.mount(app.doc.querySelector('#view'), p); }
+          catch (e) { /* a mount that throws is the render sweep's problem, not this one */ }
+          finally { FB.C.wireWhy = real; }
+          if (!wired) offenders.push(hourName + ' / ' + fx.name + ' / ' + name);
+        }
+      }
+    }
+    if (offenders.length) {
+      throw new Error('renders a (?) and never wires it: ' + offenders.join(', '));
+    }
+    return 'every screen offering an explanation wires it';
+  } finally { app.dispose(); }
 });
 
 console.log('');

@@ -20,7 +20,7 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose fifty-eight checks always run together — there is no way to run a
+(`node tools/smoke.cjs`) whose sixty-one checks always run together — there is no way to run a
 single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
 exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
@@ -102,6 +102,14 @@ and re-renders wholesale — scroll position is preserved, keyboard focus is res
 when the session is keyboard-driven, there is no diffing and no per-component state. `unmount`
 exists for screens that start timers (`track`).
 
+**A screen that renders a `?` must call `FB.C.wireWhy(root)` in its `mount`.** The explanation is
+delegated per-container, so a screen can render fifteen of them and hand back nothing — and it fails
+in the worst possible way, because `app.js` delegates the "Read The Fees" achievement on *document*:
+the tap fires a toast and looks handled while no explanation ever opens. It bit the pay statement,
+twice over — the call was missing, and then it was placed below a `if (!run) return` that is taken on
+exactly the branch that renders the statement. `npm test` now checks this generically against every
+screen, so a new one is covered without being named.
+
 **A `<span>` with block children is a bug.** Padding, `max-width` and `text-overflow` on an inline
 box do not reach block-level children, which escape it — this has now bitten the app-bar address
 line and the promo cards. If a wrapper is styled as a box, give it `display: block`.
@@ -165,9 +173,12 @@ $60.00, the multiplier landing on the whole stack, and the tip being computed on
 
 **Every fee needs an entry in `FEE_WHY`, keyed by the fee's `id`.** `components.js` only renders
 the `?` when `FB.FEE_WHY[l.id]` exists, so a mismatch doesn't crash — the explanation just
-silently disappears. `npm test` walks six contexts (delivery, pickup, BANG+ above and below the
-waiver, express + scheduled, and the three fee-bearing privacy settings) covering 25 distinct ids.
-Add a fee on a new branch and add its context to that list, or nothing will ever check it.
+silently disappears. `npm test` walks eighteen contexts — fifteen through `compute` (delivery,
+pickup, BANG+ above and below the waiver, express + scheduled, the fee-bearing privacy settings,
+standing, scrip, terms, restock, tip review, substitution, hold) and three through `payout` —
+covering 35 distinct ids. Add a fee on a new branch and add its context to that list, or nothing
+will ever check it. The count in this paragraph went stale once already; the check reports its own
+totals, so read them off a run rather than trusting the prose.
 
 **The app's own logo is drawn, not photographed.** `FB.mark` / `FB.markTile` / `FB.lockup` in
 `js/core/icons.js` emit inline SVG in `currentColor` on a tile tinted by `--fb`; `FB.installFavicon`
@@ -263,6 +274,39 @@ your pay. The platform's interruption moves your pay and never your standing. Th
 in the data — a mission carries no price fields at all — so a check asserts it against the table
 rather than against the branch that reads it.
 
+**A run pays, and then the same engine takes most of it back.** `FB.fees.payout({gross, access})`
+is the other side of `compute`, and it is in `fees.js` for the reason everything else is: it must
+compute with only `util.js` loaded. It adds **no `FEE_WHY` entries** — every row reuses an id the
+receipt already emits, so tapping the `?` on a deduction opens the paragraph the customer read.
+Every amount except the Tip Processing Fee is the customer's own price, read off the same branches
+(`bag` 0.35, `handle` 0.60, `thermal` 1.60, `pickupA` 3.75, `pickupB` 2.20, `labor` 2.25, `service`
+max($3.99, 18.5%), `fx` 2.5%, Peak Demand on the whole stack). Two ids that no line had **ever**
+emitted are now live: `other` ("Other.") is the platform's entire published justification for what
+it pays a person to cross a city, and `tip` — which has promised customers for this app's whole life
+that a Tip Processing Fee comes out of the courier's tip — is finally charged to somebody.
+
+Four rules hold it together. **The input surface is two scalars.** `payout` takes a gross and an
+access flag and refuses a slug, an outcome or a tier, so a restaurant's rule cannot reach pay
+*through* it — the two-axis separation is unexpressible here rather than merely unexpressed, and the
+check asserts it by passing the smuggled fields and reading the same number back. **`WHY.labor` stays
+byte-identical**, both possessives still addressed to the customer: the platform never rewrote its
+boilerplate for the person it is deducting from, and that is the joke — do not fix the pronouns.
+**`breakEven` is solved piecewise**, because the Service Fee has a floor: below a gross of
+`SERVICE_MIN/SERVICE_PCT` the fee is flat and above it it scales, so a single-regime solve is wrong
+on one side ($9.49 ordinary, $43.13 on an access day — and the board tops out at $13.45, so the
+access statement never pays out and is not meant to). **BangBux are granted against the deduction
+stack**, by the identical formula `compute` grants them by; granting on the *shortfall* instead puts
+a cliff at $25.00 of it, which made the best-paid run the only one compensated with nothing.
+
+`settle()` books the **net** into `st.slinging.earned` and accumulates `deducted` — `earned` is what
+was paid, not what was billed, and the toast quotes the net for the same reason. The log row freezes
+the totals but not the rows, which re-derive from `(pay, access)` because `payout` is a pure function
+of exactly those two; a disagreement between the frozen net and the re-derived one is reported as a
+schedule no longer in effect rather than silently redrawn at today's prices. Access is charged once
+per **local** calendar day and stamped from `run.endAt`, never `Date.now()`, or a catch-up charges
+one day's access twice on the path nobody is present for — which is why the suite is run under a
+second `TZ=`.
+
 **Doing the six a favour costs you work.** One scalar, `st.slinging.platform`: chains raise it,
 favours lower it, and it decides how many givers are shown as asking. Nobody says so out loud.
 
@@ -289,10 +333,12 @@ wherever it appears as a word, so a *filename* containing it breaks the app (the
 is rewritten; the file on disk is not), and a camelCase suffix slips past the word boundary and
 carries the outgoing brand forever. That is why the roster file is `roster.js` and the order field is
 `personId`. `--selfcheck` finds both; run it after adding a subsystem, not just after editing `RULES`.
-It has since caught a `slingerBlock`/`lastSlinger` pair added to a screen — the noun renames on a word
-boundary and camelCase has none, so **run it after naming anything, not only after adding a file.**
+It has since caught a pair of camelCase identifiers in a screen that carried the courier noun as a
+prefix and as a suffix — the noun renames on a word boundary and camelCase has none, so **run it
+after naming anything, not only after adding a file.** Those two are not spelled out here for the
+reason given above: this file is inside the walk, and a prose example would itself be a survivor.
 
-**Run `npm test` before committing.** Fifty-eight checks. Beyond the original thirteen they cover:
+**Run `npm test` before committing.** Sixty-one checks. Beyond the original thirteen they cover:
 every screen rendering under six state fixtures × two hours with no `undefined`/`NaN` in the markup;
 accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
 pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency
@@ -313,6 +359,14 @@ router; a screen never describing an order it is not showing; the build tools fa
 than quietly; an incident expiring while the food is still in the kitchen; nobody driving until
 somebody has been assigned; placing an order being narrated and then waiting; and the same nine
 people bringing their own habits.
+
+The three added with the pay statement pin what a run is actually worth: the statement reconciling as
+an *equality* (every printed row telescoping to gross − net, which an inequality survives a dropped
+row of), both outcomes staying reachable so the deduction table cannot go arithmetically inert, the
+break-even straddled by two adjacent real stores, `settle` booking the net rather than the gross, and
+access charged by the day the run **ended**. `harness.cjs` grew a `statement issued` fixture for the
+render sweep, because `settle()` nulls the run and the statement is otherwise reachable only from a
+log row — fifteen rows of money nothing else in the sweep would ever draw.
 
 **A check that cannot fail is worse than none — prove it with a mutant.** Every check added by that
 programme was validated by breaking the code it guards and confirming it goes red. That found: a

@@ -620,6 +620,13 @@ kbd {
 .rl--total .rl-r { font: 700 calc(19px * var(--fs)) var(--display); }
 .rl-note { font: var(--t-cap); color: var(--ink-3); padding: 0 0 8px; margin-top: -4px; line-height: 1.4; }
 
+/* the pay statement — the receipt's rows, grouped. `display: block` because these
+   carry no block children today but a <span> styled as a box is how the app-bar
+   address line and the promo cards both broke. */
+.stmt-hd { display: block; font: var(--t-micro); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-3); border-top: 1px solid var(--line); margin-top: 10px; padding: 10px 0 6px; }
+.stmt .rl:first-child .rl-r { color: var(--fb); }
+
 /* ===========================================================
    Misc
    =========================================================== */
