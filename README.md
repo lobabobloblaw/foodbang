@@ -102,25 +102,57 @@ marketing shots and **87 amateur staff phone photos** — styrofoam clamshells, 
 green fluorescent cast, crooked framing, cluttered prep counters — because that is what a real
 delivery feed looks like.
 
+**A world with a clock in it.** The app knows what time it is and so does the city. Twenty stores
+have opening hours — eight of them close after midnight — so at 3 AM one restaurant is open and at
+noon all twenty are; Sunrise Donut shuts at 1:20 PM and the Sandwich Authority at 4:30. Menu sections
+that name their own window keep it: Golden Wok's "Lunch Specials (Ended at 3:00)" end at 3. Kitchens
+get busy at dinner and empty in the afternoon, the weather moves on its own three-hour clock and
+re-tints the delivery map, and sixteen items can simply run out for the day — "the aunt who rolls
+these does so on Sundays." None of it is stored: it is a pure function of the clock, so closing the
+tab for a week is automatically correct when you come back.
+
 **Two food-tracking simulations.**
 
-- **TRACKR™** — a live order tracker on a global ticker, so it keeps advancing while you shop.
-  Animated route map, a Slinger with a name and a tenure in days, an ETA that only ever revises
-  later, and a status feed that includes *"your Slinger has taken one (1) fry as tribute — this is
-  permitted under the Slinger Agreement, §4.2."* Offers to reduce your arrival time for a larger tip,
-  then explains that arrival is not affected by tip.
+- **TRACKR™** — a live order tracker on the wall clock. An order is given an absolute timetable when
+  you place it, so the estimate genuinely counts down — 29, 24, 18, 9, 2 — and only ever revises
+  *later*. Leave mid-delivery and come back tomorrow and it is delivered, with a timeline stamped at
+  the times things happened. Animated route map where the courier does not leave until the food
+  exists. A Slinger drawn from the nine people in your area, whose tenure with you counts up and who
+  greets you differently once you have rated them. A status feed that widens with your order count,
+  so your fortieth delivery goes wrong in ways your first could not. And sometimes the restaurant
+  runs out mid-preparation and gives you forty seconds to choose between substituting, being credited
+  the base price, or holding the order — after which it elects the most expensive option for you.
 - **BODYMAX™ Intake Telemetry** — ingests every order and reports back. Units Consumed against a
   Recommended Daily Intake of 9,400. Sodium Saturation, Grease Index, Blood Ranch Level, Structural
   Integrity, Corporate Loyalty, Chew Debt. A 14-day chart, twelve achievements, a six-stage Body
   Trajectory from STABLE to WATERSHED that "cannot be reversed within this application," and
   wellness recommendations that are all upsells.
 
+**A platform that remembers you.** FoodBang™ Standing is a loyalty ladder that *demotes* you: one
+point per order, one point lost per day, and each tier's benefit is a waiver on a fee you would not
+have paid anyway. Every fifth order from the third, the Terms of Service update — with a diff, and
+one button — and each version is materially worse than the last, including §4.2, which raises the
+Slinger's fry tribute from one to two and changes what actually happens on the tracker. BANG+ keeps
+real books now, and the number growing fastest is NET, in red. BangBux™ pay out 2% of your fees in
+whole dollars, expire in seventy-two hours, and are redeemable against fees — where Convenience
+Rounding™ absorbs them entirely.
+
 **Everything else you'd expect:** category browse, filters and sort (including "Desperation"),
-search that reaches into modifier options, per-store carts, delivery/pickup, scheduling, six working
-promo codes that are all traps, address and payment CRUD, order history, reorder, ratings, a
-notification center, light/dark/system theming, three text sizes, a Hunger Level slider that
-changes how hard the app upsells you — and BANG+ INFINITY PRIME ELITE™, whose five-step
-cancellation flow ends by telling you to call 1-800-BANG-NO during a 25-minute window on Tuesdays.
+search that reaches into modifier options, per-store carts, delivery/pickup that are now tracked
+differently, scheduling that actually waits for its slot, six working promo codes that are all traps
+and each work exactly once, twenty-two store promotions of which eight move a price, address and
+payment CRUD, order history, reorder, ratings that land on a person, a notification centre fed by
+real events and correctly back-dated across an absence, light/dark/system theming, three text sizes,
+a Hunger Level slider that really does raise every portion default — and BANG+ INFINITY PRIME
+ELITE™, whose cancellation flow gets one step longer every time you attempt it, inserts a mandatory
+survey whose answers do not affect the outcome, and ends by telling you to call 1-800-BANG-NO during
+a 25-minute window on Tuesdays.
+
+**And it takes a moment.** Nothing in the app resolves in the same frame it was tapped in any more.
+The delays are small and deliberately asymmetric: adding to a cart clears in under a quarter of a
+second, taking something back out takes half a second, honouring a promo code takes the better part
+of one, and every step of cancelling a membership is the slowest thing here. Settings offers to
+suppress all of it, for a fee.
 
 ---
 
@@ -131,10 +163,13 @@ index.html               shell — phone frame, status bar, tab bar
 css/tokens.css           67 design tokens; light + dark, three-state theming
 css/app.css              component library
 css/screens.css          screen-specific styles
-js/core/                 util · icons (and the drawn brand mark) · state (localStorage) · catalog · fees · cart
+js/core/                 util · world (the clock) · icons · state · latency · notifs · catalog · fees · scrip · tos · cart
 js/ui/                   shell (router, sheets, toasts) · components · item sheet · 16 screens
-js/sim/tracker.js        TRACKR™ order simulation
+js/sim/roster.js         the nine Slingers in your area
+js/sim/standing.js       the loyalty ladder that demotes you
+js/sim/tracker.js        TRACKR™ order simulation, on the wall clock
 js/sim/bodymax.js        BODYMAX™ telemetry — and the 16th screen
+tools/harness.cjs        loads the whole app headlessly, so npm test can render every screen
 js/data/menus/*.json     one file per restaurant — the source of truth
 js/data/menus.generated.js  bundled by tools/bundle.cjs (validates as it builds)
 tools/brand-bible.json   art direction + pricing doctrine for the 14 chains
@@ -144,7 +179,8 @@ build/raw/               2048px source renders, kept for re-encoding
 ```
 
 No framework, no build step, no dependencies. Classic scripts under a `FB` namespace so it runs
-straight from `file://`.
+straight from `file://`. `npm test` is thirty-four checks in one script — the pricing invariants, the
+data, and every screen rendered headlessly against six states at two different hours.
 
 The app's own mark — a bag, and a handle, which on this platform is a separate object and is billed
 separately — is drawn in `js/core/icons.js` rather than stored as an image, so it is crisp at every

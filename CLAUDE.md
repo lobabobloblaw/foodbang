@@ -20,7 +20,7 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose twenty-three checks always run together — there is no way to run a
+(`node tools/smoke.cjs`) whose thirty-four checks always run together — there is no way to run a
 single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
 exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
@@ -35,9 +35,9 @@ Deployed from `main` at repo root via GitHub Pages. Pushing to `main` redeploys.
 index.html            shell: phone frame, status bar, tab bar, and the ordered <script> list
 css/tokens.css        67 design tokens — light/dark, three-state theming; --fs scales the type ramp
 css/app.css           component library      css/screens.css   per-screen styles
-js/core/              util · world · icons · state · latency · catalog · fees · cart  (no DOM access)
+js/core/              util · world · icons · state · latency · notifs · catalog · fees · scrip · tos · cart
 js/ui/                shell (router/sheets/toasts) · components · item sheet · 16 screens
-js/sim/               tracker.js (TRACKR™)   bodymax.js (BODYMAX™ — and the 16th screen)
+js/sim/               roster.js (the nine Slingers) · standing.js · tracker.js (TRACKR™) · bodymax.js
 js/app.js             boot: catalog.init -> shell.init -> nav.go('home') -> tracker.resume
 js/data/menus/*.json  one file per restaurant — THE source of truth
 assets/app/cat/*.webp 14 category tiles (the photographic ones on Home and Search)
@@ -187,16 +187,41 @@ It also stamps a sha256 of the sources into the banner, and `npm test` recompute
 forgotten `npm run bundle` is a red test rather than a wrong price. **Data checks read
 `js/data/menus/*.json`, never the bundle.**
 
-**Run `npm test` before committing.** Twenty-three checks: the $60.00 total, the fee stack order, a
-`FEE_WHY` entry for every fee id across eight contexts, the bundle's source hash and stripped
-fields, asset presence (including zero-byte dataless files), the exact photo split, the advertised
-delivery fee being the one charged, distinct rating counts, reachable modifier caps, no raw
-`addEventListener` in a screen or a sim, mount/unmount listener idempotence, every item orderable,
-stale brand strings after a rename, every screen rendering under six state fixtures with no
-`undefined`/`NaN` in the markup, accessible names in that markup, nested backfill of an old save,
-Hunger never lowering a price or pre-selecting a refusal, single-use promo codes, no unseeded
-randomness outside `util.js`, latency staying small and buyable, the world clock's idempotence, the
-wall-clock order lifecycle, and the artifact build's regex contract plus its 1 KB line limit.
+**Every fee goes through `fees.compute`, or it cannot be explained.** The `FEE_WHY` walk only reads
+what `compute` returns, so a charge applied anywhere else can never be covered by it — which is why
+the restock notification, the tip-reduction review and the substitution are `ctx` branches rather
+than arithmetic at the call site. Add the fee, add its `FEE_WHY` entry, add a context to the list in
+`smoke.cjs`, and thread the `ctx` field through **both** compute call sites (`checkout.js` `calc()`
+*and* `cart-screen.js`) or the cart preview quotes a total checkout will not charge. Gate every new
+fee on a `ctx` field the headless $12 context does not pass, so the $60.00 case cannot acquire it.
+
+**`fees.js` may not reference another module.** `smoke.cjs` requires it with only `util.js` loaded,
+so a lookup into `FB.world`, `FB.standing`, `FB.tos` or `FB.scrip` throws at require time and takes
+the one thing under direct test with it. Tables the other modules need live *here* and are read back
+off `FB.fees` — that is why `STANDING_UPKEEP` and the scrip constants are in this file.
+
+**Three ledgers record what an order cost**, and any change after placement must patch all of them:
+the order's own `calc`, `st.meta.lifetime*`, and the frozen `st.bodymax.history` row. `FB.adjustOrder`
+in `js/ui/orders.js` is the only thing that should — `FB.adjustTip` and the incident resolver both go
+through it, and the invariant is tested against that function rather than a copy of it.
+
+**Rename hazards live in identifiers, not just prose.** `tools/rebrand.cjs` rewrites the courier noun
+wherever it appears as a word, so a *filename* containing it breaks the app (the `<script src>` string
+is rewritten; the file on disk is not), and a camelCase suffix slips past the word boundary and
+carries the outgoing brand forever. That is why the roster file is `roster.js` and the order field is
+`personId`. `--selfcheck` finds both; run it after adding a subsystem, not just after editing `RULES`.
+
+**Run `npm test` before committing.** Thirty-four checks. Beyond the original thirteen they cover:
+every screen rendering under six state fixtures × two hours with no `undefined`/`NaN` in the markup;
+accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
+pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency
+staying small and buyable; the world clock's idempotence; the wall-clock order lifecycle including
+catch-up, pickup, scheduling and legacy saves; store hours surviving midnight; notifications
+back-dating without duplicating; Standing's ladder and decay; the BANG+ ledger and BangBux expiry;
+the cancellation flow growing; the terms getting worse and taking §4.2 with them; no two orders
+telling the same story; store promotions moving a total; scarcity that never guts a menu; the roster
+and a revised tip keeping three ledgers in agreement; a mid-order incident answered exactly once; and
+the artifact build's regex contract plus its 1 KB line limit.
 
 ## Rebranding
 
