@@ -2,6 +2,7 @@
    node tools/smoke.cjs   (also: npm test) */
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const ROOT = path.join(__dirname, '..');
 let failed = 0;
@@ -38,6 +39,17 @@ FB.S = () => ({ settings: { feeTransparency: true, reduceUpsells: false, dataSha
 require(path.join(ROOT, 'js/core/fees.js'));
 require(path.join(ROOT, 'js/data/menus.generated.js'));
 const MENUS = global.window.FB_MENUS;
+
+/* js/data/menus/*.json is the source of truth; menus.generated.js is a build
+   product that no longer even carries every field. The data checks below read the
+   SOURCES, so a price edited without `npm run bundle` fails the hash check rather
+   than passing every other check against a stale bundle. */
+const MENU_DIR = path.join(ROOT, 'js/data/menus');
+const SRC_FILES = fs.readdirSync(MENU_DIR).filter(f => f.endsWith('.json')).sort();
+const SOURCES = Object.fromEntries(
+  SRC_FILES.map(f => [f.replace(/\.json$/, ''), JSON.parse(fs.readFileSync(path.join(MENU_DIR, f), 'utf8'))])
+);
+const SRC_ITEMS = Object.entries(SOURCES).flatMap(([slug, m]) => m.menu.flatMap(s => s.items.map(it => [slug, it])));
 
 console.log('FoodBang smoke test\n');
 
@@ -82,14 +94,30 @@ check('every fee line has a FEE_WHY entry, in every context', () => {
   return seen.size + ' distinct fee ids across ' + contexts.length + ' contexts';
 });
 
-check('bundle matches the source menus', () => {
-  const onDisk = fs.readdirSync(path.join(ROOT, 'js/data/menus')).filter(f => f.endsWith('.json')).length;
-  return eq(Object.keys(MENUS).length, onDisk, 'store count') + ' stores';
+check('the bundle was built from exactly these sources', () => {
+  /* The only claim this check used to make was a store count, so editing a price
+     and forgetting `npm run bundle` shipped a stale app that everything agreed
+     with. bundle.cjs stamps a hash of the sources into the banner. */
+  eq(Object.keys(MENUS).length, SRC_FILES.length, 'store count');
+  const h = crypto.createHash('sha256');
+  for (const f of SRC_FILES) h.update(f).update(fs.readFileSync(path.join(MENU_DIR, f)));
+  const want = h.digest('hex');
+  const gen = fs.readFileSync(path.join(ROOT, 'js/data/menus.generated.js'), 'utf8').slice(0, 400);
+  const got = (gen.match(/sources sha256 ([0-9a-f]{64})/) || [])[1];
+  if (!got) throw new Error('the bundle carries no source hash — run npm run bundle');
+  if (got !== want) throw new Error('the bundle is stale: run npm run bundle');
+  /* and the build-only fields really are absent from what ships */
+  for (const k of ['imagePrompt', 'photoStyle']) {
+    if (fs.readFileSync(path.join(ROOT, 'js/data/menus.generated.js'), 'utf8').includes('"' + k + '"')) {
+      throw new Error(k + ' is still in the runtime bundle');
+    }
+  }
+  return SRC_FILES.length + ' stores, hash matches, build-only fields stripped';
 });
 
 check('every photographed item has its asset on disk', () => {
   let n = 0;
-  for (const [slug, m] of Object.entries(MENUS)) {
+  for (const [slug, m] of Object.entries(SOURCES)) {
     for (const it of m.menu.flatMap(s => s.items)) {
       if (!it.photo) continue;
       n++;
@@ -110,7 +138,9 @@ check('every photo declares its style, and the mix is preserved', () => {
      photo now states its style, so the split can be asserted exactly. The numbers come
      from looking at all 120: seven were labelled amateur and were visibly studio work, and
      La Taqueria Verdadera's three studio-looking photos were reshot to its own doctrine. */
-  const items = Object.values(MENUS).flatMap(m => m.menu.flatMap(s => s.items)).filter(i => i.photo);
+  /* Read from the sources: photoStyle is a build-only field and bundle.cjs strips
+     it, which is exactly why this check must not look at the bundle. */
+  const items = SRC_ITEMS.map(([, it]) => it).filter(i => i.photo);
   const bad = items.filter(i => i.photoStyle !== 'amateur' && i.photoStyle !== 'studio');
   if (bad.length) throw new Error(bad.length + ' photo(s) with no/unknown photoStyle, e.g. ' + bad[0].id);
   const amateur = items.filter(i => i.photoStyle === 'amateur').length;
@@ -123,7 +153,7 @@ check('the advertised delivery fee is the one charged', () => {
   /* fees.js used to invent its own base and ignore store.deliveryFee entirely, so the
      number on the store card and the number on the receipt were unrelated. */
   let n = 0;
-  for (const [slug, m] of Object.entries(MENUS)) {
+  for (const [slug, m] of Object.entries(SOURCES)) {
     const c = FB.fees.compute({ subtotal: 30, lineCount: 3, store: m, settings: FB.S().settings });
     const d = c.feeLines.find(l => l.id === 'delivery');
     if (!d) throw new Error(slug + ': no delivery line');
@@ -137,7 +167,7 @@ check('the advertised delivery fee is the one charged', () => {
 
 check('no two stores share a ratingCount', () => {
   const seen = new Map();
-  for (const [slug, m] of Object.entries(MENUS)) {
+  for (const [slug, m] of Object.entries(SOURCES)) {
     if (seen.has(m.ratingCount)) throw new Error(slug + ' and ' + seen.get(m.ratingCount) + ' both show ' + m.ratingCount);
     seen.set(m.ratingCount, slug);
   }
@@ -148,12 +178,10 @@ check('no modifier group offers a cap it cannot reach', () => {
   /* "Optional · up to 8" printed over four checkboxes reads as a data slip, and the
      app's jokes are always explicit — an unreachable cap is not one of them. */
   const bad = [];
-  for (const [slug, m] of Object.entries(MENUS)) {
-    for (const it of m.menu.flatMap(s => s.items)) {
-      for (const g of it.groups || []) {
-        const n = (g.options || []).length;
-        if (g.max != null && g.max > n) bad.push(slug + '/' + it.id + '/' + g.id + ' max ' + g.max + ' > ' + n);
-      }
+  for (const [slug, it] of SRC_ITEMS) {
+    for (const g of it.groups || []) {
+      const n = (g.options || []).length;
+      if (g.max != null && g.max > n) bad.push(slug + '/' + it.id + '/' + g.id + ' max ' + g.max + ' > ' + n);
     }
   }
   if (bad.length) throw new Error(bad.length + ' group(s), e.g. ' + bad[0]);
@@ -230,15 +258,13 @@ check('a re-mount does not accumulate listeners', () => {
 
 check('every item is orderable (required groups resolvable)', () => {
   let n = 0;
-  for (const m of Object.values(MENUS)) {
-    for (const it of m.menu.flatMap(s => s.items)) {
-      n++;
-      for (const g of it.groups || []) {
-        if (!g.options || !g.options.length) throw new Error(it.id + '/' + g.id + ' has no options');
-        if (g.required && !g.options.length) throw new Error(it.id + '/' + g.id + ' required but empty');
-      }
-      if (!(it.groups || []).length) throw new Error(it.id + ' has no modifier groups');
+  for (const [, it] of SRC_ITEMS) {
+    n++;
+    for (const g of it.groups || []) {
+      if (!g.options || !g.options.length) throw new Error(it.id + '/' + g.id + ' has no options');
+      if (g.required && !g.options.length) throw new Error(it.id + '/' + g.id + ' required but empty');
     }
+    if (!(it.groups || []).length) throw new Error(it.id + ' has no modifier groups');
   }
   return n + ' items';
 });
@@ -532,6 +558,60 @@ check('interaction latency stays small, varies, and can be bought off', () => {
     }
   } finally { app.dispose(); }
   return kinds.length + ' kinds, ' + FB.latency.KINDS.cartAdd[0] + '-' + FB.latency.KINDS.plusCancel[1] + 'ms';
+});
+
+check('the single-file build can still parse index.html, and its output is safe to publish', () => {
+  /* build-artifact.cjs reads index.html with regexes that FAIL OPEN. A <script src>
+     placed above the markup makes html.indexOf('<script src=') precede '<body>', so
+     the body slice comes back empty and the artifact publishes as a blank page with
+     nothing but the boot banner — without erroring. Nothing checked any of it.
+     The stylesheet regex is deliberately NOT asserted: index.html's Google Fonts
+     link uses the reversed attribute order and the build skips it on purpose. */
+  const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map(m => m[1]);
+  const allScriptTags = (html.match(/<script\b/g) || []).length;
+  if (scripts.length !== allScriptTags) {
+    throw new Error(allScriptTags + ' <script> tags but only ' + scripts.length + ' match the shape the build reads');
+  }
+  const bodyAt = html.indexOf('<body>');
+  const firstScript = html.indexOf('<script src=');
+  if (bodyAt < 0) throw new Error('no <body> in index.html');
+  if (firstScript < bodyAt) throw new Error('a <script src> sits above <body>: the artifact would ship an empty body');
+  const body = html.slice(bodyAt + 6, firstScript);
+  if (!body.includes('id="view"')) throw new Error('the body slice the build takes does not contain #view');
+  for (const f of scripts) {
+    if (!fs.existsSync(path.join(ROOT, f))) throw new Error('index.html lists a missing script: ' + f);
+  }
+
+  /* Every asset path the app builds at runtime is a root-relative string that the
+     inlined map is keyed by, so a path written any other way silently 404s there. */
+  const missing = [];
+  for (const d of ['js/core', 'js/ui', 'js/sim']) {
+    for (const f of fs.readdirSync(path.join(ROOT, d)).filter(f => f.endsWith('.js'))) {
+      const src = fs.readFileSync(path.join(ROOT, d, f), 'utf8');
+      for (const m of src.matchAll(/'(assets\/[A-Za-z0-9._\/-]+\.(webp|png|jpg|json))'/g)) {
+        if (!fs.existsSync(path.join(ROOT, m[1]))) missing.push(d + '/' + f + ': ' + m[1]);
+      }
+    }
+  }
+  if (missing.length) throw new Error('asset literals that do not resolve: ' + missing.join(', '));
+
+  /* And if a build is present, hold it to the rule that made it publishable. */
+  const built = path.join(ROOT, 'build/foodbang.html');
+  let note = 'no build present';
+  if (fs.existsSync(built)) {
+    const out = fs.readFileSync(built, 'utf8');
+    for (const needle of ['__fberr', '__FB_ASSETS']) {
+      if (!out.includes(needle)) throw new Error('the build is missing ' + needle);
+    }
+    let longest = 0, at = 0;
+    out.split('\n').forEach((l, i) => { if (l.length > longest) { longest = l.length; at = i + 1; } });
+    /* A multi-megabyte single line renders as a blank frame with SyntaxError when
+       published — it works locally and in a plain iframe, so only this catches it. */
+    if (longest > 1024) throw new Error('build/foodbang.html line ' + at + ' is ' + longest + ' chars (limit 1024)');
+    note = 'build longest line ' + longest;
+  }
+  return scripts.length + ' scripts, body slice intact, ' + note;
 });
 
 console.log('');
