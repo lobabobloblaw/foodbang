@@ -201,6 +201,51 @@ window.FB = window.FB || {};
     restoreFocus(refocus);
   }
 
+  /* ---------- the router owns the session history ----------
+     It used to write to history one-way: pushState on every go(), and a popstate
+     handler that called back() unconditionally. Four things fell out of that.
+
+     Browser FORWARD fired popstate, so the app navigated BACKWARD while the URL went
+     forward, and the two disagreed from then on. `replace` meant "do not push onto
+     the router stack" and said nothing about the browser, so back()'s empty-stack
+     fallback pushed a NEW entry from inside the popstate handler — Back after a tab
+     switch made no net progress and destroyed the forward entry. And an overlay,
+     which never pushes an entry of its own, SPENT one when Back closed it: the URL
+     desynced, and with a dismissible:false modal up (the checkout Terms gate) Back
+     did nothing visible while silently eating every remaining entry, until the next
+     one unloaded the app from the middle of checkout.
+
+     So: every entry carries a monotonic serial, popstate compares it against the one
+     we think we are on to learn the DIRECTION, an entry spent by an overlay is put
+     back, and nothing writes history while reacting to history. */
+  var serial = 0;
+  var forward = [];
+  var reacting = false;
+
+  function writeHistory(name, replace) {
+    /* Never while reacting: the browser has already moved, and writing here is what
+       made Back grow the history instead of shrinking it. Defensive now rather than
+       load-bearing — the only navigation a pop can trigger is back()'s root fallback,
+       which is a replace and therefore harmless — but a future redirect-on-mount
+       would reach this from inside a pop, and that is the case that ate the history. */
+    if (reacting) return;
+    try {
+      if (replace) history.replaceState({ n: name, s: serial }, '', '#' + name);
+      else history.pushState({ n: name, s: ++serial }, '', '#' + name);
+    } catch (e) {}
+  }
+
+  /* Put back an entry an overlay spent. Overlays are not history entries — mkOverlay
+     never pushes one — so a Back that closed a sheet has to hand its entry back or
+     the app runs out of them and leaves the page. */
+  function restoreEntry(s) {
+    try {
+      var n = current ? current.name : 'home';
+      history.pushState({ n: n, s: s }, '', '#' + n);
+      serial = s;
+    } catch (e) {}
+  }
+
   var nav = {
     go: function (name, params, opts) {
       opts = opts || {};
@@ -212,33 +257,81 @@ window.FB = window.FB || {};
       } else {
         current = { name: name, params: params || {}, scroll: 0 };
       }
+      /* a new navigation invalidates anything that was ahead of us */
+      forward = [];
       FB.overlay.closeAll(true);
       paint();
-      if (!opts.silent) { try { history.pushState({ n: name }, '', '#' + name); } catch (e) {} }
+      if (!opts.silent) writeHistory(name, !!opts.replace);
     },
     replace: function (name, params) { nav.go(name, params, { replace: true }); },
+    /* Reports WHICH branch it took, because the popstate handler has to know: an
+       overlay close and a refused modal both consumed a history entry they did not
+       own. Every return is truthy except the one that already was. */
     back: function () {
       if (FB.overlay.any()) {
         var top = FB.overlay.top();
         /* dismissible:false used to mean only "do not wire the scrim", so Escape
            still closed a modal that had exactly one button by design. It means it
            now — for the welcome modal too. */
-        if (top && top.cfg && top.cfg.dismissible === false) return true;
+        if (top && top.cfg && top.cfg.dismissible === false) return 'blocked';
         FB.overlay.close();
-        return true;
+        return 'overlay';
       }
-      if (!stack.length) { if (current && current.name !== 'home') { nav.go('home', {}, { replace: true }); return true; } return false; }
+      if (!stack.length) {
+        if (current && current.name !== 'home') { nav.go('home', {}, { replace: true }); return 'root'; }
+        return false;
+      }
       var prev = stack.pop();
+      forward.push(current);
       current = { name: prev.name, params: prev.params, scroll: prev.scroll, prev: current };
       paint();
-      return true;
+      return 'screen';
+    },
+    /* What a popstate MEANS, separated from the listener that receives it: the
+       harness never runs shell.init(), so anything left inside that listener cannot
+       be checked at all. `to` is the serial of the entry the browser moved to. */
+    pop: function (to) {
+      if (typeof to !== 'number') to = 0;
+      var spent = serial;
+      var goingBack = to < serial;
+      serial = to;
+      reacting = true;
+      try {
+        if (!goingBack) return nav.fwd();
+        var did = nav.back();
+        /* An overlay is not a history entry. Whether we closed one or refused to,
+           the browser has already spent an entry that was never ours — hand it back,
+           or the app runs out and unloads itself from the middle of checkout. */
+        if (did === 'overlay' || did === 'blocked') restoreEntry(spent);
+        /* did === false: the router is at its root with nothing left to pop, so the
+           browser is welcome to leave. */
+        return did;
+      } finally { reacting = false; }
+    },
+
+    /** the serial of the history entry the router believes it is on */
+    serial: function () { return serial; },
+
+    /** the other direction, which the router had no notion of at all */
+    fwd: function () {
+      if (!forward.length) return false;
+      var next = forward.pop();
+      if (current) { current.scroll = viewEl.scrollTop; stack.push(current); }
+      current = { name: next.name, params: next.params, scroll: next.scroll, prev: current };
+      FB.overlay.closeAll(true);
+      paint();
+      return 'screen';
     },
     /* switch a bottom tab: reset the stack to that root */
     tab: function (id) {
       if (current && current.name === id) { FB.scrollTop(true); return; }
-      stack = []; current = { name: id, params: {}, scroll: 0, prev: current };
+      stack = []; forward = [];
+      current = { name: id, params: {}, scroll: 0, prev: current };
       FB.overlay.closeAll(true);
       paint();
+      /* replace, not push: a tab switch is a new root, and leaving the URL saying
+         '#store' while the screen shows Orders is the desync this whole block is about */
+      writeHistory(id, true);
     },
     current: function () { return current; },
     depth: function () { return stack.length; },
@@ -457,7 +550,13 @@ window.FB = window.FB || {};
       }, true);
       window.addEventListener('mousedown', function () { document.body.classList.remove('kb'); }, true);
 
-      window.addEventListener('popstate', function () { nav.back(); });
+      /* Sync to whatever entry we were restored onto, so a reload mid-session does
+         not make every subsequent Back look like a Forward. */
+      try { if (history.state && typeof history.state.s === 'number') serial = history.state.s; } catch (e) {}
+
+      window.addEventListener('popstate', function (e) {
+        nav.pop(e && e.state && typeof e.state.s === 'number' ? e.state.s : 0);
+      });
       document.addEventListener('keydown', function (e) {
         /* closest(), not matches() — a keystroke can land on a child of an editable */
         var t = e.target;

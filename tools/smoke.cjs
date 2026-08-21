@@ -1459,6 +1459,126 @@ check('a ledger cannot be overwritten, retracted, or written from the wrong bask
   } finally { FB.nav.refresh = realRefresh; FB.nav.go = realGo; FB.toast = realToast; clock.restore(); app.dispose(); }
 });
 
+check('the browser buttons agree with the router', () => {
+  /* The router wrote to history one way — pushState on every go(), a popstate handler
+     that called back() unconditionally — and four things fell out of that:
+       - Forward fired popstate, so the app went BACKWARD while the URL went forward;
+       - `replace` meant "do not push onto the ROUTER stack" and said nothing about
+         the browser, so back()'s empty-stack fallback pushed a new entry from inside
+         the popstate handler and Back after a tab switch grew history instead;
+       - an overlay, which never pushes an entry, SPENT one when Back closed it, so
+         the URL desynced and the app ran out of entries a screen early;
+       - with a dismissible:false modal up (the checkout Terms gate) Back did nothing
+         visible while eating every remaining entry, then unloaded the app mid-checkout.
+
+     Driven through FB.nav.pop(), which is what the popstate listener calls — the
+     listener itself lives in shell.init() and this file's other checks do not boot
+     the shell. The history below is modelled with a CURSOR, because pushState
+     truncates whatever is ahead of it rather than simply appending; an append-only
+     model makes a restored entry look like growth. */
+  const appSrc = fs.readFileSync(path.join(ROOT, 'js/app.js'), 'utf8');
+
+  function boot() {
+    const app = harness.loadApp();
+    app.clock.set(new Date(2026, 7, 20, 13, 0, 0).getTime());
+    const entries = [{ st: null, url: '#home' }];
+    const h = { i: 0 };
+    app.win.history = {
+      get state() { return entries[h.i].st; },
+      get length() { return entries.length; },
+      pushState(st, t, url) { entries.length = h.i + 1; entries.push({ st: st, url: url }); h.i++; },
+      replaceState(st, t, url) { entries[h.i] = { st: st, url: url }; },
+    };
+    app.run(appSrc);
+    const travel = (d) => {
+      const next = h.i + d;
+      if (next < 0 || next >= entries.length) return false;   /* the browser leaves the page */
+      h.i = next;
+      const st = entries[h.i].st;
+      app.FB.nav.pop(st && typeof st.s === 'number' ? st.s : 0);
+      return true;
+    };
+    return { app, FB: app.FB, entries, travel };
+  }
+
+  /* --- Forward goes forward --- */
+  let a = boot();
+  try {
+    a.FB.nav.go('store', { slug: 'mcronalds' });
+    a.FB.nav.go('cart', { slug: 'mcronalds' });
+    if (a.entries.length !== 3) throw new Error('two navigations wrote ' + (a.entries.length - 1) + ' entries');
+    if (!a.travel(-1)) throw new Error('Back left the page from a two-deep stack');
+    if (a.FB.nav.current().name !== 'store') throw new Error('Back landed on ' + a.FB.nav.current().name);
+    if (!a.travel(+1)) throw new Error('there was nothing to go Forward to');
+    if (a.FB.nav.current().name !== 'cart') {
+      throw new Error('Forward navigated to ' + a.FB.nav.current().name + ', not back to the cart');
+    }
+    if (a.entries[a.entries.length - 1].url !== '#cart') throw new Error('the URL disagrees with the screen after Forward');
+    /* and a NEW navigation invalidates what was ahead: the browser truncates its own
+       forward entries on pushState, so a router still holding them would restore a
+       screen the browser has already forgotten */
+    a.travel(-1);
+    a.FB.nav.go('account', {});
+    if (a.FB.nav.fwd() !== false) throw new Error('a new navigation left a stale entry on the forward stack');
+  } finally { a.app.dispose(); }
+
+  /* --- an overlay does not spend an entry it never pushed --- */
+  a = boot();
+  try {
+    a.FB.nav.go('store', { slug: 'mcronalds' });
+    const before = a.entries.length;
+    a.FB.sheet.open({ title: 'A sheet', html: '<p>x</p>' });
+    if (!a.FB.overlay.any()) throw new Error('the sheet did not open');
+    a.travel(-1);
+    if (a.FB.overlay.any()) throw new Error('Back did not close the sheet');
+    if (a.FB.nav.current().name !== 'store') throw new Error('closing a sheet also moved the screen');
+    if (a.entries.length !== before) throw new Error('closing a sheet cost a history entry (' + before + ' -> ' + a.entries.length + ')');
+    if (a.entries[a.entries.length - 1].url !== '#store') throw new Error('the URL no longer names the screen');
+    a.travel(-1);
+    if (a.FB.nav.current().name !== 'home') throw new Error('the next Back did not leave the store');
+  } finally { a.app.dispose(); }
+
+  /* --- a modal you may not dismiss cannot drain the history --- */
+  a = boot();
+  try {
+    a.FB.nav.go('store', { slug: 'mcronalds' });
+    a.FB.nav.go('cart', { slug: 'mcronalds' });
+    a.FB.modal.open({ html: '<p>Terms</p>', dismissible: false });
+    const before = a.entries.length;
+    for (let i = 0; i < 8; i++) {
+      if (!a.travel(-1)) throw new Error('Back unloaded the app from behind a modal it would not dismiss');
+    }
+    if (!a.FB.overlay.any()) throw new Error('a dismissible:false modal was closed by Back');
+    if (a.entries.length !== before) throw new Error('eight Backs changed the history depth');
+    if (a.FB.nav.current().name !== 'cart') throw new Error('the screen moved behind the modal');
+  } finally { a.app.dispose(); }
+
+  /* --- replace replaces, and nothing writes history while reacting to it --- */
+  a = boot();
+  try {
+    a.FB.nav.go('store', { slug: 'mcronalds' });
+    const afterGo = a.entries.length;
+    a.FB.nav.replace('category', { cat: 'burgers' });
+    if (a.entries.length !== afterGo) throw new Error('replace pushed a new entry');
+    if (a.entries[a.entries.length - 1].url !== '#category') throw new Error('replace did not rewrite the URL');
+    const beforeTab = a.entries.length;
+    a.FB.nav.tab('orders');
+    if (a.entries.length !== beforeTab) throw new Error('a tab switch grew the history');
+    if (a.entries[a.entries.length - 1].url !== '#orders') throw new Error('the URL does not follow a tab switch');
+    const beforeBack = a.entries.length;
+    a.travel(-1);
+    if (a.entries.length > beforeBack) throw new Error('Back from a tab root PUSHED an entry');
+    if (a.FB.nav.current().name !== 'home') throw new Error('Back from a tab root landed on ' + a.FB.nav.current().name);
+    const start = a.entries.length;
+    for (let i = 0; i < 10; i++) { a.FB.nav.tab('search'); a.travel(-1); }
+    if (a.entries.length > start + 1) {
+      throw new Error('ten tab-and-Back cycles grew the history from ' + start + ' to ' + a.entries.length);
+    }
+  } finally { a.app.dispose(); }
+
+  return 'Forward goes forward, overlays cost nothing, a forced modal cannot drain history, and replace replaces';
+});
+
 check('a schedule slot is never offered outside the hours it is for', () => {
   /* The sheet built its rows from wall-clock arithmetic alone — deliveryMax + 45n —
      and never asked whether the store was open at the time it was offering. Swept
