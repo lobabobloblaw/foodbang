@@ -18,10 +18,10 @@ Deployed from `main` at repo root via GitHub Pages. Pushing to `main` redeploys.
 
 ```
 index.html            shell: phone frame, status bar, tab bar
-css/tokens.css        64 design tokens — light/dark, three-state theming
+css/tokens.css        79 design tokens — light/dark, three-state theming
 css/app.css           component library      css/screens.css   per-screen styles
 js/core/              util · icons · state · catalog · fees · cart
-js/ui/                shell (router/sheets/toasts) · components · 12 screens
+js/ui/                shell (router/sheets/toasts) · components · 16 screens
 js/sim/               tracker.js (TRACKR™)   bodymax.js (BODYMAX™)
 js/data/menus/*.json  one file per restaurant — THE source of truth
 tools/                bundle.cjs · build-artifact.cjs · rebrand.cjs · serve.mjs
