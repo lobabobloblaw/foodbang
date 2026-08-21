@@ -18,37 +18,45 @@
       "file": "items/01.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a colossal clear glass latte vessel the size of a bucket, shot as a three-quarter hero, filled past the rim with stratified espresso and steamed milk, a thick sagging dome of microfoam swelling over the lip and slumping down the outside in slow white ropes, condensation beading on the glass, milk runnels pooling on the stone, a heavy brass dispensing nozzle still dripping directly above it. Setting: a polished white marble counter with industrial brass dispensing hoses and pressure gauges mounted behind it, warm cafe bokeh. Lighting: soft north-facing window light with a warm amber bounce, gentle contrast, premium lifestyle photography. Camera: 85mm, f/2.0, shallow depth of field, creamy falloff. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "b0rnn3e8p1rmw0d045za8zfgv4",
-      "predictTime": 11.809876404
+      "predictTime": 11.809876404,
+      "styleObserved": "studio"
     },
     {
       "file": "items/02.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: shot straight down into the open mouth of a tall brushed-steel refuel vessel brimming with nitrogen-infused cold brew, a dense cascading surge of microbubbles climbing the near-black liquid in visible banded waves, a thick tan crema head domed above the rim under surface tension and just beginning to weep over one edge, a brass hose coupling clamped to the vessel collar at the frame edge, cold condensation streaking the steel. Setting: a polished white marble counter with industrial brass dispensing hoses and pressure gauges mounted behind it, warm cafe bokeh. Lighting: soft north-facing window light with a warm amber bounce, gentle contrast, premium lifestyle photography. Camera: 50mm, f/4, top-down, crisp surface detail. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "3r7p7ks6a5rmw0d045zra9t1bg",
-      "predictTime": 15.1403803
+      "predictTime": 15.1403803,
+      "styleObserved": "studio"
     },
     {
       "file": "items/03.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of four ristretto shots crowded into a small thick-walled glass pressure cartridge, mottled tiger-striped crema swelling above the rim in a taut convex meniscus, individual oil droplets and micro-bubbles rendered razor sharp, one amber thread of espresso still falling into the surface and denting it, a hairline of coffee film creeping down the outer glass. Setting: a polished white marble counter with industrial brass dispensing hoses and pressure gauges mounted behind it, warm cafe bokeh. Lighting: soft north-facing window light with a warm amber bounce, gentle contrast, premium lifestyle photography. Camera: 100mm macro, f/3.5, paper-thin plane of focus, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "3cf26x4jddrmw0d045zvpdmzmw",
-      "predictTime": 25.775784288
+      "predictTime": 25.775784288,
+      "styleObserved": "studio"
     },
     {
       "file": "items/04.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean vertical cross-section cutaway of a tall beverage, sliced flat as if by a laboratory saw so every stratum is exposed: dense dark chocolate sludge at the base, a sharp espresso band, a thick milk stratum, and an absurdly deep salted cold-foam deck occupying the top third and bulging well above the cut rim, glossy caramel seeping down through the layers in visible channels, coarse salt crystals suspended in the foam, one bead of condensation running the cut face. Setting: a polished white marble counter with industrial brass dispensing hoses and pressure gauges mounted behind it, warm cafe bokeh. Lighting: soft north-facing window light with a warm amber bounce, gentle contrast, premium lifestyle photography. Camera: 60mm, f/6.3, dead-on side elevation, crisp edge definition. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "mgy8h097j1rmy0d046088rwxk0",
-      "predictTime": 12.950827667
+      "predictTime": 12.950827667,
+      "styleObserved": "studio"
     },
     {
       "file": "items/05.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a heavy orange-brown spiced latte in a wide glass vessel set on a dented brass service tray lined with a grease-spotted paper liner, a towering whipped canopy leaning far past the rim and visibly collapsing onto the liner in a soft avalanche, cinnamon sediment drifted in dunes across the tray, spilled orange drizzle rings staining the paper, a second smaller vessel out of focus behind, one drip suspended off the tray edge. Setting: a polished white marble counter with industrial brass dispensing hoses and pressure gauges mounted behind it, warm cafe bokeh. Lighting: soft north-facing window light with a warm amber bounce, gentle contrast, premium lifestyle photography. Camera: 50mm, f/2.8, low three-quarter angle across the tray. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "0zx3d1wedxrmw0d0460965hqj8",
-      "predictTime": 12.331408195
+      "predictTime": 12.331408195,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/06.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: overhead flat-lay of a single colossal cinnamon coil pastry with twelve tight revolutions, wider than the stone slab beneath it so its edges overhang into empty space, thick white glaze pooling off the perimeter onto the marble in heavy sheets, laminated layers visibly separating and sagging under their own weight, dark cinnamon filling squeezing out between the coils, a scattered ring of crumb and glaze debris around it. Setting: a polished white marble counter with industrial brass dispensing hoses and pressure gauges mounted behind it, warm cafe bokeh. Lighting: soft north-facing window light with a warm amber bounce, gentle contrast, premium lifestyle photography. Camera: 45mm, f/8, perfectly top-down, even sharpness corner to corner. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "pca6y6zj9xrmy0d046086dvpr8",
-      "predictTime": 12.31270301
+      "predictTime": 12.31270301,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     }
   ]
 }

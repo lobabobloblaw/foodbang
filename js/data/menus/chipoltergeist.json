@@ -195,7 +195,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "cpg-002",
@@ -785,7 +786,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "cpg-007",

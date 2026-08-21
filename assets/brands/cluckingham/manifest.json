@@ -18,37 +18,48 @@
       "file": "items/01.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a plain paper bucket of pressure-fried chicken shot from directly overhead, straight down into the vessel. Craggy mahogany crust, torn breading shards, a thigh wedged upright against the rim, the pile heaped several inches above the lip and slumping over one side, steam curling off the crevices, oil pooling in every fissure. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 50mm, shallow depth of field, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "d6y8jgeqtxrmr0d045ytpde170",
-      "predictTime": 12.451069854
+      "predictTime": 12.451069854,
+      "styleObserved": "studio"
     },
     {
       "file": "items/02.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a colossal pressure-fried chicken sandwich in three-quarter hero view. The fillet overhangs the bun by two inches on every side, breading blistered and shattered at the edges, the top bun compressed flat and glossy where it buckles under load, pickles sliding out, a slow rope of pepper oil running down the stack and puddling below. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 85mm, tight depth of field, deep contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "2pvtem8fa9rmw0d045za5a6v74",
-      "predictTime": 10.525804157
+      "predictTime": 10.525804157,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/03.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: nine long pressure-fried chicken tenders laid out on a dented aluminum sheet tray over a grease-translucent liner. Crust ridges stand up like bark, breading shrapnel and crumbs scatter across the liner, a dark oil halo soaks outward through the paper, thin steam still lifting off the nearest tender. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 35mm at a low raking angle, moderate depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "kxg1bnvgh5rmt0d045z80bgwcw",
-      "predictTime": 11.565421416
+      "predictTime": 11.565421416,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/04.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: one enormous buttermilk biscuit sliced cleanly in half, the cut face square to camera as a precise cross-section. Dozens of compressed laminated layers, a molten butter seam bleeding down through the strata and beading at the base, crumb structure dense enough to look load-bearing, a second half standing behind it slightly out of focus. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 100mm macro, flat-on cutaway, razor-sharp detail. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "2byx05n45nrmr0d045zajrdek8",
-      "predictTime": 12.3432719
+      "predictTime": 12.3432719,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/05.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of thick peppered sausage gravy mid-pour, a heavy rope of gravy folding into an already-full vessel, viscous crater and slow ripples, a glossy skin forming across the surface, black pepper flecks and pale sausage crumbles suspended in it, one fat bead running down the outside of the vessel. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 100mm macro, extremely shallow depth of field, specular highlights. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "fv1gm1gbt1rmy0d045zv5v4e5r",
-      "predictTime": 14.177891057
+      "predictTime": 14.177891057,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/06.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of a mountain of thick-cut seasoned fries spilling from an overturned plain paper carton across a dented aluminum sheet tray. Hundreds of fries, ridged and blistered, crimson seasoning dust drifted over everything, a slow puddle of gravy creeping in from one corner, loose salt grains catching the light. A stainless fryer station with red-and-white vertical stripes sits softly out of focus at the edge of frame. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 40mm directly overhead, even sharpness corner to corner. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "h6s7292amhrmw0d045zsdc5sz8",
-      "predictTime": 41.030941602
+      "predictTime": 41.030941602,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     }
   ]
 }

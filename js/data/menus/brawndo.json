@@ -9,7 +9,7 @@
     "grocery"
   ],
   "rating": 4.4,
-  "ratingCount": 41208,
+  "ratingCount": 96341,
   "deliveryMin": 24,
   "deliveryMax": 55,
   "deliveryFee": 6.49,
@@ -227,7 +227,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "brw-002",
@@ -740,7 +741,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "brw-006",
@@ -1239,7 +1241,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "brw-010",
@@ -1474,7 +1477,7 @@
           ],
           "photo": "items/04.webp",
           "imagePrompt": "Amateur smartphone photo taken by a depot employee to upload to a food delivery app. Subject: a lawn saturation kit as it actually ships - four capped one-gallon jugs of bright cyan electrolyte concentrate and a coiled green garden hose sitting in an open cardboard flat on the warehouse floor, one jug's cap loose with a cyan dribble running down its side onto the concrete, hazard-yellow floor striping under it and stacked blue plastic drums behind. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the cardboard flat cut off at the right edge. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-          "photoStyle": "amateur",
+          "photoStyle": "studio",
           "groups": [
             {
               "id": "g1",

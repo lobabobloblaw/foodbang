@@ -18,37 +18,47 @@
       "file": "items/01.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: one enormous foil-wrapped burrito the diameter of a fence post, foil peeled back in a spiral to expose a packed cylinder of rice, black beans, charred meat and melted cheese under visible internal pressure, the tortilla stretched thin and shining at the seams, a slow bead of orange fat running down the side, steam rising in a thin column. Placed on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 85mm lens at three-quarter hero angle, shallow depth of field, high micro-contrast, deep blacks. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "cdppyrdcddrmt0d045ytth68br",
-      "predictTime": 11.950466897
+      "predictTime": 11.950466897,
+      "styleObserved": "studio"
     },
     {
       "file": "items/02.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a deep matte-black bowl shot straight down into, filled far past its rim with cilantro-flecked rice, glossy black beans, charred red peppers, shredded meat and a pale mound of guacamole, the contents domed above the rim and sagging over one edge onto the counter, a thin salsa slick pooling beneath, faint steam curling off the surface. Set on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 50mm directly overhead, tight top-down framing, moderate depth of field, rich shadow detail. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "x311xcq2pnrmw0d045yrp13mt0",
-      "predictTime": 12.46141279
+      "predictTime": 12.46141279,
+      "styleObserved": "studio"
     },
     {
       "file": "items/03.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of a huge drift of thick blistered tortilla chips spilling out of a torn paper sleeve, chips scattered in a fan across kraft paper, coarse salt crystals and fried corn dust visible, three small dishes of salsa arranged at the edges, one dish overflowing. Arranged on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 40mm shot perfectly overhead, flat-lay composition, everything in focus, crisp edge definition, strong directional shadow under each chip. Square crop, subject centered and filling the frame. IMPORTANT: the previous attempt printed faint small lines of type on the paper sleeve. The paper sleeve and every sheet of paper must be completely blank, plain and unprinted, with no letters, no faint printing, no tiny type, no stamps and no marks of any kind. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "2hhrcfbt7xrmw0d0460t29723c",
-      "predictTime": 11.847329819
+      "predictTime": 11.847329819,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/04.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of a single scoop of guacamole, the surface rough with hand-crushed avocado chunks, flecks of red onion, lime pulp and coarse salt, one glossy ridge catching the light, a slow thick drip beginning to fall off the near edge, condensation beading on the cold surface. Resting on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 100mm macro lens, razor-thin depth of field, background dissolved to soft charcoal, extremely high textural detail, cold blue rim light along the shadowed side. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "xbf979dsydrmr0d045zb2z7hww",
-      "predictTime": 12.323053509
+      "predictTime": 12.323053509,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/05.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean cross-section cutaway of a tightly rolled lettuce-leaf wrap sliced straight through, the cut face showing concentric layers of pale green lettuce, white rice, black beans, grilled chicken and a bright stripe of salsa, every layer sharp and geometric, a little liquid seeping from the cut and running onto the surface below, the two halves standing upright. On a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 60mm macro, straight-on eye-level view of the cut face, deep focus, surgical clarity, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "0c7t3ch3s9rmy0d045ztb1yt1g",
-      "predictTime": 18.822904174
+      "predictTime": 18.822904174,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/06.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a tall clear plastic cup of cloudy pale-pink agua fresca on a kraft-paper-lined metal tray, filled to overflowing so a thin sheet of liquid runs down the outside and spreads across the paper liner in a dark stain, ice pressed to the walls, pulp suspended in the haze, heavy condensation. Tray sits on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 65mm at a low three-quarter tray angle, moderate depth of field, backlit liquid glow, deep surrounding shadow. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "z0gptq3m5drmr0d045zsmxgxmw",
-      "predictTime": 10.786755692
+      "predictTime": 10.786755692,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     }
   ]
 }

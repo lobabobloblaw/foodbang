@@ -159,7 +159,7 @@
               "name": "Condiment Sachet Allotment",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -214,7 +214,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "mcr-002",
@@ -314,7 +315,7 @@
               "name": "Pickle Disc Allotment",
               "required": false,
               "min": 0,
-              "max": 8,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -357,7 +358,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "mcr-003",
@@ -727,7 +729,7 @@
               "name": "Dip Portfolio",
               "required": false,
               "min": 0,
-              "max": 5,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -755,7 +757,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "mcr-007",
@@ -913,7 +916,7 @@
               "name": "Vinegar Sachet Series",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -1596,7 +1599,7 @@
               "name": "Sauce Cup Federation",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",

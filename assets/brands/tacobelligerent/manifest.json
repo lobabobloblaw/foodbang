@@ -18,37 +18,47 @@
       "file": "items/01.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a black compartmented tray crammed past capacity with five folded tortilla objects, a rigid paper cone of tortilla chips, and six brimming sauce cups; one fold has split open and spilled molten orange cheese across two compartments, the chip cone leans and sheds shards, sauce runs the tray seams and pools at one corner. Setting: wet black asphalt at 2am under a drive-thru canopy, magenta and violet neon reflecting in shallow puddles, chrome trim. Lighting: neon rim light, magenta key with ultraviolet fill, deep crushed blacks, anamorphic flare. Camera: 50mm directly overhead flat-lay, deep focus, everything sharp, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "wkrpreygqhrmr0d045zbw27bc8",
-      "predictTime": 16.99
+      "predictTime": 16.99,
+      "styleObserved": "studio"
     },
     {
       "file": "items/02.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a hexagonal grilled tortilla fold sliced cleanly in half and stood upright, revealing stratified interior layers of seasoned beef, a whole crisp tostada disc, molten orange cheese pulling in long threads, cool sour cream and shredded lettuce; the cut face bulges outward under compression and a bead of grease slides down the exposed edge. Setting: wet black asphalt at 2am under a drive-thru canopy, magenta and violet neon reflecting in shallow puddles, chrome trim. Lighting: neon rim light, magenta key with ultraviolet fill, deep crushed blacks, anamorphic flare. Camera: 100mm macro, clean cross-section cutaway, subject dead level, shallow depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "y975m123gdrmw0d045zrsr74cr",
-      "predictTime": 12.17
+      "predictTime": 12.17,
+      "styleObserved": "studio"
     },
     {
       "file": "items/03.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a deep-fried flatbread boat loaded far past its hull with seasoned meat and shredded cheese mounded high and avalanching over both long sides onto the chrome surface below, lettuce spilling, a thick violet sauce ribbon draped across the top and dripping in one long strand, the fried shell visibly straining and split at one end. Setting: wet black asphalt at 2am under a drive-thru canopy, magenta and violet neon reflecting in shallow puddles, chrome trim. Lighting: neon rim light, magenta key with ultraviolet fill, deep crushed blacks, anamorphic flare. Camera: 85mm three-quarter hero angle at table height, shallow depth of field, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "3806ptx0ysrmr0d045zveggsjr",
-      "predictTime": 13.38
+      "predictTime": 13.38,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/04.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of a large burrito cut open at one end to reveal a second complete burrito sealed inside it; the outer flour tortilla is blistered and stretched drum-taut, the inner tortilla glossy with grease, rice and beans compressed into the narrow gap between them, steam curling from the opening, individual char blisters and flour dust visible on the skin. Setting: wet black asphalt at 2am under a drive-thru canopy, magenta and violet neon reflecting in shallow puddles, chrome trim. Lighting: neon rim light, magenta key with ultraviolet fill, deep crushed blacks, anamorphic flare. Camera: 100mm macro, razor-thin depth of field, neon bokeh behind. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "sm4m0a81n1rmw0d04608qy5c98",
-      "predictTime": 13.12
+      "predictTime": 13.12,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/05.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a tall rigid paper cone packed vertically with tortilla chips, seen from directly above looking straight down into its open mouth; a thick stream of molten orange cheese pours in from above and pools over the chips, jalapeno rings, black beans and diced tomato riding the surface, cheese overflowing the rim and running down the outside of the cone, steam rising through the neon. Setting: wet black asphalt at 2am under a drive-thru canopy, magenta and violet neon reflecting in shallow puddles, chrome trim. Lighting: neon rim light, magenta key with ultraviolet fill, deep crushed blacks, anamorphic flare. Camera: 35mm looking straight down into the vessel, deep focus, strong vertical perspective. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "5dm5xvb4rxrmw0d046083t1fcm",
-      "predictTime": 11.92
+      "predictTime": 11.92,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/06.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: six small sauce cups in a row on a grease-translucent paper liner inside a steel tray, each filled to overflowing with a different sauce escalating from pale orange to deep magenta to a near-black ultraviolet purple; sauce has run over three rims and soaked dark blooms into the liner, thick surface sheen, one cup domed above its rim by surface tension. Setting: wet black asphalt at 2am under a drive-thru canopy, magenta and violet neon reflecting in shallow puddles, chrome trim. Lighting: neon rim light, magenta key with ultraviolet fill, deep crushed blacks, anamorphic flare. Camera: 60mm at a shallow twenty-degree angle just above the liner, long-lens compression, shallow depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "gkcw0862anrmt0d04609zbg02c",
-      "predictTime": 11.53
+      "predictTime": 11.53,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     }
   ]
 }

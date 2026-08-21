@@ -1241,7 +1241,7 @@
               "name": "Off The Cooler",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -1659,7 +1659,7 @@
             "Popular"
           ],
           "photo": "items/05.webp",
-          "photoStyle": "amateur",
+          "photoStyle": "studio",
           "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a generous overflowing pile of thick fresh-cut french fries in a red plastic diner basket lined with checkered paper, visible coarse salt, a few darker crispy ends on top, a small paper cup of white sauce wedged in beside them. Harsh direct on-camera flash, hot blown-out hotspot on the fries and the sauce cup, hard black shadow thrown behind the basket. The basket sitting directly on a scratched laminate counter with crumbs and a smear of sauce beside it. Flat phone-camera look, unretouched, mixed white balance, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
           "groups": [
             {

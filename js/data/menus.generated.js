@@ -259,7 +259,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "apz-002",
@@ -3283,7 +3284,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "bcs-002",
@@ -3411,7 +3413,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "bcs-003",
@@ -3985,7 +3988,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "bcs-008",
@@ -4428,7 +4432,7 @@ window.FB_MENUS = {
        },
        {
         "id": "g2",
-        "name": "Snow Base Flavour",
+        "name": "Snow Base Flavor",
         "required": true,
         "min": 1,
         "max": 1,
@@ -4501,12 +4505,13 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "bcs-013",
       "name": "Matcha Red Bean Snow",
-      "desc": "Matcha snow, house red bean cooked on Sundays, a lot of it. Amy's favourite and she will say so if you order it at the counter.",
+      "desc": "Matcha snow, house red bean cooked on Sundays, a lot of it. Amy's favorite and she will say so if you order it at the counter.",
       "price": 4.35,
       "calories": 1340,
       "badges": [
@@ -5047,7 +5052,7 @@ window.FB_MENUS = {
         "name": "Dipping Cup Count",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -5069,7 +5074,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "bcs-019",
@@ -5158,7 +5164,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "bcs-020",
@@ -5268,7 +5275,7 @@ window.FB_MENUS = {
    "grocery"
   ],
   "rating": 4.4,
-  "ratingCount": 41208,
+  "ratingCount": 96341,
   "deliveryMin": 24,
   "deliveryMax": 55,
   "deliveryFee": 6.49,
@@ -5486,7 +5493,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "brw-002",
@@ -5999,7 +6007,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "brw-006",
@@ -6498,7 +6507,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "brw-010",
@@ -6733,7 +6743,7 @@ window.FB_MENUS = {
       ],
       "photo": "items/04.webp",
       "imagePrompt": "Amateur smartphone photo taken by a depot employee to upload to a food delivery app. Subject: a lawn saturation kit as it actually ships - four capped one-gallon jugs of bright cyan electrolyte concentrate and a coiled green garden hose sitting in an open cardboard flat on the warehouse floor, one jug's cap loose with a cyan dribble running down its side onto the concrete, hazard-yellow floor striping under it and stacked blue plastic drums behind. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the cardboard flat cut off at the right edge. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "photoStyle": "amateur",
+      "photoStyle": "studio",
       "groups": [
        {
         "id": "g1",
@@ -7824,7 +7834,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "cpg-002",
@@ -8414,7 +8425,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "cpg-007",
@@ -10080,7 +10092,7 @@ window.FB_MENUS = {
    "chicken"
   ],
   "rating": 4.3,
-  "ratingCount": 41208,
+  "ratingCount": 33794,
   "deliveryMin": 27,
   "deliveryMax": 52,
   "deliveryFee": 5.49,
@@ -10305,7 +10317,8 @@ window.FB_MENUS = {
         ],
         "id": "g5"
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "clk-002",
@@ -12557,7 +12570,7 @@ window.FB_MENUS = {
    "drinks"
   ],
   "rating": 4.3,
-  "ratingCount": 41287,
+  "ratingCount": 47129,
   "deliveryMin": 7,
   "deliveryMax": 19,
   "deliveryFee": 3.49,
@@ -12709,7 +12722,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "dkn-002",
@@ -12804,7 +12818,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "dkn-003",
@@ -13203,7 +13218,7 @@ window.FB_MENUS = {
         "name": "Syrup Pump Escalation",
         "required": false,
         "min": 0,
-        "max": 8,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -13231,7 +13246,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "dkn-007",
@@ -13606,7 +13622,7 @@ window.FB_MENUS = {
         "name": "Syrup Pump Escalation",
         "required": false,
         "min": 0,
-        "max": 8,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -14800,7 +14816,7 @@ window.FB_MENUS = {
    "healthy"
   ],
   "rating": 4.4,
-  "ratingCount": 26418,
+  "ratingCount": 31460,
   "deliveryMin": 34,
   "deliveryMax": 71,
   "deliveryFee": 6.49,
@@ -14978,7 +14994,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "efm-002",
@@ -15036,7 +15053,7 @@ window.FB_MENUS = {
           "id": "o2",
           "name": "Deeply Charred",
           "price": 3.8,
-          "note": "Char is a flavour, a texture, and a fee."
+          "note": "Char is a flavor, a texture, and a fee."
          },
          {
           "id": "o3",
@@ -15369,7 +15386,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "efm-006",
@@ -15520,7 +15538,7 @@ window.FB_MENUS = {
           "id": "o2",
           "name": "Pit Removed",
           "price": 4.7,
-          "note": "Removal is a labour line item."
+          "note": "Removal is a labor line item."
          },
          {
           "id": "o3",
@@ -16345,7 +16363,7 @@ window.FB_MENUS = {
      {
       "id": "efm-016",
       "name": "Cold-Pressed Root Cylinder",
-      "desc": "Roots pressed at pressure into a self-supporting cylinder. Colour varies by root and is not adjustable.",
+      "desc": "Roots pressed at pressure into a self-supporting cylinder. Color varies by root and is not adjustable.",
       "price": 6.7,
       "calories": 940,
       "badges": [],
@@ -16547,7 +16565,7 @@ window.FB_MENUS = {
      {
       "id": "efm-018",
       "name": "Compliance Gummies, Unflavored",
-      "desc": "A daily obligation in chewable form. Flavour was considered and then formally excluded.",
+      "desc": "A daily obligation in chewable form. Flavor was considered and then formally excluded.",
       "price": 5.45,
       "calories": 940,
       "badges": [
@@ -16586,7 +16604,7 @@ window.FB_MENUS = {
        },
        {
         "id": "g2",
-        "name": "Flavour Position",
+        "name": "Flavor Position",
         "required": true,
         "min": 1,
         "max": 1,
@@ -16605,9 +16623,9 @@ window.FB_MENUS = {
          },
          {
           "id": "o3",
-          "name": "Flavour Requested",
+          "name": "Flavor Requested",
           "price": 5.35,
-          "note": "Requests are recorded. Flavour is not added."
+          "note": "Requests are recorded. Flavor is not added."
          }
         ]
        },
@@ -16753,7 +16771,7 @@ window.FB_MENUS = {
       ],
       "photo": "items/06.webp",
       "imagePrompt": "Amateur smartphone photo taken by a grocery store employee to upload to a food delivery app. Subject: six brown kraft paper bags folded open and overfilled with bulk goods lined up on the counter, steel-cut oats, black lentils, dried mulberries, cacao nibs, whole almonds and pink salt crystals, grains spilled around the bases of the bags, a plain wooden scoop lying on its side in one bag, this is the bulk aisle counter of a natural grocery store. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the paper bags. The bags sitting directly on a scratched laminate counter with crumbs and spilled seeds beside them. Flat phone-camera look, unretouched, noisy, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "photoStyle": "amateur",
+      "photoStyle": "studio",
       "groups": [
        {
         "id": "g1",
@@ -17242,7 +17260,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "gwk-002",
@@ -17708,7 +17727,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "gwk-006",
@@ -18118,7 +18138,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "gwk-009",
@@ -18863,7 +18884,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "gwk-014",
@@ -19448,7 +19470,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "gwk-018",
@@ -20008,7 +20031,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "gwk-022",
@@ -21395,7 +21419,7 @@ window.FB_MENUS = {
         "name": "Off The Cooler",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -21813,7 +21837,7 @@ window.FB_MENUS = {
        "Popular"
       ],
       "photo": "items/05.webp",
-      "photoStyle": "amateur",
+      "photoStyle": "studio",
       "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a generous overflowing pile of thick fresh-cut french fries in a red plastic diner basket lined with checkered paper, visible coarse salt, a few darker crispy ends on top, a small paper cup of white sauce wedged in beside them. Harsh direct on-camera flash, hot blown-out hotspot on the fries and the sauce cup, hard black shadow thrown behind the basket. The basket sitting directly on a scratched laminate counter with crumbs and a smear of sauce beside it. Flat phone-camera look, unretouched, mixed white balance, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
       "groups": [
        {
@@ -22619,7 +22643,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "ckm-002",
@@ -22900,7 +22925,7 @@ window.FB_MENUS = {
         "name": "Dipping Reservoir Count",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -23409,7 +23434,7 @@ window.FB_MENUS = {
         "name": "Miso Lacquer Coats",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -24658,7 +24683,7 @@ window.FB_MENUS = {
         "name": "Condiment Sachet Allotment",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -24713,7 +24738,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "mcr-002",
@@ -24813,7 +24839,7 @@ window.FB_MENUS = {
         "name": "Pickle Disc Allotment",
         "required": false,
         "min": 0,
-        "max": 8,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -24856,7 +24882,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "mcr-003",
@@ -25226,7 +25253,7 @@ window.FB_MENUS = {
         "name": "Dip Portfolio",
         "required": false,
         "min": 0,
-        "max": 5,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -25254,7 +25281,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "mcr-007",
@@ -25412,7 +25440,7 @@ window.FB_MENUS = {
         "name": "Vinegar Sachet Series",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -26095,7 +26123,7 @@ window.FB_MENUS = {
         "name": "Sauce Cup Federation",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -26907,7 +26935,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "olo-002",
@@ -27182,7 +27211,7 @@ window.FB_MENUS = {
         "name": "Ramekin Registry",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -27270,7 +27299,7 @@ window.FB_MENUS = {
           "id": "o1",
           "name": "Conclude On Request",
           "price": 6.4,
-          "note": "Requests are honoured within a reasonable number of additional servings."
+          "note": "Requests are honored within a reasonable number of additional servings."
          },
          {
           "id": "o2",
@@ -27611,7 +27640,7 @@ window.FB_MENUS = {
      {
       "id": "olo-009",
       "name": "Shrimp Scampi, Watershed Draw",
-      "desc": "Shrimp in garlic butter, drawn against the location's seasonal allocation. Garlic is applied at the assertiveness band you select and disclosed to neighbouring tables above band eight.",
+      "desc": "Shrimp in garlic butter, drawn against the location's seasonal allocation. Garlic is applied at the assertiveness band you select and disclosed to neighboring tables above band eight.",
       "price": 6.35,
       "calories": 1320,
       "badges": [
@@ -27679,7 +27708,7 @@ window.FB_MENUS = {
         "name": "Lemon Wedge Entitlement",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -27793,7 +27822,7 @@ window.FB_MENUS = {
           "id": "o2",
           "name": "Drained",
           "price": 3.9,
-          "note": "Drainage is billed as a labour line, not as a sauce line."
+          "note": "Drainage is billed as a labor line, not as a sauce line."
          },
          {
           "id": "o3",
@@ -28020,7 +28049,7 @@ window.FB_MENUS = {
      {
       "id": "olo-013",
       "name": "Steak Gorgonzola, Mural-Adjacent",
-      "desc": "Sirloin medallions under a gorgonzola discharge of the grade you elect. Interior colour is declared, not requested.",
+      "desc": "Sirloin medallions under a gorgonzola discharge of the grade you elect. Interior color is declared, not requested.",
       "price": 8.4,
       "calories": 1540,
       "badges": [
@@ -28077,7 +28106,7 @@ window.FB_MENUS = {
          },
          {
           "id": "o3",
-          "name": "Grey",
+          "name": "Gray",
           "price": 3.3,
           "note": "All declarations are priced identically so that no preference is expressed."
          }
@@ -28117,7 +28146,7 @@ window.FB_MENUS = {
    {
     "id": "the-second-one-program",
     "name": "The Second One Program",
-    "blurb": "Every entree is accompanied by a second, identical entree. Enrolment is automatic and non-refusable.",
+    "blurb": "Every entree is accompanied by a second, identical entree. Enrollment is automatic and non-refusable.",
     "items": [
      {
       "id": "olo-014",
@@ -28133,26 +28162,26 @@ window.FB_MENUS = {
       "groups": [
        {
         "id": "g1",
-        "name": "Second-Entree Enrolment",
+        "name": "Second-Entree Enrollment",
         "required": true,
         "min": 1,
         "max": 1,
         "options": [
          {
           "id": "o1",
-          "name": "Enrol",
+          "name": "Enroll",
           "price": 8.45,
           "note": "A second lasagna accompanies you home."
          },
          {
           "id": "o2",
-          "name": "Enrol, Duplicated",
+          "name": "Enroll, Duplicated",
           "price": 14.9,
-          "note": "Two second lasagnas. The programme does not recognise a third."
+          "note": "Two second lasagnas. The program does not recognize a third."
          },
          {
           "id": "o3",
-          "name": "Decline Enrolment",
+          "name": "Decline Enrollment",
           "price": 8.45,
           "note": "The second lasagna is prepared regardless and disposed of in your name."
          }
@@ -28391,7 +28420,7 @@ window.FB_MENUS = {
         "name": "Serving Spoon Allotment",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -28619,13 +28648,13 @@ window.FB_MENUS = {
         "options": [
          {
           "id": "o1",
-          "name": "One Litre",
+          "name": "One Liter",
           "price": 5.85,
           "note": null
          },
          {
           "id": "o2",
-          "name": "Three Litres",
+          "name": "Three Liters",
           "price": 11.2,
           "note": null
          },
@@ -28895,7 +28924,7 @@ window.FB_MENUS = {
    "fast-food"
   ],
   "rating": 4.2,
-  "ratingCount": 26418,
+  "ratingCount": 24805,
   "deliveryMin": 24,
   "deliveryMax": 43,
   "deliveryFee": 3.49,
@@ -29058,7 +29087,7 @@ window.FB_MENUS = {
         "name": "Sauce Packet Requisition",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -29091,7 +29120,7 @@ window.FB_MENUS = {
         "name": "Napkin Allotment",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -29246,7 +29275,7 @@ window.FB_MENUS = {
         "name": "Sauce Packet Requisition",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -29274,7 +29303,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "pdx-003",
@@ -29529,7 +29559,7 @@ window.FB_MENUS = {
         "name": "Sauce Packet Requisition",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -29562,7 +29592,7 @@ window.FB_MENUS = {
         "name": "Napkin Allotment",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -29719,7 +29749,7 @@ window.FB_MENUS = {
         "name": "Sauce Packet Requisition",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -29990,7 +30020,7 @@ window.FB_MENUS = {
         "name": "Sauce Packet Requisition",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -30145,7 +30175,7 @@ window.FB_MENUS = {
         "name": "Napkin Allotment",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -30574,7 +30604,7 @@ window.FB_MENUS = {
         "name": "Sauce Packet Requisition",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -30757,7 +30787,7 @@ window.FB_MENUS = {
         "name": "Napkin Allotment",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -31049,7 +31079,7 @@ window.FB_MENUS = {
         "name": "Sauce Packet Requisition",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -31310,7 +31340,7 @@ window.FB_MENUS = {
         "name": "Napkin Allotment",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -31451,7 +31481,7 @@ window.FB_MENUS = {
         "name": "Sauce Packet Requisition",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -31608,7 +31638,7 @@ window.FB_MENUS = {
         "name": "Sauce Packet Requisition",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -31641,7 +31671,7 @@ window.FB_MENUS = {
         "name": "Napkin Allotment",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -31761,7 +31791,7 @@ window.FB_MENUS = {
         "name": "Sauce Packet Requisition",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -31914,7 +31944,7 @@ window.FB_MENUS = {
         "name": "Sauce Packet Requisition",
         "required": false,
         "min": 0,
-        "max": 6,
+        "max": 4,
         "options": [
          {
           "id": "o1",
@@ -32302,7 +32332,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "phz-002",
@@ -32886,7 +32917,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "phz-008",
@@ -33197,7 +33229,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "phz-011",
@@ -34534,7 +34567,7 @@ window.FB_MENUS = {
    "fast-food"
   ],
   "rating": 2.3,
-  "ratingCount": 41287,
+  "ratingCount": 52064,
   "deliveryMin": 38,
   "deliveryMax": 74,
   "deliveryFee": 5.49,
@@ -34770,7 +34803,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "ssa-002",
@@ -38105,7 +38139,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "sbx-002",
@@ -38200,7 +38235,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "sbx-003",
@@ -38574,7 +38610,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "sbx-007",
@@ -38884,7 +38921,7 @@ window.FB_MENUS = {
       ],
       "photo": "items/04.webp",
       "imagePrompt": "Amateur smartphone photo taken by a cafe employee to upload to a food delivery app. Subject: a tall iced mocha in a plain clear plastic to-go cup, dark chocolate syrup at the bottom, a band of espresso, milk above it and a thick pale layer of salted cold foam on top with caramel drizzled over it running down the inside of the cup, condensation on the plastic, a clear domed lid lying upside down beside it. Dim warm cafe light with the flash off, slightly underexposed and noisy. Shot from too close and slightly above so the cup is not centred in the frame, a stainless espresso machine and steel milk jugs blurred behind on the counter. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "photoStyle": "amateur",
+      "photoStyle": "studio",
       "groups": [
        {
         "id": "g1",
@@ -39238,7 +39275,7 @@ window.FB_MENUS = {
         "name": "Honey Injection Points",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -41962,7 +41999,7 @@ window.FB_MENUS = {
    "mexican"
   ],
   "rating": 4.3,
-  "ratingCount": 41287,
+  "ratingCount": 74918,
   "deliveryMin": 18,
   "deliveryMax": 41,
   "deliveryFee": 3.49,
@@ -42198,7 +42235,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "tbg-002",
@@ -42304,7 +42342,7 @@ window.FB_MENUS = {
         "name": "Hot Sauce Packet Allocation",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -42828,7 +42866,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "tbg-006",
@@ -43383,7 +43422,7 @@ window.FB_MENUS = {
         "name": "Hot Sauce Packet Allocation",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -44636,7 +44675,7 @@ window.FB_MENUS = {
         "name": "Hot Sauce Packet Allocation",
         "required": false,
         "min": 0,
-        "max": 4,
+        "max": 3,
         "options": [
          {
           "id": "o1",
@@ -44968,7 +45007,7 @@ window.FB_MENUS = {
   "about": "My mother opened the first La Taqueria Verdadera on Bellhaven Ave in 1994. That location was reclassified in 2011 so this one is #2, we never changed the sign because the sign is painted on the wall. Salsa is made every morning by Señora Elvia, who has worked here since the beginning and does not measure anything.",
   "announcement": "WE ARE OPEN. The front phone has not worked since Tuesday so if you need us please call the cell 209-555-0148 and let it ring, my son is fixing the other one. No lengua on Mondays becuase the delivery comes Tuesday morning. Thank you for your patience.",
   "promos": [
-   "FREE EGG ROLL OVER $35 — ASK OR YOU WILL NOT GET IT"
+   "FREE CONSOMÉ OVER $35 — ASK OR YOU WILL NOT GET IT"
   ],
   "reviews": [
    {
@@ -45611,7 +45650,7 @@ window.FB_MENUS = {
           "id": "o3",
           "name": "Foil under the paper",
           "price": 1.45,
-          "note": "Recommended if the taco is travelling in a vehicle."
+          "note": "Recommended if the taco is traveling in a vehicle."
          }
         ]
        },
@@ -45655,7 +45694,7 @@ window.FB_MENUS = {
        "Popular"
       ],
       "photo": "items/02.webp",
-      "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: one very large foil-wrapped burrito on a sheet of wax paper, the foil peeled back halfway to show a thick cross section of grilled chopped steak, rice, whole pinto beans and red salsa packed tight inside a flour tortilla, a second wrapped burrito behind it. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the foil, mixed white balance. Framed slightly crooked, the wax paper cut off at the right edge. Flat phone-camera look, unretouched, visible compression artefacts. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: one very large foil-wrapped burrito lying on a sheet of crumpled wax paper, the foil torn back at one end to show the packed cross section of chopped grilled steak, orange rice, whole pinto beans and red salsa inside a flour tortilla, a second wrapped burrito shoved in behind it. Lit by harsh direct on-camera flash fired straight at it: a hot blown-out white hotspot on the foil, a hard black shadow thrown flat behind the burrito onto the counter, the whole frame lit evenly and harshly from the front. No window light, no soft light, no side light, no light source visible in the frame. The burrito sits on a scratched stainless steel prep counter with crumbs, a smear of red salsa, a squeeze bottle and a stack of plastic container lids in the frame behind it. Deep focus: the background is a cluttered, brightly lit working kitchen and every part of the frame is equally sharp. No blurred background, no bokeh, no shallow depth of field, no dark background, no falloff to black. Framed slightly crooked and shot from too close, the wax paper cut off at the right edge. Flat phone-camera look, unretouched, mixed white balance, visible JPEG compression artefacts and sensor noise. Not styled, not arranged, not colour-graded, not appetising. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
       "photoStyle": "amateur",
       "groups": [
        {
@@ -45681,7 +45720,7 @@ window.FB_MENUS = {
           "id": "o3",
           "name": "No foil",
           "price": 2.95,
-          "note": "The burrito is wrapped before the ticket prints. Unwrapping is labour."
+          "note": "The burrito is wrapped before the ticket prints. Unwrapping is labor."
          },
          {
           "id": "o4",
@@ -46618,7 +46657,7 @@ window.FB_MENUS = {
        "#1 Most Liked"
       ],
       "photo": "items/05.webp",
-      "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three red-stained griddled tacos packed with shredded stewed beef and melted cheese, sitting in a clear plastic deli container lined with greasy paper, chopped onion and cilantro scattered over them, a lidded styrofoam cup of dark orange broth beside it with a lime wedge on the lid. The container sits on a scratched stainless prep counter with crumbs, a smear of red grease and a stack of plastic lids beside it. Harsh direct on-camera flash fired point blank, hot blown-out white hotspot burning out the greasy tortillas, hard black shadow thrown behind the container, flat fluorescent tube light overhead with a green-yellow cast. Mild motion blur, soft focus, heavy JPEG compression artefacts and sensor noise, framed slightly crooked with the cup cut off at the edge. Flat unretouched phone-camera look, mixed white balance, ugly and honest. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three red-stained griddled tacos packed with shredded stewed beef and melted cheese, crammed into a clear plastic deli container lined with greasy paper, chopped raw onion and cilantro scattered loosely over them, a lidded white styrofoam cup of dark orange broth standing beside it. Lit by flat overhead fluorescent ceiling light with a green-yellow colour cast and no fill, plus the camera's own flash: everything is evenly and unflatteringly lit front-on. No light source visible in the frame, no glowing tube in shot, no dramatic lighting, no rim light, no spotlight, no dark background, no falloff to black. The container sits on a scratched stainless steel prep counter with crumbs, a smear of red grease and a stack of plastic lids beside it; behind it a cluttered brightly lit kitchen wall with a dish rack and a napkin dispenser. Deep focus, every part of the frame equally sharp: no blurred background, no bokeh, no shallow depth of field. Framed slightly crooked and shot from too close and slightly above, the cup cut off at the edge. Flat phone-camera look, unretouched, mixed white balance, soft focus, heavy JPEG compression artefacts and sensor noise. Not styled, not arranged, not garnished for effect, not colour-graded, ugly and honest. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
       "photoStyle": "amateur",
       "groups": [
        {
@@ -46969,7 +47008,7 @@ window.FB_MENUS = {
          },
          {
           "id": "o4",
-          "name": "Watershed (the four-litre jug, deposit)",
+          "name": "Watershed (the four-liter jug, deposit)",
           "price": 26.4,
           "note": "The jug comes back or it does not, and if it does not we have one less jug."
          }
@@ -47008,7 +47047,7 @@ window.FB_MENUS = {
        "Popular"
       ],
       "photo": "items/06.webp",
-      "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of pale creamy cinnamon horchata with ice, a domed lid pressed on and a straw pushed through, heavy condensation running down the sides, a second cup of dark red jamaica standing behind it on the counter. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup, mixed white balance. Shot from too close and slightly above, the cup cut off at the top edge, a hand-lettered wall menu blurred out of focus behind. Flat phone-camera look, unretouched, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "imagePrompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of pale creamy cinnamon horchata filled with ice, a plain domed lid pressed on and a plain white straw pushed through it, condensation running down the sides, a second cup of dark red jamaica standing right behind it. Lit by harsh direct on-camera flash fired straight at the cups: a hot blown-out white hotspot on the plastic, a hard black shadow thrown flat behind them onto the counter, the whole frame evenly and harshly lit from the front. No window light, no soft light, no backlight, no light source visible in the frame. The cups sit on a scratched laminate counter with a wet ring of spilled horchata and a stack of spare plain domed lids beside them. Directly behind them is a plain scuffed tiled wall and a stainless steel counter edge — an empty back corner of the shop. The room is completely empty. Deep focus, every part of the frame equally sharp: no blurred background, no bokeh, no shallow depth of field, no dark background. Shot from too close and slightly above, the cup cut off at the top edge, framed crooked and off-centre. Flat phone-camera look, unretouched, mixed white balance, sensor noise and JPEG compression artefacts. Not styled, not arranged, not colour-graded, not appetising. Square crop. Absolutely nobody in the picture: no people, no person, no customer, no worker, no figure, no silhouette, no hands, no arms, no faces. Absolutely no writing anywhere in the frame: no text, no letters, no numbers, no printed straw wrapper, no paper sleeve, no napkin with printing, no sachets, no packets, no signage, no menu board, no logos, no packaging labels, no watermarks. Every surface and every object is blank and unprinted.",
       "photoStyle": "amateur",
       "groups": [
        {
@@ -47302,7 +47341,7 @@ window.FB_MENUS = {
    "fast-food"
   ],
   "rating": 4.6,
-  "ratingCount": 312,
+  "ratingCount": 487,
   "deliveryMin": 39,
   "deliveryMax": 76,
   "deliveryFee": 6.49,
@@ -47627,7 +47666,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "wgb-003",
@@ -48081,7 +48121,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "wgb-007",
@@ -48541,7 +48582,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "studio"
      },
      {
       "id": "wgb-012",
@@ -48795,7 +48837,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "wgb-015",
@@ -49070,7 +49113,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      },
      {
       "id": "wgb-018",
@@ -49396,7 +49440,8 @@ window.FB_MENUS = {
          }
         ]
        }
-      ]
+      ],
+      "photoStyle": "amateur"
      }
     ]
    }

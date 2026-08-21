@@ -18,37 +18,48 @@
       "file": "items/01.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean cross-section cutaway through a stacked service of three warm loaves, two nearly black molasses-dark loaves crusted with rolled oats and one pale loaf, sliced flat to expose dense steaming crumb, thick slabs of butter melting down the cut face and pooling on the board beneath. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 100mm macro, f/5.6, straight-on cross-section view, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "sch4nfcgtsrmt0d045z8hd5egc",
-      "predictTime": 23.227244729
+      "predictTime": 23.227244729,
+      "styleObserved": "studio"
     },
     {
       "file": "items/02.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an enormous mound of tortilla chips built into a load-bearing dome, straining under molten yellow cheese that sheets over the edges in thick ropes, black beans and diced tomato avalanching down the flanks, a sagging crown of sour cream and guacamole at the summit, one chip visibly buckling under the mass. Three-quarter hero angle from just below the rim so the pile towers. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 50mm, f/2.8, shallow depth of field, rich contrast, visible cheese sheen. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "4gc4a5zj5srmw0d045zbpe2q2w",
-      "predictTime": 13.108655258
+      "predictTime": 13.108655258,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/03.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: two thick seared chicken cutlets buried under a caramel-brown madeira reduction and glossy sauteed mushrooms, melted mozzarella draping over the edges in heavy folds, roasted asparagus spears pinned beneath, the whole thing resting on a dented steel banquet tray lined with white paper that is soaking through and darkening as sauce runs to the tray rim. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 35mm, f/4, elevated forty-five degree angle across the tray, crisp specular sauce highlights. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "5af5k6332hrmw0d045zrgf77t4",
-      "predictTime": 25.939760318
+      "predictTime": 25.939760318,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/04.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a deep white ceramic bowl shot straight down into its interior, the rim framing the edge of the frame, filled past capacity with fettuccine in a thick cream reduction, blackened chicken cutlets and whole shrimp half submerged and glistening, sauce climbing and clinging to the inner walls, hot steam curling up out of the vessel, several strands hanging over one edge under their own weight. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 45mm, f/4, looking directly down inside the vessel, soft steam bloom. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "avygvj6janrmy0d045zrqczsmc",
-      "predictTime": 12.502595557
+      "predictTime": 12.502595557,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/05.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a strict overhead flat-lay of a wide shallow platter mounded with an enormous chopped salad, corn, black beans, avocado, diced chicken, tomato, and tortilla strips packed into rigid parallel rows, the rows heaped so high they slump against one another and spill over the platter rim onto the stone beneath, a small ramekin of dressing sweating beside it, a second empty platter waiting alongside. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 50mm, f/8, dead overhead, even sharp detail across the frame. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "67zgc49ykhrmr0d0460a04awb0",
-      "predictTime": 19.245578534
+      "predictTime": 19.245578534,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/06.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro detail of the freshly cut face of one towering wedge of dense New York style cheesecake, pale custard showing fine curd structure and a faint drag mark from the knife, a thick compressed graham crust base shedding loose crumbs, a smooth sour cream cap on top, and a glossy strawberry glaze breaking over the top edge and running down the cut face in one slow heavy bead. Set on a marble tabletop in a dim palatial dining room, gold-leaf column capitals and hanging amber glass lamps far out of focus behind. Dim amber restaurant lighting, warm golden pools of light, deep mahogany shadows, opulent and slightly oppressive. Camera: 100mm macro, f/4, extreme close focus on the crumb and the glaze bead, creamy background falloff. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "2k7369mhn1rmy0d046090zhbbc",
-      "predictTime": 14.239353853
+      "predictTime": 14.239353853,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     }
   ]
 }

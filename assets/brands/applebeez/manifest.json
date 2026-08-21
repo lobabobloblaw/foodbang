@@ -18,37 +18,48 @@
       "file": "items/01.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an enormous oval platter buried under mozzarella sticks, breaded chicken strips, loaded potato skins and onion rings, the pile mounded so high it has slumped past the rim onto the table; molten cheese drapes off one edge in long sagging strands, three ramekins have overflowed and run sauce across the platter into a pool. Setting: a sticky laminate table with a green vinyl booth behind, antique tin signs and lacrosse sticks blurred on the wall, television glow washing over everything. Lighting: dim green-and-amber bar lighting with cold blue television flicker as fill, slightly grimy, nostalgic 1998 casual dining. Camera: overhead flat-lay, 50mm, deep focus, high contrast, faint grease sheen. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "7pe8vf4fv1rmt0d045yv779z94",
-      "predictTime": 13.061
+      "predictTime": 13.061,
+      "styleObserved": "studio"
     },
     {
       "file": "items/02.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a red plastic basket lined with checkered paper, stacked four layers deep with small glossy lacquered barbecue riblets; the dark sauce has soaked the liner translucent and pooled in the corners, ribs overhang every side of the basket, and a landslide of shoestring fries wedged underneath spills out across the tray. Steam rises off the top layer. Setting: a sticky laminate table with a green vinyl booth behind, antique tin signs and lacrosse sticks blurred on the wall, television glow washing over everything. Lighting: dim green-and-amber bar lighting with cold blue television flicker as fill, slightly grimy, nostalgic 1998 casual dining. Camera: low three-quarter view of the basket on its tray, 50mm, medium depth of field, wet sauce specular highlights. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "ehzmvcedj5rmy0d045yvz66770",
-      "predictTime": 22.968
+      "predictTime": 22.968,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/03.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of three breaded boneless wings pressed against each other, coated in thick orange buffalo lacquer that beads on the crust and hangs in heavy droplets about to fall; craters and blisters in the fried coating are sharply visible, one sauce ridge sags under its own weight, and a blurred trough of ranch sits behind. Setting: a sticky laminate table with a green vinyl booth behind, antique tin signs and lacrosse sticks blurred on the wall, television glow washing over everything. Lighting: dim green-and-amber bar lighting with cold blue television flicker as fill, slightly grimy, nostalgic 1998 casual dining. Camera: 100mm macro, extremely shallow depth of field, glistening specular highlights, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "t2955eb2p9rmt0d045z9tqqb90",
-      "predictTime": 13.819
+      "predictTime": 13.819,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/04.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean vertical cross-section cutaway of a burger built between two grilled flour tortilla quesadillas instead of buns: a thick charred beef patty, a wall of melted cheese pulling into long strings across the cut face, pico de gallo and shredded lettuce compressed into a bright seam, and the scorched tortillas buckling outward under the load. Juices run down the cut face onto the plate. Setting: a sticky laminate table with a green vinyl booth behind, antique tin signs and lacrosse sticks blurred on the wall, television glow washing over everything. Lighting: dim green-and-amber bar lighting with cold blue television flicker as fill, slightly grimy, nostalgic 1998 casual dining. Camera: straight-on 90mm, cut face parallel to sensor, medium depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "k9bh3smzhnrmy0d045zayr8p5m",
-      "predictTime": 15.501
+      "predictTime": 15.501,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/05.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an absurdly oversized souvenir plastic goblet the size of a fire bucket, filled to the brim with electric blue frozen slush, condensation sheeting down the ribbed sides and puddling on the laminate; whipped topping collapses over the rim in a slow avalanche, three cherries sink into it, and a red straw as thick as a garden hose leans out of the vessel. Setting: a sticky laminate table with a green vinyl booth behind, antique tin signs and lacrosse sticks blurred on the wall, television glow washing over everything. Lighting: dim green-and-amber bar lighting with cold blue television flicker as fill, slightly grimy, nostalgic 1998 casual dining. Camera: three-quarter hero angle, 85mm, shallow depth of field, cold blue rim-light from the televisions. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "z8z0k10qzsrmw0d045zstgsnp0",
-      "predictTime": 47.813
+      "predictTime": 47.813,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/06.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: shot straight down into a stainless steel mixing bowl the size of a kitchen sink, packed past capacity with pale iceberg lettuce; shredded cheddar avalanches down one interior wall, croutons the size of dice heap into a ridge, bacon crumbles float, and a thick unbroken ribbon of ranch dressing has been poured in until it pooled into a lake at the center. Lettuce spills over the rim onto the table. Setting: a sticky laminate table with a green vinyl booth behind, antique tin signs and lacrosse sticks blurred on the wall, television glow washing over everything. Lighting: dim green-and-amber bar lighting with cold blue television flicker as fill, slightly grimy, nostalgic 1998 casual dining. Camera: dead-overhead looking down into the vessel, 35mm, deep focus, slight vignette. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "4ykwqwyt3srmt0d045zset5hw8",
-      "predictTime": 25.735
+      "predictTime": 25.735,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     }
   ]
 }

@@ -237,7 +237,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "bcs-002",
@@ -365,7 +366,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "bcs-003",
@@ -939,7 +941,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "bcs-008",
@@ -1382,7 +1385,7 @@
             },
             {
               "id": "g2",
-              "name": "Snow Base Flavour",
+              "name": "Snow Base Flavor",
               "required": true,
               "min": 1,
               "max": 1,
@@ -1455,12 +1458,13 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "bcs-013",
           "name": "Matcha Red Bean Snow",
-          "desc": "Matcha snow, house red bean cooked on Sundays, a lot of it. Amy's favourite and she will say so if you order it at the counter.",
+          "desc": "Matcha snow, house red bean cooked on Sundays, a lot of it. Amy's favorite and she will say so if you order it at the counter.",
           "price": 4.35,
           "calories": 1340,
           "badges": [
@@ -2001,7 +2005,7 @@
               "name": "Dipping Cup Count",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -2023,7 +2027,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "bcs-019",
@@ -2112,7 +2117,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "bcs-020",

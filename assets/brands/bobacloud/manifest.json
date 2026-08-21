@@ -29,7 +29,8 @@
       "raw": "build/raw/bobacloud/item-01.jpg",
       "aspect": "1:1",
       "predictionId": "0f7rgkevphrmy0d046asdtqb5w",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of light tan milk tea with a thick layer of dark tapioca pearls settled across the bottom, heat-sealed flat film lid on top with a fat pink straw punched through it, condensation running down the outside, the cup standing on a bright white shop counter. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the base of the cup cut off at the bottom edge, a row of clear topping bins and a cup-sealing machine out of focus behind. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of light tan milk tea with a thick layer of dark tapioca pearls settled across the bottom, heat-sealed flat film lid on top with a fat pink straw punched through it, condensation running down the outside, the cup standing on a bright white shop counter. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the base of the cup cut off at the bottom edge, a row of clear topping bins and a cup-sealing machine out of focus behind. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "styleObserved": "amateur"
     },
     {
       "file": "items/02.webp",
@@ -37,7 +38,8 @@
       "raw": "build/raw/bobacloud/item-02.jpg",
       "aspect": "1:1",
       "predictionId": "2hp72r1f6srmt0d046b8t6jkt8",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic cup of brown sugar boba milk, thick dark caramel syrup streaked in heavy uneven stripes down the inside wall of the cup, a deep bed of glossy black tapioca pearls at the bottom, white milk filling the rest, no lid on it yet, standing on a white shop counter. Harsh direct on-camera flash, hot blown-out hotspot on the wet syrup, hard black shadow thrown behind the cup. Shot from too close and slightly above so the cup is not centred in the frame. Flat phone-camera look, unretouched, mixed white balance, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic cup of brown sugar boba milk, thick dark caramel syrup streaked in heavy uneven stripes down the inside wall of the cup, a deep bed of glossy black tapioca pearls at the bottom, white milk filling the rest, no lid on it yet, standing on a white shop counter. Harsh direct on-camera flash, hot blown-out hotspot on the wet syrup, hard black shadow thrown behind the cup. Shot from too close and slightly above so the cup is not centred in the frame. Flat phone-camera look, unretouched, mixed white balance, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "styleObserved": "amateur"
     },
     {
       "file": "items/03.webp",
@@ -45,7 +47,8 @@
       "raw": "build/raw/bobacloud/item-03.jpg",
       "aspect": "1:1",
       "predictionId": "a9p9zzw259rmt0d046bb9vyk3c",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of golden-orange passionfruit green tea packed with ice cubes and dark passionfruit seeds suspended through the liquid, two thin lemon wheels pressed against the inside of the cup, flat heat-sealed film lid, a green straw lying beside it on the counter. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup, mixed white balance. Cluttered background: a stainless prep counter, a stack of lids, another sealed drink waiting behind it. Flat phone-camera look, unretouched, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of golden-orange passionfruit green tea packed with ice cubes and dark passionfruit seeds suspended through the liquid, two thin lemon wheels pressed against the inside of the cup, flat heat-sealed film lid, a green straw lying beside it on the counter. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup, mixed white balance. Cluttered background: a stainless prep counter, a stack of lids, another sealed drink waiting behind it. Flat phone-camera look, unretouched, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "styleObserved": "amateur"
     },
     {
       "file": "items/04.webp",
@@ -53,7 +56,8 @@
       "raw": "build/raw/bobacloud/item-04.jpg",
       "aspect": "1:1",
       "predictionId": "24cfm5ptvhrmr0d046b9mwmy60",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic deli container heaped with pale yellow shaved snow in soft ribbons, topped with cubes of fresh mango, a drizzle of condensed milk running down one side, a few dark tapioca pearls tucked at the edge, already softening at the base. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill. The container sitting directly on a scratched laminate counter with crumbs and a smear of syrup beside it, framed a little too close and slightly above. Flat phone-camera look, unretouched, mixed white balance, visible JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic deli container heaped with pale yellow shaved snow in soft ribbons, topped with cubes of fresh mango, a drizzle of condensed milk running down one side, a few dark tapioca pearls tucked at the edge, already softening at the base. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill. The container sitting directly on a scratched laminate counter with crumbs and a smear of syrup beside it, framed a little too close and slightly above. Flat phone-camera look, unretouched, mixed white balance, visible JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "styleObserved": "amateur"
     },
     {
       "file": "items/05.webp",
@@ -63,7 +67,8 @@
       "predictionId": "0ztw3qnk3hrmt0d046d8rsa684",
       "supersedes": "pwgch89hgnrmw0d046bsnng6qc",
       "regenReason": "first pass came back as a clean seamless-background studio plate; reshot with on-camera flash, fluorescent cast and a cluttered laminate counter pushed harder",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app, snapped quickly on the counter between orders. Subject: a generous pile of craggy golden fried popcorn chicken heaped in a paper boat lined with wax paper, crisp dark green fried basil leaves scattered through it, a dusting of reddish pepper seasoning, a small paper cup of pale dipping sauce wedged beside it. Harsh direct on-camera flash from a phone, hot blown-out white hotspot burning across the fried coating, hard ugly black shadow thrown flat behind the boat, flat fluorescent green-yellow cast in the corners of the frame. The boat sits directly on a scratched laminate shop counter with crumbs, a smear of sauce and a stack of plastic lids beside it, a napkin dispenser half out of frame. Framed crooked and too close, the boat cut off at the right edge, mild motion blur and soft focus, heavy JPEG compression artefacts and sensor noise, mixed white balance, flat and unretouched. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app, snapped quickly on the counter between orders. Subject: a generous pile of craggy golden fried popcorn chicken heaped in a paper boat lined with wax paper, crisp dark green fried basil leaves scattered through it, a dusting of reddish pepper seasoning, a small paper cup of pale dipping sauce wedged beside it. Harsh direct on-camera flash from a phone, hot blown-out white hotspot burning across the fried coating, hard ugly black shadow thrown flat behind the boat, flat fluorescent green-yellow cast in the corners of the frame. The boat sits directly on a scratched laminate shop counter with crumbs, a smear of sauce and a stack of plastic lids beside it, a napkin dispenser half out of frame. Framed crooked and too close, the boat cut off at the right edge, mild motion blur and soft focus, heavy JPEG compression artefacts and sensor noise, mixed white balance, flat and unretouched. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "styleObserved": "amateur"
     },
     {
       "file": "items/06.webp",
@@ -71,7 +76,9 @@
       "raw": "build/raw/bobacloud/item-06.jpg",
       "aspect": "1:1",
       "predictionId": "nvgjq2mpanrmy0d046brcfk6j4",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a sheet of golden Hong Kong egg puffs, the round bubble cells clearly formed and slightly browned at the edges, folded loosely into an open plain paper sleeve standing upright on a white shop counter, one puff broken off beside it showing the hollow inside. Dim warm shop light with the flash off, slightly underexposed and noisy. Framed slightly crooked with the sleeve cut off at the left edge, another order in a sealed plastic cup waiting behind it. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a sheet of golden Hong Kong egg puffs, the round bubble cells clearly formed and slightly browned at the edges, folded loosely into an open plain paper sleeve standing upright on a white shop counter, one puff broken off beside it showing the hollow inside. Dim warm shop light with the flash off, slightly underexposed and noisy. Framed slightly crooked with the sleeve cut off at the left edge, another order in a sealed plastic cup waiting behind it. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+      "styleObserved": "studio",
+      "promptDrift": "Provenance note, 2026-08-20: the prompt above asks for a staff-phone photo but the model returned a studio-looking frame. The prompt is accurate; the output drifted. Verified by eye."
     }
   ]
 }

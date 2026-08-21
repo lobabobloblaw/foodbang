@@ -9,7 +9,7 @@
     "fast-food"
   ],
   "rating": 2.3,
-  "ratingCount": 41287,
+  "ratingCount": 52064,
   "deliveryMin": 38,
   "deliveryMax": 74,
   "deliveryFee": 5.49,
@@ -245,7 +245,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "ssa-002",

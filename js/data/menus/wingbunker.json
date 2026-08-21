@@ -10,7 +10,7 @@
     "fast-food"
   ],
   "rating": 4.6,
-  "ratingCount": 312,
+  "ratingCount": 487,
   "deliveryMin": 39,
   "deliveryMax": 76,
   "deliveryFee": 6.49,
@@ -335,7 +335,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "wgb-003",
@@ -789,7 +790,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "wgb-007",
@@ -1249,7 +1251,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "wgb-012",
@@ -1503,7 +1506,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "wgb-015",
@@ -1778,7 +1782,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "wgb-018",
@@ -2104,7 +2109,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     }

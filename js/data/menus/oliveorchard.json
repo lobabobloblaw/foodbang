@@ -188,7 +188,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "olo-002",
@@ -463,7 +464,7 @@
               "name": "Ramekin Registry",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -551,7 +552,7 @@
                   "id": "o1",
                   "name": "Conclude On Request",
                   "price": 6.4,
-                  "note": "Requests are honoured within a reasonable number of additional servings."
+                  "note": "Requests are honored within a reasonable number of additional servings."
                 },
                 {
                   "id": "o2",
@@ -892,7 +893,7 @@
         {
           "id": "olo-009",
           "name": "Shrimp Scampi, Watershed Draw",
-          "desc": "Shrimp in garlic butter, drawn against the location's seasonal allocation. Garlic is applied at the assertiveness band you select and disclosed to neighbouring tables above band eight.",
+          "desc": "Shrimp in garlic butter, drawn against the location's seasonal allocation. Garlic is applied at the assertiveness band you select and disclosed to neighboring tables above band eight.",
           "price": 6.35,
           "calories": 1320,
           "badges": [
@@ -960,7 +961,7 @@
               "name": "Lemon Wedge Entitlement",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -1074,7 +1075,7 @@
                   "id": "o2",
                   "name": "Drained",
                   "price": 3.9,
-                  "note": "Drainage is billed as a labour line, not as a sauce line."
+                  "note": "Drainage is billed as a labor line, not as a sauce line."
                 },
                 {
                   "id": "o3",
@@ -1301,7 +1302,7 @@
         {
           "id": "olo-013",
           "name": "Steak Gorgonzola, Mural-Adjacent",
-          "desc": "Sirloin medallions under a gorgonzola discharge of the grade you elect. Interior colour is declared, not requested.",
+          "desc": "Sirloin medallions under a gorgonzola discharge of the grade you elect. Interior color is declared, not requested.",
           "price": 8.4,
           "calories": 1540,
           "badges": [
@@ -1358,7 +1359,7 @@
                 },
                 {
                   "id": "o3",
-                  "name": "Grey",
+                  "name": "Gray",
                   "price": 3.3,
                   "note": "All declarations are priced identically so that no preference is expressed."
                 }
@@ -1398,7 +1399,7 @@
     {
       "id": "the-second-one-program",
       "name": "The Second One Program",
-      "blurb": "Every entree is accompanied by a second, identical entree. Enrolment is automatic and non-refusable.",
+      "blurb": "Every entree is accompanied by a second, identical entree. Enrollment is automatic and non-refusable.",
       "items": [
         {
           "id": "olo-014",
@@ -1414,26 +1415,26 @@
           "groups": [
             {
               "id": "g1",
-              "name": "Second-Entree Enrolment",
+              "name": "Second-Entree Enrollment",
               "required": true,
               "min": 1,
               "max": 1,
               "options": [
                 {
                   "id": "o1",
-                  "name": "Enrol",
+                  "name": "Enroll",
                   "price": 8.45,
                   "note": "A second lasagna accompanies you home."
                 },
                 {
                   "id": "o2",
-                  "name": "Enrol, Duplicated",
+                  "name": "Enroll, Duplicated",
                   "price": 14.9,
-                  "note": "Two second lasagnas. The programme does not recognise a third."
+                  "note": "Two second lasagnas. The program does not recognize a third."
                 },
                 {
                   "id": "o3",
-                  "name": "Decline Enrolment",
+                  "name": "Decline Enrollment",
                   "price": 8.45,
                   "note": "The second lasagna is prepared regardless and disposed of in your name."
                 }
@@ -1672,7 +1673,7 @@
               "name": "Serving Spoon Allotment",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -1900,13 +1901,13 @@
               "options": [
                 {
                   "id": "o1",
-                  "name": "One Litre",
+                  "name": "One Liter",
                   "price": 5.85,
                   "note": null
                 },
                 {
                   "id": "o2",
-                  "name": "Three Litres",
+                  "name": "Three Liters",
                   "price": 11.2,
                   "note": null
                 },

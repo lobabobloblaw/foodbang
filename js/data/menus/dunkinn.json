@@ -10,7 +10,7 @@
     "drinks"
   ],
   "rating": 4.3,
-  "ratingCount": 41287,
+  "ratingCount": 47129,
   "deliveryMin": 7,
   "deliveryMax": 19,
   "deliveryFee": 3.49,
@@ -162,7 +162,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "dkn-002",
@@ -257,7 +258,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "dkn-003",
@@ -656,7 +658,7 @@
               "name": "Syrup Pump Escalation",
               "required": false,
               "min": 0,
-              "max": 8,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -684,7 +686,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "dkn-007",
@@ -1059,7 +1062,7 @@
               "name": "Syrup Pump Escalation",
               "required": false,
               "min": 0,
-              "max": 8,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",

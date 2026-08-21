@@ -9,7 +9,7 @@
     "mexican"
   ],
   "rating": 4.3,
-  "ratingCount": 41287,
+  "ratingCount": 74918,
   "deliveryMin": 18,
   "deliveryMax": 41,
   "deliveryFee": 3.49,
@@ -245,7 +245,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "tbg-002",
@@ -351,7 +352,7 @@
               "name": "Hot Sauce Packet Allocation",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -875,7 +876,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "tbg-006",
@@ -1430,7 +1432,7 @@
               "name": "Hot Sauce Packet Allocation",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -2683,7 +2685,7 @@
               "name": "Hot Sauce Packet Allocation",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",

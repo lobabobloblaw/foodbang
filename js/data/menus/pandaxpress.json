@@ -9,7 +9,7 @@
     "fast-food"
   ],
   "rating": 4.2,
-  "ratingCount": 26418,
+  "ratingCount": 24805,
   "deliveryMin": 24,
   "deliveryMax": 43,
   "deliveryFee": 3.49,
@@ -172,7 +172,7 @@
               "name": "Sauce Packet Requisition",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -205,7 +205,7 @@
               "name": "Napkin Allotment",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -360,7 +360,7 @@
               "name": "Sauce Packet Requisition",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -388,7 +388,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "pdx-003",
@@ -643,7 +644,7 @@
               "name": "Sauce Packet Requisition",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -676,7 +677,7 @@
               "name": "Napkin Allotment",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -833,7 +834,7 @@
               "name": "Sauce Packet Requisition",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -1104,7 +1105,7 @@
               "name": "Sauce Packet Requisition",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -1259,7 +1260,7 @@
               "name": "Napkin Allotment",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -1688,7 +1689,7 @@
               "name": "Sauce Packet Requisition",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -1871,7 +1872,7 @@
               "name": "Napkin Allotment",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -2163,7 +2164,7 @@
               "name": "Sauce Packet Requisition",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -2424,7 +2425,7 @@
               "name": "Napkin Allotment",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -2565,7 +2566,7 @@
               "name": "Sauce Packet Requisition",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -2722,7 +2723,7 @@
               "name": "Sauce Packet Requisition",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -2755,7 +2756,7 @@
               "name": "Napkin Allotment",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -2875,7 +2876,7 @@
               "name": "Sauce Packet Requisition",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",
@@ -3028,7 +3029,7 @@
               "name": "Sauce Packet Requisition",
               "required": false,
               "min": 0,
-              "max": 6,
+              "max": 4,
               "options": [
                 {
                   "id": "o1",

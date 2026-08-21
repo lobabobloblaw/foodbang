@@ -4,7 +4,7 @@
   "images": [
     {
       "file": "logo.webp",
-      "prompt": "Flat full-bleed square graphic. The carbon-fiber black field must fill the entire canvas from edge to edge and corner to corner, touching all four edges including the corners. CRITICAL FIX: the previous attempt wrongly drew a rounded-square badge with a chrome outline and left white corners and a white margin around it. There must be NO badge, NO rounded container, NO chrome outline ring, NO app-icon shape, NO card, NO frame, NO drop shadow, NO white corners, NO surrounding margin or border of any colour. Corner pixels are carbon-fiber black. Composition: a jagged electric-cyan lightning bolt striking downward through a hazard-yellow chevron, extreme-sports energy-drink styling with a chrome bevel on the bolt, crackling arc glow. The only text anywhere in the image is exactly: BRAWNDO \u2014 spelled B-R-A-W-N-D-O, one heavy condensed italic chrome-bevelled sports wordmark across the lower third. No other words, letters, numbers or marks anywhere.",
+      "prompt": "Flat full-bleed square graphic. The carbon-fiber black field must fill the entire canvas from edge to edge and corner to corner, touching all four edges including the corners. CRITICAL FIX: the previous attempt wrongly drew a rounded-square badge with a chrome outline and left white corners and a white margin around it. There must be NO badge, NO rounded container, NO chrome outline ring, NO app-icon shape, NO card, NO frame, NO drop shadow, NO white corners, NO surrounding margin or border of any colour. Corner pixels are carbon-fiber black. Composition: a jagged electric-cyan lightning bolt striking downward through a hazard-yellow chevron, extreme-sports energy-drink styling with a chrome bevel on the bolt, crackling arc glow. The only text anywhere in the image is exactly: BRAWNDO — spelled B-R-A-W-N-D-O, one heavy condensed italic chrome-bevelled sports wordmark across the lower third. No other words, letters, numbers or marks anywhere.",
       "predictionId": "r1041grx9nrmy0d0460sbgd4a8",
       "predictTime": 10.44350582
     },
@@ -18,37 +18,45 @@
       "file": "items/01.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a squat fifteen-gallon electric-cyan sports-drink drum, lid cracked open, luminous cyan liquid surging over the rim and sheeting down the ribbed sidewall into a spreading puddle, a thick foam collar sagging over the bung, condensation beading across the plastic. Three-quarter hero angle from slightly below so the drum looms. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 50mm, f/4, deep contrast, crisp speculars. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "gpyga0jkhsrmt0d045zbfsqmaw",
-      "predictTime": 16.346989311
+      "predictTime": 16.346989311,
+      "styleObserved": "studio"
     },
     {
       "file": "items/02.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of electric-cyan electrolyte fluid pressed against the inside of a clear ribbed cup wall, a churning meniscus throwing droplets, suspended micro-bubbles and glittering salt crystals drifting through the column, one fat condensation bead breaking loose and running down the plastic. The liquid fills the entire frame like a landscape. Setting behind, thrown far out of focus: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 100mm macro, f/2.8, razor-thin focus. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "q16d3ge1y5rmt0d045z88jf1jr",
-      "predictTime": 10.948466218
+      "predictTime": 10.948466218,
+      "styleObserved": "studio"
     },
     {
       "file": "items/03.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: shot straight down into the open mouth of a steel drum of undiluted electrolyte concentrate, a viscous pale-cyan syrup moving in slow thick ripples, a crusted salt ring climbing the interior wall, dense foam scum drifting across the surface, faint vapor curling off it. The drum mouth fills the frame edge to edge. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 35mm directly overhead, f/5.6, deep contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "w4xpfjgsvsrmr0d045zrv6jffg",
-      "predictTime": 25.047106534
+      "predictTime": 25.047106534,
+      "styleObserved": "studio"
     },
     {
       "file": "items/04.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: overhead flat-lay of nursery seed trays flooded with glowing cyan electrolyte fluid, liquid pooling over the tray lips and running between them, sod squares oversaturated and slumping, wet grass blades beaded with cyan droplets, a coiled hose and two capped jugs of the same fluid arranged in a tight grid. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 40mm straight down, f/8, deep contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "mtt7t65ct1rmw0d045zsb3djf8",
-      "predictTime": 15.589924322
+      "predictTime": 15.589924322,
+      "styleObserved": "studio"
     },
     {
       "file": "items/05.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a dense glossy cyan electrolyte brick the size of a paving stone, sweating syrup, resting on a waxed paper liner inside a scuffed metal depot tray; its weight has crushed the liner and a slick puddle has crept to the tray edge and begun to overhang it. Coarse salt crystals crust the top edges and one corner slumps, glassy and sagging. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 65mm at tray level, f/3.5. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "mf7d918v91rmr0d0460bscz01r",
-      "predictTime": 12.365066067
+      "predictTime": 12.365066067,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/06.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean cross-section cutaway of a wall-mounted domestic hydration standpipe, the pipe sliced lengthwise to reveal glowing cyan electrolyte fluid mid-surge inside, a scaled salt crust lining the bore, a brass valve body halved to show its seat, and a cutaway spout where the fluid arcs out and overflows a small catch basin below. Engineering-display neatness, every cut face polished. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 55mm, dead-on elevation, f/8. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "zs5ttdvtwdrmw0d0460as6xfm0",
-      "predictTime": 13.121117937
+      "predictTime": 13.121117937,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     }
   ]
 }

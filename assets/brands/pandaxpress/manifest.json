@@ -18,37 +18,48 @@
       "file": "items/01.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a three-compartment chrome cafeteria tray on a blank paper liner, every compartment overfilled past its molded divider — glossy lacquered orange chicken avalanching over one wall, a tangled coil of chow mein spilling across the liner, a compressed dome of white rice cracking at its base, amber sauce pooling at the tray lip and dripping over the edge. Set on a stainless steel steam table line with a sneeze guard, glossy red-and-gold lacquer panels behind, chrome serving trays. Cold mall-food-court fluorescent overhead light with warm glow from the steam table heat lamps, high sheen, visible steam. 45mm lens, tray shot on a tray-and-liner setup from a low overhead angle, deep focus, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "zc93n683hxrmy0d045zbhv62rr",
-      "predictTime": 20.990587737
+      "predictTime": 20.990587737,
+      "styleObserved": "studio"
     },
     {
       "file": "items/02.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a towering heap of craggy battered chicken pieces lacquered in a thick glossy orange citrus glaze, the mound leaning and sagging under its own weight, glaze running down the slope in slow amber ribbons and pooling around the base, sesame seeds and dried chilies caught in the sheen, steam rising off the top. Piled on a chrome serving tray on a stainless steel steam table line with a sneeze guard, glossy red-and-gold lacquer panels behind. Cold mall-food-court fluorescent overhead light with warm glow from the steam table heat lamps, high sheen, visible steam. 85mm lens, three-quarter hero angle, shallow depth of field, punchy contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "rwjhj9aw5hrmw0d045z9ey2z3w",
-      "predictTime": 12.702840793
+      "predictTime": 12.702840793,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/03.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a deep stainless steam-table pan filled to the rim and past it with one continuous glossy coil of wheat noodles, wound tight and heaped into a dome, threaded with translucent cabbage ribbons and pale celery batons, the coil sagging over one edge of the pan in a long strand, oil sheen catching the light, heavy steam pouring off the surface. Shot straight down into the vessel on a stainless steel steam table line with a sneeze guard, glossy red-and-gold lacquer panels behind, chrome serving trays. Cold mall-food-court fluorescent overhead light with warm glow from the steam table heat lamps, high sheen, visible steam. 50mm lens, straight-down into the pan, deep focus, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "1gvvqwe8bxrmt0d045z9hfxzn0",
-      "predictTime": 12.23213462
+      "predictTime": 12.23213462,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/04.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro detail of two battered shrimp coated in a thick glossy sweetened cream glaze, the glaze beading and slumping off the ridged crust in heavy droplets, a candied walnut half half-submerged beside them with sugar crystals glittering on its surface, tiny bubbles trapped in the coating, a single fine thread of glaze stretching between pieces. Resting on a chrome serving tray at a stainless steel steam table line with a sneeze guard, glossy red-and-gold lacquer panels blurred behind. Cold mall-food-court fluorescent overhead light with warm glow from the steam table heat lamps, high sheen, faint steam. 100mm macro lens, razor-thin depth of field, clinical contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "snmpkk7yx1rmy0d045zawyark0",
-      "predictTime": 12.463857217
+      "predictTime": 12.463857217,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/05.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of a shallow stainless steam-table pan crammed edge to edge with wilted deep-green broccoli florets, glossy kale ribbons and translucent cabbage, packed so tightly the surface bulges above the rim, a thin film of oily liquid pooling in the corners and beading on every leaf, a few florets tipped over the pan edge onto the steel. Arranged on a stainless steel steam table line with a sneeze guard, glossy red-and-gold lacquer panels at the frame edge, chrome serving trays. Cold mall-food-court fluorescent overhead light with warm glow from the steam table heat lamps, high sheen, visible steam. 50mm lens, perfectly perpendicular overhead flat-lay, even deep focus, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "w47cjv3cbhrmr0d045zvrx4acg",
-      "predictTime": 11.887076301
+      "predictTime": 11.887076301,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/06.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean vertical cross-section cutaway of a fried wonton pastry parcel sliced exactly in half, the blistered golden shell shown in profile with visible air pockets, molten whipped cream cheese filling bulging out of the cut face and slumping downward in a thick glossy tongue, one bright thread of cheese stretching between the two halves, oil sheen on the crust, fine crumb debris scattered on the steel. Standing on a chrome serving tray at a stainless steel steam table line with a sneeze guard, glossy red-and-gold lacquer panels behind. Cold mall-food-court fluorescent overhead light with warm glow from the steam table heat lamps, high sheen, faint steam. 90mm lens, dead-level cross-section view, medium depth of field, crisp contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "c63963d2e5rmr0d045zvt5phgg",
-      "predictTime": 11.306175438
+      "predictTime": 11.306175438,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     }
   ]
 }

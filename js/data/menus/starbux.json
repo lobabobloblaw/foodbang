@@ -174,7 +174,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "sbx-002",
@@ -269,7 +270,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "sbx-003",
@@ -643,7 +645,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "sbx-007",
@@ -953,7 +956,7 @@
           ],
           "photo": "items/04.webp",
           "imagePrompt": "Amateur smartphone photo taken by a cafe employee to upload to a food delivery app. Subject: a tall iced mocha in a plain clear plastic to-go cup, dark chocolate syrup at the bottom, a band of espresso, milk above it and a thick pale layer of salted cold foam on top with caramel drizzled over it running down the inside of the cup, condensation on the plastic, a clear domed lid lying upside down beside it. Dim warm cafe light with the flash off, slightly underexposed and noisy. Shot from too close and slightly above so the cup is not centred in the frame, a stainless espresso machine and steel milk jugs blurred behind on the counter. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-          "photoStyle": "amateur",
+          "photoStyle": "studio",
           "groups": [
             {
               "id": "g1",
@@ -1307,7 +1310,7 @@
               "name": "Honey Injection Points",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",

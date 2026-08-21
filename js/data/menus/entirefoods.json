@@ -9,7 +9,7 @@
     "healthy"
   ],
   "rating": 4.4,
-  "ratingCount": 26418,
+  "ratingCount": 31460,
   "deliveryMin": 34,
   "deliveryMax": 71,
   "deliveryFee": 6.49,
@@ -187,7 +187,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "efm-002",
@@ -245,7 +246,7 @@
                   "id": "o2",
                   "name": "Deeply Charred",
                   "price": 3.8,
-                  "note": "Char is a flavour, a texture, and a fee."
+                  "note": "Char is a flavor, a texture, and a fee."
                 },
                 {
                   "id": "o3",
@@ -578,7 +579,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "efm-006",
@@ -729,7 +731,7 @@
                   "id": "o2",
                   "name": "Pit Removed",
                   "price": 4.7,
-                  "note": "Removal is a labour line item."
+                  "note": "Removal is a labor line item."
                 },
                 {
                   "id": "o3",
@@ -1554,7 +1556,7 @@
         {
           "id": "efm-016",
           "name": "Cold-Pressed Root Cylinder",
-          "desc": "Roots pressed at pressure into a self-supporting cylinder. Colour varies by root and is not adjustable.",
+          "desc": "Roots pressed at pressure into a self-supporting cylinder. Color varies by root and is not adjustable.",
           "price": 6.7,
           "calories": 940,
           "badges": [],
@@ -1756,7 +1758,7 @@
         {
           "id": "efm-018",
           "name": "Compliance Gummies, Unflavored",
-          "desc": "A daily obligation in chewable form. Flavour was considered and then formally excluded.",
+          "desc": "A daily obligation in chewable form. Flavor was considered and then formally excluded.",
           "price": 5.45,
           "calories": 940,
           "badges": [
@@ -1795,7 +1797,7 @@
             },
             {
               "id": "g2",
-              "name": "Flavour Position",
+              "name": "Flavor Position",
               "required": true,
               "min": 1,
               "max": 1,
@@ -1814,9 +1816,9 @@
                 },
                 {
                   "id": "o3",
-                  "name": "Flavour Requested",
+                  "name": "Flavor Requested",
                   "price": 5.35,
-                  "note": "Requests are recorded. Flavour is not added."
+                  "note": "Requests are recorded. Flavor is not added."
                 }
               ]
             },
@@ -1962,7 +1964,7 @@
           ],
           "photo": "items/06.webp",
           "imagePrompt": "Amateur smartphone photo taken by a grocery store employee to upload to a food delivery app. Subject: six brown kraft paper bags folded open and overfilled with bulk goods lined up on the counter, steel-cut oats, black lentils, dried mulberries, cacao nibs, whole almonds and pink salt crystals, grains spilled around the bases of the bags, a plain wooden scoop lying on its side in one bag, this is the bulk aisle counter of a natural grocery store. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the paper bags. The bags sitting directly on a scratched laminate counter with crumbs and spilled seeds beside them. Flat phone-camera look, unretouched, noisy, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-          "photoStyle": "amateur",
+          "photoStyle": "studio",
           "groups": [
             {
               "id": "g1",

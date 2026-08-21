@@ -25,7 +25,8 @@
       "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a heaped portion of chopped seasoned chicken over yellow rice in a white styrofoam clamshell, shredded lettuce and tomato wedges pushed to one side, a heavy zigzag of white sauce over everything and one thin stripe of red hot sauce, the lid propped open behind it. Harsh direct on-camera flash, hot blown-out hotspot on the white sauce, hard black shadow thrown behind the container. Framed slightly crooked with the clamshell cut off at the right edge, sitting on a scratched stainless prep counter next to a stack of lids. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
       "predictionId": "fagxAM4v51WAYaKeTBfdtdgswdqKcO5uQqrxudpfaeUrQiq4C",
       "predictTime": 12.093856511,
-      "aspectRatio": "1:1"
+      "aspectRatio": "1:1",
+      "styleObserved": "amateur"
     },
     {
       "file": "items/02.webp",
@@ -33,7 +34,8 @@
       "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a very full aluminium foil tray with a cardboard lid folded back, packed with a mound of chopped chicken on one half and sliced gyro lamb on the other, yellow rice underneath showing at the corners, shredded iceberg lettuce and tomato at one end, white sauce drizzled in wide loops. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above so the tray is not centred and one corner of the lid runs out of frame. Flat phone-camera look, unretouched, visible JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
       "predictionId": "skn0uDt9FI6HEtqWkGF69KqEmO1BguOLc5B9yhFCBeEJJqiLA",
       "predictTime": 11.705759941,
-      "aspectRatio": "1:1"
+      "aspectRatio": "1:1",
+      "styleObserved": "amateur"
     },
     {
       "file": "items/03.webp",
@@ -41,7 +43,8 @@
       "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a fat gyro sandwich in warm pita, half unwrapped from crumpled aluminium foil and sitting on a white paper plate, sliced lamb spilling out of the open end with shredded lettuce, tomato and raw onion, white sauce running down onto the foil. Dim warm restaurant light with the flash off, slightly underexposed and noisy, mixed white balance. Cluttered background: a napkin dispenser, a stack of lids and another wrapped order waiting on the counter behind it. Flat phone-camera look, unretouched, soft focus. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
       "predictionId": "YTy7l3aVhqpCF9kT4DEI6FS4uWuAOSkH1UhvOeMgeFjqSUFXA",
       "predictTime": 10.45865307,
-      "aspectRatio": "1:1"
+      "aspectRatio": "1:1",
+      "styleObserved": "amateur"
     },
     {
       "file": "items/04.webp",
@@ -49,7 +52,8 @@
       "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a large aluminium foil takeout tray crowded with grilled meats over yellow rice, two chicken kebab skewers, two dark seared kofta logs, a pile of sliced gyro and one lamb chop, chopped salad packed into one corner, two folded pita laid across the top, juices pooling in the foil. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the tray, mixed white balance. Mild motion blur and soft focus with visible JPEG compression artefacts and sensor noise. Flat phone-camera look, unretouched. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
       "predictionId": "RoGg5ki4NiqXAx8yJdpe6zJUaWi4XUWEjAVeYVUvdfdvloKuA",
       "predictTime": 11.224879904,
-      "aspectRatio": "1:1"
+      "aspectRatio": "1:1",
+      "styleObserved": "amateur"
     },
     {
       "file": "items/05.webp",
@@ -57,7 +61,9 @@
       "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a generous overflowing pile of thick fresh-cut french fries in a red plastic diner basket lined with plain checkered paper, visible coarse salt, a few darker crispy ends on top, a small paper cup of white sauce wedged in beside them. Harsh direct on-camera flash, hot blown-out hotspot on the fries and the sauce cup, hard black shadow thrown behind the basket. The basket sitting directly on a scratched laminate counter with crumbs and a smear of sauce beside it. Flat phone-camera look, unretouched, mixed white balance, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
       "predictionId": "XHKkwmWUXz6JN164GmtEgqumGLS5IP9P1FkTfF6Hp2AnJqiLA",
       "predictTime": 10.256968862,
-      "aspectRatio": "1:1"
+      "aspectRatio": "1:1",
+      "styleObserved": "studio",
+      "promptDrift": "Provenance note, 2026-08-20: the prompt above asks for a staff-phone photo but the model returned a studio-looking frame. The prompt is accurate; the output drifted. Verified by eye."
     },
     {
       "file": "items/06.webp",
@@ -66,7 +72,8 @@
       "predictionId": "D8nQGJ1DslqQLVxVv6tOpWEBEtOfNHtnViB25Ry11hsjKqiLA",
       "predictTime": 14.346441075,
       "aspectRatio": "1:1",
-      "regenerated": "First take put two white stickers with garbled squiggle handwriting on the containers. Reshot with an explicit no-stickers/no-labels clause."
+      "regenerated": "First take put two white stickers with garbled squiggle handwriting on the containers. Reshot with an explicit no-stickers/no-labels clause.",
+      "styleObserved": "amateur"
     }
   ]
 }

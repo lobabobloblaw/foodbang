@@ -154,7 +154,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "ckm-002",
@@ -435,7 +436,7 @@
               "name": "Dipping Reservoir Count",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",
@@ -944,7 +945,7 @@
               "name": "Miso Lacquer Coats",
               "required": false,
               "min": 0,
-              "max": 4,
+              "max": 3,
               "options": [
                 {
                   "id": "o1",

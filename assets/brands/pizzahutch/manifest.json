@@ -18,37 +18,46 @@
       "file": "items/01.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a thick pepperoni pan pizza whose swollen outer crust ring is stuffed with a second, smaller sealed pizza, the ring split open at one point to reveal molten cheese and a miniature crust nested inside it. Cheese sags in long strands over the rim, pepperoni cups pooled with orange oil, visible steam. Three-quarter hero angle on a chrome pizza stand set on a red-and-white checkered vinyl tablecloth, a stained-glass hanging lamp glowing directly above. Warm stained-glass lamp glow, saturated reds and ambers, nostalgic 1993 dine-in pizza parlor. 85mm lens, shallow depth of field, rich contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "zrzes0cf4drmt0d045z87ydhpr",
-      "predictTime": 10.304451
+      "predictTime": 10.304451,
+      "styleObserved": "studio"
     },
     {
       "file": "items/02.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean vertical cross-section cutaway of an extremely deep pan pizza, one wedge removed to expose stratified layers from top to bottom: a blistered cheese cap, a seam of sausage crumble, a dense cheese band, a second buried crust layer running horizontally through the middle, a thick red sauce stratum, and a fused caramelized crust wall against the black steel pan. Cheese slumps outward from the cut face under its own weight, oil beading on the exposed layers, faint steam. Shot on a red-and-white checkered vinyl tablecloth beside a chrome pizza stand, warm stained-glass lamp glow directly above, saturated reds and ambers, 1993 dine-in pizza parlor. 100mm macro lens, crisp layer separation. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "3z95ya5y01rmt0d045z9z9hcr4",
-      "predictTime": 23.85517
+      "predictTime": 23.85517,
+      "styleObserved": "studio"
     },
     {
       "file": "items/03.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a dented aluminum sheet tray lined with grease-translucent paper, stacked with twenty thick garlic breadsticks in a leaning, overloaded pile that spills past the tray's edge. Melted butter pools in the liner and soaks a dark ring through the paper, coarse garlic granules and parmesan dust scattered across the surface, one stick torn open to show a soft steaming interior. Tray sits on a red-and-white checkered vinyl tablecloth, chrome pizza stand behind it, stained-glass hanging lamp glowing directly above. Warm stained-glass lamp glow, saturated reds and ambers, nostalgic 1993 dine-in pizza parlor. 50mm lens, low three-quarter angle, gentle depth falloff. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "27htjcanehrmr0d045zvqfsx48",
-      "predictTime": 12.892138
+      "predictTime": 12.892138,
+      "styleObserved": "studio"
     },
     {
       "file": "items/04.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of twelve heavily sauced chicken wings arranged in a tight grid on a chrome serving platter, glossy red-orange sauce pooling between them and running to the platter rim, crisped edges catching the light, thin steam rising, a scatter of celery batons crowded to one side and a small paper cup of dip overflowing down its own side. Platter rests on a red-and-white checkered vinyl tablecloth, chrome pizza stand edge visible at frame border, stained-glass hanging lamp glowing directly above. Warm stained-glass lamp glow, saturated reds and ambers, nostalgic 1993 dine-in pizza parlor. 35mm lens straight down, even sharpness across the grid. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "t0bjwycersrmw0d045zrk6krc4",
-      "predictTime": 17.737704
+      "predictTime": 17.737704,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/05.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a blackened cast-iron personal pan far too large to be personal, shot straight down into the vessel from directly above so the pan walls frame the shot. Inside, a deep pepperoni pie rises above the rim, cheese climbing and fusing to the pan walls in a crisp lace ring, molten cheese pooling in the center, pepperoni cups brimming with orange oil, the swollen stuffed crust ring pressed hard against the iron with steam venting from a split in it. The pan sits on a red-and-white checkered vinyl tablecloth, chrome pizza stand beside it, stained-glass hanging lamp glowing directly above. Warm stained-glass lamp glow, saturated reds and ambers, nostalgic 1993 dine-in pizza parlor. 40mm lens, top-down, deep focus. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "njv9ccghj5rmy0d0460ae5gbsc",
-      "predictTime": 28.549442
+      "predictTime": 28.549442,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     },
     {
       "file": "items/06.webp",
       "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an extreme macro detail of two cinnamon-sugar dessert sticks pressed together, filling the frame edge to edge. Coarse cinnamon-sugar crystals cling in a thick crust, white icing floods down between the sticks in a heavy slow ribbon and pools in the seam, one stick broken open at the near edge to reveal a soft laminated interior with a smaller sweetened crust nested inside it, sugar dust suspended in the air, faint steam. Sitting on a red-and-white checkered vinyl tablecloth with a chrome pizza stand blurred behind, stained-glass hanging lamp glowing directly above. Warm stained-glass lamp glow, saturated reds and ambers, nostalgic 1993 dine-in pizza parlor. 100mm macro lens, razor-thin depth of field, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
       "predictionId": "n3cj0vw8gsrmt0d0460b31r0w4",
-      "predictTime": 11.833548
+      "predictTime": 11.833548,
+      "styleObserved": "amateur",
+      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
     }
   ]
 }

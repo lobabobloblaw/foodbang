@@ -9,7 +9,7 @@
     "chicken"
   ],
   "rating": 4.3,
-  "ratingCount": 41208,
+  "ratingCount": 33794,
   "deliveryMin": 27,
   "deliveryMax": 52,
   "deliveryFee": 5.49,
@@ -234,7 +234,8 @@
               ],
               "id": "g5"
             }
-          ]
+          ],
+          "photoStyle": "studio"
         },
         {
           "id": "clk-002",
