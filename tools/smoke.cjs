@@ -2082,6 +2082,131 @@ check('nobody is driving until somebody has been assigned', () => {
   } finally { clock.restore(); app.dispose(); }
 });
 
+check('placing an order is narrated, and then it waits', () => {
+  /* The three seconds place() already spent said one frozen word. They are now
+     narrated, and one real wait is added AFTER the commit — scaled by surge, because
+     how long it takes to find somebody to carry your food is the one thing that
+     genuinely depends on how many other people are ordering.
+
+     Post-commit on purpose: the order, the cart deletion and all three ledgers are
+     written before the hold starts, so a reload during it finds a finished order
+     rather than half of one. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  const realGo = FB.nav.go, realRefresh = FB.nav.refresh, realToast = FB.toast;
+  try {
+    const el = () => ({ dataset: {}, value: '', innerHTML: '', addEventListener() {}, removeEventListener() {},
+      querySelector: el, querySelectorAll: () => [], contains: () => true, setAttribute() {},
+      getAttribute: () => null, classList: { add() {}, remove() {}, toggle() {} }, style: {} });
+
+    /* drive a real placement, capturing the window, the stage ticker and the hold */
+    const run = (hour, instant) => {
+      const b = harness.loadApp();
+      b.clock.set(new Date(2026, 7, 20, hour, 0, 0).getTime());
+      if (instant) b.FB.store.set((st) => { st.settings.instantInterface = true; return st; });
+      harness.addToCart(b.FB, 'mcronalds', 2);
+      const def = b.FB.screens.get('checkout');
+      const binds = [];
+      const root = Object.assign(el(), { addEventListener: (t, h) => binds.push({ t, h }) });
+      b.FB.nav.refresh = () => {}; b.FB.toast = () => {};
+      const navs = [];
+      b.FB.nav.go = (n) => navs.push(n);
+      b.FB._binds = []; def.mount(root, { slug: 'mcronalds' }); b.FB._binds = null;
+
+      const realST = b.win.setTimeout, realSI = b.win.setInterval;
+      const state = { win3: null, stage: null, stageMs: 0, cleared: 0, holds: [], navs: navs, b: b, def: def };
+      b.win.setTimeout = (fn, ms) => {
+        if (ms === 3000 && !state.win3) { state.win3 = fn; return 1; }
+        if (state.win3 && !state.committed) return realST(fn, ms);
+        if (state.committed) { state.holds.push({ fn: fn, ms: ms }); return 2; }
+        return realST(fn, ms);
+      };
+      b.win.setInterval = (fn, ms) => { state.stage = fn; state.stageMs = ms; return 9; };
+      const realCI = b.win.clearInterval;
+      b.win.clearInterval = (t) => { state.cleared++; return realCI(t); };
+      /* Snapshot how many times the ticker had been cleared AT THE MOMENT the order
+         first appears in state. stopStages() is called again later, when `placing` is
+         released, so counting clears at the end cannot tell "cleared first" from
+         "cleared eventually" — and cleared-first is the point: a callback that throws
+         part-way through would otherwise leave an interval running forever. */
+      state.clearedAtWrite = null;
+      b.FB.store.sub(function () {
+        if (state.clearedAtWrite === null && b.FB.S().orders.length) state.clearedAtWrite = state.cleared;
+      });
+      const quote = /data-quote="([\d.]+)"/.exec(def.render({ slug: 'mcronalds' }))[1];
+      const btn = { dataset: { quote }, disabled: false, innerHTML: '' };
+      binds.filter((x) => x.t === 'click').forEach((x) =>
+        x.h({ target: { closest: (q) => (q === '[data-place]' ? btn : null) }, preventDefault() {} }));
+      state.btn = btn;
+      state.close = () => {
+        state.committed = true;
+        state.win3();
+        b.win.setTimeout = realST; b.win.setInterval = realSI; b.win.clearInterval = realCI;
+      };
+      state.dispose = () => { b.clock.restore(); b.dispose(); };
+      return state;
+    };
+
+    /* run the timers captured after the commit until one of them navigates, and
+       report ITS delay — that is the dispatch hold */
+    const fireHold = (st) => {
+      for (const h of st.holds) {
+        h.fn();
+        if (st.navs.length) return h.ms;
+      }
+      return 0;
+    };
+
+    /* --- narrated --- */
+    const d = run(19, false);
+    if (!d.btn.disabled) throw new Error('the tap was refused');
+    if (/Placing/.test(d.btn.innerHTML)) throw new Error('the button still says the one frozen word');
+    if (!/Authorizing/.test(d.btn.innerHTML)) throw new Error('the button does not start on the first stage: ' + d.btn.innerHTML);
+    if (typeof d.stage !== 'function') throw new Error('no stage ticker was started');
+    if (!(d.stageMs > 0 && d.stageMs < 3000 / 4)) throw new Error('the ticker cannot resolve the stages: ' + d.stageMs + 'ms');
+    /* a repaint mid-window must keep the sequence rather than reset it */
+    const mid = d.def.render({ slug: 'mcronalds' });
+    if (!/Authorizing/.test(mid)) throw new Error('a repaint mid-window loses the stage');
+    if (/Placing…/.test(mid)) throw new Error('render() hardcodes the button text instead of reading the stage');
+    d.close();
+    if (!d.cleared) throw new Error('the window did not clear the stage ticker — it keeps running after the order lands');
+    if (!d.clearedAtWrite) {
+      throw new Error('the stage ticker is cleared only after the order is written — anything that throws ' +
+        'in between leaves it running in a realm that is about to go away');
+    }
+    if (d.navs.length) throw new Error('the tracker was opened before the hold elapsed');
+    if (d.b.FB.S().orders.length !== 1) throw new Error('the order does not exist during the hold');
+    if (Object.keys(d.b.FB.S().cart).length) throw new Error('the cart survived the commit');
+    /* Identified by what it DOES, not by its duration: the commit also schedules
+       toasts, and picking the first timer by index picks one of those. */
+    const dinnerHold = fireHold(d);
+    if (!(dinnerHold > 0)) throw new Error('nothing scheduled after the commit opens the tracker');
+    if (d.navs[0] !== 'track') throw new Error('the hold ended somewhere other than the tracker');
+    const surgeDinner = d.b.FB.world.at(d.b.clock.now()).surge;
+    d.dispose();
+
+    /* --- scaled by how busy the world is --- */
+    const q = run(15, false);
+    q.close();
+    const quietHold = fireHold(q);
+    const surgeQuiet = q.b.FB.world.at(q.b.clock.now()).surge;
+    q.dispose();
+    if (!(surgeQuiet < surgeDinner)) throw new Error('the afternoon is not quieter than dinner, so the scaling is untested');
+    if (!(quietHold < dinnerHold)) {
+      throw new Error('a quiet hour holds ' + quietHold + 'ms and dinner holds ' + dinnerHold + 'ms — surge does not scale it');
+    }
+
+    /* --- and it can be bought off, like every other wait in the app --- */
+    const i = run(19, true);
+    i.close();
+    if (i.navs[0] !== 'track') throw new Error('Instant Interface still waits for the dispatch queue');
+    i.dispose();
+
+    return 'four stages over ' + (3000 / 1000) + 's, then ' + quietHold + '-' + dinnerHold +
+      'ms of dispatch scaled by surge ' + surgeQuiet.toFixed(2) + '-' + surgeDinner.toFixed(2);
+  } finally { FB.nav.go = realGo; FB.nav.refresh = realRefresh; FB.toast = realToast; clock.restore(); app.dispose(); }
+});
+
 check('a schedule slot is never offered outside the hours it is for', () => {
   /* The sheet built its rows from wall-clock arithmetic alone — deliveryMax + 45n —
      and never asked whether the store was open at the time it was offering. Swept

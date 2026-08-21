@@ -25,6 +25,10 @@ window.FB = window.FB || {};
     /* the platform, doing something for you */
     save:       [340, 520],
     rate:       [360, 540],
+    /* the platform, finding somebody to carry it. Scaled by surge at the call site,
+       because the one thing a dispatch queue genuinely depends on is how many other
+       people are ordering right now. */
+    dispatch:   [900, 1450],
     /* the platform, reconsidering */
     cartRemove: [420, 640],
     promo:      [700, 1150],

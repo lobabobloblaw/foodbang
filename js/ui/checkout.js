@@ -220,7 +220,9 @@ window.FB = window.FB || {};
          rebuild an enabled "Place order" button over an order already in flight. */
       h += '<div style="padding:4px 16px 24px"><button class="btn btn--primary btn--lg btn--block btn--split" data-place' +
         ' data-quote="' + c.total + '"' + (placing ? ' disabled' : '') + '>' +
-        (placing ? '<span>Placing…</span>' : '<span>Place order</span><span>' + FB.money(c.total) + '</span>') + '</button>' +
+        /* read from the module, not hardcoded: a repaint mid-window — a tip tap, a
+           sheet closing — would otherwise reset the sequence to its first stage */
+        (placing ? '<span>' + FB.esc(placingStage) + '</span>' : '<span>Place order</span><span>' + FB.money(c.total) + '</span>') + '</button>' +
         '<p style="text-align:center;font:var(--t-cap);color:var(--ink-3);margin:10px 0 0">' +
         /* foodPaid, not subtotal: nonFood is already post-discount, so pairing it
            with the pre-discount figure made the two overshoot the button by exactly
@@ -260,6 +262,7 @@ window.FB = window.FB || {};
            dropped. Telling someone their total moved, when the real problem is that
            the food is gone, answers a question they did not ask. */
         if (FB.cart.unsellable(p.slug).length) {
+          stopStages();
           FB.nav.refresh();
           FB.toast('An item in this order is no longer available and has to be removed.', { kind: 'bad' });
           return;
@@ -477,6 +480,28 @@ window.FB = window.FB || {};
      means the button stays on screen while the order is in flight. */
   var placing = false;
 
+  /* The three seconds place() already spends, said out loud. A single frozen
+     "Placing…" is the one moment in the app where the longest wait says the least,
+     and the stages are the platform narrating its own bureaucracy at you.
+     [fraction of the window, what it claims to be doing] */
+  var PLACE_MS = 3000;
+  function fillStage(str, store) {
+    return String(str).replace(/\{store\}/g, (store && (store.shortName || store.name)) || 'the restaurant');
+  }
+  var PLACE_STAGES = [
+    [0.00, 'Authorizing…'],
+    [0.30, 'Notifying {store}…'],
+    [0.62, 'Entering the dispatch queue…'],
+    [0.88, 'Cancellation window closing…'],
+  ];
+  var placingStage = PLACE_STAGES[0][1];
+  var stageTimer = null;
+
+  function stopStages() {
+    if (stageTimer) { clearInterval(stageTimer); stageTimer = null; }
+    placingStage = PLACE_STAGES[0][1];
+  }
+
   function place(p, btn) {
     if (placing) return;
     /* Backstop. The [data-place] handler refuses first and with better copy; this is
@@ -500,7 +525,23 @@ window.FB = window.FB || {};
     var scheduled = slotFor(p);
     var promo = promoFor(p, FB.cart.subtotal(p.slug));
     btn.disabled = true;
-    btn.innerHTML = '<span>Placing…</span>';
+    placingStage = fillStage(PLACE_STAGES[0][1], s);
+    btn.innerHTML = '<span>' + FB.esc(placingStage) + '</span>';
+    /* ONE interval, re-querying the button every tick because paint() replaces the
+       node — holding a reference here writes the stage into a node that is no longer
+       in the document. */
+    stopStages();
+    var startedAt = Date.now();
+    stageTimer = setInterval(function () {
+      var t = FB.clamp((Date.now() - startedAt) / PLACE_MS, 0, 1);
+      var next = PLACE_STAGES[0][1];
+      for (var i = 0; i < PLACE_STAGES.length; i++) if (t >= PLACE_STAGES[i][0]) next = PLACE_STAGES[i][1];
+      next = fillStage(next, s);
+      if (next === placingStage) return;
+      placingStage = next;
+      var live = document.querySelector('[data-place]');
+      if (live) live.innerHTML = '<span>' + FB.esc(next) + '</span>';
+    }, Math.round(PLACE_MS / (PLACE_STAGES.length * 2)));
 
     /* Snapshotted with the price and the lines, NOT recomputed inside the window
        below. The app bar's Back button stays live for those three seconds, so a cart
@@ -517,6 +558,10 @@ window.FB = window.FB || {};
 
     /* the 3-second cancellation window the fine print promises, during which the button is disabled */
     setTimeout(function () {
+      /* FIRST, before anything can throw: a test that fires this callback
+         synchronously would otherwise leave an interval ticking in a realm that is
+         about to be disposed, and the suite would simply never exit. */
+      stopStages();
       var id = FB.uid('o');
       /* Drawn from the roster, so the same nine people recur and their tenure with
          you counts up. The SNAPSHOT is still written to the order — historical
@@ -585,8 +630,19 @@ window.FB = window.FB || {};
       /* the cart bucket carried the promo, tip, mode and schedule, and deleting the
          cart above is what clears them — no screen-level state is left to reset */
       placing = false;
+      stopStages();
       FB.tracker.start(order.id);
-      FB.nav.go('track', { id: order.id });
-    }, 3000);
+      /* One real added wait, AFTER the commit. The order, the cart deletion and all
+         three ledgers are already written — this delays only the navigation, so a
+         reload during it finds a finished order rather than half of one. Scaled by
+         surge, because how long it takes to find somebody to carry your food is the
+         one thing that genuinely depends on how many other people are ordering.
+         Routed through FB.latency, so Instant Interface buys it off like everything
+         else — and paying to skip the queue is the joke working as designed. */
+      var hold = FB.latency.ms('dispatch');
+      if (hold) hold = Math.round(hold * (0.7 + ((FB.world && FB.world.at(Date.now()).surge) || 0) * 0.7));
+      if (hold > 0) setTimeout(function () { FB.nav.go('track', { id: order.id }); }, hold);
+      else FB.nav.go('track', { id: order.id });
+    }, PLACE_MS);
   }
 })(window.FB);
