@@ -40,7 +40,7 @@ window.FB = window.FB || {};
       if (st.plus.active) {
         h += '<button class="plusbanner" data-go="plus" style="margin-top:16px">' +
           '<span class="pb-k">BANG+ INFINITY PRIME ELITE · ACTIVE</span>' +
-          '<span class="pb-t">Renews ' + FB.esc(st.plus.renewsOn || 'monthly') + '</span>' +
+          '<span class="pb-t">Renews ' + FB.esc(FB.plusRenewsLabel(st)) + '</span>' +
           '<span class="pb-s">You have saved ' + FB.money(st.plus.saved || 0) + ' since joining. Membership has cost you ' +
           FB.money(FB.round2(19.99 * FB.plusMonths(st) + (st.plus.paid || 0))) + '.</span>' +
           '<span class="pb-c">Manage membership</span></button>';

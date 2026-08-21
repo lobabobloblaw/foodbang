@@ -107,6 +107,18 @@ window.FB = window.FB || {};
       var promo = promoFor(p, sub);
       var tiers = FB.fees.tipTiers(sub);
       var curTip = co.tipCustom != null ? null : (co.tipPct != null ? co.tipPct : st.settings.autoTipPct);
+      /* The Default tip slider runs 0..80 in steps of 1, and the canonical tiers are
+         five values — so for 76 of its 81 positions the receipt charged "Slinger Tip
+         (37%)" while every control on the screen rendered aria-pressed="false" and
+         the guilt copy fell through to "Recorded." No control corresponded to the
+         charge, and tapping any of them destroyed the setting with no way back.
+         Injected at the call site: FB.fees.tipTiers stays the canonical five, because
+         smoke.cjs requires fees.js with only util.js loaded and a UI concern must not
+         move into it. */
+      if (curTip != null && !tiers.some(function (t) { return t.pct === curTip; })) {
+        tiers = tiers.concat([{ pct: curTip, label: curTip + '%', sub: 'Your default. Set in Settings.' }])
+          .sort(function (a, b) { return a.pct - b.pct; });
+      }
       var nCodes = Object.keys(FB.fees.PROMOS).length;
 
       var h = '';
@@ -433,7 +445,7 @@ window.FB = window.FB || {};
         FB.on(b, 'click', '[data-accept]', function () {
           FB.tos.accept(version);
           FB.notifs.push({
-            id: 'tos:' + version, kind: 'promo', icon: 'shield',
+            id: 'tos:' + version, kind: 'account', icon: 'shield',
             title: 'Terms accepted · version ' + v.label,
             body: v.diff[0] || 'The updated terms have been accepted.',
             go: 'account',
@@ -457,7 +469,7 @@ window.FB = window.FB || {};
     if (!up) return;   /* a demotion is announced by the decay pass, not by an order */
     FB.toast('You have been advanced to ' + t.name + '. Advancement is recognised on your receipt and nowhere else.',
       { kind: 'plus', ms: 4200 });
-    FB.notifs.push({ id: 'standing:' + t.name, kind: 'promo', icon: 'trophy',
+    FB.notifs.push({ id: 'standing:' + t.name, kind: 'account', icon: 'trophy',
       title: 'Standing: ' + t.name, body: t.benefit, go: 'account' });
   }
 

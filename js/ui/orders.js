@@ -219,6 +219,14 @@ window.FB = window.FB || {};
     var eta = FB.tracker.eta(o);
     var step = FB.tracker.steps(o)[o.step];
     var g = o.slinger;
+    /* js/sim/tracker.js:125 records fixing exactly this in the FEED — "A pickup order
+       used to be tracked as a delivery: it assigned a Slinger, drove them to your
+       house and ended 'Photo attached. The photo is of a door.' `mode` was written
+       onto the order and read by nothing." The SCREEN was never brought along, so it
+       went on drawing a courier card, a route to YOU and a doorstep photo over a feed
+       that says you are collecting it yourself. The suite only grepped the feed. */
+    var pickup = o.mode === 'pickup';
+    var store = FB.catalog.get(o.slug);
     var h = '';
 
     /* map */
@@ -240,8 +248,9 @@ window.FB = window.FB || {};
 
     if (!done) {
       var reviews = o.tipReviews || 0;
-      h += '<div style="padding:10px 16px 4px"><button class="btn btn--ghost btn--sm btn--block" data-boost>' +
-        FB.icon('zap', 15) + 'Increase tip to reduce arrival by 4 min</button>' +
+      h += '<div style="padding:10px 16px 4px">' +
+        (pickup ? '' : '<button class="btn btn--ghost btn--sm btn--block" data-boost>' +
+        FB.icon('zap', 15) + 'Increase tip to reduce arrival by 4 min</button>') +
         (o.calc.tip > 0
           ? '<button class="btn btn--ghost btn--sm btn--block" data-reduce style="margin-top:8px"' +
               (reviews >= 3 ? ' disabled' : '') + '>' +
@@ -251,24 +260,42 @@ window.FB = window.FB || {};
         'Arrival is not affected by tip. Tip is not affected by arrival. These facts are unrelated and are presented together.</p></div>';
     }
 
-    /* slinger */
-    h += '<div class="slingercard"><img src="' + g.photo + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
-      '<span class="gc-b"><b>' + FB.esc(g.name) + '</b>' +
-      '<span>' + g.rating.toFixed(1) + '★ · ' + FB.plural(g.deliveries, 'delivery', 'deliveries') + ' · ' + FB.esc(g.vehicle) + '</span>' +
-      '<span style="font:var(--t-cap);color:var(--ink-3);margin-top:3px;display:block">Employed ' + FB.plural(g.tenure, 'day') + '</span></span>' +
-      '<span class="gc-a"><button class="iconbtn" data-msg aria-label="Message">' + FB.icon('phone', 18) + '</button></span></div>';
+    /* slinger — or, for a pickup, the shelf you are collecting from. No courier card
+       and no Message button: openChat renders delivery dialogue and tenureLine
+       describes someone who is driving. */
+    if (pickup) {
+      h += '<div class="slingercard">' +
+        (store && store.logoSrc ? '<img src="' + store.logoSrc + '" alt="" onerror="this.style.visibility=\'hidden\'">' : '') +
+        '<span class="gc-b"><b>' + FB.esc(store ? store.name : o.storeName) + '</b>' +
+        '<span>' + FB.esc(store ? store.address : 'Collection counter') + '</span>' +
+        '<span style="font:var(--t-cap);color:var(--ink-3);margin-top:3px;display:block">' +
+        'Collection shelf · unattended</span></span></div>';
+    } else {
+      h += '<div class="slingercard"><img src="' + g.photo + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
+        '<span class="gc-b"><b>' + FB.esc(g.name) + '</b>' +
+        '<span>' + g.rating.toFixed(1) + '★ · ' + FB.plural(g.deliveries, 'delivery', 'deliveries') + ' · ' + FB.esc(g.vehicle) + '</span>' +
+        '<span style="font:var(--t-cap);color:var(--ink-3);margin-top:3px;display:block">Employed ' + FB.plural(g.tenure, 'day') + '</span></span>' +
+        '<span class="gc-a"><button class="iconbtn" data-msg aria-label="Message">' + FB.icon('phone', 18) + '</button></span></div>';
+    }
 
     /* feed */
     h += '<div class="trk-feed">' + feedBlock(o) + '</div>';
 
     /* delivered extras */
     if (done) {
+      /* a photograph of a doorstep is not proof that YOU emptied a shelf */
       h += '<div style="border-top:8px solid var(--surface-2);padding-top:6px">' +
-        FB.C.sectionHead('Proof of delivery', 'Photographed by ' + g.name + '.') +
-        '<div style="padding:0 16px 8px"><img src="' + proofPhoto(o.id) + '" alt="Proof of delivery photo" ' +
-        'style="width:100%;border-radius:14px;background:var(--surface-2)" onerror="this.remove()"></div>' +
-        '<p style="font:var(--t-cap);color:var(--ink-3);padding:0 16px 14px;line-height:1.45">' +
-        'Photograph taken at the delivery address, or at an address near it, or at an address.</p></div>';
+        (pickup
+          ? FB.C.sectionHead('Proof of collection', 'Recorded at the shelf.') +
+            '<p style="font:var(--t-cap);color:var(--ink-3);padding:0 16px 14px;line-height:1.45">' +
+            'Collection is recorded at the moment the shelf is emptied. No photograph is taken, ' +
+            'and none is available on request.</p>'
+          : FB.C.sectionHead('Proof of delivery', 'Photographed by ' + g.name + '.') +
+            '<div style="padding:0 16px 8px"><img src="' + proofPhoto(o.id) + '" alt="Proof of delivery photo" ' +
+            'style="width:100%;border-radius:14px;background:var(--surface-2)" onerror="this.remove()"></div>' +
+            '<p style="font:var(--t-cap);color:var(--ink-3);padding:0 16px 14px;line-height:1.45">' +
+            'Photograph taken at the delivery address, or at an address near it, or at an address.</p>') +
+        '</div>';
 
       if (!o.rated) {
         h += '<div style="border-top:8px solid var(--surface-2);padding-top:6px">' +

@@ -1579,6 +1579,234 @@ check('the browser buttons agree with the router', () => {
   return 'Forward goes forward, overlays cost nothing, a forced modal cannot drain history, and replace replaces';
 });
 
+check('a screen may not describe an order it is not showing', () => {
+  /* Five screens stating something untrue about the app's own world:
+       - the Default tip slider runs 0..80 and the tier row knows five values, so for
+         76 of its 81 positions the receipt charged a tip no control on the screen
+         corresponded to, and tapping any of them destroyed the setting;
+       - TRACKR drew a Slinger card, a courier route to YOU and a doorstep photo over
+         a PICKUP order, contradicting the feed directly beneath it — tracker.js:125
+         records fixing exactly this in the feed and the screen was never brought
+         along, because the suite only ever grepped the feed;
+       - the Orders tab badge dereferenced activeOrderId, one slot for a plural fact,
+         so it went dark the moment any order delivered while another was still live;
+       - BANG+ stamped its renewal date through a formatter that only handles the
+         past, and froze the result at join;
+       - day labels divided two local midnights by a flat 86400000. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const NOW = new Date(2026, 7, 20, 13, 0, 0).getTime();
+    clock.set(NOW);
+
+    /* --- every slider position is representable --- */
+    harness.addToCart(FB, 'mcronalds', 2);
+    for (let pct = 0; pct <= 80; pct++) {
+      FB.store.set((st) => { st.settings.autoTipPct = pct; return st; });
+      FB.cart.setCo('mcronalds', { tipPct: null, tipCustom: null });
+      const markup = FB.screens.get('checkout').render({ slug: 'mcronalds' });
+      const pressed = (markup.match(/data-tip="\d+" aria-pressed="true"/g) || []).length;
+      if (pressed !== 1) throw new Error('a default tip of ' + pct + '% leaves ' + pressed + ' tip controls selected');
+      const charged = /Slinger Tip \((\d+)%\)/.exec(markup);
+      if (!charged || Number(charged[1]) !== pct) throw new Error('the receipt charges a tip the row cannot show at ' + pct + '%');
+    }
+    FB.store.set((st) => { st.settings.autoTipPct = 42; return st; });
+
+    /* --- a pickup is not a delivery --- */
+    FB.cart.clearAll();
+    harness.addToCart(FB, 'pizzahutch', 2);
+    FB.cart.setCo('pizzahutch', { mode: 'pickup' });
+    const pick = harness.makeOrder(FB, 'pizzahutch', { now: NOW, mode: 'pickup', status: 'delivered', step: 5 });
+    pick.deliveredAt = NOW - 60000;
+    FB.store.set((st) => { st.orders.unshift(pick); st.activeOrderId = pick.id; return st; });
+    const trk = FB.screens.get('track').render({ id: pick.id });
+    if (/data-msg/.test(trk)) throw new Error('a pickup order offers to message a Slinger nobody assigned');
+    if (/Proof of delivery/.test(trk)) throw new Error('a pickup order claims a delivery was photographed');
+    if (/data-boost/.test(trk)) throw new Error('a pickup order offers to buy a faster arrival');
+    if (!/Proof of collection/.test(trk)) throw new Error('a collected order says nothing about being collected');
+    if (/>YOU</.test(trk)) throw new Error('a pickup map still routes a courier to YOU');
+    /* and a delivery still gets all of it, or the branch has simply deleted the screen */
+    FB.cart.clearAll();
+    harness.addToCart(FB, 'cluckingham', 2);
+    const del = harness.makeOrder(FB, 'cluckingham', { now: NOW, status: 'delivered', step: 5 });
+    del.deliveredAt = NOW - 60000;
+    FB.store.set((st) => { st.orders.unshift(del); return st; });
+    const dtrk = FB.screens.get('track').render({ id: del.id });
+    for (const want of ['data-msg', 'Proof of delivery', '>YOU<']) {
+      if (dtrk.indexOf(want) < 0) throw new Error('a delivery lost "' + want + '" to the pickup branch');
+    }
+
+    /* --- the badge counts live orders, not one pointer ---
+       Booted in its own realm: renderTabs() only draws once shell.init() has bound
+       #tabbar, and init lives in js/app.js, which this harness deliberately skips. */
+    (function () {
+      const b = harness.loadApp();
+      b.clock.set(NOW);
+      b.run(fs.readFileSync(path.join(ROOT, 'js/app.js'), 'utf8'));
+      try {
+        const mk = (id, status) => ({ id: id, slug: 'cluckingham', storeName: 'x', status: status,
+          placedAt: NOW, mode: 'delivery', lines: [], calc: { subtotal: 1, feesTotal: 0, tax: 0, tip: 0,
+          total: 1, nonFood: 0, multiple: 1, feeLines: [], roundUp: 0, promo: 0, discounts: [] },
+          events: [], step: 2, load: { calories: 0, sodium: 0, grease: 0, ranch: 0 }, rated: null });
+        b.FB.store.set((st) => {
+          st.orders = [mk('o_live_a', 'preparing'), mk('o_live_b', 'pickup'), mk('o_done', 'delivered')];
+          st.activeOrderId = 'o_done';        /* what tick() leaves behind */
+          return st;
+        });
+        b.FB.shell.repaintChrome();
+        const badge = /<i class="dot">(\d+)<\/i>/.exec(b.doc.getElementById('tabbar').innerHTML);
+        if (!badge) throw new Error('two live orders show no badge at all');
+        if (Number(badge[1]) !== 2) throw new Error('the badge reads ' + badge[1] + ' with two orders still in flight');
+        /* and it goes away when they are all done */
+        b.FB.store.set((st) => { st.orders.forEach((o) => { o.status = 'delivered'; }); return st; });
+        b.FB.shell.repaintChrome();
+        if (/<i class="dot">/.test(b.doc.getElementById('tabbar').innerHTML)) {
+          throw new Error('the badge survives every order being delivered');
+        }
+      } finally { b.clock.restore(); b.dispose(); }
+    })();
+
+    /* --- a renewal date is in the future and moves with the membership --- */
+    for (const [days, months] of [[0, 1], [29, 1], [30, 2], [60, 3], [120, 5]]) {
+      FB.store.set((st) => { st.plus.active = true; st.plus.since = NOW - days * 86400000; return st; });
+      const at = FB.plusRenewsAt(FB.S());
+      if (at <= NOW) throw new Error('on day ' + days + ' the next renewal is already in the past');
+      if (at !== FB.S().plus.since + months * 2592000000) throw new Error('the renewal does not sit on the dues boundary');
+      const label = FB.plusRenewsLabel(FB.S());
+      if (/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat),/.test(label)) {
+        throw new Error('a renewal a month out reads as a bare weekday: "' + label + '"');
+      }
+      /* account renders it directly; on the BANG+ screen it lives in the manage
+         sheet, so that one is driven rather than grepped */
+      if (FB.screens.get('account').render({}).indexOf(FB.esc(label)) < 0) {
+        throw new Error('the account banner does not print the renewal it derives');
+      }
+    }
+
+    /* the BANG+ manage sheet carries the same figure, and is reached through the
+       real handler so a change to either screen's wiring shows up here */
+    (function () {
+      const pdef = FB.screens.get('plus');
+      const bound = [];
+      const el = () => ({ dataset: {}, value: '', innerHTML: '', addEventListener() {}, removeEventListener() {},
+        querySelector: el, querySelectorAll: () => [], contains: () => true, setAttribute() {},
+        getAttribute: () => null, classList: { add() {}, remove() {}, toggle() {} } });
+      const root = Object.assign(el(), { addEventListener: (t, h) => bound.push({ t, h }) });
+      const realSheet = FB.sheet.open, realBusy = FB.busy;
+      let seen = '';
+      FB.sheet.open = (cfg) => { seen += (cfg.html || '') + (cfg.footer || '') + (cfg.sub || ''); return { el: el(), body: el(), close() {} }; };
+      FB.busy = (t, kind, fn) => fn();
+      try {
+        FB._binds = []; pdef.mount(root, {}); FB._binds = null;
+        bound.filter((x) => x.t === 'click').forEach((x) =>
+          x.h({ target: { closest: (q) => (q === '[data-cancel]' ? { dataset: {} } : null) }, preventDefault() {} }));
+        const want = FB.plusRenewsLabel(FB.S());
+        if (seen && seen.indexOf(FB.esc(want)) < 0 && seen.indexOf(want) < 0) {
+          throw new Error('the BANG+ manage sheet does not print the renewal the account banner does');
+        }
+      } finally { FB.sheet.open = realSheet; FB.busy = realBusy; }
+    })();
+
+    /* --- day labels, including across a 23-hour day --- */
+    if (FB.dayLabel(NOW) !== 'Today') throw new Error('today is not Today');
+    if (FB.dayLabel(NOW - 86400000) !== 'Yesterday') throw new Error('yesterday is not Yesterday');
+    if (FB.dayLabel(NOW + 86400000) === 'Today') throw new Error('tomorrow reads as Today');
+    if (/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)$/.test(FB.dayLabel(NOW + 30 * 86400000))) {
+      throw new Error('a date a month out reads as a bare weekday');
+    }
+    const probe = require('child_process').execFileSync(process.execPath, ['-e', `
+      const { loadApp } = require(${JSON.stringify(require('path').join(__dirname, 'harness.cjs'))});
+      const app = loadApp();
+      let bad = 0;
+      /* 8 Mar 2026 is the 23-hour day: midnight to midnight across it is 82800000 ms,
+         which floors to 0 and rounds to 1 */
+      const dst = new Date(2026, 2, 9, 12, 0, 0).getTime();
+      app.clock.set(dst);
+      if (app.FB.dayLabel(dst - 86400000) !== 'Yesterday') { console.log('GOT:' + app.FB.dayLabel(dst - 86400000)); bad++; }
+      if (app.FB.dayLabel(dst) !== 'Today') bad++;
+      app.dispose();
+      console.log(bad);
+    `], { env: Object.assign({}, process.env, { TZ: 'America/New_York' }), encoding: 'utf8' }).trim();
+    if (!/(^|\n)0$/.test(probe)) throw new Error('day labels slip across a daylight-saving change: ' + probe);
+
+    return '81 tip positions representable, pickup and delivery differ, the badge counts, and dates survive DST';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('the build tools fail loudly rather than quietly', () => {
+  /* Two ways the pipeline lied instead of complaining:
+       - build-artifact.cjs preferred build/artifact-assets on EXISTENCE alone, with
+         no freshness check, so every regenerated asset was silently published as its
+         old bytes — three La Taqueria Verdadera reshoots shipped as the photographs
+         they had replaced, while the served site showed the new ones;
+       - bundle.cjs recorded a section authored without an items array as a problem
+         and then dereferenced it anyway two guards later, dying mid-walk with an
+         anonymous TypeError and discarding every problem it had already collected. */
+  const cp = require('child_process');
+
+  /* --- an itemless section is reported, not thrown --- */
+  const menuFile = path.join(ROOT, 'js/data/menus/gyropalace.json');
+  const original = fs.readFileSync(menuFile, 'utf8');
+  let out;
+  try {
+    const j = JSON.parse(original);
+    j.menu.push({ id: 's_no_items', name: 'Half-finished section' });
+    /* a SECOND problem, so we can tell "reported everything" from "died on the first" */
+    j.menu[0].items[0].price = 'not a number';
+    fs.writeFileSync(menuFile, JSON.stringify(j, null, 2));
+    const r = cp.spawnSync(process.execPath, [path.join(ROOT, 'tools/bundle.cjs')], { encoding: 'utf8' });
+    out = (r.stdout || '') + (r.stderr || '');
+    if (/TypeError/.test(out)) throw new Error('an itemless section crashes the validator: ' + out.split('\n')[0]);
+    if (r.status === 0) throw new Error('a menu with two authoring errors bundled clean');
+    if (!/no items/.test(out)) throw new Error('the itemless section was not reported: ' + out.slice(0, 200));
+    if (!/price/i.test(out)) throw new Error('the validator stopped at the first problem instead of collecting them');
+  } finally {
+    fs.writeFileSync(menuFile, original);
+    const restore = cp.spawnSync(process.execPath, [path.join(ROOT, 'tools/bundle.cjs')], { encoding: 'utf8' });
+    if (restore.status !== 0) throw new Error('the menus did not bundle clean again after the probe');
+  }
+
+  /* --- a stale asset cache is refused, and said out loud --- */
+  const src = fs.readFileSync(path.join(ROOT, 'tools/build-artifact.cjs'), 'utf8');
+  if (!/mtimeMs/.test(src)) throw new Error('build-artifact.cjs picks its asset source without comparing mtimes');
+  const CACHE = path.join(ROOT, 'build', 'artifact-assets');
+  const probeKey = 'brands/verdadera/items/02.webp';
+  const probe = path.join(CACHE, probeKey);
+  const asset = path.join(ROOT, 'assets', probeKey);
+  const hadCache = fs.existsSync(probe);
+  const saved = hadCache ? fs.readFileSync(probe) : null;
+  const savedTimes = hadCache ? fs.statSync(probe) : null;
+  try {
+    fs.mkdirSync(path.dirname(probe), { recursive: true });
+    /* a cache entry that is deliberately older than the asset it stands in for */
+    fs.writeFileSync(probe, Buffer.from('stale'));
+    const assetTime = fs.statSync(asset).mtime;
+    fs.utimesSync(probe, new Date(assetTime.getTime() - 60000), new Date(assetTime.getTime() - 60000));
+    const r = cp.spawnSync(process.execPath, [path.join(ROOT, 'tools/build-artifact.cjs')], { encoding: 'utf8' });
+    const log = (r.stdout || '') + (r.stderr || '');
+    if (r.status !== 0) throw new Error('the artifact build failed on a stale cache instead of falling back');
+    if (!/stale/i.test(log)) throw new Error('a stale cache entry was used without a word about it');
+    if (log.indexOf('assets/' + probeKey) < 0) throw new Error('the warning does not name the file it fell back on');
+    /* and the bytes it shipped are the ones on disk */
+    const html = fs.readFileSync(path.join(ROOT, 'build', 'foodbang.html'), 'utf8');
+    const marker = 'a[' + JSON.stringify('assets/' + probeKey) + '] = [';
+    const i = html.indexOf(marker);
+    if (i < 0) throw new Error('the artifact does not inline ' + probeKey);
+    const body = html.slice(i + marker.length, html.indexOf('].join(', i));
+    const joined = body.match(/"([^"]*)"/g).map((x) => JSON.parse(x)).join('');
+    const inlined = Buffer.from(joined.slice(joined.indexOf('base64,') + 7), 'base64');
+    if (!inlined.equals(fs.readFileSync(asset))) {
+      throw new Error('the artifact inlined ' + inlined.length + ' bytes for a ' +
+        fs.statSync(asset).size + '-byte asset — the stale cache was shipped anyway');
+    }
+  } finally {
+    if (hadCache) { fs.writeFileSync(probe, saved); fs.utimesSync(probe, savedTimes.atime, savedTimes.mtime); }
+    else { try { fs.unlinkSync(probe); } catch (e) {} }
+  }
+
+  return 'an itemless section is reported with everything else, and a stale asset cache is refused out loud';
+});
+
 check('a schedule slot is never offered outside the hours it is for', () => {
   /* The sheet built its rows from wall-clock arithmetic alone — deliveryMax + 45n —
      and never asked whether the store was open at the time it was offering. Swept
@@ -1880,11 +2108,67 @@ check('notifications accumulate, back-date, and never stay read', () => {
     /* three days away is three days of back-dated nagging, and running it twice is not six */
     FB.store.reset();
     clock.set(T0);
-    FB.store.set((st) => { st.orders = [{ placedAt: T0 }]; st.notifsThrough = 0; return st; });
+    FB.store.set((st) => { st.orders = [{ placedAt: T0, calc: { total: 60 } }]; st.notifsThrough = 0; return st; });
     clock.set(T0 + 3 * 86400000);
     const first = FB.notifs.backfill();
-    if (first !== 3) throw new Error('three days away produced ' + first + ' notifications');
+    /* counted BY KIND, not in total: the backlog also carries the nightly summary the
+       Settings row promises at 2:40 AM, which used to be a GATE entry with no emitter
+       at all — so a bare total here would have to move every time a kind is added,
+       and would say nothing about which kind went missing. */
+    const byKind = (k) => FB.notifs.list().filter((n) => n.kind === k).length;
+    if (byKind('miss') !== 3) throw new Error('three days away produced ' + byKind('miss') + ' nags');
+    if (byKind('nightly') < 1) throw new Error('the nightly summary the Settings row promises was never sent');
+    if (byKind('promo') < 1) throw new Error('the Promotions switch gates a kind nothing sends');
+    /* the store started empty, so what backfill reported is what it stored */
+    if (first !== FB.notifs.list().length) {
+      throw new Error('backfill reported ' + first + ' but stored ' + FB.notifs.list().length);
+    }
+    for (const n of FB.notifs.list().filter((x) => x.kind === 'nightly')) {
+      const at = new Date(n.ts);
+      if (at.getHours() !== 2 || at.getMinutes() !== 40) {
+        throw new Error('a nightly summary is stamped ' + at.getHours() + ':' + at.getMinutes() + ', not the 2:40 it claims');
+      }
+      if (n.ts > clock.now()) throw new Error('a nightly summary is stamped in the future');
+    }
     if (FB.notifs.backfill() !== 0) throw new Error('running the backlog twice produced duplicates');
+
+    /* every kind the settings screen offers a switch for must have an emitter, and
+       every kind that is emitted must be gateable or deliberately ungated */
+    const GATED = ['order', 'promo', 'slinger', 'body', 'nightly', 'miss'];
+    const emitted = new Set();
+    for (const f of ['js/core/notifs.js', 'js/core/scrip.js', 'js/sim/tracker.js', 'js/sim/bodymax.js',
+                     'js/ui/checkout.js', 'js/ui/orders.js', 'js/ui/item.js', 'js/app.js']) {
+      const src = fs.readFileSync(path.join(ROOT, f), 'utf8');
+      let m; const re = /kind:\s*'([a-z]+)'/g;
+      while ((m = re.exec(src))) emitted.add(m[1]);
+    }
+    const dead = GATED.filter((k) => !emitted.has(k));
+    if (dead.length) throw new Error('Settings offers a switch for ' + dead.join(' and ') + ', which nothing ever emits');
+
+    /* An ACCOUNT record is not a promotion. Four of them — BangBux expiry, Terms
+       acceptance, Standing up and Standing down — rode on kind:'promo', so turning
+       off "Promotions · Up to 14 per day" silently stopped the only notice that a
+       balance had expired. There is no toast on that branch, so the money simply
+       vanished with no record anywhere in the app.
+       Booted for real, with the switch off, because the call site is in js/app.js. */
+    (function () {
+      const b = harness.loadApp();
+      const T1 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+      b.clock.set(T1);
+      b.FB.store.set((st) => {
+        st.settings.notifications.promos = false;
+        st.scrip = [{ at: T1 - 96 * 3600000, amt: 4 }];    /* issued four days ago */
+        return st;
+      });
+      try {
+        if (b.FB.scrip.balance() !== 0) throw new Error('a four-day-old grant has not expired');
+        b.run(fs.readFileSync(path.join(ROOT, 'js/app.js'), 'utf8'));
+        const told = b.FB.notifs.list().some((n) => /BangBux/i.test(n.title || '') && /expired/i.test(n.title || ''));
+        if (!told) {
+          throw new Error('with Promotions switched off, nothing records that a BangBux balance expired');
+        }
+      } finally { b.clock.restore(); b.dispose(); }
+    })();
     const miss = FB.notifs.list().filter((n) => n.kind === 'miss');
     const bodies = new Set(miss.map((n) => n.body));
     if (bodies.size !== miss.length) throw new Error('the backlog sent the same sentence more than once');
@@ -1900,7 +2184,12 @@ check('notifications accumulate, back-date, and never stay read', () => {
     clock.set(T0);
     FB.store.set((st) => { st.settings.notifications.reengagement = false; st.orders = [{ placedAt: T0 }]; return st; });
     clock.set(T0 + 3 * 86400000);
-    if (FB.notifs.backfill() !== 0) throw new Error('re-engagement is switched off and still notified');
+    FB.notifs.backfill();
+    /* by KIND: backfill also carries the nightly summary and a promotion, neither of
+       which this switch governs, so a bare zero here would only prove that gating one
+       kind had silenced all of them */
+    if (FB.notifs.list().some((n) => n.kind === 'miss')) throw new Error('re-engagement is switched off and still notified');
+    if (!FB.notifs.list().length) throw new Error('switching off one kind silenced every kind');
 
     /* and the joke: marked as read, then unread again, one at a time */
     FB.store.reset();

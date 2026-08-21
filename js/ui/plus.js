@@ -19,6 +19,22 @@ window.FB = window.FB || {};
 
      One helper because there are two call sites — here and the Account membership
      row — and they were separate copies of the same expression. */
+  /* The next renewal, DERIVED. It used to be a string stamped at join —
+     FB.dayLabel(now + 30d) + ', automatically' — which was wrong twice over: dayLabel
+     only formatted the PAST, so a date a month out came back as a bare weekday name
+     ("Renews Sun"), and the string was frozen, so a four-month member still read the
+     label for day 30. Derived from the same boundary the dues step on, so the two
+     can never disagree. */
+  FB.plusRenewsAt = function (st) {
+    st = st || FB.S();
+    if (!st.plus.since) return null;
+    return st.plus.since + FB.plusMonths(st) * 2592000000;
+  };
+  FB.plusRenewsLabel = function (st) {
+    var at = FB.plusRenewsAt(st);
+    return at ? FB.dayLabel(at) + ', automatically' : 'monthly';
+  };
+
   FB.plusMonths = function (st) {
     st = st || FB.S();
     if (!st.plus.since) return 1;
@@ -107,7 +123,8 @@ window.FB = window.FB || {};
         FB.busy(t, 'plusJoin', function () {
         FB.store.set(function (st) {
           st.plus.active = true; st.plus.since = Date.now(); st.plus.trialUsed = true;
-          st.plus.renewsOn = FB.dayLabel(Date.now() + 30 * 86400000) + ', automatically';
+          /* the moment, not a rendering of it — every reader formats at paint */
+          st.plus.renewsOn = Date.now() + 30 * 86400000;
           /* BOTH halves, or the panel's own books contradict each other: net is
              saved - dues - paid, and a rejoin that keeps the previous membership's
              Benefit Realization Fees starts you in the red for someone else's. The
@@ -186,7 +203,7 @@ window.FB = window.FB || {};
     var st = FB.S();
     FB.sheet.open({
       title: 'Manage membership',
-      html: '<div class="mrow">' + FB.icon('card', 19) + '<span class="mr-b"><b>Billing</b><span>$19.99 monthly · ' + FB.esc(st.plus.renewsOn || 'renews automatically') + '</span></span></div>' +
+      html: '<div class="mrow">' + FB.icon('card', 19) + '<span class="mr-b"><b>Billing</b><span>$19.99 monthly · ' + FB.esc(FB.plusRenewsLabel(st)) + '</span></span></div>' +
         '<div class="mrow">' + FB.icon('gift', 19) + '<span class="mr-b"><b>BangBux™</b><span>' + FB.money(FB.scrip.balance()) + ' available</span></span></div>' +
         '<button class="mrow" data-next>' + FB.icon('x', 19) + '<span class="mr-b"><b>Cancel membership</b><span>Available online.</span></span>' +
         '<span class="mr-r">' + FB.icon('fwd', 15) + '</span></button>',

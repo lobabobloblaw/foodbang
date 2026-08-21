@@ -224,7 +224,60 @@ window.FB = window.FB || {};
           ts: ts,
         });
       }
-      var added = FB.notifs.pushMany(out);
+      /* The nightly summary the Settings row promises, "Delivered at 2:40 AM", which
+         the app had never once delivered — `nightly` was a GATE entry with no
+         emitter, so the switch was inert in both positions. Back-dated to the 2:40
+         it claims, computed from what the save already knows, capped with everything
+         else, and keyed by the day so running twice is a no-op. Only for days that
+         had an order: a summary of nothing is a notification nobody asked for. */
+      var nights = [];
+      for (var n = 1; n <= Math.min(days, 6); n++) {
+        var at = new Date(from + n * 86400000);
+        var slot = new Date(at.getFullYear(), at.getMonth(), at.getDate(), 2, 40, 0).getTime();
+        if (slot > now) continue;
+        var dayStart = new Date(at.getFullYear(), at.getMonth(), at.getDate()).getTime() - 86400000;
+        var sum = orders.filter(function (o) { return o.placedAt >= dayStart && o.placedAt < dayStart + 86400000; });
+        if (!sum.length) continue;
+        var spent = FB.sum(sum, function (o) { return (o.calc && o.calc.total) || 0; });
+        nights.push({
+          id: 'nightly:' + Math.floor(slot / 86400000),
+          kind: 'nightly', icon: 'clock',
+          title: 'Your nightly summary',
+          body: FB.plural(sum.length, 'order') + ', ' + FB.money(spent) + '. ' +
+            'This summary is generated at 2:40 AM and is not adjustable.',
+          ts: slot, go: 'bodymax',
+        });
+      }
+
+      /* An actual promotion, on the kind whose switch is named for it. Moving the
+         four ACCOUNT records off 'promo' — a BangBux expiry is not an offer — left
+         nothing emitting it at all, so the "Promotions · Up to 14 per day" switch
+         became inert in the other direction. The menus already carry the offers;
+         this advertises one. Seeded on the day so it never reshuffles, back-dated
+         like everything else here, and one a day rather than fourteen because the
+         joke is the promise, not the volume. */
+      var promos = [];
+      var stores = (FB.catalog && FB.catalog.all) ? FB.catalog.all().filter(function (st2) {
+        return (st2.promos || []).some(function (pr) { return pr.text; });
+      }) : [];
+      if (stores.length) {
+        for (var q = 1; q <= Math.min(days, 6); q++) {
+          var pts = from + q * 86400000;
+          if (pts > now) continue;
+          var day = Math.floor(pts / 86400000);
+          var pick = stores[FB.hash('promo:' + day) % stores.length];
+          var offer = (pick.promos || []).filter(function (pr) { return pr.text; })[0];
+          promos.push({
+            id: 'promo:' + day,
+            kind: 'promo', icon: 'tag',
+            title: pick.name + ' has an offer',
+            body: offer.text + ' Conditions apply and are not listed here.',
+            ts: pts, go: 'store', params: { slug: pick.slug },
+          });
+        }
+      }
+
+      var added = FB.notifs.pushMany(out.concat(nights).concat(promos));
       FB.store.set(function (s) { s.notifsThrough = now; return s; }, { silent: true });
       added += FB.notifs.restocks(now);
       return added;

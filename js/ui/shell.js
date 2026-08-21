@@ -29,7 +29,14 @@ window.FB = window.FB || {};
   function renderTabs() {
     if (!tabEl) return;
     var cur = current ? (screens[current.name] || {}).tab : null;
-    var pending = FB.store.activeOrder() ? 1 : 0;
+    /* Counted, not dereferenced. activeOrderId is ONE slot and the app happily runs
+       several live orders, so tick() pointing it at whichever finished first made the
+       badge go dark while another was still en route. Same predicate js/ui/orders.js
+       and js/sim/tracker.js use, so the badge and the "In progress" list cannot
+       disagree — and two live orders now correctly read 2. */
+    var pending = FB.S().orders.filter(function (o) {
+      return o.status !== 'delivered' && o.status !== 'cancelled';
+    }).length;
     tabEl.innerHTML = TABS.map(function (t) {
       var badge = '';
       if (t.id === 'orders' && pending) badge = '<i class="dot">' + pending + '</i>';

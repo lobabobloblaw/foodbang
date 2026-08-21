@@ -174,8 +174,14 @@ for (const f of files) {
       }
     }
   }
-  const scarceHere = m.menu.flatMap(sec => sec.items).filter(it => it.scarce).length;
-  const itemsHere = m.menu.flatMap(sec => sec.items).length;
+  /* `(sec.items || [])` for the same reason as the guards above: a section authored
+     without an items array is RECORDED as a problem further up and then walked past,
+     so dereferencing it here died mid-walk with an anonymous TypeError and threw away
+     every problem already collected from every other store — an author fixing a batch
+     of menus saw one stack trace per run instead of the list. */
+  const allItems = m.menu.reduce((a, sec) => a.concat(sec.items || []), []);
+  const scarceHere = allItems.filter(it => it.scarce).length;
+  const itemsHere = allItems.length;
   if (scarceHere > itemsHere * 0.25) {
     problems.push(`${slug}: ${scarceHere} of ${itemsHere} items can run out — over the 25% ceiling`);
   }

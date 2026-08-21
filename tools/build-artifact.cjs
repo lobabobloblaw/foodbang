@@ -12,6 +12,7 @@ const MIME = { '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg',
 
 /* ---- every image as a data URI, keyed by the path the app already requests ---- */
 const assets = {};
+const stale = [];   /* cache entries older than the asset they stand in for */
 let bytes = 0;
 (function walk(dir) {
   for (const e of fs.readdirSync(dir)) {
@@ -21,7 +22,18 @@ let bytes = 0;
     if (!MIME[ext]) continue;
     const key = path.relative(ROOT, p).split(path.sep).join('/');
     const small = path.join(SMALL, key.replace(/^assets\//, ''));
-    const src = fs.existsSync(small) ? small : p;
+    /* The cache has to prove it is at least as new as the source it stands in for.
+       Preferring it on existence alone silently shipped every regenerated asset's
+       OLD bytes: three La Taqueria Verdadera reshoots were inlined from a cache four
+       hours older than the files on disk, so the served site showed the new
+       photographs and the published artifact showed the ones they replaced. Falling
+       back rather than throwing keeps the build working and makes the divergence
+       impossible to miss. */
+    let src = p;
+    if (fs.existsSync(small)) {
+      if (fs.statSync(small).mtimeMs >= fs.statSync(p).mtimeMs) src = small;
+      else stale.push(key);
+    }
     let buf = fs.readFileSync(src);
     /* macOS evicts file contents to iCloud when the disk fills — stat reports the
        real size but the read comes back empty. An empty inline is a silently
@@ -35,6 +47,12 @@ let bytes = 0;
     assets[key] = 'data:' + MIME[ext] + ';base64,' + buf.toString('base64');
   }
 })(path.join(ROOT, 'assets'));
+
+if (stale.length) {
+  console.warn('artifact-assets is stale for ' + stale.length + ' file(s); inlined the full-size original instead:');
+  stale.forEach((k) => console.warn('  ' + k));
+  console.warn('  (regenerate the cache, or delete build/artifact-assets to stop using it)');
+}
 
 /* ---- shell: reuse index.html's own ordered style/script lists ---- */
 const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');

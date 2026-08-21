@@ -422,6 +422,24 @@ window.FB = window.FB || {};
           title: labelFor(o, b.step), body: b.text, ts: b.at,
           go: 'track', params: { id: o.id },
         });
+        /* The Slinger says something when they pick the order up, and it goes out on
+           its OWN kind. Settings offers a "Slinger messages" switch that gated a kind
+           nothing ever emitted, while the messages themselves rode on 'order' — so
+           the switch that named them did nothing and the one that did not name them
+           silenced them. Delivery only: on a pickup there is no Slinger, which is the
+           whole of finding 18. Stamped from the timetable like every other beat, so a
+           catch-up cannot fire it late or twice. */
+        if (b.step === 'pickup' && o.mode !== 'pickup' && o.slinger) {
+          FB.notifs.push({
+            id: 'slg:' + o.id, kind: 'slinger', icon: 'phone',
+            title: o.slinger.name + ' has your order',
+            body: FB.slingers && FB.slingers.greeting
+              ? (FB.slingers.greeting(o.slinger, (o.tipHistory || []).some(function (t) { return t.delta < 0; })) ||
+                 'On my way. Messages are monitored for quality.')
+              : 'On my way. Messages are monitored for quality.',
+            ts: b.at, go: 'track', params: { id: o.id },
+          });
+        }
       }
       o.step = stepIndex(b.step);
       o.status = b.step;
@@ -688,8 +706,10 @@ window.FB = window.FB || {};
         '<circle r="13" fill="var(--bg)" stroke="var(--line-strong)" stroke-width="1.5"/>' +
         '<path d="M-5,0 L0,-5 L5,0 v5 h-10 z" fill="var(--fb)"/>' +
         '<rect x="-17" y="15" width="34" height="13" rx="6.5" fill="var(--bg)" stroke="var(--line)" stroke-width="1"/>' +
-        '<text class="pinlab" y="24" text-anchor="middle">YOU</text></g>' +
-      /* courier — positioned by JS along the route path */
+        '<text class="pinlab" y="24" text-anchor="middle">' + (o.mode === 'pickup' ? 'HOME' : 'YOU') + '</text></g>' +
+      /* The travelling dot. On a PICKUP nobody is driving to you — the feed says so
+         and the screen used to animate a courier to your door anyway — so it is drawn
+         as the route YOU take, and the ends are labelled accordingly. */
       '<g id="crx-' + o.id + '">' +
         '<circle r="15" fill="var(--fb)" opacity=".24"><animate attributeName="r" values="12;23;12" dur="2.6s" repeatCount="indefinite"/></circle>' +
         '<circle r="10.5" fill="var(--fb)" stroke="#fff" stroke-width="2.5"/>' +

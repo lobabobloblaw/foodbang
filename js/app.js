@@ -109,7 +109,13 @@
 
     if (expired > 0) {
       FB.notifs.push({
-        id: 'scrip-exp:' + Math.floor(Date.now() / 3600000), kind: 'promo', icon: 'gift',
+        /* 'account', not 'promo'. The Promotions switch gates a KIND, and four
+           account records rode on that kind while zero actual promotions did — so
+           turning off "Up to 14 per day" silently stopped the only notice that a
+           BangBux balance had expired. There is no toast on this branch, so the
+           balance simply vanished with no record anywhere in the app. GATE has no
+           'account' key, exactly as it has none for 'restock'. */
+        id: 'scrip-exp:' + Math.floor(Date.now() / 3600000), kind: 'account', icon: 'gift',
         title: FB.money(expired) + ' in BangBux™ expired',
         body: 'They were available for seventy-two hours, during which you did not order.',
         go: 'plus',
@@ -120,7 +126,7 @@
       FB.toast('Your Standing has been reduced to ' + name + '.', { kind: 'bad', ms: 4200 });
       FB.notifs.push({
         id: 'standing-down:' + name + ':' + Math.floor(Date.now() / 86400000),
-        kind: 'promo', icon: 'alert', title: 'Standing reduced to ' + name,
+        kind: 'account', icon: 'alert', title: 'Standing reduced to ' + name,
         body: 'Standing decays at one point per day. This is not a penalty; it is an absence of activity.',
         go: 'account',
       });

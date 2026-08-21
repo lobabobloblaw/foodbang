@@ -93,12 +93,26 @@ window.FB = window.FB || {};
     return new Date(base.getFullYear(), base.getMonth(), base.getDate() + 1,
                     Math.floor(mins / 60), mins % 60, 0, 0).getTime();
   };
+  /* Anchored at local midnight and ROUNDED, not floored. The gap between two local
+     midnights is 23 or 25 hours across a daylight-saving change, so dividing by a
+     flat 86400000 and flooring made every span crossing one a day short: yesterday's
+     order read "Today", and two orders from different days both read "Yesterday".
+     Rounding is exact here — n calendar days is n*24h +/- 1h, within 0.042 of n.
+
+     `dd > 1` on the weekday branch as well: a FUTURE date used to fall into it and
+     come back as a bare weekday name, so BANG+ said "Renews Sun" for a date a month
+     out. Future dates now reach the month/day path with everything else. */
   FB.dayLabel = function (ts) {
-    var d = new Date(ts), now = new Date();
-    var dd = Math.floor((now.setHours(0, 0, 0, 0) - new Date(ts).setHours(0, 0, 0, 0)) / 86400000);
+    /* Date.now(), not `new Date()`: the test harness patches Date.now inside the vm
+       and leaves the constructor alone, so a bare `new Date()` here reads the real
+       wall clock and this function cannot be travelled in time at all. */
+    var d = new Date(ts), now = new Date(Date.now());
+    var a = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var b = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    var dd = Math.round((a - b) / 86400000);
     if (dd === 0) return 'Today';
     if (dd === 1) return 'Yesterday';
-    if (dd < 7) return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getDay()];
+    if (dd > 1 && dd < 7) return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getDay()];
     return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate();
   };
   FB.ago = function (ts) {
