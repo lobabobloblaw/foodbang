@@ -33,6 +33,8 @@ window.FB = window.FB || {};
     upsell: 'Suppressing recommendations removes a revenue stream. The stream is restored here.',
     restraint: 'A reduced Hunger Level reduces recommended volume. The shortfall is billed.',
     standing: 'Maintaining a Standing requires maintenance. The fee is assessed at the tier you hold, not the tier you use.',
+    substitution: 'A substitution is an operation performed on your order after you placed it, and is billed as one.',
+    hold: 'Holding an order occupies a position that would otherwise be occupied by an order that is moving.',
     tipreview: 'A tip is a commitment. Revising a commitment is an operation, and operations are billed.',
     restock: 'Notifying you that food exists again requires monitoring that food. Monitoring is billed.',
     reconciliation: 'Where the order-time and delivery-time assessments are equal, reconciliation is still performed, and is billed.',
@@ -179,6 +181,8 @@ window.FB = window.FB || {};
       /* §14, added in Terms 9.4.3 and billed from the moment you accept it — the
          only fee in this engine you agreed to in writing. */
       if (ctx.tosVersion >= 3) lines.push(line('reconciliation', 'Reconciliation Fee', 1.20, null));
+      if (ctx.substitution) lines.push(line('substitution', 'Substitution Fee', 2.40, 'The substitute is selected by the restaurant.'));
+      if (ctx.hold) lines.push(line('hold', 'Order Hold Fee', 1.85, 'The order waits. The food does not.'));
       if (ctx.tipReviews > 0) {
         lines.push(line('tipreview', 'Tip Reduction Review Fee', 2.40 * ctx.tipReviews,
           FB.plural(ctx.tipReviews, 'revision') + ' reviewed.'));

@@ -212,6 +212,22 @@
   letter-spacing: .02em; margin-top: 4px; text-transform: none;
 }
 
+/* the restaurant has run out, and is waiting for an answer */
+.incident {
+  margin: 12px 16px 4px; padding: 14px 15px; border-radius: var(--r-md);
+  background: var(--bad-tint); border: 1px solid var(--bad);
+}
+.inc-h { display: flex; align-items: center; gap: 8px; }
+.inc-h svg { color: var(--bad); flex: none; }
+.inc-h b { font: var(--t-body-m); color: var(--ink); flex: 1; min-width: 0; }
+.inc-clock {
+  font: 700 calc(15px * var(--fs)) var(--mono); color: var(--bad);
+  font-variant-numeric: tabular-nums; letter-spacing: -.5px;
+}
+.incident p { font: var(--t-sub); color: var(--ink-2); margin: 8px 0 12px; line-height: 1.45; }
+.inc-acts { display: flex; flex-direction: column; gap: 7px; }
+.inc-fine { font: var(--t-cap); color: var(--ink-3); margin-top: 11px; line-height: 1.45; }
+
 .rl--sub .rl-l { padding-left: 12px; color: var(--ink-3); font-size: calc(12px * var(--fs)); }
 
 .trk-feed { padding: 6px 0 4px; }

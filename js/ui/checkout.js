@@ -407,7 +407,7 @@ window.FB = window.FB || {};
           tip: c.tipLine.amount, total: c.total, nonFood: c.nonFood, multiple: c.multiple,
           feeLines: c.feeLines.map(function (l) { return { label: l.label, amount: l.amount, id: l.id, free: l.free }; }),
           roundUp: c.roundLine ? c.roundLine.amount : 0, promo: c.promoAmount },
-        status: 'placed', slinger: g, slingerId: person.id,
+        status: 'placed', slinger: g, personId: person.id,
         etaMin: s.deliveryMax + (co.express ? -1 : 0), etaDrift: 0,
         events: [], rated: null, load: load, step: 0,
       };

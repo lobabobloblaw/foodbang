@@ -91,6 +91,8 @@ check('every fee line has a FEE_WHY entry, in every context', () => {
     { subtotal: 40, lineCount: 3, tosVersion: 3 },
     { subtotal: 40, lineCount: 3, restockAlerts: 2 },
     { subtotal: 40, lineCount: 3, tipReviews: 1 },
+    { subtotal: 40, lineCount: 3, substitution: true },
+    { subtotal: 40, lineCount: 3, hold: true },
   ];
   const seen = new Set(), missing = new Set();
   for (const ctx of contexts) {
@@ -1441,6 +1443,106 @@ check('the same nine people keep turning up, and a revised tip stays consistent'
     if (after.calc.tip < 0) throw new Error('the tip went negative');
 
     return FB.slingers.SIZE + ' on the roster, ' + Object.keys(seen).length + ' seen over 40 orders, ledgers agree after a revision';
+  } finally { clock.restore(); app.dispose(); }
+});
+
+check('the restaurant can run out mid-order, and it is answered exactly once', () => {
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    function place(id, lines) {
+      clock.set(T0);
+      harness.addToCart(FB, 'mcronalds', lines);
+      const o = harness.makeOrder(FB, 'mcronalds', { now: T0 });
+      o.id = id; o.etaDrift = 0; o.events = []; delete o.incident; delete o.replayed;
+      FB.tracker.build(o);
+      FB.cart.clear('mcronalds');
+      FB.store.set((st) => {
+        st.orders.unshift(o); st.activeOrderId = o.id;
+        st.meta.lifetimeSpend = o.calc.total; st.meta.lifetimeFees = o.calc.feesTotal;
+        st.meta.lifetimeTips = o.calc.tip;
+        return st;
+      });
+      FB.bodymax.ingest(o);
+      return o;
+    }
+
+    /* a single-line order never gets one: "remove and be credited" would empty an
+       order whose fee stack has already been multiplied */
+    for (let i = 0; i < 25; i++) {
+      FB.store.reset();
+      const one = place('o_single' + i, 1);
+      if (one.incident) throw new Error('a single-line order was given an incident');
+    }
+
+    /* find a multi-line order that does get one */
+    let hit = null;
+    for (let i = 0; i < 60 && !hit; i++) {
+      FB.store.reset();
+      const o = place('o_multi' + i, 3);
+      if (o.incident) hit = o;
+    }
+    if (!hit) throw new Error('no multi-line order ever gets an incident');
+    if (hit.incident.at <= hit.startAt) throw new Error('the incident fires before the order starts');
+    if (hit.incident.deadline <= hit.incident.at) throw new Error('the deadline is not after the incident');
+    if (hit.incident.deadline >= hit.deliverAt) throw new Error('the deadline lands after the order was due to arrive');
+
+    /* it HOLDS the order: the estimate does not run down while nobody answers */
+    clock.set(hit.incident.at + 1000);
+    FB.tracker.tick();
+    const held = FB.store.order(hit.id);
+    if (held.status === 'delivered') throw new Error('the order delivered with an unanswered incident');
+    const etaA = FB.tracker.eta(held);
+    clock.set(hit.incident.at + 20000);
+    FB.tracker.tick();
+    if (FB.tracker.eta(FB.store.order(hit.id)) < etaA - 1) throw new Error('the estimate ran down while the order was held');
+
+    /* answering it patches all three ledgers together */
+    const before = {
+      total: FB.store.order(hit.id).calc.total,
+      spend: FB.S().meta.lifetimeSpend,
+      row: FB.S().bodymax.history.find(r => r.orderId === hit.id).spend,
+    };
+    const r = FB.tracker.resolveIncident(hit.id, 'remove');
+    if (!r || !(r.credit > 0)) throw new Error('removing an item credited nothing');
+    const after = FB.store.order(hit.id);
+    const row = FB.S().bodymax.history.find(r2 => r2.orderId === hit.id);
+    if (row.spend !== after.calc.total) throw new Error('the BODYMAX row and the receipt disagree after a resolution');
+    if (FB.S().meta.lifetimeSpend !== FB.round2(before.spend + (after.calc.total - before.total))) {
+      throw new Error('lifetimeSpend and the receipt disagree after a resolution');
+    }
+    /* the credit is the BASE price, not the unit price that was charged */
+    const removedName = hit.incident.name;
+    const src = FB.catalog.all().flatMap(s => s.menu.flatMap(sec => sec.items)).find(it => it.name === removedName);
+    if (src && Math.abs(r.credit % src.price) > 0.011 && r.credit !== src.price) {
+      throw new Error('the credit is not a multiple of the base price');
+    }
+    /* and it cannot be answered twice */
+    if (FB.tracker.resolveIncident(hit.id, 'substitute') !== null) throw new Error('an incident was resolved twice');
+
+    /* an expired incident elects ONCE, even across a closed browser and two boots */
+    FB.store.reset();
+    let ab = null;
+    for (let i = 0; i < 60 && !ab; i++) {
+      FB.store.reset();
+      const o = place('o_gone' + i, 3);
+      if (o.incident) ab = o;
+    }
+    if (!ab) throw new Error('no incident to abandon');
+    clock.set(ab.incident.deadline + 86400000);
+    FB.tracker.resume();
+    FB.tracker.resume();
+    const done = FB.store.order(ab.id);
+    if (done.incident.resolution !== 'substitute') throw new Error('an expired incident did not elect the dearest option');
+    const elections = done.events.filter(e => /No resolution was selected/.test(e.text));
+    if (elections.length !== 1) throw new Error('the election fired ' + elections.length + ' times');
+    if (done.status !== 'delivered') throw new Error('an abandoned incident never settled: ' + done.status);
+    /* the feed still reads in time order with the incident in it */
+    const ts = done.events.map(e => e.ts);
+    if (!ts.every((t, i) => i === 0 || ts[i - 1] >= t)) throw new Error('the feed is out of order with an incident in it');
+
+    return 'held, answered, and elected once when abandoned';
   } finally { clock.restore(); app.dispose(); }
 });
 

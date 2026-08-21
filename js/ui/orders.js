@@ -76,6 +76,10 @@ window.FB = window.FB || {};
          on all ~20 ticks made a screen reader interrupt and re-read the whole arrival
          summary every few seconds; only write when the markup actually differs. */
       var lastEta = etaBlock(o), lastBar = barBlock(o), lastFeed = feedBlock(o);
+      /* A FOURTH cached fragment. This screen patches exactly the nodes listed here
+         and rebuilds the body only when delivery changes its shape — so a countdown
+         that is not in this list is a countdown that never moves. */
+      var lastInc = incidentBlock(o);
       var lastStatus = o.status;
       offTick = FB.tracker.onTick(function () {
         var cur = FB.store.order(p.id);
@@ -108,6 +112,9 @@ window.FB = window.FB || {};
           if (bar && nextBar !== lastBar) { bar.innerHTML = nextBar; lastBar = nextBar; }
           var feed = root.querySelector('.trk-feed');
           if (feed && nextFeed !== lastFeed) { feed.innerHTML = nextFeed; lastFeed = nextFeed; }
+          var nextInc = incidentBlock(cur);
+          var incEl = root.querySelector('.trk-inc');
+          if (incEl && nextInc !== lastInc) { incEl.innerHTML = nextInc; lastInc = nextInc; }
         }
         /* one announcement per step, not one per second */
         if (cur.status !== lastStatus) {
@@ -160,6 +167,38 @@ window.FB = window.FB || {};
     return step.label + '. Estimated arrival in ' + FB.tracker.eta(o) + ' minutes.';
   }
 
+  /* Rendered as a BLOCK inside the screen rather than as a modal, so it survives a
+     reload and a navigation away — which is what makes it an obligation rather than
+     an interruption. */
+  function incidentBlock(o) {
+    var inc = o.incident;
+    if (!inc || o.status === 'delivered') return '';
+    if (Date.now() < inc.at) return '';
+    if (inc.resolution) return '';
+    var left = Math.max(0, inc.deadline - Date.now());
+    var mm = Math.floor(left / 60000), ss = Math.floor((left % 60000) / 1000);
+    var clockStr = mm + ':' + (ss < 10 ? '0' : '') + ss;
+    var single = (o.lines || []).length <= 1;
+    return '<div class="incident">' +
+      '<div class="inc-h">' + FB.icon('alert', 17) +
+        '<b>The restaurant is out of ' + FB.esc(inc.name) + '</b>' +
+        '<span class="inc-clock">' + clockStr + '</span></div>' +
+      '<p>Select a resolution within ' + clockStr + '. If no resolution is selected, one will be ' +
+      'elected on your behalf.</p>' +
+      '<div class="inc-acts">' +
+        '<button class="btn btn--ghost btn--block btn--split" data-inc="substitute">' +
+          '<span>Substitute</span><span>+' + FB.money(2.40) + '</span></button>' +
+        (single ? '' :
+        '<button class="btn btn--ghost btn--block btn--split" data-inc="remove">' +
+          '<span>Remove</span><span>credited at base price</span></button>') +
+        '<button class="btn btn--ghost btn--block btn--split" data-inc="hold">' +
+          '<span>Hold the order</span><span>+' + FB.money(1.85) + '</span></button>' +
+      '</div>' +
+      '<div class="inc-fine">The substitute is selected by the restaurant. A removal is credited the base ' +
+      'price, excluding required selections. A hold delays the order and does not delay the food.</div>' +
+      '</div>';
+  }
+
   function feedBlock(o) {
     var done = o.status === 'delivered';
     return o.events.map(function (e, i) {
@@ -192,6 +231,7 @@ window.FB = window.FB || {};
 
     /* progress */
     h += '<div class="trk-bar">' + barBlock(o) + '</div>';
+    h += '<div class="trk-inc">' + incidentBlock(o) + '</div>';
 
     if (!done) {
       var reviews = o.tipReviews || 0;
@@ -287,32 +327,42 @@ window.FB = window.FB || {};
      every time anyone used it. Both directions go through here now.
 
      delta is the change to the TIP. fee is charged on top and is never refunded. */
-  function adjustTip(orderId, delta, fee) {
-    fee = fee || 0;
+  function adjustOrder(orderId, d) {
+    var spend = FB.round2(d.spend || 0), fees = FB.round2(d.fees || 0), tip = FB.round2(d.tip || 0);
     FB.store.set(function (st) {
       var oo = st.orders.filter(function (x) { return x.id === orderId; })[0];
       if (!oo) return st;
-      /* a tip can be revised to zero and no further */
-      var newTip = Math.max(0, FB.round2(oo.calc.tip + delta));
-      var realDelta = FB.round2(newTip - oo.calc.tip);
-      var spendDelta = FB.round2(realDelta + fee);
+      oo.calc.total = FB.round2(oo.calc.total + spend);
+      oo.calc.feesTotal = FB.round2(oo.calc.feesTotal + fees);
+      if (tip) oo.calc.tip = FB.round2(oo.calc.tip + tip);
 
-      oo.calc.tip = newTip;
-      oo.calc.total = FB.round2(oo.calc.total + spendDelta);
-      oo.calc.feesTotal = FB.round2(oo.calc.feesTotal + fee);
-      oo.tipHistory = (oo.tipHistory || []).concat([{ ts: Date.now(), delta: realDelta, fee: fee, to: newTip }]);
-      if (fee) oo.tipReviews = (oo.tipReviews || 0) + 1;
-
-      st.meta.lifetimeTips = FB.round2(st.meta.lifetimeTips + realDelta);
-      st.meta.lifetimeSpend = FB.round2(st.meta.lifetimeSpend + spendDelta);
-      st.meta.lifetimeFees = FB.round2(st.meta.lifetimeFees + fee);
+      st.meta.lifetimeSpend = FB.round2(st.meta.lifetimeSpend + spend);
+      st.meta.lifetimeFees = FB.round2(st.meta.lifetimeFees + fees);
+      st.meta.lifetimeTips = FB.round2(st.meta.lifetimeTips + tip);
 
       /* the row BODYMAX froze at placement, patched by order id */
       var row = (st.bodymax.history || []).filter(function (r) { return r.orderId === orderId; })[0];
       if (row) {
-        row.spend = FB.round2(row.spend + spendDelta);
-        row.fees = FB.round2(row.fees + fee);
+        row.spend = FB.round2(row.spend + spend);
+        row.fees = FB.round2(row.fees + fees);
       }
+      return st;
+    });
+  }
+
+  function adjustTip(orderId, delta, fee) {
+    fee = fee || 0;
+    var o = FB.store.order(orderId);
+    if (!o) return;
+    /* a tip can be revised to zero and no further */
+    var newTip = Math.max(0, FB.round2(o.calc.tip + delta));
+    var realDelta = FB.round2(newTip - o.calc.tip);
+    adjustOrder(orderId, { spend: FB.round2(realDelta + fee), fees: fee, tip: realDelta });
+    FB.store.set(function (st) {
+      var oo = st.orders.filter(function (x) { return x.id === orderId; })[0];
+      if (!oo) return st;
+      oo.tipHistory = (oo.tipHistory || []).concat([{ ts: Date.now(), delta: realDelta, fee: fee, to: oo.calc.tip }]);
+      if (fee) oo.tipReviews = (oo.tipReviews || 0) + 1;
       return st;
     });
   }
@@ -320,6 +370,7 @@ window.FB = window.FB || {};
   /* exported so the ledger invariant is tested against THIS function rather than
      against a copy of it in the test — a copy would agree with itself forever */
   FB.adjustTip = adjustTip;
+  FB.adjustOrder = adjustOrder;
   FB.TIP_REVIEW_FEE = TIP_REVIEW_FEE;
   FB.MAX_TIP_REVIEWS = MAX_REVIEWS;
 
@@ -395,6 +446,20 @@ window.FB = window.FB || {};
       });
     });
 
+    FB.on(root, 'click', '[data-inc]', function (e, t) {
+      var choice = t.dataset.inc;
+      FB.busy(t, 'save', function () {
+        var r = FB.tracker.resolveIncident(o.id, choice);
+        if (!r) return;
+        FB.toast(choice === 'remove'
+          ? 'Removed. Credited ' + FB.money(r.credit) + ', the base price, excluding required selections.'
+          : choice === 'hold' ? 'Order held. The order waits. The food does not.'
+          : 'Substitution accepted. The substitute is selected by the restaurant.',
+          { icon: choice === 'remove' ? 'checkFill' : 'alert' });
+        FB.nav.refresh();
+      });
+    });
+
     FB.on(root, 'click', '[data-msg]', function () { openChat(o); });
 
     FB.on(root, 'click', '[data-rate]', function (e, t) {
@@ -406,7 +471,7 @@ window.FB = window.FB || {};
           return st;
         });
         /* it goes on the person's record with you, not just on the order */
-        if (o.slingerId) FB.slingers.rate(o.slingerId, n);
+        if (o.personId) FB.slingers.rate(o.personId, n);
         FB.toast(n >= 4 ? 'Thank you. Your rating has been forwarded.' : 'Received. Your rating has been forwarded to the Slinger with your name attached.');
         FB.nav.refresh();
       });
@@ -463,7 +528,7 @@ window.FB = window.FB || {};
   function chatFor(o) { return CHATS[FB.hash(String(o.id) + 'chat') % CHATS.length]; }
 
   function openChat(o) {
-    var person = o.slingerId ? FB.slingers.get(o.slingerId) : null;
+    var person = o.personId ? FB.slingers.get(o.personId) : null;
     var reduced = (o.tipHistory || []).some(function (t) { return t.delta < 0; });
     var greeting = FB.slingers.greeting(person, reduced);
     var thread = chatFor(o);

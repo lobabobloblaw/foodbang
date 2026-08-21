@@ -1,5 +1,13 @@
 /* FoodBang — the Slinger roster.
 
+   The FILE is roster.js and the order field is personId, and neither name is an
+   accident. tools/rebrand.cjs rewrites the courier noun wherever it appears as a
+   word — including inside a script path in index.html, which would then have
+   pointed at a file that no longer had that name — and its word boundary misses a
+   camelCase suffix, so an id built out of that noun would have carried the
+   outgoing brand through every future rename. --selfcheck found both, which is
+   what it is for.
+
    Identity was FB.C.slinger(seed), seeded on the ORDER id, so a given Slinger
    structurally could never recur: every delivery in the app's life was made by a
    stranger. There are nine people in your area now, their tenure counts up across

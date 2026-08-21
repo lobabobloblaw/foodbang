@@ -19,6 +19,13 @@ window.FB = window.FB || {};
   /* one simulated minute, in real milliseconds */
   var SIM_MS_PER_MIN = 2000;
 
+  /* How long you get to answer when the restaurant runs out. Real seconds, not
+     simulated ones: a ninety-second deadline inside a delivery that takes ninety
+     seconds to watch is not a deadline, it is the whole order. While it is running
+     the order genuinely WAITS — deliverAt moves forward with the clock — which is
+     what makes "Hold the order. The order waits. The food does not." true. */
+  var INCIDENT_MS = 40000;
+
   var STEPS = [
     { key: 'placed',    label: 'Order placed',        pickup: 'Order placed' },
     { key: 'confirmed', label: 'Restaurant notified', pickup: 'Restaurant notified' },
@@ -255,6 +262,29 @@ window.FB = window.FB || {};
     });
     sched.sort(function (a, b) { return a.at - b.at; });
 
+    /* The restaurant runs out of something, sometimes. Needs at least two lines:
+       "remove and be credited" on a single-line order empties an order whose fee
+       stack has already been multiplied, which is not a resolution. */
+    var lines = o.lines || [];
+    if (lines.length >= 2 && FB.seeded('incident:' + o.id)() < incidentChance(o)) {
+      var pickRnd = FB.seeded('incident-line:' + o.id);
+      var idx = Math.floor(pickRnd() * lines.length);
+      /* fires inside preparing, with room left for the deadline before delivery */
+      /* the FIRST preparing beat, so the whole deadline fits inside the window
+         before the order was due to arrive — a deadline that expires after the food
+         has landed is not a deadline */
+      var prep = sched.filter(function (b) { return b.step === 'preparing'; });
+      var at = prep.length ? prep[0].at : o.startAt + span * 0.2;
+      o.incident = {
+        lineIdx: idx,
+        name: lines[idx].name,
+        at: at,
+        deadline: at + INCIDENT_MS,
+        resolution: null,
+        elected: false,
+      };
+    }
+
     /* SCRIPT.delivered used to be dead code: the done branch unshifted a hardcoded
        event and returned, so any new delivered beat silently never appeared. */
     var last = (chosen.delivered && chosen.delivered[0]) || scriptFor(o).delivered.beats[0];
@@ -265,6 +295,7 @@ window.FB = window.FB || {};
     o.status = 'placed';
     o.step = 0;
     o.events = [];
+    o.replayed = 0;
     return o;
   }
 
@@ -276,6 +307,14 @@ window.FB = window.FB || {};
     var keptEvents = o.events || [];
     build(o);
     o.events = keptEvents;
+    o.replayed = 0;
+  }
+
+  /* Weighted by how hard the kitchen is being hit, so it happens at dinner and
+     almost never at three in the afternoon. */
+  function incidentChance(o) {
+    var load = FB.world ? FB.world.kitchenLoad(o.slug, o.placedAt) : 0.5;
+    return 0.10 + load * 0.30;
   }
 
   function stepIndex(key) {
@@ -293,7 +332,47 @@ window.FB = window.FB || {};
   function replay(o, now) {
     ensureSchedule(o);
     var changed = false;
-    var seen = o.events.length;
+
+    /* An unresolved incident HOLDS the order. Nothing after it replays, and
+       deliverAt moves with the clock, so the arrival estimate does not quietly run
+       down while the restaurant waits for an answer. */
+    var inc = o.incident;
+    if (inc && !inc.resolution && now >= inc.at) {
+      if (!inc.announced) {
+        inc.announced = true;
+        o.events.unshift({
+          step: o.status, ts: inc.at,
+          text: 'The restaurant is out of ' + inc.name,
+          sub: 'A resolution is required. If none is selected, one will be elected on your behalf.',
+        });
+        changed = true;
+      }
+      if (now < inc.deadline) {
+        /* the order waits. The food does not. */
+        o.deliverAt = Math.max(o.deliverAt, now + (o.deliverAt - inc.at));
+        return changed;
+      }
+      /* the deadline passed — possibly while the browser was closed. Elect once,
+         quietly, and let the rest of this pass carry on from there. */
+      if (!inc.elected) {
+        inc.elected = true;
+        inc.resolution = 'substitute';
+        inc.resolvedAt = inc.deadline;
+        o.events.unshift({
+          step: o.status, ts: inc.deadline,
+          text: 'No resolution was selected',
+          sub: 'Substitution has been elected on your behalf. Substitution was the most expensive available resolution.',
+        });
+        o.deliverAt += INCIDENT_MS;
+        changed = true;
+      }
+    }
+
+    /* A COUNT of replayed beats, not o.events.length. The feed also carries events
+       that are not scheduled beats — an incident announcement, an election — and
+       once one of those is in it, indexing the schedule by feed length silently
+       skips real beats. */
+    var seen = o.replayed || 0;
     for (var i = 0; i < o.schedule.length; i++) {
       var b = o.schedule[i];
       if (b.at > now) break;
@@ -315,9 +394,15 @@ window.FB = window.FB || {};
       }
       o.step = stepIndex(b.step);
       o.status = b.step;
+      o.replayed = i + 1;
       changed = true;
     }
-    if (now >= o.deliverAt && o.events.length >= o.schedule.length) {
+    /* The feed is newest-first, and a pass can add events out of order: a catch-up
+       announces an incident stamped mid-preparation before it replays the beats
+       that came before it. Sort by the timestamp each event actually carries. */
+    if (changed) o.events.sort(function (a, b) { return b.ts - a.ts; });
+
+    if (now >= o.deliverAt && (o.replayed || 0) >= o.schedule.length) {
       o.step = STEPS.length - 1;
       o.status = 'delivered';
       o.deliveredAt = o.deliverAt;   /* when it happened, not when we noticed */
@@ -363,6 +448,60 @@ window.FB = window.FB || {};
 
   function start() { if (!timer) timer = setInterval(tick, 900); }
   function stop() { clearInterval(timer); timer = null; }
+
+  /* Resolving an incident. The two new fees go through fees.compute like every
+     other fee — a fee charged anywhere else can never be covered by the FEE_WHY
+     walk, which only reads what compute returns. */
+  FB.tracker.INCIDENT_MS = INCIDENT_MS;
+  FB.tracker.resolveIncident = function (orderId, choice) {
+    var o = FB.store.order(orderId);
+    if (!o || !o.incident || o.incident.resolution) return null;
+    var line = o.lines[o.incident.lineIdx];
+    var result = { choice: choice, credit: 0, fee: 0 };
+    if (choice === 'remove') {
+      /* the base price, excluding required selections — which is what the copy on
+         the track screen promises, and is NOT the unit price that was charged */
+      var it = FB.catalog.item(o.slug, line.itemId);
+      result.credit = FB.round2((it ? it.price : line.unit) * line.qty);
+    } else if (choice === 'substitute') {
+      result.fee = 2.40;
+    } else if (choice === 'hold') {
+      result.fee = 1.85;
+    }
+    FB.store.set(function (st) {
+      var oo = st.orders.filter(function (x) { return x.id === orderId; })[0];
+      if (!oo) return st;
+      oo.incident.resolution = choice;
+      oo.incident.resolvedAt = Date.now();
+      oo.events.unshift({
+        step: oo.status, ts: Date.now(),
+        text: RESOLUTION_TEXT[choice] || 'Resolution recorded',
+        sub: RESOLUTION_SUB[choice] || null,
+      });
+      if (choice === 'remove' && oo.lines.length > 1) oo.lines.splice(oo.incident.lineIdx, 1);
+      return st;
+    }, { silent: true });
+    /* one place patches the three ledgers, for tips and for this alike */
+    if (FB.adjustOrder) FB.adjustOrder(orderId, { spend: FB.round2(result.fee - result.credit), fees: result.fee });
+    if (choice === 'hold') {
+      FB.store.set(function (st) {
+        var oo = st.orders.filter(function (x) { return x.id === orderId; })[0];
+        if (oo) oo.deliverAt += INCIDENT_MS;
+        return st;
+      }, { silent: true });
+    }
+    return result;
+  };
+  var RESOLUTION_TEXT = {
+    substitute: 'Substitution accepted',
+    remove: 'Item removed from the order',
+    hold: 'Order held at your request',
+  };
+  var RESOLUTION_SUB = {
+    substitute: 'The substitute is selected by the restaurant and is not described here.',
+    remove: 'You have been credited the base price, excluding required selections.',
+    hold: 'The order waits. The food does not.',
+  };
 
   FB.tracker.STEPS = STEPS;
   FB.tracker.SIM_MS_PER_MIN = SIM_MS_PER_MIN;
