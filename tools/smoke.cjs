@@ -1271,6 +1271,129 @@ check('every figure a receipt prints reconciles with the ones beside it', () => 
   } finally { clock.restore(); app.dispose(); }
 });
 
+check('a ledger cannot be overwritten, retracted, or written from the wrong basket', () => {
+  /* Three ways a recorded fact stopped being true:
+       - place() snapshotted the receipt at the tap but recomputed the BODYMAX load
+         from the LIVE cart three seconds later, and the app bar's Back button stays
+         live for those three seconds — so a cart edited inside the window wrote a
+         nutrition ledger the receipt contradicted;
+       - two tabs each hold their own copy of the save and each writes the WHOLE
+         document over one key, so the second to write discarded the first's order,
+         Standing, BangBux and BODYMAX row together;
+       - HISTORY_CAP truncates bodymax.history at 200 rows, and badges() recomputed
+         from it, so achievements already recorded in st.bodymax.badges flipped back
+         to Locked on the 201st order and checkBadges() could never re-announce them.
+
+     The storage EVENT lives in js/app.js, which boots on load and is skipped by this
+     harness; store.adopt() is the part that can be checked, and is. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  const realRefresh = FB.nav.refresh, realGo = FB.nav.go, realToast = FB.toast;
+  try {
+    const NOW = new Date(2026, 7, 20, 13, 0, 0).getTime();
+    clock.set(NOW);
+
+    /* --- the receipt and the nutrition row describe ONE basket --- */
+    harness.addToCart(FB, 'mcronalds', 3);
+    const cdef = FB.screens.get('checkout');
+    const el = () => ({ dataset: {}, value: '', innerHTML: '', addEventListener() {}, removeEventListener() {},
+      querySelector: el, querySelectorAll: () => [], contains: () => true, setAttribute() {},
+      getAttribute: () => null, classList: { add() {}, remove() {}, toggle() {} } });
+    const binds = [];
+    const root = Object.assign(el(), { addEventListener: (t, h) => binds.push({ t, h }) });
+    FB.nav.refresh = () => {}; FB.nav.go = () => {}; FB.toast = () => {};
+    FB._binds = []; cdef.mount(root, { slug: 'mcronalds' }); FB._binds = null;
+
+    const realSetTimeout = app.win.setTimeout;
+    let window3s = null;
+    app.win.setTimeout = (fn, ms) => (ms === 3000 ? ((window3s = fn), 0) : realSetTimeout(fn, ms));
+    let placed;
+    try {
+      const quote = /data-quote="([\d.]+)"/.exec(cdef.render({ slug: 'mcronalds' }))[1];
+      const btn = { dataset: { quote }, disabled: false, innerHTML: '' };
+      binds.filter((x) => x.t === 'click').forEach((x) =>
+        x.h({ target: { closest: (q) => (q === '[data-place]' ? btn : null) }, preventDefault() {} }));
+      if (!btn.disabled) throw new Error('a fresh tap was refused');
+      if (!window3s) throw new Error('place() did not open a cancellation window');
+      /* the app bar's Back button is NOT disabled during the window */
+      FB.cart.clearAll();
+      window3s();
+    } finally { app.win.setTimeout = realSetTimeout; }
+
+    placed = FB.S().orders[0];
+    if (!placed) throw new Error('the cancellation window closed without placing');
+    if (placed.lines.length !== 3) throw new Error('the order lost lines to a cart edited inside the window');
+    if (!(placed.load.calories > 0)) throw new Error('the order was logged with no nutrition at all');
+    if (FB.S().meta.lifetimeCalories !== placed.load.calories) {
+      throw new Error('meta.lifetimeCalories is ' + FB.S().meta.lifetimeCalories +
+        ' for an order whose own load is ' + placed.load.calories);
+    }
+    const bmRow = FB.S().bodymax.history.filter((r) => r.orderId === placed.id)[0];
+    if (!bmRow || bmRow.cal !== placed.load.calories) {
+      throw new Error('the BODYMAX row disagrees with the receipt it was written from');
+    }
+
+    /* --- a second tab converges instead of clobbering --- */
+    const mine = FB.S();
+    const ordersBefore = mine.orders.length;
+    /* what another tab's persist() would put in storage: a whole document, one ahead */
+    const theirs = JSON.parse(JSON.stringify(mine));
+    theirs.w = (mine.w || 0) + 1;
+    theirs.orders = [];
+    theirs.meta = Object.assign({}, theirs.meta, { orderCount: 99 });
+    /* subscribers must hear about it, or the tab bar, cart pill and desk stats go on
+       showing a document that is no longer the state */
+    let told = 0;
+    const unsub = FB.store.sub(() => { told++; });
+    if (!FB.store.adopt(JSON.stringify(theirs))) throw new Error('a newer save from another tab was not adopted');
+    unsub();
+    if (!told) throw new Error('adopting another tab\'s save did not notify subscribers');
+    if (FB.S().meta.orderCount !== 99) throw new Error('adopting did not take on the other tab\'s document');
+    /* and an OLDER one is refused, or two tabs ping-pong forever */
+    const stale = JSON.parse(JSON.stringify(FB.S()));
+    stale.w = 0; stale.meta.orderCount = 1;
+    if (FB.store.adopt(JSON.stringify(stale))) throw new Error('an older save was adopted over a newer one');
+    if (FB.S().meta.orderCount !== 99) throw new Error('a refused adopt still changed the state');
+    if (FB.store.adopt('{not json')) throw new Error('unparseable storage was adopted');
+    if (FB.store.adopt(JSON.stringify(null))) throw new Error('a null document was adopted');
+    /* The counter has to actually move, or nothing above can tell newer from older.
+       persist() is debounced through the vm's setTimeout, so flush it rather than
+       returning a promise — check() is synchronous and does not await, which would
+       make a rejection here pass silently. */
+    const w0 = FB.S().w || 0;
+    const realST2 = app.win.setTimeout;
+    app.win.setTimeout = (fn, ms) => (ms === 90 ? (fn(), 0) : realST2(fn, ms));
+    try {
+      FB.store.set((st) => { st.favorites = st.favorites.concat(['mcronalds']); return st; });
+    } finally { app.win.setTimeout = realST2; }
+    if ((FB.S().w || 0) <= w0) throw new Error('persisting did not advance the write counter');
+
+    /* --- and the cap cannot retract what was recorded --- */
+    const night = new Date(2026, 7, 20, 2, 30, 0).getTime();
+    harness.addToCart(FB, 'mcronalds', 2);
+    const big = harness.makeOrder(FB, 'mcronalds', { now: night });
+    big.load = { calories: 9000, sodium: 12000, grease: 90, ranch: 40 };
+    FB.store.set((st) => { st.orders.unshift(big); return st; });
+    FB.bodymax.ingest(big);
+    const ledger = (FB.S().bodymax.badges || []).slice();
+    if (!ledger.length) throw new Error('no achievement was earned, so the retraction case is untested');
+    const flagsBefore = Object.keys(FB.bodymax.metrics().flags).length;
+    if (FB.bodymax.metrics().maxOrderCal !== 9000) throw new Error('the high-water calorie mark did not register');
+    if (!flagsBefore) throw new Error('no flags were recorded, so their durability is untested');
+
+    /* what migrate()'s HISTORY_CAP does on the 201st order */
+    FB.store.set((st) => { st.bodymax.history = []; return st; });
+    const earned = FB.bodymax.badges().filter((b) => b.earned).map((b) => b.id);
+    const lost = ledger.filter((id) => earned.indexOf(id) < 0);
+    if (lost.length) throw new Error(lost.length + ' recorded achievement(s) retracted by the cap: ' + lost.join(', '));
+    if (FB.bodymax.metrics().maxOrderCal !== 9000) throw new Error('the calorie high-water walked backwards');
+    if (Object.keys(FB.bodymax.metrics().flags).length < flagsBefore) throw new Error('flags were lost with the history');
+
+    return 'receipt and nutrition agree, a stale tab converges, and ' + ledger.length +
+      ' achievements survive the cap';
+  } finally { FB.nav.refresh = realRefresh; FB.nav.go = realGo; FB.toast = realToast; clock.restore(); app.dispose(); }
+});
+
 check('a schedule slot is never offered outside the hours it is for', () => {
   /* The sheet built its rows from wall-clock arithmetic alone — deliveryMax + 45n —
      and never asked whether the store was open at the time it was offering. Swept

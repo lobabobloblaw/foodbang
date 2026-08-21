@@ -10,6 +10,14 @@ window.FB = window.FB || {};
     var now = Date.now();
     return {
       v: VERSION,
+      /* Write counter. Two tabs each hold their own copy of the save and each writes
+         the WHOLE document over one key, so the second tab to write silently
+         discarded whatever the first had recorded — an order, its Standing points,
+         its BangBux grant and its BODYMAX row, all at once, while the tab that
+         placed it went on displaying them. This is how a tab knows another one has
+         moved ahead of it. Adding a field needs no VERSION bump: fillDefaults
+         backfills it on every existing save. */
+      w: 0,
       user: {
         name: 'Dana Whitfield',
         handle: '@dana',
@@ -67,7 +75,11 @@ window.FB = window.FB || {};
       notifsThrough: 0,     /* how far the boot backlog has synthesised */
       promo: { applied: null, used: [] },
       seen: {},
-      bodymax: { history: [], badges: [], firstTs: null, dismissed: [] },
+      /* `flags` and `maxCal` are durable because HISTORY_CAP truncates `history`,
+         and metrics() folds over it — so an achievement earned on order 3 was
+         RETRACTED on order 201 while its id still sat in `badges`. New fields need
+         nothing but a line here: fillDefaults backfills every save at any depth. */
+      bodymax: { history: [], badges: [], firstTs: null, dismissed: [], flags: {}, maxCal: 0 },
       meta: { installedAt: now, orderCount: 0, lifetimeSpend: 0, lifetimeFees: 0, lifetimeTips: 0, lifetimeCalories: 0 },
     };
   }
@@ -171,6 +183,7 @@ window.FB = window.FB || {};
   function persist() {
     clearTimeout(saveTimer);
     saveTimer = setTimeout(function () {
+      state.w = (state.w || 0) + 1;
       try { localStorage.setItem(KEY, JSON.stringify(state)); }
       catch (e) {
         /* Quota, private mode, or storage blocked outright. Say so ONCE: writes are
@@ -208,6 +221,24 @@ window.FB = window.FB || {};
       subs.push(fn);
       return function () { var i = subs.indexOf(fn); if (i > -1) subs.splice(i, 1); };
     },
+    /* Take on a save another tab wrote. Runs it back through migrate(), so an
+       incoming document is treated exactly like one read at boot, and emits so every
+       subscriber repaints. Deliberately does NOT persist: adopting is not a change,
+       and writing here would bounce the counter back and forth between two tabs
+       forever. Returns false when the incoming copy is not actually newer.
+
+       js/core may not touch the DOM, so nothing here listens for the `storage`
+       event — js/app.js owns that and calls this. */
+    adopt: function (raw) {
+      var next;
+      try { next = migrate(JSON.parse(raw)); } catch (e) { return false; }
+      if (!next || typeof next !== 'object') return false;
+      if ((next.w || 0) <= (state.w || 0)) return false;
+      state = next;
+      store.emit();
+      return true;
+    },
+
     reset: function () {
       state = defaults();
       try { localStorage.removeItem(KEY); } catch (e) {}

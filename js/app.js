@@ -129,6 +129,15 @@
     updateClock();
     setInterval(updateClock, 20000);
 
+    /* Another tab wrote. Without this, the last tab to save silently overwrote the
+       other's whole document — an order placed in one tab could vanish because the
+       other tab happened to toggle a setting. The listener lives here because
+       js/core is DOM-free by rule; store.adopt() does the reconciling. */
+    window.addEventListener('storage', function (e) {
+      if (!e || e.key !== FB.store.KEY || !e.newValue) return;
+      if (FB.store.adopt(e.newValue)) FB.nav.refresh();
+    });
+
     /* first-run welcome */
     if (!FB.S().seen.welcome) {
       setTimeout(function () {

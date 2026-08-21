@@ -41,6 +41,10 @@ window.FB = window.FB || {};
         var hr = new Date(order.placedAt).getHours();
         if (hr >= 1 && hr < 4) flags.night = true;
 
+        /* promoted out of the row and onto the save, so the cap cannot take them */
+        st.bodymax.flags = Object.assign({}, st.bodymax.flags || {}, flags);
+        st.bodymax.maxCal = Math.max(st.bodymax.maxCal || 0, order.load.calories);
+
         st.bodymax.history.unshift({
           ts: order.placedAt, orderId: order.id, slug: order.slug, store: order.storeName,
           cal: order.load.calories, sodium: order.load.sodium, grease: order.load.grease,
@@ -89,7 +93,10 @@ window.FB = window.FB || {};
         spend: FB.round2(st.meta.lifetimeSpend),
         fees: FB.round2(st.meta.lifetimeFees),
         tips: FB.round2(st.meta.lifetimeTips),
-        maxOrderCal: h.length ? Math.max.apply(null, h.map(function (e) { return e.cal; })) : 0,
+        /* the high-water mark, not the highest RETAINED one: the cap would otherwise
+           walk this backwards and un-earn the badge that tests it */
+        maxOrderCal: Math.max(st.bodymax.maxCal || 0,
+          h.length ? Math.max.apply(null, h.map(function (e) { return e.cal; })) : 0),
         flags: flags,
         /* derived indices — all invented, all authoritative */
         loyalty: FB.clamp(Math.round(h.length * 6 + Object.keys(brands).length * 4), 0, 100),
@@ -113,7 +120,16 @@ window.FB = window.FB || {};
 
     badges: function () {
       var m = FB.bodymax.metrics();
-      return BADGES.map(function (b) { return { id: b.id, icon: b.icon, name: b.name, hint: b.hint, earned: !!b.test(m) }; });
+      /* The LEDGER wins. metrics() folds over a history that migrate() caps at 200
+         rows, so recomputing alone retracted six achievements on the 201st order —
+         "Locked" on screen while the id was still recorded in st.bodymax.badges, and
+         checkBadges() filters on that same ledger so it could never re-announce.
+         An earned achievement is a fact of the save, not a re-derivation. */
+      var owned = FB.S().bodymax.badges || [];
+      return BADGES.map(function (b) {
+        return { id: b.id, icon: b.icon, name: b.name, hint: b.hint,
+                 earned: owned.indexOf(b.id) > -1 || !!b.test(m) };
+      });
     },
 
     checkBadges: function () {

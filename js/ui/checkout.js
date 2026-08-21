@@ -490,16 +490,21 @@ window.FB = window.FB || {};
     btn.disabled = true;
     btn.innerHTML = '<span>Placing…</span>';
 
+    /* Snapshotted with the price and the lines, NOT recomputed inside the window
+       below. The app bar's Back button stays live for those three seconds, so a cart
+       emptied during them wrote a nutrition ledger of zero against a receipt for
+       three items — and derived from `lines` rather than the cart, so the receipt and
+       the BODYMAX row can never describe different baskets. */
+    var load = lines.reduce(function (acc, l) {
+      var it = FB.catalog.item(p.slug, l.itemId);
+      if (!it) return acc;
+      var n = FB.catalog.itemLoad(it, l.sel, l.qty);
+      acc.calories += n.calories; acc.sodium += n.sodium; acc.grease += n.grease; acc.ranch += n.ranch;
+      return acc;
+    }, { calories: 0, sodium: 0, grease: 0, ranch: 0 });
+
     /* the 3-second cancellation window the fine print promises, during which the button is disabled */
     setTimeout(function () {
-      var load = FB.cart.lines(p.slug).reduce(function (acc, l) {
-        var it = FB.catalog.item(p.slug, l.itemId);
-        if (!it) return acc;
-        var n = FB.catalog.itemLoad(it, l.sel, l.qty);
-        acc.calories += n.calories; acc.sodium += n.sodium; acc.grease += n.grease; acc.ranch += n.ranch;
-        return acc;
-      }, { calories: 0, sodium: 0, grease: 0, ranch: 0 });
-
       var id = FB.uid('o');
       /* Drawn from the roster, so the same nine people recur and their tenure with
          you counts up. The SNAPSHOT is still written to the order — historical
