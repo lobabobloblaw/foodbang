@@ -32,7 +32,10 @@ function stubEl(tag) {
     replaceChild(a) { return a; },
     insertAdjacentHTML() {},
     addEventListener() {}, removeEventListener() {},
-    querySelector() { return null; },
+    /* returns another stub rather than null so mount-time and toast-time code
+       degrades instead of throwing. Layout still reads as nothing — offsetParent is
+       null and every rect is zero — so a screen that tries to measure still fails. */
+    querySelector() { return stubEl('div'); },
     querySelectorAll() { return []; },
     closest() { return null; },
     contains() { return false; },
@@ -52,7 +55,7 @@ function stubDocument() {
     getElementById(id) { if (!byId[id]) { byId[id] = stubEl('div'); byId[id].id = id; } return byId[id]; },
     createElement(tag) { return stubEl(tag); },
     createTextNode(t) { return { textContent: t }; },
-    querySelector() { return null; },
+    querySelector() { return stubEl('div'); },
     querySelectorAll() { return []; },
     addEventListener() {}, removeEventListener() {},
   };
@@ -131,7 +134,15 @@ function loadApp(opts) {
     timers.forEach((t) => { clearTimeout(t); clearInterval(t); });
     timers.clear();
   };
-  return { win: sandbox, FB, files, skipped, doc, dispose };
+  /* Built-ins live in the vm realm, not on the sandbox object, so Date cannot be
+     reached from out here. run() is how a test travels in time — which the wall
+     clock in js/sim/tracker.js is otherwise untestable without. */
+  const run = (code) => vm.runInContext(code, ctx, { filename: 'harness-eval' });
+  const clock = {
+    set(ts) { run('Date.now = function () { return ' + ts + '; };'); return ts; },
+    restore() { run('delete Date.now;'); },
+  };
+  return { win: sandbox, FB, files, skipped, doc, dispose, run, clock };
 }
 
 /* ---------------- fixtures ---------------- */
@@ -151,9 +162,15 @@ function addToCart(FB, slug, n) {
 
 /* Mirrors the object literal js/ui/checkout.js place() writes. It is duplicated
    rather than imported because place() needs a live button; if the shapes drift,
-   a screen reading the missing field is exactly what these checks catch. */
+   a screen reading the missing field is exactly what these checks catch.
+
+   opts.now: this function runs in NODE's realm, so it does not see clock.set(),
+   which only patches Date inside the vm. A test travelling in time must pass the
+   moment it means, or the order is stamped with the wall clock of the machine
+   running the tests and every schedule derived from it is hours out. */
 function makeOrder(FB, slug, opts) {
   opts = opts || {};
+  const now = opts.now || Date.now();
   const s = FB.catalog.get(slug);
   const lines = FB.cart.lines(slug).map((l) => ({
     name: l.name, qty: l.qty, unit: l.unit, itemId: l.itemId, sel: l.sel, note: l.note,
@@ -172,7 +189,7 @@ function makeOrder(FB, slug, opts) {
   const id = 'o_fixture_' + slug;
   return {
     id: id, slug: s.slug, storeName: s.name, logo: s.logoSrc,
-    placedAt: Date.now() - (opts.ageMs || 0),
+    placedAt: now - (opts.ageMs || 0),
     mode: opts.mode || 'delivery', express: false, scheduled: null,
     address: FB.deep(FB.store.address()), payment: FB.deep(FB.store.payment()),
     lines: lines,
@@ -185,7 +202,7 @@ function makeOrder(FB, slug, opts) {
     status: opts.status || 'preparing',
     slinger: FB.C.slinger(id),
     etaMin: s.deliveryMax, etaDrift: 0,
-    events: [{ step: 'placed', text: 'Order received', sub: null, ts: Date.now() }],
+    events: [{ step: 'placed', text: 'Order received', sub: null, ts: now }],
     rated: opts.rated === undefined ? null : opts.rated,
     load: { calories: 4200, sodium: 9100, grease: 61, ranch: 24 },
     step: opts.step === undefined ? 2 : opts.step,

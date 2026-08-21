@@ -329,6 +329,9 @@ window.FB = window.FB || {};
         status: 'placed', slinger: g, etaMin: s.deliveryMax + (co.express ? -1 : 0), etaDrift: 0,
         events: [], rated: null, load: load, step: 0,
       };
+      /* The tracker gives it an absolute timetable — every beat at a real moment,
+         and a deliverAt. A scheduled order's clock starts at its slot, not now. */
+      FB.tracker.build(order);
 
       FB.store.set(function (st) {
         st.orders.unshift(order);

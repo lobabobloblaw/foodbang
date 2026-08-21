@@ -61,6 +61,25 @@ window.FB = window.FB || {};
     return h + ':' + (m < 10 ? '0' : '') + m + ' ' + ap;
   };
   FB.clockIn = function (minutes) { return FB.clock(new Date(Date.now() + minutes * 60000)); };
+  /* the inverse of FB.clock: "3:45 PM" -> 945. Returns null on anything it does not
+     recognise, so a caller can fall back rather than compute with NaN. */
+  FB.minsOfDay = function (str) {
+    var m = /^\s*(\d{1,2}):(\d{2})\s*(AM|PM)?\s*$/i.exec(String(str || ''));
+    if (!m) return null;
+    var h = Number(m[1]), min = Number(m[2]);
+    if (h > 23 || min > 59) return null;
+    var ap = (m[3] || '').toUpperCase();
+    if (ap === 'PM' && h < 12) h += 12;
+    if (ap === 'AM' && h === 12) h = 0;
+    return h * 60 + min;
+  };
+  /* the next wall-clock occurrence of a minutes-of-day, at or after `from` */
+  FB.nextAtMinute = function (mins, from) {
+    if (mins == null) return null;
+    var base = new Date(from || Date.now());
+    var t = new Date(base.getFullYear(), base.getMonth(), base.getDate(), Math.floor(mins / 60), mins % 60, 0, 0).getTime();
+    return t <= (from || Date.now()) ? t + 86400000 : t;
+  };
   FB.dayLabel = function (ts) {
     var d = new Date(ts), now = new Date();
     var dd = Math.floor((now.setHours(0, 0, 0, 0) - new Date(ts).setHours(0, 0, 0, 0)) / 86400000);

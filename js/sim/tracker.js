@@ -1,17 +1,37 @@
 /* FoodBang — TRACKR™ live order simulation.
-   Runs on a global ticker so an order keeps progressing while you shop. */
+
+   The order runs on the WALL CLOCK, not on a tick counter. At placement it is given
+   an absolute timetable — every beat with a real timestamp, and a deliverAt — and
+   tick() simply replays whatever is now in the past. That is what makes leaving
+   mean something: close the tab during "Preparing", come back tomorrow, and the
+   order is delivered with a timeline stamped at the times things happened, rather
+   than frozen where you left it and resuming at normal pace.
+
+   One simulated minute is SIM_MS_PER_MIN of real time, so a 29-minute delivery
+   takes about a minute to watch and the headline estimate genuinely counts down to
+   zero: 29, 24, 18, 9, 2. It only ever revises LATER, and a revision moves
+   deliverAt with it, so the countdown can jump up but can never rebound through
+   zero on its way down. */
 window.FB = window.FB || {};
 (function (FB) {
   'use strict';
 
+  /* one simulated minute, in real milliseconds */
+  var SIM_MS_PER_MIN = 2000;
+
   var STEPS = [
-    { key: 'placed',    label: 'Order placed',        ms: 5000 },
-    { key: 'confirmed', label: 'Restaurant notified', ms: 9000 },
-    { key: 'preparing', label: 'Preparing',           ms: 15000 },
-    { key: 'pickup',    label: 'Slinger en route',     ms: 14000 },
-    { key: 'enroute',   label: 'Arriving',            ms: 17000 },
-    { key: 'delivered', label: 'Delivered',           ms: 0 },
+    { key: 'placed',    label: 'Order placed',        pickup: 'Order placed' },
+    { key: 'confirmed', label: 'Restaurant notified', pickup: 'Restaurant notified' },
+    { key: 'preparing', label: 'Preparing',           pickup: 'Preparing' },
+    { key: 'pickup',    label: 'Slinger en route',    pickup: 'Awaiting collection' },
+    { key: 'enroute',   label: 'Arriving',            pickup: 'Ready for collection' },
+    { key: 'delivered', label: 'Delivered',           pickup: 'Collected' },
   ];
+
+  /* Share of the delivery window each step occupies. The courier does not leave the
+     restaurant until the food exists, which is why the map pin used to be 40% of the
+     way to your house while the feed still said the bag was being sealed. */
+  var WEIGHTS = { placed: 0.06, confirmed: 0.10, preparing: 0.38, pickup: 0.16, enroute: 0.30 };
 
   /* each entry: [message, subtext|null, etaDriftMinutes] */
   var SCRIPT = {
@@ -48,10 +68,42 @@ window.FB = window.FB || {};
     ],
   };
 
+  /* A pickup order used to be tracked as a delivery: it assigned a Slinger, drove
+     them to your house and ended "Photo attached. The photo is of a door." `mode`
+     was written onto the order and read by nothing. */
+  var PICKUP_SCRIPT = {
+    placed: [
+      ['Order received by FoodBang™', 'Your order has entered the system.', 0],
+      ['Payment authorized', 'A hold has been placed for the total, plus a margin for the total.', 0],
+    ],
+    confirmed: [
+      ['{store} has acknowledged your existence', null, 0],
+      ['Order accepted for collection', 'No Slinger has been assigned. You are the Slinger.', 0],
+    ],
+    preparing: [
+      ['Food is being assembled', null, 0],
+      ['Item entering thermal chamber', 'Temperature Maintenance Fee is now active.', 1],
+      ['Bag sealed', 'Handles attached separately, as licensed.', 0],
+    ],
+    pickup: [
+      ['Order placed on the collection shelf', 'The shelf is unattended and unmonitored.', 0],
+      ['Order remains on the collection shelf', 'Ambient temperature is being maintained by the room.', 2],
+    ],
+    enroute: [
+      ['Ready for collection', 'Please present the order number to a member of staff, who will not ask for it.', 0],
+      ['Still ready for collection', 'The Retrieval Facilitation Fee has been charged and the retrieval has not been facilitated.', 3],
+    ],
+    delivered: [
+      ['Collected', 'Collection is recorded at the moment the shelf is emptied, by whoever empties it.', 0],
+    ],
+  };
+
   var timer = null;
   var listeners = [];
-  /* order id -> next-beat timestamp. Deliberately module-local and not persisted. */
-  var nextAt = {};
+
+  function scriptFor(o) { return o.mode === 'pickup' ? PICKUP_SCRIPT : SCRIPT; }
+
+  FB.tracker = FB.tracker || {};
 
   function fill(str, o) {
     return str.replace(/\{store\}/g, o.storeName)
@@ -61,78 +113,193 @@ window.FB = window.FB || {};
       .replace(/\{vehicle\}/g, o.slinger.vehicle);
   }
 
-  function advance(o) {
-    var step = STEPS[o.step];
-    var queue = SCRIPT[step.key] || [];
-    var idx = o.events.filter(function (e) { return e.step === step.key; }).length;
+  /* ---------------- the timetable ----------------
+     Built once, at placement, and stored on the order. Every beat carries the
+     absolute moment it happens, so replaying it after any absence produces the same
+     timeline with the same timestamps rather than twenty beats stamped "now". */
+  function build(o) {
+    var script = scriptFor(o);
+    var rnd = FB.seeded(o.id + 'pace');
 
-    if (idx < queue.length) {
-      var ev = queue[idx];
-      o.events.unshift({ step: step.key, text: fill(ev[0], o), sub: ev[1] ? fill(ev[1], o) : null, ts: Date.now() });
-      if (ev[2]) o.etaDrift += ev[2];
-      return true;
-    }
-    /* step exhausted → move on */
-    if (o.step < STEPS.length - 1) {
-      o.step++;
-      o.status = STEPS[o.step].key;
-      if (o.status === 'delivered') {
-        o.deliveredAt = Date.now();
-        o.events.unshift({ step: 'delivered', text: 'Delivered', sub: 'Photo attached. The photo is of a door.', ts: Date.now() });
-        return 'done';
-      }
-      return true;
-    }
-    return false;
+    /* A scheduled order does not start cooking when you place it. `scheduled` is a
+       clock string the checkout sheet wrote; it was captured and read by nothing,
+       so a 9 PM slot began preparing at 2 PM. */
+    var slot = o.scheduled ? FB.nextAtMinute(FB.minsOfDay(o.scheduled), o.placedAt) : null;
+    o.startAt = slot || o.placedAt;
+
+    /* Drift is known up front — it is in the script — so the beats can be laid out
+       across the window the order will ACTUALLY take, while the headline still
+       starts at the number the store advertised and is revised later, on air. */
+    var totalDrift = 0;
+    Object.keys(script).forEach(function (k) {
+      script[k].forEach(function (ev) { totalDrift += ev[2] || 0; });
+    });
+    var span = Math.max(1, (o.etaMin + totalDrift)) * SIM_MS_PER_MIN;
+
+    var sched = [];
+    var cursor = 0;
+    STEPS.forEach(function (step) {
+      if (step.key === 'delivered') return;
+      var beats = script[step.key] || [];
+      var slice = span * (WEIGHTS[step.key] || 0);
+      beats.forEach(function (ev, i) {
+        /* spread inside the step, with a little jitter so beats do not land on a grid */
+        var frac = (i + 0.55 + (rnd() - 0.5) * 0.5) / beats.length;
+        sched.push({
+          step: step.key,
+          text: fill(ev[0], o),
+          sub: ev[1] ? fill(ev[1], o) : null,
+          drift: ev[2] || 0,
+          at: Math.round(o.startAt + cursor + slice * FB.clamp(frac, 0.05, 0.95)),
+        });
+      });
+      cursor += slice;
+    });
+    sched.sort(function (a, b) { return a.at - b.at; });
+
+    var last = script.delivered[0];
+    o.schedule = sched;
+    o.finalBeat = { step: 'delivered', text: fill(last[0], o), sub: last[1] ? fill(last[1], o) : null, drift: 0 };
+    /* starts at what the store advertised; every drift beat pushes it out */
+    o.deliverAt = o.startAt + o.etaMin * SIM_MS_PER_MIN;
+    o.status = 'placed';
+    o.step = 0;
+    o.events = [];
+    return o;
   }
 
-  function tick() {
+  /* An order in a save written before schedules existed carries a step and no
+     timetable, and resume() replays it at boot. Rebuild from what it does have —
+     placedAt is long past, so the catch-up below simply settles it. */
+  function ensureSchedule(o) {
+    if (o.schedule && o.finalBeat && o.deliverAt) return;
+    var keptEvents = o.events || [];
+    build(o);
+    o.events = keptEvents;
+  }
+
+  function stepIndex(key) {
+    for (var i = 0; i < STEPS.length; i++) if (STEPS[i].key === key) return i;
+    return 0;
+  }
+
+  /* Replay every beat that is now in the past. Returns 'done' if this pass
+     delivered the order, true if anything changed, false otherwise. */
+  function replay(o, now) {
+    ensureSchedule(o);
+    var changed = false;
+    var seen = o.events.length;
+    for (var i = 0; i < o.schedule.length; i++) {
+      var b = o.schedule[i];
+      if (b.at > now) break;
+      if (i < seen) continue;
+      /* stamped from the TIMETABLE, never from Date.now(): a catch-up pass after a
+         day away would otherwise collapse twenty beats onto one second, which is
+         the exact thing the wall clock exists to prevent */
+      o.events.unshift({ step: b.step, text: b.text, sub: b.sub, ts: b.at });
+      if (b.drift) { o.etaDrift += b.drift; o.deliverAt += b.drift * SIM_MS_PER_MIN; }
+      o.step = stepIndex(b.step);
+      o.status = b.step;
+      changed = true;
+    }
+    if (now >= o.deliverAt && o.events.length >= o.schedule.length) {
+      o.step = STEPS.length - 1;
+      o.status = 'delivered';
+      o.deliveredAt = o.deliverAt;   /* when it happened, not when we noticed */
+      o.events.unshift({ step: 'delivered', text: o.finalBeat.text, sub: o.finalBeat.sub, ts: o.deliverAt });
+      return 'done';
+    }
+    return changed;
+  }
+
+  function tick(opts) {
     var st = FB.S();
     var live = st.orders.filter(function (o) { return o.status !== 'delivered' && o.status !== 'cancelled'; });
     if (!live.length) { stop(); return; }
+    var now = Date.now();
     var changed = false;
     live.forEach(function (o) {
-      var now = Date.now();
-      var step = STEPS[o.step];
-      var gap = Math.max(2600, step.ms / ((SCRIPT[step.key] || []).length || 1));
-      if (!nextAt[o.id]) nextAt[o.id] = now + 1400;
-      if (now >= nextAt[o.id]) {
-        var r = advance(o);
-        /* seeded on the order and how far into it we are, so a reload replays the
-           same pacing — and kept OFF the order, which is serialized to localStorage
-           and has no business carrying a runtime-only absolute timestamp. */
-        nextAt[o.id] = now + gap * (0.75 + FB.seeded(o.id + ':' + o.events.length)() * 0.6);
-        changed = true;
-        if (r === 'done') {
-          FB.store.set(function (s) { s.activeOrderId = o.id; return s; }, { silent: true });
+      var r = replay(o, now);
+      if (r) changed = true;
+      if (r === 'done') {
+        FB.store.set(function (s) { s.activeOrderId = o.id; return s; }, { silent: true });
+        /* An order abandoned last week settles at boot. Announcing it — with a "Rate
+           it" action, and by claiming it as the active order — would be the app
+           shouting about something that finished while nobody was here. */
+        if (!(opts && opts.catchUp)) {
           FB.toast('Your order has been delivered.', { icon: 'checkFill', action: 'Rate it', onAction: function () { FB.nav.go('track', { id: o.id }); } });
         }
+        if (FB.bodymax && FB.bodymax.checkBadges) FB.bodymax.checkBadges();
       }
     });
     if (changed) {
       FB.store.set(function (s) { return s; }, { silent: true });
       listeners.forEach(function (f) { try { f(); } catch (e) {} });
-      FB.shell.repaintChrome();
+      if (FB.shell && FB.shell.repaintChrome) FB.shell.repaintChrome();
     }
   }
 
   function start() { if (!timer) timer = setInterval(tick, 900); }
   function stop() { clearInterval(timer); timer = null; }
 
-  FB.tracker = {
-    STEPS: STEPS,
-    start: function () { start(); },
-    stop: stop,
-    resume: function () {
-      var live = FB.S().orders.filter(function (o) { return o.status !== 'delivered' && o.status !== 'cancelled'; });
-      if (live.length) start();
-    },
-    onTick: function (fn) { listeners.push(fn); return function () { var i = listeners.indexOf(fn); if (i > -1) listeners.splice(i, 1); }; },
-    eta: function (o) {
-      var elapsed = (Date.now() - o.placedAt) / 60000;
-      return Math.max(1, Math.round(o.etaMin + o.etaDrift - elapsed));
-    },
-    progress: function (o) { return FB.clamp(o.step / (STEPS.length - 1), 0, 1); },
+  FB.tracker.STEPS = STEPS;
+  FB.tracker.SIM_MS_PER_MIN = SIM_MS_PER_MIN;
+  FB.tracker.SCRIPT = SCRIPT;
+  FB.tracker.PICKUP_SCRIPT = PICKUP_SCRIPT;
+  FB.tracker.build = build;
+  FB.tracker.start = function () { start(); };
+  FB.tracker.stop = stop;
+  FB.tracker.tick = tick;
+
+  /* the step labels for THIS order — a pickup is not "Slinger en route" */
+  FB.tracker.steps = function (o) {
+    if (o && o.mode === 'pickup') {
+      return STEPS.map(function (s) { return { key: s.key, label: s.pickup }; });
+    }
+    return STEPS;
+  };
+
+  FB.tracker.resume = function () {
+    var live = FB.S().orders.filter(function (o) { return o.status !== 'delivered' && o.status !== 'cancelled'; });
+    if (!live.length) return;
+    /* catch every live order up to now in one pass, quietly, before starting */
+    tick({ catchUp: true });
+    var stillLive = FB.S().orders.filter(function (o) { return o.status !== 'delivered' && o.status !== 'cancelled'; });
+    if (stillLive.length) start();
+  };
+
+  FB.tracker.onTick = function (fn) {
+    listeners.push(fn);
+    return function () { var i = listeners.indexOf(fn); if (i > -1) listeners.splice(i, 1); };
+  };
+
+  /* Minutes until deliverAt, which only ever moves later. Never negative, and
+     never rebounds through zero on the way down. */
+  FB.tracker.eta = function (o) {
+    if (!o.deliverAt) return Math.max(1, o.etaMin + (o.etaDrift || 0));
+    var left = (o.deliverAt - Date.now()) / SIM_MS_PER_MIN;
+    return Math.max(0, Math.ceil(left));
+  };
+
+  /* An order waiting for its scheduled slot has not started. */
+  FB.tracker.isPending = function (o) {
+    return !!(o.startAt && Date.now() < o.startAt && o.status !== 'delivered');
+  };
+
+  /* Where the courier is on the drawn route. Zero until they actually have the food:
+     progress used to be step/5, so the pin was already 40% of the way to your house
+     while the feed still said the bag was being sealed. */
+  FB.tracker.progress = function (o) {
+    if (o.status === 'delivered') return 1;
+    if (!o.schedule) return 0;
+    var leg = null;
+    for (var i = 0; i < o.schedule.length; i++) {
+      if (o.schedule[i].step === 'pickup') { leg = o.schedule[i].at; break; }
+    }
+    if (leg == null) return 0;
+    var now = Date.now();
+    if (now <= leg) return 0;
+    return FB.clamp((now - leg) / Math.max(1, o.deliverAt - leg), 0, 1);
   };
 
   /* ---------------- the map ---------------- */

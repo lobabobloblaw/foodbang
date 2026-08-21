@@ -20,7 +20,7 @@ window.FB = window.FB || {};
       if (live.length) {
         h += FB.C.sectionHead('In progress');
         h += live.map(function (o) {
-          var step = FB.tracker.STEPS[o.step];
+          var step = FB.tracker.steps(o)[o.step];
           return '<button class="orderrow" data-go="track" data-params=\'{"id":"' + o.id + '"}\'>' +
             '<img src="' + o.logo + '" alt="" onerror="this.remove()">' +
             '<span class="or-b"><b>' + FB.esc(o.storeName) + '</b>' +
@@ -76,6 +76,7 @@ window.FB = window.FB || {};
          on all ~20 ticks made a screen reader interrupt and re-read the whole arrival
          summary every few seconds; only write when the markup actually differs. */
       var lastEta = etaBlock(o), lastBar = barBlock(o), lastFeed = feedBlock(o);
+      var lastStatus = o.status;
       offTick = FB.tracker.onTick(function () {
         var cur = FB.store.order(p.id);
         if (!cur) return;
@@ -108,6 +109,12 @@ window.FB = window.FB || {};
           var feed = root.querySelector('.trk-feed');
           if (feed && nextFeed !== lastFeed) { feed.innerHTML = nextFeed; lastFeed = nextFeed; }
         }
+        /* one announcement per step, not one per second */
+        if (cur.status !== lastStatus) {
+          lastStatus = cur.status;
+          var say = root.querySelector('[data-trk-say]');
+          if (say) say.textContent = sayStep(cur);
+        }
         FB.tracker.placeCourier(root, cur, FB.tracker.progress(cur));
       });
       FB.on(document.getElementById('appbar'), 'click', '[data-help]', function () {
@@ -128,17 +135,31 @@ window.FB = window.FB || {};
      of tearing the whole screen down under the reader every few seconds. */
   function etaBlock(o) {
     var done = o.status === 'delivered';
-    var step = FB.tracker.STEPS[o.step];
-    return '<div class="te-k">' + (done ? 'DELIVERED' : 'ESTIMATED ARRIVAL') + '</div>' +
-      '<h2>' + (done ? FB.clock(new Date(o.deliveredAt)) : FB.tracker.eta(o) + ' min') + '</h2>' +
-      '<div class="te-s">' + FB.esc(step.label) + ' · ' + FB.esc(o.storeName) + '</div>' +
+    var step = FB.tracker.steps(o)[o.step];
+    var pending = FB.tracker.isPending(o);
+    var kicker = done ? (o.mode === 'pickup' ? 'COLLECTED' : 'DELIVERED')
+      : pending ? 'SCHEDULED FOR' : 'ESTIMATED ARRIVAL';
+    var headline = done ? FB.clock(new Date(o.deliveredAt))
+      : pending ? FB.esc(o.scheduled || FB.clock(new Date(o.startAt))) : FB.tracker.eta(o) + ' min';
+    return '<div class="te-k">' + kicker + '</div>' +
+      '<h2>' + headline + '</h2>' +
+      '<div class="te-s">' + (pending ? 'Reserved · preparation has not begun' : FB.esc(step.label)) +
+        ' · ' + FB.esc(o.storeName) + '</div>' +
       (!done && o.etaDrift > 0 ? '<div class="te-drift">' + FB.icon('alert', 13) + 'Arrival revised later by ' + o.etaDrift + ' min since you ordered</div>' : '');
   }
   function barBlock(o) {
-    return FB.tracker.STEPS.slice(0, 5).map(function (s, i) {
+    return FB.tracker.steps(o).slice(0, 5).map(function (s, i) {
       return '<i class="' + (i < o.step ? 'on' : i === o.step ? 'cur' : '') + '"></i>';
     }).join('');
   }
+  /* what a screen reader hears when the order moves on */
+  function sayStep(o) {
+    if (FB.tracker.isPending(o)) return 'Scheduled for ' + (o.scheduled || FB.clock(new Date(o.startAt))) + '. Preparation has not begun.';
+    var step = FB.tracker.steps(o)[o.step];
+    if (o.status === 'delivered') return step.label + ' at ' + FB.clock(new Date(o.deliveredAt)) + '.';
+    return step.label + '. Estimated arrival in ' + FB.tracker.eta(o) + ' minutes.';
+  }
+
   function feedBlock(o) {
     var done = o.status === 'delivered';
     return o.events.map(function (e, i) {
@@ -152,7 +173,7 @@ window.FB = window.FB || {};
   function body(o) {
     var done = o.status === 'delivered';
     var eta = FB.tracker.eta(o);
-    var step = FB.tracker.STEPS[o.step];
+    var step = FB.tracker.steps(o)[o.step];
     var g = o.slinger;
     var h = '';
 
@@ -161,7 +182,13 @@ window.FB = window.FB || {};
 
     /* eta — the live region. aria-atomic so a status change is read as one
        sentence rather than as three disconnected fragments. */
-    h += '<div class="trk-eta" role="status" aria-live="polite" aria-atomic="true">' + etaBlock(o) + '</div>';
+    /* NOT a live region. On the wall clock the headline changes every couple of
+       seconds as the estimate counts down, and a polite aria-atomic region there
+       made a screen reader interrupt and re-read the whole arrival summary that
+       often. What is worth announcing is the five step changes, so they get their
+       own region and the countdown gets none. */
+    h += '<div class="trk-eta">' + etaBlock(o) + '</div>';
+    h += '<p class="sr-only" role="status" aria-live="polite" data-trk-say>' + FB.esc(sayStep(o)) + '</p>';
 
     /* progress */
     h += '<div class="trk-bar">' + barBlock(o) + '</div>';

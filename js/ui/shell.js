@@ -27,6 +27,7 @@ window.FB = window.FB || {};
   ];
 
   function renderTabs() {
+    if (!tabEl) return;
     var cur = current ? (screens[current.name] || {}).tab : null;
     var pending = FB.store.activeOrder() ? 1 : 0;
     tabEl.innerHTML = TABS.map(function (t) {
@@ -38,6 +39,7 @@ window.FB = window.FB || {};
   }
 
   function renderCartBar() {
+    if (!cartEl || !current) return;
     var scr = screens[current && current.name] || {};
     if (scr.hideCartBar) { cartEl.innerHTML = ''; return; }
     var slugs = FB.cart.activeSlugs();

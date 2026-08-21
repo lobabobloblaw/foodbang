@@ -655,6 +655,94 @@ check('the world is a pure function of the clock', () => {
   } finally { app.dispose(); }
 });
 
+check('an order runs on the wall clock and survives being abandoned', () => {
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    function place(slug, opts) {
+      clock.set(T0);
+      harness.addToCart(FB, slug, 2);
+      const o = harness.makeOrder(FB, slug, { mode: (opts || {}).mode || 'delivery', now: T0 });
+      o.etaDrift = 0; o.events = []; o.scheduled = (opts || {}).scheduled || null;
+      FB.tracker.build(o);
+      FB.cart.clear(slug);
+      FB.store.set((st) => { st.orders.unshift(o); st.activeOrderId = o.id; return st; });
+      return o;
+    }
+
+    /* ---- the estimate counts down, and only ever revises later ---- */
+    const o = place('mcronalds');
+    if (FB.tracker.eta(o) !== o.etaMin) throw new Error('the first estimate is not the advertised one');
+    let prevEta = Infinity, prevDrift = 0, delivered = false;
+    for (let t = 0; t <= 140; t += 1) {
+      clock.set(o.startAt + t * 1000);
+      FB.tracker.tick();
+      const c = FB.store.order(o.id);
+      const e = FB.tracker.eta(c);
+      if (e < 0) throw new Error('a negative estimate at t=' + t);
+      if (e > prevEta && c.etaDrift === prevDrift) throw new Error('the estimate went UP at t=' + t + ' with no drift');
+      if (c.status !== 'delivered' && FB.tracker.progress(c) === 1) throw new Error('the courier arrived before the order did');
+      prevEta = e; prevDrift = c.etaDrift;
+      if (c.status === 'delivered') { delivered = true; break; }
+    }
+    if (!delivered) throw new Error('the order never delivered inside its own window');
+    const done = FB.store.order(o.id);
+    if (FB.tracker.eta(done) !== 0) throw new Error('a delivered order still has minutes left');
+    if (done.etaDrift <= 0) throw new Error('nothing ever revised the estimate');
+
+    /* ---- an abandoned order settles, stamped when it happened ---- */
+    FB.store.reset();
+    const ab = place('cluckingham');
+    clock.set(T0 + 86400000);            /* a day later */
+    FB.tracker.resume();
+    const A = FB.store.order(ab.id);
+    if (A.status !== 'delivered') throw new Error('an order abandoned for a day is still ' + A.status);
+    const ts = A.events.map((e) => e.ts);
+    if (!ts.every((t, i) => i === 0 || ts[i - 1] >= t)) throw new Error('the feed is not in time order');
+    /* the bug this prevents: a catch-up pass stamping twenty beats with Date.now() */
+    if (Math.max(...ts) - Math.min(...ts) < 20000) throw new Error('the whole feed collapsed onto one instant');
+    if (Math.abs(A.deliveredAt - (T0 + 86400000)) < 60000) throw new Error('delivery was stamped when we noticed, not when it happened');
+
+    /* ---- a pickup is not a delivery ---- */
+    FB.store.reset();
+    const pk = place('pizzahutch', { mode: 'pickup' });
+    clock.set(pk.startAt + 300000);
+    FB.tracker.tick();
+    const P = FB.store.order(pk.id);
+    if (P.status !== 'delivered') throw new Error('the pickup never completed');
+    const feed = JSON.stringify(P.events);
+    if (/photo is of a door/.test(feed)) throw new Error('a pickup order ended with a photo of your door');
+    if (FB.tracker.steps(P)[4].label === FB.tracker.steps(o)[4].label) throw new Error('pickup and delivery share step labels');
+
+    /* ---- a scheduled order waits for its slot ---- */
+    FB.store.reset();
+    const sc = place('starbux', { scheduled: '11:45 PM' });
+    if (sc.startAt <= sc.placedAt) throw new Error('a scheduled order started when it was placed');
+    FB.tracker.tick();
+    if (FB.store.order(sc.id).events.length) throw new Error('a scheduled order began cooking before its slot');
+    if (!FB.tracker.isPending(FB.store.order(sc.id))) throw new Error('a scheduled order does not read as pending');
+    clock.set(sc.startAt + 30000);
+    FB.tracker.tick();
+    if (!FB.store.order(sc.id).events.length) throw new Error('a scheduled order never started at its slot');
+
+    /* ---- a save written before timetables existed must not throw ---- */
+    FB.store.reset();
+    clock.set(T0);
+    harness.addToCart(FB, 'starbux', 2);
+    const legacy = harness.makeOrder(FB, 'starbux', { now: T0 });
+    delete legacy.schedule; delete legacy.deliverAt; delete legacy.finalBeat; delete legacy.startAt;
+    legacy.step = 2; legacy.status = 'preparing'; legacy._next = T0 + 1400;
+    FB.store.set((st) => { st.orders.unshift(legacy); st.activeOrderId = legacy.id; return st; });
+    clock.set(T0 + 3600000);
+    FB.tracker.resume();
+    const L = FB.store.order(legacy.id);
+    if (L.status !== 'delivered') throw new Error('a schedule-less order did not settle: ' + L.status);
+
+    return 'countdown, catch-up, pickup, scheduling and legacy saves';
+  } finally { clock.restore(); app.dispose(); }
+});
+
 console.log('');
 if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
 console.log('all checks passed');
