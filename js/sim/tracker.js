@@ -33,75 +33,168 @@ window.FB = window.FB || {};
      way to your house while the feed still said the bag was being sealed. */
   var WEIGHTS = { placed: 0.06, confirmed: 0.10, preparing: 0.38, pickup: 0.16, enroute: 0.30 };
 
-  /* each entry: [message, subtext|null, etaDriftMinutes] */
+  /* Each beat is [message, subtext|null, etaDriftMinutes].
+
+     `beats` is the SPINE and always plays in order — "{slinger} has arrived at
+     {store}" cannot follow "Order collected" and still make sense, so shuffling the
+     whole step was never an option. `extra` is flavour, unlocked by tenure and
+     inserted at seeded positions among the spine, so your fortieth delivery goes
+     wrong in ways your first could not while the order of events still reads.
+
+     Seeded on the order id, so a reload replays the identical story. */
   var SCRIPT = {
-    placed: [
-      ['Order received by FoodBang™', 'Your order has entered the system.', 0],
-      ['Payment authorized', 'A hold has been placed for the total, plus a margin for the total.', 0],
-    ],
-    confirmed: [
-      ['{store} has acknowledged your existence', null, 0],
-      ['Order accepted', 'The restaurant has 90 seconds to reject this. It has not.', 0],
-      ['Slinger {slinger} assigned', '{rating}★ · {deliveries} lifetime deliveries · {vehicle}', 0],
-    ],
-    preparing: [
-      ['Food is being assembled', null, 0],
-      ['Item entering thermal chamber', 'Temperature Maintenance Fee is now active.', 1],
-      ['{slinger} has accepted a second order', 'Yours is now #2 of 2.', 4],
-      ['Bag sealed', 'Handles attached separately, as licensed.', 0],
-    ],
-    pickup: [
-      ['{slinger} has arrived at {store}', null, 0],
-      ['{slinger} is waiting', 'Standard wait. Waiting is included.', 2],
-      ['Order collected', null, 0],
-      ['{slinger} has taken {fries} fry as tribute', 'This is permitted under the Slinger Agreement, §4.2.', 0],
-    ],
-    enroute: [
-      ['{slinger} is 2.1 mi away', null, 0],
-      ['{slinger} is 3.4 mi away', 'Route recalculated.', 3],
-      ['{slinger} is stationary', 'Reason: not provided.', 5],
-      ['{slinger} is moving again', 'No explanation will be offered.', 0],
-      ['{slinger} is 0.3 mi away', 'Approaching. Please prepare to receive.', 0],
-    ],
-    delivered: [
-      ['Delivered', 'Photo attached. The photo is of a door.', 0],
-    ],
+    placed: {
+      beats: [
+        ['Order received by FoodBang™', 'Your order has entered the system.', 0],
+        ['Payment authorized', 'A hold has been placed for the total, plus a margin for the total.', 0],
+      ],
+      extra: {
+        2: [['Order assigned to a fulfilment region', 'The region is not disclosed and is subject to change.', 0]],
+        3: [['Order flagged for routine review', 'Review is routine. The flag is not.', 1]],
+      },
+    },
+    confirmed: {
+      beats: [
+        ['{store} has acknowledged your existence', null, 0],
+        ['Order accepted', 'The restaurant has 90 seconds to reject this. It has not.', 0],
+        ['Slinger {slinger} assigned', '{rating}★ · {deliveries} lifetime deliveries · {vehicle}', 0],
+      ],
+      extra: {
+        2: [['{slinger} was reassigned and then assigned back', 'No explanation will be offered.', 0]],
+        3: [['{store} has acknowledged your existence again', 'The second acknowledgement supersedes the first.', 0],
+            ['Your household has been recognised', 'Recognition is not a benefit and confers none.', 0]],
+      },
+    },
+    preparing: {
+      beats: [
+        ['Food is being assembled', null, 0],
+        ['Item entering thermal chamber', 'Temperature Maintenance Fee is now active.', 1],
+        ['{slinger} has accepted a second order', 'Yours is now #2 of 2.', 4],
+        ['Bag sealed', 'Handles attached separately, as licensed.', 0],
+      ],
+      extra: {
+        2: [['{slinger} has accepted a third order', 'Yours is now #3 of 3.', 3],
+            ['A substitution was considered', 'It was not made. It was considered, and that has been logged.', 0]],
+        3: [['{slinger} has re-entered the restaurant', 'No explanation will be offered.', 2],
+            ['Bag re-sealed', 'The first seal has been retained for our records.', 1]],
+      },
+    },
+    pickup: {
+      beats: [
+        ['{slinger} has arrived at {store}', null, 0],
+        ['{slinger} is waiting', 'Standard wait. Waiting is included.', 2],
+        ['Order collected', null, 0],
+        ['{slinger} has taken {fries} fry as tribute', 'This is permitted under the Slinger Agreement, §4.2.', 0],
+      ],
+      extra: {
+        2: [['{slinger} is waiting behind someone who is also waiting', 'Both waits are included.', 2]],
+        3: [['{slinger} has taken a second (2nd) fry', 'This exceeds §4.2 and has been noted in your file, not theirs.', 0],
+            ['The order was set down and picked up again', 'By the same person, at the same counter.', 1]],
+      },
+    },
+    enroute: {
+      beats: [
+        ['{slinger} is 2.1 mi away', null, 0],
+        ['{slinger} is 3.4 mi away', 'Route recalculated.', 3],
+        ['{slinger} is stationary', 'Reason: not provided.', 5],
+        ['{slinger} is moving again', 'No explanation will be offered.', 0],
+        ['{slinger} is 0.3 mi away', 'Approaching. Please prepare to receive.', 0],
+      ],
+      extra: {
+        2: [['Route recalculated to avoid a road that is open', null, 2],
+            ['{slinger} is 4.0 mi away', 'This is further than when you started reading this.', 3]],
+        3: [['{slinger} has stopped at an address that is not yours', 'The stop was brief and is not itemised.', 4],
+            ['{slinger} is 0.1 mi away', 'Has been 0.1 mi away for some time.', 2]],
+      },
+    },
+    delivered: {
+      beats: [['Delivered', 'Photo attached. The photo is of a door.', 0]],
+      extra: {
+        3: [['Delivered', 'Photo attached. The photo is of a door, and a bag, and a different bag.', 0]],
+      },
+    },
   };
 
   /* A pickup order used to be tracked as a delivery: it assigned a Slinger, drove
      them to your house and ended "Photo attached. The photo is of a door." `mode`
      was written onto the order and read by nothing. */
   var PICKUP_SCRIPT = {
-    placed: [
-      ['Order received by FoodBang™', 'Your order has entered the system.', 0],
-      ['Payment authorized', 'A hold has been placed for the total, plus a margin for the total.', 0],
-    ],
-    confirmed: [
-      ['{store} has acknowledged your existence', null, 0],
-      ['Order accepted for collection', 'No Slinger has been assigned. You are the Slinger.', 0],
-    ],
-    preparing: [
-      ['Food is being assembled', null, 0],
-      ['Item entering thermal chamber', 'Temperature Maintenance Fee is now active.', 1],
-      ['Bag sealed', 'Handles attached separately, as licensed.', 0],
-    ],
-    pickup: [
-      ['Order placed on the collection shelf', 'The shelf is unattended and unmonitored.', 0],
-      ['Order remains on the collection shelf', 'Ambient temperature is being maintained by the room.', 2],
-    ],
-    enroute: [
-      ['Ready for collection', 'Please present the order number to a member of staff, who will not ask for it.', 0],
-      ['Still ready for collection', 'The Retrieval Facilitation Fee has been charged and the retrieval has not been facilitated.', 3],
-    ],
-    delivered: [
-      ['Collected', 'Collection is recorded at the moment the shelf is emptied, by whoever empties it.', 0],
-    ],
+    placed: {
+      beats: [
+        ['Order received by FoodBang™', 'Your order has entered the system.', 0],
+        ['Payment authorized', 'A hold has been placed for the total, plus a margin for the total.', 0],
+      ],
+      extra: { 3: [['Collection window opened', 'The window is notional and is not enforced at either end.', 0]] },
+    },
+    confirmed: {
+      beats: [
+        ['{store} has acknowledged your existence', null, 0],
+        ['Order accepted for collection', 'No Slinger has been assigned. You are the Slinger.', 0],
+      ],
+      extra: { 2: [['You have been assigned a rating', 'It is not shown to you.', 0]] },
+    },
+    preparing: {
+      beats: [
+        ['Food is being assembled', null, 0],
+        ['Item entering thermal chamber', 'Temperature Maintenance Fee is now active.', 1],
+        ['Bag sealed', 'Handles attached separately, as licensed.', 0],
+      ],
+      extra: { 2: [['A member of staff has looked at the order', 'No action followed.', 1]] },
+    },
+    pickup: {
+      beats: [
+        ['Order placed on the collection shelf', 'The shelf is unattended and unmonitored.', 0],
+        ['Order remains on the collection shelf', 'Ambient temperature is being maintained by the room.', 2],
+      ],
+      extra: {
+        2: [['Another customer has looked at your order', 'They did not take it. This has been recorded as a non-event.', 2]],
+        3: [['Your order has been moved further along the shelf', 'To make room for an order placed after yours.', 3]],
+      },
+    },
+    enroute: {
+      beats: [
+        ['Ready for collection', 'Please present the order number to a member of staff, who will not ask for it.', 0],
+        ['Still ready for collection', 'The Retrieval Facilitation Fee has been charged and the retrieval has not been facilitated.', 3],
+      ],
+      extra: { 3: [['Still ready for collection', 'This notice will continue at this interval.', 2]] },
+    },
+    delivered: {
+      beats: [['Collected', 'Collection is recorded at the moment the shelf is emptied, by whoever empties it.', 0]],
+      extra: { 3: [['Collected', 'Collection is recorded at the moment the shelf is emptied. The shelf was empty on arrival.', 0]] },
+    },
   };
+
+  /* Tenure. Read from the order count BEFORE this order — place() increments it
+     inside the same store.set — and stored on the order, so a replayed order keeps
+     the story it had. Every read is (o.tier || 1): orders in a save written before
+     tiers existed have none, and resume() replays them at boot. */
+  function tierFor(orderCount) { return orderCount >= 15 ? 3 : orderCount >= 5 ? 2 : 1; }
 
   var timer = null;
   var listeners = [];
 
   function scriptFor(o) { return o.mode === 'pickup' ? PICKUP_SCRIPT : SCRIPT; }
+
+  /* The spine, plus whatever tenure has unlocked, inserted among it. ONE function,
+     used by both the schedule builder and anything that needs to know how long a
+     step runs — two callers deriving the beat list separately is how a wider pool
+     silently makes a late order run long. */
+  function beatsFor(o, stepKey) {
+    var def = scriptFor(o)[stepKey] || { beats: [] };
+    var out = def.beats.slice();
+    var tier = o.tier || 1;
+    var pool = [];
+    for (var t = 2; t <= tier; t++) pool = pool.concat((def.extra && def.extra[t]) || []);
+    if (!pool.length) return out;
+    var rnd = FB.seeded(o.id + ':' + stepKey);
+    var take = FB.shuffle(pool, rnd).slice(0, Math.min(2, pool.length));
+    take.forEach(function (ev) {
+      /* never at the front: the first beat of a step is its headline */
+      var at = out.length <= 1 ? out.length : 1 + Math.floor(rnd() * out.length);
+      out.splice(Math.min(at, out.length), 0, ev);
+    });
+    return out;
+  }
 
   FB.tracker = FB.tracker || {};
 
@@ -121,8 +214,8 @@ window.FB = window.FB || {};
      absolute moment it happens, so replaying it after any absence produces the same
      timeline with the same timestamps rather than twenty beats stamped "now". */
   function build(o) {
-    var script = scriptFor(o);
     var rnd = FB.seeded(o.id + 'pace');
+    if (!o.tier) o.tier = tierFor((FB.S().meta && FB.S().meta.orderCount) || 0);
 
     /* A scheduled order does not start cooking when you place it. `scheduled` is a
        clock string the checkout sheet wrote; it was captured and read by nothing,
@@ -133,9 +226,11 @@ window.FB = window.FB || {};
     /* Drift is known up front — it is in the script — so the beats can be laid out
        across the window the order will ACTUALLY take, while the headline still
        starts at the number the store advertised and is revised later, on air. */
+    var chosen = {};
     var totalDrift = 0;
-    Object.keys(script).forEach(function (k) {
-      script[k].forEach(function (ev) { totalDrift += ev[2] || 0; });
+    STEPS.forEach(function (step) {
+      chosen[step.key] = beatsFor(o, step.key);
+      chosen[step.key].forEach(function (ev) { totalDrift += ev[2] || 0; });
     });
     var span = Math.max(1, (o.etaMin + totalDrift)) * SIM_MS_PER_MIN;
 
@@ -143,7 +238,7 @@ window.FB = window.FB || {};
     var cursor = 0;
     STEPS.forEach(function (step) {
       if (step.key === 'delivered') return;
-      var beats = script[step.key] || [];
+      var beats = chosen[step.key] || [];
       var slice = span * (WEIGHTS[step.key] || 0);
       beats.forEach(function (ev, i) {
         /* spread inside the step, with a little jitter so beats do not land on a grid */
@@ -160,7 +255,9 @@ window.FB = window.FB || {};
     });
     sched.sort(function (a, b) { return a.at - b.at; });
 
-    var last = script.delivered[0];
+    /* SCRIPT.delivered used to be dead code: the done branch unshifted a hardcoded
+       event and returned, so any new delivered beat silently never appeared. */
+    var last = (chosen.delivered && chosen.delivered[0]) || scriptFor(o).delivered.beats[0];
     o.schedule = sched;
     o.finalBeat = { step: 'delivered', text: fill(last[0], o), sub: last[1] ? fill(last[1], o) : null, drift: 0 };
     /* starts at what the store advertised; every drift beat pushes it out */

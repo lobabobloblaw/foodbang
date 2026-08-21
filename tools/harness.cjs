@@ -27,9 +27,23 @@ function stubEl(tag) {
     getAttribute(k) { return Object.prototype.hasOwnProperty.call(attrs, k) ? attrs[k] : null; },
     removeAttribute(k) { delete attrs[k]; },
     hasAttribute(k) { return Object.prototype.hasOwnProperty.call(attrs, k); },
-    appendChild(c) { el.children.push(c); return c; },
-    removeChild(c) { return c; },
-    replaceChild(a) { return a; },
+    /* These have to be REAL. FB.toast trims its stack with
+       `while (root.children.length >= 2) root.removeChild(root.firstElementChild)`,
+       so a removeChild that does not remove is an infinite loop on the third toast —
+       which is exactly how it presented: a test that hung with no output. */
+    appendChild(c) { el.children.push(c); c.parentNode = el; return c; },
+    removeChild(c) {
+      const i = el.children.indexOf(c);
+      if (i > -1) el.children.splice(i, 1);
+      if (c) c.parentNode = null;
+      return c;
+    },
+    replaceChild(a, b) {
+      const i = el.children.indexOf(b);
+      if (i > -1) el.children[i] = a; else el.children.push(a);
+      return b;
+    },
+    get firstElementChild() { return el.children[0] || null; },
     insertAdjacentHTML() {},
     addEventListener() {}, removeEventListener() {},
     /* returns another stub rather than null so mount-time and toast-time code

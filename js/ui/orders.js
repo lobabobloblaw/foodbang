@@ -351,18 +351,24 @@ window.FB = window.FB || {};
     });
   }
 
-  var CHAT = [
-    ['them', 'on my way'],
-    ['them', 'is it the blue house'],
-    ['you', 'no'],
-    ['them', 'ok'],
-    ['them', 'i am at a blue house'],
+  /* Exchanges, not lines: each one reads as a small conversation on its own, and
+     one is drawn per order, seeded on the order id — so a reload replays the same
+     conversation and the next delivery is a different one. */
+  var CHATS = [
+    [['them', 'on my way'], ['them', 'is it the blue house'], ['you', 'no'], ['them', 'ok'], ['them', 'i am at a blue house']],
+    [['them', 'hey is there a gate'], ['you', 'no gate'], ['them', 'ok im at the gate'], ['them', 'ill leave it here']],
+    [['them', 'the app says apt 12'], ['you', 'yes'], ['them', 'ok'], ['them', 'there is no 12'], ['them', 'leaving at 11']],
+    [['them', 'running behind, one more stop'], ['you', 'how long'], ['them', 'not long'], ['them', 'two more stops']],
+    [['them', 'do you want the receipt'], ['you', 'sure'], ['them', 'ok'], ['them', 'i dont have it']],
+    [['them', 'im outside'], ['you', 'coming down'], ['them', 'no rush'], ['them', 'im leaving in 40 seconds']],
   ];
+  function chatFor(o) { return CHATS[FB.hash(String(o.id) + 'chat') % CHATS.length]; }
+
   function openChat(o) {
     FB.sheet.open({
       title: o.slinger.name, sub: 'Messages are monitored for quality.',
       html: '<div style="padding:8px 16px 16px;display:flex;flex-direction:column;gap:8px">' +
-        CHAT.map(function (c) {
+        chatFor(o).map(function (c) {
           var mine = c[0] === 'you';
           return '<div style="align-self:' + (mine ? 'flex-end' : 'flex-start') + ';max-width:78%;' +
             'background:' + (mine ? 'var(--fb)' : 'var(--surface-2)') + ';color:' + (mine ? '#fff' : 'var(--ink)') + ';' +

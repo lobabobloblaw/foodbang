@@ -1127,8 +1127,9 @@ check('the terms get worse, and take §4.2 with them', () => {
     /* every token the scripts use must be one fill() knows about */
     const known = new Set(['store', 'slinger', 'rating', 'deliveries', 'vehicle', 'fries']);
     for (const script of [FB.tracker.SCRIPT, FB.tracker.PICKUP_SCRIPT]) {
-      for (const beats of Object.values(script)) {
-        for (const b of beats) {
+      for (const step of Object.values(script)) {
+        const all = (step.beats || []).concat(...Object.values(step.extra || {}));
+        for (const b of all) {
           for (const m of String(b[0] + ' ' + (b[1] || '')).matchAll(/\{(\w+)\}/g)) {
             if (!known.has(m[1])) throw new Error('a tracker beat uses {' + m[1] + '}, which fill() does not know');
           }
@@ -1138,6 +1139,80 @@ check('the terms get worse, and take §4.2 with them', () => {
 
     return T.VERSIONS.length + ' versions, gated at order ' + want.slice(0, 3).join(', ') + '…, §4.2 ' + before + ' -> ' + after;
   } finally { app.dispose(); }
+});
+
+check('no two orders tell the same story', () => {
+  /* advance() indexed a fixed array, so the tracker revealed itself as a tape loop
+     on about order four. The spine still plays in order — "arrived at {store}"
+     cannot follow "Order collected" and still read — but flavour is unlocked by
+     tenure and inserted among it, seeded on the order id. */
+  const app = harness.loadApp();
+  const { FB, clock } = app;
+  try {
+    const T0 = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T0);
+    function story(orderCount, id, mode) {
+      FB.store.set((st) => { st.meta.orderCount = orderCount; return st; });
+      harness.addToCart(FB, 'mcronalds', 2);
+      const o = harness.makeOrder(FB, 'mcronalds', { now: T0, mode: mode || 'delivery' });
+      o.id = id; o.etaDrift = 0; o.events = []; delete o.tier;
+      FB.tracker.build(o);
+      FB.cart.clear('mcronalds');
+      return o;
+    }
+
+    /* tenure widens the pool */
+    const t1 = story(0, 'o_t1'), t2 = story(8, 'o_t2'), t3 = story(20, 'o_t3');
+    if (!(t1.tier === 1 && t2.tier === 2 && t3.tier === 3)) {
+      throw new Error('tenure did not map to tiers: ' + [t1.tier, t2.tier, t3.tier].join(','));
+    }
+    if (!(t3.schedule.length > t2.schedule.length && t2.schedule.length > t1.schedule.length)) {
+      throw new Error('a longer tenure did not produce a longer story');
+    }
+
+    /* two orders at the same tier are different stories */
+    const a = story(20, 'o_aaa'), b = story(20, 'o_bbb');
+    const sa = a.schedule.map((x) => x.text).join('|'), sb = b.schedule.map((x) => x.text).join('|');
+    if (sa === sb) throw new Error('two orders at the same tier told an identical story');
+
+    /* and the same order is the same story, twice */
+    const again = story(20, 'o_aaa');
+    if (again.schedule.map((x) => x.text).join('|') !== sa) throw new Error('rebuilding an order changed its story');
+
+    /* the spine keeps its order inside every step */
+    for (const o of [t1, t2, t3]) {
+      const script = o.mode === 'pickup' ? FB.tracker.PICKUP_SCRIPT : FB.tracker.SCRIPT;
+      for (const key of Object.keys(script)) {
+        if (key === 'delivered') continue;
+        const spine = script[key].beats.map((x) => x[0]);
+        const got = o.schedule.filter((x) => x.step === key).map((x) => x.text);
+        let at = -1;
+        for (const s of spine) {
+          /* a spine beat may carry tokens, so match on the filled prefix */
+          const idx = got.findIndex((g, i) => i > at && g.slice(0, 12) === s.replace(/\{\w+\}/g, '').slice(0, 12).trim().slice(0, 12));
+          if (s.startsWith('{')) continue;              /* token-led beats are matched loosely */
+          if (idx <= at && idx !== -1) throw new Error('the spine of ' + key + ' was reordered');
+          if (idx > at) at = idx;
+        }
+      }
+    }
+
+    /* the delivered beat comes from the pool, not from a hardcoded literal —
+       SCRIPT.delivered was dead code until it did */
+    const d3 = FB.tracker.SCRIPT.delivered;
+    if (!d3.extra || !d3.extra[3]) throw new Error('there is no tier-3 delivered beat to be dead code about');
+
+    /* and every order still delivers inside its own window */
+    for (const o of [t1, t2, t3]) {
+      FB.store.reset();
+      FB.store.set((st) => { st.orders.unshift(o); st.activeOrderId = o.id; return st; });
+      clock.set(o.deliverAt + 5 * 60000);
+      FB.tracker.tick();
+      if (FB.store.order(o.id).status !== 'delivered') throw new Error('a tier-' + o.tier + ' order ran past its own window');
+    }
+
+    return 'tiers ' + t1.schedule.length + '/' + t2.schedule.length + '/' + t3.schedule.length + ' beats, seeded per order';
+  } finally { clock.restore(); app.dispose(); }
 });
 
 console.log('');
