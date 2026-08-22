@@ -179,8 +179,8 @@ check('every photo declares its style, and the mix is preserved', () => {
      decision (see CLAUDE.md): the 33 studio shots are the original chain-marketing
      exception and no more are being made. Move this number, README.md and CLAUDE.md
      together; all three carry it. */
-  eq(items.length, 261, 'photographed items');
-  eq(amateur, 228, 'amateur photos');
+  eq(items.length, 426, 'photographed items');
+  eq(amateur, 393, 'amateur photos');
   eq(items.length - amateur, 33, 'studio photos, which are not growing');
   return amateur + ' amateur / ' + (items.length - amateur) + ' studio';
 });

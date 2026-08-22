@@ -525,8 +525,8 @@
           "badges": [
             "Chef Recommended"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/22.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: two long seasoned beef and lamb kofta, ridged and charred black in stripes off the grill, laid across yellow rice in a white styrofoam clamshell with a pile of soft grilled onions beside them and a lemon wedge in the corner, the lid propped open behind. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the nearest kofta and a hard shadow thrown behind the clamshell. Framed slightly crooked with the clamshell cut off at the right edge, a napkin dispenser behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -609,7 +609,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     },

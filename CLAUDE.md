@@ -149,7 +149,7 @@ bundle**. See also the source-hash note above.
 explicit no-text clause. Consequence: renaming a restaurant requires regenerating exactly one
 image (its logo); its entire photo set survives. Renaming the *app* requires regenerating nothing.
 
-**The amateur/studio photo split is deliberate.** 87 of 120 menu photos are staff-phone-style
+**The amateur/studio photo split is deliberate.** 393 of 426 menu photos are staff-phone-style
 (styrofoam, flash hotspot, fluorescent cast, crooked framing); 33 are chain marketing shots. That
 mix is the realism, not an inconsistency. Recipe: `tools/local-bible.json` → `amateurPhotoRecipe`.
 Do not "clean them up."
@@ -157,7 +157,7 @@ Do not "clean them up."
 **Every photo states its `photoStyle`; absence is not a value.** 45 photos used to carry no
 `photoStyle` at all, so "not amateur" silently meant "studio" — and seven that *were* labelled
 amateur are visibly studio work. All 120 were classified by eye in Aug 2026; `bundle.cjs` now
-refuses to build a photo without the field, and `npm test` asserts the exact 87/33 split rather
+refuses to build a photo without the field, and `npm test` asserts the exact 393/33 split rather
 than a band wide enough to hide the drift. All six independents are amateur-only by doctrine
 (`tools/local-bible.json` -> `independentDoctrine`). Each manifest entry carries a `styleObserved`, and a
 `promptDrift` note where the recorded prompt disagrees with the pixels — 54 chain photos were

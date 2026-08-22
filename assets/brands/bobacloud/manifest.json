@@ -1,84 +1,182 @@
 {
-  "slug": "bobacloud",
-  "name": "Boba Cloud Tea & Snow",
-  "local": true,
-  "model": "bytedance/seedream-4.5",
-  "recipe": "local-bible.json amateurPhotoRecipe / amateurLogoRecipe / amateurHeroRecipe",
-  "images": [
-    {
-      "file": "logo.webp",
-      "raw": "build/raw/bobacloud/logo.jpg",
-      "aspect": "1:1",
-      "predictionId": "yrnkjj9kp5rmy0d046c90h3hwc",
-      "supersedes": "4etsr2r6ssrmy0d046atqvr3xg",
-      "postProcess": "cropped in to remove residual shop-interior strip at right and ceiling at top, forcing full bleed",
-      "prompt": "Extreme close-up phone photograph of the printed surface of a slightly wrinkled white vinyl banner. The banner surface completely fills the entire square frame and extends past all four edges: no wall, no ceiling, no window, no floor, no shop interior, no border, no margin, no card, no frame, no drop shadow is visible anywhere. Printed across the vinyl: a cute rounded cartoon cloud mascot in mint green with pink cheeks and two small black dot eyes, a fat pink boba straw poking out of the top, three dark tapioca pearl dots beside it, and below the cloud the only text anywhere in the image, exactly: Boba Cloud Tea & Snow - hand-drawn rounded lettering in mint green with a pink outline, letter spacing slightly uneven, spelled exactly that way and nothing else written anywhere. One brass grommet at the very corner of the frame, a soft diagonal crease in the vinyl, a small scuff, faint dust. Shot straight on with a phone under bright flat overhead shop light, mild glare across the vinyl, flat unretouched phone-camera look, mixed white balance. Square crop, banner surface edge to edge. No other text, no watermarks, no hands, no people."
-    },
-    {
-      "file": "hero.webp",
-      "raw": "build/raw/bobacloud/hero.jpg",
-      "aspect": "16:9",
-      "predictionId": "t3zppnjd55rmy0d046cte26kj0",
-      "supersedes": "1w5dkqbjy9rmr0d046as799xjg",
-      "postProcess": "cropped left edge to trim heavy ultrawide lens vignette, re-squared to 16:9",
-      "prompt": "Amateur smartphone photo taken inside a small bubble tea shop and uploaded to a food delivery app. Wide view of the front counter: a completely blank white laminated board panel mounted above the counter with nothing printed on it, a stainless cup-sealing machine, a long row of clear plastic topping bins holding tapioca pearls and coloured jellies with small scoops in them, a tall stack of clear plastic cups, a plain glass jar, two wooden stools at a narrow window bar, worn scuffed tile floor, a plain unbranded stainless refrigerator with a blank door, a mop bucket in the corner. Bright flat overhead fluorescent light, high key, slight green colour cast, no fill, mixed white balance. Slightly crooked horizon, framed a little low, normal phone lens with no fisheye distortion, visible sensor noise and JPEG compression. Flat phone-camera look, unretouched, honest and ordinary. Absolutely no text, no lettering, no signage, no brand logos, no product packaging, no bottles, no labels, no watermarks, no hands, no people anywhere in the image."
-    },
-    {
-      "file": "items/01.webp",
-      "item": "bcs-001 Classic Milk Tea",
-      "raw": "build/raw/bobacloud/item-01.jpg",
-      "aspect": "1:1",
-      "predictionId": "0f7rgkevphrmy0d046asdtqb5w",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of light tan milk tea with a thick layer of dark tapioca pearls settled across the bottom, heat-sealed flat film lid on top with a fat pink straw punched through it, condensation running down the outside, the cup standing on a bright white shop counter. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the base of the cup cut off at the bottom edge, a row of clear topping bins and a cup-sealing machine out of focus behind. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/02.webp",
-      "item": "bcs-002 Brown Sugar Boba Milk",
-      "raw": "build/raw/bobacloud/item-02.jpg",
-      "aspect": "1:1",
-      "predictionId": "2hp72r1f6srmt0d046b8t6jkt8",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic cup of brown sugar boba milk, thick dark caramel syrup streaked in heavy uneven stripes down the inside wall of the cup, a deep bed of glossy black tapioca pearls at the bottom, white milk filling the rest, no lid on it yet, standing on a white shop counter. Harsh direct on-camera flash, hot blown-out hotspot on the wet syrup, hard black shadow thrown behind the cup. Shot from too close and slightly above so the cup is not centred in the frame. Flat phone-camera look, unretouched, mixed white balance, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/03.webp",
-      "item": "bcs-007 Passionfruit Green Tea",
-      "raw": "build/raw/bobacloud/item-03.jpg",
-      "aspect": "1:1",
-      "predictionId": "a9p9zzw259rmt0d046bb9vyk3c",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of golden-orange passionfruit green tea packed with ice cubes and dark passionfruit seeds suspended through the liquid, two thin lemon wheels pressed against the inside of the cup, flat heat-sealed film lid, a green straw lying beside it on the counter. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup, mixed white balance. Cluttered background: a stainless prep counter, a stack of lids, another sealed drink waiting behind it. Flat phone-camera look, unretouched, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/04.webp",
-      "item": "bcs-012 Mango Snow Bowl",
-      "raw": "build/raw/bobacloud/item-04.jpg",
-      "aspect": "1:1",
-      "predictionId": "24cfm5ptvhrmr0d046b9mwmy60",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic deli container heaped with pale yellow shaved snow in soft ribbons, topped with cubes of fresh mango, a drizzle of condensed milk running down one side, a few dark tapioca pearls tucked at the edge, already softening at the base. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill. The container sitting directly on a scratched laminate counter with crumbs and a smear of syrup beside it, framed a little too close and slightly above. Flat phone-camera look, unretouched, mixed white balance, visible JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/05.webp",
-      "item": "bcs-018 Popcorn Chicken",
-      "raw": "build/raw/bobacloud/item-05.jpg",
-      "aspect": "1:1",
-      "predictionId": "0ztw3qnk3hrmt0d046d8rsa684",
-      "supersedes": "pwgch89hgnrmw0d046bsnng6qc",
-      "regenReason": "first pass came back as a clean seamless-background studio plate; reshot with on-camera flash, fluorescent cast and a cluttered laminate counter pushed harder",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app, snapped quickly on the counter between orders. Subject: a generous pile of craggy golden fried popcorn chicken heaped in a paper boat lined with wax paper, crisp dark green fried basil leaves scattered through it, a dusting of reddish pepper seasoning, a small paper cup of pale dipping sauce wedged beside it. Harsh direct on-camera flash from a phone, hot blown-out white hotspot burning across the fried coating, hard ugly black shadow thrown flat behind the boat, flat fluorescent green-yellow cast in the corners of the frame. The boat sits directly on a scratched laminate shop counter with crumbs, a smear of sauce and a stack of plastic lids beside it, a napkin dispenser half out of frame. Framed crooked and too close, the boat cut off at the right edge, mild motion blur and soft focus, heavy JPEG compression artefacts and sensor noise, mixed white balance, flat and unretouched. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/06.webp",
-      "item": "bcs-019 Hong Kong Egg Puffs",
-      "raw": "build/raw/bobacloud/item-06.jpg",
-      "aspect": "1:1",
-      "predictionId": "nvgjq2mpanrmy0d046brcfk6j4",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a sheet of golden Hong Kong egg puffs, the round bubble cells clearly formed and slightly browned at the edges, folded loosely into an open plain paper sleeve standing upright on a white shop counter, one puff broken off beside it showing the hollow inside. Dim warm shop light with the flash off, slightly underexposed and noisy. Framed slightly crooked with the sleeve cut off at the left edge, another order in a sealed plastic cup waiting behind it. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "styleObserved": "studio",
-      "promptDrift": "Provenance note, 2026-08-20: the prompt above asks for a staff-phone photo but the model returned a studio-looking frame. The prompt is accurate; the output drifted. Verified by eye."
-    }
-  ]
+ "slug": "bobacloud",
+ "name": "Boba Cloud Tea & Snow",
+ "local": true,
+ "model": "bytedance/seedream-4.5",
+ "recipe": "local-bible.json amateurPhotoRecipe / amateurLogoRecipe / amateurHeroRecipe",
+ "images": [
+  {
+   "file": "logo.webp",
+   "raw": "build/raw/bobacloud/logo.jpg",
+   "aspect": "1:1",
+   "predictionId": "yrnkjj9kp5rmy0d046c90h3hwc",
+   "supersedes": "4etsr2r6ssrmy0d046atqvr3xg",
+   "postProcess": "cropped in to remove residual shop-interior strip at right and ceiling at top, forcing full bleed",
+   "prompt": "Extreme close-up phone photograph of the printed surface of a slightly wrinkled white vinyl banner. The banner surface completely fills the entire square frame and extends past all four edges: no wall, no ceiling, no window, no floor, no shop interior, no border, no margin, no card, no frame, no drop shadow is visible anywhere. Printed across the vinyl: a cute rounded cartoon cloud mascot in mint green with pink cheeks and two small black dot eyes, a fat pink boba straw poking out of the top, three dark tapioca pearl dots beside it, and below the cloud the only text anywhere in the image, exactly: Boba Cloud Tea & Snow - hand-drawn rounded lettering in mint green with a pink outline, letter spacing slightly uneven, spelled exactly that way and nothing else written anywhere. One brass grommet at the very corner of the frame, a soft diagonal crease in the vinyl, a small scuff, faint dust. Shot straight on with a phone under bright flat overhead shop light, mild glare across the vinyl, flat unretouched phone-camera look, mixed white balance. Square crop, banner surface edge to edge. No other text, no watermarks, no hands, no people."
+  },
+  {
+   "file": "hero.webp",
+   "raw": "build/raw/bobacloud/hero.jpg",
+   "aspect": "16:9",
+   "predictionId": "t3zppnjd55rmy0d046cte26kj0",
+   "supersedes": "1w5dkqbjy9rmr0d046as799xjg",
+   "postProcess": "cropped left edge to trim heavy ultrawide lens vignette, re-squared to 16:9",
+   "prompt": "Amateur smartphone photo taken inside a small bubble tea shop and uploaded to a food delivery app. Wide view of the front counter: a completely blank white laminated board panel mounted above the counter with nothing printed on it, a stainless cup-sealing machine, a long row of clear plastic topping bins holding tapioca pearls and coloured jellies with small scoops in them, a tall stack of clear plastic cups, a plain glass jar, two wooden stools at a narrow window bar, worn scuffed tile floor, a plain unbranded stainless refrigerator with a blank door, a mop bucket in the corner. Bright flat overhead fluorescent light, high key, slight green colour cast, no fill, mixed white balance. Slightly crooked horizon, framed a little low, normal phone lens with no fisheye distortion, visible sensor noise and JPEG compression. Flat phone-camera look, unretouched, honest and ordinary. Absolutely no text, no lettering, no signage, no brand logos, no product packaging, no bottles, no labels, no watermarks, no hands, no people anywhere in the image."
+  },
+  {
+   "file": "items/01.webp",
+   "item": "bcs-001 Classic Milk Tea",
+   "raw": "build/raw/bobacloud/item-01.jpg",
+   "aspect": "1:1",
+   "predictionId": "0f7rgkevphrmy0d046asdtqb5w",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of light tan milk tea with a thick layer of dark tapioca pearls settled across the bottom, heat-sealed flat film lid on top with a fat pink straw punched through it, condensation running down the outside, the cup standing on a bright white shop counter. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the base of the cup cut off at the bottom edge, a row of clear topping bins and a cup-sealing machine out of focus behind. Flat phone-camera look, unretouched, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/02.webp",
+   "item": "bcs-002 Brown Sugar Boba Milk",
+   "raw": "build/raw/bobacloud/item-02.jpg",
+   "aspect": "1:1",
+   "predictionId": "2hp72r1f6srmt0d046b8t6jkt8",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic cup of brown sugar boba milk, thick dark caramel syrup streaked in heavy uneven stripes down the inside wall of the cup, a deep bed of glossy black tapioca pearls at the bottom, white milk filling the rest, no lid on it yet, standing on a white shop counter. Harsh direct on-camera flash, hot blown-out hotspot on the wet syrup, hard black shadow thrown behind the cup. Shot from too close and slightly above so the cup is not centred in the frame. Flat phone-camera look, unretouched, mixed white balance, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/03.webp",
+   "item": "bcs-007 Passionfruit Green Tea",
+   "raw": "build/raw/bobacloud/item-03.jpg",
+   "aspect": "1:1",
+   "predictionId": "a9p9zzw259rmt0d046bb9vyk3c",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of golden-orange passionfruit green tea packed with ice cubes and dark passionfruit seeds suspended through the liquid, two thin lemon wheels pressed against the inside of the cup, flat heat-sealed film lid, a green straw lying beside it on the counter. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup, mixed white balance. Cluttered background: a stainless prep counter, a stack of lids, another sealed drink waiting behind it. Flat phone-camera look, unretouched, noisy. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/04.webp",
+   "item": "bcs-012 Mango Snow Bowl",
+   "raw": "build/raw/bobacloud/item-04.jpg",
+   "aspect": "1:1",
+   "predictionId": "24cfm5ptvhrmr0d046b9mwmy60",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a clear plastic deli container heaped with pale yellow shaved snow in soft ribbons, topped with cubes of fresh mango, a drizzle of condensed milk running down one side, a few dark tapioca pearls tucked at the edge, already softening at the base. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill. The container sitting directly on a scratched laminate counter with crumbs and a smear of syrup beside it, framed a little too close and slightly above. Flat phone-camera look, unretouched, mixed white balance, visible JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/05.webp",
+   "item": "bcs-018 Popcorn Chicken",
+   "raw": "build/raw/bobacloud/item-05.jpg",
+   "aspect": "1:1",
+   "predictionId": "0ztw3qnk3hrmt0d046d8rsa684",
+   "supersedes": "pwgch89hgnrmw0d046bsnng6qc",
+   "regenReason": "first pass came back as a clean seamless-background studio plate; reshot with on-camera flash, fluorescent cast and a cluttered laminate counter pushed harder",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app, snapped quickly on the counter between orders. Subject: a generous pile of craggy golden fried popcorn chicken heaped in a paper boat lined with wax paper, crisp dark green fried basil leaves scattered through it, a dusting of reddish pepper seasoning, a small paper cup of pale dipping sauce wedged beside it. Harsh direct on-camera flash from a phone, hot blown-out white hotspot burning across the fried coating, hard ugly black shadow thrown flat behind the boat, flat fluorescent green-yellow cast in the corners of the frame. The boat sits directly on a scratched laminate shop counter with crumbs, a smear of sauce and a stack of plastic lids beside it, a napkin dispenser half out of frame. Framed crooked and too close, the boat cut off at the right edge, mild motion blur and soft focus, heavy JPEG compression artefacts and sensor noise, mixed white balance, flat and unretouched. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/06.webp",
+   "item": "bcs-019 Hong Kong Egg Puffs",
+   "raw": "build/raw/bobacloud/item-06.jpg",
+   "aspect": "1:1",
+   "predictionId": "nvgjq2mpanrmy0d046brcfk6j4",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a sheet of golden Hong Kong egg puffs, the round bubble cells clearly formed and slightly browned at the edges, folded loosely into an open plain paper sleeve standing upright on a white shop counter, one puff broken off beside it showing the hollow inside. Dim warm shop light with the flash off, slightly underexposed and noisy. Framed slightly crooked with the sleeve cut off at the left edge, another order in a sealed plastic cup waiting behind it. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "styleObserved": "studio",
+   "promptDrift": "Provenance note, 2026-08-20: the prompt above asks for a staff-phone photo but the model returned a studio-looking frame. The prompt is accurate; the output drifted. Verified by eye."
+  },
+  {
+   "file": "items/07.webp",
+   "item": "bcs-003",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A tall clear plastic cup of thick opaque lavender taro milk tea, dense enough to cling to the cup wall, pale flecks of steamed taro suspended through it and a deep bed of dark pearls at the bottom, flat heat-sealed film lid with a wide straw punched through, condensation running down the sides. Dim warm shop light with the flash off, slightly underexposed and noisy, the purple gone slightly grey. Shot from too close and a little above so the cup sits off-centre, a stainless prep counter and a row of clear topping bins crowding in behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/08.webp",
+   "item": "bcs-004",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A tall clear plastic cup of Thai iced tea packed with ice, strong orange tea below and a thick unstirred pour of condensed milk sitting in pale ropes across the top and sinking in one streak down the middle, no lid on yet, a spoon laid across the rim. Bright unflattering daylight through a window on one side, blown highlights along the near edge of the cup and mixed white balance. Framed slightly crooked with the base of the cup cut off at the bottom edge, a napkin dispenser and another sealed drink waiting behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/09.webp",
+   "item": "bcs-005",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A clear plastic cup of grassy green matcha milk latte, whisked unevenly so a few darker specks of powder streak the side and a thin pale foam head sits on top, the lid not on yet, a small metal whisk and an open unmarked tin beside it. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Mild motion blur and soft focus with visible compression artefacts and sensor noise, the cup on a scratched laminate counter dusted with spilled powder.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/10.webp",
+   "item": "bcs-006",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A tall clear plastic cup of pale jade-cream jasmine milk green tea, a generous layer of small dark mini pearls settled across the bottom and a few translucent lychee jelly cubes among them, flat heat-sealed film lid, a fat straw lying beside it. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the wet flank of the cup and a hard shadow thrown behind the container. Cluttered background: a stainless prep counter, a napkin dispenser, a stack of lids, another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/11.webp",
+   "item": "bcs-008",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A clear plastic cup of cloudy red-pink strawberry lemon tea over dark black tea, crushed strawberry pulp and seeds settled through the ice, two thick lemon wheels pressed flat against the inside wall, the sealed film lid still lying loose beside it. Bright unflattering daylight through a window on one side, blown highlights on the near edge and mixed white balance. The cup sitting directly on a scratched laminate counter with crumbs and a smear of pink syrup beside it, framed slightly low.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/12.webp",
+   "item": "bcs-009",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A heavy clear plastic family pitcher of mango green tea with a snap-on lid, thick opaque yellow-orange through the body, cubes of fresh mango and a few pale popping bursts drifting near the bottom, a faint separation line where the blended pass has begun to settle. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the pitcher handle cut off at the right edge, a stainless prep counter and a stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/13.webp",
+   "item": "bcs-010",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A squat clear plastic cup of dark caramel-brown winter melon tea over ice, a thick layer of glossy tapioca pearls at the bottom and cubes of black grass jelly among them, film lid sealed flat, the cup already sweating onto the counter. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the wet lid and a hard shadow thrown behind the cup. Mild motion blur and soft focus, visible compression artefacts, a napkin dispenser and another waiting order out of focus behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/14.webp",
+   "item": "bcs-011",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A tall clear plastic cup of amber lychee oolong over ice with six whole peeled lychees floating near the surface, pale and glossy, a clear dome lid clipped on above the fruit. Dim warm shop light with the flash off, slightly underexposed and noisy, the amber going muddy. The cup standing directly on a scratched laminate counter with crumbs and a wet ring of syrup beside it, an opened can of fruit just out of frame at the edge.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/15.webp",
+   "item": "bcs-013",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A clear plastic deli container heaped with pale green matcha snow shaved into loose ribbons standing above the rim, a heavy ladle of dark glossy red bean spooned across the top and spilling down one side, the clear dome lid resting upside down beside it, the base already going wet. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Cluttered background: a stainless prep counter, a stack of lids, another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/16.webp",
+   "item": "bcs-014",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A wide round clear catering bowl under a tall clear dome lid, mounded with white milk snow in soft ribbons, sliced strawberries laid over the peak, six ribbons of condensed milk drawn across the top and running into the folds, three pale mochi pieces tucked at the edge. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the dome lid and a hard shadow thrown behind the bowl. Shot from too close and slightly above so the bowl is not centred, a stainless prep counter behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/17.webp",
+   "item": "bcs-015",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A white styrofoam clamshell propped open with a tall peak of charcoal-grey black sesame snow shaved into fine ribbons standing well above the rim, speckled darker where the ground sesame has clumped, a heavy metal spoon laid in the lid. Bright unflattering daylight through a window on one side, blown highlights along the near edge of the foam and mixed white balance. Mild motion blur and soft focus with visible compression artefacts, a scratched prep counter and a grinder out of focus behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/18.webp",
+   "item": "bcs-016",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A plain white paper hot cup with a domed sipping lid, steam curling off the vent hole, a dark ring of oolong milk tea visible where it has slopped past the lid and run down the side, the cup standing in a plain cardboard sleeve on a white shop counter. Dim warm shop light with the flash off, slightly underexposed and noisy. Framed slightly crooked with the base of the cup cut off at the bottom edge, a napkin dispenser and a stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/19.webp",
+   "item": "bcs-017",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A clear plastic-lidded soup cup of hot ginger honey tea, pale gold and faintly cloudy, eight thick coins of sliced ginger floating and settling through it, honey pooled and still swirling at the bottom, condensation fogging the inside of the lid. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. The cup sitting directly on a scratched laminate counter with crumbs and a sticky smear beside it, ginger peel pushed to the side.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/20.webp",
+   "item": "bcs-020",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A brown paper takeout bag folded open and heaped with a generous pile of twice-fried sweet potato batons, deep orange, craggy and crisp at the ends, dusted unevenly with reddish plum powder that has drifted onto the paper, a small paper cup of dip wedged in at the front. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the nearest fries and a hard shadow thrown behind the bag. Cluttered background: a stainless prep counter, a napkin dispenser, another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  }
+ ]
 }

@@ -95,12 +95,16 @@ station), La Taqueria Verdadera #2, Boba Cloud Tea & Snow, Golden Wok Express, S
 The independents carry their own signals: two- and three-digit rating counts, higher delivery fees,
 41–79 minute windows, odd closing times, and announcements that read like the owner typed them.
 
-**187 generated images**, all `bytedance/seedream-4.5` via Replicate, each brand given its own art
-direction — 1974 franchise flash, 2am neon drive-thru, faux-Egyptian revival, institutional
-fluorescent, gas-station hot case. Menu photography is deliberately **mixed**: 33 polished chain
-marketing shots and **87 amateur staff phone photos** — styrofoam clamshells, hard on-camera flash,
-green fluorescent cast, crooked framing, cluttered prep counters — because that is what a real
-delivery feed looks like.
+**Over 600 generated images**, each brand given its own art direction — 1974 franchise flash, 2am
+neon drive-thru, faux-Egyptian revival, institutional fluorescent, gas-station hot case. Menu
+photography is deliberately **mixed**: 33 polished chain marketing shots and **393 amateur staff
+phone photos** — styrofoam clamshells, hard on-camera flash, green fluorescent cast, crooked
+framing, cluttered prep counters — because that is what a real delivery feed looks like. Every one
+of the 426 menu items has a photograph.
+
+There are also **136 proof-of-delivery photographs**, tagged by drop-off type and time of day so a
+3am doorstep and a lunchtime office hand-off never draw the same frame — and, on the courier side,
+rolled as loot. Most are unremarkable. A few are not.
 
 **A world with a clock in it.** The app knows what time it is and so does the city. Twenty stores
 have opening hours — eight of them close after midnight — so at 3 AM one restaurant is open and at

@@ -1,65 +1,170 @@
 {
-  "slug": "dunkinn",
-  "model": "bytedance/seedream-4.5",
-  "images": [
-    {
-      "file": "logo.webp",
-      "prompt": "Flat vector brand logo, bubbly rounded 1980s franchise identity styling. Solid hot-orange background covering 100 percent of the image, running off all four sides of the canvas with zero black border and zero empty margin. Do NOT draw a rounded square badge, sticker, card, tile, frame, outline or shadow around the artwork, and do NOT place the artwork on a dark backdrop. Centered on the orange: a bold magenta takeaway coffee cup silhouette, slightly tilted, vibrating, with three thick orange motion lines radiating off each side; beneath the cup a chunky rounded soft-geometric wordmark in the same magenta. Crisp flat colour, no gradients. Full-bleed square: the background colour fills the entire canvas edge to edge. No card, no frame, no rounded container, no drop shadow, no surrounding margin or border. The only text anywhere in the image is exactly: Dunkinn",
-      "predictionId": "031vcyd5zdrmw0d0465br642m4",
-      "predictTime": 11.51,
-      "note": "Second generation. First attempt (6k7wrra5p9rmw0d0463s1fr8n8) rendered a rounded orange card on a black field; this one was center-cropped 1740x1740 from 2048 to remove a residual rounded black edge."
-    },
-    {
-      "file": "hero.webp",
-      "prompt": "Cinematic wide establishing shot of a bright pink-and-orange donut shop counter at 6am. A long glossy bakery case packed shelf to shelf with glazed and sprinkled donuts, stainless coffee urns venting steam behind it, loose pink and orange sprinkles scattered across every surface and across the tiled floor. Above the counter hangs one enormous menu board that is a completely blank flat magenta panel with an orange frame: absolutely no writing, no letters, no numbers, no symbols, no squiggles or scribbles on it or anywhere else in the room. Flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Completely empty, nobody present. 24mm anamorphic, deep focus, deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "c29jyvesmhrmt0d0465858sbz0",
-      "predictTime": 10.43,
-      "note": "Second generation. First attempt (g2jqexkm59rmt0d0463ss1d5km) put garbled faux-text rows on the menu board."
-    },
-    {
-      "file": "items/01.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a leaning tower of eleven glazed yeast donuts stacked into a single load-bearing column, thick translucent glaze sheeting down the outside in ribbons and pooling on the counter below, the bottom donut visibly compressed and squeezing outward under the mass above it, sugar crackle glinting across every surface. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 85mm three-quarter hero angle, shallow depth of field, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "c1rrt8zhnhrmw0d0463vadbzt4",
-      "predictTime": 14.81,
-      "styleObserved": "studio"
-    },
-    {
-      "file": "items/02.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an enormous clear cup of iced coffee photographed straight down into the vessel, cream plunging through the dark coffee in thick curling ribbons that have not yet merged, ice cubes packed so tightly they press up past the rim, a slow whirlpool still turning at the center, condensation beading heavily and running over the lip onto the counter. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 50mm directly overhead, looking down into the cup, shallow depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "j105z6hkgsrmw0d0464bf2yfrw",
-      "predictTime": 12.36,
-      "styleObserved": "studio"
-    },
-    {
-      "file": "items/03.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of the crown of a magenta-frosted donut, the frosting cratered and wet-looking and slumping heavily over one side, thousands of pink, orange and white sprinkles packed edge to edge across it and spilling off the rim in a small avalanche onto the counter, individual sugar crystals razor sharp, a bead of frosting hanging mid-drip. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 100mm macro, extremely shallow depth of field, a narrow slice of focus. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "ydymp550exrmt0d04648bd38bc",
-      "predictTime": 23.03,
-      "styleObserved": "studio"
-    },
-    {
-      "file": "items/04.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean vertical cross-section of a breakfast sandwich sliced with a hot blade, croissant-style bun with visible lamination layers, three stacked folded egg rounds inside, four sheets of melted orange cheese sagging and stringing well past the bread edge, two thick sausage discs, the interior stack standing twice as tall as the bun and bulging outward under its own weight, one cheese thread hanging mid-drip. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sheen, cheerful and jittery. Camera: 100mm straight-on, flat to the cut face, deep focus, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "5a1463g2d1rmw0d0464rga6838",
-      "predictTime": 11.63,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    },
-    {
-      "file": "items/05.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a tall clear cup of vivid pink refresher standing on a pleated paper liner on a lined metal tray, pale fruit slices suspended in dense suspension throughout the liquid, crushed ice piled well above the rim in a heaped dome, a second soaked liner beside it stained deep pink, a spreading condensation ring darkening the paper under the cup. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 50mm slightly elevated, the tray filling the frame edge to edge, shallow depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "z23bww37s5rmy0d0464rth739r",
-      "predictTime": 12.23,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    },
-    {
-      "file": "items/06.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of roughly two hundred glazed donut spheres filling a sheet tray far past capacity, spheres spilling over all four tray edges onto the counter in loose drifts, glaze pooling and setting in the tray corners, a few spheres split open showing dense yellow crumb, pink and orange sugar shells mixed through the pile. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: perfectly perpendicular overhead flat-lay, 35mm, deep focus, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "ytjddh4y2srmr0d0464v038d7g",
-      "predictTime": 12.28,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    }
-  ]
+ "slug": "dunkinn",
+ "model": "bytedance/seedream-4.5",
+ "images": [
+  {
+   "file": "logo.webp",
+   "prompt": "Flat vector brand logo, bubbly rounded 1980s franchise identity styling. Solid hot-orange background covering 100 percent of the image, running off all four sides of the canvas with zero black border and zero empty margin. Do NOT draw a rounded square badge, sticker, card, tile, frame, outline or shadow around the artwork, and do NOT place the artwork on a dark backdrop. Centered on the orange: a bold magenta takeaway coffee cup silhouette, slightly tilted, vibrating, with three thick orange motion lines radiating off each side; beneath the cup a chunky rounded soft-geometric wordmark in the same magenta. Crisp flat colour, no gradients. Full-bleed square: the background colour fills the entire canvas edge to edge. No card, no frame, no rounded container, no drop shadow, no surrounding margin or border. The only text anywhere in the image is exactly: Dunkinn",
+   "predictionId": "031vcyd5zdrmw0d0465br642m4",
+   "predictTime": 11.51,
+   "note": "Second generation. First attempt (6k7wrra5p9rmw0d0463s1fr8n8) rendered a rounded orange card on a black field; this one was center-cropped 1740x1740 from 2048 to remove a residual rounded black edge."
+  },
+  {
+   "file": "hero.webp",
+   "prompt": "Cinematic wide establishing shot of a bright pink-and-orange donut shop counter at 6am. A long glossy bakery case packed shelf to shelf with glazed and sprinkled donuts, stainless coffee urns venting steam behind it, loose pink and orange sprinkles scattered across every surface and across the tiled floor. Above the counter hangs one enormous menu board that is a completely blank flat magenta panel with an orange frame: absolutely no writing, no letters, no numbers, no symbols, no squiggles or scribbles on it or anywhere else in the room. Flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Completely empty, nobody present. 24mm anamorphic, deep focus, deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "c29jyvesmhrmt0d0465858sbz0",
+   "predictTime": 10.43,
+   "note": "Second generation. First attempt (g2jqexkm59rmt0d0463ss1d5km) put garbled faux-text rows on the menu board."
+  },
+  {
+   "file": "items/01.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a leaning tower of eleven glazed yeast donuts stacked into a single load-bearing column, thick translucent glaze sheeting down the outside in ribbons and pooling on the counter below, the bottom donut visibly compressed and squeezing outward under the mass above it, sugar crackle glinting across every surface. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 85mm three-quarter hero angle, shallow depth of field, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "c1rrt8zhnhrmw0d0463vadbzt4",
+   "predictTime": 14.81,
+   "styleObserved": "studio"
+  },
+  {
+   "file": "items/02.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an enormous clear cup of iced coffee photographed straight down into the vessel, cream plunging through the dark coffee in thick curling ribbons that have not yet merged, ice cubes packed so tightly they press up past the rim, a slow whirlpool still turning at the center, condensation beading heavily and running over the lip onto the counter. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 50mm directly overhead, looking down into the cup, shallow depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "j105z6hkgsrmw0d0464bf2yfrw",
+   "predictTime": 12.36,
+   "styleObserved": "studio"
+  },
+  {
+   "file": "items/03.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of the crown of a magenta-frosted donut, the frosting cratered and wet-looking and slumping heavily over one side, thousands of pink, orange and white sprinkles packed edge to edge across it and spilling off the rim in a small avalanche onto the counter, individual sugar crystals razor sharp, a bead of frosting hanging mid-drip. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 100mm macro, extremely shallow depth of field, a narrow slice of focus. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "ydymp550exrmt0d04648bd38bc",
+   "predictTime": 23.03,
+   "styleObserved": "studio"
+  },
+  {
+   "file": "items/04.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean vertical cross-section of a breakfast sandwich sliced with a hot blade, croissant-style bun with visible lamination layers, three stacked folded egg rounds inside, four sheets of melted orange cheese sagging and stringing well past the bread edge, two thick sausage discs, the interior stack standing twice as tall as the bun and bulging outward under its own weight, one cheese thread hanging mid-drip. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sheen, cheerful and jittery. Camera: 100mm straight-on, flat to the cut face, deep focus, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "5a1463g2d1rmw0d0464rga6838",
+   "predictTime": 11.63,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/05.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a tall clear cup of vivid pink refresher standing on a pleated paper liner on a lined metal tray, pale fruit slices suspended in dense suspension throughout the liquid, crushed ice piled well above the rim in a heaped dome, a second soaked liner beside it stained deep pink, a spreading condensation ring darkening the paper under the cup. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: 50mm slightly elevated, the tray filling the frame edge to edge, shallow depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "z23bww37s5rmy0d0464rth739r",
+   "predictTime": 12.23,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/06.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of roughly two hundred glazed donut spheres filling a sheet tray far past capacity, spheres spilling over all four tray edges onto the counter in loose drifts, glaze pooling and setting in the tray corners, a few spheres split open showing dense yellow crumb, pink and orange sugar shells mixed through the pile. Setting: a bright white bakery case shelf with a glossy orange counter, pink and orange sprinkles scattered across the surface. Lighting: flat bright high-key lighting, no moody shadows, candy-saturated pinks and oranges, glossy sugar sheen, cheerful and jittery. Camera: perfectly perpendicular overhead flat-lay, 35mm, deep focus, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "ytjddh4y2srmr0d0464v038d7g",
+   "predictTime": 12.28,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/07.webp",
+   "item": "dkn-003",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A fat yeast donut on a plain white paper plate, hooded in thick dark chocolate frosting, a second one split open beside it so pale custard bulges out and slumps onto the plate. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the chocolate and a hard shadow thrown behind the plate. Shot from too close and slightly above so the plate is not centred, a stainless prep counter behind it with a napkin dispenser, a stack of lids and another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/08.webp",
+   "item": "dkn-004",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Three ridged cake donuts in a paper boat lined with wax paper, edges cracked open into deep ridges and the thin glaze gone matte and crazed, one tipped on its side against the others, crumbs scattered across the wax paper. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. Framed crooked with the boat cut off at the right edge, sitting on a scratched laminate counter with crumbs and a stack of folded paper bags beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/09.webp",
+   "item": "dkn-005",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Two glazed crullers in a clear plastic deli container with the lid propped beside it, the extruded ridges holding their own shape, glaze pooled in every groove and the hollow core visible at the torn end of one. Bright unflattering daylight through a window on one side, blown highlights on the near rim of the container. Mild motion blur and soft focus with visible compression artefacts and sensor noise, a stainless prep counter behind holding a squeeze bottle and a stack of lids.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/10.webp",
+   "item": "dkn-007",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A plain unprinted white paper cup filled to the brim with black coffee, its plastic lid resting on the counter beside it, steam rising and a slick of oil turning slowly on the surface. Dim warm back-counter light with the flash off, underexposed and noisy, no highlight anywhere on the liquid. The cup sits directly on a scratched laminate counter with crumbs and a dried coffee ring, a napkin dispenser and a coffee urn crowding the edge of frame.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/11.webp",
+   "item": "dkn-008",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A plastic-lidded soup cup plainly too small for what is in it, dark espresso standing proud of the rim under a tan crema, the lid balanced on top and not seated, a run of coffee down the outside. Frontal on-camera flash with no light source visible in frame, a blown-out hotspot on the crema and a hard shadow thrown behind the cup. Framed crooked with the cup cut off at the top edge, a stainless prep counter behind stacked with lids and another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/12.webp",
+   "item": "dkn-009",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A tall straight-sided clear plastic cup holding an iced latte in discrete horizontal bands, dark espresso over white dairy over packed ice, the straw lying on the counter beside it and condensation running down into a wet ring. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. Shot from too close and slightly above so the cup is not centred, a napkin dispenser, a tub of straws and a scratched laminate counter filling the background.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/13.webp",
+   "item": "dkn-010",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A large clear plastic cup of thick beige frozen coffee slurry mounded up into its dome lid, a wide straw pushed through and standing on its own, melt just beginning to run at the edges. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the dome. Mild motion blur and soft focus with visible compression artefacts, a stainless prep counter behind holding a stack of lids and a second cup waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/14.webp",
+   "item": "dkn-012",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Two breakfast sandwiches in an aluminium foil tray with the cardboard lid pulled half off, each a bagel-shaped round holding a browned sausage disc, a folded egg round and a sheet of orange cheese slumping over the edge, the foil creased and greasy underneath. Dim warm back-counter light with the flash off, slightly underexposed and noisy. Framed crooked with the tray cut off at the left edge on a scratched laminate counter, crumbs, a napkin dispenser and folded paper bags behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/15.webp",
+   "item": "dkn-013",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A skewered stack of nine browned sausage discs standing upright in a plain white takeout box with the flaps bent open, a bare wooden dowel running up through the column, grease pooling in the corner of the box. Frontal on-camera flash with no light source visible in frame, a blown-out hotspot on the top disc and a hard shadow thrown behind the box. Shot from too close and slightly above, a stainless prep counter behind with a stack of lids and another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/16.webp",
+   "item": "dkn-014",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: An overstuffed croissant in a red plastic diner basket lined with checkered paper, laminated layers separating along the top and flakes scattered everywhere, egg and two sheets of orange cheese pushing out past the fold. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. The basket sits directly on a scratched laminate counter with crumbs and a smear of sauce beside it, a napkin dispenser and a stack of trays behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/17.webp",
+   "item": "dkn-016",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A clear plastic quart container with a snap lid, full of orange refresher over crushed ice with pale fruit slices suspended right through it, frost on the outside and meltwater pooling under the base. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the lid. Framed crooked with the container cut off at the right edge, a stainless counter behind it holding a tub of straws and another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/18.webp",
+   "item": "dkn-017",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A heavy white styrofoam cup of green iced tea, the lid set beside it so the packed ice and suspended fruit read from above, condensation soaking into the counter under the base. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. Mild motion blur and soft focus with visible compression artefacts and sensor noise, a napkin dispenser, a stack of lids and a scratched laminate counter filling the background.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/19.webp",
+   "item": "dkn-018",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A plain clear plastic cup with a flat snap lid and no straw, filled with a colourless refresher over crushed ice, a few pale fruit solids drifting near the bottom and nothing else to look at. Dim warm interior light with the flash off, underexposed and noisy, the liquid reading nearly grey. Shot from too close and slightly above so the cup is not centred, a stainless prep counter behind with a stack of lids and a bagged order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/20.webp",
+   "item": "dkn-020",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A generous heap of pressed potato hash rounds in a white styrofoam clamshell with the lid folded back, edges darkened from a second pass through the warmer and a shine of grease across the top layer. Frontal on-camera flash with no light source visible in frame, a blown-out hotspot on the nearest rounds and a hard shadow thrown behind the clamshell. Framed crooked with the clamshell cut off at the bottom edge, a scratched laminate counter with crumbs and a napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/21.webp",
+   "item": "dkn-021",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A small squat paper cup of warm translucent glaze filled nearly to the top and still moving, its clear plastic lid resting beside it, a skin forming at one edge and a drip hardening down the side. Dim warm back-room light with the flash off, underexposed and noisy. The cup sits directly on a scratched laminate counter with crumbs and a smear of glaze beside it, a cooling rack and a stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  }
+ ]
 }

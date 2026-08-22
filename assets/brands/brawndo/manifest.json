@@ -1,62 +1,160 @@
 {
-  "slug": "brawndo",
-  "model": "bytedance/seedream-4.5",
-  "images": [
-    {
-      "file": "logo.webp",
-      "prompt": "Flat full-bleed square graphic. The carbon-fiber black field must fill the entire canvas from edge to edge and corner to corner, touching all four edges including the corners. CRITICAL FIX: the previous attempt wrongly drew a rounded-square badge with a chrome outline and left white corners and a white margin around it. There must be NO badge, NO rounded container, NO chrome outline ring, NO app-icon shape, NO card, NO frame, NO drop shadow, NO white corners, NO surrounding margin or border of any colour. Corner pixels are carbon-fiber black. Composition: a jagged electric-cyan lightning bolt striking downward through a hazard-yellow chevron, extreme-sports energy-drink styling with a chrome bevel on the bolt, crackling arc glow. The only text anywhere in the image is exactly: BRAWNDO — spelled B-R-A-W-N-D-O, one heavy condensed italic chrome-bevelled sports wordmark across the lower third. No other words, letters, numbers or marks anywhere.",
-      "predictionId": "r1041grx9nrmy0d0460sbgd4a8",
-      "predictTime": 10.44350582
-    },
-    {
-      "file": "hero.webp",
-      "prompt": "Cinematic wide establishing shot of an industrial hydration warehouse: pallets of glowing cyan drums stacked to the ceiling in long receding aisles, hazard-yellow floor striping painted across a wet concrete floor, an electrical arc flickering off an overhead pipe and throwing sparks, an overhead gantry crane spanning the frame, harsh cyan light with a hazard-yellow kicker, condensation and haze in the air, carbon-fiber panelling on the columns. Anamorphic 24mm, deep focus, aggressive high-contrast commercial photography, deadpan and monumental. No text, no logos, no signage, no packaging labels, no hands, no people.",
-      "predictionId": "9vg7gxf8e1rmy0d045yr0rn98g",
-      "predictTime": 10.087437704
-    },
-    {
-      "file": "items/01.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a squat fifteen-gallon electric-cyan sports-drink drum, lid cracked open, luminous cyan liquid surging over the rim and sheeting down the ribbed sidewall into a spreading puddle, a thick foam collar sagging over the bung, condensation beading across the plastic. Three-quarter hero angle from slightly below so the drum looms. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 50mm, f/4, deep contrast, crisp speculars. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "gpyga0jkhsrmt0d045zbfsqmaw",
-      "predictTime": 16.346989311,
-      "styleObserved": "studio"
-    },
-    {
-      "file": "items/02.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of electric-cyan electrolyte fluid pressed against the inside of a clear ribbed cup wall, a churning meniscus throwing droplets, suspended micro-bubbles and glittering salt crystals drifting through the column, one fat condensation bead breaking loose and running down the plastic. The liquid fills the entire frame like a landscape. Setting behind, thrown far out of focus: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 100mm macro, f/2.8, razor-thin focus. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "q16d3ge1y5rmt0d045z88jf1jr",
-      "predictTime": 10.948466218,
-      "styleObserved": "studio"
-    },
-    {
-      "file": "items/03.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: shot straight down into the open mouth of a steel drum of undiluted electrolyte concentrate, a viscous pale-cyan syrup moving in slow thick ripples, a crusted salt ring climbing the interior wall, dense foam scum drifting across the surface, faint vapor curling off it. The drum mouth fills the frame edge to edge. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 35mm directly overhead, f/5.6, deep contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "w4xpfjgsvsrmr0d045zrv6jffg",
-      "predictTime": 25.047106534,
-      "styleObserved": "studio"
-    },
-    {
-      "file": "items/04.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: overhead flat-lay of nursery seed trays flooded with glowing cyan electrolyte fluid, liquid pooling over the tray lips and running between them, sod squares oversaturated and slumping, wet grass blades beaded with cyan droplets, a coiled hose and two capped jugs of the same fluid arranged in a tight grid. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 40mm straight down, f/8, deep contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "mtt7t65ct1rmw0d045zsb3djf8",
-      "predictTime": 15.589924322,
-      "styleObserved": "studio"
-    },
-    {
-      "file": "items/05.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a dense glossy cyan electrolyte brick the size of a paving stone, sweating syrup, resting on a waxed paper liner inside a scuffed metal depot tray; its weight has crushed the liner and a slick puddle has crept to the tray edge and begun to overhang it. Coarse salt crystals crust the top edges and one corner slumps, glassy and sagging. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 65mm at tray level, f/3.5. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "mf7d918v91rmr0d0460bscz01r",
-      "predictTime": 12.365066067,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    },
-    {
-      "file": "items/06.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean cross-section cutaway of a wall-mounted domestic hydration standpipe, the pipe sliced lengthwise to reveal glowing cyan electrolyte fluid mid-surge inside, a scaled salt crust lining the bore, a brass valve body halved to show its seat, and a cutaway spout where the fluid arcs out and overflows a small catch basin below. Engineering-display neatness, every cut face polished. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 55mm, dead-on elevation, f/8. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "zs5ttdvtwdrmw0d0460as6xfm0",
-      "predictTime": 13.121117937,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    }
-  ]
+ "slug": "brawndo",
+ "model": "bytedance/seedream-4.5",
+ "images": [
+  {
+   "file": "logo.webp",
+   "prompt": "Flat full-bleed square graphic. The carbon-fiber black field must fill the entire canvas from edge to edge and corner to corner, touching all four edges including the corners. CRITICAL FIX: the previous attempt wrongly drew a rounded-square badge with a chrome outline and left white corners and a white margin around it. There must be NO badge, NO rounded container, NO chrome outline ring, NO app-icon shape, NO card, NO frame, NO drop shadow, NO white corners, NO surrounding margin or border of any colour. Corner pixels are carbon-fiber black. Composition: a jagged electric-cyan lightning bolt striking downward through a hazard-yellow chevron, extreme-sports energy-drink styling with a chrome bevel on the bolt, crackling arc glow. The only text anywhere in the image is exactly: BRAWNDO — spelled B-R-A-W-N-D-O, one heavy condensed italic chrome-bevelled sports wordmark across the lower third. No other words, letters, numbers or marks anywhere.",
+   "predictionId": "r1041grx9nrmy0d0460sbgd4a8",
+   "predictTime": 10.44350582
+  },
+  {
+   "file": "hero.webp",
+   "prompt": "Cinematic wide establishing shot of an industrial hydration warehouse: pallets of glowing cyan drums stacked to the ceiling in long receding aisles, hazard-yellow floor striping painted across a wet concrete floor, an electrical arc flickering off an overhead pipe and throwing sparks, an overhead gantry crane spanning the frame, harsh cyan light with a hazard-yellow kicker, condensation and haze in the air, carbon-fiber panelling on the columns. Anamorphic 24mm, deep focus, aggressive high-contrast commercial photography, deadpan and monumental. No text, no logos, no signage, no packaging labels, no hands, no people.",
+   "predictionId": "9vg7gxf8e1rmy0d045yr0rn98g",
+   "predictTime": 10.087437704
+  },
+  {
+   "file": "items/01.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a squat fifteen-gallon electric-cyan sports-drink drum, lid cracked open, luminous cyan liquid surging over the rim and sheeting down the ribbed sidewall into a spreading puddle, a thick foam collar sagging over the bung, condensation beading across the plastic. Three-quarter hero angle from slightly below so the drum looms. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 50mm, f/4, deep contrast, crisp speculars. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "gpyga0jkhsrmt0d045zbfsqmaw",
+   "predictTime": 16.346989311,
+   "styleObserved": "studio"
+  },
+  {
+   "file": "items/02.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of electric-cyan electrolyte fluid pressed against the inside of a clear ribbed cup wall, a churning meniscus throwing droplets, suspended micro-bubbles and glittering salt crystals drifting through the column, one fat condensation bead breaking loose and running down the plastic. The liquid fills the entire frame like a landscape. Setting behind, thrown far out of focus: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 100mm macro, f/2.8, razor-thin focus. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "q16d3ge1y5rmt0d045z88jf1jr",
+   "predictTime": 10.948466218,
+   "styleObserved": "studio"
+  },
+  {
+   "file": "items/03.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: shot straight down into the open mouth of a steel drum of undiluted electrolyte concentrate, a viscous pale-cyan syrup moving in slow thick ripples, a crusted salt ring climbing the interior wall, dense foam scum drifting across the surface, faint vapor curling off it. The drum mouth fills the frame edge to edge. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 35mm directly overhead, f/5.6, deep contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "w4xpfjgsvsrmr0d045zrv6jffg",
+   "predictTime": 25.047106534,
+   "styleObserved": "studio"
+  },
+  {
+   "file": "items/04.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: overhead flat-lay of nursery seed trays flooded with glowing cyan electrolyte fluid, liquid pooling over the tray lips and running between them, sod squares oversaturated and slumping, wet grass blades beaded with cyan droplets, a coiled hose and two capped jugs of the same fluid arranged in a tight grid. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 40mm straight down, f/8, deep contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "mtt7t65ct1rmw0d045zsb3djf8",
+   "predictTime": 15.589924322,
+   "styleObserved": "studio"
+  },
+  {
+   "file": "items/05.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a dense glossy cyan electrolyte brick the size of a paving stone, sweating syrup, resting on a waxed paper liner inside a scuffed metal depot tray; its weight has crushed the liner and a slick puddle has crept to the tray edge and begun to overhang it. Coarse salt crystals crust the top edges and one corner slumps, glassy and sagging. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 65mm at tray level, f/3.5. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "mf7d918v91rmr0d0460bscz01r",
+   "predictTime": 12.365066067,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/06.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean cross-section cutaway of a wall-mounted domestic hydration standpipe, the pipe sliced lengthwise to reveal glowing cyan electrolyte fluid mid-surge inside, a scaled salt crust lining the bore, a brass valve body halved to show its seat, and a cutaway spout where the fluid arcs out and overflows a small catch basin below. Engineering-display neatness, every cut face polished. Setting: an industrial warehouse floor with stacked blue plastic drums and carbon-fiber panels, hazard-yellow floor striping. Lighting: hard cyan rim light with hazard-yellow kicker, wet condensation highlights, electrical arc glow, aggressive high-contrast product photography. Camera: 55mm, dead-on elevation, f/8. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "zs5ttdvtwdrmw0d0460as6xfm0",
+   "predictTime": 13.121117937,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/07.webp",
+   "item": "brw-002",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A fifty-five-gallon depot drum stood upright on a wooden pallet, brimful, its ring clamp seated and cyan electrolyte slopped over the shoulder in drying streaks down the ribbed sidewall to a puddle on the concrete. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the wet lid and a hard shadow thrown behind the drum. Framed slightly crooked, the pallet cut off at the right edge, a stainless prep counter and a leaning stack of drum lids behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/08.webp",
+   "item": "brw-003",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A caged tote the size of a small car, filled nearly to the neck with cyan electrolyte, the steel cage bowing slightly against the white plastic, the bung fitting beaded with condensation and a cyan trickle drying down the pallet base. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance pulling the plastic grey-green. Shot from too close and slightly above so the tote sits off-centre, another caged tote and a stack of lids waiting behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/09.webp",
+   "item": "brw-004",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Four caged totes of cyan electrolyte shrink-wrapped together on one pallet at a residential curb, the wrap taut and milky over the cages, the top two leaning a few degrees, a wet cyan streak running down one face into the gutter. Bright unflattering daylight from one side, blown highlights along the near cage rail and clipped black shadow beneath the pallet. Mild motion blur and soft focus with visible compression artefacts, a trash bin and another wrapped pallet crowding the frame.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/10.webp",
+   "item": "brw-006",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A plastic-lidded soup cup filled to the brim with opaque hazard-yellow electrolyte, the lid domed and beaded, a dried yellow ring around the rim and a thin runoff down the side into a small pool. Dim warm depot light with the flash off, underexposed and noisy, the yellow going muddy in the shadows. Shot from too close and slightly above with the cup off-centre, a napkin dispenser and a stack of lids crowding the background.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/11.webp",
+   "item": "brw-007",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A clear plastic deli container of the reformulated product, snap lid on, generously full of dense brownish-orange liquid with a fine sediment line settling at the bottom and a pale foam collar clinging to the wall. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the lid and a hard shadow thrown behind the container. It sits directly on a scratched laminate counter with crumbs, a smear of syrup and another bagged order beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/12.webp",
+   "item": "brw-008",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A brown paper takeout bag folded open with a capped one-gallon jug of vivid unnamed green electrolyte standing inside, the bag darkened along one fold where the jug has wept, a second sealed cup of the same green wedged alongside. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance flattening everything. Framed slightly crooked with the bag cut off at the bottom edge, a stainless prep counter and a napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/13.webp",
+   "item": "brw-010",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A deep aluminium foil tray with its cardboard lid set back, filled generously with cloudy grey-cyan liquid, a faint oily sheen across the surface, pale strands of settled matter near the bottom and a tidemark ringing the crimped foil wall. Bright unflattering daylight through a window on one side, blown highlights on the near foil rim and hard shadow across the rest. Cluttered background: a stainless prep counter, a stack of lids, another tray waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/14.webp",
+   "item": "brw-011",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A four-foot clear column of colourless electrolyte leaned against a painted wall, full to within a hand's width of the top, a faint salt haze clouding the lower third, the base ring wet and a thin trickle tracking across the floor tile. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the curved wall of the column and a hard shadow thrown behind it. Mild motion blur, soft focus and visible sensor noise, a scratched laminate counter with crumbs beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/15.webp",
+   "item": "brw-013",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A stainless tanker trailer standing at a property line with its rear discharge valve open, a heavy braided hose running off into cut grass, cyan electrolyte sheeting out in volume and spreading into a broad standing wash across the dirt. Bright unflattering daylight from one side, the near skirt of the tank blown to white and the shadow under it clipped hard black. Shot from too close and slightly above, the tanker off-centre, a wire fence and a stack of empty totes behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/16.webp",
+   "item": "brw-014",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A single fat pouch of plain unprinted foil, plump and taut with cyan concentrate, lying on a white paper plate with a small plastic saucer beside it and one corner weeping a bright bead onto the plate. Dim warm depot light with the flash off, slightly underexposed and grainy, the cyan reading dull. Cluttered background: a stainless prep counter, a napkin dispenser, a stack of lids and another order bagged and waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/17.webp",
+   "item": "brw-016",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A plain white takeout box packed generously with chewable cubes of set cyan electrolyte, each cube keeping one faintly curved glassy skin on its top face, the edges frosted with fine salt, a shallow slick of syrup collected in the box corner. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. The box sits directly on a scratched laminate counter with crumbs and a smear of cyan beside it, a stack of lids at the edge.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/18.webp",
+   "item": "brw-017",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A full loaf of set electrolyte with an even pale-cyan crumb, cut into thick slices and fanned along a paper boat lined with wax paper, the cut faces glossy and slightly weeping, fine salt dusting the crust. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the nearest slice and a hard shadow thrown behind the boat. Framed slightly crooked with the boat cut off at the near edge, a napkin dispenser and another order behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/19.webp",
+   "item": "brw-019",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Four short chrome tap spouts with hazard-yellow collars, a brass manifold body, a mounting plate and a bag of washers laid out in a white styrofoam clamshell with the lid folded back, one spout already stained cyan at the tip. Dim warm depot light with the flash off, underexposed and noisy, the chrome going dull grey. Shot from too close and slightly above with the clamshell off-centre, a stainless prep counter, a stack of lids and another order behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/20.webp",
+   "item": "brw-020",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: An enrollment kit as it ships: a red plastic diner basket lined with checkered paper holding a blank metal household tag on a ring, a brass line-tap valve, a coil of clear tubing and one small brimming cup of cyan electrolyte wedged into the corner. Bright unflattering daylight through a window on one side, the near rim of the basket blown out and the shadow behind it hard. Cluttered background: a stainless prep counter, a napkin dispenser, a stack of lids.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  }
+ ]
 }
