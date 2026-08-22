@@ -623,6 +623,7 @@ kbd {
 /* the pay statement — the receipt's rows, grouped. `display: block` because these
    carry no block children today but a <span> styled as a box is how the app-bar
    address line and the promo cards both broke. */
+.or-shot { object-fit: cover; border-radius: 10px; }
 .stmt-hd { display: block; font: var(--t-micro); letter-spacing: .14em; text-transform: uppercase;
   color: var(--ink-3); border-top: 1px solid var(--line); margin-top: 10px; padding: 10px 0 6px; }
 .stmt .rl:first-child .rl-r { color: var(--fb); }

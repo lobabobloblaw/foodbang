@@ -394,6 +394,17 @@
 .disp-hd b { display: block; font: var(--t-title); margin: 6px 0 4px; }
 .disp-hd span { display: block; font: var(--t-sub); color: var(--ink-2); }
 /* what the restaurant made of it, under what the platform made of it */
+.reclist { display: block; padding: 0 var(--pad); }
+.recrow { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  padding: 10px 0; border: 0; border-bottom: 1px solid var(--line); background: none; color: inherit; }
+.recrow img, .rec-none { width: 54px; height: 54px; border-radius: 10px; flex: none; object-fit: cover;
+  background: var(--surface-2); }
+.rec-none { display: grid; place-items: center; color: var(--ink-3); }
+.rec-b { flex: 1; min-width: 0; display: block; }
+.rec-b b { display: block; font: var(--t-body); font-weight: 650; }
+.rec-meta { display: block; font: var(--t-cap); color: var(--ink-3); }
+.rec-tier { display: block; font: var(--t-micro); letter-spacing: .14em; margin-top: 1px; }
+.rec-r { font: var(--t-body); font-weight: 650; flex: none; }
 .disp-turn { display: block; padding: 0 var(--pad) 4px; font: var(--t-sub); color: var(--ink-2); font-style: italic; }
 .mc-note { display: block; font: var(--t-cap); color: var(--fb); margin-top: 2px; }
 

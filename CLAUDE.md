@@ -20,7 +20,7 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose sixty-seven checks always run together — there is no way to run a
+(`node tools/smoke.cjs`) whose sixty-nine checks always run together — there is no way to run a
 single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
 exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
@@ -195,6 +195,20 @@ it is paper or plastic, never the insulated one — it is the courier's own kit 
 bike. Eleven of the first thirty-six got this wrong and were reshot; `proof-delivery-2.webp` gets it
 wrong too and is deliberately **out of the pool** while staying on disk. `npm test` asserts its
 absence by name, because dropping the rule would put it back silently.
+
+**Both histories are photographic, and the collection lives in one of them.** There is no gallery
+screen: a trophy case is not something this platform would build. The customer's **Orders** list
+shows each delivered order's own photograph in place of the restaurant logo — every past order has
+had one since the app shipped and the list showed a logo instead. Slinger Mode's **Records** tab is
+the run log, which had been written and capped at forty since the mode shipped with exactly one row
+ever read; each row carries its photograph, its filing category, and what the run actually paid, and
+a run completed without one says so. Tapping a row opens the photograph; tapping an unphotographed
+run says a photograph cannot be added later and its absence is not recorded as a fault.
+
+**Every id in a tab bar must name a registered screen** — `nav.tab(id)` sets `current.name` to it
+directly, so a tab pointing at nothing navigates to a screen that does not exist. CLAUDE.md has said
+so since Slinger Mode shipped and **nothing checked it** until a fourth sling tab was added. It is
+checked now, read out of `shell.js`'s own source rather than a copy of the table.
 
 **On the courier side a delivery photograph is loot.** The same pool serves two jobs. A *customer*
 is shown one photograph per order, matched to the delivery's facets — that is `FB.proof.pick(o)`. A
@@ -412,7 +426,7 @@ prefix and as a suffix — the noun renames on a word boundary and camelCase has
 after naming anything, not only after adding a file.** Those two are not spelled out here for the
 reason given above: this file is inside the walk, and a prose example would itself be a survivor.
 
-**Run `npm test` before committing.** Sixty-seven checks. Beyond the original thirteen they cover:
+**Run `npm test` before committing.** Sixty-nine checks. Beyond the original thirteen they cover:
 every screen rendering under six state fixtures × two hours with no `undefined`/`NaN` in the markup;
 accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
 pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency

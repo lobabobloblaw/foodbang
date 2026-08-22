@@ -38,8 +38,15 @@ window.FB = window.FB || {};
       if (past.length) {
         h += FB.C.sectionHead('Past orders', FB.plural(past.length, 'order') + ' · ' + FB.money(FB.sum(past, function (o) { return o.calc.total; })) + ' lifetime');
         h += past.map(function (o) {
+          /* The photograph, on the row. Every delivered order has had one since the
+             day the app shipped and the history never showed it — you had to open
+             the order to find out that anything had happened at all. Cancelled
+             orders have no photograph because nothing was delivered. */
+          var shot = o.status === 'delivered' ? FB.proof.pick(o) : null;
           return '<button class="orderrow" data-go="track" data-params=\'{"id":"' + o.id + '"}\'>' +
-            '<img src="' + o.logo + '" alt="" onerror="this.remove()">' +
+            (shot
+              ? '<img class="or-shot" src="' + FB.attr(shot) + '" alt="" loading="lazy" onerror="this.remove()">'
+              : '<img src="' + o.logo + '" alt="" onerror="this.remove()">') +
             '<span class="or-b"><b>' + FB.esc(o.storeName) + '</b>' +
             '<span>' + FB.dayLabel(o.placedAt) + ' · ' + FB.clock(new Date(o.placedAt)) +
               (o.rated ? ' · you rated ' + o.rated + '★' : '') + '</span>' +

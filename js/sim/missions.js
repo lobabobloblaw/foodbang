@@ -1188,6 +1188,77 @@ window.FB = window.FB || {};
       '</div>';
   }
 
+  /* ---------------- records ----------------
+     The run log has been written and capped at forty since the mode shipped, and
+     exactly one row of it was ever read. This is that log, and it is also where the
+     photographs live: a collection, filed as a record of work, because the platform
+     would never call it a collection. */
+  FB.screens.register('records', {
+    tab: 'records',
+    hideCartBar: true,
+    appbar: function () {
+      return '<div class="bar bar--border"><h1>Records</h1></div>';
+    },
+    render: function () {
+      var st = FB.S();
+      var log = st.slinging.log || [];
+      if (!log.length) {
+        return FB.C.empty({
+          title: 'No records',
+          body: 'A record is created when a run is completed. Records cannot be created any other way.',
+          cta: 'Dispatch', go: 'dispatch',
+        });
+      }
+      var kept = (st.slinging.gallery || []).length;
+      var h = '<div class="disp-hd"><i>RECORD OF WORK</i>' +
+        '<b>' + FB.plural(log.length, 'run') + ' on file</b>' +
+        '<span>' + FB.plural(kept, 'photograph') + ' retained of ' + FB.proof.POOL.length +
+        '. ' + FB.plural(st.slinging.shots || 0, 'photograph') + ' taken.</span></div>';
+
+      h += '<div class="reclist">' + log.map(function (r) {
+        var store = FB.catalog.get(r.slug);
+        var t = r.shot ? FB.proof.tier(r.shot.tier) : null;
+        return '<button class="recrow" data-shotview="' + FB.attr(r.id) + '">' +
+          (r.shot
+            ? '<img src="' + FB.attr(r.shot.file) + '" alt="" loading="lazy" onerror="this.remove()">'
+            : '<span class="rec-none">' + FB.icon('camera', 16) + '</span>') +
+          '<span class="rec-b">' +
+            '<b>' + FB.esc(store ? (store.shortName || store.name) : r.slug) + '</b>' +
+            '<span class="rec-meta">' + FB.dayLabel(r.at) + ' · ' +
+              (r.outcome === 'kept' ? 'rule kept' : 'rule broken') + '</span>' +
+            (t ? '<span class="rec-tier shot-' + FB.attr(r.shot.tier) + '">' + FB.esc(t.label) + '</span>'
+               : '<span class="rec-meta">Not photographed.</span>') +
+          '</span>' +
+          '<span class="rec-r">' + FB.money(r.net != null ? r.net : 0) + '</span>' +
+          '</button>';
+      }).join('') + '</div>';
+
+      h += '<div class="fineprint">Records are retained indefinitely. Photographs are retained ' +
+        'separately and are not part of the record.</div>';
+      return h;
+    },
+    mount: function (root) {
+      FB.on(root, 'click', '[data-shotview]', function (e, t) {
+        var st = FB.S();
+        var row = (st.slinging.log || []).filter(function (r) { return r.id === t.dataset.shotview; })[0];
+        if (!row) return;
+        var store = FB.catalog.get(row.slug);
+        if (!row.shot) {
+          FB.why('No photograph', 'This run was completed without a photograph. A photograph cannot be added later, and its absence is not recorded as a fault.');
+          return;
+        }
+        var tier = FB.proof.tier(row.shot.tier);
+        FB.sheet.open({
+          title: store ? (store.shortName || store.name) : row.slug,
+          sub: FB.dayLabel(row.at) + ' · ' + tier.label,
+          html: '<div class="shot" style="padding-top:0">' +
+            '<img src="' + FB.attr(row.shot.file) + '" alt="Proof of delivery photograph" onerror="this.remove()">' +
+            '<p class="shot-note">' + FB.esc(tier.note) + '</p></div>',
+        });
+      });
+    },
+  });
+
   /* ---------------- the run ---------------- */
   function testBlock(run, now) {
     if (!run) return '';

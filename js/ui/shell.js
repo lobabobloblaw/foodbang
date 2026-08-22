@@ -30,6 +30,7 @@ window.FB = window.FB || {};
   var TABS_SLING = [
     { id: 'dispatch', icon: 'pin',     label: 'Dispatch' },
     { id: 'run',      icon: 'bike',    label: 'Run' },
+    { id: 'records',  icon: 'camera',  label: 'Records' },
     { id: 'account',  icon: 'account', label: 'Account' },
   ];
   function tabs() { return FB.S().mode === 'sling' ? TABS_SLING : TABS_ORDER; }

@@ -4889,6 +4889,61 @@ check('the courier keeps what they photograph, and only once', () => {
   } finally { app.dispose(); }
 });
 
+check('every tab names a screen, and the record of work shows the photographs', () => {
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    const now = new Date(2026, 7, 20, 19, 14, 0).getTime();
+    clock.set(now);
+
+    /* EVERY TAB ID NAMES A REGISTERED SCREEN. nav.tab(id) sets current.name to the id
+       directly, so a tab pointing at nothing navigates to a screen that does not
+       exist. CLAUDE.md has stated this since the mode shipped and nothing checked it
+       until a fourth sling tab was added. Read out of shell.js's own source rather
+       than a copy, or the check drifts from the thing it guards. */
+    const shell = fs.readFileSync(path.join(ROOT, 'js/ui/shell.js'), 'utf8');
+    const ids = [...shell.matchAll(/\{\s*id:\s*'([a-z]+)'\s*,\s*icon:/g)].map((m) => m[1]);
+    if (ids.length < 8) throw new Error('only found ' + ids.length + ' tab ids; the tab tables moved');
+    const known = FB.screens.list();
+    for (const id of ids) {
+      if (known.indexOf(id) < 0) throw new Error('tab "' + id + '" names no registered screen');
+    }
+    if (ids.indexOf('records') < 0) throw new Error('the sling tab bar lost its records tab');
+
+    /* THE RECORD OF WORK. The run log has been written and capped at forty since the
+       mode shipped and exactly one row was ever read. */
+    FB.store.reset();
+    harness.FIXTURES.find((f) => f.name === 'slinging, statement issued').apply(FB, now);
+    const row = FB.S().slinging.log[0];
+    let html = FB.screens.get('records').render({});
+    if (!/Not photographed/.test(html)) throw new Error('an unphotographed run does not say so');
+
+    const shot = FB.missions.shoot(row.id);
+    html = FB.screens.get('records').render({});
+    if (!html.includes(shot.file)) throw new Error('the record does not show the photograph');
+    if (!html.includes(FB.proof.tier(shot.tier).label)) throw new Error('the record does not show the filing category');
+    if (!/retained of/.test(html)) throw new Error('the record does not count the collection');
+    if (/undefined|NaN/.test(html)) throw new Error('the record prints undefined or NaN');
+
+    /* empty and non-empty both render */
+    FB.store.set((st) => { st.slinging.log = []; return st; });
+    if (!/No records/.test(FB.screens.get('records').render({}))) throw new Error('no empty state');
+
+    /* AND THE CUSTOMER'S HISTORY SHOWS ITS PHOTOGRAPHS TOO. Every delivered order has
+       had one since the app shipped; the list showed a logo instead. A cancelled
+       order has none, because nothing was delivered. */
+    FB.store.reset();
+    harness.FIXTURES.find((f) => f.name === 'delivered and unrated').apply(FB, now);
+    const orders = FB.screens.get('orders').render({});
+    if (!/or-shot/.test(orders)) throw new Error('past orders do not show their photograph');
+    const o = FB.S().orders[0];
+    if (!orders.includes(FB.proof.pick(o))) throw new Error('the row shows a photograph the order would not draw');
+    if (/undefined|NaN/.test(orders)) throw new Error('the orders list prints undefined or NaN');
+
+    return ids.length + ' tabs, all registered; records and orders both photographic';
+  } finally { app.dispose(); }
+});
+
 console.log('');
 if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
 console.log('all checks passed');
