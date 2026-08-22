@@ -363,6 +363,26 @@ const FIXTURES = [
     },
   },
   {
+    /* Both ends of the ladder at once, so the sweep renders a board carrying KNOWN
+       cards, ON FILE cards and plain ones together. Every other fixture leaves
+       standing at {}, which is exactly the state at which a regard bug is invisible. */
+    name: 'slinging, known and remembered',
+    apply(FB) {
+      FB.missions.setMode('sling');
+      FB.store.set((st) => {
+        st.slinging.completed = 14; st.slinging.kept = 9; st.slinging.broken = 5;
+        st.slinging.earned = 4.31; st.slinging.deducted = 118.44; st.slinging.platform = 1;
+        st.slinging.standing = {
+          goldenwok: 6, sunrisedonut: 4, oliveorchard: 3,   /* known */
+          gyropalace: -6, pandaxpress: -4, ssa: -3,          /* cold  */
+          bobacloud: 2, verdadera: -2,                       /* plain, either side */
+        };
+        return st;
+      });
+      return {};
+    },
+  },
+  {
     name: 'privacy toggles flipped, hunger 10',
     apply(FB) {
       FB.store.set((st) => {

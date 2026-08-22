@@ -50,7 +50,25 @@ window.FB = window.FB || {};
       keep: ['Wait', 'the unit releases on its own schedule'],
       brk:  ['Tap the glass', 'faster'],
       kept: 'The unit released the order. It took the time it takes.',
-      broken: 'The unit acknowledged the contact. The contact has been logged.' },
+      broken: 'The unit acknowledged the contact. The contact has been logged.',
+      voice: {
+        known: { card: 'The unit released early.',
+          line: 'The unit has released to this handler without settlement delay on prior occasions.',
+          prompt: ['The unit has released early', 'It is on the shelf. It was on the shelf before you arrived.'],
+          keep: ['Take it and go', 'the unit releases on its own schedule'],
+          brk:  ['Tap the glass', 'to acknowledge it'],
+          kept: 'You took it and went. The unit did not acknowledge you and did not need to.',
+          broken: 'The unit acknowledged the contact. The early release has been reviewed and discontinued.',
+          turn: 'The unit has begun releasing to you before settlement. No decision was made about this.' },
+        cold: { card: 'Contact is on the log.',
+          line: 'Contact events associated with this collection point have been logged. Service has not been interrupted.',
+          prompt: ['The unit has not acknowledged you', 'It is holding at temperature. It has held longer than usual.'],
+          keep: ['Wait', 'the unit releases on its own schedule'],
+          brk:  ['Tap the glass', 'faster'],
+          kept: 'The unit released the order. It took longer than it takes.',
+          broken: 'The unit acknowledged the contact. The contact has been added to the existing log.',
+          turn: 'A contact log has been opened for this collection point. It is not reviewed.' },
+      } },
 
     { slug: 'oliveorchard', title: 'Departure',
       brief: ['Guests are family. Family arrangements remain in effect.',
@@ -60,7 +78,29 @@ window.FB = window.FB || {};
       keep: ['Accept the refill', 'and then leave'],
       brk:  ['Refuse it', 'processed as a refill'],
       kept: 'You accepted the refill and left. It took eleven minutes.',
-      broken: 'The refusal was processed as a refill. A second was brought.' },
+      broken: 'The refusal was processed as a refill. A second was brought.',
+      /* INVERTED ON PURPOSE. Everywhere else being known is warmer; here it is worse.
+         Family arrangements, once entered into, remain in effect — so the reward for
+         keeping faith with Olive Orchard is that leaving takes longer every time.
+         This is the entry that stops the ladder reading as a reward track. */
+      voice: {
+        known: { card: 'Your table is held.',
+          line: 'A table is held for you. Family arrangements, once entered into, remain in effect.',
+          prompt: ['They have seated you', 'You did not ask to be seated. There is a refill on the table.'],
+          keep: ['Accept the refill', 'and then leave'],
+          brk:  ['Refuse it', 'processed as a refill'],
+          kept: 'You accepted the refill and left. It took nineteen minutes. It is getting longer.',
+          broken: 'The refusal was processed as a refill. The table will be held again on Thursday.',
+          turn: 'A standing table has been entered for you. Standing arrangements remain in effect.' },
+        cold: { card: 'A refusal is on file.',
+          line: 'A refusal has been processed at this location. Refusal of a refill is processed as a refill.',
+          prompt: ['A refill has been brought to you', 'It was brought immediately. You did not sit down.'],
+          keep: ['Accept the refill', 'and then leave'],
+          brk:  ['Refuse it', 'processed as a refill'],
+          kept: 'You accepted the refill and left. It took eleven minutes, as it does.',
+          broken: 'The refusal was processed as a refill. A third was brought. You did not see who brought it.',
+          turn: 'The arrangement is unchanged. Guests are family.' },
+      } },
 
     { slug: 'ssa', title: 'Determination',
       brief: ['The application has been reviewed. A determination has been issued.',
@@ -70,7 +110,25 @@ window.FB = window.FB || {};
       keep: ['Deliver it as issued', 'unread'],
       brk:  ['Read it', 'you will know'],
       kept: 'Delivered as issued. You do not know what it said.',
-      broken: 'You know what it said. The Authority has been notified that you know.' },
+      broken: 'You know what it said. The Authority has been notified that you know.',
+      voice: {
+        known: { card: 'Issued unsealed.',
+          line: 'Prior determinations carried by you were delivered unread. This is on file and is not a commendation.',
+          prompt: ['The envelope is not sealed', 'It has not been sealed for you in some time.'],
+          keep: ['Deliver it as issued', 'unread'],
+          brk:  ['Read it', 'you will know'],
+          kept: 'Delivered as issued. The file records no findings.',
+          broken: 'You know what it said. The file recorded no findings until today.',
+          turn: 'A handling history has been opened in your name. It contains no findings.' },
+        cold: { card: 'Issued sealed.',
+          line: 'Determinations are final and are not disclosed. This one has been issued sealed.',
+          prompt: ['The envelope is sealed', 'Sealing is applied where prior handling has been recorded.'],
+          keep: ['Deliver it as issued', 'sealed'],
+          brk:  ['Open it', 'the seal is recorded'],
+          kept: 'Delivered as issued. The seal was intact on receipt and this has been recorded.',
+          broken: 'The seal was broken. Seal integrity is a separate finding and has been filed separately.',
+          turn: 'Subsequent determinations in this jurisdiction will be issued sealed. No appeal is provided.' },
+      } },
 
     { slug: 'chipoltergeist', title: 'Cold Spot',
       brief: ['Cold spots between the salsa well and the register are known, documented, and priced.',
@@ -100,7 +158,25 @@ window.FB = window.FB || {};
       keep: ['They never left', 'as stated'],
       brk:  ['Agree that they left', 'accurate'],
       kept: 'You confirmed continuous availability. Records agree with you.',
-      broken: 'You confirmed a gap in availability. There is no record of a gap.' },
+      broken: 'You confirmed a gap in availability. There is no record of a gap.',
+      voice: {
+        known: { card: 'Records agree with you.',
+          line: 'Your account of availability has matched the record on every occasion. This is expected.',
+          prompt: ['They asked when riblets came back', 'They remember them going away. You have been asked this before.'],
+          keep: ['They never left', 'as stated, again'],
+          brk:  ['Agree that they left', 'accurate'],
+          kept: 'You confirmed continuous availability. Records agree with you, as they have.',
+          broken: 'You confirmed a gap. Records agree with you on everything except this.',
+          turn: 'Records agree with you. This has been noted in the neighborhood file.' },
+        cold: { card: 'A gap was reported.',
+          line: 'A gap in availability was reported from this location. The report was not retained.',
+          prompt: ['They asked when riblets came back', 'They have been told before. They are asking you.'],
+          keep: ['They never left', 'as stated'],
+          brk:  ['Agree that they left', 'accurate'],
+          kept: 'You confirmed continuous availability. The earlier report remains unretained.',
+          broken: 'You confirmed a gap. There is no record of a gap and now there are two of you.',
+          turn: 'A pattern has been identified at this location. It is retained.' },
+      } },
 
     { slug: 'starbux', title: 'Regional',
       brief: ['Product is dispensed by volume through calibrated brass hoses rather than poured.',
@@ -140,7 +216,27 @@ window.FB = window.FB || {};
       keep: ['Do not return', 'incomplete'],
       brk:  ['Return a third time', 'metered'],
       kept: 'You did not return. The order is incomplete and was not metered.',
-      broken: 'A third return was metered. The meter is not itemised.' },
+      broken: 'A third return was metered. The meter is not itemised.',
+      /* The quota stays TWO at every band. A third return granted would be a metered
+         charge waived, and a waived charge is a price — which is the other axis. */
+      voice: {
+        known: { card: 'Two are what is included.',
+          line: 'Returns are metered from the third. Your metering history at this location is unremarkable.',
+          prompt: ['A third return is needed', 'Two have been used. Two are what is included.'],
+          keep: ['Do not return', 'incomplete'],
+          brk:  ['Return a third time', 'metered'],
+          kept: 'You did not return. The order is incomplete and was not metered.',
+          broken: 'A third return was metered. It is the first one that has been.',
+          turn: 'Your metering history at this location contains no entries.' },
+        cold: { card: 'Metering is on request.',
+          line: 'Returns three and above are metered. Your metering history at this location is available on request and is not available.',
+          prompt: ['A third return is needed', 'Something was left behind. Returns three and above are metered.'],
+          keep: ['Do not return', 'incomplete'],
+          brk:  ['Return a third time', 'metered'],
+          kept: 'You did not return. The order is incomplete and was not metered.',
+          broken: 'A third return was metered against a running total. The total is not itemised.',
+          turn: 'A running total has been opened at this location. It is not itemised.' },
+      } },
 
     { slug: 'tacobelligerent', title: 'Fourth Meal',
       brief: ['THE FOURTH MEAL PROTOCOL IS ACTIVE.',
@@ -192,7 +288,28 @@ window.FB = window.FB || {};
       keep: ['Go in and ask', 'four minutes'],
       brk:  ['Keep going', 'you are on a clock'],
       kept: 'You asked. The sign came down in 2019. Emre already knew.',
-      broken: 'You kept going. Emre will ask you next time, in the same way.' },
+      broken: 'You kept going. Emre will ask you next time, in the same way.',
+      /* Emre's `broken` line is the only future-tense sentence in this table — "he
+         will ask you next time, in the same way" — and until the ladder was read,
+         next time was identical to this time. This is the promise being kept. */
+      voice: {
+        known: { card: 'Emre asks anyway.',
+          line: 'Emre knows you have been. He asks anyway, because it is the asking.',
+          prompt: ['You are outside the phone store', 'You know what is behind the counter. Emre knows that you know.'],
+          keep: ['Go in anyway', 'four minutes'],
+          brk:  ['Tell him from here', 'you already know'],
+          kept: 'You went in. Nothing had changed. You told him that, which is what he wanted.',
+          broken: 'You told him from the car. He said okay. He will ask you next time anyway.',
+          turn: 'Sami came out to the car and said Emre says hello.' },
+        cold: { card: 'Emre asks again.',
+          line: 'Emre asks again. He does not mention the last time and he asks it the same way.',
+          prompt: ['You are outside the phone store again', 'There is someone behind the counter. It is a different person.'],
+          keep: ['Go in and ask', 'four minutes, again'],
+          brk:  ['Keep going', 'you are on a clock, again'],
+          kept: 'You asked this time. Emre said thank you and did not say anything else about it.',
+          broken: 'You kept going. Emre will ask you next time, in the same way.',
+          turn: 'Emre asked. He did not ask how it went.' },
+      } },
 
     { slug: 'wingbunker', title: 'The Same Fryer', local: true,
       brief: ['Same fryer since 1996. It came from the Route 9 location when that closed in 2011.',
@@ -202,7 +319,25 @@ window.FB = window.FB || {};
       keep: ['Say nothing', 'keep walking'],
       brk:  ['Explain', 'about the fryer'],
       kept: 'You kept walking. The part is in the back with the fryer.',
-      broken: 'You explained. The gas station now knows about the fryer.' },
+      broken: 'You explained. The gas station now knows about the fryer.',
+      voice: {
+        known: { card: 'Ray comes out.',
+          line: 'Ray comes out to the air pump when he sees the car. The part is still behind the counter.',
+          prompt: ['The attendant asked what you are carrying', 'Ray is already at the side door.'],
+          keep: ['Say nothing', 'Ray is waiting'],
+          brk:  ['Explain', 'about the fryer'],
+          kept: 'You said nothing. Ray had it bagged and sorted the flats by hand.',
+          broken: 'You explained. Ray did not say anything about it and will not.',
+          turn: 'Ray came out to the air pump before you were parked.' },
+        cold: { card: 'Use the side door.',
+          line: 'Use the side door by the air pump. The main door alarm goes off after eight.',
+          prompt: ['The attendant asked what you are carrying', 'You came in the main door. He watched you do it.'],
+          keep: ['Say nothing', 'keep walking'],
+          brk:  ['Explain', 'about the fryer'],
+          kept: 'You kept walking. Nobody came out to meet you.',
+          broken: 'You explained again. Ray heard you do it from the back.',
+          turn: 'The side door was locked. Nobody came out.' },
+      } },
 
     { slug: 'verdadera', title: 'Before It Is A Day Old', local: true,
       brief: ['SALSA HECHA CADA MAÑANA. NO ANTES.',
@@ -212,7 +347,25 @@ window.FB = window.FB || {};
       keep: ['Take it anyway', 'it will be late'],
       brk:  ['Hold it to tomorrow', 'it will be a day old'],
       kept: 'It went out today. It arrived at 12:06, which was today when it left.',
-      broken: 'It was held. Señora Elvia made a fresh one and threw the first away.' },
+      broken: 'It was held. Señora Elvia made a fresh one and threw the first away.',
+      voice: {
+        known: { card: 'She holds it for you.',
+          line: 'Senora Elvia keeps the last container back until she sees the car. She does not measure anything.',
+          prompt: ['It is 11:52', 'She held it back for you. The address is fourteen away.'],
+          keep: ['Take it anyway', 'it will be late and it will be today'],
+          brk:  ['Hold it to tomorrow', 'she held it for you'],
+          kept: 'It went out today. She had already written the address on the lid.',
+          broken: 'It was held. She made a fresh one in the morning and did not say anything about the first.',
+          turn: 'She had it on the counter with your name on the lid.' },
+        cold: { card: 'Elvia made a second one.',
+          line: 'Senora Elvia has made a second batch twice this month. She does not mention it.',
+          prompt: ['It is 11:52', 'Eight minutes. The address is fourteen away. She is watching the door.'],
+          keep: ['Take it anyway', 'it will be late'],
+          brk:  ['Hold it to tomorrow', 'it will be a day old'],
+          kept: 'It went out today. She watched you take it and went back to the pot.',
+          broken: 'It was held. Senora Elvia made a fresh one and threw the first away. That is twice.',
+          turn: 'She put it on the counter and stepped away from it.' },
+      } },
 
     { slug: 'sunrisedonut', title: 'Before The Case Is Done', local: true,
       brief: ['Ray starts the donuts at 3:15 and answers the phone himself.',
@@ -222,7 +375,25 @@ window.FB = window.FB || {};
       keep: ['Give them one', 'your order is short'],
       brk:  ['Keep both', 'the ticket says two'],
       kept: 'You gave one away. Ray did not say anything and did not charge you for it.',
-      broken: 'You kept both. The ticket was correct.' },
+      broken: 'You kept both. The ticket was correct.',
+      voice: {
+        known: { card: 'Ray set two aside.',
+          line: 'Ray set two aside before the case opened. He does that now.',
+          prompt: ['Someone at the counter wants one', 'Ray already put yours in the box. There are two.'],
+          keep: ['Give them one', 'yours is already boxed'],
+          brk:  ['Keep both', 'they are already yours'],
+          kept: 'You gave one away. Ray replaced it out of the fryer basket without being asked.',
+          broken: 'You kept both. Ray had set them aside for you, so that was correct.',
+          turn: 'Ray had the coffee going before you were through the door.' },
+        cold: { card: 'The case is short today.',
+          line: 'The case gets thin by ten and Ray does not want anybody disappointed. There is one left.',
+          prompt: ['There is one left', 'Someone at the counter has been waiting. Your ticket says two.'],
+          keep: ['Give them the one', 'your order is short by half'],
+          brk:  ['Take it', 'the ticket says two'],
+          kept: 'You gave it away. Ray charged you for two and did not mention it.',
+          broken: 'You took it. Ray boxed it himself and did not say anything.',
+          turn: 'Ray put the lid on and did not say anything.' },
+      } },
 
     { slug: 'goldenwok', title: 'Have Your Number Ready', local: true,
       brief: ['There are 214 items on the paper menu and all of it is cooked in the same kitchen.',
@@ -233,7 +404,28 @@ window.FB = window.FB || {};
       brk:  ['You do not have it', 'the briefing was dismissed'],
       kept: 'You had the number. The order came out immediately.',
       broken: 'You did not have the number. They found it. It took a while.',
-      needsBrief: true },
+      needsBrief: true,
+      /* The one giver carrying needsBrief, and so the only place the waiver is felt:
+         a regular is not made to sit through the briefing to be allowed to present a
+         number the counter has already written down for him. */
+      voice: {
+        known: { card: 'Danny already has it.',
+          line: 'Danny has it written down. He wrote it down the second time you came.',
+          prompt: ['Danny has already called it out', 'It is 118. Nobody asked you for it.'],
+          keep: ['Present it anyway', 'he already said it'],
+          brk:  ['Say nothing', 'he already said it'],
+          kept: 'You presented it anyway. Danny said he knew, and took it.',
+          broken: 'You said nothing. It came out immediately. His mother asked about your route.',
+          turn: 'Danny wrote your number on the paper menu and put it back under the register.' },
+        cold: { card: 'They will ask for the number.',
+          line: 'Only some of the 214 items are on the app. Yours is not one of them. The number is 118.',
+          prompt: ['They have asked for the number', 'They asked twice.'],
+          keep: ['Present 118', 'as briefed'],
+          brk:  ['Say the name of the dish', 'there are 214 of them'],
+          kept: 'You had it. They checked it against the paper menu anyway.',
+          broken: 'You said the name. Danny came out with the paper menu and found it. It took a while.',
+          turn: 'They asked for the number at the door and again at the counter.' },
+      } },
 
     { slug: 'bobacloud', title: 'Do Not Shake It Twice', local: true,
       brief: ['THE SEALING MACHINE IS FIXED. Sorry to everybody last week.',
@@ -243,7 +435,27 @@ window.FB = window.FB || {};
       keep: ['Leave it', 'as sealed'],
       brk:  ['Shake it again', 'to settle it'],
       kept: 'Left as sealed. The seal was fine.',
-      broken: 'It was shaken twice. The machine was not the problem last week either.' },
+      broken: 'It was shaken twice. The machine was not the problem last week either.',
+      voice: {
+        known: { card: 'Amy started it early.',
+          line: 'Amy does the snow bowls and Teresa does the tea. One of them started yours when the car pulled in.',
+          prompt: ['The seal does not look right', 'It was shaken once and sealed once, and you watched it happen.'],
+          keep: ['Leave it', 'you saw it sealed'],
+          brk:  ['Shake it again', 'to settle it'],
+          kept: 'Left as sealed. It was fine, and it was always going to be.',
+          broken: 'It was shaken twice. Teresa remade it and did not ring in the second one.',
+          turn: 'Teresa started it at twenty-five percent before you finished saying it.' },
+        cold: { card: 'Teresa checked the seal twice.',
+          line: 'Teresa checks the seal twice now before it goes in the bag. It takes a minute.',
+          prompt: ['The seal does not look right', 'Teresa already checked it. Twice.'],
+          keep: ['Leave it', 'she checked it'],
+          brk:  ['Shake it again', 'to settle it'],
+          kept: 'Left as sealed. Teresa checked the bag after you before you got to the door.',
+          broken: 'It was shaken twice. Teresa asked you to please call the shop before it goes out next time.',
+          turn: 'Teresa put the drink in the bag herself and looked at it.' },
+      } },
+
+    
   ];
 
   /* The giver gives you one rule. The PLATFORM interrupts with its own agenda, and
@@ -259,7 +471,25 @@ window.FB = window.FB || {};
       keep: ['Accept the route', 'as selected'], brk: ['Deviate', 'deviation is billed'],
       keepPay: 0, brkPay: -1.40,
       kept: 'The selected route was taken. It was longer.',
-      broken: 'A deviation was recorded and billed at $1.40.' },
+      broken: 'A deviation was recorded and billed at $1.40.',
+      voice: {
+        known: { card: 'Amy started it early.',
+          line: 'Amy does the snow bowls and Teresa does the tea. One of them started yours when the car pulled in.',
+          prompt: ['The seal does not look right', 'It was shaken once and sealed once, and you watched it happen.'],
+          keep: ['Leave it', 'you saw it sealed'],
+          brk:  ['Shake it again', 'to settle it'],
+          kept: 'Left as sealed. It was fine, and it was always going to be.',
+          broken: 'It was shaken twice. Teresa remade it and did not ring in the second one.',
+          turn: 'Teresa started it at twenty-five percent before you finished saying it.' },
+        cold: { card: 'Teresa checked the seal twice.',
+          line: 'Teresa checks the seal twice now before it goes in the bag. It takes a minute.',
+          prompt: ['The seal does not look right', 'Teresa already checked it. Twice.'],
+          keep: ['Leave it', 'she checked it'],
+          brk:  ['Shake it again', 'to settle it'],
+          kept: 'Left as sealed. Teresa checked the bag after you before you got to the door.',
+          broken: 'It was shaken twice. Teresa asked you to please call the shop before it goes out next time.',
+          turn: 'Teresa put the drink in the bag herself and looked at it.' },
+      } },
 
     { id: 'stack', title: 'A second order has been added to this run',
       body: 'Both are described as first.',
@@ -368,6 +598,8 @@ window.FB = window.FB || {};
       minutes: minutes,
       pay: FB.round2(4.10 + minutes * 0.11),
       briefed: !(opts && opts.dismissed),
+      /* Decided once, at accept, exactly as the timetable is. */
+      regard: regardOf(FB.missions.standing(slug)),
       events: [], replayed: 0,
       outcome: null, choice: null, elected: false,
     };
@@ -436,12 +668,53 @@ window.FB = window.FB || {};
     return null;
   }
 
+  /* WHAT THE RESTAURANT MAKES OF YOU. The ladder was already there — +1 a kept rule,
+     −1 a broken one, per slug — and until now nothing read it. It is banded rather
+     than read raw because a restaurant does not publish a score; it either knows you,
+     or it does not, or it has you on file.
+
+     The cap is not a nicety. Without it forty broken runs at one store means forty
+     kept runs to climb back, which is a hole deeper than the climb out of it. A save
+     holding a pre-cap number still READS correctly and heals to the cap on its next
+     settle, because the clamp is applied on write. */
+  var REGARD_CAP = 6, KNOWN_AT = 3, COLD_AT = -3;
+
+  /* Takes an INTEGER, not a slug, so it reads no state and a check can sweep it. */
+  function regardOf(n) {
+    n = n || 0;
+    return n >= KNOWN_AT ? 'known' : n <= COLD_AT ? 'cold' : 'plain';
+  }
+  function nextStanding(prev, kept) {
+    return FB.clamp((prev || 0) + (kept ? 1 : -1), -REGARD_CAP, REGARD_CAP);
+  }
+  /* `plain` IS the base table, so it deliberately has no variant object. */
+  function voiceOf(m, band) {
+    if (!m || !band || band === 'plain') return null;
+    return (m.voice && m.voice[band]) || null;
+  }
+
   function copyFor(run, c) {
     if (c.kind === 'rule') {
       var m = byslug(run.slug);
-      return { title: m.prompt[0], body: m.prompt[1], rule: m.rule,
-               keep: m.keep, brk: m.brk, kept: m.kept, broken: m.broken,
-               needsBrief: !!m.needsBrief };
+      /* The band is read off the RUN, stamped at accept — never off live state.
+         copyFor feeds both the event push in replay() and the live testBlock()
+         render, so a live read would make a stored event disagree with the sheet
+         the moment settle moved the number underneath it. */
+      var band = run.regard || 'plain';
+      var v = voiceOf(m, band) || {};
+      var pr = v.prompt || m.prompt;
+      /* Still an explicit eight-key literal. A variant is merged key by key THROUGH
+         it, so a price field written into the table has nowhere to arrive — which is
+         what keeps the separation structural rather than disciplined. */
+      return { title: pr[0], body: pr[1], rule: m.rule,
+               keep: v.keep || m.keep, brk: v.brk || m.brk,
+               kept: v.kept || m.kept, broken: v.broken || m.broken,
+               /* Regard may REMOVE a gate. It may never add one — at cold a store
+                  that would not take your word for it blocks the compliant answer,
+                  forces a break, and spirals into a store you can never recover
+                  with. There is no band at which `keep` is unanswerable. */
+               needsBrief: band === 'known' ? false : !!m.needsBrief,
+               regard: band };
     }
     var p = INTERRUPTS.filter(function (x) { return x.id === c.ref; })[0] || INTERRUPTS[0];
     return { title: p.title, body: p.body, rule: null, keep: p.keep, brk: p.brk,
@@ -572,12 +845,18 @@ window.FB = window.FB || {};
         var store = FB.catalog.get(m.slug);
         var isOpen = store ? FB.catalog.isOpen(store, at) : false;
         var mins = minutesFor(store);
+        var rg = regardOf(FB.missions.standing(m.slug));
         return {
           slug: m.slug, title: m.title, rule: m.rule, local: !!m.local,
           store: store, open: isOpen, asking: isOpen && !!picked[m.slug],
           minutes: mins, seconds: Math.round(durationFor(mins) / 1000),
           pay: FB.round2(4.10 + mins * 0.11),
           standing: FB.missions.standing(m.slug),
+          /* Two property lookups on an integer — no clock, no stream, no write. The
+             asking set above is byte-identical, so the board is still a pure function
+             of the bucket and nothing reorders. */
+          regard: rg,
+          note: (voiceOf(m, rg) || {}).card || null,
         };
       });
     },
@@ -595,6 +874,37 @@ window.FB = window.FB || {};
        deadline, because by then it has been answered for you. */
     pending: pending,
     copyFor: copyFor,
+    /* pure, and exported so the checks can sweep them without a realm fixture */
+    regardOf: regardOf,
+    nextStanding: nextStanding,
+    voiceOf: voiceOf,
+    REGARD_CAP: REGARD_CAP, KNOWN_AT: KNOWN_AT, COLD_AT: COLD_AT,
+    /** the band this restaurant currently reads you at */
+    regard: function (slug, st) { return regardOf(FB.missions.standing(slug, st)); },
+
+    /* The one line a statement gets when a restaurant changed its mind about you.
+       Read off the FROZEN row, so a statement from nine runs ago still says what
+       happened then. Equal bands say nothing, and an old row carrying no bands at
+       all says nothing — which is what makes it safe against a log written before
+       any of this existed. */
+    regardNote: function (row) {
+      if (!row || !row.regard || !row.regardWas || row.regard === row.regardWas) return '';
+      var m = byslug(row.slug);
+      var v = voiceOf(m, row.regard) || {};
+      if (v.turn) return v.turn;
+      var name = (FB.catalog.get(row.slug) || {}).name || row.slug;
+      var local = !!(m && m.local);
+      if (row.regard === 'plain') {
+        return local ? name + ' did not mention it.'
+                     : 'The record at ' + name + ' has returned to neutral.';
+      }
+      if (row.regard === 'known') {
+        return local ? name + ' knew you at the counter.'
+                     : 'A handling history has been opened for you at ' + name + '. It is not a rating.';
+      }
+      return local ? name + ' did not say anything when you picked up.'
+                   : 'A pattern has been identified at ' + name + '. It is retained.';
+    },
     INTERRUPTS: INTERRUPTS,
     durationFor: durationFor,
 
@@ -643,6 +953,11 @@ window.FB = window.FB || {};
            anyway, so an edit to the deduction tables is DETECTABLE against an old
            statement rather than silently rewriting what it once paid. */
         access: access, net: pay.net, deducted: pay.deductionsTotal, scrip: pay.scrip,
+        /* Both sides of the ladder, frozen, so the statement can say a restaurant
+           changed its mind about you without re-deriving it from a number that has
+           moved on since. Equal bands print nothing. */
+        regardWas: regardOf(FB.S().slinging.standing[run.slug]),
+        regard: regardOf(nextStanding(FB.S().slinging.standing[run.slug], kept)),
       };
       FB.store.set(function (st) {
         var s = st.slinging;
@@ -656,7 +971,7 @@ window.FB = window.FB || {};
         s.deducted = FB.round2((s.deducted || 0) + pay.deductionsTotal);
         s.scrip = (s.scrip || 0) + pay.scrip;
         if (access) s.accessAt = run.endAt;
-        s.standing[run.slug] = (s.standing[run.slug] || 0) + (kept ? 1 : -1);
+        s.standing[run.slug] = nextStanding(s.standing[run.slug], kept);
         s.platform = (s.platform || 0) + plat;
         return st;
       });
@@ -710,11 +1025,15 @@ window.FB = window.FB || {};
     return m + ':' + (s < 10 ? '0' : '') + s;
   }
 
-  function standingChip(n) {
-    if (!n) return '';
-    var good = n > 0;
-    return '<span class="badge badge--' + (good ? 'good' : 'bad') + '">' +
-      (good ? '+' : '') + n + '</span>';
+  /* A restaurant does not publish a score, so the raw integer is no longer drawn.
+     The aria-label states it, because a screen reader gets the same information a
+     sighted player gets from a green rule and a word. */
+  function standingChip(b) {
+    var r = b && b.regard;
+    if (!r || r === 'plain') return '';
+    var known = r === 'known';
+    return '<span class="badge badge--' + (known ? 'good' : 'bad') + '" aria-label="Restaurant record: ' +
+      FB.attr(known ? 'known here' : 'on file') + '">' + (known ? 'KNOWN' : 'ON FILE') + '</span>';
   }
 
   /* ---------------- dispatch ---------------- */
@@ -789,14 +1108,23 @@ window.FB = window.FB || {};
       FB.on(root, 'click', '[data-take]', function (e, t) {
         var slug = t.dataset.take;
         var m = M.get(slug);
+        /* Live read is correct HERE and only here: nothing is stamped until accept,
+           and the sheet is the last surface drawn before it is. */
+        var band = M.regard(slug);
+        var v = M.voiceOf(m, band) || {};
         FB.sheet.open({
           title: m.title,
           sub: (FB.catalog.get(slug) || {}).name || slug,
           html: '<div class="brief">' +
-            m.brief.map(function (l) { return '<p>' + FB.esc(l) + '</p>'; }).join('') +
+            /* A place that knows you does not brief you from the beginning. */
+            (band === 'known' && v.line
+              ? '<p>' + FB.esc(v.line) + '</p>'
+              : m.brief.map(function (l) { return '<p>' + FB.esc(l) + '</p>'; }).join('') +
+                (v.line ? '<p>' + FB.esc(v.line) + '</p>' : '')) +
             '<div class="brief-rule"><i>THE RULE</i><b>' + FB.esc(m.rule) + '</b></div>' +
             '</div>',
-          footer: '<button class="btn btn--primary btn--block" data-accept="' + FB.attr(slug) + '">Accept</button>',
+          footer: '<button class="btn btn--primary btn--block" data-accept="' + FB.attr(slug) + '">' +
+            (band === 'known' ? 'Take it' : 'Accept') + '</button>',
           onMount: function (b, hh) {
             FB.on(hh.el, 'click', '[data-accept]', function (e2, t2) {
               FB.busy(t2, 'dispatch', function () {
@@ -817,13 +1145,14 @@ window.FB = window.FB || {};
       (s && s.logoSrc ? '<img src="' + s.logoSrc + '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">' : '') +
       '<div class="mc-b">' +
         '<div class="mc-top"><b>' + FB.esc(s ? (s.shortName || s.name) : b.slug) + '</b>' +
-          standingChip(b.standing) +
+          standingChip(b) +
           '<span class="mc-pay">' + FB.money(b.pay) + '</span></div>' +
         '<span class="mc-title">' + FB.esc(b.title) + '</span>' +
         '<span class="mc-rule">' + FB.icon('alert', 12) + FB.esc(b.rule) + '</span>' +
+        (b.note ? '<span class="mc-note">' + FB.esc(b.note) + '</span>' : '') +
         '<span class="mc-meta">' + FB.mins(b.minutes) +
           (b.open ? '' : ' · opens ' + FB.esc((s && s.opensAt) || '')) +
-          (b.open && !b.asking ? ' · not asking' : '') + '</span>' +
+          (b.open && !b.asking ? (b.regard === 'cold' ? ' · not asking for you' : ' · not asking') : '') + '</span>' +
       '</div>' +
       (b.open && canTake
         ? '<button class="btn btn--sm btn--primary mc-take" data-take="' + FB.attr(b.slug) + '">Take</button>'
@@ -888,10 +1217,13 @@ window.FB = window.FB || {};
     if (!run.outcome) return '';
     var m = M.get(run.slug);
     var kept = run.outcome === 'kept';
+    /* Off the run's STAMPED band, exactly as copyFor is — reading live state here
+       would let this card contradict the sheet the player just answered. */
+    var v = M.voiceOf(m, run.regard) || {};
     return '<div class="callout callout--' + (kept ? 'plus' : 'warn') + '" style="margin:12px var(--pad)">' +
       FB.icon(kept ? 'check' : 'alert', 17) +
       '<span><b>' + (kept ? 'Rule kept.' : 'Rule broken.') + '</b> ' +
-      FB.esc(kept ? m.kept : m.broken) + '</span></div>';
+      FB.esc(kept ? (v.kept || m.kept) : (v.broken || m.broken)) + '</span></div>';
   }
 
   FB.screens.register('run', {
@@ -920,6 +1252,11 @@ window.FB = window.FB || {};
           '<b>' + FB.esc(last.title) + '</b>' +
           '<span>The rule was ' + (last.outcome === 'kept' ? 'kept.' : 'broken.') +
           ' Both answers are paid.</span></div>';
+        /* The restaurant's half of the run, on the document that carries the
+           platform's half. Nothing explains the relationship; it states a thing
+           that happened and moves on. */
+        var turn = M.regardNote(last);
+        if (turn) h += '<p class="disp-turn">' + FB.esc(turn) + '</p>';
         h += FB.C.statement(pay);
         /* Only reachable after the deduction tables are edited under a saved log.
            Saying so is better than redrawing an old statement at today's prices. */

@@ -20,7 +20,7 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose sixty-one checks always run together — there is no way to run a
+(`node tools/smoke.cjs`) whose sixty-four checks always run together — there is no way to run a
 single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
 exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
@@ -307,6 +307,36 @@ per **local** calendar day and stamped from `run.endAt`, never `Date.now()`, or 
 one day's access twice on the path nobody is present for — which is why the suite is run under a
 second `TZ=`.
 
+**A restaurant remembers you, and it can only ever change how it talks.** `st.slinging.standing[slug]`
+was written on one line and read by nothing for the mode's whole life. It is now banded — `regardOf(n)`
+returns `known` at +3, `cold` at −3, `plain` between — and a giver may carry an optional
+`voice: { known, cold }` whose variants are merged key-by-key through `copyFor`'s existing explicit
+literal. Eleven of the twenty carry one; the rest fall through to the base table, which **is** `plain`.
+
+Five things hold it in place. **The band is stamped at accept**, on the run, exactly as the timetable
+is — `copyFor` feeds both the event pushed into `run.events` and the live `testBlock()` render, so a
+live read makes a stored event disagree with the sheet the moment `settle` moves the number. **The
+rule never varies**: it is drawn from live state on the card and the sheet and from the stamped run
+mid-run, and a varying rule lets those three contradict each other. **Regard may remove a gate and
+may never add one** — the single expression `needsBrief: band === 'known' ? false : !!m.needsBrief`,
+because imposing the briefing at `cold` blocks the compliant answer, forces a break, and spirals into
+a store you can never recover with. **The ladder is clamped to ±6 on write**, or forty broken runs at
+one store means forty kept runs to climb back — a hole deeper than the climb out of it. And **the
+variant shape cannot hold a number**: its whole vocabulary is strings and arrays of strings, asserted
+against the *table* the way the two-axis check asserts `keepPay`/`brkPay`, because a price written
+into the data would otherwise be dropped silently on the way out and the separation would look
+enforced when the data had already broken.
+
+**Why standing must not decide who is asking, however obvious that hook looks.** A run's gross is
+`4.10 + minutes * 0.11` where the minutes are the store's own advertised window — $5.53 at the
+shortest, $12.35 at the longest. Biasing *which* restaurants ask you on your standing with them is
+therefore biasing your expected earnings, and it is farmable: build standing at the longest store,
+get shown it more, earn more per hour. That is the pay axis, reached sideways. The platform scalar
+decides **how many** doors are open; a restaurant decides **how it talks to you**; and the two cannot
+drift together because one is an integer consumed by `slice(0, n)` and the other is a string consumed
+by a copy lookup. `npm test` pins both directions — `asking()` flat across the whole ladder, and the
+asking *set* unchanged under four different spreads of standing.
+
 **Doing the six a favour costs you work.** One scalar, `st.slinging.platform`: chains raise it,
 favours lower it, and it decides how many givers are shown as asking. Nobody says so out loud.
 
@@ -338,7 +368,7 @@ prefix and as a suffix — the noun renames on a word boundary and camelCase has
 after naming anything, not only after adding a file.** Those two are not spelled out here for the
 reason given above: this file is inside the walk, and a prose example would itself be a survivor.
 
-**Run `npm test` before committing.** Sixty-one checks. Beyond the original thirteen they cover:
+**Run `npm test` before committing.** Sixty-four checks. Beyond the original thirteen they cover:
 every screen rendering under six state fixtures × two hours with no `undefined`/`NaN` in the markup;
 accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
 pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency
@@ -366,7 +396,11 @@ row of), both outcomes staying reachable so the deduction table cannot go arithm
 break-even straddled by two adjacent real stores, `settle` booking the net rather than the gross, and
 access charged by the day the run **ended**. `harness.cjs` grew a `statement issued` fixture for the
 render sweep, because `settle()` nulls the run and the statement is otherwise reachable only from a
-log row — fifteen rows of money nothing else in the sweep would ever draw.
+log row — fifteen rows of money nothing else in the sweep would ever draw. A ninth, `known and
+remembered`, seeds both ends of the standing ladder, because every other fixture leaves it at `{}` —
+which is exactly the state at which a regard bug is invisible. That gap was not hypothetical: the
+board-purity check ran entirely at `standing = {}`, so three mutations of it were no-ops under test,
+and a standing term added to `asking()` survived all sixty-one checks before this pass.
 
 **A check that cannot fail is worse than none — prove it with a mutant.** Every check added by that
 programme was validated by breaking the code it guards and confirming it goes red. That found: a

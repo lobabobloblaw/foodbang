@@ -4078,9 +4078,73 @@ check('the dispatch board is a pure function of the clock', () => {
     FB.store.reset();
     FB.missions.setMode('sling');
 
+    /* Seeded BEFORE the first read, and at both ends. This check used to run entirely
+       at standing = {} straight after store.reset(), so every mutation that mixes
+       regard into the seed, sorts the rows by it, or reads a clock for a row field
+       was a no-op under test and survived. */
+    FB.store.set((st) => {
+      st.slinging.standing = { goldenwok: 6, sunrisedonut: 4, gyropalace: -6, pandaxpress: -4 };
+      return st;
+    });
+
     const key = function (b) { return b.filter(function (x) { return x.asking; }).map(function (x) { return x.slug; }).sort().join(','); };
     const a = key(FB.missions.board(T));
     if (!a) throw new Error('nobody is asking at seven in the evening');
+
+    /* The key above sorts, so it is structurally blind to a reordering. The board is
+       MISSIONS.map in declaration order and must stay that way — a list that
+       reshuffles under a thumb is the bug CLAUDE.md names. */
+    const order = FB.missions.board(T).map((x) => x.slug).join(',');
+    const declared = FB.missions.ALL.map((m) => m.slug).join(',');
+    if (order !== declared) throw new Error('the board no longer lists the givers in declaration order');
+
+    /* And the key only compares which slugs are asking — it cannot see a row FIELD
+       that moved. The WALL CLOCK is advanced between these two reads while the same
+       bucket timestamp is passed in: without that, Date.now() returns the same frozen
+       value in both calls and a row field reading it is identical in both, so the
+       mutant survives a comparison that looks like it covers this. */
+    const rowsAtT = JSON.stringify(FB.missions.board(T));
+    clock.set(T + 5 * 60000);
+    if (JSON.stringify(FB.missions.board(T)) !== rowsAtT) {
+      throw new Error('a board row reads a clock other than the bucket it was given');
+    }
+    clock.set(T);
+    if (JSON.stringify(FB.missions.board(T + 60000)) !== rowsAtT) {
+      throw new Error('a board row changed inside its own bucket');
+    }
+
+    /* REAL GAP this replaces: standing may not change WHO is asking. The count is
+       already pinned elsewhere, but membership was not — and biasing which
+       restaurants ask is biasing expected earnings, because a run's gross is a fixed
+       function of the store ($5.53 at the shortest, $12.35 at the longest). */
+    const askingSet = (b) => b.filter((x) => x.asking).map((x) => x.slug).sort().join(',');
+    const atZero = (() => {
+      FB.store.set((st) => { st.slinging.standing = {}; return st; });
+      return askingSet(FB.missions.board(T));
+    })();
+    /* VARIED, not uniform. Setting every slug to the same number makes a sort by
+       standing a stable no-op, so the mutation that orders the pool by regard before
+       shuffling survives a check that looks like it covers exactly that. */
+    const spreads = [
+      { name: 'uniform high', of: () => 6 },
+      { name: 'uniform low', of: () => -6 },
+      { name: 'alternating', of: (i) => (i % 2 ? 6 : -6) },
+      { name: 'graded', of: (i) => (i % 13) - 6 },
+    ];
+    for (const sp of spreads) {
+      FB.store.set((st) => {
+        st.slinging.standing = {};
+        FB.missions.ALL.forEach((m, i) => { st.slinging.standing[m.slug] = sp.of(i); });
+        return st;
+      });
+      if (askingSet(FB.missions.board(T)) !== atZero) {
+        throw new Error('standing changed which restaurants are asking (' + sp.name + ')');
+      }
+    }
+    FB.store.set((st) => {
+      st.slinging.standing = { goldenwok: 6, sunrisedonut: 4, gyropalace: -6, pandaxpress: -4 };
+      return st;
+    });
 
     /* stable inside the bucket */
     const bucketMs = FB.world.BUCKET_MS;
@@ -4389,6 +4453,182 @@ check('a screen that offers an explanation is wired to give one', () => {
       throw new Error('renders a (?) and never wires it: ' + offenders.join(', '));
     }
     return 'every screen offering an explanation wires it';
+  } finally { app.dispose(); }
+});
+
+check('a restaurant remembers you, and it can only ever change how it talks', () => {
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    clock.set(new Date(2026, 7, 20, 19, 0, 0).getTime());
+    FB.store.reset();
+
+    /* THE BANDS. Pure arithmetic on an integer — no slug, no state. */
+    const R = FB.missions.regardOf;
+    eq(R(0), 'plain', 'nobody at zero'); eq(R(2), 'plain', 'two is not known');
+    eq(R(3), 'known', 'three is'); eq(R(-2), 'plain', 'minus two is not cold');
+    eq(R(-3), 'cold', 'minus three is'); eq(R(undefined), 'plain', 'a missing entry');
+
+    /* THE CLAMP is what stops a hole deeper than the climb out of it. */
+    eq(FB.missions.nextStanding(6, true), 6, 'the ceiling holds');
+    eq(FB.missions.nextStanding(-6, false), -6, 'the floor holds');
+    eq(FB.missions.nextStanding(-40, true), -6, 'a pre-cap save heals toward the cap');
+    if (R(-40) !== 'cold') throw new Error('a pre-cap save does not read as cold');
+
+    /* THE DATA CANNOT HOLD A PRICE. Asserted against the TABLE — the same way the
+       two-axis check asserts keepPay/brkPay against the mission table rather than
+       against the branch that reads it, because a price written into the data would
+       otherwise be silently dropped on the way out and the separation would look
+       enforced when the data had already broken. */
+    let variants = 0, strings = 0;
+    for (const m of FB.missions.ALL) {
+      if (!m.voice) continue;
+      for (const band of Object.keys(m.voice)) {
+        if (band !== 'known' && band !== 'cold') throw new Error(m.slug + ' carries a band called ' + band);
+        variants++;
+        const v = m.voice[band];
+        for (const k of Object.keys(v)) {
+          if (/pay|price|fee|cost|scrip|bux|amount|total/i.test(k)) {
+            throw new Error(m.slug + '.' + band + ' carries a money field: ' + k);
+          }
+          const val = v[k];
+          const list = Array.isArray(val) ? val : [val];
+          for (const x of list) {
+            if (typeof x !== 'string') throw new Error(m.slug + '.' + band + '.' + k + ' is not a string');
+            if (!x.length) throw new Error(m.slug + '.' + band + '.' + k + ' is empty');
+            strings++;
+          }
+        }
+        if (v.prompt && v.prompt.length !== 2) throw new Error(m.slug + '.' + band + '.prompt is not two lines');
+        for (const k of ['keep', 'brk']) {
+          if (v[k] && v[k].length !== 2) throw new Error(m.slug + '.' + band + '.' + k + ' is not a label and a sub');
+        }
+      }
+    }
+    if (variants < 20) throw new Error('only ' + variants + ' voice variants exist');
+
+    /* THE RULE NEVER VARIES. It is drawn from live state on the card, from live state
+       on the sheet and from the stamped run mid-run; a varying rule lets those three
+       disagree with each other. */
+    for (const m of FB.missions.ALL) {
+      if (!m.voice) continue;
+      for (const band of ['known', 'cold']) {
+        const v = m.voice[band];
+        if (v && v.rule) throw new Error(m.slug + ' varies its rule at ' + band);
+      }
+    }
+
+    /* THE COPY ACTUALLY REACHES THE SHEET, and off the run's STAMPED band. */
+    const run = { slug: 'goldenwok', regard: 'known' };
+    const c = { kind: 'rule' };
+    const known = FB.missions.copyFor(run, c);
+    const plain = FB.missions.copyFor({ slug: 'goldenwok', regard: 'plain' }, c);
+    const cold = FB.missions.copyFor({ slug: 'goldenwok', regard: 'cold' }, c);
+    /* Compared as a PAIR, not on the title: a variant is allowed to keep the opening
+       line and move only the body — at Golden Wok the situation is identical at every
+       band and only the pressure changes, which is the better piece of writing. */
+    const sheet = (x) => x.title + '\u0000' + x.body;
+    if (sheet(known) === sheet(plain)) throw new Error('a known restaurant puts it to you the same way');
+    if (sheet(cold) === sheet(plain)) throw new Error('a cold restaurant puts it to you the same way');
+    /* every variant must move SOMETHING, or it is a table of duplicated base copy */
+    for (const m of FB.missions.ALL) {
+      if (!m.voice) continue;
+      for (const band of ['known', 'cold']) {
+        if (!m.voice[band]) continue;
+        const v = FB.missions.copyFor({ slug: m.slug, regard: band }, c);
+        const b = FB.missions.copyFor({ slug: m.slug, regard: 'plain' }, c);
+        if (sheet(v) === sheet(b) && v.kept === b.kept && v.broken === b.broken) {
+          throw new Error(m.slug + '.' + band + ' is identical to its base copy');
+        }
+      }
+    }
+    eq(known.rule, plain.rule, 'the rule moved');
+    eq(cold.rule, plain.rule, 'the rule moved at cold');
+
+    /* REGARD MAY REMOVE A GATE. IT MAY NEVER ADD ONE — there is no band at which the
+       compliant answer becomes unavailable, so the ladder is always climbable from
+       wherever you are standing. Golden Wok is the only giver carrying needsBrief. */
+    eq(plain.needsBrief, true, 'the briefing gate');
+    eq(known.needsBrief, false, 'a regular still sits through the briefing');
+    eq(cold.needsBrief, true, 'cold invented a gate');
+    for (const m of FB.missions.ALL) {
+      for (const band of ['known', 'plain', 'cold']) {
+        const cp = FB.missions.copyFor({ slug: m.slug, regard: band }, c);
+        if (!cp.keep || !cp.keep[0]) throw new Error(m.slug + ' has no compliant answer at ' + band);
+        if (!m.needsBrief && cp.needsBrief) throw new Error(m.slug + ' acquired a briefing gate at ' + band);
+      }
+    }
+
+    /* A STUB WITH NO BAND — the two-axis check passes exactly this — reads plain and
+       gets complete base copy. */
+    const stub = FB.missions.copyFor({ slug: 'goldenwok' }, c);
+    eq(stub.title, plain.title, 'a run with no band is not plain');
+
+    /* AND IT CARRIES NO PRICE OUT. */
+    for (const band of ['known', 'plain', 'cold']) {
+      const cp = FB.missions.copyFor({ slug: 'goldenwok', regard: band }, c);
+      for (const k of Object.keys(cp)) {
+        if (/pay|price|fee|cost/i.test(k)) throw new Error('the rule branch returned ' + k);
+      }
+    }
+    return variants + ' variants, ' + strings + ' strings, no rule and no price varies';
+  } finally { app.dispose(); }
+});
+
+check('what a restaurant thinks of you never changes what it pays or how many ask', () => {
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    const T = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T);
+
+    /* HOW MANY ASK is the PLATFORM's, and standing must be unable to move it. The
+       mutant this exists for — adding a standing term to asking() — survived every
+       check in this file before it was written. */
+    const seed = (v) => {
+      FB.store.reset();
+      FB.missions.setMode('sling');
+      FB.store.set((st) => {
+        st.slinging.standing = {};
+        FB.missions.ALL.forEach((m) => { st.slinging.standing[m.slug] = v; });
+        return st;
+      });
+    };
+    seed(0); const base = FB.missions.asking(T);
+    seed(6); const high = FB.missions.asking(T);
+    seed(-6); const low = FB.missions.asking(T);
+    eq(high, base, 'being known moved how many restaurants are asking');
+    eq(low, base, 'being on file moved how many restaurants are asking');
+    /* and it still moves with the thing that owns it */
+    FB.store.set((st) => { st.slinging.platform = 6; return st; });
+    const withPlat = FB.missions.asking(T);
+    FB.store.set((st) => { st.slinging.platform = -6; return st; });
+    if (withPlat === FB.missions.asking(T)) throw new Error('asking() stopped answering to the platform');
+
+    /* WHAT IT PAYS. Same run, same store, swept across the whole ladder. */
+    seed(0);
+    const pays = new Set();
+    for (const v of [-6, -3, -1, 0, 1, 3, 6]) {
+      seed(v);
+      const r = FB.missions.build('goldenwok', T);
+      pays.add(r.pay);
+      if (FB.missions.regardOf(v) !== r.regard) throw new Error('the run stamped the wrong band at ' + v);
+      /* a run carries no price fields per band, and the band is a STRING — it cannot
+         be an argument to the slice() that decides the count */
+      if (typeof r.regard !== 'string') throw new Error('the band is not a string');
+    }
+    if (pays.size !== 1) throw new Error('a run paid ' + [...pays].join(' / ') + ' depending on standing');
+
+    /* AND THE LADDER IS CLIMBABLE FROM THE FLOOR. Ten broken runs land on the cap,
+       the compliant answer is still offered there, and one kept run moves it. */
+    seed(0);
+    let n = 0;
+    for (let i = 0; i < 10; i++) n = FB.missions.nextStanding(n, false);
+    eq(n, -6, 'ten broken runs');
+    const atFloor = FB.missions.copyFor({ slug: 'goldenwok', regard: FB.missions.regardOf(n) }, { kind: 'rule' });
+    if (!atFloor.keep || !atFloor.keep[0]) throw new Error('no way back from the floor');
+    eq(FB.missions.nextStanding(n, true), -5, 'the floor is not sticky');
+    return 'asking() flat across the ladder, pay flat across the ladder, floor climbable';
   } finally { app.dispose(); }
 });
 

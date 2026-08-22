@@ -393,6 +393,9 @@
 .disp-hd i { display: block; font: var(--t-micro); letter-spacing: .14em; color: var(--ink-3); font-style: normal; }
 .disp-hd b { display: block; font: var(--t-title); margin: 6px 0 4px; }
 .disp-hd span { display: block; font: var(--t-sub); color: var(--ink-2); }
+/* what the restaurant made of it, under what the platform made of it */
+.disp-turn { display: block; padding: 0 var(--pad) 4px; font: var(--t-sub); color: var(--ink-2); font-style: italic; }
+.mc-note { display: block; font: var(--t-cap); color: var(--fb); margin-top: 2px; }
 
 .mcard {
   display: flex; gap: 12px; align-items: flex-start;
