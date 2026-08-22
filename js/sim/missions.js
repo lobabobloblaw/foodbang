@@ -448,11 +448,31 @@ window.FB = window.FB || {};
         /* Six beats front-loaded at the one grill, then a 0.46 dead stretch of Route 9 where the only thing that happens is Emre's question, and a two-beat rush at the door — the slack IS the drive past the phone store. */
         [0.02, 'Accepted · {store}', 'Exit 27, Unit 12, behind the car wash. The car wash is a separate business and has not agreed to anything.'],
         [0.13, 'One grill', 'The order is behind two others on the grill. There is one grill. The forty-five minutes was produced elsewhere.'],
-        [0.27, 'Collected', 'Sami reads the notes off the screen because the printer cuts them off. {fries} taken from the cooler as tribute, per the Slinger Agreement, §4.2.'],
+        [0.27, 'Collected', 'Sami reads the notes off the screen because the printer cuts them off. {fries} taken from the cooler as tribute, per the Slinger Agreement, §4.2.', 'collect'],
         [0.40, 'Route 9 South', '{pickup}'],
         [0.74, 'Past the turn', 'The old lot is behind you. The route does not go back for it.'],
         [0.94, 'Delivered', 'The bag was handed to a person. The record prefers a door.'],
-      ] },
+      ],
+      /* The other end of the road. Turns on once Wing Bunker's rule has been kept.
+         Nothing here explains the connection — every line reports something that was
+         said or done and withholds why, which is the register these six independents
+         already speak in ("Sami came out to the car and said Emre says hello"). The
+         player joins it up or does not. */
+      carried: {
+        of: 'wingbunker',
+        card: 'Sami asked about a fryer.',
+        both: 'Sami asks whether you still go out to Exit 41B.',
+        line: 'Emre asks whether the sign is still up. Sami asked, separately, about a fryer.',
+        prompt: ['You are outside the phone store', 'Sami asked you about a fryer before you left. Emre did not.'],
+        keep: ['Go in and ask', 'about the sign only'],
+        brk:  ['Keep going', 'four minutes either way'],
+        kept: 'You asked about the sign. It came down in 2019. Nobody mentioned the fryer.',
+        broken: 'You kept going. Emre will ask you next time, in the same way.',
+        turn: 'Sami asked whether you still go out to Exit 41B. He did not say why.',
+        beat: { tag: 'collect',
+          text: 'Collected',
+          sub: 'Sami reads the notes off the screen because the printer cuts them off. He asked whether you go out past Exit 41B. {fries} taken as tribute, under §4.2.' },
+      } },
 
     { slug: 'wingbunker', title: 'The Same Fryer', local: true,
       brief: ['Same fryer since 1996. It came from the Route 9 location when that closed in 2011.',
@@ -486,10 +506,26 @@ window.FB = window.FB || {};
         [0.02, 'Exit 41B', '{store} is inside the fuel stop. The fuel stop is not {store}.'],
         [0.13, 'Side door', 'The door by the air pump. The main door is alarmed after eight.'],
         [0.26, 'Past the coffee', 'The counter is at the back of the building. {pickup}'],
-        [0.41, 'Fried to order', 'Eighteen to twenty minutes. The advertised time is not the kitchen\'s time.'],
+        [0.41, 'Fried to order', 'Eighteen to twenty minutes. The advertised time is not the kitchen\'s time.', 'fry'],
         [0.74, 'Out past the pumps', 'The bag is in the car. The counter is behind you.'],
         [0.93, 'Delivered', 'Completed outside the advertised window. The window is advisory.'],
-      ] },
+      ],
+      /* The other end of the road. Turns on once Gyro Palace's rule has been kept. */
+      carried: {
+        of: 'gyropalace',
+        card: 'Ray asked what else is out on 9.',
+        both: 'Ray asks whether the rice place is still behind the car wash.',
+        line: 'The part is still behind the counter. Ray asked what else is still out on 9. He asked it like he was not asking.',
+        prompt: ['The attendant asked what you are carrying', 'The kitchen is at the back, past the coffee.'],
+        keep: ['Say nothing', 'it is not the gas station\'s'],
+        brk:  ['Explain', 'about the fryer'],
+        kept: 'You kept walking. The part is in the back with the fryer. Ray did not ask again.',
+        broken: 'You explained. The gas station now knows about the fryer.',
+        turn: 'Ray asked whether the rice place is still behind the car wash. He did not say how he knew.',
+        beat: { tag: 'fry',
+          text: 'Fried to order',
+          sub: 'Eighteen to twenty minutes. The advertised time is not the kitchen\'s time. Ray asked, while it fried, what else is still out on 9.' },
+      } },
 
     { slug: 'verdadera', title: 'Before It Is A Day Old', local: true,
       brief: ['SALSA HECHA CADA MAÑANA. NO ANTES.',
@@ -816,6 +852,7 @@ window.FB = window.FB || {};
       briefed: !(opts && opts.dismissed),
       /* Decided once, at accept, exactly as the timetable is. */
       regard: regardOf(FB.missions.standing(slug)),
+      carried: carries(slug),
       events: [], replayed: 0,
       outcome: null, choice: null, elected: false,
     };
@@ -828,8 +865,20 @@ window.FB = window.FB || {};
     run.span = span;
 
     var beats = beatsFor(m);
+    /* A carried beat is matched on the beat's TAG — b[3] — and never on its index or
+       its text. CLAUDE.md records exactly this trap for the courier-introduction
+       barrier: keyed on position or wording, a reorder or a reword silently unhooks
+       it. And b[0] is read UNCONDITIONALLY, so the fraction can never depend on
+       player history: slots(), the rule's placement and the interruption's placement
+       are provably the same run to run. */
+    var cb = (run.carried && m.carried && m.carried.beat) ? m.carried.beat : null;
     run.beats = beats.map(function (b) {
-      return { at: at + span * b[0], text: fill(b[1], m, store), sub: fill(b[2], m, store) };
+      var o = (cb && b[3] && cb.tag === b[3]) ? cb : null;
+      return {
+        at: at + span * b[0],
+        text: fill(o && o.text ? o.text : b[1], m, store),
+        sub: fill(o && o.sub ? o.sub : b[2], m, store),
+      };
     });
     var slot = slots(beats);
 
@@ -905,6 +954,37 @@ window.FB = window.FB || {};
   function nextStanding(prev, kept) {
     return FB.clamp((prev || 0) + (kept ? 1 : -1), -REGARD_CAP, REGARD_CAP);
   }
+  /* ---------------- the road ----------------
+     Two independents descend from the same address: Gyro Palace opened on Route 9 in
+     1998 and that building is a phone store now; Wing Bunker's fryer came out of the
+     Route 9 location when it closed in 2011, and it is the same fryer. Neither family
+     has ever mentioned the other, and the app does not explain the connection — it
+     only ever reports what was said.
+
+     A giver may carry a `carried` block naming the OTHER end. It turns on when that
+     other end has been kept, so a marked end can only ever change its opposite. That
+     symmetry is what makes "both speaking at once" a state you cannot reach until you
+     have carried both — it falls out of the one-line rule rather than being a third
+     tier bolted on.
+
+     It is ORTHOGONAL to `voice`: regard is what they make of you and moves both ways;
+     this is where you have been and only accumulates. They compose. */
+  function carriedOf(m, on) { return (on && m && m.carried) ? m.carried : null; }
+
+  /** has this giver's other end been kept? pure, stores nothing */
+  function carries(slug, st) {
+    var m = byslug(slug);
+    if (!m || !m.carried) return false;
+    return !!(((((st || FB.S()).slinging) || {}).learned || {})[m.carried.of]);
+  }
+  /** both ends on file — the state that exists only after both */
+  function paired(slug, st) {
+    var m = byslug(slug);
+    if (!m || !m.carried) return false;
+    var L = ((((st || FB.S()).slinging) || {}).learned || {});
+    return !!(L[m.slug] && L[m.carried.of]);
+  }
+
   /* `plain` IS the base table, so it deliberately has no variant object. */
   function voiceOf(m, band) {
     if (!m || !band || band === 'plain') return null;
@@ -920,19 +1000,24 @@ window.FB = window.FB || {};
          the moment settle moved the number underneath it. */
       var band = run.regard || 'plain';
       var v = voiceOf(m, band) || {};
-      var pr = v.prompt || m.prompt;
+      /* Knowledge sits ABOVE regard: it is the rarer and more specific thing, and
+         there is only one line of room on each surface. Merged through the same
+         explicit literal below, whose vocabulary is strings and arrays of strings —
+         so a price written into a `carried` block has nowhere to arrive. */
+      var k = carriedOf(m, run.carried) || {};
+      var pr = k.prompt || v.prompt || m.prompt;
       /* Still an explicit eight-key literal. A variant is merged key by key THROUGH
          it, so a price field written into the table has nowhere to arrive — which is
          what keeps the separation structural rather than disciplined. */
       return { title: pr[0], body: pr[1], rule: m.rule,
-               keep: v.keep || m.keep, brk: v.brk || m.brk,
-               kept: v.kept || m.kept, broken: v.broken || m.broken,
+               keep: k.keep || v.keep || m.keep, brk: k.brk || v.brk || m.brk,
+               kept: k.kept || v.kept || m.kept, broken: k.broken || v.broken || m.broken,
                /* Regard may REMOVE a gate. It may never add one — at cold a store
                   that would not take your word for it blocks the compliant answer,
                   forces a break, and spirals into a store you can never recover
                   with. There is no band at which `keep` is unanswerable. */
                needsBrief: band === 'known' ? false : !!m.needsBrief,
-               regard: band };
+               regard: band, carried: !!run.carried };
     }
     var p = INTERRUPTS.filter(function (x) { return x.id === c.ref; })[0] || INTERRUPTS[0];
     return { title: p.title, body: p.body, rule: null, keep: p.keep, brk: p.brk,
@@ -1076,7 +1161,12 @@ window.FB = window.FB || {};
              asking set above is byte-identical, so the board is still a pure function
              of the bucket and nothing reorders. */
           regard: rg,
-          note: (voiceOf(m, rg) || {}).card || null,
+          /* The road outranks regard on the card: it is rarer and there is one line.
+             `both` only appears once BOTH ends are on file, which is a state a marked
+             end cannot reach on its own. */
+          note: (paired(m.slug) ? (m.carried || {}).both : null) ||
+                (carries(m.slug) ? (m.carried || {}).card : null) ||
+                (voiceOf(m, rg) || {}).card || null,
         };
       });
     },
@@ -1101,6 +1191,18 @@ window.FB = window.FB || {};
     REGARD_CAP: REGARD_CAP, KNOWN_AT: KNOWN_AT, COLD_AT: COLD_AT,
     /** the band this restaurant currently reads you at */
     regard: function (slug, st) { return regardOf(FB.missions.standing(slug, st)); },
+    carried: function (slug, st) { return carries(slug, st); },
+    paired: function (slug, st) { return paired(slug, st); },
+    carriedOf: carriedOf,
+
+    /* The one line a statement gets when the road closed, read off the FROZEN row so
+       a statement from nine runs ago still says what happened then. Only the run that
+       CLOSED the pair carries it — `pair` is true on exactly one statement, ever. */
+    pairNote: function (row) {
+      if (!row || !row.pair) return '';
+      var m = byslug(row.slug);
+      return (m && m.carried && m.carried.turn) ? m.carried.turn : '';
+    },
 
     /* The one line a statement gets when a restaurant changed its mind about you.
        Read off the FROZEN row, so a statement from nine runs ago still says what
@@ -1161,6 +1263,16 @@ window.FB = window.FB || {};
       /* The statement is stamped from the run's own end time, not from Date.now(),
          so a catch-up books the access block against the day the run ENDED — the
          same rule the tracker replays its beats under. */
+      /* Read BEFORE the write below, and this ordering is load-bearing: computed
+         after it, `learned[run.slug]` is already set, the second term is false, and
+         the pair silently never closes. Same trap as `o.deliverAt` being read a line
+         too late in the tracker. True on exactly one statement, ever. */
+      var m2 = byslug(run.slug);
+      var closesPair = false;
+      if (kept && m2 && m2.carried) {
+        var L0 = (FB.S().slinging || {}).learned || {};
+        closesPair = !!L0[m2.carried.of] && !L0[run.slug];
+      }
       var access = FB.fees.accessDue(FB.S().slinging.accessAt, run.endAt);
       var pay = FB.fees.payout({ gross: run.pay, access: access });
       var row = {
@@ -1176,6 +1288,7 @@ window.FB = window.FB || {};
         /* Both sides of the ladder, frozen, so the statement can say a restaurant
            changed its mind about you without re-deriving it from a number that has
            moved on since. Equal bands print nothing. */
+        carried: !!run.carried, pair: closesPair,
         regardWas: regardOf(FB.S().slinging.standing[run.slug]),
         regard: regardOf(nextStanding(FB.S().slinging.standing[run.slug], kept)),
       };
@@ -1191,6 +1304,11 @@ window.FB = window.FB || {};
         s.deducted = FB.round2((s.deducted || 0) + pay.deductionsTotal);
         s.scrip = (s.scrip || 0) + pay.scrip;
         if (access) s.accessAt = run.endAt;
+        /* Written for EVERY giver, not just the two that read it, so there is no
+           branch that can drift away from the data. Stamped from run.endAt and never
+           Date.now(), the rule accessAt already runs under: a catch-up records when
+           it happened, not when it was noticed. Write-once. */
+        if (kept && !s.learned[run.slug]) s.learned[run.slug] = run.endAt;
         s.standing[run.slug] = nextStanding(s.standing[run.slug], kept);
         s.platform = (s.platform || 0) + plat;
         return st;
@@ -1360,6 +1478,7 @@ window.FB = window.FB || {};
            and the sheet is the last surface drawn before it is. */
         var band = M.regard(slug);
         var v = M.voiceOf(m, band) || {};
+        var kc = M.carriedOf(m, M.carried(slug)) || {};
         FB.sheet.open({
           title: m.title,
           sub: (FB.catalog.get(slug) || {}).name || slug,
@@ -1369,6 +1488,7 @@ window.FB = window.FB || {};
               ? '<p>' + FB.esc(v.line) + '</p>'
               : m.brief.map(function (l) { return '<p>' + FB.esc(l) + '</p>'; }).join('') +
                 (v.line ? '<p>' + FB.esc(v.line) + '</p>' : '')) +
+            (kc.line ? '<p>' + FB.esc(kc.line) + '</p>' : '') +
             '<div class="brief-rule"><i>THE RULE</i><b>' + FB.esc(m.rule) + '</b></div>' +
             '</div>',
           footer: '<button class="btn btn--primary btn--block" data-accept="' + FB.attr(slug) + '">' +
@@ -1434,6 +1554,20 @@ window.FB = window.FB || {};
         '<b>' + FB.plural(log.length, 'run') + ' on file</b>' +
         '<span>' + FB.plural(kept, 'photograph') + ' retained of ' + FB.proof.POOL.length +
         '. ' + FB.plural(st.slinging.shots || 0, 'photograph') + ' taken.</span></div>';
+
+      /* The only thing the platform contributes to the road, and it is a count. It
+         has both addresses and has noticed they share one; it does not know what
+         that means and does not pursue it. Nobody explains the connection here
+         either — the record simply declines to draw it. */
+      var road = FB.missions.ALL.filter(function (m) {
+        return m.carried && (st.slinging.learned || {})[m.slug];
+      }).length;
+      if (road === 1) {
+        h += '<p class="disp-turn">One run on file is on Route 9.</p>';
+      } else if (road > 1) {
+        h += '<p class="disp-turn">Two runs on file are on the same road. ' +
+          'The record does not connect them.</p>';
+      }
 
       h += '<div class="reclist">' + log.map(function (r) {
         var store = FB.catalog.get(r.slug);
@@ -1576,6 +1710,8 @@ window.FB = window.FB || {};
            that happened and moves on. */
         var turn = M.regardNote(last);
         if (turn) h += '<p class="disp-turn">' + FB.esc(turn) + '</p>';
+        var road = M.pairNote(last);
+        if (road) h += '<p class="disp-turn">' + FB.esc(road) + '</p>';
 
         /* THE PHOTOGRAPH. Untaken it is a button; taken it is the picture and the
            category the platform filed it under. The category is a loot tier and the

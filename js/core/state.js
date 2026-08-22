@@ -142,6 +142,12 @@ window.FB = window.FB || {};
         gallery: [],
         shots: 0,
         standing: {},
+        /* WHAT YOU HAVE CARRIED. slug -> the stamp of the first run there whose rule
+           you kept. Deliberately NOT `standing`: standing is an opinion and it moves
+           both ways, and a room you have stood in cannot be un-stood-in by a later
+           bad night. Write-once and monotone. A plain object, so fillDefaults gives
+           every existing save {} — which reads correctly as "nothing carried yet". */
+        learned: {},
         platform: 0,      /* what the platform makes of the company you keep */
         log: [],          /* finished runs, newest first, capped in migrate() */
       },

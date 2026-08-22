@@ -5104,6 +5104,137 @@ check('the account is somebody different each time, and never changes underneath
   } finally { app.dispose(); }
 });
 
+check('a road runs between two givers, and carrying one changes the other', () => {
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    const T = new Date(2026, 7, 20, 19, 14, 0).getTime();
+    clock.set(T);
+    FB.store.reset();
+    FB.missions.setMode('sling');
+
+    /* THE DATA CANNOT HOLD A PRICE, asserted against the table the way the voice
+       layer already is — a money field written here would be dropped on the way out
+       and the separation would look enforced when the data had already broken. */
+    const marked = FB.missions.ALL.filter((m) => m.carried);
+    eq(marked.length, 2, 'givers on the road');
+    for (const m of marked) {
+      const c = m.carried;
+      if (!c.of || !FB.missions.ALL.some((x) => x.slug === c.of)) throw new Error(m.slug + ' names no other end');
+      if (c.of === m.slug) throw new Error(m.slug + ' is its own other end');
+      if (c.rule || c.needsBrief !== undefined) throw new Error(m.slug + ' varies its rule or its gate');
+      for (const k of Object.keys(c)) {
+        if (/pay|price|fee|cost|scrip|bux|amount|total/i.test(k)) throw new Error(m.slug + '.carried carries ' + k);
+      }
+      /* the override is keyed on a TAG that exists on the spine — keyed on an index
+         or on the text, a reorder or a reword silently unhooks it, which is the trap
+         CLAUDE.md records for the courier-introduction barrier */
+      if (c.beat) {
+        const tags = FB.missions.beatsFor(m).map((b) => b[3]).filter(Boolean);
+        if (tags.indexOf(c.beat.tag) < 0) throw new Error(m.slug + ' overrides a beat tag that is not on its spine');
+        /* and it may replace WORDS only. A fraction here would make the decision's
+           placement depend on player history, which is the one thing the derived
+           slot maths may never do. */
+        for (const k of Object.keys(c.beat)) {
+          if (!/^(tag|text|sub)$/.test(k)) throw new Error(m.slug + '.carried.beat carries ' + k);
+        }
+      }
+    }
+    /* symmetric: each names the other */
+    eq(FB.missions.ALL.filter((x) => x.slug === marked[0].carried.of)[0].carried.of, marked[0].slug, 'the road runs both ways');
+
+    /* THE SHAPE OF A RUN IS UNTOUCHED, for BOTH ends. A carried beat may replace
+       text; it may never move a fraction, or the decision's placement would depend on
+       player history. Recorded for every marked giver, not just the one the test
+       happens to drive — asserting only one end left the other's fraction free to
+       move, and a mutant walked straight through it. */
+    const shape = {};
+    for (const m of marked) {
+      const r = FB.missions.build(m.slug, T);
+      shape[m.slug] = {
+        fracs: r.beats.map((b) => b.at - r.startAt).join(','),
+        rule: (r.checks.filter((c) => c.kind === 'rule')[0] || {}),
+        pay: r.pay,
+      };
+    }
+    const plainRun = FB.missions.build('wingbunker', T);
+    const beforeFracs = shape.wingbunker.fracs;
+    const beforeRule = shape.wingbunker.rule;
+
+    function finish(slug, answer) {
+      const now = FB.missions.build(slug, Date.now());
+      const run = FB.missions.accept(slug, Date.now() - (now.endAt - now.startAt) - 5000);
+      for (const c of (run.checks || []).slice()) {
+        clock.set(c.at + 500); FB.missions.tick({ catchUp: true }); FB.missions.answer(answer);
+      }
+      clock.set(run.endAt + 2000);
+      for (let i = 0; i < 30; i++) FB.missions.tick({ catchUp: true });
+      return FB.S().slinging.log[0];
+    }
+
+    /* BREAKING A RULE TEACHES YOU NOTHING. You have to actually go in. */
+    const broke = finish('gyropalace', 'break');
+    if ((FB.S().slinging.learned || {}).gyropalace) throw new Error('a broken rule was recorded as carried');
+    if (FB.missions.carried('wingbunker')) throw new Error('breaking a rule opened the road');
+
+    /* KEEPING IT DOES. */
+    const first = finish('gyropalace', 'keep');
+    if (!(FB.S().slinging.learned || {}).gyropalace) throw new Error('a kept rule was not recorded');
+    if (!FB.missions.carried('wingbunker')) throw new Error('the other end did not open');
+    if (FB.missions.carried('gyropalace')) throw new Error('a giver opened its own end');
+    eq(first.pair, false, 'the first end closed the pair');
+    eq(FB.missions.pairNote(first), '', 'the first end printed the pair line');
+
+    /* the other end now speaks differently — and its RUN is the same shape */
+    const carriedRun = FB.missions.build('wingbunker', T);
+    eq(carriedRun.beats.map((b) => b.at - carriedRun.startAt).join(','), beforeFracs, 'a carried run moved its beats');
+    const rule2 = carriedRun.checks.filter((c) => c.kind === 'rule')[0];
+    eq(rule2.at - carriedRun.startAt, beforeRule.at - plainRun.startAt, 'a carried run moved its decision');
+    eq(rule2.ms, beforeRule.ms, 'a carried run changed the window');
+    eq(carriedRun.pay, plainRun.pay, 'the road moved the pay');
+    const cp = FB.missions.copyFor(carriedRun, { kind: 'rule' });
+    const base = FB.missions.copyFor({ slug: 'wingbunker' }, { kind: 'rule' });
+    eq(cp.rule, base.rule, 'the road changed the rule');
+    if (cp.body === base.body && cp.kept === base.kept) throw new Error('the other end says nothing different');
+    /* and the tagged beat really did change */
+    const tagged = carriedRun.beats.filter((b) => /Ray asked/.test(b.sub));
+    if (!tagged.length) throw new Error('the carried beat did not reach the run');
+
+    /* CLOSING IT. Exactly one statement, ever, carries the line. */
+    const second = finish('wingbunker', 'keep');
+    eq(second.pair, true, 'the closing run did not record the pair');
+    if (!FB.missions.pairNote(second)) throw new Error('the closing statement has no line');
+    if (!FB.missions.paired('wingbunker') || !FB.missions.paired('gyropalace')) throw new Error('the pair did not close');
+    const third = finish('wingbunker', 'keep');
+    eq(third.pair, false, 'the pair closed twice');
+    /* and learned is write-once: the second visit must not restamp it */
+    const stamp = FB.S().slinging.learned.wingbunker;
+    finish('wingbunker', 'keep');
+    eq(FB.S().slinging.learned.wingbunker, stamp, 'learned was rewritten on a later run');
+
+    /* NOW BOTH ENDS ARE CARRIED — re-measure every marked giver against the shape it
+       had before the road opened. */
+    for (const m of marked) {
+      const r = FB.missions.build(m.slug, T);
+      const was = shape[m.slug];
+      eq(r.beats.map((b) => b.at - r.startAt).join(','), was.fracs, m.slug + ' moved its beats once carried');
+      const rl = r.checks.filter((c) => c.kind === 'rule')[0];
+      eq(rl.at - r.startAt, was.rule.at - T, m.slug + ' moved its decision once carried');
+      eq(rl.ms, was.rule.ms, m.slug + ' changed its window once carried');
+      eq(r.pay, was.pay, m.slug + ' changed its pay once carried');
+    }
+
+    /* the board says the paired thing on both cards, and it is not the one-way line */
+    const rows = FB.missions.board(Date.now()).filter((b) => b.carried !== undefined || true);
+    for (const slug of ['gyropalace', 'wingbunker']) {
+      const row = rows.filter((r) => r.slug === slug)[0];
+      const m = FB.missions.ALL.filter((x) => x.slug === slug)[0];
+      eq(row.note, m.carried.both, slug + ' does not show the paired line');
+    }
+    return 'two ends, opened by keeping, closed once, run shape untouched';
+  } finally { app.dispose(); }
+});
+
 console.log('');
 if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
 console.log('all checks passed');

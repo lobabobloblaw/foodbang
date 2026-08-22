@@ -20,7 +20,7 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose seventy-two checks always run together — there is no way to run a
+(`node tools/smoke.cjs`) whose seventy-three checks always run together — there is no way to run a
 single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
 exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
@@ -310,6 +310,30 @@ mode, and **every id in it must name a registered screen**, because `nav.tab(id)
 `current.name` to it directly. The two tickers do not know about each other: the customer side
 keeps running while you are slinging, and it should.
 
+**A road runs between two givers, and it is data.** Gyro Palace opened on Route 9 in 1998 and that
+building is a phone store now; Wing Bunker's fryer came out of the Route 9 location when it closed in
+2011. Neither family has ever mentioned the other. A giver may carry a `carried` block naming the
+OTHER end; it turns on once that end's rule has been **kept**, so a marked end can only ever change
+its opposite — which is what makes "both speaking at once" a state unreachable from one end alone. It
+falls out of the symmetric rule rather than being a third tier.
+
+`st.slinging.learned[slug]` is **write-once and only on kept**: standing is an opinion and moves both
+ways, but a room you have stood in cannot be un-stood-in by a later bad night. Written for **every**
+giver, not just the two that read it, so no branch can drift from the data. Stamped from `run.endAt`,
+never `Date.now()`.
+
+Four rules. `carried` is **stamped at accept** like `regard`, because `copyFor` feeds both the stored
+event and the live render. The beat override is matched on the beat's **tag** (`b[3]`) and never on
+its index or text — the same trap CLAUDE.md records for the courier-introduction barrier. `b[0]` is
+read **unconditionally**, and `carried.beat` may hold only `tag`/`text`/`sub`, so a fraction can never
+depend on player history and the decision's placement is provably identical run to run. And `pair` is
+computed **before** the write in `settle()` — after it, `learned[run.slug]` is already set, the term
+is false, and the pair silently never closes. Same shape as reading `o.deliverAt` a line too late.
+
+Nothing anywhere explains the connection. Every line reports something said or done and withholds
+why — *"He did not say how he knew."* The platform's only contribution is a count: one run on file is
+on Route 9; two runs on file are on the same road, and **the record does not connect them**.
+
 **Every giver has its own shape, and the placement is derived from it.** All twenty runs used to
 share one five-beat spine, so a doughnut counter and a 75-minute steakhouse were the same shape with
 the name swapped. A giver may now carry its own `beats`; the rest fall back to `SPINE`. Four beats is
@@ -456,7 +480,7 @@ prefix and as a suffix — the noun renames on a word boundary and camelCase has
 after naming anything, not only after adding a file.** Those two are not spelled out here for the
 reason given above: this file is inside the walk, and a prose example would itself be a survivor.
 
-**Run `npm test` before committing.** Seventy-two checks. Beyond the original thirteen they cover:
+**Run `npm test` before committing.** Seventy-three checks. Beyond the original thirteen they cover:
 every screen rendering under six state fixtures × two hours with no `undefined`/`NaN` in the markup;
 accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
 pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency

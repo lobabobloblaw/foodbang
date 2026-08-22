@@ -48,6 +48,29 @@ let bytes = 0;
   }
 })(path.join(ROOT, 'assets'));
 
+/* Cache entries whose asset no longer exists. The walk above is driven by `assets/`,
+   so an orphan is never consulted and never inlined — it is dead disk rather than a
+   broken build, which is exactly why it goes unnoticed. Four survived two renames
+   (`gorger-1..3`, `gorgeplus-hero`) because nothing prunes the cache when an asset is
+   renamed or removed. Reported, not deleted: this directory is regenerable and a
+   build has no business removing files. */
+const orphans = [];
+(function sweep(dir, rel) {
+  if (!fs.existsSync(dir)) return;
+  for (const e of fs.readdirSync(dir)) {
+    const p = path.join(dir, e);
+    const r = rel ? rel + '/' + e : e;
+    if (fs.statSync(p).isDirectory()) { sweep(p, r); continue; }
+    if (!fs.existsSync(path.join(ROOT, 'assets', r))) orphans.push(r);
+  }
+})(SMALL, '');
+if (orphans.length) {
+  console.warn('artifact-assets holds ' + orphans.length + ' entry(s) for assets that no longer exist:');
+  orphans.slice(0, 8).forEach((k) => console.warn('  ' + k));
+  if (orphans.length > 8) console.warn('  …and ' + (orphans.length - 8) + ' more');
+  console.warn('  (harmless — they are never inlined — but `rm -rf build/artifact-assets` clears them)');
+}
+
 if (stale.length) {
   console.warn('artifact-assets is stale for ' + stale.length + ' file(s); inlined the full-size original instead:');
   stale.forEach((k) => console.warn('  ' + k));

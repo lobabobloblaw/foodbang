@@ -377,6 +377,31 @@ const FIXTURES = [
           gyropalace: -6, pandaxpress: -4, ssa: -3,          /* cold  */
           bobacloud: 2, verdadera: -2,                       /* plain, either side */
         };
+        /* One end of Route 9 carried, so the sweep renders the carried board card and
+           the extra brief paragraph. Only one — the PAIRED state gets its own fixture
+           below, and a sweep that only ever saw the closed pair would never draw the
+           one-way line at all. */
+        st.slinging.learned = { wingbunker: Date.now() - 3600000 };
+        return st;
+      });
+      return {};
+    },
+  },
+  {
+    /* Both ends of Route 9 on file: the board shows the paired line on two cards and
+       the Records header says the road out loud. Unreachable from the fixture above,
+       which is the point of having both. */
+    name: 'slinging, both ends of the road',
+    apply(FB, now) {
+      FB.missions.setMode('sling');
+      FB.store.set((st) => {
+        st.slinging.completed = 9; st.slinging.kept = 7; st.slinging.broken = 2;
+        st.slinging.earned = 2.14; st.slinging.deducted = 71.02;
+        st.slinging.learned = { gyropalace: now - 7200000, wingbunker: now - 3600000 };
+        st.slinging.log = [{ id: 'run_road', slug: 'wingbunker', title: 'The Same Fryer',
+          at: now - 3600000, outcome: 'kept', elected: false, pay: 10.48, adjusted: 0,
+          local: true, platform: -1, access: false, net: 0.96, deducted: 9.52, scrip: 0,
+          carried: true, pair: true }];
         return st;
       });
       return {};
