@@ -4944,6 +4944,166 @@ check('every tab names a screen, and the record of work shows the photographs', 
   } finally { app.dispose(); }
 });
 
+check('every giver has its own shape, and the decision still fits inside it', () => {
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    const T = new Date(2026, 7, 20, 19, 0, 0).getTime();
+    clock.set(T);
+    FB.store.reset();
+    FB.missions.setMode('sling');
+
+    const counts = {};
+    let own = 0;
+    for (const m of FB.missions.ALL) {
+      const beats = FB.missions.beatsFor(m);
+      if (m.beats) own++;
+
+      /* SHAPE. Four is the floor because the placement needs a beat before the
+         decision and a beat after the one that closes it. */
+      if (beats.length < 4 || beats.length > 7) {
+        throw new Error(m.slug + ' has ' + beats.length + ' beats');
+      }
+      counts[beats.length] = (counts[beats.length] || 0) + 1;
+
+      /* STRICTLY ASCENDING, inside the run. A beat out of order plays out of order
+         and a beat past 1 never plays at all. */
+      for (let i = 0; i < beats.length; i++) {
+        const f = beats[i][0];
+        if (!(f > 0 && f < 1)) throw new Error(m.slug + ' beat ' + i + ' is at ' + f);
+        if (i && !(f > beats[i - 1][0])) throw new Error(m.slug + ' beat ' + i + ' does not follow ' + (i - 1));
+        if (!beats[i][1] || !beats[i][2]) throw new Error(m.slug + ' beat ' + i + ' has no text');
+        /* NO NEW DECISIONS. The giver's one rule is the only question a run asks —
+           "the constraint IS the complication". A beat that asks something is a
+           second question with no answer path. */
+        if (/\?/.test(beats[i][1] + beats[i][2])) {
+          throw new Error(m.slug + ' beat ' + i + ' asks a question');
+        }
+      }
+
+      /* ROOM FOR THE DECISION. The rule's window is closed by the second-to-last
+         beat; without a real gap before it the question opens and expires in the
+         same instant. */
+      const n = beats.length;
+      const gap = beats[n - 2][0] - beats[n - 3][0];
+      if (gap < 0.2) throw new Error(m.slug + ' leaves only ' + gap.toFixed(2) + ' before the decision closes');
+
+      /* AND THE DERIVED SLOTS LAND IN ORDER. */
+      const slot = FB.missions.slots(beats);
+      if (!(slot.rule > beats[n - 3][0] && slot.rule < slot.bound)) {
+        throw new Error(m.slug + ': the rule does not sit inside its own gap');
+      }
+      if (!(slot.inter > slot.bound && slot.inter < 1)) {
+        throw new Error(m.slug + ': the interruption does not sit after the commit beat');
+      }
+    }
+
+    /* IT MUST STILL BE ANSWERABLE ON EVERY REAL RUN. The spans are remapped to
+       45-75s, so a shape that is fine in fractions can still leave no milliseconds. */
+    let withRule = 0, withInter = 0;
+    for (const m of FB.missions.ALL) {
+      const run = FB.missions.build(m.slug, T);
+      const rule = run.checks.filter((c) => c.kind === 'rule')[0];
+      if (!rule) throw new Error(m.slug + ' produced a run with no rule to answer');
+      withRule++;
+      if (run.checks.some((c) => c.kind === 'platform')) withInter++;
+      /* the decision must open after the beat before it and close before the beat
+         that bounds it, or it is a question about something already settled */
+      const beats = run.beats;
+      const bound = beats[beats.length - 2].at;
+      if (!(rule.at < bound)) throw new Error(m.slug + ': the rule opens after it has closed');
+      if (!(rule.deadline <= bound)) throw new Error(m.slug + ': the rule outlives the beat that bounds it');
+      if (!(rule.at > run.startAt)) throw new Error(m.slug + ': the rule opens before the run does');
+    }
+    eq(withRule, FB.missions.ALL.length, 'runs with a rule');
+    if (withInter < 8) throw new Error('only ' + withInter + ' runs can carry an interruption');
+
+    /* THE SHAPES ARE ACTUALLY DIFFERENT. If every giver ends up on the default spine
+       this check passes while the feature does not exist. */
+    if (own < 15) throw new Error('only ' + own + ' givers carry their own beats');
+    const shapes = new Set(FB.missions.ALL.map((m) => FB.missions.beatsFor(m).map((b) => b[0]).join(',')));
+    if (shapes.size < 12) throw new Error('only ' + shapes.size + ' distinct shapes across twenty givers');
+
+    return own + ' own spines, ' + shapes.size + ' distinct shapes, beat counts ' + JSON.stringify(counts) +
+      ', ' + withInter + ' carry an interruption';
+  } finally { app.dispose(); }
+});
+
+check('an older save keeps its own account and gains anything it lacks', () => {
+  /* fillDefaults runs at LOAD, not on read, so this has to go through the real path:
+     a save written into storage BEFORE state.js loads, exactly as a browser would
+     hand it over. Deleting st.user at runtime and reading it back tests nothing —
+     that was my first attempt and it failed for the wrong reason. */
+  const saved = harness.loadApp();
+  let key;
+  try { key = 'foodbang.state.v1'; } finally { saved.dispose(); }
+
+  /* (a) a save with NO user block at all — the shape every save had before the
+     account roster existed — must come back with one rather than blank. */
+  const old = harness.loadApp({ storageKey: key, savedState: { v: 1, orders: [], meta: {} } });
+  try {
+    const u = old.FB.S().user;
+    if (!u || !u.name || !u.avatar) throw new Error('a save with no user block did not get one');
+    if (!fs.existsSync(path.join(ROOT, u.avatar))) throw new Error('backfilled an avatar that is not on disk');
+  } finally { old.dispose(); }
+
+  /* (b) a save that already HAS an identity must keep it untouched — the roster
+     must never rename somebody who already exists. */
+  const mine = { v: 1, orders: [], meta: {},
+    user: { name: 'Somebody Specific', handle: '@specific', email: 's@example.invalid',
+            phone: '(555) 000-0000', avatar: 'assets/app/user/01.webp', joined: 1 } };
+  const kept = harness.loadApp({ storageKey: key, savedState: mine });
+  try {
+    eq(kept.FB.S().user.name, 'Somebody Specific', 'an existing account was renamed');
+    eq(kept.FB.S().user.phone, '(555) 000-0000', 'an existing account was rewritten');
+  } finally { kept.dispose(); }
+  return 'an empty save gains an identity; an existing one is left alone';
+});
+
+check('the account is somebody different each time, and never changes underneath you', () => {
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+
+    /* EVERY IDENTITY IS REACHABLE and its avatar is on disk. A save that draws a
+       portrait nobody generated shows a broken image on the account screen, which is
+       the first screen a curious player opens. */
+    const seen = new Map();
+    for (let i = 0; i < 400; i++) {
+      clock.set(new Date(2026, 7, 20, 0, 0, 0).getTime() + i * 997 * 1000);
+      FB.store.reset();
+      const u = FB.S().user;
+      if (!u || !u.name || !u.avatar) throw new Error('a save was created with no identity');
+      for (const k of ['name', 'handle', 'email', 'phone', 'avatar']) {
+        if (!u[k] || /undefined|NaN/.test(String(u[k]))) throw new Error('user.' + k + ' is ' + u[k]);
+      }
+      if (!/^assets\/app\//.test(u.avatar)) throw new Error('avatar is not root-relative: ' + u.avatar);
+      if (!fs.existsSync(path.join(ROOT, u.avatar))) throw new Error('missing avatar: ' + u.avatar);
+      seen.set(u.name, u.avatar);
+    }
+    if (seen.size < 12) throw new Error('only ' + seen.size + ' identities appear across 400 fresh saves');
+    /* no two identities share a portrait — a roster that doubles up reads as a bug */
+    if (new Set(seen.values()).size !== seen.size) throw new Error('two identities share an avatar');
+    /* and some of them are not people, which the app never remarks on */
+    /* Pinned at the exact count, not a floor. Some of these accounts are not people
+       and the app never remarks on it — that is the joke, and a floor with headroom
+       lets one quietly become a person again without anything going red. */
+    const entities = [...seen.keys()].filter((n) => /LLC|Trust|Household|Estate|FLOOR/.test(n));
+    eq(entities.length, 5, 'accounts that are not people');
+
+    /* STABLE WITHIN A SAVE. It is drawn once at creation and stored; a render must
+       never redraw it, or your own name changes while you are reading it. */
+    clock.set(new Date(2026, 7, 20, 12, 0, 0).getTime());
+    FB.store.reset();
+    const first = FB.S().user.name;
+    for (let i = 0; i < 30; i++) {
+      clock.set(new Date(2026, 7, 20, 12, 0, 0).getTime() + i * 60000);
+      if (FB.S().user.name !== first) throw new Error('the account changed identity mid-save');
+    }
+    return seen.size + ' identities, ' + entities.length + ' of them not people';
+  } finally { app.dispose(); }
+});
+
 console.log('');
 if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
 console.log('all checks passed');

@@ -6,6 +6,51 @@ window.FB = window.FB || {};
   var KEY = 'foodbang.state.v1';
   var VERSION = 1;
 
+  /* WHO YOU ARE THIS TIME. The account used to be one hardcoded person, so every
+     save that has ever existed belonged to Dana Whitfield. The roster is a mix of
+     people and the sort of entity that also orders lunch.
+
+     Picked ONCE, seeded on the save's own creation time, and then STORED — which is
+     what keeps it inside the no-unseeded-randomness rule. A render reads the stored
+     value and can never reshuffle it; only a fresh save draws again. Do not move this
+     into a render path, and do not re-derive it from `now` on read: a save opened
+     tomorrow must still be the same person. */
+  var USERS = [
+    { name: 'Dana Whitfield',        handle: '@dana',      entity: false },
+    { name: 'Roy Pankhurst',         handle: '@roy_p',     entity: false },
+    { name: 'Marisol Ade-Fenwick',   handle: '@mfenwick',  entity: false },
+    { name: 'K. Obuya',              handle: '@kobuya',    entity: false },
+    { name: 'Terrence Vaal Jr.',     handle: '@tvaaljr',   entity: false },
+    { name: 'Priya Raghunathan',     handle: '@praghu',    entity: false },
+    { name: 'Wendell Sharp-Coombes', handle: '@wsharpc',   entity: false },
+    { name: 'Nadia Ferreiro',        handle: '@nferreiro', entity: false },
+    { name: 'Bo Lindqvist',          handle: '@bolind',    entity: false },
+    { name: 'Cassiopeia Nwankwo',    handle: '@cnwankwo',  entity: false },
+    /* Not people. They order lunch anyway, and the app treats them identically —
+       which is the joke, so nothing anywhere comments on it. */
+    { name: 'MERIDIAN HOLDINGS LLC', handle: '@meridian',  entity: true },
+    { name: 'The Pemberton Trust',   handle: '@pembtrust', entity: true },
+    { name: 'Unit 12-B (Household)', handle: '@unit12b',   entity: true },
+    { name: 'Estate of A. Doyle',    handle: '@adoyle_es', entity: true },
+    { name: 'NIGHT SHIFT — FLOOR 4', handle: '@floor4',    entity: true },
+  ];
+
+  function pickUser(now) {
+    var r = FB.seeded('user:' + now);
+    var i = Math.floor(r() * USERS.length) % USERS.length;
+    var u = USERS[i];
+    var digits = 1000 + Math.floor(r() * 8999);
+    return {
+      name: u.name,
+      handle: u.handle,
+      email: u.handle.replace('@', '') + '@example.invalid',
+      phone: '(555) 0' + String(10 + (i * 7) % 89) + '-' + digits,
+      avatar: 'assets/app/user/' + String((i % USERS.length) + 1).padStart(2, '0') + '.webp',
+      entity: !!u.entity,
+      joined: now - 1000 * 60 * 60 * 24 * (180 + Math.floor(r() * 900)),
+    };
+  }
+
   function defaults() {
     var now = Date.now();
     return {
@@ -18,14 +63,7 @@ window.FB = window.FB || {};
          moved ahead of it. Adding a field needs no VERSION bump: fillDefaults
          backfills it on every existing save. */
       w: 0,
-      user: {
-        name: 'Dana Whitfield',
-        handle: '@dana',
-        email: 'dana@example.invalid',
-        phone: '(555) 018-4402',
-        avatar: 'assets/app/user-avatar.webp',
-        joined: now - 1000 * 60 * 60 * 24 * 613,
-      },
+      user: pickUser(now),
       settings: {
         theme: 'system',
         motion: 'system',

@@ -68,7 +68,16 @@ window.FB = window.FB || {};
           kept: 'The unit released the order. It took longer than it takes.',
           broken: 'The unit acknowledged the contact. The contact has been added to the existing log.',
           turn: 'A contact log has been opened for this collection point. It is not reviewed.' },
-      } },
+      },
+      beats: [
+        /* Front-loaded approach then a stationary stall — the only spine whose middle beat reports that nothing has happened, because standing at the glass doing nothing is the mission, and the road is a single unnarrated gap at the end. */
+        [0.02, 'Accepted · {store}', 'Sunview Galleria, upper level. Staffing was discontinued in a prior fiscal year and service has not been interrupted.'],
+        [0.13, 'At the glass', 'You are at the sneeze guard. Behind it, the wok has never been off.'],
+        [0.28, 'Settlement complete', '{pickup}'],
+        [0.44, 'Holding at temperature', 'Nothing on the shelf has changed. Holding is a service and is reflected in the price.'],
+        [0.70, 'Collected', '{slinger} {has} the vessel and {fries} besides. The unit did not observe either and does not observe.'],
+        [0.92, 'Delivered, unacknowledged', 'Set down at the door with the divider intact. No acknowledgement was required at either end.'],
+      ] },
 
     { slug: 'oliveorchard', title: 'Departure',
       brief: ['Guests are family. Family arrangements remain in effect.',
@@ -100,7 +109,16 @@ window.FB = window.FB || {};
           kept: 'You accepted the refill and left. It took eleven minutes, as it does.',
           broken: 'The refusal was processed as a refill. A third was brought. You did not see who brought it.',
           turn: 'The arrangement is unchanged. Guests are family.' },
-      } },
+      },
+      beats: [
+        /* Front-loaded and then stalled: four beats crowd into the first third, then a forty-point silence in which the player is simply inside the building — the refill comes due in that silence — and the run only moves again once you are in the lot, which is the moment leaving has actually happened. */
+        [0.02, 'Accepted · {store}', 'Navigate to Outparcel D, Exit 118B. The entrance is marked.'],
+        [0.13, 'Seated', 'You stated you were collecting. A table was assigned anyway. Guests are family.'],
+        [0.24, 'Order at the pass', '{pickup}'],
+        [0.31, 'Exit process opened', 'Departure is a process at this location. It is billed separately from the meal.'],
+        [0.72, 'In the lot', 'You are outside the building with the bag. The building remains open until 10:45 PM.'],
+        [0.92, 'Delivered', 'The customer took the bag at the door and closed it. Nobody was seated.'],
+      ] },
 
     { slug: 'ssa', title: 'Determination',
       brief: ['The application has been reviewed. A determination has been issued.',
@@ -128,7 +146,16 @@ window.FB = window.FB || {};
           kept: 'Delivered as issued. The seal was intact on receipt and this has been recorded.',
           broken: 'The seal was broken. Seal integrity is a separate finding and has been filed separately.',
           turn: 'Subsequent determinations in this jurisdiction will be issued sealed. No appeal is provided.' },
-      } },
+      },
+      beats: [
+        /* Four beats of counter bureaucracy crammed into the first quarter, then a deliberate 0.53 of nothing — twenty-odd minutes alone with an unsealed envelope, which is where the rule comes due — and the paperwork closes the window at 0.80 by recording the handover before it physically happens. */
+        [0.02, 'Accepted · {store}', 'Report to Sublevel 3, Suite B-0. Exit 41B is the only exit that serves it.'],
+        [0.10, 'Number issued', 'The dispenser is fully stocked. The board is showing a number from this morning.'],
+        [0.18, 'Released at the window', '{pickup}'],
+        [0.27, 'Ancillary filing', '{slinger} took {fries} from the bag. It has been entered as an ancillary filing and is not a determination.'],
+        [0.74, 'Custody transferred', 'The transfer was recorded while you were still driving. Records are not amended to agree with the street.'],
+        [0.93, 'Issued', 'The determination was handed over. The applicant asked what it said.'],
+      ] },
 
     { slug: 'chipoltergeist', title: 'Cold Spot',
       brief: ['Cold spots between the salsa well and the register are known, documented, and priced.',
@@ -138,7 +165,16 @@ window.FB = window.FB || {};
       keep: ['Say nothing', 'it is disclosed'],
       brk:  ['Report it', 'as cold'],
       kept: 'Nothing was reported. The disclosure stands.',
-      broken: 'A cold report was filed against a disclosed cold spot. It was closed.' },
+      broken: 'A cold report was filed against a disclosed cold spot. It was closed.',
+      beats: [
+        /* Front-loaded instead of evenly paced: four beats crowd into the first quarter while you are still inside the building and in the line, then roughly twenty minutes of nothing at all — the run's whole middle is the silence in which the food keeps not being warm — and it resolves in two beats at the door. */
+        [0.02, 'Accepted · {store}', 'The building is haunted. The line moves anyway. Join it at the back.'],
+        [0.10, 'In the line', 'Assembly is performed in full view of the guest. For the length of the line you are a guest.'],
+        [0.18, 'Salsa well to register', '{pickup}'],
+        [0.27, 'Foil sealed', 'Two staples and a receipt. {slinger} {has} taken {fries}. Nobody at the register looked up; that is a service standard.'],
+        [0.74, 'Transferred', 'The vessel passes from the bag to the household. Temperature from this point is the household\'s.'],
+        [0.93, 'Run closed', 'The cold spot did not travel. It remains between the well and the register, where it is documented.'],
+      ] },
 
     { slug: 'mcronalds', title: 'Procedure',
       brief: ['Procedures described in this listing are procedures. They are not promises.',
@@ -148,7 +184,16 @@ window.FB = window.FB || {};
       keep: ['Wait at the wall', 'as specified'],
       brk:  ['Use the door that exists', 'unspecified'],
       kept: 'You waited at the wall. Someone came around eventually.',
-      broken: 'You used an unspecified door. The deviation is billed.' },
+      broken: 'You used an unspecified door. The deviation is billed.',
+      beats: [
+        /* Front-loaded to the point of crowding — four beats inside the first third, every one of them still on the pad site — so the run's only slack is the wait itself: one long dead stretch at a north face that has no door, which is exactly where the manual comes due. */
+        [0.02, 'Run accepted', '{store}, Pad Site C. The lot is entered from the frontage road, and the frontage road is one-way.'],
+        [0.10, 'Notice, weekly', 'The Frozen Dairy Solutions unit is operational. The notice was printed Monday and describes Monday.'],
+        [0.19, 'In assembly', 'The Sandwich Program is running. Its output is staged, which is part of the procedure.'],
+        [0.30, 'North face', '{pickup}'],
+        [0.68, 'Off the lot', '{slinger} {has} taken {fries} as tribute. The frontage road is one-way and the north face is behind you.'],
+        [0.92, 'Delivered to curb', 'The bag was placed at the curb. The neighbors were notified, as described.'],
+      ] },
 
     { slug: 'applebeez', title: 'Riblets',
       brief: ['RIBLETS ARE AVAILABLE. RIBLETS HAVE ALWAYS BEEN AVAILABLE.',
@@ -176,7 +221,16 @@ window.FB = window.FB || {};
           kept: 'You confirmed continuous availability. The earlier report remains unretained.',
           broken: 'You confirmed a gap. There is no record of a gap and now there are two of you.',
           turn: 'A pattern has been identified at this location. It is retained.' },
-      } },
+      },
+      beats: [
+        /* Four beats bunched into the first quarter at the pad site, then a dead half-run across the outlots where nothing is narrated at all and the question arrives unaccompanied, then only the threshold and the record. */
+        [0.02, 'Dispatched · {store}', '{store} is at Pad Site C, behind the former bank. The lot is the neighborhood.'],
+        [0.09, 'Vestibule', 'Waiting is done under antiques purchased in bulk from a single vendor.'],
+        [0.18, 'Tribute logged', '{slinger} {has} taken {fries} from the pass. It is recorded as shrinkage and not as loss.'],
+        [0.28, 'One basket, released', '{pickup}'],
+        [0.74, 'Handed over', 'The basket is across the threshold. Nothing stated after this point is entered.'],
+        [0.94, 'Closed', 'Riblets remain available. The record shows no interruption and has never shown one.'],
+      ] },
 
     { slug: 'starbux', title: 'Regional',
       brief: ['Product is dispensed by volume through calibrated brass hoses rather than poured.',
@@ -186,7 +240,16 @@ window.FB = window.FB || {};
       keep: ['Do not set it down', 'as instructed'],
       brk:  ['Set it down', 'briefly'],
       kept: 'It was not set down. Your arm is a matter for you.',
-      broken: 'It was set down. Volume settled. The settled volume is the volume.' },
+      broken: 'It was set down. Volume settled. The settled volume is the volume.',
+      beats: [
+        /* Four beats bunched into the first third at the dispensing bay, then a long silent carry — the middle of this run is nothing but the weight on your arm, which is exactly where the rule comes due — closed by the last piece of level ground before the door. */
+        [0.02, 'Accepted · {store}', 'Bay 7, Pump Court Commons. Approach on foot. The frontage road has no shoulder.'],
+        [0.12, 'Hose coupled', 'Fourteen liters per minute. The line does not stop early and cannot be paused once opened.'],
+        [0.21, 'Regional, filled', '{pickup}'],
+        [0.31, 'Foam deck set', '{slinger} {has} placed {fries} on the foam deck. The deck is rated to one item and that is the item.'],
+        [0.63, 'Last level ground', 'The rest of the address is stairs and grade. There is no surface between here and the door.'],
+        [0.92, 'Delivered', 'Depth measured at the door and recorded against the depth taken at the bay.'],
+      ] },
 
     { slug: 'cluckingham', title: 'Before The Inspector',
       brief: ['The Compound’s gravy line is now connected to the township’s secondary main.',
@@ -196,7 +259,16 @@ window.FB = window.FB || {};
       keep: ['Go around', 'six minutes'],
       brk:  ['Cut through', 'ninety seconds'],
       kept: 'You went around. The inspection proceeded without you in it.',
-      broken: 'You were in the gravy room during the inspection. You are in the inspection.' },
+      broken: 'You were in the gravy room during the inspection. You are in the inspection.',
+      beats: [
+        /* Front-loaded: three beats crammed into the first third while the Compound processes you, then half the run is silence inside the perimeter — which is exactly where the gravy-room question lands — and the last two beats snap shut on top of each other. */
+        [0.02, 'Posted · {store}', 'Report to Bay 6. The retention pond should be behind you when you are correct.'],
+        [0.11, 'Bay 6', 'The gate stands open for the inspection. Signage routes you past the fryers, whose pressure is monitored and not published.'],
+        [0.21, 'Collection staged', '{pickup}'],
+        [0.34, 'Signed out', 'The bucket leaves sealed and warm on one side; the gravy leaves separate. {slinger} {has} taken {fries} under §4.2.'],
+        [0.74, 'Off the Compound', 'The gate closes at the posted rate. The interior is now an interior matter.'],
+        [0.94, 'Delivered, sealed', 'The bucket arrived warm on the same side it left. Receipt of gravy was not disputed.'],
+      ] },
 
     { slug: 'manufactory', title: 'Page 118',
       brief: ['MENU PAGES 96-141 ARE CURRENTLY UNDER LOAD REVIEW.',
@@ -206,7 +278,17 @@ window.FB = window.FB || {};
       keep: ['Carry it uncontained', 'as specified'],
       brk:  ['Adjust it', 'to fit'],
       kept: 'Carried uncontained, as specified. Both hands.',
-      broken: 'The item was adjusted. The structural department has been informed.' },
+      broken: 'The item was adjusted. The structural department has been informed.',
+      beats: [
+        /* Front-loaded: five beats crowd the first 40% while you are still inside the building, then a 44-point void where the only thing happening is that you are carrying it, then the commitment and the door. */
+        [0.02, 'Accepted · {store}', 'Navigate to {store}. Park at Outparcel 7. The entrance is not at Outparcel 7.'],
+        [0.10, 'Vestibule', 'You are inside the building and not inside the restaurant. This is normal for the building.'],
+        [0.19, 'Page 118', '{pickup}'],
+        [0.28, 'Handed over', '{slinger} {has} taken {fries} as tribute, which fits in a bag. The item does not.'],
+        [0.40, 'One exit', 'The exit is at the rear of the Cheesecake Vault. You are on page 214.'],
+        [0.74, 'Ring road, outbound', 'The ring road is one direction. Whatever shape it is in now is the shape it arrives in.'],
+        [0.93, 'Delivered', 'Placed on the step. It occupies the step and part of the doorway.'],
+      ] },
 
     { slug: 'pizzahutch', title: 'Metered Return',
       brief: ['The salad bar remains under sneeze-guard supervision. Return trips are metered.',
@@ -236,7 +318,17 @@ window.FB = window.FB || {};
           kept: 'You did not return. The order is incomplete and was not metered.',
           broken: 'A third return was metered against a running total. The total is not itemised.',
           turn: 'A running total has been opened at this location. It is not itemised.' },
-      } },
+      },
+      beats: [
+        /* Front-loaded: five beats bunched inside the building while the two metered returns are spent, then half the run with nothing at all on the frontage loop, then the door — the opposite of the default's even walk. */
+        [0.02, 'Accepted · {store}', 'Pad C, behind the former Sears. The former Sears is the landmark and is not there.'],
+        [0.10, 'Dine-in room', 'Seating remains available and is no longer recommended. Wait at the guard.'],
+        [0.19, 'Collected', '{pickup}'],
+        [0.28, 'Return one of two', 'The Sneeze Guard Assembly was assembled after the bag was closed. The employee did not narrate the assembly.'],
+        [0.36, 'Return two of two', 'The fountain draw was still being drawn. {slinger} {has} taken {fries} past the bar on the way out.'],
+        [0.74, 'Frontage loop', 'The loop is one-way past the pad. The counter is behind the vehicle and the vehicle does not turn.'],
+        [0.93, 'Delivered', 'Handed over in the pan. The pan is not recovered and is not itemised.'],
+      ] },
 
     { slug: 'tacobelligerent', title: 'Fourth Meal',
       brief: ['THE FOURTH MEAL PROTOCOL IS ACTIVE.',
@@ -246,7 +338,16 @@ window.FB = window.FB || {};
       keep: ['Do not disclose', 'per protocol'],
       brk:  ['Tell them the format', 'they asked'],
       kept: 'The format was not disclosed. It was handed over folded.',
-      broken: 'The format was disclosed before handover. The protocol notes this.' },
+      broken: 'The format was disclosed before handover. The protocol notes this.',
+      beats: [
+        /* Front-loaded rather than evenly spaced: four beats crammed into the first third (lot, discretion, seal, tribute), then the widest silence in any spine across the whole middle, so the format question arrives into dead air on the frontage loop and only the door and the after-the-door beat are left. */
+        [0.02, 'Fourth Meal · {store}', 'Outparcel 4, behind the tire place. The lot lights are the address.'],
+        [0.11, 'Sole discretion', '{pickup}'],
+        [0.19, 'Bag sealed', 'Six ingredients, forty-one names. The name is on the receipt and the receipt is inside the bag.'],
+        [0.28, 'Tray tribute', '{slinger} {has} taken {fries} out of the compartmented tray. The compartments are decorative and are not load-bearing.'],
+        [0.74, 'At the door', 'Bag closed, receipt inside. Disclosure before handover is no longer available.'],
+        [0.94, 'Delivered', 'Handed over folded. Determinations made on this property are final and are not reviewable.'],
+      ] },
 
     { slug: 'entirefoods', title: 'Chalkboard',
       brief: ['SEASONAL NOTICE: The chalkboards are being rewritten this week.',
@@ -256,7 +357,16 @@ window.FB = window.FB || {};
       keep: ['Pay the posted price', 'as written'],
       brk:  ['Pay the register price', 'as charged'],
       kept: 'You paid what was posted. The difference is being rewritten.',
-      broken: 'You paid what was charged. The chalkboard was correct and is now gone.' },
+      broken: 'You paid what was charged. The chalkboard was correct and is now gone.',
+      beats: [
+        /* Four beats crammed into the first 40% — the whole run's density is inside the building, where everything is weighed and re-priced — then a 0.28 stretch of nothing on the Power Center's internal road; the commit is walking out past the bollards, after which the register has no further interest. */
+        [0.02, 'Accepted · {store}', 'Building D, past the Power Center. The internal road is one-way and is not marked.'],
+        [0.13, 'Boards off the wall', 'Four chalkboards are down. The committee that sets them meets seasonally and is meeting.'],
+        [0.26, 'On the scale', '{pickup}'],
+        [0.42, 'Held at the register', 'The queue is one person. That person is being explained the price.'],
+        [0.70, 'Through the bollards', 'The receipt is in the bag. Past the bollards the register has no further interest.'],
+        [0.93, 'Delivered', 'Left in paper on the step. The paper is packaging and is itemised.'],
+      ] },
 
     { slug: 'brawndo', title: 'Watershed Drop',
       brief: ['DOCK NOTICE: Orders above 275 gallons are delivered to the curb.',
@@ -266,7 +376,17 @@ window.FB = window.FB || {};
       keep: ['Leave it at the curb', 'as noticed'],
       brk:  ['Bring it in', 'past the curb'],
       kept: 'Left at the curb. It became their problem exactly there.',
-      broken: 'It was brought past the curb. It is no longer clear whose problem it is.' },
+      broken: 'It was brought past the curb. It is no longer clear whose problem it is.',
+      beats: [
+        /* Freight, not food: four beats bunched at the dock in the first quarter, then a third of the run in silence while the weight is hauled, then a three-beat rush at the property line — and the committing beat is the weigh-out that closes the weigh-in, because nothing may be returned to the depot. */
+        [0.02, 'Accepted · {store}', 'Report to Bay 14, Dock C. Foot traffic past the striping is not insured.'],
+        [0.08, 'Weighed empty', 'The vehicle was weighed before loading. It is weighed again on the way out.'],
+        [0.17, 'Loaded', '{pickup}'],
+        [0.25, 'Volume adjusted', '{slinger} {has} drawn {fries} off the load. The manifest is not amended.'],
+        [0.49, 'At the address', 'The driveway rises from the curb. The household is at the door and has not come out.'],
+        [0.74, 'Weighed out', 'The vehicle is lighter by the manifest amount. Nothing may be returned to the depot.'],
+        [0.94, 'Drop complete', 'The household has been notified of the volume now in its possession. Notification does not require a response.'],
+      ] },
 
     { slug: 'dunkinn', title: 'Continuous Morning',
       brief: ['MORNING IS NOW CONTINUOUS. You are already enrolled in the rewards programme.',
@@ -276,7 +396,21 @@ window.FB = window.FB || {};
       keep: ['Take the route', 'nineteen minutes'],
       brk:  ['Take the shorter way', 'twelve'],
       kept: 'You took the route. Nineteen minutes, as classified.',
-      broken: 'You took the shorter way. It was shorter.' },
+      broken: 'You took the shorter way. It was shorter.',
+      beats: [
+        /* The commit beat sits at 0.72 rather than the 0.58 first written, because
+           Dunkinn has the shortest span in the game and a rule needs
+           INCIDENT_MIN_MS + RESOLVE_MARGIN_MS of room before the beat that closes it
+           — 28s against this run's 45s, so the commit cannot come before ~0.62. At
+           0.58 the store produced a run with nothing to decide. Moving it later also
+           lengthens the silence, which is what this shape is about. */
+        /* Front-loaded to the point of crowding: accept, counter and collection all land inside the first fifth, then the run goes silent for a third of itself until one beat closes the road — the whole story is told before the halfway mark and the rest is just the clock. */
+        [0.02, 'Assigned · {store}', 'Bay 4, behind the other one. The other one is also {store}.'],
+        [0.11, 'The Panic Line', '{pickup}'],
+        [0.21, 'Load classified', 'Class IV, load-bearing, boxed for transit. {slinger} {has} taken {fries}; §4.2 covers the tribute.'],
+        [0.72, 'Past the turning', 'The last turning is behind you. Whichever road this is, it is now the only one.'],
+        [0.90, 'Delivered warm', 'The beverage arrived within its class. The morning continues. Your enrolment does not lapse.'],
+      ] },
 
     /* ---- the six ---- */
 
@@ -309,7 +443,16 @@ window.FB = window.FB || {};
           kept: 'You asked this time. Emre said thank you and did not say anything else about it.',
           broken: 'You kept going. Emre will ask you next time, in the same way.',
           turn: 'Emre asked. He did not ask how it went.' },
-      } },
+      },
+      beats: [
+        /* Six beats front-loaded at the one grill, then a 0.46 dead stretch of Route 9 where the only thing that happens is Emre's question, and a two-beat rush at the door — the slack IS the drive past the phone store. */
+        [0.02, 'Accepted · {store}', 'Exit 27, Unit 12, behind the car wash. The car wash is a separate business and has not agreed to anything.'],
+        [0.13, 'One grill', 'The order is behind two others on the grill. There is one grill. The forty-five minutes was produced elsewhere.'],
+        [0.27, 'Collected', 'Sami reads the notes off the screen because the printer cuts them off. {fries} taken from the cooler as tribute, per the Slinger Agreement, §4.2.'],
+        [0.40, 'Route 9 South', '{pickup}'],
+        [0.74, 'Past the turn', 'The old lot is behind you. The route does not go back for it.'],
+        [0.94, 'Delivered', 'The bag was handed to a person. The record prefers a door.'],
+      ] },
 
     { slug: 'wingbunker', title: 'The Same Fryer', local: true,
       brief: ['Same fryer since 1996. It came from the Route 9 location when that closed in 2011.',
@@ -337,7 +480,16 @@ window.FB = window.FB || {};
           kept: 'You kept walking. Nobody came out to meet you.',
           broken: 'You explained again. Ray heard you do it from the back.',
           turn: 'The side door was locked. Nobody came out.' },
-      } },
+      },
+      beats: [
+        /* Front-loaded then dead: four beats crammed into the first 40% getting you through the fuel stop to the counter, then a 0.37 hole while the fryer does its eighteen-to-twenty — the wait the restaurant advertises IS the slack middle, and the attendant's question lands in it. */
+        [0.02, 'Exit 41B', '{store} is inside the fuel stop. The fuel stop is not {store}.'],
+        [0.13, 'Side door', 'The door by the air pump. The main door is alarmed after eight.'],
+        [0.26, 'Past the coffee', 'The counter is at the back of the building. {pickup}'],
+        [0.41, 'Fried to order', 'Eighteen to twenty minutes. The advertised time is not the kitchen\'s time.'],
+        [0.74, 'Out past the pumps', 'The bag is in the car. The counter is behind you.'],
+        [0.93, 'Delivered', 'Completed outside the advertised window. The window is advisory.'],
+      ] },
 
     { slug: 'verdadera', title: 'Before It Is A Day Old', local: true,
       brief: ['SALSA HECHA CADA MAÑANA. NO ANTES.',
@@ -365,7 +517,16 @@ window.FB = window.FB || {};
           kept: 'It went out today. She watched you take it and went back to the pot.',
           broken: 'It was held. Senora Elvia made a fresh one and threw the first away. That is twice.',
           turn: 'She put it on the counter and stepped away from it.' },
-      } },
+      },
+      beats: [
+        /* Front-loaded instead of evenly walked: four beats crowd into the twelve minutes at the counter, then a 0.38 dead stretch where the only thing that moves is the clock — the rule lands in that silence, with nothing between it and a turn that cannot be taken back. */
+        [0.02, 'Accepted · {store}', 'Suite D, behind the tire place. The tire place is the landmark, not the destination.'],
+        [0.11, 'No lot', 'The parking belongs to the tire place. {slinger} are on Old Bellhaven, facing the wrong way.'],
+        [0.21, 'At the counter', '{pickup}'],
+        [0.36, 'Confirmation attempted', 'The number on file rings in the dining room and has since Tuesday. The cell is not on file.'],
+        [0.74, 'Past the turn', 'The turn back toward Old Bellhaven has been passed. It was not marked.'],
+        [0.93, 'Handed over', 'The lid was photographed. The address on it is handwritten and could not be read by the system.'],
+      ] },
 
     { slug: 'sunrisedonut', title: 'Before The Case Is Done', local: true,
       brief: ['Ray starts the donuts at 3:15 and answers the phone himself.',
@@ -393,7 +554,16 @@ window.FB = window.FB || {};
           kept: 'You gave it away. Ray charged you for two and did not mention it.',
           broken: 'You took it. Ray boxed it himself and did not say anything.',
           turn: 'Ray put the lid on and did not say anything.' },
-      } },
+      },
+      beats: [
+        /* Front-loaded instead of evenly spaced: three beats inside the first fifth (arrive, counter, phone), then a thirty-minute hole where the only thing that happens is the box being folded shut, because the 59 minutes are Ray's one pair of hands and not the 3.8 miles — so the rule comes due while you are still standing at the counter with the box, and the run's only motion beats are the last two. */
+        [0.02, 'Accepted · {store}', 'Sprawl Ring 9, Unit C. The lit sign belongs to the tire place.'],
+        [0.09, 'At the counter', '{pickup}'],
+        [0.16, 'Ray answers the phone', 'The number on the announcement rings the phone behind the counter. He is the one who answers it.'],
+        [0.40, 'Two in the box', 'The lid is folded down. {slinger} {has} taken {fries} off the tray. §4.2 covers it.'],
+        [0.74, 'Old Frontage Highway', 'The case is behind you and the door has shut. The box does not open again before the handoff.'],
+        [0.93, 'Delivered flat', 'Carried flat, handed over flat. The count was settled at the counter, not here.'],
+      ] },
 
     { slug: 'goldenwok', title: 'Have Your Number Ready', local: true,
       brief: ['There are 214 items on the paper menu and all of it is cooked in the same kitchen.',
@@ -425,7 +595,16 @@ window.FB = window.FB || {};
           kept: 'You had it. They checked it against the paper menu anyway.',
           broken: 'You said the name. Danny came out with the paper menu and found it. It took a while.',
           turn: 'They asked for the number at the door and again at the counter.' },
-      } },
+      },
+      beats: [
+        /* Three beats crowded into the first fifth to get you inside the plaza, then a dead forty-point wait at the counter where the only thing that happens is other people's numbers being called, then the whole rest of the run — bag, door, handover — compressed into the last twelve points. */
+        [0.02, 'Accepted · {store}', 'Unit 4, Northgate Plaza. Behind the bank, next to the tax place.'],
+        [0.10, 'Northgate Plaza', 'The plaza has two parking spaces. The tax place is using both of them.'],
+        [0.18, 'The counter', '{pickup}'],
+        [0.49, 'A number is called', 'It is not 118. The kitchen is working through the ones it has.'],
+        [0.74, 'Stapled', 'The ticket is stapled through the top of the bag. What was called is what is inside.'],
+        [0.94, 'Delivered', 'Handed over at the door. The customer mentions that calling is faster.'],
+      ] },
 
     { slug: 'bobacloud', title: 'Do Not Shake It Twice', local: true,
       brief: ['THE SEALING MACHINE IS FIXED. Sorry to everybody last week.',
@@ -453,7 +632,16 @@ window.FB = window.FB || {};
           kept: 'Left as sealed. Teresa checked the bag after you before you got to the door.',
           broken: 'It was shaken twice. Teresa asked you to please call the shop before it goes out next time.',
           turn: 'Teresa put the drink in the bag herself and looked at it.' },
-      } },
+      },
+      beats: [
+        /* Front-loaded: four beats crammed into the first third at a counter where two people are still shaking it, then half a run of silence on the road, then the door and the rating closing one after the other — the opposite of the default's even walk. */
+        [0.02, 'Accepted · {store}', 'Unit D-6, behind the nail salon. The plaza has one sign and it is for the tax place.'],
+        [0.09, 'The shared lot', 'A truck is across two spaces. The walk from the far end is not counted as distance.'],
+        [0.18, '{store} is shaking to order', '{pickup}'],
+        [0.30, 'Sealed once', 'The machine ran and stopped. {fries} left the counter with {slinger}, which §4.2 permits.'],
+        [0.74, 'Handed over', 'The cup went across upright. Custody of the seal transfers at the door.'],
+        [0.93, 'Rated', 'A rating was submitted before the door closed. The shop asks to be called first; the platform does not forward the number.'],
+      ] },
 
     
   ];
@@ -530,17 +718,45 @@ window.FB = window.FB || {};
   var SPINE = [
     [0.02, 'Accepted · {store}', 'Navigate to {store}. Navigation is not provided.'],
     [0.20, '{store} has the order ready', '{pickup}'],
-    [0.36, 'Collected', '{slinger} has taken {fries} as tribute. This is permitted under the Slinger Agreement, §4.2.'],
+    [0.36, 'Collected', '{slinger} {has} taken {fries} as tribute. This is permitted under the Slinger Agreement, §4.2.'],
     [0.74, 'En route', 'The route was selected. It is not the route you would have selected.'],
     [0.93, 'Delivered', 'Photograph taken. The photograph is of a door.'],
   ];
-  var TEST_FRAC = 0.52;
+  /* WHERE THE DECISION SITS, derived rather than written down. The rule's window is
+     closed by the SECOND-TO-LAST beat — the one that commits you to the route — and
+     the rule itself lands part-way through the gap before it. Both used to be the
+     literals 0.52 and 0.74, which was only correct because every run had the same
+     five beats at the same fractions. Deriving them is what lets a giver have its own
+     shape without the decision drifting off the end of it.
+
+     RULE_POS and INT_POS are chosen to reproduce the old numbers exactly on the
+     default spine: 0.36 + (0.74-0.36)*0.42 = 0.52, and 0.74 + (1-0.74)*0.19 = 0.79. */
+  var RULE_POS = 0.42, INT_POS = 0.19;
+
+  /* A giver may carry its own `beats`; the rest run on the default spine. Four is the
+     minimum because the placement needs a beat before the decision and a beat after
+     the one that closes it. */
+  function beatsFor(m) {
+    var b = (m && m.beats && m.beats.length >= 4) ? m.beats : SPINE;
+    return b;
+  }
+  function slots(beats) {
+    var n = beats.length;
+    var bound = beats[n - 2][0];
+    var prev = beats[n - 3][0];
+    return {
+      rule: prev + (bound - prev) * RULE_POS,
+      bound: bound,
+      inter: bound + (1 - bound) * INT_POS,
+    };
+  }
 
   function fill(text, m, store) {
     return String(text)
       .replace(/\{store\}/g, store ? (store.shortName || store.name) : m.slug)
       .replace(/\{pickup\}/g, m.brief[1] || '')
       .replace(/\{slinger\}/g, 'You')
+      .replace(/\{has\}/g, 'have')
       .replace(/\{fries\}/g, FB.tos.fries());
   }
 
@@ -611,9 +827,11 @@ window.FB = window.FB || {};
     run.endAt = at + span;
     run.span = span;
 
-    run.beats = SPINE.map(function (b) {
+    var beats = beatsFor(m);
+    run.beats = beats.map(function (b) {
       return { at: at + span * b[0], text: fill(b[1], m, store), sub: fill(b[2], m, store) };
     });
+    var slot = slots(beats);
 
     /* Each check is bounded by the beat that FOLLOWS it — a question you can still be
        asked after the answer stopped mattering is not a question. Same shape as the
@@ -641,13 +859,13 @@ window.FB = window.FB || {};
     }
 
     run.checks = [];
-    var rule = mk('rule', TEST_FRAC, 0.74, at, TEST_MIN_MS(), TEST_MS());
+    var rule = mk('rule', slot.rule, slot.bound, at, TEST_MIN_MS(), TEST_MS());
     if (rule) run.checks.push(rule);
     if (rule) {
       /* seeded on the run, so the same run always draws the same interruption and a
          reload cannot reroll it into a friendlier one */
       var pick = INTERRUPTS[Math.floor(FB.seeded(run.id + ':int')() * INTERRUPTS.length)];
-      var inter = mk('platform', 0.79, 1.0, rule.deadline + MARGIN(), INT_MIN_MS, INT_MAX_MS, { ref: pick.id });
+      var inter = mk('platform', slot.inter, 1.0, rule.deadline + MARGIN(), INT_MIN_MS, INT_MAX_MS, { ref: pick.id });
       if (inter) run.checks.push(inter);
     }
     return run;
@@ -795,6 +1013,8 @@ window.FB = window.FB || {};
   FB.missions = {
     ALL: MISSIONS,
     SPINE: SPINE,
+    beatsFor: beatsFor,
+    slots: slots,
     get: byslug,
     build: build,
     tick: tick,

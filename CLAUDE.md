@@ -20,7 +20,7 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose sixty-nine checks always run together — there is no way to run a
+(`node tools/smoke.cjs`) whose seventy-two checks always run together — there is no way to run a
 single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
 exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
@@ -310,6 +310,36 @@ mode, and **every id in it must name a registered screen**, because `nav.tab(id)
 `current.name` to it directly. The two tickers do not know about each other: the customer side
 keeps running while you are slinging, and it should.
 
+**Every giver has its own shape, and the placement is derived from it.** All twenty runs used to
+share one five-beat spine, so a doughnut counter and a 75-minute steakhouse were the same shape with
+the name swapped. A giver may now carry its own `beats`; the rest fall back to `SPINE`. Four beats is
+the floor because the placement needs a beat before the decision and a beat after the one that closes
+it.
+
+**The decision's position is computed, not written down.** The rule's window is closed by the
+**second-to-last beat** — the one that commits you — and the rule lands `RULE_POS` of the way through
+the gap before it. Those were the literals `0.52` and `0.74`, which was only ever correct because
+every run had the same beats. `RULE_POS`/`INT_POS` are chosen to reproduce the old numbers exactly on
+the default spine.
+
+**The commit beat may not sit later than 0.74, and that number is not arbitrary.** The platform's
+interruption goes after it, and `(1 − commit) × span − RESOLVE_MARGIN ≥ INT_MIN_MS` resolves to
+span ≥ 58s — which is exactly the fourteen runs the original spine gave. Push the commit later and
+the *cap* starts deciding which runs carry a second decision instead of the run's length, which is
+the opposite of "the constraint decides". It also has a floor: a rule needs
+`INCIDENT_MIN_MS + RESOLVE_MARGIN` of room before the beat that closes it — 28s against Dunkinn's 45s
+span — so a commit before ~0.62 produces a run with **nothing to decide**. Dunkinn was written at
+0.58 and did exactly that.
+
+**Nobody is a person for long.** `st.user` was one hardcoded account, so every save that ever existed
+belonged to Dana Whitfield. It is now drawn from a roster of fifteen — ten people and five things
+that are not people but order lunch anyway — **once, at save creation, seeded on the save's own
+timestamp, and stored**. That is what keeps it inside the no-unseeded-randomness rule: a render reads
+the stored value and can never reshuffle it. Do not re-derive it on read; a save opened tomorrow must
+still be the same account. `fillDefaults` runs at LOAD, so testing the backfill means writing a save
+into storage *before* `state.js` loads — deleting `st.user` at runtime and reading it back tests
+nothing.
+
 **A mission is a run, and a run is watched.** An order is checked in on; a run is sat through, so
 it cannot use the tracker's two-seconds-a-simulated-minute — that put Dunkinn at 26 seconds and the
 Manufactory at two and a half minutes. The twenty are **remapped** onto 45–75 seconds rather than
@@ -426,7 +456,7 @@ prefix and as a suffix — the noun renames on a word boundary and camelCase has
 after naming anything, not only after adding a file.** Those two are not spelled out here for the
 reason given above: this file is inside the walk, and a prose example would itself be a survivor.
 
-**Run `npm test` before committing.** Sixty-nine checks. Beyond the original thirteen they cover:
+**Run `npm test` before committing.** Seventy-two checks. Beyond the original thirteen they cover:
 every screen rendering under six state fixtures × two hours with no `undefined`/`NaN` in the markup;
 accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
 pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency
