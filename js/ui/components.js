@@ -229,6 +229,10 @@ window.FB = window.FB || {};
   /* ---------- slinger (courier) identity, stable per order ---------- */
   var FIRST = ['BRAYDEN', 'KAYLEE', 'DEVONTAE', 'MADYSYN', 'HUNTER', 'JAXSYN', 'RAELYNN', 'COLTYN', 'NEVAEH', 'BRYSON', 'DESTINEE', 'KHRYS'];
   var LAST = ['_7', '_44', '_XVII', ' (PROV.)', '_2', ' JR.', '_ALT', '_9000', ' II', '_TEMP'];
+  /* One portrait per member of the roster. It was three for a long time, which meant
+     nine named couriers shared three faces and five of them were the same man — in a
+     mode whose whole premise is that the same nine people keep turning up. */
+  var FACES = 9;
   var VEHICLES = ['2009 Sedan (Partially)', 'E-Bike, Unlicensed', 'Scooter (Shared)', 'Hatchback, Loud', 'Van, Unmarked', 'On Foot, Confident', 'Sedan, Idling'];
   C.slinger = function (seed) {
     var r = FB.seeded('slinger' + seed);
@@ -238,7 +242,7 @@ window.FB = window.FB || {};
       rating: FB.round2(3.1 + r() * 1.85),
       deliveries: Math.floor(r() * 240) + 3,
       vehicle: FB.pick(VEHICLES, r),
-      photo: 'assets/app/slinger-' + (1 + Math.floor(r() * 3)) + '.webp',
+      photo: 'assets/app/slinger-' + (1 + Math.floor(r() * FACES)) + '.webp',
       tenure: Math.floor(r() * 40) + 1,
     };
   };

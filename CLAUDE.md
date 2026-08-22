@@ -20,7 +20,7 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose sixty-four checks always run together — there is no way to run a
+(`node tools/smoke.cjs`) whose sixty-seven checks always run together — there is no way to run a
 single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
 exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
@@ -179,6 +179,50 @@ standing, scrip, terms, restock, tip review, substitution, hold) and three throu
 covering 35 distinct ids. Add a fee on a new branch and add its context to that list, or nothing
 will ever check it. The count in this paragraph went stale once already; the check reports its own
 totals, so read them off a run rather than trusting the prose.
+
+**The photograph answers to the delivery.** The app has said "Photo attached" since it shipped and
+then shown one of three pictures hashed on the order id, blind to everything it already knew.
+`js/core/proof.js` tags every photograph with the facets it is valid for — `drop` (leave/hand) and
+`light` (day/dusk/night) — reads those off the order (`o.address.dropoff`, the hour of
+`o.deliveredAt`) and picks **seeded on the order id**, so a photograph belongs to its order forever
+but a 3 AM doorstep and a lunchtime office hand-off can never draw the same frame. Light is read off
+the *hour* rather than `FB.world`'s daypart, because `dinner` spans 17:00–21:00 — daylight in June,
+dark in December — and a doorstep photograph is about the sky, not the meal. That also keeps this
+file free of a world lookup, so it requires with only `util.js`.
+
+**A courier keeps the thermal bag.** What is left at the door is the customer's own takeout bag, and
+it is paper or plastic, never the insulated one — it is the courier's own kit and it goes back on the
+bike. Eleven of the first thirty-six got this wrong and were reshot; `proof-delivery-2.webp` gets it
+wrong too and is deliberately **out of the pool** while staying on disk. `npm test` asserts its
+absence by name, because dropping the rule would put it back silently.
+
+**On the courier side a delivery photograph is loot.** The same pool serves two jobs. A *customer*
+is shown one photograph per order, matched to the delivery's facets — that is `FB.proof.pick(o)`. A
+*courier* who finishes a run presses "Photograph the drop" and gets one from `FB.proof.roll(runId)`,
+weighted by rarity. Tiers are **ROUTINE · NOTED · FLAGGED · ESCALATED · UNFILED** at
+**55 / 25 / 13 / 5.5 / 1.5**, and the app never once says "rare": what the player reads is the
+category the platform filed the incident under, and the platform is unimpressed by all of it.
+
+Three rules. **The weights are TIER-level and sum to 100**, so a tier's odds are exactly its number
+however many photographs sit in it — weighting per photograph instead couples the curve to the
+contents and every image added silently re-tunes the game. **The roll is seeded on the run id**, so
+which photograph a run yields was settled the moment the run existed: the button REVEALS it, and a
+reload cannot re-roll it. Unseeded, the rarest tier becomes farmable by refreshing. **The collection
+is a set and the counter is not** — a photograph seen twice is one kept and two taken.
+
+Note what is *not* a defect: photographs are not equally likely across the whole pool under `pick`,
+and cannot be. `day` covers ten hours against dusk's five, and the facet buckets differ in size, so
+the structural spread is about 3x end to end. That is fine, because a customer sees one photograph
+per order and is not collecting them. Evenness is the ROLL's job, and it is uniform inside a tier.
+
+**Do not generate these on seedream.** It lost a four-model bake-off on this brief and it did not
+merely default to polish — given an explicit "no warm sunset glow" it rendered a sunset anyway. Use
+`openai/gpt-image-2` (the most careless framing) and `black-forest-labs/flux-2-max` (the flattest,
+grainiest light), two models across the pool so forty photographs do not share one look. For **food**
+the ranking inverts: flux-2-max keeps the dish legible and greasy, while gpt-image-2 pushes past
+honest into inedible, which breaks `local-bible.json`'s rule that the food is still real food. And
+generate at the size the app actually stores — `assets/` keeps 640px and the artifact cache 420px, so
+1 MP is already generous and 4 MP is waste.
 
 **The app's own logo is drawn, not photographed.** `FB.mark` / `FB.markTile` / `FB.lockup` in
 `js/core/icons.js` emit inline SVG in `currentColor` on a tile tinted by `--fb`; `FB.installFavicon`
@@ -368,7 +412,7 @@ prefix and as a suffix — the noun renames on a word boundary and camelCase has
 after naming anything, not only after adding a file.** Those two are not spelled out here for the
 reason given above: this file is inside the walk, and a prose example would itself be a survivor.
 
-**Run `npm test` before committing.** Sixty-four checks. Beyond the original thirteen they cover:
+**Run `npm test` before committing.** Sixty-seven checks. Beyond the original thirteen they cover:
 every screen rendering under six state fixtures × two hours with no `undefined`/`NaN` in the markup;
 accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
 pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency

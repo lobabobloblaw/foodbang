@@ -1,79 +1,184 @@
 {
-  "slug": "gyropalace",
-  "model": "bytedance/seedream-4.5",
-  "local": true,
-  "photoStyle": "amateur",
-  "images": [
-    {
-      "file": "logo.webp",
-      "prompt": "A straight-on smartphone photograph of a hand-painted storefront sign board that completely fills the frame. The board is white painted wood, slightly sun-faded and scuffed, with deep Greek-blue hand-lettered capitals that have a yellow painted drop shadow behind each letter. The letter spacing is a little uneven, the paint is a little chipped at one corner. Beside the lettering there is a small hand-painted picture of a vertical rotisserie meat spit with a cone of gyro meat on it. Flat overcast daylight, no flash, faint glare across the paint, unretouched phone camera look. Full-bleed square: the painted board fills the entire canvas edge to edge with no card, no frame, no border, no margin and no surrounding shadow. The only text anywhere in the image is exactly: Gyro Palace #3",
-      "predictionId": "9kz9GTy2CzYBG5CY4Q2aFFrKe2ilhyphRVKBfs2b7JeeFRVcB",
-      "predictTime": 11.685989927,
-      "aspectRatio": "1:1"
-    },
-    {
-      "file": "hero.webp",
-      "prompt": "Amateur smartphone photo taken at dusk from inside a parked car, shot through a slightly dirty windshield with the dashboard edge visible at the bottom. Subject: a small strip-mall takeout storefront. Above the door is a completely blank plain blue illuminated sign panel, glowing, with absolutely no lettering or symbols on it. A metal roll-down security grille is half open over the window, warm fluorescent light spills out from inside, an unbranded plain white drinks cooler stands near the door, a dented grey trash can sits on the walkway, an empty parking space with faded white lines fills the foreground, cracked asphalt, one bare light pole. Dust specks and water spots on the windshield glass, slightly crooked horizon, mixed white balance, flat unretouched phone camera look, sensor noise in the shadows. Wide 16:9. Absolutely no text, no letters, no numbers, no words, no writing, no readable signage, no menu boards, no posters, no brand logos, no watermarks, no people.",
-      "predictionId": "v2lNqJE1R4bMMFlbufRg1MxxgdeYJNBVREvDzy9kaMXNUUFXA",
-      "predictTime": 11.235786101,
-      "aspectRatio": "16:9",
-      "regenerated": "First hero rendered a lit sign panel with garbled invented lettering and a branded soda cooler. Reshot with a blank sign panel and a hard no-text clause."
-    },
-    {
-      "file": "items/01.webp",
-      "itemId": "gyp-001",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a heaped portion of chopped seasoned chicken over yellow rice in a white styrofoam clamshell, shredded lettuce and tomato wedges pushed to one side, a heavy zigzag of white sauce over everything and one thin stripe of red hot sauce, the lid propped open behind it. Harsh direct on-camera flash, hot blown-out hotspot on the white sauce, hard black shadow thrown behind the container. Framed slightly crooked with the clamshell cut off at the right edge, sitting on a scratched stainless prep counter next to a stack of lids. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "fagxAM4v51WAYaKeTBfdtdgswdqKcO5uQqrxudpfaeUrQiq4C",
-      "predictTime": 12.093856511,
-      "aspectRatio": "1:1",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/02.webp",
-      "itemId": "gyp-003",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a very full aluminium foil tray with a cardboard lid folded back, packed with a mound of chopped chicken on one half and sliced gyro lamb on the other, yellow rice underneath showing at the corners, shredded iceberg lettuce and tomato at one end, white sauce drizzled in wide loops. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above so the tray is not centred and one corner of the lid runs out of frame. Flat phone-camera look, unretouched, visible JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "skn0uDt9FI6HEtqWkGF69KqEmO1BguOLc5B9yhFCBeEJJqiLA",
-      "predictTime": 11.705759941,
-      "aspectRatio": "1:1",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/03.webp",
-      "itemId": "gyp-006",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a fat gyro sandwich in warm pita, half unwrapped from crumpled aluminium foil and sitting on a white paper plate, sliced lamb spilling out of the open end with shredded lettuce, tomato and raw onion, white sauce running down onto the foil. Dim warm restaurant light with the flash off, slightly underexposed and noisy, mixed white balance. Cluttered background: a napkin dispenser, a stack of lids and another wrapped order waiting on the counter behind it. Flat phone-camera look, unretouched, soft focus. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "YTy7l3aVhqpCF9kT4DEI6FS4uWuAOSkH1UhvOeMgeFjqSUFXA",
-      "predictTime": 10.45865307,
-      "aspectRatio": "1:1",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/04.webp",
-      "itemId": "gyp-011",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a large aluminium foil takeout tray crowded with grilled meats over yellow rice, two chicken kebab skewers, two dark seared kofta logs, a pile of sliced gyro and one lamb chop, chopped salad packed into one corner, two folded pita laid across the top, juices pooling in the foil. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the tray, mixed white balance. Mild motion blur and soft focus with visible JPEG compression artefacts and sensor noise. Flat phone-camera look, unretouched. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "RoGg5ki4NiqXAx8yJdpe6zJUaWi4XUWEjAVeYVUvdfdvloKuA",
-      "predictTime": 11.224879904,
-      "aspectRatio": "1:1",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/05.webp",
-      "itemId": "gyp-016",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a generous overflowing pile of thick fresh-cut french fries in a red plastic diner basket lined with plain checkered paper, visible coarse salt, a few darker crispy ends on top, a small paper cup of white sauce wedged in beside them. Harsh direct on-camera flash, hot blown-out hotspot on the fries and the sauce cup, hard black shadow thrown behind the basket. The basket sitting directly on a scratched laminate counter with crumbs and a smear of sauce beside it. Flat phone-camera look, unretouched, mixed white balance, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "XHKkwmWUXz6JN164GmtEgqumGLS5IP9P1FkTfF6Hp2AnJqiLA",
-      "predictTime": 10.256968862,
-      "aspectRatio": "1:1",
-      "styleObserved": "studio",
-      "promptDrift": "Provenance note, 2026-08-20: the prompt above asks for a staff-phone photo but the model returned a studio-looking frame. The prompt is accurate; the output drifted. Verified by eye."
-    },
-    {
-      "file": "items/06.webp",
-      "itemId": "gyp-020",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: four dense diamond-cut pieces of walnut baklava packed tightly into a small plain clear plastic deli container with no lid on it, layers of golden filo visible at the cut edges, honey syrup pooled and sticky in the bottom, crushed walnut scattered on top. Flat overhead fluorescent tube light with a strong green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the container cut off at the bottom edge, sitting on a scratched stainless counter with a crumpled napkin beside it. Flat unretouched phone camera look, visible sensor noise and JPEG compression. Square crop. Absolutely no stickers, no labels, no paper tags, no printed sheets, no text, no letters, no handwriting, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "D8nQGJ1DslqQLVxVv6tOpWEBEtOfNHtnViB25Ry11hsjKqiLA",
-      "predictTime": 14.346441075,
-      "aspectRatio": "1:1",
-      "regenerated": "First take put two white stickers with garbled squiggle handwriting on the containers. Reshot with an explicit no-stickers/no-labels clause.",
-      "styleObserved": "amateur"
-    }
-  ]
+ "slug": "gyropalace",
+ "model": "bytedance/seedream-4.5",
+ "local": true,
+ "photoStyle": "amateur",
+ "images": [
+  {
+   "file": "logo.webp",
+   "prompt": "A straight-on smartphone photograph of a hand-painted storefront sign board that completely fills the frame. The board is white painted wood, slightly sun-faded and scuffed, with deep Greek-blue hand-lettered capitals that have a yellow painted drop shadow behind each letter. The letter spacing is a little uneven, the paint is a little chipped at one corner. Beside the lettering there is a small hand-painted picture of a vertical rotisserie meat spit with a cone of gyro meat on it. Flat overcast daylight, no flash, faint glare across the paint, unretouched phone camera look. Full-bleed square: the painted board fills the entire canvas edge to edge with no card, no frame, no border, no margin and no surrounding shadow. The only text anywhere in the image is exactly: Gyro Palace #3",
+   "predictionId": "9kz9GTy2CzYBG5CY4Q2aFFrKe2ilhyphRVKBfs2b7JeeFRVcB",
+   "predictTime": 11.685989927,
+   "aspectRatio": "1:1"
+  },
+  {
+   "file": "hero.webp",
+   "prompt": "Amateur smartphone photo taken at dusk from inside a parked car, shot through a slightly dirty windshield with the dashboard edge visible at the bottom. Subject: a small strip-mall takeout storefront. Above the door is a completely blank plain blue illuminated sign panel, glowing, with absolutely no lettering or symbols on it. A metal roll-down security grille is half open over the window, warm fluorescent light spills out from inside, an unbranded plain white drinks cooler stands near the door, a dented grey trash can sits on the walkway, an empty parking space with faded white lines fills the foreground, cracked asphalt, one bare light pole. Dust specks and water spots on the windshield glass, slightly crooked horizon, mixed white balance, flat unretouched phone camera look, sensor noise in the shadows. Wide 16:9. Absolutely no text, no letters, no numbers, no words, no writing, no readable signage, no menu boards, no posters, no brand logos, no watermarks, no people.",
+   "predictionId": "v2lNqJE1R4bMMFlbufRg1MxxgdeYJNBVREvDzy9kaMXNUUFXA",
+   "predictTime": 11.235786101,
+   "aspectRatio": "16:9",
+   "regenerated": "First hero rendered a lit sign panel with garbled invented lettering and a branded soda cooler. Reshot with a blank sign panel and a hard no-text clause."
+  },
+  {
+   "file": "items/01.webp",
+   "itemId": "gyp-001",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a heaped portion of chopped seasoned chicken over yellow rice in a white styrofoam clamshell, shredded lettuce and tomato wedges pushed to one side, a heavy zigzag of white sauce over everything and one thin stripe of red hot sauce, the lid propped open behind it. Harsh direct on-camera flash, hot blown-out hotspot on the white sauce, hard black shadow thrown behind the container. Framed slightly crooked with the clamshell cut off at the right edge, sitting on a scratched stainless prep counter next to a stack of lids. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "fagxAM4v51WAYaKeTBfdtdgswdqKcO5uQqrxudpfaeUrQiq4C",
+   "predictTime": 12.093856511,
+   "aspectRatio": "1:1",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/02.webp",
+   "itemId": "gyp-003",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a very full aluminium foil tray with a cardboard lid folded back, packed with a mound of chopped chicken on one half and sliced gyro lamb on the other, yellow rice underneath showing at the corners, shredded iceberg lettuce and tomato at one end, white sauce drizzled in wide loops. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above so the tray is not centred and one corner of the lid runs out of frame. Flat phone-camera look, unretouched, visible JPEG compression. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "skn0uDt9FI6HEtqWkGF69KqEmO1BguOLc5B9yhFCBeEJJqiLA",
+   "predictTime": 11.705759941,
+   "aspectRatio": "1:1",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/03.webp",
+   "itemId": "gyp-006",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a fat gyro sandwich in warm pita, half unwrapped from crumpled aluminium foil and sitting on a white paper plate, sliced lamb spilling out of the open end with shredded lettuce, tomato and raw onion, white sauce running down onto the foil. Dim warm restaurant light with the flash off, slightly underexposed and noisy, mixed white balance. Cluttered background: a napkin dispenser, a stack of lids and another wrapped order waiting on the counter behind it. Flat phone-camera look, unretouched, soft focus. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "YTy7l3aVhqpCF9kT4DEI6FS4uWuAOSkH1UhvOeMgeFjqSUFXA",
+   "predictTime": 10.45865307,
+   "aspectRatio": "1:1",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/04.webp",
+   "itemId": "gyp-011",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a large aluminium foil takeout tray crowded with grilled meats over yellow rice, two chicken kebab skewers, two dark seared kofta logs, a pile of sliced gyro and one lamb chop, chopped salad packed into one corner, two folded pita laid across the top, juices pooling in the foil. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the tray, mixed white balance. Mild motion blur and soft focus with visible JPEG compression artefacts and sensor noise. Flat phone-camera look, unretouched. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "RoGg5ki4NiqXAx8yJdpe6zJUaWi4XUWEjAVeYVUvdfdvloKuA",
+   "predictTime": 11.224879904,
+   "aspectRatio": "1:1",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/05.webp",
+   "itemId": "gyp-016",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a generous overflowing pile of thick fresh-cut french fries in a red plastic diner basket lined with plain checkered paper, visible coarse salt, a few darker crispy ends on top, a small paper cup of white sauce wedged in beside them. Harsh direct on-camera flash, hot blown-out hotspot on the fries and the sauce cup, hard black shadow thrown behind the basket. The basket sitting directly on a scratched laminate counter with crumbs and a smear of sauce beside it. Flat phone-camera look, unretouched, mixed white balance, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "XHKkwmWUXz6JN164GmtEgqumGLS5IP9P1FkTfF6Hp2AnJqiLA",
+   "predictTime": 10.256968862,
+   "aspectRatio": "1:1",
+   "styleObserved": "studio",
+   "promptDrift": "Provenance note, 2026-08-20: the prompt above asks for a staff-phone photo but the model returned a studio-looking frame. The prompt is accurate; the output drifted. Verified by eye."
+  },
+  {
+   "file": "items/06.webp",
+   "itemId": "gyp-020",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: four dense diamond-cut pieces of walnut baklava packed tightly into a small plain clear plastic deli container with no lid on it, layers of golden filo visible at the cut edges, honey syrup pooled and sticky in the bottom, crushed walnut scattered on top. Flat overhead fluorescent tube light with a strong green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the container cut off at the bottom edge, sitting on a scratched stainless counter with a crumpled napkin beside it. Flat unretouched phone camera look, visible sensor noise and JPEG compression. Square crop. Absolutely no stickers, no labels, no paper tags, no printed sheets, no text, no letters, no handwriting, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "D8nQGJ1DslqQLVxVv6tOpWEBEtOfNHtnViB25Ry11hsjKqiLA",
+   "predictTime": 14.346441075,
+   "aspectRatio": "1:1",
+   "regenerated": "First take put two white stickers with garbled squiggle handwriting on the containers. Reshot with an explicit no-stickers/no-labels clause.",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/07.webp",
+   "item": "gyp-002",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a heavy portion of thinly sliced gyro lamb, dark and crisped at the edges, heaped over yellow rice in an aluminium foil tray with the cardboard lid folded back, shredded lettuce and tomato wedges pushed to one end, white sauce laid across in wide loops and meat juices soaking into the rice. Dim warm restaurant light with the flash off, slightly underexposed and noisy with mixed white balance. Shot from too close and slightly above so the tray sits off-centre, a stack of empty foil trays and a squeeze bottle behind it on the stainless prep counter.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/08.webp",
+   "item": "gyp-004",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: six dark craggy falafel, one split open to show the green crumb inside, sitting over a bed of yellow rice in a plain white takeout box with chopped lettuce, tomato and onion packed against one wall and pale tahini drizzled back and forth over everything. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. The open box sitting directly on a scratched laminate counter with crumbs and a smear of tahini beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/09.webp",
+   "item": "gyp-007",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a fat warm pita packed with marinated chicken shawarma off the spit, sliced dill pickles and a heavy pour of garlic sauce spilling out of the open end, resting half-unwrapped from crumpled foil in a paper boat lined with wax paper, a grease patch spreading under it. Bright unflattering daylight through a window on one side, blown highlights along the near edge of the boat and deep shade behind. Mild motion blur and soft focus with visible JPEG compression and sensor noise, another wrapped order waiting on the counter.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/10.webp",
+   "item": "gyp-008",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: five falafel crushed flat into a warm pita with lettuce, tomato, onion, thick tahini and a thin stripe of red hot sauce, the sandwich standing upright in a brown paper takeout bag folded open around it, broken bits of fried chickpea caught in the fold. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above so the bag is not centred, a stainless prep counter and a stack of lids filling the background.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/11.webp",
+   "item": "gyp-009",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: two charred kofta wedged into a warm pita with soft grilled onion and chopped parsley scattered over them, the foil peeled halfway back and crumpled underneath, sitting on a white paper plate already going translucent with grease. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the crumpled foil and a hard shadow thrown behind the plate. Framed slightly crooked with the plate cut off at the bottom edge, a stack of lids beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/12.webp",
+   "item": "gyp-010",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a long hero roll split and overfilled with chopped chicken, softened peppers and onions and two slices of American cheese melted over the sides, cut in half with both halves set cut-face up in a plain white takeout box on a sheet of wax paper. Dim warm restaurant light with the flash off, slightly underexposed and noisy with mixed white balance. Mild motion blur and soft focus with visible JPEG compression and sensor noise, a napkin dispenser and a stack of lids behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/13.webp",
+   "item": "gyp-012",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: four thick lamb chops with dark grill bars across the fat and pink showing at the bone, laid over yellow rice in an aluminium foil tray with the cardboard lid folded back, chopped salad packed into one corner and juices pooling in the ribs of the foil. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the nearest chop and a hard shadow thrown behind the tray. Shot from too close and slightly above, the tray not centred, another order waiting behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/14.webp",
+   "item": "gyp-013",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: two skewers of marinated chicken breast, edges charred and glossy, laid across a full bed of yellow rice in a white styrofoam clamshell with chopped salad heaped at one end and two folded warm pita resting on top. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the clamshell and mixed white balance. Framed slightly crooked with the clamshell cut off at the left edge, a napkin dispenser and a stack of lids on the counter behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/15.webp",
+   "item": "gyp-014",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: half a rotisserie chicken with burnished crackled skin, cut down the back and set skin-up over yellow rice in an aluminium foil tray with the cardboard lid folded back, juices running down into the rice and a small cup of garlic sauce wedged into one corner. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Mild motion blur and soft focus with visible JPEG compression and sensor noise, a cluttered stainless prep counter behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/16.webp",
+   "item": "gyp-015",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a thick swirl of hummus filling a clear plastic deli container to the rim, a shallow well of olive oil pooled in the centre with a dusting of paprika, two warm pita folded in half and leaning against the container, the snap lid lying beside it. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the pita and mixed white balance. Shot from too close and slightly above so nothing is centred, on a scratched laminate counter.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/17.webp",
+   "item": "gyp-017",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: six tightly rolled stuffed grape leaves lined up in two rows in a small clear plastic deli container, dark glossy green with olive oil beaded on them, two lemon wedges tucked in at one end and the clear lid propped against the side. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the nearest roll and a hard shadow thrown behind the container. Cluttered background: a stainless prep counter, a napkin dispenser and another wrapped order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/18.webp",
+   "item": "gyp-018",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a big cold salad of iceberg lettuce, tomato wedges, cucumber, red onion and black olives with a thick slab of feta on top dusted with oregano, filling a white styrofoam clamshell so the leaves press against the walls, oil and vinegar pooled in the bottom, the lid propped open. Dim warm restaurant light with the flash off, slightly underexposed and noisy with mixed white balance. Cluttered background: a stainless prep counter, a stack of lids and another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/19.webp",
+   "item": "gyp-019",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a small clear plastic portion cup filled to the brim with thick red-orange hot sauce, chilli seeds and flecks of pepper suspended in it and the oil separating slightly at the edge, its snap lid lying face-up beside it and a second cup of white sauce set behind. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. The cup sitting directly on a scratched laminate counter with crumbs and a smear of red sauce beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/20.webp",
+   "item": "gyp-021",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a plastic-lidded soup cup filled to the top with thick white rice pudding, a set skin across the surface and a heavy dusting of cinnamon over it, the lid sitting askew half on the cup with a plastic spoon laid alongside. Bright unflattering daylight through a window on one side, blown highlights on the near rim of the cup and mixed white balance. Framed slightly crooked with the cup cut off at the bottom edge, a napkin dispenser behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/21.webp",
+   "item": "gyp-022",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a plain unlabelled aluminium soda can, bare silver with no printing anywhere on it, beaded with cold condensation and standing upright in a brown paper takeout bag folded open around it, a clear cup of ice tipped beside it. Dim warm restaurant light with the flash off, slightly underexposed and noisy with mixed white balance. The bag sitting directly on a scratched laminate counter with crumbs and a wet ring of water beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  }
+ ]
 }

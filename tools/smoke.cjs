@@ -37,6 +37,7 @@ require(path.join(ROOT, 'js/core/util.js'));
 const FB = global.window.FB;
 FB.S = () => ({ settings: { feeTransparency: true, reduceUpsells: false, dataSharing: true, autoTipPct: 42, hungerLevel: 7 } });
 require(path.join(ROOT, 'js/core/fees.js'));
+require(path.join(ROOT, 'js/core/proof.js'));
 require(path.join(ROOT, 'js/data/menus.generated.js'));
 const MENUS = global.window.FB_MENUS;
 
@@ -173,8 +174,14 @@ check('every photo declares its style, and the mix is preserved', () => {
   const bad = items.filter(i => i.photoStyle !== 'amateur' && i.photoStyle !== 'studio');
   if (bad.length) throw new Error(bad.length + ' photo(s) with no/unknown photoStyle, e.g. ' + bad[0].id);
   const amateur = items.filter(i => i.photoStyle === 'amateur').length;
-  eq(items.length, 120, 'photographed items');
-  eq(amateur, 87, 'amateur photos');
+  /* The count moves as the menu is photographed out — it was 120/87 when only six
+     items per store had a picture. Every photograph added since is amateur by
+     decision (see CLAUDE.md): the 33 studio shots are the original chain-marketing
+     exception and no more are being made. Move this number, README.md and CLAUDE.md
+     together; all three carry it. */
+  eq(items.length, 261, 'photographed items');
+  eq(amateur, 228, 'amateur photos');
+  eq(items.length - amateur, 33, 'studio photos, which are not growing');
   return amateur + ' amateur / ' + (items.length - amateur) + ' studio';
 });
 
@@ -3265,6 +3272,36 @@ check('some things run out, and never too many of them', () => {
   } finally { clock.restore(); app.dispose(); }
 });
 
+check('nine couriers have nine faces, and every one of them is on disk', () => {
+  /* The roster was nine named people sharing THREE portraits, five of them the same
+     man, in a mode built on the same nine turning up. The face is now taken from the
+     roster index rather than from the seeded draw, because a draw over nine collides. */
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    clock.set(new Date(2026, 7, 20, 19, 0, 0).getTime());
+    FB.store.reset();
+    const all = FB.slingers.all();
+    eq(all.length, 9, 'roster size');
+    const faces = new Set(all.map((s) => s.photo));
+    eq(faces.size, 9, 'distinct portraits');
+    for (const s of all) {
+      if (!/^assets\/app\//.test(s.photo)) throw new Error('not a root-relative path: ' + s.photo);
+      if (!fs.existsSync(path.join(ROOT, s.photo))) throw new Error('missing portrait: ' + s.photo);
+    }
+
+    /* REPAIRED ON READ. A save written while the pool was three deep keeps its three
+       faces forever otherwise — fillDefaults never descends into an array. */
+    FB.store.set((st) => {
+      st.slingers.forEach((x) => { x.photo = 'assets/app/slinger-1.webp'; });
+      return st;
+    }, { silent: true });
+    const repaired = new Set(FB.slingers.all().map((s) => s.photo));
+    eq(repaired.size, 9, 'portraits after an old save is read back');
+    return '9 couriers, 9 portraits, repaired on read';
+  } finally { app.dispose(); }
+});
+
 check('the same nine people keep turning up, and a revised tip stays consistent', () => {
   /* Identity was seeded on the ORDER id, so a given Slinger structurally could never
      recur: every delivery in the app's life was made by a stranger. */
@@ -4629,6 +4666,226 @@ check('what a restaurant thinks of you never changes what it pays or how many as
     if (!atFloor.keep || !atFloor.keep[0]) throw new Error('no way back from the floor');
     eq(FB.missions.nextStanding(n, true), -5, 'the floor is not sticky');
     return 'asking() flat across the ladder, pay flat across the ladder, floor climbable';
+  } finally { app.dispose(); }
+});
+
+check('the photograph answers to the delivery, and every one of them is on disk', () => {
+  /* fees.js-style: proof.js is pure and reaches for nothing but util.js, so it can be
+     required headlessly and swept without a realm. */
+  const P = FB.proof;
+  if (!P) throw new Error('js/core/proof.js did not load');
+
+  /* EVERY FILE EXISTS. An <img> onto a missing asset fails silently to a grey box,
+     and the artifact build keys its inlined map by exactly these strings — a path
+     that is right on disk but written any other way breaks only in the artifact. */
+  for (const row of P.POOL) {
+    if (!/^assets\/app\//.test(row.file)) throw new Error('not a root-relative asset path: ' + row.file);
+    if (!fs.existsSync(path.join(ROOT, row.file))) throw new Error('missing proof photo: ' + row.file);
+  }
+
+  /* THE THERMAL BAG IS NOT LEFT BEHIND. A courier keeps it, so the one legacy
+     photograph that shows one abandoned on a walkway is deliberately out of the
+     pool. Asserted by name: dropping the rule would put it back silently. */
+  if (P.POOL.some((r) => /proof-delivery-2\.webp$/.test(r.file))) {
+    throw new Error('the thermal-bag photograph is back in the pool');
+  }
+
+  /* EVERY BUCKET IS POPULATED, or the widening fallback quietly hides an empty one
+     and a whole facet of the app stops meaning anything. */
+  const buckets = {};
+  for (const d of ['leave', 'hand']) {
+    for (const l of ['day', 'dusk', 'night']) {
+      const n = P.POOL.filter((r) => r.drop === d && r.light === l).length;
+      if (n < 3) throw new Error('only ' + n + ' photographs for ' + d + '/' + l);
+      buckets[d + '/' + l] = n;
+    }
+  }
+
+  /* THE STRANGE ONES ARE THE POINT. They are also the first thing an editor trims,
+     so the share is pinned rather than left to drift. Read off the TIER, which
+     replaced the old `odd` boolean: anything filed above ROUTINE is strange, and the
+     tier already has to be right for the loot curve. One field, not two that drift. */
+  const odd = P.POOL.filter((r) => r.tier && r.tier !== 'routine').length;
+  if (odd / P.POOL.length < 0.5) throw new Error('only ' + odd + ' of ' + P.POOL.length + ' are strange');
+
+  /* THE FACETS ARE READ OFF THE ORDER. Light comes from the hour it was delivered,
+     drop from the address — both of which this screen had all along and never asked. */
+  const mk = (id, drop, hour) => ({
+    id: id, address: { dropoff: drop },
+    deliveredAt: new Date(2026, 7, 20, hour, 0, 0).getTime(),
+  });
+  eq(P.facets(mk('x', 'leave', 12)).light, 'day', 'noon');
+  eq(P.facets(mk('x', 'leave', 18)).light, 'dusk', 'six');
+  eq(P.facets(mk('x', 'leave', 2)).light, 'night', 'two in the morning');
+  eq(P.facets(mk('x', 'hand', 12)).drop, 'hand', 'a hand-off');
+  eq(P.facets(mk('x', 'leave', 12)).drop, 'leave', 'a doorstep');
+  /* an order with no address at all is a doorstep, which is what the legacy
+     photographs already were */
+  eq(P.facets({ id: 'legacy' }).drop, 'leave', 'a legacy order');
+
+  /* WHAT IS PICKED MATCHES WHAT WAS ASKED FOR. */
+  for (const d of ['leave', 'hand']) {
+    for (const [h, l] of [[12, 'day'], [18, 'dusk'], [2, 'night']]) {
+      const o = mk('o' + d + h, d, h);
+      const file = P.pick(o);
+      const row = P.POOL.filter((r) => r.file === file)[0];
+      if (!row) throw new Error('picked a photograph that is not in the pool: ' + file);
+      if (row.drop !== d || row.light !== l) {
+        throw new Error(d + '/' + l + ' was answered with a ' + row.drop + '/' + row.light + ' photograph');
+      }
+    }
+  }
+
+  /* SEEDED, so the photograph attached to an order is that order's forever — the
+     receipt a year later shows the same picture. Never Math.random(). */
+  const o = mk('stable', 'leave', 3);
+  const first = P.pick(o);
+  for (let i = 0; i < 20; i++) if (P.pick(o) !== first) throw new Error('the photograph changed under a reload');
+
+  /* AND THE WHOLE POOL IS REACHABLE. A hash that collides onto a handful of rows
+     would leave most of these on disk and never on screen — which is the bug this
+     feature exists to fix, reintroduced one level down. */
+  const used = new Set();
+  /* Enough orders to outrun the structural spread. Photographs are NOT equally
+     likely here — `day` covers ten hours against dusk's five and the buckets differ
+     in size, so about 3x end to end — and that is correct: a customer sees one
+     photograph per order. What must hold is that none is unreachable, which is the
+     collapsed-hash bug this catches. */
+  for (let i = 0; i < 3000; i++) used.add(P.pick(mk('ord' + i, i % 2 ? 'hand' : 'leave', (i * 7) % 24)));
+  if (used.size !== P.POOL.length) {
+    throw new Error('only ' + used.size + ' of ' + P.POOL.length + ' photographs are ever chosen');
+  }
+
+  return P.POOL.length + ' photographs, ' + odd + ' strange, ' + JSON.stringify(buckets);
+});
+
+check('a delivery photograph is loot, and the odds are the tier table', () => {
+  const P = FB.proof;
+
+  /* EVERY ROW IS FILED. A row with no tier, or a tier not in the table, would be
+     unreachable by roll() forever — on disk, in the artifact, and never once seen. */
+  const keys = P.TIERS.map((t) => t.key);
+  for (const row of P.POOL) {
+    if (!row.tier) throw new Error('no tier on ' + row.file);
+    if (keys.indexOf(row.tier) < 0) throw new Error(row.file + ' is filed under ' + row.tier);
+  }
+  /* and every tier has something in it, or its share of the curve silently falls
+     through to the tier below and the rarest photographs stop existing */
+  for (const t of P.TIERS) {
+    if (!P.inTier(t.key).length) throw new Error('nothing is filed as ' + t.label);
+  }
+
+  /* THE WEIGHTS ARE THE ODDS. They are tier-level and sum to 100 on purpose: adding
+     six more legendaries must not make legendaries commoner. */
+  const sum = P.TIERS.reduce((a, t) => a + t.weight, 0);
+  if (Math.abs(sum - 100) > 0.001) throw new Error('the tier weights sum to ' + sum + ', not 100');
+
+  /* OBSERVED MATCHES DECLARED. FB.seeded is deterministic, so this sample is fixed —
+     a re-weighted tier moves it and cannot be blamed on luck. */
+  const N = 20000, seen = {};
+  for (let i = 0; i < N; i++) {
+    const r = P.roll('run_' + i);
+    if (!r || !r.file || !r.tier) throw new Error('a roll returned nothing at ' + i);
+    if (!P.POOL.some((x) => x.file === r.file)) throw new Error('rolled a photograph outside the pool');
+    seen[r.tier] = (seen[r.tier] || 0) + 1;
+  }
+  const obs = {};
+  for (const t of P.TIERS) {
+    const pct = ((seen[t.key] || 0) / N) * 100;
+    obs[t.label] = Number(pct.toFixed(2));
+    /* 20% relative, which a swapped or halved weight cannot survive */
+    if (Math.abs(pct - t.weight) > t.weight * 0.2) {
+      throw new Error(t.label + ' came up ' + pct.toFixed(2) + '% against a declared ' + t.weight + '%');
+    }
+  }
+  /* the curve must actually descend, or "rarity" means nothing */
+  for (let i = 1; i < P.TIERS.length; i++) {
+    if (!(seen[P.TIERS[i - 1].key] > seen[P.TIERS[i].key])) {
+      throw new Error(P.TIERS[i].label + ' is not rarer than ' + P.TIERS[i - 1].label);
+    }
+  }
+
+  /* SEEDED. The photograph a run yields was decided when the run existed: pressing
+     the button reveals it. Re-rolling on reload would make the rarest ones farmable
+     by refreshing, which is the whole reason this is not Math.random(). */
+  const a = P.roll('run_zzz');
+  for (let i = 0; i < 50; i++) {
+    const b = P.roll('run_zzz');
+    if (b.file !== a.file || b.tier !== a.tier) throw new Error('the same run rolled twice');
+  }
+  /* and different runs really do differ */
+  const distinct = new Set();
+  for (let i = 0; i < 400; i++) distinct.add(P.roll('r' + i).file);
+  if (distinct.size < 20) throw new Error('only ' + distinct.size + ' photographs are reachable by rolling');
+
+  return P.POOL.length + ' photographs; observed ' + JSON.stringify(obs);
+});
+
+check('the courier keeps what they photograph, and only once', () => {
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    const now = new Date(2026, 7, 20, 19, 14, 0).getTime();
+    clock.set(now);
+    FB.store.reset();
+    harness.FIXTURES.find((f) => f.name === 'slinging, statement issued').apply(FB, now);
+
+    const row = FB.S().slinging.log[0];
+    if (!row) throw new Error('the fixture did not settle a run');
+
+    /* the button is offered before, and gone after */
+    if (!FB.screens.get('run').render({}).includes('data-shoot')) {
+      throw new Error('no way to photograph the drop');
+    }
+    const shot = FB.missions.shoot(row.id);
+    if (!shot || !shot.file || !shot.tier) throw new Error('shooting returned nothing');
+
+    let st = FB.S();
+    eq(st.slinging.shots, 1, 'shots taken');
+    eq(st.slinging.gallery.length, 1, 'photographs kept');
+    eq(st.slinging.gallery[0], shot.file, 'the wrong photograph was kept');
+    eq(st.slinging.log[0].shot.file, shot.file, 'the row did not keep it');
+
+    const html = FB.screens.get('run').render({});
+    if (html.includes('data-shoot')) throw new Error('it can be photographed twice');
+    if (!html.includes(shot.file)) throw new Error('the photograph is not shown');
+    if (!html.includes(FB.proof.tier(shot.tier).label)) throw new Error('the filing category is not shown');
+    if (/undefined|NaN/.test(html)) throw new Error('the photograph block prints undefined or NaN');
+
+    /* ONCE. Two taps, a double-fire, or a replayed row must not mint a second one —
+       the guard is on the row, not on the button. */
+    if (FB.missions.shoot(row.id) !== null) throw new Error('a second photograph was taken');
+    st = FB.S();
+    eq(st.slinging.shots, 1, 'shots after a second attempt');
+    eq(st.slinging.gallery.length, 1, 'gallery after a second attempt');
+
+    /* the same run always yields the same photograph, so the row and a fresh roll
+       can never disagree */
+    eq(FB.proof.roll(row.id).file, shot.file, 'the roll drifted from the row');
+
+    /* THE GALLERY DOES NOT DOUBLE-COUNT. A photograph seen twice is one photograph
+       KEPT and two TAKEN — the collection is a set, the shot counter is not.
+
+       The duplicate has to be forced: a fresh run id rolls its own photograph, so a
+       naive second shot almost never collides and a check written that way passes
+       with the guard deleted. This seeds the gallery with exactly what run_dupe is
+       going to roll, which is knowable in advance precisely because the roll is
+       seeded on the id. */
+    const willRoll = FB.proof.roll('run_dupe').file;
+    FB.store.set((s2) => {
+      s2.slinging.log.unshift({ id: 'run_dupe', slug: row.slug, title: row.title, at: row.at,
+        outcome: 'kept', pay: 1, net: 0, deducted: 1, access: false });
+      if (s2.slinging.gallery.indexOf(willRoll) < 0) s2.slinging.gallery.push(willRoll);
+      return s2;
+    });
+    const before = FB.S().slinging.gallery.length;
+    const dupe = FB.missions.shoot('run_dupe');
+    eq(dupe.file, willRoll, 'run_dupe did not roll what the roll said it would');
+    st = FB.S();
+    eq(st.slinging.shots, 2, 'a second run was photographed');
+    eq(st.slinging.gallery.length, before, 'the gallery kept the same photograph twice');
+
+    return 'kept ' + st.slinging.gallery.length + ' of ' + FB.proof.POOL.length + ' across ' + st.slinging.shots + ' shots';
   } finally { app.dispose(); }
 });
 

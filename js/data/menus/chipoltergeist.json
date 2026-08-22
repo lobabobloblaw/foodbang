@@ -570,8 +570,8 @@
           "badges": [
             "Contains Food"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/07.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: half a burrito stood cut-face up in a plain white takeout box with the flaps folded open, the exposed cross-section showing compressed rice, black beans, meat and a plug of cheese sealing it, the remaining foil crumpled back over the far end and slightly creased from an earlier wrap. Bright unflattering daylight through a window on one side, blown highlights along the near edge of the box. Mild motion blur and soft focus with visible JPEG compression artefacts and sensor noise, a stainless prep counter and napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -648,7 +648,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     },
@@ -802,8 +803,8 @@
           "badges": [
             "Popular"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/08.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a wide aluminium foil catering tray with its cardboard lid leaning against the side, heaped well past the rim with cilantro rice, black beans, charred peppers, shredded meat, guacamole and crema all running together, four plastic spoons stood upright in different quadrants. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Framed crooked with the tray cut off at the right edge, on a stainless prep counter beside a stack of lids and another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -886,7 +887,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "cpg-008",
@@ -898,8 +900,8 @@
             "New",
             "Physician Discouraged"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/09.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a white styrofoam clamshell so full the lid will not close, banded layers of white rice, black and pinto beans, fajita peppers, three chopped meats, lettuce, cheese, salsa, guacamole and crema laid down in the order they were reached, liquid pooling along the hinge. Harsh direct on-camera flash with no light source visible in frame, a hard blown-out hotspot on the crema and a hard shadow thrown behind the clamshell. Shot from too close and slightly above, not centred, a napkin dispenser and stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -982,7 +984,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "cpg-009",
@@ -993,8 +996,8 @@
           "badges": [
             "Regionally Legal"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/10.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a large clear plastic deli container with its flat lid resting beside it, packed with shredded lettuce as a base and then rice, black beans, grilled chicken, pico de gallo, cheese and a pale vinaigrette settling at the bottom, the contents mounded above the rim. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Sitting directly on a scratched laminate counter with crumbs and a smear of red sauce, a stainless prep counter and stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1077,7 +1080,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     },
@@ -1197,8 +1201,8 @@
           "badges": [
             "Chef Recommended"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/11.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: four small clear plastic cups without lids lined up in a red plastic diner basket lined with checkered paper — thin red salsa, chunky green tomatillo, dark brick chipotle and a pale roasted one — each filled to a different level with one running over onto the paper. Bright unflattering daylight from a window on one side, blown highlights on the near cup rims. Shot from too close and slightly above, the basket not centred, crumbs and a stack of lids at the edge of frame.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1281,7 +1285,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "cpg-012",
@@ -1292,8 +1297,8 @@
           "badges": [
             "Contains Food"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/12.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a deep aluminium foil tray with its cardboard lid folded back, filled with a generous drift of white cilantro-flecked rice, the grains clumped where they were scooped from a warmer, a band of slightly darker older grains mixed through one side and a lime wedge pressed into the surface. Harsh direct on-camera flash, a hard blown-out hotspot on the foil rim and a hard shadow thrown behind the tray. Framed crooked with the tray cut off at the bottom edge, a stainless prep counter and napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1376,7 +1381,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     },
@@ -1519,8 +1525,8 @@
             "Popular",
             "Physician Discouraged"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/13.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a clear plastic deli container filled to the brim with molten orange-yellow queso, a skin just beginning to form at one edge, flecks of green chile and diced tomato suspended in it, the snap lid upside down beside the container and a small heap of thick corn chips alongside. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above, the container off-centre, a stainless prep counter and stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1609,7 +1615,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "cpg-015",
@@ -1621,8 +1628,8 @@
             "Limit 1 Per Household",
             "Regionally Legal"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/14.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a plain white plastic pail, its lid propped against the side, filled nearly to the top with chunky green guacamole showing scoop and tool marks across the surface, red onion, cilantro and lime pulp through it and the exposed top already browning in patches. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Standing low on a scratched laminate counter with crumbs and a smear of red sauce, a stack of lids and a stainless prep counter behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1711,7 +1718,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     },
@@ -1730,8 +1738,8 @@
             "New",
             "Chef Recommended"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/15.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a white styrofoam clamshell held open, quinoa and brown rice filling one side, chopped romaine, grilled chicken, black beans, pico de gallo, a fanned half avocado and a lemon wedge balanced on the rim, the portions even and generous. Harsh direct on-camera flash with no light source visible in frame, a hard blown-out hotspot on the avocado and a hard shadow thrown behind the clamshell. Mild soft focus with visible JPEG compression artefacts and sensor noise, a cluttered stainless prep counter and napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1826,7 +1834,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "cpg-017",
@@ -2357,8 +2366,8 @@
             "New",
             "Physician Discouraged"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/16.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a plastic-lidded soup cup filled with cloudy pale yellow-green citrus liquid, pulp and pale sediment settled into a distinct layer at the bottom, a thin foam ring around the top and a twist of peel trapped under the lid, which has been pressed on crooked, condensation beading down the sides. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup. Mild soft focus with visible JPEG compression artefacts and sensor noise, a stainless prep counter with a napkin dispenser and another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -2441,7 +2450,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     }

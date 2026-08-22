@@ -1,64 +1,134 @@
 {
-  "slug": "chipoltergeist",
-  "model": "bytedance/seedream-4.5",
-  "images": [
-    {
-      "file": "logo.webp",
-      "prompt": "Minimal artisanal logo mark. A dried chili pepper shape rendered as a translucent pale spectral silhouette, faintly glowing from within, softly blurred at the edges as though it is not entirely there, centered on a single flat matte charcoal-brown field with a subtle kraft-paper grain. Beneath the pepper, one line of clean small-caps letterpress type in warm pale gold. CRITICAL: the previous attempt wrongly placed a lighter tan border and an inset panel around the design. Do not do that. The one charcoal-brown colour must run all the way to all four edges of the image. Full-bleed square: the background colour fills the entire canvas edge to edge. No card, no frame, no rounded container, no drop shadow, no surrounding margin or border, no lighter strip along any edge, no inset panel, no vignette outline. The only text anywhere in the image is exactly: Chipoltergeist",
-      "predictionId": "9y4pzj8g81rmr0d0460b7t72pg",
-      "predictTime": 9.642228287
-    },
-    {
-      "file": "hero.webp",
-      "prompt": "Cinematic wide interior photograph of a dimly lit fast-casual burrito counter at night. Brushed matte-black steel serving line, raw reclaimed wood panels, kraft paper stacked at one end, empty stainless inserts with faint condensation. One warm tungsten spotlight falls from directly above onto the empty serving line, leaving deep shadows at both edges of the frame. Faint pale spectral vapor drifts slowly through the light beam, with a cold blue haze pooling in the shadows behind the counter. Nobody present. Anamorphic 35mm lens, shallow depth of field, deep blacks, high micro-contrast, film grain. Deadpan hyperreal cinematic realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "g7e2xv1wxdrmt0d045yvn38dpm",
-      "predictTime": 9.169010316
-    },
-    {
-      "file": "items/01.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: one enormous foil-wrapped burrito the diameter of a fence post, foil peeled back in a spiral to expose a packed cylinder of rice, black beans, charred meat and melted cheese under visible internal pressure, the tortilla stretched thin and shining at the seams, a slow bead of orange fat running down the side, steam rising in a thin column. Placed on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 85mm lens at three-quarter hero angle, shallow depth of field, high micro-contrast, deep blacks. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "cdppyrdcddrmt0d045ytth68br",
-      "predictTime": 11.950466897,
-      "styleObserved": "studio"
-    },
-    {
-      "file": "items/02.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a deep matte-black bowl shot straight down into, filled far past its rim with cilantro-flecked rice, glossy black beans, charred red peppers, shredded meat and a pale mound of guacamole, the contents domed above the rim and sagging over one edge onto the counter, a thin salsa slick pooling beneath, faint steam curling off the surface. Set on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 50mm directly overhead, tight top-down framing, moderate depth of field, rich shadow detail. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "x311xcq2pnrmw0d045yrp13mt0",
-      "predictTime": 12.46141279,
-      "styleObserved": "studio"
-    },
-    {
-      "file": "items/03.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of a huge drift of thick blistered tortilla chips spilling out of a torn paper sleeve, chips scattered in a fan across kraft paper, coarse salt crystals and fried corn dust visible, three small dishes of salsa arranged at the edges, one dish overflowing. Arranged on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 40mm shot perfectly overhead, flat-lay composition, everything in focus, crisp edge definition, strong directional shadow under each chip. Square crop, subject centered and filling the frame. IMPORTANT: the previous attempt printed faint small lines of type on the paper sleeve. The paper sleeve and every sheet of paper must be completely blank, plain and unprinted, with no letters, no faint printing, no tiny type, no stamps and no marks of any kind. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "2hhrcfbt7xrmw0d0460t29723c",
-      "predictTime": 11.847329819,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    },
-    {
-      "file": "items/04.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of a single scoop of guacamole, the surface rough with hand-crushed avocado chunks, flecks of red onion, lime pulp and coarse salt, one glossy ridge catching the light, a slow thick drip beginning to fall off the near edge, condensation beading on the cold surface. Resting on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 100mm macro lens, razor-thin depth of field, background dissolved to soft charcoal, extremely high textural detail, cold blue rim light along the shadowed side. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "xbf979dsydrmr0d045zb2z7hww",
-      "predictTime": 12.323053509,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    },
-    {
-      "file": "items/05.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean cross-section cutaway of a tightly rolled lettuce-leaf wrap sliced straight through, the cut face showing concentric layers of pale green lettuce, white rice, black beans, grilled chicken and a bright stripe of salsa, every layer sharp and geometric, a little liquid seeping from the cut and running onto the surface below, the two halves standing upright. On a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 60mm macro, straight-on eye-level view of the cut face, deep focus, surgical clarity, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "0c7t3ch3s9rmy0d045ztb1yt1g",
-      "predictTime": 18.822904174,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    },
-    {
-      "file": "items/06.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a tall clear plastic cup of cloudy pale-pink agua fresca on a kraft-paper-lined metal tray, filled to overflowing so a thin sheet of liquid runs down the outside and spreads across the paper liner in a dark stain, ice pressed to the walls, pulp suspended in the haze, heavy condensation. Tray sits on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 65mm at a low three-quarter tray angle, moderate depth of field, backlit liquid glow, deep surrounding shadow. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "z0gptq3m5drmr0d045zsmxgxmw",
-      "predictTime": 10.786755692,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    }
-  ]
+ "slug": "chipoltergeist",
+ "model": "bytedance/seedream-4.5",
+ "images": [
+  {
+   "file": "logo.webp",
+   "prompt": "Minimal artisanal logo mark. A dried chili pepper shape rendered as a translucent pale spectral silhouette, faintly glowing from within, softly blurred at the edges as though it is not entirely there, centered on a single flat matte charcoal-brown field with a subtle kraft-paper grain. Beneath the pepper, one line of clean small-caps letterpress type in warm pale gold. CRITICAL: the previous attempt wrongly placed a lighter tan border and an inset panel around the design. Do not do that. The one charcoal-brown colour must run all the way to all four edges of the image. Full-bleed square: the background colour fills the entire canvas edge to edge. No card, no frame, no rounded container, no drop shadow, no surrounding margin or border, no lighter strip along any edge, no inset panel, no vignette outline. The only text anywhere in the image is exactly: Chipoltergeist",
+   "predictionId": "9y4pzj8g81rmr0d0460b7t72pg",
+   "predictTime": 9.642228287
+  },
+  {
+   "file": "hero.webp",
+   "prompt": "Cinematic wide interior photograph of a dimly lit fast-casual burrito counter at night. Brushed matte-black steel serving line, raw reclaimed wood panels, kraft paper stacked at one end, empty stainless inserts with faint condensation. One warm tungsten spotlight falls from directly above onto the empty serving line, leaving deep shadows at both edges of the frame. Faint pale spectral vapor drifts slowly through the light beam, with a cold blue haze pooling in the shadows behind the counter. Nobody present. Anamorphic 35mm lens, shallow depth of field, deep blacks, high micro-contrast, film grain. Deadpan hyperreal cinematic realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "g7e2xv1wxdrmt0d045yvn38dpm",
+   "predictTime": 9.169010316
+  },
+  {
+   "file": "items/01.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: one enormous foil-wrapped burrito the diameter of a fence post, foil peeled back in a spiral to expose a packed cylinder of rice, black beans, charred meat and melted cheese under visible internal pressure, the tortilla stretched thin and shining at the seams, a slow bead of orange fat running down the side, steam rising in a thin column. Placed on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 85mm lens at three-quarter hero angle, shallow depth of field, high micro-contrast, deep blacks. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "cdppyrdcddrmt0d045ytth68br",
+   "predictTime": 11.950466897,
+   "styleObserved": "studio"
+  },
+  {
+   "file": "items/02.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a deep matte-black bowl shot straight down into, filled far past its rim with cilantro-flecked rice, glossy black beans, charred red peppers, shredded meat and a pale mound of guacamole, the contents domed above the rim and sagging over one edge onto the counter, a thin salsa slick pooling beneath, faint steam curling off the surface. Set on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 50mm directly overhead, tight top-down framing, moderate depth of field, rich shadow detail. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "x311xcq2pnrmw0d045yrp13mt0",
+   "predictTime": 12.46141279,
+   "styleObserved": "studio"
+  },
+  {
+   "file": "items/03.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of a huge drift of thick blistered tortilla chips spilling out of a torn paper sleeve, chips scattered in a fan across kraft paper, coarse salt crystals and fried corn dust visible, three small dishes of salsa arranged at the edges, one dish overflowing. Arranged on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 40mm shot perfectly overhead, flat-lay composition, everything in focus, crisp edge definition, strong directional shadow under each chip. Square crop, subject centered and filling the frame. IMPORTANT: the previous attempt printed faint small lines of type on the paper sleeve. The paper sleeve and every sheet of paper must be completely blank, plain and unprinted, with no letters, no faint printing, no tiny type, no stamps and no marks of any kind. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "2hhrcfbt7xrmw0d0460t29723c",
+   "predictTime": 11.847329819,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/04.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of a single scoop of guacamole, the surface rough with hand-crushed avocado chunks, flecks of red onion, lime pulp and coarse salt, one glossy ridge catching the light, a slow thick drip beginning to fall off the near edge, condensation beading on the cold surface. Resting on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 100mm macro lens, razor-thin depth of field, background dissolved to soft charcoal, extremely high textural detail, cold blue rim light along the shadowed side. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "xbf979dsydrmr0d045zb2z7hww",
+   "predictTime": 12.323053509,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/05.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a clean cross-section cutaway of a tightly rolled lettuce-leaf wrap sliced straight through, the cut face showing concentric layers of pale green lettuce, white rice, black beans, grilled chicken and a bright stripe of salsa, every layer sharp and geometric, a little liquid seeping from the cut and running onto the surface below, the two halves standing upright. On a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 60mm macro, straight-on eye-level view of the cut face, deep focus, surgical clarity, high contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "0c7t3ch3s9rmy0d045ztb1yt1g",
+   "predictTime": 18.822904174,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/06.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a tall clear plastic cup of cloudy pale-pink agua fresca on a kraft-paper-lined metal tray, filled to overflowing so a thin sheet of liquid runs down the outside and spreads across the paper liner in a dark stain, ice pressed to the walls, pulp suspended in the haze, heavy condensation. Tray sits on a brushed matte-black steel serving counter with kraft paper and raw reclaimed wood, faint pale vapor curling upward in the background. Lighting: single warm tungsten spotlight from directly above, deep shadows, artisanal minimalism, a faint cold blue haze in the shadows. Camera: 65mm at a low three-quarter tray angle, moderate depth of field, backlit liquid glow, deep surrounding shadow. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "z0gptq3m5drmr0d045zsmxgxmw",
+   "predictTime": 10.786755692,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/07.webp",
+   "item": "cpg-005",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: half a burrito stood cut-face up in a plain white takeout box with the flaps folded open, the exposed cross-section showing compressed rice, black beans, meat and a plug of cheese sealing it, the remaining foil crumpled back over the far end and slightly creased from an earlier wrap. Bright unflattering daylight through a window on one side, blown highlights along the near edge of the box. Mild motion blur and soft focus with visible JPEG compression artefacts and sensor noise, a stainless prep counter and napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/08.webp",
+   "item": "cpg-007",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a wide aluminium foil catering tray with its cardboard lid leaning against the side, heaped well past the rim with cilantro rice, black beans, charred peppers, shredded meat, guacamole and crema all running together, four plastic spoons stood upright in different quadrants. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Framed crooked with the tray cut off at the right edge, on a stainless prep counter beside a stack of lids and another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/09.webp",
+   "item": "cpg-008",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a white styrofoam clamshell so full the lid will not close, banded layers of white rice, black and pinto beans, fajita peppers, three chopped meats, lettuce, cheese, salsa, guacamole and crema laid down in the order they were reached, liquid pooling along the hinge. Harsh direct on-camera flash with no light source visible in frame, a hard blown-out hotspot on the crema and a hard shadow thrown behind the clamshell. Shot from too close and slightly above, not centred, a napkin dispenser and stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/10.webp",
+   "item": "cpg-009",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a large clear plastic deli container with its flat lid resting beside it, packed with shredded lettuce as a base and then rice, black beans, grilled chicken, pico de gallo, cheese and a pale vinaigrette settling at the bottom, the contents mounded above the rim. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Sitting directly on a scratched laminate counter with crumbs and a smear of red sauce, a stainless prep counter and stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/11.webp",
+   "item": "cpg-011",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: four small clear plastic cups without lids lined up in a red plastic diner basket lined with checkered paper — thin red salsa, chunky green tomatillo, dark brick chipotle and a pale roasted one — each filled to a different level with one running over onto the paper. Bright unflattering daylight from a window on one side, blown highlights on the near cup rims. Shot from too close and slightly above, the basket not centred, crumbs and a stack of lids at the edge of frame.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/12.webp",
+   "item": "cpg-012",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a deep aluminium foil tray with its cardboard lid folded back, filled with a generous drift of white cilantro-flecked rice, the grains clumped where they were scooped from a warmer, a band of slightly darker older grains mixed through one side and a lime wedge pressed into the surface. Harsh direct on-camera flash, a hard blown-out hotspot on the foil rim and a hard shadow thrown behind the tray. Framed crooked with the tray cut off at the bottom edge, a stainless prep counter and napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/13.webp",
+   "item": "cpg-014",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a clear plastic deli container filled to the brim with molten orange-yellow queso, a skin just beginning to form at one edge, flecks of green chile and diced tomato suspended in it, the snap lid upside down beside the container and a small heap of thick corn chips alongside. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above, the container off-centre, a stainless prep counter and stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/14.webp",
+   "item": "cpg-015",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a plain white plastic pail, its lid propped against the side, filled nearly to the top with chunky green guacamole showing scoop and tool marks across the surface, red onion, cilantro and lime pulp through it and the exposed top already browning in patches. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Standing low on a scratched laminate counter with crumbs and a smear of red sauce, a stack of lids and a stainless prep counter behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/15.webp",
+   "item": "cpg-016",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a white styrofoam clamshell held open, quinoa and brown rice filling one side, chopped romaine, grilled chicken, black beans, pico de gallo, a fanned half avocado and a lemon wedge balanced on the rim, the portions even and generous. Harsh direct on-camera flash with no light source visible in frame, a hard blown-out hotspot on the avocado and a hard shadow thrown behind the clamshell. Mild soft focus with visible JPEG compression artefacts and sensor noise, a cluttered stainless prep counter and napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/16.webp",
+   "item": "cpg-022",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a plastic-lidded soup cup filled with cloudy pale yellow-green citrus liquid, pulp and pale sediment settled into a distinct layer at the bottom, a thin foam ring around the top and a twist of peel trapped under the lid, which has been pressed on crooked, condensation beading down the sides. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the cup. Mild soft focus with visible JPEG compression artefacts and sensor noise, a stainless prep counter with a napkin dispenser and another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  }
+ ]
 }

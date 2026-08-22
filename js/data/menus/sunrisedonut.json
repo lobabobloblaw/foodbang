@@ -273,8 +273,8 @@
           "price": 1.35,
           "calories": 690,
           "badges": [],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/07.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Three ridged old fashioned cake donuts, pale gold with cracked crowns and thin glaze caught in the grooves, sitting in a brown paper takeout bag folded open on its side so two have slid out onto the counter. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. Shot from too close and slightly above, the bag not centred, a stainless prep counter and a stack of plastic lids behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -330,7 +330,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "snd-004",
@@ -341,8 +342,8 @@
           "badges": [
             "Popular"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/08.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Two long raised maple bars in a plain white takeout box with the lid folded back, tan maple icing poured thick and running right out to both squared ends, one bar still glossy where the icing pooled. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the icing and a hard shadow thrown behind the box. Framed crooked with the box cut off at the right edge, a napkin dispenser and another order waiting beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -419,7 +420,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "snd-005",
@@ -430,8 +432,8 @@
           "badges": [
             "Contains Food"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/09.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Two raspberry jelly donuts on a white paper plate, heavily dusted with powdered sugar, one lying on its side with red filling swelling out of the injection hole and running down onto the plate. Bright unflattering daylight through a window on one side, blown highlights on the near rim of the plate. Mild motion blur and soft focus with visible JPEG artefacts, sugar drifted across a scratched laminate counter, a stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -487,7 +489,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     },
@@ -601,8 +604,8 @@
           "badges": [
             "Limit 1 Per Household"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/10.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Twelve assorted donuts packed tight in a flat cardboard box seen from almost overhead, glazed rings, two ridged old fashioneds, a maple bar, sugared jelly ones and a chocolate frosted, the lid folded back flat against the counter. Dim warm shop light with the flash off, slightly underexposed and noisy. Cluttered background: a stainless prep counter, a coffee urn, a stack of lids and an empty box waiting to be filled.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -679,7 +682,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "snd-008",
@@ -688,8 +692,8 @@
           "price": 4.15,
           "calories": 2100,
           "badges": [],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/11.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Twenty donut holes filling a clear plastic deli container right up to its snapped-on lid, glazed ones and cinnamon-sugar ones tumbled together, loose sugar settled in the bottom and fogging the plastic. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the lid and a hard shadow thrown behind the container. The container sitting directly on a scratched laminate counter with crumbs, a napkin dispenser beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -745,7 +749,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     },
@@ -871,8 +876,8 @@
           "badges": [
             "Popular"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/12.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A bacon, egg and cheese on a kaiser roll propped open in a white styrofoam clamshell, four strips of bacon hanging out past the roll, folded griddled egg and orange cheese melted down over the edge, the top of the roll leaning on the lid. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. Framed slightly crooked with the clamshell cut off at the bottom edge, a stack of lids and a coffee urn behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -967,7 +972,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "snd-011",
@@ -976,8 +982,8 @@
           "price": 3.85,
           "calories": 960,
           "badges": [],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/13.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A sausage, egg and cheese on a kaiser roll half unwrapped from a sheet of white wax paper, the paper folded back around the base, a browned patty and two split links pushing out under folded egg and melted cheese. Bright unflattering daylight from a window on one side, blown highlights on the near edge of the paper. Shot from too close and not centred, a stainless prep counter with crumbs and another wrapped order behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1033,7 +1039,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "snd-012",
@@ -1044,8 +1051,8 @@
           "badges": [
             "Physician Discouraged"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/14.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A heavy foil-wrapped chorizo burrito lying in an aluminium foil tray with its cardboard lid pushed aside, the foil peeled back at one end to show orange-red chorizo, scrambled egg, diced potato and melted cheese, a small lidded cup of sour cream wedged in beside it. Dim warm restaurant light with the flash off, underexposed and noisy. Mild motion blur and visible JPEG artefacts, a napkin dispenser and a scratched prep counter behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1101,7 +1108,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "snd-013",
@@ -1110,8 +1118,8 @@
           "price": 2.2,
           "calories": 640,
           "badges": [],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/15.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Three golden fried hash brown patties overlapping in a red plastic diner basket lined with checkered paper, edges ragged and crisp, salt visible on top, grease darkening the paper under them. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the nearest patty and a hard shadow thrown behind the basket. Framed crooked with the basket cut off at the left edge, a fryer basket and a napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1167,7 +1175,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     },
@@ -1291,8 +1300,8 @@
           "price": 6.4,
           "calories": 870,
           "badges": [],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/16.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A turkey and Swiss sandwich cut in two and set cut-side up in a paper boat lined with wax paper, thick folded slices of roast turkey stacked high under Swiss, lettuce and tomato tucked in beneath the meat. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. Shot from too close and slightly above, the boat not centred on a stainless prep counter beside a deli slicer and a stack of lids.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1354,7 +1363,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "snd-016",
@@ -1364,8 +1374,8 @@
           "price": 5.85,
           "calories": 920,
           "badges": [],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/17.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A tuna salad sandwich on dark rye cut straight across, both halves leaning together in a plain white takeout box, the tuna scooped thick with flecks of celery and pressing out past the crusts. Dim warm shop light with the flash off, slightly underexposed and noisy. The box sitting directly on a scratched laminate counter with crumbs and a smear beside it, a napkin dispenser and another order waiting behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1421,7 +1431,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "snd-017",
@@ -1432,8 +1443,8 @@
           "badges": [
             "Contains Food"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/18.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A ham and American sandwich on white bread cut on the diagonal, the two triangles resting in a brown paper takeout bag folded open flat, folded pink ham piled several slices deep with one orange cheese slice and a stripe of mustard. Bright unflattering daylight through a window on one side, blown highlights on the near fold of the bag. Framed crooked with the bag cut off at the top edge, crumbs and a stack of lids on the laminate.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1495,7 +1506,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ],
       "daypart": {
@@ -1517,8 +1529,8 @@
           "badges": [
             "#1 Most Liked"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/19.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A plain unmarked white paper cup filled to the brim with dark coffee, faint steam over the surface, a matching lid and a cardboard sleeve lying beside it on a scratched laminate counter. Frontal on-camera flash with no light source visible in frame, a blown-out hotspot on the rim and a hard shadow thrown behind the cup. Shot from too close and off centre, a coffee urn and a stack of lids behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1607,7 +1619,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "snd-019",
@@ -1706,8 +1719,8 @@
           "price": 1.55,
           "calories": 620,
           "badges": [],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/20.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A plain unmarked aluminium can straight out of the cooler, beaded with condensation and leaving a wet ring on the counter, next to a clear plastic cup packed with ice and a flat lid resting on top. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. Framed slightly crooked with the cup cut off at the right edge, a glass-door cooler and a napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1763,7 +1776,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         },
         {
           "id": "snd-021",
@@ -1772,8 +1786,8 @@
           "price": 2.25,
           "calories": 680,
           "badges": [],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/21.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A short squat clear plastic bottle of orange juice with a plain white cap and no label, cold from the case with condensation on its shoulders, standing beside a small white paper cup half poured. Dim warm shop light with the flash off, slightly underexposed and noisy. The bottle sitting directly on a scratched laminate counter with crumbs, a stack of lids and another order waiting behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1829,7 +1843,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     },
@@ -1849,8 +1864,8 @@
             "Limit 1 Per Household",
             "Regionally Legal"
           ],
-          "photo": null,
-          "imagePrompt": null,
+          "photo": "items/22.webp",
+          "imagePrompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A stiff blank card with a plain silver scratch-off panel and no printing anywhere on it, lying face up on a square of wax paper, one fat glazed donut on the same sheet beside it. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the silver panel and a hard shadow thrown behind the card. Shot from too close and not centred, a napkin dispenser and a stack of lids on the scratched laminate counter.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands.",
           "groups": [
             {
               "id": "g1",
@@ -1906,7 +1921,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "photoStyle": "amateur"
         }
       ]
     }

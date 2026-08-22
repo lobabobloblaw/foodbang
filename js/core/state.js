@@ -99,6 +99,10 @@ window.FB = window.FB || {};
         deducted: 0,
         scrip: 0,
         accessAt: null,
+        /* Photographs the courier has taken and kept. An ARRAY, so fillDefaults never
+           merges into it — it is the player's collection and only ever grows here. */
+        gallery: [],
+        shots: 0,
         standing: {},
         platform: 0,      /* what the platform makes of the company you keep */
         log: [],          /* finished runs, newest first, capped in migrate() */

@@ -1,103 +1,215 @@
 {
-  "slug": "sunrisedonut",
-  "name": "Sunrise Donut & Deli",
-  "local": true,
-  "model": "bytedance/seedream-4.5",
-  "size": "2K",
-  "generated": "2026-08-20",
-  "images": [
-    {
-      "file": "logo.webp",
-      "kind": "logo",
-      "aspect": "1:1",
-      "prompt": "Extreme close-up phone photograph of the flat printed face of a sun-bleached white coroplast plastic sign. The sign surface completely fills the square frame and bleeds off all four edges: no sky, no ground, no parking lot, no sign edges, no stakes, no border, no frame, no margin, no drop shadow, nothing but the printed plastic surface from corner to corner. Printed on it: a simple cartoon sun with orange triangular rays whose face is a purple-outlined donut with a hole in the middle, and beneath it hand-set block lettering with slightly uneven spacing. The only text anywhere in the image is exactly: Sunrise Donut & Deli. Visible vertical corrugated flute lines through the plastic, faded chalky ink, a scuff and a faint dirt smear across one corner. Flat overcast daylight, slightly crooked crop, unretouched, flat phone-camera look. No other text, no logos, no watermarks, no people, no hands.",
-      "predictionId": "15s7ff8ks1rmw0d046ctpm1pxr",
-      "raw": "build/raw/sunrisedonut/logo.jpg",
-      "note": "Regenerated once: first attempt (mepswf1xjsrmw0d046avfhrdd4) photographed the sign as an object with sky and parking lot around it, not full-bleed. Final raw centre-cropped to 88% to remove residual background slivers at the left and right edges."
-    },
-    {
-      "file": "hero.webp",
-      "kind": "hero",
-      "aspect": "16:9",
-      "prompt": "Amateur smartphone photo taken by a shop owner, wide 16:9. The interior of a small independent donut shop at 5am: a long glass display case half emptied, several bare metal trays showing through and a few donuts left on one tray, a stainless coffee urn, a metal napkin dispenser, a stack of plain unprinted white bakery boxes, a scuffed formica counter, worn checkerboard vinyl floor tile, an old chest cooler. Every surface is completely blank: no menu board, no posters, no printed packaging, no labels, no lettering anywhere in the room. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill. Slightly crooked horizon, framed a little off centre, mild sensor noise and JPEG compression, unretouched, flat phone-camera look, mixed white balance. Nobody there. No text, no signage, no writing, no numbers, no logos, no watermarks, no people, no hands.",
-      "predictionId": "mbppvn4mn9rmy0d046cvsbfesc",
-      "raw": "build/raw/sunrisedonut/hero.jpg",
-      "note": "Regenerated once: first attempt (8yr2yax2hxrmr0d046asv680z8) contained a garbled menu board and printed pink boxes."
-    },
-    {
-      "file": "items/01.webp",
-      "kind": "item",
-      "aspect": "1:1",
-      "itemId": "snd-001",
-      "itemName": "Glazed Donut",
-      "photoStyle": "amateur",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three fat glazed yeast donuts sitting on a sheet of white wax paper on a scratched laminate counter, the glaze thick and slightly cracked, one donut shiny where the glaze is still wet, a paper coffee cup and a napkin dispenser at the edge of the frame. Harsh direct on-camera flash, hot blown-out specular hotspot on the glaze, hard black shadow thrown behind the donuts. Shot from too close and slightly above, the subject not centred. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "kyq4e900cnrmt0d046b8qccc74",
-      "raw": "build/raw/sunrisedonut/item-01.jpg",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/02.webp",
-      "kind": "item",
-      "aspect": "1:1",
-      "itemId": "snd-002",
-      "itemName": "Apple Fritter",
-      "photoStyle": "amateur",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: one enormous craggy apple fritter lying flat and resting directly on a thin white paper plate, its weight pressing down on the plate and hanging over the rim on two sides, deep golden brown with visible apple chunks in the folds, thick uneven glaze pooled in the crevices. The plate sits on a scratched laminate counter. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked and shot from too close, the plate cut off at the right edge, a metal napkin dispenser at the edge of frame. Flat phone-camera look, unretouched, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "c3agb906f5rmw0d046d8q7sayw",
-      "raw": "build/raw/sunrisedonut/item-02.jpg",
-      "note": "Regenerated once: first attempt (6h9yseap6xrmy0d046b9414zb0) had the fritter levitating above the plate. Final raw centre-cropped to 90% to remove a beige Instagram-style photo frame the model added.",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/03.webp",
-      "kind": "item",
-      "aspect": "1:1",
-      "itemId": "snd-006",
-      "itemName": "Half Dozen, Assorted",
-      "photoStyle": "amateur",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an open cardboard donut box on a laminate counter holding six assorted donuts packed tight together, a glazed ring, a chocolate frosted with sprinkles, a maple bar, an old fashioned, a jelly filled dusted with powdered sugar and a pink frosted, seen from above at an angle. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the box. Cluttered background: a napkin dispenser, a stack of plastic lids and a coffee urn behind the box. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "7nebn3xd01rmy0d046b8fyaw0g",
-      "raw": "build/raw/sunrisedonut/item-03.jpg",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/04.webp",
-      "kind": "item",
-      "aspect": "1:1",
-      "itemId": "snd-009",
-      "itemName": "Breakfast Burrito",
-      "photoStyle": "amateur",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a thick breakfast burrito in aluminium foil peeled halfway back, showing scrambled egg, diced potato, melted orange cheese and sausage packed in a large flour tortilla, sitting in a paper boat lined with wax paper on a laminate counter. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Mild motion blur and soft focus, visible JPEG compression artefacts. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "1sb9m2scwnrmw0d046bspysws8",
-      "raw": "build/raw/sunrisedonut/item-04.jpg",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/05.webp",
-      "kind": "item",
-      "aspect": "1:1",
-      "itemId": "snd-014",
-      "itemName": "Italian Cold Cut",
-      "photoStyle": "amateur",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a large Italian cold cut sandwich on a seeded roll cut into two halves, sitting in a white styrofoam clamshell container, layers of ham, salami and provolone spilling out with shredded lettuce, tomato and onion. Harsh direct on-camera flash fired straight at it, hot blown-out white hotspot across the roll, hard black shadow thrown behind the clamshell, flat fluorescent green-yellow cast in the corners. Framed crooked and shot from too close, the clamshell cut off at the left edge, sitting directly on a scratched laminate counter with crumbs and a smear of oil beside it. Flat unretouched phone-camera look, harsh, mixed white balance, sensor noise and JPEG compression. Square crop, the photo fills the whole frame with no border. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "b9wan649phrmw0d046d8z84qvg",
-      "raw": "build/raw/sunrisedonut/item-05.jpg",
-      "note": "Regenerated once: first attempt (75qqb2m739rmr0d046br0tb4mc) read as polished advertising photography; reshot with on-camera flash and a crooked crop.",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/06.webp",
-      "kind": "item",
-      "aspect": "1:1",
-      "itemId": "snd-019",
-      "itemName": "Iced Coffee",
-      "photoStyle": "amateur",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. The photograph fills the entire square frame edge to edge with no black border, no white border, no vignette, no frame and no rounded corners. Subject: a tall clear plastic cup of iced coffee with a domed lid and a wide straw, filled to the top with ice and dark coffee, a swirl of cream half mixed through the middle, heavy condensation running down the outside, sitting on a sheet of wax paper on a scratched laminate counter beside a metal napkin dispenser. Harsh direct on-camera flash, hot blown-out hotspot on the wet plastic, hard black shadow thrown behind the cup. Framed slightly crooked with the cup cut off at the top edge. Flat phone-camera look, unretouched, mixed white balance, noisy. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "9n66fq0xrdrmr0d046dv5n7fng",
-      "raw": "build/raw/sunrisedonut/item-06.jpg",
-      "note": "Regenerated once: first attempt (8v6knj70fnrmy0d046bsj7ba58) had a heavy black photo border. Final raw centre-cropped to 86% to remove a white Instagram-style frame.",
-      "styleObserved": "amateur"
-    }
-  ]
+ "slug": "sunrisedonut",
+ "name": "Sunrise Donut & Deli",
+ "local": true,
+ "model": "bytedance/seedream-4.5",
+ "size": "2K",
+ "generated": "2026-08-20",
+ "images": [
+  {
+   "file": "logo.webp",
+   "kind": "logo",
+   "aspect": "1:1",
+   "prompt": "Extreme close-up phone photograph of the flat printed face of a sun-bleached white coroplast plastic sign. The sign surface completely fills the square frame and bleeds off all four edges: no sky, no ground, no parking lot, no sign edges, no stakes, no border, no frame, no margin, no drop shadow, nothing but the printed plastic surface from corner to corner. Printed on it: a simple cartoon sun with orange triangular rays whose face is a purple-outlined donut with a hole in the middle, and beneath it hand-set block lettering with slightly uneven spacing. The only text anywhere in the image is exactly: Sunrise Donut & Deli. Visible vertical corrugated flute lines through the plastic, faded chalky ink, a scuff and a faint dirt smear across one corner. Flat overcast daylight, slightly crooked crop, unretouched, flat phone-camera look. No other text, no logos, no watermarks, no people, no hands.",
+   "predictionId": "15s7ff8ks1rmw0d046ctpm1pxr",
+   "raw": "build/raw/sunrisedonut/logo.jpg",
+   "note": "Regenerated once: first attempt (mepswf1xjsrmw0d046avfhrdd4) photographed the sign as an object with sky and parking lot around it, not full-bleed. Final raw centre-cropped to 88% to remove residual background slivers at the left and right edges."
+  },
+  {
+   "file": "hero.webp",
+   "kind": "hero",
+   "aspect": "16:9",
+   "prompt": "Amateur smartphone photo taken by a shop owner, wide 16:9. The interior of a small independent donut shop at 5am: a long glass display case half emptied, several bare metal trays showing through and a few donuts left on one tray, a stainless coffee urn, a metal napkin dispenser, a stack of plain unprinted white bakery boxes, a scuffed formica counter, worn checkerboard vinyl floor tile, an old chest cooler. Every surface is completely blank: no menu board, no posters, no printed packaging, no labels, no lettering anywhere in the room. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill. Slightly crooked horizon, framed a little off centre, mild sensor noise and JPEG compression, unretouched, flat phone-camera look, mixed white balance. Nobody there. No text, no signage, no writing, no numbers, no logos, no watermarks, no people, no hands.",
+   "predictionId": "mbppvn4mn9rmy0d046cvsbfesc",
+   "raw": "build/raw/sunrisedonut/hero.jpg",
+   "note": "Regenerated once: first attempt (8yr2yax2hxrmr0d046asv680z8) contained a garbled menu board and printed pink boxes."
+  },
+  {
+   "file": "items/01.webp",
+   "kind": "item",
+   "aspect": "1:1",
+   "itemId": "snd-001",
+   "itemName": "Glazed Donut",
+   "photoStyle": "amateur",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three fat glazed yeast donuts sitting on a sheet of white wax paper on a scratched laminate counter, the glaze thick and slightly cracked, one donut shiny where the glaze is still wet, a paper coffee cup and a napkin dispenser at the edge of the frame. Harsh direct on-camera flash, hot blown-out specular hotspot on the glaze, hard black shadow thrown behind the donuts. Shot from too close and slightly above, the subject not centred. Flat phone-camera look, unretouched, mixed white balance, visible sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "kyq4e900cnrmt0d046b8qccc74",
+   "raw": "build/raw/sunrisedonut/item-01.jpg",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/02.webp",
+   "kind": "item",
+   "aspect": "1:1",
+   "itemId": "snd-002",
+   "itemName": "Apple Fritter",
+   "photoStyle": "amateur",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: one enormous craggy apple fritter lying flat and resting directly on a thin white paper plate, its weight pressing down on the plate and hanging over the rim on two sides, deep golden brown with visible apple chunks in the folds, thick uneven glaze pooled in the crevices. The plate sits on a scratched laminate counter. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked and shot from too close, the plate cut off at the right edge, a metal napkin dispenser at the edge of frame. Flat phone-camera look, unretouched, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "c3agb906f5rmw0d046d8q7sayw",
+   "raw": "build/raw/sunrisedonut/item-02.jpg",
+   "note": "Regenerated once: first attempt (6h9yseap6xrmy0d046b9414zb0) had the fritter levitating above the plate. Final raw centre-cropped to 90% to remove a beige Instagram-style photo frame the model added.",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/03.webp",
+   "kind": "item",
+   "aspect": "1:1",
+   "itemId": "snd-006",
+   "itemName": "Half Dozen, Assorted",
+   "photoStyle": "amateur",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an open cardboard donut box on a laminate counter holding six assorted donuts packed tight together, a glazed ring, a chocolate frosted with sprinkles, a maple bar, an old fashioned, a jelly filled dusted with powdered sugar and a pink frosted, seen from above at an angle. Bright unflattering daylight through a window on one side, blown highlights on the near edge of the box. Cluttered background: a napkin dispenser, a stack of plastic lids and a coffee urn behind the box. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "7nebn3xd01rmy0d046b8fyaw0g",
+   "raw": "build/raw/sunrisedonut/item-03.jpg",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/04.webp",
+   "kind": "item",
+   "aspect": "1:1",
+   "itemId": "snd-009",
+   "itemName": "Breakfast Burrito",
+   "photoStyle": "amateur",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a thick breakfast burrito in aluminium foil peeled halfway back, showing scrambled egg, diced potato, melted orange cheese and sausage packed in a large flour tortilla, sitting in a paper boat lined with wax paper on a laminate counter. Dim warm restaurant light with the flash off, slightly underexposed and noisy. Mild motion blur and soft focus, visible JPEG compression artefacts. Flat phone-camera look, unretouched, mixed white balance. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "1sb9m2scwnrmw0d046bspysws8",
+   "raw": "build/raw/sunrisedonut/item-04.jpg",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/05.webp",
+   "kind": "item",
+   "aspect": "1:1",
+   "itemId": "snd-014",
+   "itemName": "Italian Cold Cut",
+   "photoStyle": "amateur",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a large Italian cold cut sandwich on a seeded roll cut into two halves, sitting in a white styrofoam clamshell container, layers of ham, salami and provolone spilling out with shredded lettuce, tomato and onion. Harsh direct on-camera flash fired straight at it, hot blown-out white hotspot across the roll, hard black shadow thrown behind the clamshell, flat fluorescent green-yellow cast in the corners. Framed crooked and shot from too close, the clamshell cut off at the left edge, sitting directly on a scratched laminate counter with crumbs and a smear of oil beside it. Flat unretouched phone-camera look, harsh, mixed white balance, sensor noise and JPEG compression. Square crop, the photo fills the whole frame with no border. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "b9wan649phrmw0d046d8z84qvg",
+   "raw": "build/raw/sunrisedonut/item-05.jpg",
+   "note": "Regenerated once: first attempt (75qqb2m739rmr0d046br0tb4mc) read as polished advertising photography; reshot with on-camera flash and a crooked crop.",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/06.webp",
+   "kind": "item",
+   "aspect": "1:1",
+   "itemId": "snd-019",
+   "itemName": "Iced Coffee",
+   "photoStyle": "amateur",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. The photograph fills the entire square frame edge to edge with no black border, no white border, no vignette, no frame and no rounded corners. Subject: a tall clear plastic cup of iced coffee with a domed lid and a wide straw, filled to the top with ice and dark coffee, a swirl of cream half mixed through the middle, heavy condensation running down the outside, sitting on a sheet of wax paper on a scratched laminate counter beside a metal napkin dispenser. Harsh direct on-camera flash, hot blown-out hotspot on the wet plastic, hard black shadow thrown behind the cup. Framed slightly crooked with the cup cut off at the top edge. Flat phone-camera look, unretouched, mixed white balance, noisy. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "9n66fq0xrdrmr0d046dv5n7fng",
+   "raw": "build/raw/sunrisedonut/item-06.jpg",
+   "note": "Regenerated once: first attempt (8v6knj70fnrmy0d046bsj7ba58) had a heavy black photo border. Final raw centre-cropped to 86% to remove a white Instagram-style frame.",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/07.webp",
+   "item": "snd-003",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Three ridged old fashioned cake donuts, pale gold with cracked crowns and thin glaze caught in the grooves, sitting in a brown paper takeout bag folded open on its side so two have slid out onto the counter. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. Shot from too close and slightly above, the bag not centred, a stainless prep counter and a stack of plastic lids behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/08.webp",
+   "item": "snd-004",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Two long raised maple bars in a plain white takeout box with the lid folded back, tan maple icing poured thick and running right out to both squared ends, one bar still glossy where the icing pooled. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the icing and a hard shadow thrown behind the box. Framed crooked with the box cut off at the right edge, a napkin dispenser and another order waiting beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/09.webp",
+   "item": "snd-005",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Two raspberry jelly donuts on a white paper plate, heavily dusted with powdered sugar, one lying on its side with red filling swelling out of the injection hole and running down onto the plate. Bright unflattering daylight through a window on one side, blown highlights on the near rim of the plate. Mild motion blur and soft focus with visible JPEG artefacts, sugar drifted across a scratched laminate counter, a stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/10.webp",
+   "item": "snd-007",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Twelve assorted donuts packed tight in a flat cardboard box seen from almost overhead, glazed rings, two ridged old fashioneds, a maple bar, sugared jelly ones and a chocolate frosted, the lid folded back flat against the counter. Dim warm shop light with the flash off, slightly underexposed and noisy. Cluttered background: a stainless prep counter, a coffee urn, a stack of lids and an empty box waiting to be filled.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/11.webp",
+   "item": "snd-008",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Twenty donut holes filling a clear plastic deli container right up to its snapped-on lid, glazed ones and cinnamon-sugar ones tumbled together, loose sugar settled in the bottom and fogging the plastic. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the lid and a hard shadow thrown behind the container. The container sitting directly on a scratched laminate counter with crumbs, a napkin dispenser beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/12.webp",
+   "item": "snd-010",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A bacon, egg and cheese on a kaiser roll propped open in a white styrofoam clamshell, four strips of bacon hanging out past the roll, folded griddled egg and orange cheese melted down over the edge, the top of the roll leaning on the lid. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. Framed slightly crooked with the clamshell cut off at the bottom edge, a stack of lids and a coffee urn behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/13.webp",
+   "item": "snd-011",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A sausage, egg and cheese on a kaiser roll half unwrapped from a sheet of white wax paper, the paper folded back around the base, a browned patty and two split links pushing out under folded egg and melted cheese. Bright unflattering daylight from a window on one side, blown highlights on the near edge of the paper. Shot from too close and not centred, a stainless prep counter with crumbs and another wrapped order behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/14.webp",
+   "item": "snd-012",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A heavy foil-wrapped chorizo burrito lying in an aluminium foil tray with its cardboard lid pushed aside, the foil peeled back at one end to show orange-red chorizo, scrambled egg, diced potato and melted cheese, a small lidded cup of sour cream wedged in beside it. Dim warm restaurant light with the flash off, underexposed and noisy. Mild motion blur and visible JPEG artefacts, a napkin dispenser and a scratched prep counter behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/15.webp",
+   "item": "snd-013",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: Three golden fried hash brown patties overlapping in a red plastic diner basket lined with checkered paper, edges ragged and crisp, salt visible on top, grease darkening the paper under them. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the nearest patty and a hard shadow thrown behind the basket. Framed crooked with the basket cut off at the left edge, a fryer basket and a napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/16.webp",
+   "item": "snd-015",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A turkey and Swiss sandwich cut in two and set cut-side up in a paper boat lined with wax paper, thick folded slices of roast turkey stacked high under Swiss, lettuce and tomato tucked in beneath the meat. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. Shot from too close and slightly above, the boat not centred on a stainless prep counter beside a deli slicer and a stack of lids.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/17.webp",
+   "item": "snd-016",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A tuna salad sandwich on dark rye cut straight across, both halves leaning together in a plain white takeout box, the tuna scooped thick with flecks of celery and pressing out past the crusts. Dim warm shop light with the flash off, slightly underexposed and noisy. The box sitting directly on a scratched laminate counter with crumbs and a smear beside it, a napkin dispenser and another order waiting behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/18.webp",
+   "item": "snd-017",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A ham and American sandwich on white bread cut on the diagonal, the two triangles resting in a brown paper takeout bag folded open flat, folded pink ham piled several slices deep with one orange cheese slice and a stripe of mustard. Bright unflattering daylight through a window on one side, blown highlights on the near fold of the bag. Framed crooked with the bag cut off at the top edge, crumbs and a stack of lids on the laminate.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/19.webp",
+   "item": "snd-018",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A plain unmarked white paper cup filled to the brim with dark coffee, faint steam over the surface, a matching lid and a cardboard sleeve lying beside it on a scratched laminate counter. Frontal on-camera flash with no light source visible in frame, a blown-out hotspot on the rim and a hard shadow thrown behind the cup. Shot from too close and off centre, a coffee urn and a stack of lids behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/20.webp",
+   "item": "snd-020",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A plain unmarked aluminium can straight out of the cooler, beaded with condensation and leaving a wet ring on the counter, next to a clear plastic cup packed with ice and a flat lid resting on top. Flat overhead fluorescent tube light with a green-yellow cast and no fill, mixed white balance. Framed slightly crooked with the cup cut off at the right edge, a glass-door cooler and a napkin dispenser behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/21.webp",
+   "item": "snd-021",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A short squat clear plastic bottle of orange juice with a plain white cap and no label, cold from the case with condensation on its shoulders, standing beside a small white paper cup half poured. Dim warm shop light with the flash off, slightly underexposed and noisy. The bottle sitting directly on a scratched laminate counter with crumbs, a stack of lids and another order waiting behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/22.webp",
+   "item": "snd-022",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: A stiff blank card with a plain silver scratch-off panel and no printing anywhere on it, lying face up on a square of wax paper, one fat glazed donut on the same sheet beside it. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the silver panel and a hard shadow thrown behind the card. Shot from too close and not centred, a napkin dispenser and a stack of lids on the scratched laminate counter.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  }
+ ]
 }

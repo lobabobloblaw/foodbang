@@ -146,8 +146,9 @@ window.FB = window.FB || {};
 
   /* Three doorsteps, picked by order id, so one order always shows the same
      photograph and the next order does not show that one. */
-  var PROOFS = ['assets/app/proof-delivery.webp', 'assets/app/proof-delivery-2.webp', 'assets/app/proof-delivery-3.webp'];
-  function proofPhoto(id) { return PROOFS[FB.hash(String(id) + 'proof') % PROOFS.length]; }
+  /* The choice moved to js/core/proof.js so the rule and the table live together:
+     the photograph now answers to the drop-off setting and the hour it was taken,
+     which this screen had in `o` all along and never asked. */
 
   /* The three fragments a tick actually changes. body() builds them too, so there
      is one source for each piece of markup and the tick can patch in place instead
@@ -328,7 +329,7 @@ window.FB = window.FB || {};
             'Collection is recorded at the moment the shelf is emptied. No photograph is taken, ' +
             'and none is available on request.</p>'
           : FB.C.sectionHead('Proof of delivery', 'Photographed by ' + g.name + '.') +
-            '<div style="padding:0 16px 8px"><img src="' + proofPhoto(o.id) + '" alt="Proof of delivery photo" ' +
+            '<div style="padding:0 16px 8px"><img src="' + FB.proof.pick(o) + '" alt="Proof of delivery photo" ' +
             'style="width:100%;border-radius:14px;background:var(--surface-2)" onerror="this.remove()"></div>' +
             '<p style="font:var(--t-cap);color:var(--ink-3);padding:0 16px 14px;line-height:1.45">' +
             'Photograph taken at the delivery address, or at an address near it, or at an address.</p>') +

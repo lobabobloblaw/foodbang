@@ -397,6 +397,21 @@
 .disp-turn { display: block; padding: 0 var(--pad) 4px; font: var(--t-sub); color: var(--ink-2); font-style: italic; }
 .mc-note { display: block; font: var(--t-cap); color: var(--fb); margin-top: 2px; }
 
+/* the delivery photograph, and the category the platform filed it under */
+.shot { display: block; padding: 10px var(--pad) 4px; }
+.shot-hd { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 8px; }
+.shot-hd i { font: var(--t-micro); letter-spacing: .14em; color: var(--ink-3); font-style: normal; }
+.shot-hd b { font: var(--t-micro); letter-spacing: .16em; }
+.shot img { width: 100%; border-radius: 14px; background: var(--surface-2); display: block; }
+.shot-note { display: block; font: var(--t-cap); color: var(--ink-3); line-height: 1.45; padding: 8px 0 0; }
+.shot-take { border: 1px dashed var(--line); color: var(--ink-2); gap: 8px; }
+/* The tiers are loot tiers and nothing in the app says so. Only the colour escalates. */
+.shot-routine   { color: var(--ink-3); }
+.shot-noted     { color: var(--ink-2); }
+.shot-flagged   { color: var(--fb); }
+.shot-escalated { color: var(--gold, #d9a441); }
+.shot-unfiled   { color: #c65f4a; }
+
 .mcard {
   display: flex; gap: 12px; align-items: flex-start;
   padding: 13px var(--pad); border-bottom: 1px solid var(--line);

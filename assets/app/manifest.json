@@ -1,159 +1,1159 @@
 {
-  "scope": "app",
-  "app": "FoodBang",
-  "model": "bytedance/seedream-4.5",
-  "generated": "2026-08-20",
-  "images": [
-    {
-      "file": "slinger-1.webp",
-      "aspect": "1:1",
-      "predictionId": "sypprfc3zdrmy0d046190v48pw",
-      "prompt": "Portrait of a food delivery courier for a profile bubble: a tired man in his 20s wearing a plain red thermal-bag harness over a t-shirt, photographed sitting in a car at night, dashboard glow on his face, phone light from below, caught mid-blink, faintly resigned. Candid smartphone snapshot realism, shallow depth of field, centered head and shoulders. No text, no logos, no packaging labels, no watermarks."
-    },
-    {
-      "file": "slinger-2.webp",
-      "aspect": "1:1",
-      "predictionId": "dhsv5rdjtxrmt0d0461a5y760c",
-      "prompt": "Portrait of a food delivery courier for a profile bubble: a woman in her 40s in a plain red insulated jacket standing in an apartment stairwell under a bare fluorescent bulb, holding a stack of three plain thermal delivery bags, blank patient expression. Candid smartphone snapshot realism, shallow depth of field, centered head and shoulders. No text, no logos, no packaging labels, no watermarks."
-    },
-    {
-      "file": "slinger-3.webp",
-      "aspect": "1:1",
-      "predictionId": "0vrtcj28w1rmw0d04639fbjk04",
-      "prompt": "Portrait of a food delivery courier for a profile bubble: a man in his 60s in a plain red cap and plain red windbreaker sitting on an e-bike at dusk in an empty strip-mall parking lot, squinting down at a phone, plain grey thermal bag strapped to the handlebars. Tight head and shoulders framing, the courier fills the frame, the background is heavily blurred into soft bokeh with no signage or storefronts visible. Candid smartphone snapshot realism, shallow depth of field, centered. No text, no signs, no lettering, no logos, no packaging labels, no watermarks.",
-      "regenerated": "v1 contained a legible storefront wordmark in the background"
-    },
-    {
-      "file": "user-avatar.webp",
-      "aspect": "1:1",
-      "predictionId": "r0yhk4amzdrmt0d0461rjbt0fr",
-      "prompt": "A profile photo of an ordinary suburban American in their 30s, taken on a phone in poor lighting in a kitchen, slightly off-centre framing, caught mid-sentence, a stack of plain paper delivery bags visible on the counter behind them. Candid low-quality snapshot realism, mixed overhead and window light, head and shoulders. No text, no logos, no packaging labels, no watermarks."
-    },
-    {
-      "file": "proof-delivery.webp",
-      "aspect": "1:1",
-      "predictionId": "akw5n6bywnrmt0d0461t4ay7ew",
-      "prompt": "Proof of delivery photo taken by a courier: a large plain red paper delivery bag left on a suburban concrete doorstep at night, harsh on-camera flash blowing out the front door, the bag has tipped over and one paper cup has rolled onto the doormat, a small puddle spreading across the concrete. Flat phone-flash snapshot, slightly crooked framing, deep black night behind. No text, no logos, no packaging labels, no watermarks, no hands, no people."
-    },
-    {
-      "file": "bangplus-hero.webp",
-      "aspect": "16:9",
-      "predictionId": "dek699dpw9rmt0d0461vg3qhm0",
-      "prompt": "Premium subscription promo art: an obsidian-black credit-card-shaped slab floating in a red-lit void, its blank surface machined with fine concentric rings, a faint red volumetric glow beneath it, heavy studio product photography, luxury fintech advertising. The slab surface is completely blank and unmarked. No text, no logos, no packaging labels, no watermarks, no hands, no people."
-    },
-    {
-      "file": "promo-1.webp",
-      "aspect": "16:9",
-      "predictionId": "97s74grg3hrmy0d0462b8cv6h0",
-      "prompt": "Home-feed promo banner: a mountain of golden fried potato batons avalanching out of a plain red paper carton and spilling across a seamless red studio backdrop, the quantity wildly beyond a single serving, batons tumbling and piling in drifts, glossy crisp surfaces catching hard commercial studio light, salt crystals visible, faint steam. No text, no logos, no packaging labels, no watermarks, no hands, no people."
-    },
-    {
-      "file": "promo-2.webp",
-      "aspect": "16:9",
-      "predictionId": "9p39nckmp1rmy0d0463acheaz4",
-      "prompt": "Home-feed promo banner: a colossal soft-serve ice cream tower, many stacked coils tall, leaning and buckling sideways as it melts, standing on a glossy seamless cyan studio backdrop, thick creamy drips frozen mid-fall in the air, pale melt pooling and spreading wide across the floor, the structure straining under its own weight. High-key saturated colour, hard commercial studio light, appetising and slightly alarming. Seamless empty backdrop, no lamps or equipment visible in frame. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "regenerated": "v1 showed studio light fixtures inside the frame and a single cone rather than a tower"
-    },
-    {
-      "file": "promo-3.webp",
-      "aspect": "16:9",
-      "predictionId": "yv8vevdxssrmr0d0462bq6az7r",
-      "prompt": "Home-feed promo banner: a perfectly overhead flat-lay of forty identical small plain paper sauce cups arranged in a flawless rectangular grid on a matte red surface, each cup filled with a slightly different shade of sauce ranging from pale cream to deep brown-red, obsessive symmetry, soft even diffused light, minimal shadows. No text, no logos, no packaging labels, no watermarks, no hands, no people."
-    },
-    {
-      "file": "bodymax-hero.webp",
-      "aspect": "16:9",
-      "predictionId": "2t31cjgyhxrmr0d0462tj1dcq0",
-      "prompt": "Health-telemetry header art: a translucent anatomical human torso rendered as a glowing medical scan in red and amber, backlit against a black clinical background, faint grid lines and small calibration tick marks around it, cold scientific data-visualisation aesthetic, volumetric glow, ribcage and organ silhouettes faintly visible through the translucent shell. No text, no numerals, no logos, no packaging labels, no watermarks, no hands, no people."
-    },
-    {
-      "file": "empty-state.webp",
-      "aspect": "1:1",
-      "predictionId": "tb74fnj839rmt0d0462rark050",
-      "prompt": "A single empty plain red paper delivery bag standing upright and slightly crumpled in the exact centre of a vast seamless bone-white studio void, one soft shadow pooling beneath it, minimalist, melancholy, generous negative space all around, soft even light. No text, no logos, no packaging labels, no watermarks, no hands, no people."
-    },
-    {
-      "file": "cat/fast-food.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a tall red paper carton overflowing with golden shoestring french fries, coarse salt crystals catching the light, several fries leaning over the rim. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/burgers.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a double cheeseburger, two patties with melted cheese sagging over the edges, a glossy sesame bun compressed under its own weight, juices beading at the base. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/mexican.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: three overstuffed street tacos standing in a row, chopped white onion and cilantro piled high, red salsa running down the sides. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/chicken.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a stack of craggy deep-fried chicken pieces, thick shattered golden crust, steam rising off the top piece. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/pizza.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a single wide slice of pepperoni pizza tilted upright, molten cheese stretching and sagging from the tip, orange grease pooling in the cupped pepperoni, blistered charred crust edge. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/coffee.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a plain white paper coffee cup with a black domed lid, wisps of steam rising, condensation beading on the rim, a scatter of roasted coffee beans at its base. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/asian.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a white folded paper takeout carton packed with glossy stir-fried noodles, a tangle of noodles lifted on wooden chopsticks above it, scallion and sesame. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/sandwiches.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a long submarine sandwich cut on the diagonal and stacked, layered cold cuts, lettuce and tomato spilling from the split roll. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/grocery.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a red plastic shopping basket packed with groceries — a bunch of yellow bananas, red apples, a carton of eggs, a bunch of carrots standing upright. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/drinks.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a tall clear plastic cup of iced cola with a domed lid and a red straw, heavy condensation beading down the side, ice cubes visible through the cup. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/sweets.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a glazed ring doughnut with a thick cracked white sugar glaze and rainbow sprinkles, a second doughnut blurred behind it. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/italian.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a white ceramic bowl of spaghetti twirled into a tall nest, thick red tomato sauce, grated parmesan falling through the light, a basil leaf on top. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/casual-dining.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a plated sit-down dinner on a white ceramic plate — a thick seared steak sliced open, a quenelle of mashed potato, a spoonful of dark glossy gravy. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "cat/healthy.webp",
-      "aspect": "1:1",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a clear glass bowl of chopped salad — grilled chicken strips, fanned avocado slices, cherry tomato halves, glossy dressing catching the light. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
-    },
-    {
-      "file": "proof-delivery-2.webp",
-      "aspect": "1:1",
-      "prompt": "Amateur smartphone photo taken by a food delivery courier as proof of delivery, uploaded to a delivery app. Subject: a bright red insulated thermal delivery bag left standing on a concrete apartment walkway beside a closed door, one paper takeout bag slumped against it, a drinks tray with two lidded cups set on the ground. Printed large on the side of the red thermal bag is a simple flat white pictogram of a shopping bag with a separate semicircular handle floating just above it, and nothing else. Night, harsh direct on-camera flash, hot specular hotspot on the bag, hard black shadow thrown behind it, slightly crooked framing, motion blur at the edges. Square crop. No text, no letters, no words, no numbers, no other logos, no watermarks, no people, no hands."
-    },
-    {
-      "file": "proof-delivery-3.webp",
-      "aspect": "1:1",
-      "prompt": "Amateur smartphone photo taken by a food delivery courier as proof of delivery, uploaded to a delivery app. Subject: a brown paper takeout bag placed on a suburban welcome mat in front of a screen door at dusk, the bag's handles torn off and lying beside it, a single french fry on the mat. Dim porch light with the flash firing, mixed white balance, greenish cast, the courier's own shadow falling across the frame, slightly tilted horizon. Square crop. No text, no letters, no words, no numbers, no logos, no watermarks, no people, no hands."
-    }
+ "scope": "app",
+ "app": "FoodBang",
+ "model": "bytedance/seedream-4.5",
+ "generated": "2026-08-20",
+ "images": [
+  {
+   "file": "slinger-1.webp",
+   "aspect": "1:1",
+   "predictionId": "sypprfc3zdrmy0d046190v48pw",
+   "prompt": "Portrait of a food delivery courier for a profile bubble: a tired man in his 20s wearing a plain red thermal-bag harness over a t-shirt, photographed sitting in a car at night, dashboard glow on his face, phone light from below, caught mid-blink, faintly resigned. Candid smartphone snapshot realism, shallow depth of field, centered head and shoulders. No text, no logos, no packaging labels, no watermarks."
+  },
+  {
+   "file": "slinger-2.webp",
+   "aspect": "1:1",
+   "predictionId": "dhsv5rdjtxrmt0d0461a5y760c",
+   "prompt": "Portrait of a food delivery courier for a profile bubble: a woman in her 40s in a plain red insulated jacket standing in an apartment stairwell under a bare fluorescent bulb, holding a stack of three plain thermal delivery bags, blank patient expression. Candid smartphone snapshot realism, shallow depth of field, centered head and shoulders. No text, no logos, no packaging labels, no watermarks."
+  },
+  {
+   "file": "slinger-3.webp",
+   "aspect": "1:1",
+   "predictionId": "0vrtcj28w1rmw0d04639fbjk04",
+   "prompt": "Portrait of a food delivery courier for a profile bubble: a man in his 60s in a plain red cap and plain red windbreaker sitting on an e-bike at dusk in an empty strip-mall parking lot, squinting down at a phone, plain grey thermal bag strapped to the handlebars. Tight head and shoulders framing, the courier fills the frame, the background is heavily blurred into soft bokeh with no signage or storefronts visible. Candid smartphone snapshot realism, shallow depth of field, centered. No text, no signs, no lettering, no logos, no packaging labels, no watermarks.",
+   "regenerated": "v1 contained a legible storefront wordmark in the background"
+  },
+  {
+   "file": "user-avatar.webp",
+   "aspect": "1:1",
+   "predictionId": "r0yhk4amzdrmt0d0461rjbt0fr",
+   "prompt": "A profile photo of an ordinary suburban American in their 30s, taken on a phone in poor lighting in a kitchen, slightly off-centre framing, caught mid-sentence, a stack of plain paper delivery bags visible on the counter behind them. Candid low-quality snapshot realism, mixed overhead and window light, head and shoulders. No text, no logos, no packaging labels, no watermarks."
+  },
+  {
+   "file": "proof-delivery.webp",
+   "aspect": "1:1",
+   "predictionId": "akw5n6bywnrmt0d0461t4ay7ew",
+   "prompt": "Proof of delivery photo taken by a courier: a large plain red paper delivery bag left on a suburban concrete doorstep at night, harsh on-camera flash blowing out the front door, the bag has tipped over and one paper cup has rolled onto the doormat, a small puddle spreading across the concrete. Flat phone-flash snapshot, slightly crooked framing, deep black night behind. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+  },
+  {
+   "file": "bangplus-hero.webp",
+   "aspect": "16:9",
+   "predictionId": "dek699dpw9rmt0d0461vg3qhm0",
+   "prompt": "Premium subscription promo art: an obsidian-black credit-card-shaped slab floating in a red-lit void, its blank surface machined with fine concentric rings, a faint red volumetric glow beneath it, heavy studio product photography, luxury fintech advertising. The slab surface is completely blank and unmarked. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+  },
+  {
+   "file": "promo-1.webp",
+   "aspect": "16:9",
+   "predictionId": "97s74grg3hrmy0d0462b8cv6h0",
+   "prompt": "Home-feed promo banner: a mountain of golden fried potato batons avalanching out of a plain red paper carton and spilling across a seamless red studio backdrop, the quantity wildly beyond a single serving, batons tumbling and piling in drifts, glossy crisp surfaces catching hard commercial studio light, salt crystals visible, faint steam. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+  },
+  {
+   "file": "promo-2.webp",
+   "aspect": "16:9",
+   "predictionId": "9p39nckmp1rmy0d0463acheaz4",
+   "prompt": "Home-feed promo banner: a colossal soft-serve ice cream tower, many stacked coils tall, leaning and buckling sideways as it melts, standing on a glossy seamless cyan studio backdrop, thick creamy drips frozen mid-fall in the air, pale melt pooling and spreading wide across the floor, the structure straining under its own weight. High-key saturated colour, hard commercial studio light, appetising and slightly alarming. Seamless empty backdrop, no lamps or equipment visible in frame. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "regenerated": "v1 showed studio light fixtures inside the frame and a single cone rather than a tower"
+  },
+  {
+   "file": "promo-3.webp",
+   "aspect": "16:9",
+   "predictionId": "yv8vevdxssrmr0d0462bq6az7r",
+   "prompt": "Home-feed promo banner: a perfectly overhead flat-lay of forty identical small plain paper sauce cups arranged in a flawless rectangular grid on a matte red surface, each cup filled with a slightly different shade of sauce ranging from pale cream to deep brown-red, obsessive symmetry, soft even diffused light, minimal shadows. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+  },
+  {
+   "file": "bodymax-hero.webp",
+   "aspect": "16:9",
+   "predictionId": "2t31cjgyhxrmr0d0462tj1dcq0",
+   "prompt": "Health-telemetry header art: a translucent anatomical human torso rendered as a glowing medical scan in red and amber, backlit against a black clinical background, faint grid lines and small calibration tick marks around it, cold scientific data-visualisation aesthetic, volumetric glow, ribcage and organ silhouettes faintly visible through the translucent shell. No text, no numerals, no logos, no packaging labels, no watermarks, no hands, no people."
+  },
+  {
+   "file": "empty-state.webp",
+   "aspect": "1:1",
+   "predictionId": "tb74fnj839rmt0d0462rark050",
+   "prompt": "A single empty plain red paper delivery bag standing upright and slightly crumpled in the exact centre of a vast seamless bone-white studio void, one soft shadow pooling beneath it, minimalist, melancholy, generous negative space all around, soft even light. No text, no logos, no packaging labels, no watermarks, no hands, no people."
+  },
+  {
+   "file": "cat/fast-food.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a tall red paper carton overflowing with golden shoestring french fries, coarse salt crystals catching the light, several fries leaning over the rim. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/burgers.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a double cheeseburger, two patties with melted cheese sagging over the edges, a glossy sesame bun compressed under its own weight, juices beading at the base. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/mexican.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: three overstuffed street tacos standing in a row, chopped white onion and cilantro piled high, red salsa running down the sides. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/chicken.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a stack of craggy deep-fried chicken pieces, thick shattered golden crust, steam rising off the top piece. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/pizza.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a single wide slice of pepperoni pizza tilted upright, molten cheese stretching and sagging from the tip, orange grease pooling in the cupped pepperoni, blistered charred crust edge. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/coffee.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a plain white paper coffee cup with a black domed lid, wisps of steam rising, condensation beading on the rim, a scatter of roasted coffee beans at its base. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/asian.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a white folded paper takeout carton packed with glossy stir-fried noodles, a tangle of noodles lifted on wooden chopsticks above it, scallion and sesame. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/sandwiches.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a long submarine sandwich cut on the diagonal and stacked, layered cold cuts, lettuce and tomato spilling from the split roll. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/grocery.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a red plastic shopping basket packed with groceries — a bunch of yellow bananas, red apples, a carton of eggs, a bunch of carrots standing upright. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/drinks.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a tall clear plastic cup of iced cola with a domed lid and a red straw, heavy condensation beading down the side, ice cubes visible through the cup. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/sweets.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a glazed ring doughnut with a thick cracked white sugar glaze and rainbow sprinkles, a second doughnut blurred behind it. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/italian.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a white ceramic bowl of spaghetti twirled into a tall nest, thick red tomato sauce, grated parmesan falling through the light, a basil leaf on top. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/casual-dining.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a plated sit-down dinner on a white ceramic plate — a thick seared steak sliced open, a quenelle of mashed potato, a spoonful of dark glossy gravy. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "cat/healthy.webp",
+   "aspect": "1:1",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app category tile. Subject: a clear glass bowl of chopped salad — grilled chicken strips, fanned avocado slices, cherry tomato halves, glossy dressing catching the light. Shot on a seamless charcoal-grey studio backdrop, soft large key light from the upper left, hard warm rim light along the top edge, deep shadow falloff into the backdrop. Camera: 100mm macro, shallow depth of field, very high micro-contrast, richly saturated. Square crop, subject centred and filling about 85 percent of the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people."
+  },
+  {
+   "file": "proof-delivery-2.webp",
+   "aspect": "1:1",
+   "prompt": "Amateur smartphone photo taken by a food delivery courier as proof of delivery, uploaded to a delivery app. Subject: a bright red insulated thermal delivery bag left standing on a concrete apartment walkway beside a closed door, one paper takeout bag slumped against it, a drinks tray with two lidded cups set on the ground. Printed large on the side of the red thermal bag is a simple flat white pictogram of a shopping bag with a separate semicircular handle floating just above it, and nothing else. Night, harsh direct on-camera flash, hot specular hotspot on the bag, hard black shadow thrown behind it, slightly crooked framing, motion blur at the edges. Square crop. No text, no letters, no words, no numbers, no other logos, no watermarks, no people, no hands."
+  },
+  {
+   "file": "proof-delivery-3.webp",
+   "aspect": "1:1",
+   "prompt": "Amateur smartphone photo taken by a food delivery courier as proof of delivery, uploaded to a delivery app. Subject: a brown paper takeout bag placed on a suburban welcome mat in front of a screen door at dusk, the bag's handles torn off and lying beside it, a single french fry on the mat. Dim porch light with the flash firing, mixed white balance, greenish cast, the courier's own shadow falling across the frame, slightly tilted horizon. Square crop. No text, no letters, no words, no numbers, no logos, no watermarks, no people, no hands."
+  },
+  {
+   "file": "proof/leave-night-01.webp",
+   "model": "gpt-image-2",
+   "drop": "leave",
+   "light": "night",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a suburban concrete doorstep, and beside it a stack of eleven identical unopened brown paper takeout bags stacked squarely, dust on the lowest one. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-night-02.webp",
+   "model": "gpt-image-2",
+   "drop": "leave",
+   "light": "night",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a white plastic carrier bag with stretched knotted handles sitting on a wooden dining chair that has been carried outside and set in the middle of a front lawn facing the closed front door, nothing else on the lawn. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. IMPORTANT: there is no insulated courier thermal bag anywhere in this image — couriers keep those. Only the customer's own takeout bag is left behind. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals.",
+   "supersedes": "first attempt left a courier thermal bag at the door; couriers keep those, so it was reshot with a paper or plastic takeout bag"
+  },
+  {
+   "file": "proof/leave-night-03.webp",
+   "model": "gpt-image-2",
+   "drop": "leave",
+   "light": "night",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag standing on a plain unmarked doormat, encircled by an unbroken ring of coarse white salt poured onto the concrete around it. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-night-04.webp",
+   "model": "flux-2-max",
+   "drop": "leave",
+   "light": "night",
+   "odd": false,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag slumped on a plain doormat by a screen door, one lidded drink tipped over beside it and a wet patch spreading on the concrete. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-night-05.webp",
+   "model": "gpt-image-2",
+   "drop": "leave",
+   "light": "night",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a red insulated thermal delivery bag placed on the roof of a parked sedan in a driveway, the car otherwise empty and locked, house dark behind. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-night-06.webp",
+   "model": "flux-2-max",
+   "drop": "leave",
+   "light": "night",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag crammed into an open roadside mailbox far too small for it, the mailbox door forced down and bent, the bag split at one corner. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-dusk-01.webp",
+   "model": "gpt-image-2",
+   "drop": "leave",
+   "light": "dusk",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a white plastic carrier bag with knotted handles on a concrete apartment walkway in front of a doorway that has been completely bricked up with fresh mortar, the door frame still in place around the brickwork. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. IMPORTANT: there is no insulated courier thermal bag anywhere in this image — couriers keep those. Only the customer's own takeout bag is left behind. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals.",
+   "supersedes": "first attempt left a courier thermal bag at the door; couriers keep those, so it was reshot with a paper or plastic takeout bag"
+  },
+  {
+   "file": "proof/leave-dusk-02.webp",
+   "model": "flux-2-max",
+   "drop": "leave",
+   "light": "dusk",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a completely plain blank coir doormat with no pattern or writing, about ten large pale moths settled over the bag and the mat, wings flat and still. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-dusk-03.webp",
+   "model": "gpt-image-2",
+   "drop": "leave",
+   "light": "dusk",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a porch, and already standing beside it an identical unopened brown paper takeout bag, neither of them touched, dead leaves gathered against both. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-dusk-04.webp",
+   "model": "flux-2-max",
+   "drop": "leave",
+   "light": "dusk",
+   "odd": false,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a welcome mat in front of a screen door, its handles torn off and lying beside it, a single french fry on the mat. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-dusk-05.webp",
+   "model": "gpt-image-2",
+   "drop": "leave",
+   "light": "dusk",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag balanced upright on top of a squat yellow fire hydrant at the kerb, wedged into place, the house set back behind a lawn. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-dusk-06.webp",
+   "model": "flux-2-max",
+   "drop": "leave",
+   "light": "dusk",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag sitting at the centre of a neat perfect square of freshly laid green turf cut into an otherwise bare dirt front yard. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. IMPORTANT: there is no insulated courier thermal bag anywhere in this image — couriers keep those. Only the customer's own takeout bag is left behind. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals.",
+   "supersedes": "first attempt left a courier thermal bag at the door; couriers keep those, so it was reshot with a paper or plastic takeout bag"
+  },
+  {
+   "file": "proof/leave-day-01.webp",
+   "model": "gpt-image-2",
+   "drop": "leave",
+   "light": "day",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a white opaque plastic carrier bag with its handles knotted shut, standing on the cracked painted floor of the dry deep end of a completely empty domestic swimming pool, seen from the poolside above. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. IMPORTANT: there is no insulated courier thermal bag anywhere in this image — couriers keep those. Only the customer's own takeout bag is left behind. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals.",
+   "supersedes": "first attempt left a courier thermal bag at the door; couriers keep those, so it was reshot with a paper or plastic takeout bag"
+  },
+  {
+   "file": "proof/leave-day-02.webp",
+   "model": "flux-2-max",
+   "drop": "leave",
+   "light": "day",
+   "odd": false,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a plain suburban concrete doorstep beside a pair of muddy boots and a coiled garden hose. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-day-03.webp",
+   "model": "gpt-image-2",
+   "drop": "leave",
+   "light": "day",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag suspended about two metres up inside a cargo net slung between the branches of a front-yard tree, the net drawn tight around it. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-day-04.webp",
+   "model": "flux-2-max",
+   "drop": "leave",
+   "light": "day",
+   "odd": false,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a translucent white plastic carrier bag with lidded containers visible through it, set down against a numberless apartment door on a concrete external walkway, a folded stroller further along. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. IMPORTANT: there is no insulated courier thermal bag anywhere in this image — couriers keep those. Only the customer's own takeout bag is left behind. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals.",
+   "supersedes": "first attempt left a courier thermal bag at the door; couriers keep those, so it was reshot with a paper or plastic takeout bag"
+  },
+  {
+   "file": "proof/leave-day-05.webp",
+   "model": "gpt-image-2",
+   "drop": "leave",
+   "light": "day",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a doorstep surrounded by about thirty garden gnomes crowded in a dense semicircle, every one of them turned to face the bag. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/leave-day-06.webp",
+   "model": "flux-2-max",
+   "drop": "leave",
+   "light": "day",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a doorstep in front of a front door that is not a door at all but a flat trompe-l-oeil door painted directly onto the stucco wall, no handle, no gap, no hinges. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-day-01.webp",
+   "model": "gpt-image-2",
+   "drop": "hand",
+   "light": "day",
+   "odd": false,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag set on an office reception counter beside a visitor sign-in clipboard and a dish of pens. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-day-02.webp",
+   "model": "flux-2-max",
+   "drop": "hand",
+   "light": "day",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on an office reception counter, and lined up along the same counter nine more identical unopened brown paper takeout bags in a perfectly even row. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-day-03.webp",
+   "model": "flux-2-max",
+   "drop": "hand",
+   "light": "day",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a translucent white plastic carrier bag placed exactly at the centre of a long polished conference table in a glass-walled meeting room, every chair pushed neatly in, the room otherwise completely empty. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. IMPORTANT: there is no insulated courier thermal bag anywhere in this image — couriers keep those. Only the customer's own takeout bag is left behind. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals.",
+   "supersedes": "first attempt left a courier thermal bag at the door; couriers keep those, so it was reshot with a paper or plastic takeout bag"
+  },
+  {
+   "file": "proof/hand-day-04.webp",
+   "model": "flux-2-max",
+   "drop": "hand",
+   "light": "day",
+   "odd": false,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on the corner of a cluttered office desk pod beside a keyboard, a monitor and a dead potted plant. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-day-05.webp",
+   "model": "gpt-image-2",
+   "drop": "hand",
+   "light": "day",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a white plastic carrier bag with knotted handles sitting on the running belt of a treadmill in an otherwise empty and unlit gym, the machine console dark. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. IMPORTANT: there is no insulated courier thermal bag anywhere in this image — couriers keep those. Only the customer's own takeout bag is left behind. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals.",
+   "supersedes": "first attempt left a courier thermal bag at the door; couriers keep those, so it was reshot with a paper or plastic takeout bag"
+  },
+  {
+   "file": "proof/hand-day-06.webp",
+   "model": "flux-2-max",
+   "drop": "hand",
+   "light": "day",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a stainless rolling hospital tray table parked in the middle of a completely bare corridor with no doors and no furniture. Flat grey overcast daylight, no sun, no visible shadows, dull and slightly washed out. No golden light, no blue sky, no dappled light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-dusk-01.webp",
+   "model": "gpt-image-2",
+   "drop": "hand",
+   "light": "dusk",
+   "odd": false,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a lobby mailroom counter under a wall of small numberless brass mailboxes. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-dusk-02.webp",
+   "model": "flux-2-max",
+   "drop": "hand",
+   "light": "dusk",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a security desk with an empty rolling chair pushed back from it, a bank of monitors above all switched off and black. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. IMPORTANT: there is no insulated courier thermal bag anywhere in this image — couriers keep those. Only the customer's own takeout bag is left behind. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals.",
+   "supersedes": "first attempt left a courier thermal bag at the door; couriers keep those, so it was reshot with a paper or plastic takeout bag"
+  },
+  {
+   "file": "proof/hand-dusk-03.webp",
+   "model": "gpt-image-2",
+   "drop": "hand",
+   "light": "dusk",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on top of a stack of sealed unopened moving boxes in the middle of a completely empty apartment with bare walls and no furniture. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-dusk-04.webp",
+   "model": "flux-2-max",
+   "drop": "hand",
+   "light": "dusk",
+   "odd": false,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a concrete stairwell landing beside a metal handrail, a scuffed fire door behind it. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-dusk-05.webp",
+   "model": "gpt-image-2",
+   "drop": "hand",
+   "light": "dusk",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag placed at the exact centre of a square outlined on a lobby tile floor with fresh masking tape, the square only slightly larger than the bag. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-dusk-06.webp",
+   "model": "gpt-image-2",
+   "drop": "hand",
+   "light": "dusk",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a white plastic carrier bag with knotted handles standing alone on the floor of a lift with its doors held open, the lift otherwise empty, brushed metal walls. Late dusk, almost dark, the sky already flat grey. Lit mostly by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, falling off sharply to murk at the frame edges. No rim light, no fill, no coloured lighting, and absolutely no warm sunset glow, no orange sky, no golden light. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. IMPORTANT: there is no insulated courier thermal bag anywhere in this image — couriers keep those. Only the customer's own takeout bag is left behind. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals.",
+   "supersedes": "first attempt left a courier thermal bag at the door; couriers keep those, so it was reshot with a paper or plastic takeout bag"
+  },
+  {
+   "file": "proof/hand-night-01.webp",
+   "model": "gpt-image-2",
+   "drop": "hand",
+   "light": "night",
+   "odd": false,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a bare counter beneath a single working fluorescent tube, the rest of the room dark. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-night-02.webp",
+   "model": "flux-2-max",
+   "drop": "hand",
+   "light": "night",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a laundromat folding table, every washing machine along the wall dark and still, one machine door hanging open. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-night-03.webp",
+   "model": "flux-2-max",
+   "drop": "hand",
+   "light": "night",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a translucent white plastic carrier bag with lidded containers visible through it, set on top of a motel corridor ice machine, the corridor stretching away behind it with every door shut. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. IMPORTANT: there is no insulated courier thermal bag anywhere in this image — couriers keep those. Only the customer's own takeout bag is left behind. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals.",
+   "supersedes": "first attempt left a courier thermal bag at the door; couriers keep those, so it was reshot with a paper or plastic takeout bag"
+  },
+  {
+   "file": "proof/hand-night-04.webp",
+   "model": "flux-2-max",
+   "drop": "hand",
+   "light": "night",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on an office desk, the desk chair turned around to face the blank wall, the monitor unplugged and its cable coiled on the desk. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-night-05.webp",
+   "model": "gpt-image-2",
+   "drop": "hand",
+   "light": "night",
+   "odd": false,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag on a reception counter next to a large potted plant and a stack of unopened envelopes. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals."
+  },
+  {
+   "file": "proof/hand-night-06.webp",
+   "model": "gpt-image-2",
+   "drop": "hand",
+   "light": "night",
+   "odd": true,
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: a brown paper takeout bag gone soft and slumped on the concrete floor of an empty parking garage lift lobby directly beneath a caged emergency light, oil stains around it. Suburban night, fully dark. Lit ONLY by the phone's own small built-in flash firing straight forward: flat frontal light, a hard specular hotspot on the nearest surface, brightness falling off sharply to murk and then black at the frame edges. No rim light, no fill, no street lamp glow, no coloured lighting, no moonlight. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp from the nearest object to the far background — no shallow depth of field, no bokeh, no blurred foreground, no blurred background anywhere. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise in the dark areas, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, too much ground or counter filling the bottom third. IMPORTANT: there is no insulated courier thermal bag anywhere in this image — couriers keep those. Only the customer's own takeout bag is left behind. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look, nothing centred or balanced. Square crop. No text, no letters, no words, no numbers, no timestamp, no writing on doormats or doors or signs or packaging, no logos, no labels, no watermarks, no people, no hands, no animals.",
+   "supersedes": "first attempt left a courier thermal bag at the door; couriers keep those, so it was reshot with a paper or plastic takeout bag"
+  },
+  {
+   "file": "proof/escalated-01-upside-down-front-door.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "day",
+   "model": "flux-2-max",
+   "subject": "a brown paper takeout bag on a concrete doorstep beneath a front door hung upside down, its hinges running along the top edge and its handle two inches above the threshold."
+  },
+  {
+   "file": "proof/escalated-02-freestanding-door-frame-.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "night",
+   "model": "flux-2-max",
+   "subject": "a white knotted plastic bag on a slab of paving inside a painted door frame standing upright in the middle of a mown lawn, with no wall or house behind it."
+  },
+  {
+   "file": "proof/escalated-03-counter-through-the-wall.webp",
+   "tier": "escalated",
+   "drop": "hand",
+   "light": "dusk",
+   "model": "flux-2-max",
+   "subject": "a translucent plastic bag of stacked containers on a reception counter that continues straight through the plaster wall behind it, the same marble ledge emerging on the far side."
+  },
+  {
+   "file": "proof/escalated-04-door-one-storey-up.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "dusk",
+   "model": "flux-2-max",
+   "subject": "a brown paper takeout bag on the narrow sill of a front door set three metres up a blank brick facade, with no steps, landing or railing beneath it."
+  },
+  {
+   "file": "proof/escalated-05-stairs-into-ceiling.webp",
+   "tier": "escalated",
+   "drop": "hand",
+   "light": "night",
+   "model": "flux-2-max",
+   "subject": "a white knotted plastic bag on the top step of an office stairwell whose flight rises into a flat plaster ceiling, the handrail ending against it."
+  },
+  {
+   "file": "proof/escalated-06-kerbside-kitchen-counter.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "day",
+   "model": "flux-2-max",
+   "subject": "a brown paper takeout bag on a full domestic kitchen counter, cabinets and steel sink included, installed along the kerb of a residential street with the pavement running under it."
+  },
+  {
+   "file": "proof/escalated-07-porch-inside-corridor.webp",
+   "tier": "escalated",
+   "drop": "hand",
+   "light": "day",
+   "model": "flux-2-max",
+   "subject": "a translucent plastic bag of containers on the top step of a suburban timber porch built into the middle of a carpeted office corridor, its railing meeting the ceiling tiles."
+  },
+  {
+   "file": "proof/escalated-08-path-up-the-wall.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "night",
+   "model": "flux-2-max",
+   "subject": "a brown paper takeout bag resting on a paving slab of a garden path that turns ninety degrees and continues straight up the brick face of the house, low wall and shrubs following it."
+  },
+  {
+   "file": "proof/escalated-09-ceiling-underfoot-break-.webp",
+   "tier": "escalated",
+   "drop": "hand",
+   "light": "dusk",
+   "model": "flux-2-max",
+   "subject": "a white knotted plastic bag on a floor of suspended ceiling tiles and recessed panel lights, with grey office carpet and skirting board fitted overhead."
+  },
+  {
+   "file": "proof/escalated-10-knee-high-front-door.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "day",
+   "model": "flux-2-max",
+   "subject": "a brown paper takeout bag standing on a doorstep beside a front door barely knee high, correctly proportioned in every detail and set into an otherwise ordinary house facade."
+  },
+  {
+   "file": "proof/escalated-11-door-hinged-into-floor.webp",
+   "tier": "escalated",
+   "drop": "hand",
+   "light": "night",
+   "model": "flux-2-max",
+   "subject": "a translucent plastic bag of containers on a panelled door lying flat in an office corridor floor, hinged into the carpet, its handle and letter slot facing the ceiling."
+  },
+  {
+   "file": "proof/escalated-12-mirrored-upside-down-por.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "dusk",
+   "model": "flux-2-max",
+   "subject": "a brown paper takeout bag on a porch step, with a second identical porch, steps and door built upside down directly above it, the two thresholds nearly touching."
+  },
+  {
+   "file": "proof/fauna-escalated-dog.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "dusk"
+  },
+  {
+   "file": "proof/fauna-escalated-flock.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "day"
+  },
+  {
+   "file": "proof/fauna-flagged-catbag.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "dusk"
+  },
+  {
+   "file": "proof/fauna-flagged-gull.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "day"
+  },
+  {
+   "file": "proof/fauna-flagged-raccoon.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "night"
+  },
+  {
+   "file": "proof/fauna-noted-cat.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "day"
+  },
+  {
+   "file": "proof/fauna-noted-crow.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "day"
+  },
+  {
+   "file": "proof/fauna-noted-snail.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "dusk"
+  },
+  {
+   "file": "proof/fauna-unfiled-cats.webp",
+   "tier": "unfiled",
+   "drop": "leave",
+   "light": "night"
+  },
+  {
+   "file": "proof/fauna-unfiled-horse.webp",
+   "tier": "unfiled",
+   "drop": "leave",
+   "light": "night"
+  },
+  {
+   "file": "proof/flagged-01-four-leaf-cones.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "A brown paper takeout bag centred on a swept wooden porch, every fallen leaf gathered into four cones of equal height, one in each corner of the boards."
+  },
+  {
+   "file": "proof/flagged-02-brick-plinth.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "A white knotted plastic bag resting on a plinth of dry-stacked bricks, four courses high and level, built in the middle of a concrete walkway with no mortar and no spare bricks anywhere."
+  },
+  {
+   "file": "proof/flagged-03-staked-string-square.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "A brown paper takeout bag on a kerbside strip of grass, enclosed by four wooden stakes driven at the corners of a square and joined with taut string at knee height."
+  },
+  {
+   "file": "proof/flagged-04-gravel-lined-path.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "A translucent plastic bag with containers showing through, set at the end of a garden path whose gravel has been lined up stone by stone along both edges, leaving bare packed earth between."
+  },
+  {
+   "file": "proof/flagged-05-film-wound-bag.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "A brown paper takeout bag wound in even overlapping bands of clear film, sealed smooth at every corner and standing upright in the middle of a tiled front step."
+  },
+  {
+   "file": "proof/flagged-06-four-upturned-glasses.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "A white knotted plastic bag on a doorstep with four identical drinking glasses upturned around it, one at each corner of a square, every gap measured to the same distance."
+  },
+  {
+   "file": "proof/flagged-07-squared-wool-blanket.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "A brown paper takeout bag centred on a folded wool blanket, its edges squared to the edges of the stone step and its corners matched to within a finger's width."
+  },
+  {
+   "file": "proof/flagged-08-straw-lined-crate.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "A translucent plastic bag with containers showing through, placed in a shallow wooden crate lined with fresh straw, the crate's lid propped upright against the wall beside it."
+  },
+  {
+   "file": "proof/flagged-09-desk-contents-below.webp",
+   "tier": "flagged",
+   "drop": "hand",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "A brown paper takeout bag centred on an office desk stripped bare, the lamp, tray and stapler set out on the carpet below in exactly the arrangement they held on the surface."
+  },
+  {
+   "file": "proof/flagged-10-graded-sill-stones.webp",
+   "tier": "flagged",
+   "drop": "hand",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "A brown paper takeout bag on a corridor windowsill, flanked by nine small stones graded smallest to largest, each spaced a hand apart along the painted sill."
+  },
+  {
+   "file": "proof/flagged-11-string-across-corridor.webp",
+   "tier": "flagged",
+   "drop": "hand",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "A white knotted plastic bag set on the floor at the exact midpoint between two closed office doors, a length of white string drawn wall to wall across the corridor in front of it."
+  },
+  {
+   "file": "proof/flagged-12-wiped-dust-rectangle.webp",
+   "tier": "flagged",
+   "drop": "hand",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "A brown paper takeout bag on a dusty reception counter, standing inside a clean rectangle wiped out of the dust with square corners and even margins on all four sides."
+  },
+  {
+   "file": "proof/flagged-13-stepladder-on-towels.webp",
+   "tier": "flagged",
+   "drop": "hand",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "A translucent plastic bag with containers showing through, on the top platform of a stepladder standing in the middle of an empty break room, each of its four feet on a folded towel."
+  },
+  {
+   "file": "proof/hand-day-07.webp",
+   "tier": "routine"
+  },
+  {
+   "file": "proof/hand-dusk-07.webp",
+   "tier": "routine"
+  },
+  {
+   "file": "proof/hand-dusk-08.webp",
+   "tier": "unfiled"
+  },
+  {
+   "file": "proof/hand-night-07.webp",
+   "tier": "routine"
+  },
+  {
+   "file": "proof/hand-night-08.webp",
+   "tier": "unfiled"
+  },
+  {
+   "file": "proof/leave-day-07.webp",
+   "tier": "routine"
+  },
+  {
+   "file": "proof/leave-day-08.webp",
+   "tier": "routine"
+  },
+  {
+   "file": "proof/leave-day-09.webp",
+   "tier": "unfiled"
+  },
+  {
+   "file": "proof/leave-dusk-07.webp",
+   "tier": "unfiled"
+  },
+  {
+   "file": "proof/leave-night-07.webp",
+   "tier": "routine"
+  },
+  {
+   "file": "proof/leave-night-08.webp",
+   "tier": "unfiled"
+  },
+  {
+   "file": "proof/leave-night-09.webp",
+   "tier": "unfiled"
+  },
+  {
+   "file": "proof/noted-01-tipped-watering-can.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "A brown paper takeout bag on a wooden porch step beside a knocked-over galvanised watering can, water still spreading across the boards in a dark tongue toward the bag's soaked base."
+  },
+  {
+   "file": "proof/noted-02-sauce-trail-down-steps.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "A white knotted plastic bag on a concrete stoop, one lower corner gone translucent and dark, a thin trail of sauce running down two steps behind it."
+  },
+  {
+   "file": "proof/noted-03-blown-over-terracotta-po.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "A translucent plastic bag of stacked containers on a tiled threshold next to a terracotta pot lying on its side, soil and a small shrub fanned out across the tiles."
+  },
+  {
+   "file": "proof/noted-04-toppled-pen-cup.webp",
+   "tier": "noted",
+   "drop": "hand",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "A brown paper takeout bag on a reception counter beside an overturned pen cup, pens scattered across the laminate with one of them stopped against the bag's folded base."
+  },
+  {
+   "file": "proof/noted-05-coffee-under-the-bag.webp",
+   "tier": "noted",
+   "drop": "hand",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "A white knotted plastic bag on an office desk beside a paper cup lying on its side, coffee pooled across the veneer and creeping under one edge of the bag."
+  },
+  {
+   "file": "proof/noted-06-split-bottom-seam.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "A brown paper bag slumped on garden flagstones with its bottom seam split open, one plain white foam container sitting outside it on the stone, lid slightly ajar."
+  },
+  {
+   "file": "proof/noted-07-bin-lid-on-the-floor.webp",
+   "tier": "noted",
+   "drop": "hand",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "A translucent plastic bag of containers on a break-room counter, the swing lid of the bin below it lying flat on the vinyl floor a step away from the bin itself."
+  },
+  {
+   "file": "proof/noted-08-under-the-downpipe.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "A brown paper takeout bag set on a doorstep directly beneath a cast-iron downpipe joint, its top third darkened and sagging, a shallow puddle spreading around the base."
+  },
+  {
+   "file": "proof/noted-09-fallen-blind-slat.webp",
+   "tier": "noted",
+   "drop": "hand",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "A white knotted plastic bag on a wide stairwell windowsill with a single dislodged venetian blind slat resting diagonally across it and the rest of the blind hanging crooked."
+  },
+  {
+   "file": "proof/noted-10-upended-ice-crate.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "A white knotted plastic bag on a kerb beside an upended plastic crate, loose ice half melted into a wet fan across the asphalt reaching the bag's edge."
+  },
+  {
+   "file": "proof/noted-11-umbrella-across-decking.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "A brown paper takeout bag on a porch board with a patio umbrella blown flat across the decking, its folded canopy and pole lying a hand's width from the bag."
+  },
+  {
+   "file": "proof/noted-12-dislodged-ceiling-tile.webp",
+   "tier": "noted",
+   "drop": "hand",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "A brown paper bag on a corridor bench beneath a gap in the suspended ceiling, the missing tile lying face down on the carpet with fine grey dust flecking the bench."
+  },
+  {
+   "file": "proof/noted-13-collapsed-shake-cup.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "A translucent plastic bag on a warm concrete step next to a collapsed waxed cup, pale melted liquid spread thin across the concrete and already skinned over at the edges."
+  },
+  {
+   "file": "proof/noted-14-luggage-cart-lost-castor.webp",
+   "tier": "noted",
+   "drop": "hand",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "A white knotted plastic bag on the deck of a brass luggage cart tilted onto three wheels, the fourth castor lying loose on the carpet under the frame."
+  },
+  {
+   "file": "proof/pigeon-a.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "day"
+  },
+  {
+   "file": "proof/pigeon-b.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "dusk"
+  },
+  {
+   "file": "proof/routine-01-porch-step-terracotta.webp",
+   "tier": "routine",
+   "drop": "leave",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "a brown paper takeout bag standing upright on a concrete porch step beside a plain coir doormat and a terracotta pot holding one small unremarkable shrub"
+  },
+  {
+   "file": "proof/routine-02-wooden-stoop-umbrella.webp",
+   "tier": "routine",
+   "drop": "leave",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "a white knotted plastic bag set on the boards of a wooden stoop, a folded umbrella leaning against the railing spindles just behind it"
+  },
+  {
+   "file": "proof/routine-03-landing-bicycle-wheel.webp",
+   "tier": "routine",
+   "drop": "leave",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "a translucent plastic bag with stacked containers showing through, left on an apartment landing next to the front wheel of a bicycle leaning on the wall"
+  },
+  {
+   "file": "proof/routine-04-back-step-recycling.webp",
+   "tier": "routine",
+   "drop": "leave",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "a brown paper takeout bag on the back step of a house, two plastic recycling bins standing beside it with their lids shut"
+  },
+  {
+   "file": "proof/routine-05-side-door-wreath.webp",
+   "tier": "routine",
+   "drop": "leave",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "a white knotted plastic bag on the threshold of a side door, a plain wreath of dried eucalyptus hanging on the door above it"
+  },
+  {
+   "file": "proof/routine-06-reception-counter-succul.webp",
+   "tier": "routine",
+   "drop": "hand",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "a brown paper takeout bag on the end of a reception counter beside a small potted succulent and a shallow bowl of loose paper clips"
+  },
+  {
+   "file": "proof/routine-07-desk-keyboard-mug.webp",
+   "tier": "routine",
+   "drop": "hand",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "a translucent plastic bag of containers set on the corner of an office desk beside a keyboard, a mouse and a half-empty mug"
+  },
+  {
+   "file": "proof/routine-08-break-room-cups.webp",
+   "tier": "routine",
+   "drop": "hand",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "a white knotted plastic bag on a break-room counter beside an upturned stack of paper cups and a wiped-down microwave"
+  },
+  {
+   "file": "proof/routine-09-lobby-bench-wastebasket.webp",
+   "tier": "routine",
+   "drop": "hand",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "a brown paper takeout bag sitting on a wooden lobby bench beside a rubber-backed floor mat and a wire wastebasket"
+  },
+  {
+   "file": "proof/routine-10-walkway-brick-planter.webp",
+   "tier": "routine",
+   "drop": "leave",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "a brown paper takeout bag on a paved front walkway beside a low brick planter of trimmed box hedge, the front door closed behind it"
+  },
+  {
+   "file": "proof/routine-11-porch-empty-pots.webp",
+   "tier": "routine",
+   "drop": "leave",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "a white knotted plastic bag on a covered porch beside a wire rack of empty flower pots and a galvanised watering can"
+  },
+  {
+   "file": "proof/routine-12-corridor-windowsill.webp",
+   "tier": "routine",
+   "drop": "hand",
+   "light": "day",
+   "model": "gpt-image-2",
+   "subject": "a translucent plastic bag of containers on a broad corridor windowsill above a radiator, vinyl flooring running away past a row of shut office doors"
+  },
+  {
+   "file": "proof/routine-13-service-window-ledge.webp",
+   "tier": "routine",
+   "drop": "hand",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "a brown paper takeout bag on the ledge of a service window, a stapler and a sheaf of blank forms pushed to one side of it"
+  },
+  {
+   "file": "proof/routine-14-doormat-screen-door.webp",
+   "tier": "routine",
+   "drop": "leave",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "a brown paper takeout bag on a rubber doormat in front of a closed aluminium screen door, a plastic pot of geraniums standing to its left"
+  },
+  {
+   "file": "proof/routine-15-garden-wall-gate.webp",
+   "tier": "routine",
+   "drop": "leave",
+   "light": "dusk",
+   "model": "gpt-image-2",
+   "subject": "a white knotted plastic bag on the flat top of a low garden wall beside a shut metal gate and an untrimmed hedge"
+  },
+  {
+   "file": "proof/routine-16-corridor-floor-umbrella-.webp",
+   "tier": "routine",
+   "drop": "leave",
+   "light": "night",
+   "model": "gpt-image-2",
+   "subject": "a translucent plastic bag of containers on an apartment corridor floor against a closed door, beside a rolled-up doormat and an empty umbrella stand"
+  },
+  {
+   "file": "proof/unbound-escalated-crouch.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "night"
+  },
+  {
+   "file": "proof/unbound-escalated-fire.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "night"
+  },
+  {
+   "file": "proof/unbound-escalated-flood.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "day"
+  },
+  {
+   "file": "proof/unbound-escalated-window.webp",
+   "tier": "escalated",
+   "drop": "leave",
+   "light": "dusk"
+  },
+  {
+   "file": "proof/unbound-flagged-childhand.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "day"
+  },
+  {
+   "file": "proof/unbound-flagged-reflection.webp",
+   "tier": "flagged",
+   "drop": "leave",
+   "light": "night"
+  },
+  {
+   "file": "proof/unbound-noted-doorhand.webp",
+   "tier": "noted",
+   "drop": "leave",
+   "light": "dusk"
+  },
+  {
+   "file": "proof/unbound-unfiled-beekeeper.webp",
+   "tier": "unfiled",
+   "drop": "leave",
+   "light": "day"
+  },
+  {
+   "file": "proof/unbound-unfiled-crowd.webp",
+   "tier": "unfiled",
+   "drop": "leave",
+   "light": "dusk"
+  },
+  {
+   "file": "proof/unbound-unfiled-doorway.webp",
+   "tier": "unfiled",
+   "drop": "leave",
+   "light": "night"
+  },
+  {
+   "file": "proof/unbound-unfiled-mirror.webp",
+   "tier": "unfiled",
+   "drop": "leave",
+   "light": "dusk"
+  },
+  {
+   "file": "proof/unbound-unfiled-row.webp",
+   "tier": "unfiled",
+   "drop": "leave",
+   "light": "night"
+  },
+  {
+   "file": "proof/unfiled-01-dry-ring-in-rain.webp",
+   "tier": "unfiled",
+   "drop": "leave",
+   "light": "dusk",
+   "model": "flux-2-max",
+   "subject": "a brown paper takeout bag on a soaked concrete porch, a perfect dry circle of pale concrete around it while rain still beads on every other surface and runs from the gutter above"
+  },
+  {
+   "file": "proof/unfiled-02-unbroken-snow.webp",
+   "tier": "unfiled",
+   "drop": "leave",
+   "light": "day",
+   "model": "flux-2-max",
+   "subject": "a white knotted plastic bag sitting on a smooth unbroken field of snow across a front walkway, the snow beneath it uncompressed and the path to the door without a single footprint"
+  },
+  {
+   "file": "proof/unfiled-03-leaves-held-midair.webp",
+   "tier": "unfiled",
+   "drop": "leave",
+   "light": "night",
+   "model": "flux-2-max",
+   "subject": "a translucent plastic bag of containers on a paved walkway with a dozen dry leaves hanging motionless a hand's width above the paving around it, none of them touching the ground"
+  },
+  {
+   "file": "proof/unfiled-04-puddle-skin.webp",
+   "tier": "unfiled",
+   "drop": "leave",
+   "light": "day",
+   "model": "flux-2-max",
+   "subject": "a brown paper takeout bag resting on the flat surface of a deep kerbside puddle, dry to the fold, the water taking no dent and the reflection beneath it unbroken"
+  },
+  {
+   "file": "proof/unfiled-05-carpet-up-the-wall.webp",
+   "tier": "unfiled",
+   "drop": "hand",
+   "light": "day",
+   "model": "flux-2-max",
+   "subject": "a white knotted plastic bag set down in an office corridor where the flecked grey carpet continues without a seam up the wall and across the ceiling, skirting board and all"
+  },
+  {
+   "file": "proof/unfiled-06-corridor-window.webp",
+   "tier": "unfiled",
+   "drop": "hand",
+   "light": "dusk",
+   "model": "flux-2-max",
+   "subject": "a translucent plastic bag of containers on a windowsill in an office corridor, the window beside it showing the same corridor with the same bag on the same sill, continuing on"
+  },
+  {
+   "file": "proof/unfiled-07-shrinking-chairs.webp",
+   "tier": "unfiled",
+   "drop": "hand",
+   "light": "night",
+   "model": "flux-2-max",
+   "subject": "a white knotted plastic bag on a swivel chair in an empty office, three identical swivel chairs lined up behind it along the same wall, each one a size smaller than the last"
+  }
+ ],
+ "_notes": [
+  "2026-08-20: added 14 category tiles (assets/app/cat/) and two proof-of-delivery variants, same model. The app's own logo is NOT here: it is drawn in js/core/icons.js so a rename regenerates nothing."
+ ],
+ "proofPool": {
+  "generated": "2026-08-21",
+  "models": [
+   "openai/gpt-image-2",
+   "black-forest-labs/flux-2-max"
   ],
-  "_notes": [
-    "2026-08-20: added 14 category tiles (assets/app/cat/) and two proof-of-delivery variants, same model. The app's own logo is NOT here: it is drawn in js/core/icons.js so a rename regenerates nothing."
-  ]
+  "why": "seedream-4.5 lost a four-model bake-off on this brief: it renders CG-clean and overrode an explicit no-warm-sunset-glow instruction. gpt-image-2 gives the most careless framing; flux-2-max the flattest, grainiest light.",
+  "vesselRule": "A courier keeps the insulated thermal bag. What is left behind is the customer's own takeout bag, paper or plastic, never the thermal one.",
+  "facets": "drop (leave|hand) x light (day|dusk|night); selection is seeded on the order id in js/core/proof.js",
+  "count": 136,
+  "rarity": "Tiers are ROUTINE/NOTED/FLAGGED/ESCALATED/UNFILED, weighted 55/25/13/5.5/1.5 at TIER level in js/core/proof.js. On the courier side FB.proof.roll(runId) draws one, seeded on the run id.",
+  "promptRecipe": "Every proof photo shares one wrapper; only the Subject clause differs, and it is recorded per image above. The wrapper: 'A careless snapshot taken on an old cheap smartphone by a delivery courier and uploaded to a delivery app as proof of delivery. Subject: <SUBJECT>. <LIGHT CLAUSE for day|dusk|night>. Shot quickly at chest height on a 24mm-equivalent wide lens: wide-angle perspective distortion with verticals converging, and EVERYTHING in the frame equally sharp - no shallow depth of field, no bokeh, no blurred background. Aggressive default smartphone HDR processing: over-sharpened with halos, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The subject is off-centre and clipped by one edge, the camera tilted several degrees off level. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional camera look. IMPORTANT: there is no insulated courier thermal bag anywhere in this image - couriers keep those. Square crop. No logos, no brand marks, no watermarks.' The earliest batches also carried blanket no-people/no-animals clauses; those were deliberately dropped from the later batches, which is why figures and animals appear only in the fauna/unbound sets."
+ }
 }

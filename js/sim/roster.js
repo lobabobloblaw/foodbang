@@ -29,7 +29,11 @@ window.FB = window.FB || {};
       var g = FB.C.slinger('roster:' + i);
       out.push({
         id: 'sl' + i,
-        name: g.name, rating: g.rating, vehicle: g.vehicle, photo: g.photo,
+        /* The face is taken from the INDEX, not from the seeded draw. Drawing it
+           would collide — nine members over nine portraits leaves most of them
+           sharing, which is what the pool of three was already doing. */
+        name: g.name, rating: g.rating, vehicle: g.vehicle,
+        photo: 'assets/app/slinger-' + (i + 1) + '.webp',
         deliveries: g.deliveries,
         tenure: g.tenure,          /* days employed — NOT deliveries made for you */
         timesWithYou: 0,
@@ -50,11 +54,17 @@ window.FB = window.FB || {};
        added to a roster entry after a save exists can only be repaired here — and
        without it the Slinger card renders "Employed undefined days". The generator
        is seeded on the index, so this reproduces exactly what a fresh build had. */
-    if (st.slingers.some(function (s) { return s.tenure === undefined; })) {
+    if (st.slingers.some(function (s, i) {
+      return s.tenure === undefined || s.photo !== 'assets/app/slinger-' + (i + 1) + '.webp';
+    })) {
       FB.store.set(function (s) {
         var fresh = build();
         s.slingers.forEach(function (x, i) {
           if (x.tenure === undefined) x.tenure = (fresh[i] || {}).tenure;
+          /* Repaired on READ as well as built: a save made while the pool was three
+             deep has three faces across nine people and would keep them forever,
+             because fillDefaults never descends into an array. */
+          x.photo = 'assets/app/slinger-' + (i + 1) + '.webp';
         });
         return s;
       }, { silent: true });

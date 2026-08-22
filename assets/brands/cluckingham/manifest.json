@@ -1,65 +1,156 @@
 {
-  "slug": "cluckingham",
-  "model": "bytedance/seedream-4.5",
-  "images": [
-    {
-      "file": "logo.webp",
-      "prompt": "Full-bleed square brand logo illustration in Southern-gothic engraved styling. A white goateed colonel silhouette in profile, set inside a bucket-shaped cameo with a fine engraved scalloped border, centred on a field of bold crimson-red and cream vertical stripes running top to bottom across the whole canvas. Full-bleed square: the background colour fills the entire canvas edge to edge. No card, no frame, no rounded container, no drop shadow, no surrounding margin or border. The only text anywhere in the image is exactly: CLUCKINGHAM, set in a condensed engraved serif across the lower third in cream. Nothing else is written anywhere in the image.",
-      "predictionId": "pxtj18ryyxrmw0d045ys35nx1r",
-      "predictTime": 10.104065625
-    },
-    {
-      "file": "hero.webp",
-      "prompt": "Cinematic wide establishing shot at dusk of a roadside fried-chicken compound on a rural highway. A long red-and-white vertically striped awning runs across a low cinderblock building; an oversized bucket-shaped sign, completely blank and unlettered with only red and white vertical stripes on it, stands on a steel lattice pole above the roofline; thick fryer steam vents from two roof stacks and drifts across the deep blue sky; a wet gravel lot with shallow puddles reflecting a single flickering plain neon tube glowing inside the front window; warm tungsten light spilling through the glass, heavy atmospheric haze, rich shadow. Anamorphic 35mm, low angle, cinematic contrast, film grain. Deadpan hyperreal advertising realism. CRITICAL: absolutely no writing anywhere in the image, no letters, no words, no signage text, no lettering on the bucket sign, no logos, no hands, no people.",
-      "predictionId": "v6mqvyv175rmr0d04608z8cq44",
-      "predictTime": 11.624070857
-    },
-    {
-      "file": "items/01.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a plain paper bucket of pressure-fried chicken shot from directly overhead, straight down into the vessel. Craggy mahogany crust, torn breading shards, a thigh wedged upright against the rim, the pile heaped several inches above the lip and slumping over one side, steam curling off the crevices, oil pooling in every fissure. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 50mm, shallow depth of field, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "d6y8jgeqtxrmr0d045ytpde170",
-      "predictTime": 12.451069854,
-      "styleObserved": "studio"
-    },
-    {
-      "file": "items/02.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a colossal pressure-fried chicken sandwich in three-quarter hero view. The fillet overhangs the bun by two inches on every side, breading blistered and shattered at the edges, the top bun compressed flat and glossy where it buckles under load, pickles sliding out, a slow rope of pepper oil running down the stack and puddling below. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 85mm, tight depth of field, deep contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "2pvtem8fa9rmw0d045za5a6v74",
-      "predictTime": 10.525804157,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    },
-    {
-      "file": "items/03.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: nine long pressure-fried chicken tenders laid out on a dented aluminum sheet tray over a grease-translucent liner. Crust ridges stand up like bark, breading shrapnel and crumbs scatter across the liner, a dark oil halo soaks outward through the paper, thin steam still lifting off the nearest tender. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 35mm at a low raking angle, moderate depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "kxg1bnvgh5rmt0d045z80bgwcw",
-      "predictTime": 11.565421416,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    },
-    {
-      "file": "items/04.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: one enormous buttermilk biscuit sliced cleanly in half, the cut face square to camera as a precise cross-section. Dozens of compressed laminated layers, a molten butter seam bleeding down through the strata and beading at the base, crumb structure dense enough to look load-bearing, a second half standing behind it slightly out of focus. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 100mm macro, flat-on cutaway, razor-sharp detail. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "2byx05n45nrmr0d045zajrdek8",
-      "predictTime": 12.3432719,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    },
-    {
-      "file": "items/05.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of thick peppered sausage gravy mid-pour, a heavy rope of gravy folding into an already-full vessel, viscous crater and slow ripples, a glossy skin forming across the surface, black pepper flecks and pale sausage crumbles suspended in it, one fat bead running down the outside of the vessel. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 100mm macro, extremely shallow depth of field, specular highlights. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "fv1gm1gbt1rmy0d045zv5v4e5r",
-      "predictTime": 14.177891057,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    },
-    {
-      "file": "items/06.webp",
-      "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of a mountain of thick-cut seasoned fries spilling from an overturned plain paper carton across a dented aluminum sheet tray. Hundreds of fries, ridged and blistered, crimson seasoning dust drifted over everything, a slow puddle of gravy creeping in from one corner, loose salt grains catching the light. A stainless fryer station with red-and-white vertical stripes sits softly out of focus at the edge of frame. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 40mm directly overhead, even sharpness corner to corner. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
-      "predictionId": "h6s7292amhrmw0d045zsdc5sz8",
-      "predictTime": 41.030941602,
-      "styleObserved": "amateur",
-      "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
-    }
-  ]
+ "slug": "cluckingham",
+ "model": "bytedance/seedream-4.5",
+ "images": [
+  {
+   "file": "logo.webp",
+   "prompt": "Full-bleed square brand logo illustration in Southern-gothic engraved styling. A white goateed colonel silhouette in profile, set inside a bucket-shaped cameo with a fine engraved scalloped border, centred on a field of bold crimson-red and cream vertical stripes running top to bottom across the whole canvas. Full-bleed square: the background colour fills the entire canvas edge to edge. No card, no frame, no rounded container, no drop shadow, no surrounding margin or border. The only text anywhere in the image is exactly: CLUCKINGHAM, set in a condensed engraved serif across the lower third in cream. Nothing else is written anywhere in the image.",
+   "predictionId": "pxtj18ryyxrmw0d045ys35nx1r",
+   "predictTime": 10.104065625
+  },
+  {
+   "file": "hero.webp",
+   "prompt": "Cinematic wide establishing shot at dusk of a roadside fried-chicken compound on a rural highway. A long red-and-white vertically striped awning runs across a low cinderblock building; an oversized bucket-shaped sign, completely blank and unlettered with only red and white vertical stripes on it, stands on a steel lattice pole above the roofline; thick fryer steam vents from two roof stacks and drifts across the deep blue sky; a wet gravel lot with shallow puddles reflecting a single flickering plain neon tube glowing inside the front window; warm tungsten light spilling through the glass, heavy atmospheric haze, rich shadow. Anamorphic 35mm, low angle, cinematic contrast, film grain. Deadpan hyperreal advertising realism. CRITICAL: absolutely no writing anywhere in the image, no letters, no words, no signage text, no lettering on the bucket sign, no logos, no hands, no people.",
+   "predictionId": "v6mqvyv175rmr0d04608z8cq44",
+   "predictTime": 11.624070857
+  },
+  {
+   "file": "items/01.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a plain paper bucket of pressure-fried chicken shot from directly overhead, straight down into the vessel. Craggy mahogany crust, torn breading shards, a thigh wedged upright against the rim, the pile heaped several inches above the lip and slumping over one side, steam curling off the crevices, oil pooling in every fissure. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 50mm, shallow depth of field, high micro-contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "d6y8jgeqtxrmr0d045ytpde170",
+   "predictTime": 12.451069854,
+   "styleObserved": "studio"
+  },
+  {
+   "file": "items/02.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: a colossal pressure-fried chicken sandwich in three-quarter hero view. The fillet overhangs the bun by two inches on every side, breading blistered and shattered at the edges, the top bun compressed flat and glossy where it buckles under load, pickles sliding out, a slow rope of pepper oil running down the stack and puddling below. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 85mm, tight depth of field, deep contrast. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "2pvtem8fa9rmw0d045za5a6v74",
+   "predictTime": 10.525804157,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/03.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: nine long pressure-fried chicken tenders laid out on a dented aluminum sheet tray over a grease-translucent liner. Crust ridges stand up like bark, breading shrapnel and crumbs scatter across the liner, a dark oil halo soaks outward through the paper, thin steam still lifting off the nearest tender. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 35mm at a low raking angle, moderate depth of field. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "kxg1bnvgh5rmt0d045z80bgwcw",
+   "predictTime": 11.565421416,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/04.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: one enormous buttermilk biscuit sliced cleanly in half, the cut face square to camera as a precise cross-section. Dozens of compressed laminated layers, a molten butter seam bleeding down through the strata and beading at the base, crumb structure dense enough to look load-bearing, a second half standing behind it slightly out of focus. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 100mm macro, flat-on cutaway, razor-sharp detail. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "2byx05n45nrmr0d045zajrdek8",
+   "predictTime": 12.3432719,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/05.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: extreme macro of thick peppered sausage gravy mid-pour, a heavy rope of gravy folding into an already-full vessel, viscous crater and slow ripples, a glossy skin forming across the surface, black pepper flecks and pale sausage crumbles suspended in it, one fat bead running down the outside of the vessel. Behind it a stainless fryer station with red-and-white vertical stripes softly out of focus, a dented aluminum sheet tray in the foreground. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 100mm macro, extremely shallow depth of field, specular highlights. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "fv1gm1gbt1rmy0d045zv5v4e5r",
+   "predictTime": 14.177891057,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/06.webp",
+   "prompt": "Ultra-premium commercial food photography for a delivery-app menu tile. Subject: an overhead flat-lay of a mountain of thick-cut seasoned fries spilling from an overturned plain paper carton across a dented aluminum sheet tray. Hundreds of fries, ridged and blistered, crimson seasoning dust drifted over everything, a slow puddle of gravy creeping in from one corner, loose salt grains catching the light. A stainless fryer station with red-and-white vertical stripes sits softly out of focus at the edge of frame. Warm Southern-gothic tungsten light rakes in from the left, visible fryer haze in the air, oil sheen, rich shadow. 40mm directly overhead, even sharpness corner to corner. Square crop, subject centered and filling the frame. Deadpan hyperreal advertising realism. No text, no logos, no packaging labels, no hands, no people.",
+   "predictionId": "h6s7292amhrmw0d045zsdc5sz8",
+   "predictTime": 41.030941602,
+   "styleObserved": "amateur",
+   "promptDrift": "Provenance repair, 2026-08-20: the prompt above is the PRE-RESHOOT one. These pixels were regenerated under local-bible.json -> amateurPhotoRecipe and the record was never updated; the reshoot prompt was not captured. Verified by eye."
+  },
+  {
+   "file": "items/07.webp",
+   "item": "clk-002",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a plain unmarked paper bucket packed past the rim with assorted pressure-fried segments — two thighs, a wing, a split back piece and a drumstick wedged upright against the lip — craggy mahogany breading, a few loose crust shards tipped out onto wax paper beside it. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Shot from too close and slightly above with the bucket off-centre, a stainless prep counter behind it holding a stack of lids and another order already bagged and waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/08.webp",
+   "item": "clk-003",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: an oversized plain paper bucket, the tallest vessel on the line, heaped with pressure-fried chicken several inches above the rim and slumping over one side, an aluminium foil tray of overflow pieces pushed up against its base. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the nearest thigh and a hard shadow thrown behind the bucket. Framed crooked with the bucket cut off at the top edge, a napkin dispenser and a scratched stainless counter behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/09.webp",
+   "item": "clk-004",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a squat half-height paper bucket sealed with a plain clear lid pressed down and already fogged with condensation, dark craggy chicken pressed up against the underside of it, one whole thigh visible through a gap where the lid has lifted at one edge, water beading down the side. Dim warm restaurant light with the flash off, underexposed and noisy. Mild motion blur and soft focus with visible compression artefacts, the bucket sitting directly on a scratched laminate counter with crumbs beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/10.webp",
+   "item": "clk-007",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a dozen whole uncut chicken wings, every joint still attached and folded in its original shape, piled in a red plastic diner basket lined with checkered paper, thick craggy breading glossy with oil, wing tips poking over the rim. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the nearest wing and a hard shadow thrown behind the basket. Cluttered background of a stainless prep counter, two squeeze bottles and a stack of lids.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/11.webp",
+   "item": "clk-008",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: one large pressure-fried thigh alone in a clear plastic deli container, the lid off and leaning against it, dark crackled skin, breading crisped and split along the bone edge, grease pooled under the piece. Bright unflattering daylight through a window on one side, blown-out highlights along the near rim of the container and deep shade on the far side. The container sitting directly on a scratched laminate counter with crumbs and a smear of gravy beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/12.webp",
+   "item": "clk-009",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a wide aluminium foil tray with its cardboard lid folded back and propped behind it, loaded with pressure-fried chicken pieces, two split biscuits and a mound of slaw, pale peppered gravy pooling between them. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed crooked with the tray cut off at the left edge, a stainless prep counter and another order waiting behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/13.webp",
+   "item": "clk-011",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: four tall buttermilk biscuits stacked vertically one on another and holding the stack up by their own compression, standing in a plain white takeout box with the flaps folded open, flaky layers splitting at every seam, crumbs scattered around the base. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the top biscuit and a hard shadow thrown behind the box. Shot from too close and slightly above and off-centre, a napkin dispenser and a stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/14.webp",
+   "item": "clk-012",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a thick split biscuit drowned under pale peppered sausage gravy in a white styrofoam clamshell with the lid folded back, gravy soaked all the way through the lower half and pooling into the corners of the tray, black pepper flecks and sausage crumbles across the top. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. The clamshell sitting on a scratched laminate counter with crumbs and a gravy smear beside it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/15.webp",
+   "item": "clk-013",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a single plain buttermilk biscuit sitting in a paper boat lined with wax paper, untouched, no butter and nothing beside it, dense flaky layers visible along one side, a light dust of flour on top and a few crumbs on the wax paper. Dim warm restaurant light with the flash off, underexposed and grainy. Framed crooked with the boat cut off at the bottom edge, a napkin dispenser and a scratched stainless counter behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/16.webp",
+   "item": "clk-015",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a clear plastic deli container filled to the brim with shredded cabbage and carrot slaw, the dressing standing well above the shreds so the slaw floats in its own liquid, the lid off and resting underneath it. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the wet surface and a hard shadow thrown behind the container. Mild motion blur and soft focus with visible compression artefacts, a stainless prep counter and a stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/17.webp",
+   "item": "clk-016",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a plastic-lidded soup cup with the lid off beside it, packed with compacted mashed potato and topped with a deep head of pale peppered gravy poured level to the rim and already running down one side. Bright unflattering daylight through a window on one side, blown-out highlights along the near edge of the cup. Shot from too close and slightly above with the cup off-centre, a stainless prep counter and another order waiting behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/18.webp",
+   "item": "clk-017",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: nine small unmarked plastic portion cups crowded onto a white paper plate in three uneven rows, each holding a different sauce — pale ranch, dark barbecue, bright orange hot, three of them plainly the same red sauce — two of them lidless and one tipped over and leaking across the plate. Flat overhead fluorescent tube light with a green-yellow colour cast, mixed white balance. Framed crooked with the plate cut off at the bottom, a stainless counter and a stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/19.webp",
+   "item": "clk-019",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a tall plain unmarked clear plastic cup of dark brewed sweet tea packed to the top with ice, a straw pushed through the lid, condensation running down the sides into a wet ring on the counter, a plain pitcher of the same tea standing just behind it. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the wet lid and a hard shadow thrown behind the cup. Sitting on a scratched laminate counter with crumbs and a sticky smear.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  }
+ ]
 }

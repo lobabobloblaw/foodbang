@@ -1,73 +1,157 @@
 {
-  "slug": "verdadera",
-  "model": "bytedance/seedream-4.5",
-  "photoStyle": "amateur",
-  "images": [
-    {
-      "file": "logo.webp",
-      "prompt": "A photograph of a hand-painted sign on a warm cream stucco exterior wall, shot straight on in warm late afternoon daylight, filling the whole frame. Hand-lettered by a family member, not a designer: thick deep red brush letters with a hand-drawn green outline, uneven letter spacing, one letter slightly larger than the rest, paint sun-faded and slightly chalky, small chips where the stucco has flaked, a small crudely painted green cactus with two arms beside the lettering. Visible stucco texture, a hairline crack, a faint water stain low on the wall. Flat unretouched phone-camera look, slightly crooked crop. The stucco wall fills the entire canvas edge to edge, corner to corner: NO card, NO panel, NO plaque, NO tile, NO frame, NO border, NO drop shadow, NO white margin. The only text anywhere in the image is exactly: La Taqueria Verdadera #2 . No other letters, words, numbers or symbols may appear anywhere.",
-      "predictionId": "gy4d8pys7drmy0d0469ss1rmqm"
-    },
-    {
-      "file": "hero.webp",
-      "prompt": "Amateur wide smartphone photo taken inside a small family taqueria, no people anywhere in frame. A short order counter with a worn laminate top, a steam table behind sneeze glass with metal pans of stewed meat and rice, a tall stack of thin white paper plates, a squeeze bottle of red salsa and a napkin dispenser, a bowl of limes, a small blank whiteboard and a blank unpainted board on the wall above with no writing on them, a domed drink barrel with a spigot at the end of the counter, a fly strip, a wall calendar turned to a blank page, scuffed terracotta floor tile, a plastic bin of foil sheets. Dim warm interior light with the flash off, slightly underexposed and noisy, mixed white balance, one window blowing out on the left. Slightly crooked horizon, flat unretouched phone-camera look, visible sensor noise. Wide 16:9 crop. No text anywhere, no writing, no readable signage, no logos, no labels, no watermarks, no hands, no people.",
-      "predictionId": "q8fz701sgnrmw0d046aagbwffr"
-    },
-    {
-      "file": "items/01.webp",
-      "itemId": "tqv-001",
-      "itemName": "Taco de Asada",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three generous street tacos on a thin white paper plate, each on doubled corn tortillas heaped with chopped grilled steak, raw white onion and chopped cilantro, two lime wedges beside them, a small clear cup of red salsa. Harsh direct on-camera flash, hot blown-out white hotspot on the meat, hard black shadow thrown behind the plate. Shot from too close and slightly above, the subject not centred, a squeeze bottle of salsa and a stack of napkins at the edge of frame. Flat phone-camera look, unretouched, mixed white balance, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "t486g8mzkhrmw0d046abdykt3g",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/02.webp",
-      "itemId": "tqv-007",
-      "itemName": "Burrito de Carne Asada",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: one very large foil-wrapped burrito lying on a sheet of crumpled wax paper, the foil torn back at one end to show the packed cross section of chopped grilled steak, orange rice, whole pinto beans and red salsa inside a flour tortilla, a second wrapped burrito shoved in behind it. Lit by harsh direct on-camera flash fired straight at it: a hot blown-out white hotspot on the foil, a hard black shadow thrown flat behind the burrito onto the counter, the whole frame lit evenly and harshly from the front. No window light, no soft light, no side light, no light source visible in the frame. The burrito sits on a scratched stainless steel prep counter with crumbs, a smear of red salsa, a squeeze bottle and a stack of plastic container lids in the frame behind it. Deep focus: the background is a cluttered, brightly lit working kitchen and every part of the frame is equally sharp. No blurred background, no bokeh, no shallow depth of field, no dark background, no falloff to black. Framed slightly crooked and shot from too close, the wax paper cut off at the right edge. Flat phone-camera look, unretouched, mixed white balance, visible JPEG compression artefacts and sensor noise. Not styled, not arranged, not colour-graded, not appetising. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "ryt35x53zxrmr0d04adaw7cqcw",
-      "styleObserved": "amateur",
-      "aspect_ratio": "1:1",
-      "regenerated": "Reshot 2026-08-20: the first generation (an amateur brief) came back as a soft-window-key studio shot with shallow depth of field — an independent taqueria does not have a photographer. Reshot with the key described as frontal on-camera flash, deep focus forced, and the background specified as a cluttered lit kitchen rather than a blurred one."
-    },
-    {
-      "file": "items/03.webp",
-      "itemId": "tqv-009",
-      "itemName": "Quesadilla de la Casa",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an enormous folded flour quesadilla cut into four wedges, filling an aluminium foil tray completely and overhanging one edge, melted white cheese stretched between the wedges, chopped grilled meat visible inside, a small cup of green salsa wedged in the corner, the cardboard lid propped behind. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Cluttered background: a stainless prep counter, a squeeze bottle, a stack of lids, another order waiting. Flat phone-camera look, unretouched, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "dpkp901d4hrmt0d046atz867hw",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/04.webp",
-      "itemId": "tqv-011",
-      "itemName": "Plato de Carne Asada",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a white styrofoam clamshell packed full, sliced grilled skirt steak across one half, orange rice and whole pinto beans in the other compartments, a whole charred grilled spring onion and a strip of nopal cactus laid on top, a stack of foil-wrapped corn tortillas beside the container. Dim warm interior light with the flash off, slightly underexposed and noisy, mixed white balance. The container sitting directly on a scratched laminate counter with crumbs and a smear of red sauce beside it. Flat phone-camera look, unretouched, soft focus. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "kevaq7k4m9rmw0d046arj3meq4",
-      "styleObserved": "amateur"
-    },
-    {
-      "file": "items/05.webp",
-      "itemId": "tqv-016",
-      "itemName": "Quesatacos de Birria (3)",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three red-stained griddled tacos packed with shredded stewed beef and melted cheese, crammed into a clear plastic deli container lined with greasy paper, chopped raw onion and cilantro scattered loosely over them, a lidded white styrofoam cup of dark orange broth standing beside it. Lit by flat overhead fluorescent ceiling light with a green-yellow colour cast and no fill, plus the camera's own flash: everything is evenly and unflatteringly lit front-on. No light source visible in the frame, no glowing tube in shot, no dramatic lighting, no rim light, no spotlight, no dark background, no falloff to black. The container sits on a scratched stainless steel prep counter with crumbs, a smear of red grease and a stack of plastic lids beside it; behind it a cluttered brightly lit kitchen wall with a dish rack and a napkin dispenser. Deep focus, every part of the frame equally sharp: no blurred background, no bokeh, no shallow depth of field. Framed slightly crooked and shot from too close and slightly above, the cup cut off at the edge. Flat phone-camera look, unretouched, mixed white balance, soft focus, heavy JPEG compression artefacts and sensor noise. Not styled, not arranged, not garnished for effect, not colour-graded, ugly and honest. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
-      "predictionId": "bgzge38t7nrmw0d04adrdye3xg",
-      "regenerated": "Reshot 2026-08-20: the first generation (an amateur brief) turned the fluorescent tube into a hero light against a black falloff — art-directed, not a staff phone photo. Reshot with no light source in frame and no dark background.",
-      "supersededPredictionId": "km02z2652nrmy0d046arp02gqm",
-      "reason": "first take read as polished advertising photography (crisp focus, dark glossy backdrop, no flash fault); reshot with point-blank on-camera flash, fluorescent cast and a cluttered prep counter",
-      "styleObserved": "amateur",
-      "aspect_ratio": "1:1"
-    },
-    {
-      "file": "items/06.webp",
-      "itemId": "tqv-020",
-      "itemName": "Agua de Horchata",
-      "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of pale creamy cinnamon horchata filled with ice, a plain domed lid pressed on and a plain white straw pushed through it, condensation running down the sides, a second cup of dark red jamaica standing right behind it. Lit by harsh direct on-camera flash fired straight at the cups: a hot blown-out white hotspot on the plastic, a hard black shadow thrown flat behind them onto the counter, the whole frame evenly and harshly lit from the front. No window light, no soft light, no backlight, no light source visible in the frame. The cups sit on a scratched laminate counter with a wet ring of spilled horchata and a stack of spare plain domed lids beside them. Directly behind them is a plain scuffed tiled wall and a stainless steel counter edge — an empty back corner of the shop. The room is completely empty. Deep focus, every part of the frame equally sharp: no blurred background, no bokeh, no shallow depth of field, no dark background. Shot from too close and slightly above, the cup cut off at the top edge, framed crooked and off-centre. Flat phone-camera look, unretouched, mixed white balance, sensor noise and JPEG compression artefacts. Not styled, not arranged, not colour-graded, not appetising. Square crop. Absolutely nobody in the picture: no people, no person, no customer, no worker, no figure, no silhouette, no hands, no arms, no faces. Absolutely no writing anywhere in the frame: no text, no letters, no numbers, no printed straw wrapper, no paper sleeve, no napkin with printing, no sachets, no packets, no signage, no menu board, no logos, no packaging labels, no watermarks. Every surface and every object is blank and unprinted.",
-      "predictionId": "v3pfbw1tcsrmt0d04aesag8hjc",
-      "styleObserved": "amateur",
-      "aspect_ratio": "1:1",
-      "regenerated": "Reshot 2026-08-20: the first generation (an amateur brief) came back as a soft high-key studio shot. The first retake fixed the light but put a person behind the counter; the second put legible print on a straw wrapper. This third take carries an explicit nobody-and-no-writing clause — the same fix already recorded for goldenwok items/01."
-    }
-  ]
+ "slug": "verdadera",
+ "model": "bytedance/seedream-4.5",
+ "photoStyle": "amateur",
+ "images": [
+  {
+   "file": "logo.webp",
+   "prompt": "A photograph of a hand-painted sign on a warm cream stucco exterior wall, shot straight on in warm late afternoon daylight, filling the whole frame. Hand-lettered by a family member, not a designer: thick deep red brush letters with a hand-drawn green outline, uneven letter spacing, one letter slightly larger than the rest, paint sun-faded and slightly chalky, small chips where the stucco has flaked, a small crudely painted green cactus with two arms beside the lettering. Visible stucco texture, a hairline crack, a faint water stain low on the wall. Flat unretouched phone-camera look, slightly crooked crop. The stucco wall fills the entire canvas edge to edge, corner to corner: NO card, NO panel, NO plaque, NO tile, NO frame, NO border, NO drop shadow, NO white margin. The only text anywhere in the image is exactly: La Taqueria Verdadera #2 . No other letters, words, numbers or symbols may appear anywhere.",
+   "predictionId": "gy4d8pys7drmy0d0469ss1rmqm"
+  },
+  {
+   "file": "hero.webp",
+   "prompt": "Amateur wide smartphone photo taken inside a small family taqueria, no people anywhere in frame. A short order counter with a worn laminate top, a steam table behind sneeze glass with metal pans of stewed meat and rice, a tall stack of thin white paper plates, a squeeze bottle of red salsa and a napkin dispenser, a bowl of limes, a small blank whiteboard and a blank unpainted board on the wall above with no writing on them, a domed drink barrel with a spigot at the end of the counter, a fly strip, a wall calendar turned to a blank page, scuffed terracotta floor tile, a plastic bin of foil sheets. Dim warm interior light with the flash off, slightly underexposed and noisy, mixed white balance, one window blowing out on the left. Slightly crooked horizon, flat unretouched phone-camera look, visible sensor noise. Wide 16:9 crop. No text anywhere, no writing, no readable signage, no logos, no labels, no watermarks, no hands, no people.",
+   "predictionId": "q8fz701sgnrmw0d046aagbwffr"
+  },
+  {
+   "file": "items/01.webp",
+   "itemId": "tqv-001",
+   "itemName": "Taco de Asada",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three generous street tacos on a thin white paper plate, each on doubled corn tortillas heaped with chopped grilled steak, raw white onion and chopped cilantro, two lime wedges beside them, a small clear cup of red salsa. Harsh direct on-camera flash, hot blown-out white hotspot on the meat, hard black shadow thrown behind the plate. Shot from too close and slightly above, the subject not centred, a squeeze bottle of salsa and a stack of napkins at the edge of frame. Flat phone-camera look, unretouched, mixed white balance, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "t486g8mzkhrmw0d046abdykt3g",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/02.webp",
+   "itemId": "tqv-007",
+   "itemName": "Burrito de Carne Asada",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: one very large foil-wrapped burrito lying on a sheet of crumpled wax paper, the foil torn back at one end to show the packed cross section of chopped grilled steak, orange rice, whole pinto beans and red salsa inside a flour tortilla, a second wrapped burrito shoved in behind it. Lit by harsh direct on-camera flash fired straight at it: a hot blown-out white hotspot on the foil, a hard black shadow thrown flat behind the burrito onto the counter, the whole frame lit evenly and harshly from the front. No window light, no soft light, no side light, no light source visible in the frame. The burrito sits on a scratched stainless steel prep counter with crumbs, a smear of red salsa, a squeeze bottle and a stack of plastic container lids in the frame behind it. Deep focus: the background is a cluttered, brightly lit working kitchen and every part of the frame is equally sharp. No blurred background, no bokeh, no shallow depth of field, no dark background, no falloff to black. Framed slightly crooked and shot from too close, the wax paper cut off at the right edge. Flat phone-camera look, unretouched, mixed white balance, visible JPEG compression artefacts and sensor noise. Not styled, not arranged, not colour-graded, not appetising. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "ryt35x53zxrmr0d04adaw7cqcw",
+   "styleObserved": "amateur",
+   "aspect_ratio": "1:1",
+   "regenerated": "Reshot 2026-08-20: the first generation (an amateur brief) came back as a soft-window-key studio shot with shallow depth of field — an independent taqueria does not have a photographer. Reshot with the key described as frontal on-camera flash, deep focus forced, and the background specified as a cluttered lit kitchen rather than a blurred one."
+  },
+  {
+   "file": "items/03.webp",
+   "itemId": "tqv-009",
+   "itemName": "Quesadilla de la Casa",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: an enormous folded flour quesadilla cut into four wedges, filling an aluminium foil tray completely and overhanging one edge, melted white cheese stretched between the wedges, chopped grilled meat visible inside, a small cup of green salsa wedged in the corner, the cardboard lid propped behind. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Cluttered background: a stainless prep counter, a squeeze bottle, a stack of lids, another order waiting. Flat phone-camera look, unretouched, sensor noise. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "dpkp901d4hrmt0d046atz867hw",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/04.webp",
+   "itemId": "tqv-011",
+   "itemName": "Plato de Carne Asada",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a white styrofoam clamshell packed full, sliced grilled skirt steak across one half, orange rice and whole pinto beans in the other compartments, a whole charred grilled spring onion and a strip of nopal cactus laid on top, a stack of foil-wrapped corn tortillas beside the container. Dim warm interior light with the flash off, slightly underexposed and noisy, mixed white balance. The container sitting directly on a scratched laminate counter with crumbs and a smear of red sauce beside it. Flat phone-camera look, unretouched, soft focus. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "kevaq7k4m9rmw0d046arj3meq4",
+   "styleObserved": "amateur"
+  },
+  {
+   "file": "items/05.webp",
+   "itemId": "tqv-016",
+   "itemName": "Quesatacos de Birria (3)",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: three red-stained griddled tacos packed with shredded stewed beef and melted cheese, crammed into a clear plastic deli container lined with greasy paper, chopped raw onion and cilantro scattered loosely over them, a lidded white styrofoam cup of dark orange broth standing beside it. Lit by flat overhead fluorescent ceiling light with a green-yellow colour cast and no fill, plus the camera's own flash: everything is evenly and unflatteringly lit front-on. No light source visible in the frame, no glowing tube in shot, no dramatic lighting, no rim light, no spotlight, no dark background, no falloff to black. The container sits on a scratched stainless steel prep counter with crumbs, a smear of red grease and a stack of plastic lids beside it; behind it a cluttered brightly lit kitchen wall with a dish rack and a napkin dispenser. Deep focus, every part of the frame equally sharp: no blurred background, no bokeh, no shallow depth of field. Framed slightly crooked and shot from too close and slightly above, the cup cut off at the edge. Flat phone-camera look, unretouched, mixed white balance, soft focus, heavy JPEG compression artefacts and sensor noise. Not styled, not arranged, not garnished for effect, not colour-graded, ugly and honest. Square crop. No text, no logos, no packaging labels, no watermarks, no hands, no people.",
+   "predictionId": "bgzge38t7nrmw0d04adrdye3xg",
+   "regenerated": "Reshot 2026-08-20: the first generation (an amateur brief) turned the fluorescent tube into a hero light against a black falloff — art-directed, not a staff phone photo. Reshot with no light source in frame and no dark background.",
+   "supersededPredictionId": "km02z2652nrmy0d046arp02gqm",
+   "reason": "first take read as polished advertising photography (crisp focus, dark glossy backdrop, no flash fault); reshot with point-blank on-camera flash, fluorescent cast and a cluttered prep counter",
+   "styleObserved": "amateur",
+   "aspect_ratio": "1:1"
+  },
+  {
+   "file": "items/06.webp",
+   "itemId": "tqv-020",
+   "itemName": "Agua de Horchata",
+   "prompt": "Amateur smartphone photo taken by a restaurant employee to upload to a food delivery app. Subject: a tall clear plastic cup of pale creamy cinnamon horchata filled with ice, a plain domed lid pressed on and a plain white straw pushed through it, condensation running down the sides, a second cup of dark red jamaica standing right behind it. Lit by harsh direct on-camera flash fired straight at the cups: a hot blown-out white hotspot on the plastic, a hard black shadow thrown flat behind them onto the counter, the whole frame evenly and harshly lit from the front. No window light, no soft light, no backlight, no light source visible in the frame. The cups sit on a scratched laminate counter with a wet ring of spilled horchata and a stack of spare plain domed lids beside them. Directly behind them is a plain scuffed tiled wall and a stainless steel counter edge — an empty back corner of the shop. The room is completely empty. Deep focus, every part of the frame equally sharp: no blurred background, no bokeh, no shallow depth of field, no dark background. Shot from too close and slightly above, the cup cut off at the top edge, framed crooked and off-centre. Flat phone-camera look, unretouched, mixed white balance, sensor noise and JPEG compression artefacts. Not styled, not arranged, not colour-graded, not appetising. Square crop. Absolutely nobody in the picture: no people, no person, no customer, no worker, no figure, no silhouette, no hands, no arms, no faces. Absolutely no writing anywhere in the frame: no text, no letters, no numbers, no printed straw wrapper, no paper sleeve, no napkin with printing, no sachets, no packets, no signage, no menu board, no logos, no packaging labels, no watermarks. Every surface and every object is blank and unprinted.",
+   "predictionId": "v3pfbw1tcsrmt0d04aesag8hjc",
+   "styleObserved": "amateur",
+   "aspect_ratio": "1:1",
+   "regenerated": "Reshot 2026-08-20: the first generation (an amateur brief) came back as a soft high-key studio shot. The first retake fixed the light but put a person behind the counter; the second put legible print on a straw wrapper. This third take carries an explicit nobody-and-no-writing clause — the same fix already recorded for goldenwok items/01."
+  },
+  {
+   "file": "items/07.webp",
+   "item": "tqv-002",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: three al pastor tacos crowded into a red plastic diner basket lined with checkered paper, doubled corn tortillas heaped with red-rimmed shaved pork carved off the spit, a cube of griddled pineapple laid on each, raw white onion and chopped cilantro scattered over them, two lime wedges pushed to one end. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance, no light source visible in frame. Framed slightly crooked with the basket cut off at the left edge, on a scratched stainless prep counter beside a napkin dispenser and another order sitting bagged and waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/08.webp",
+   "item": "tqv-003",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a generous heap of three carnitas tacos in a plain white takeout box, chunks of pork shoulder with browned crisped edges and soft fat piled onto doubled corn tortillas, onion and cilantro over the top, a lime wedge tucked into the corner and grease darkening the cardboard. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the pork and a hard shadow thrown behind the box. Shot from too close and slightly above, the box not centred, a stack of plastic lids and a squeeze bottle behind it on a stainless counter.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/09.webp",
+   "item": "tqv-005",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: four buche tacos on two thin white paper plates stacked one inside the other for strength, chopped pork stomach with crisped brown edges heaped on doubled corn tortillas, onion, cilantro and a spoonful of green salsa over them, three lime wedges pushed to the rim. Bright unflattering daylight through a window on one side, blown highlights along the near edge of the plate and the far side falling to flat grey. Mild motion blur and soft focus, visible JPEG compression artefacts, a stainless prep counter behind with a napkin dispenser and another order waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/10.webp",
+   "item": "tqv-006",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: three tripa tacos in a paper boat lined with wax paper set on a sheet of foil, coiled lengths of pork tripe fried dark and crunchy on doubled corn tortillas, raw onion and cilantro heaped over them, a lime wedge at the end, grease already soaking through the paper in a dark ring. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the grease and a hard shadow thrown behind the boat. Cluttered background: a scratched stainless prep counter, a stack of lids, a squeeze bottle, another order bagged and waiting.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/11.webp",
+   "item": "tqv-008",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: one enormous burrito split open flat in an aluminium foil tray, flooded to the rim with dark red chile sauce and blanketed in melted white cheese browned in patches, chopped steak, orange rice and whole beans showing where the tortilla has torn open, the taped cardboard lid propped up behind it. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the tray cut off at the right edge, on a stainless prep counter beside a stack of lids and a roll of tape.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/12.webp",
+   "item": "tqv-010",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a corn tortilla toasted hard and rigid, loaded with melted cheese, chopped grilled steak and red salsa, sitting in a brown paper takeout bag folded open around it, the tortilla visibly cracked at one edge, a small lidded cup of salsa standing beside it inside the bag. Bright unflattering daylight through a window on one side, blown highlights on the near fold of the paper. Shot from too close and slightly above, the bag not centred, a scratched laminate counter with crumbs and a napkin dispenser behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/13.webp",
+   "item": "tqv-012",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: two batter-fried poblano peppers in a white styrofoam clamshell, the egg batter puffed and blistered pale gold, white queso fresco leaking from a split in one of them, both under a ladle of thin red tomato sauce, orange rice and whole pinto beans packed into the other compartments. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. The clamshell sitting directly on a scratched laminate counter with crumbs and a smear of sauce beside it, a stack of lids at the edge of frame.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/14.webp",
+   "item": "tqv-013",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: three rolled corn tortillas laid side by side in a deep aluminium foil tray, coated in dark brick-red guajillo sauce, crumbled white queso fresco, raw onion rings and a heavy drizzle of thin crema across them, orange rice and whole beans packed in at one end, the cardboard lid propped behind. Dim warm interior light with the flash off, slightly underexposed and noisy, mixed white balance. Cluttered background: a stainless prep counter, a napkin dispenser, a stack of lids, another order waiting to go out.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/15.webp",
+   "item": "tqv-014",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a split birote roll packed thick with chopped carnitas, sitting inside a clear plastic bag set down in an aluminium foil tray and swimming in thin orange-red tomato sauce, the crust already sodden and darkened, sauce pooled in the corner of the bag, sliced raw onion floating on the surface. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the wet plastic and a hard shadow thrown behind the tray. Shot from too close and slightly above, the tray not centred, a scratched stainless counter with crumbs behind it.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/16.webp",
+   "item": "tqv-015",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a tall white styrofoam cup filled nearly to the rim with dark orange-red birria broth, a thick layer of orange fat floating on top, chopped onion and cilantro scattered across the surface, a lime wedge resting against the base and the plastic lid lying flat beside it waiting to be pressed on. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill, mixed white balance. Framed slightly crooked with the cup cut off at the top edge, on a stainless prep counter beside a stack of lids and a napkin dispenser.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/17.webp",
+   "item": "tqv-017",
+   "model": "gpt-image-2",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: a clear plastic cup packed to the top with corn kernels cut off the cob, thick white mayonesa stirred through them, a heavy dusting of crumbled cotija and red chile powder over the surface, a lime wedge pressed against the inside and a plastic spoon standing upright in the middle. Frontal on-camera flash with no light source visible in frame, a hard blown-out hotspot on the mayonesa and a hard shadow thrown behind the cup. The cup sitting directly on a scratched laminate counter with crumbs and a wet ring beside it, a stack of lids behind.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  },
+  {
+   "file": "items/18.webp",
+   "item": "tqv-022",
+   "model": "flux-2-max",
+   "photoStyle": "amateur",
+   "prompt": "A careless snapshot taken on an old cheap smartphone by a restaurant employee to upload to a food delivery app. Subject: three squat glass soda bottles standing in a row straight out of the cooler, one filled with bright orange soda, one dark brown, one pale pink grapefruit, every bottle completely blank and unlabelled with bare glass and no printing anywhere, crimped metal caps on two and the third opened with its cap resting loose on the neck, condensation running down the glass. Flat overhead fluorescent tube light with a green-yellow colour cast and no fill. Framed slightly crooked with the right bottle cut off at the edge, on a stainless prep counter beside a napkin dispenser and a stack of lids.. EVERYTHING in the frame equally sharp from the food to the back wall - no shallow depth of field, no bokeh, no blurred background, no food styling. Aggressive default smartphone HDR processing: over-sharpened with visible halos along every edge, shadows lifted grey and blotchy, mushy chroma noise, heavy JPEG compression, slightly wrong white balance. The container is off-centre and clipped by one edge of the frame, the camera tilted several degrees off level, shot from too close and slightly above. This is a careless snapshot, NOT a photograph: no artistic composition, no cinematic lighting, no colour grading, no professional food photography, nothing centred or plated. Unstyled, unretouched, honest and a little unappetising - but the food is real food from a real kitchen, generous and identifiable, not a joke about bad food. Square crop. No text, no letters, no words, no numbers, no writing or printing on any container, cup, wrapper, bag or sign, no logos, no labels, no watermarks, no people, no hands."
+  }
+ ]
 }

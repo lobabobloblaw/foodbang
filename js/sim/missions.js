@@ -986,6 +986,26 @@ window.FB = window.FB || {};
       return row;
     },
 
+    /* THE PHOTOGRAPH. The roll is seeded on the run id, so which one this run yields
+       was settled the moment the run existed — the button reveals it, it does not
+       decide it, and a reload cannot re-roll it. Written onto the frozen log row so
+       it survives, and appended to the gallery only the first time it is seen. */
+    shoot: function (rowId) {
+      var st = FB.S();
+      var row = (st.slinging.log || []).filter(function (r) { return r.id === rowId; })[0];
+      if (!row || row.shot) return null;
+      var shot = FB.proof.roll(row.id);
+      FB.store.set(function (s2) {
+        var r2 = (s2.slinging.log || []).filter(function (r) { return r.id === rowId; })[0];
+        if (!r2 || r2.shot) return s2;
+        r2.shot = shot;
+        s2.slinging.shots = (s2.slinging.shots || 0) + 1;
+        if (s2.slinging.gallery.indexOf(shot.file) < 0) s2.slinging.gallery.push(shot.file);
+        return s2;
+      });
+      return shot;
+    },
+
     /** catch up quietly, exactly as tracker.resume does */
     resume: function () {
       if (!FB.missions.run()) return;
@@ -1073,6 +1093,14 @@ window.FB = window.FB || {};
            : plat < -1 ? 'Your partner standing is negative. Less work is being shown to you. No reason is recorded.'
            : 'Your partner standing is neutral. This is not a rating.') +
           '</p>';
+      }
+
+      /* The collection, stated as an inventory count and never as a score. The app
+         does not congratulate anybody for it. */
+      if (st.slinging.shots) {
+        h += '<p class="disp-plat">' + FB.plural((st.slinging.gallery || []).length, 'photograph') +
+          ' retained of ' + FB.proof.POOL.length + ' on file. ' +
+          FB.plural(st.slinging.shots, 'photograph') + ' taken.</p>';
       }
 
       if (run) {
@@ -1257,6 +1285,25 @@ window.FB = window.FB || {};
            that happened and moves on. */
         var turn = M.regardNote(last);
         if (turn) h += '<p class="disp-turn">' + FB.esc(turn) + '</p>';
+
+        /* THE PHOTOGRAPH. Untaken it is a button; taken it is the picture and the
+           category the platform filed it under. The category is a loot tier and the
+           app never says so — it says what the platform would say, which is that
+           almost nothing is worth recording. */
+        h += '<div class="shot">';
+        if (last.shot) {
+          var t = FB.proof.tier(last.shot.tier);
+          h += '<div class="shot-hd"><i>PROOF OF DELIVERY</i><b class="shot-' + FB.attr(last.shot.tier) + '">' +
+            FB.esc(t.label) + '</b></div>' +
+            '<img src="' + FB.attr(last.shot.file) + '" alt="Proof of delivery photograph" ' +
+            'onerror="this.remove()">' +
+            '<p class="shot-note">' + FB.esc(t.note) + '</p>';
+        } else {
+          h += '<button class="btn btn--block shot-take" data-shoot="' + FB.attr(last.id) + '">' +
+            FB.icon('camera', 18) + 'Photograph the drop</button>' +
+            '<p class="shot-note">A photograph is required. It is not reviewed.</p>';
+        }
+        h += '</div>';
         h += FB.C.statement(pay);
         /* Only reachable after the deduction tables are edited under a saved log.
            Saying so is better than redrawing an old statement at today's prices. */
@@ -1290,6 +1337,13 @@ window.FB = window.FB || {};
       var run = M.run();
       if (!run) return;
       FB.tracker.placeCourier(root, { id: run.id }, 0);
+
+      FB.on(root, 'click', '[data-shoot]', function (e, t) {
+        FB.busy(t, 'save', function () {
+          M.shoot(t.dataset.shoot);
+          FB.nav.refresh();
+        });
+      });
 
       FB.on(root, 'click', '[data-answer]', function (e, t) {
         FB.busy(t, 'save', function () {
