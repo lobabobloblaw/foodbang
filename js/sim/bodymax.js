@@ -77,7 +77,11 @@ window.FB = window.FB || {};
       var brands = {};
       h.forEach(function (e) { brands[e.slug] = 1; });
 
-      var totalCal = FB.sum(h, function (e) { return e.cal; });
+      /* The ledger wins here too. `history` is capped at 200 rows by migrate(), so
+         the fold alone walked this BACKWARDS on the 201st order — "units logged"
+         shrank, and the chew debt "owed to the jaw" was quietly forgiven. The
+         lifetime total checkout books never shrinks. */
+      var totalCal = Math.max(FB.sum(h, function (e) { return e.cal; }), (st.meta && st.meta.lifetimeCalories) || 0);
       var days = Math.max(1, Math.ceil((Date.now() - (st.bodymax.firstTs || Date.now())) / 86400000) || 1);
 
       return {
@@ -109,8 +113,12 @@ window.FB = window.FB || {};
 
     days: function (n) {
       var st = FB.S(), out = [];
+      var t = new Date(Date.now());
       for (var i = n - 1; i >= 0; i--) {
-        var d = new Date(Date.now() - i * 86400000);
+        /* Step by calendar DAY, not by 86 400 000: the day after spring-forward is
+           23 hours long, and flat arithmetic walked from the 9th straight to the
+           7th — the 8th, and whatever was eaten on it, vanished from the chart. */
+        var d = new Date(t.getFullYear(), t.getMonth(), t.getDate() - i);
         var k = dayKey(d.getTime());
         var cal = FB.sum(st.bodymax.history.filter(function (e) { return dayKey(e.ts) === k; }), function (e) { return e.cal; });
         out.push({ label: ['S', 'M', 'T', 'W', 'T', 'F', 'S'][d.getDay()], date: d.getDate(), cal: cal });

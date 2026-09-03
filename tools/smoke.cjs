@@ -6,10 +6,18 @@ const crypto = require('crypto');
 
 const ROOT = path.join(__dirname, '..');
 let failed = 0;
+let ran = 0;
 
 function check(label, fn) {
+  ran++;
   try {
     const detail = fn();
+    /* This runner is synchronous. A check written as an async function returned a
+       Promise nobody awaited, and every assertion inside it passed forever; the
+       detail it returns is read as a string, so a thenable here is always a bug. */
+    if (detail && typeof detail.then === 'function') {
+      throw new Error('the check returned a Promise — the runner is synchronous and would never see it reject');
+    }
     console.log('  ok    ' + label + (detail ? '  (' + detail + ')' : ''));
   } catch (e) {
     failed++;
@@ -131,18 +139,27 @@ check('the bundle was built from exactly these sources', () => {
   eq(Object.keys(MENUS).length, SRC_FILES.length, 'store count');
   const h = crypto.createHash('sha256');
   for (const f of SRC_FILES) h.update(f).update(fs.readFileSync(path.join(MENU_DIR, f)));
+  h.update('tools/bundle.cjs').update(fs.readFileSync(path.join(ROOT, 'tools/bundle.cjs')));
   const want = h.digest('hex');
-  const gen = fs.readFileSync(path.join(ROOT, 'js/data/menus.generated.js'), 'utf8').slice(0, 400);
+  const whole = fs.readFileSync(path.join(ROOT, 'js/data/menus.generated.js'), 'utf8');
+  const gen = whole.slice(0, 400);
   const got = (gen.match(/sources sha256 ([0-9a-f]{64})/) || [])[1];
   if (!got) throw new Error('the bundle carries no source hash — run npm run bundle');
   if (got !== want) throw new Error('the bundle is stale: run npm run bundle');
+  /* The source hash cannot see a hand edit to the OUTPUT: every data check reads the
+     sources by design, so a price changed directly in the bundle, banner untouched,
+     used to pass all of them while being the number the app actually ships. */
+  const bodyAt = whole.indexOf('window.FB_MENUS');
+  if (bodyAt < 0) throw new Error('the bundle does not define the menu global');
+  const stamped = (gen.match(/bundle sha256 ([0-9a-f]{64})/) || [])[1];
+  if (!stamped) throw new Error('the bundle carries no output hash — run npm run bundle');
+  const actual = crypto.createHash('sha256').update(whole.slice(bodyAt)).digest('hex');
+  if (actual !== stamped) throw new Error('menus.generated.js has been edited by hand: its body no longer matches the hash bundle.cjs stamped — run npm run bundle');
   /* and the build-only fields really are absent from what ships */
   for (const k of ['imagePrompt', 'photoStyle']) {
-    if (fs.readFileSync(path.join(ROOT, 'js/data/menus.generated.js'), 'utf8').includes('"' + k + '"')) {
-      throw new Error(k + ' is still in the runtime bundle');
-    }
+    if (whole.includes('"' + k + '"')) throw new Error(k + ' is still in the runtime bundle');
   }
-  return SRC_FILES.length + ' stores, hash matches, build-only fields stripped';
+  return SRC_FILES.length + ' stores, source and output hashes match, build-only fields stripped';
 });
 
 check('every photographed item has its asset on disk', () => {
@@ -611,9 +628,19 @@ check('the single-file build can still parse index.html, and its output is safe 
      placed above the markup makes html.indexOf('<script src=') precede '<body>', so
      the body slice comes back empty and the artifact publishes as a blank page with
      nothing but the boot banner — without erroring. Nothing checked any of it.
-     The stylesheet regex is deliberately NOT asserted: index.html's Google Fonts
-     link uses the reversed attribute order and the build skips it on purpose. */
+     The stylesheet side is held to the same standard, LOCAL links only: the Google
+     Fonts link uses the reversed attribute order and the build re-emits it itself. */
   const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  const styles = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)">/g)].map(m => m[1]);
+  const localLinks = [...html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*>/g)]
+    .map(m => m[0]).filter(t => !/href="https?:/.test(t));
+  if (styles.length !== localLinks.length) {
+    throw new Error(localLinks.length + ' local stylesheet links but only ' + styles.length + ' match the shape the build reads');
+  }
+  if (styles.length < 3) throw new Error('index.html lists only ' + styles.length + ' stylesheets');
+  for (const f of styles) {
+    if (!fs.existsSync(path.join(ROOT, f))) throw new Error('index.html lists a missing stylesheet: ' + f);
+  }
   const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map(m => m[1]);
   const allScriptTags = (html.match(/<script\b/g) || []).length;
   if (scripts.length !== allScriptTags) {
@@ -657,7 +684,13 @@ check('the single-file build can still parse index.html, and its output is safe 
     if (longest > 1024) throw new Error('build/foodbang.html line ' + at + ' is ' + longest + ' chars (limit 1024)');
     note = 'build longest line ' + longest;
   }
-  return scripts.length + ' scripts, body slice intact, ' + note;
+  /* and the build refuses, itself, to write a file that breaks the rule — a check
+     that only looks at whatever build is lying around asserts nothing on a fresh clone */
+  const builder = fs.readFileSync(path.join(ROOT, 'tools/build-artifact.cjs'), 'utf8');
+  if (!/refusing to write/.test(builder) || !/LINE_LIMIT = 1024/.test(builder)) {
+    throw new Error('build-artifact.cjs no longer refuses to write an over-long line');
+  }
+  return styles.length + ' stylesheets, ' + scripts.length + ' scripts, body slice intact, ' + note;
 });
 
 check('the world is a pure function of the clock', () => {
@@ -937,7 +970,10 @@ check('an item the restaurant has stopped serving cannot be sold anywhere', () =
     if (!/data-go="cart" data-params="\{&quot;slug&quot;/.test(co)) throw new Error('the refusal cannot get back to the cart it names');
     /* the refusal must also agree with itself on number — the subject was branched
        and the pronoun after it was not, so one dead line read "one item … They" */
-    if (/\bThey must be removed/.test(co) && dead.length === 1) throw new Error('the refusal says "They" about one item');
+    const deadNow = FB.cart.unsellable(hit.st.slug);
+    if (deadNow.length !== 1) throw new Error('expected exactly one dead line at this point, found ' + deadNow.length);
+    if (/\bThey must be removed/.test(co)) throw new Error('the refusal says "They" about one item');
+    if (!/stopped serving one item/.test(co)) throw new Error('the refusal does not count one dead line as one item');
 
     /* 3. Search renders items with its own markup, and was the one surface that
           never asked — a full-price row that refuses the sale when tapped */
@@ -1822,6 +1858,13 @@ check('the build tools fail loudly rather than quietly', () => {
     if (!inlined.equals(fs.readFileSync(asset))) {
       throw new Error('the artifact inlined ' + inlined.length + ' bytes for a ' +
         fs.statSync(asset).size + '-byte asset — the stale cache was shipped anyway');
+    }
+    /* this build is fresh, whatever was on disk before the suite started */
+    let longest = 0;
+    html.split('\n').forEach((l) => { if (l.length > longest) longest = l.length; });
+    if (longest > 1024) throw new Error('the artifact just built carries a ' + longest + '-char line');
+    if (!/refusing to write/.test(log) && !/longest line \d+ chars/.test(log)) {
+      throw new Error('the build does not report its longest line');
     }
   } finally {
     if (hadCache) { fs.writeFileSync(probe, saved); fs.utimesSync(probe, savedTimes.atime, savedTimes.mtime); }
@@ -3223,7 +3266,8 @@ check('some things run out, and never too many of them', () => {
     clock.set(day0);
     const gone = FB.catalog.all().flatMap(s => s.menu.flatMap(sec => sec.items))
       .find(it => it.scarce && !FB.catalog.available(it, day0));
-    if (gone) {
+    if (!gone) throw new Error('no scarce item is out on the probe day, so nothing below was drawn');
+    {
       const store = FB.catalog.get(gone.storeSlug);
       const row = FB.C.menuItem(gone, store);
       if (!/is-out/.test(row)) throw new Error('an unavailable item renders as available on the store page');
@@ -3249,9 +3293,19 @@ check('some things run out, and never too many of them', () => {
       FB.store.reset();
       const st = FB.catalog.get(goneToday.storeSlug);
       FB.cart.add(st.slug, goneToday, FB.catalog.defaultSel(goneToday), 1, '');
-      /* the cart is where reorder would put it — assert the app knows it is gone */
-      if (FB.catalog.available(goneToday, day0)) throw new Error('the probe item is not actually unavailable');
+      /* the cart is where reorder would put it — assert the app knows it is gone,
+         on the surface that would have to refuse it, not by re-asking the predicate
+         that chose it */
+      const deadLines = FB.cart.unsellable(st.slug);
+      if (deadLines.length !== 1 || deadLines[0].itemId !== goneToday.id) {
+        throw new Error('a sold-out item reordered into the cart is not flagged unsellable there');
+      }
+      if (!/cartline is-out/.test(FB.screens.get('cart').render({ slug: st.slug }))) {
+        throw new Error('the cart draws a reordered sold-out item as an ordinary line');
+      }
       FB.cart.clear(st.slug);
+    } else {
+      throw new Error('no scarce item is out on the probe day, so the reorder gate was never exercised');
     }
 
     /* paying to be told stops being billed once you have been told */
@@ -3945,12 +3999,18 @@ check('a run is held until the decision in front of it is answered', () => {
     clock.set(r2.checks[0].deadline + 500);
     for (let i = 0; i < 30; i++) FB.missions.tick({ catchUp: true });
     const live = FB.missions.run();
-    const elected = (live ? live.checks : (FB.S().slinging.log[0] ? [] : []))
-      .filter((x) => x.elected).length;
-    const events = (live ? live.events : []).filter((e) => e.text === 'No response was recorded').length;
-    if (live && !elected) throw new Error('the deadline passed and nothing was elected');
-    if (events > 1) throw new Error('the election was announced ' + events + ' times');
-    return 'held through 60 ticks, answered once, elected once';
+    const row = FB.S().slinging.log[0];
+    /* Whichever way the thirty ticks left it: still live, or settled into the log.
+       Both paths must show the election — an `(x ? [] : [])` placeholder here once
+       made the settled path pass with nothing inspected at all. */
+    if (!live && !row) throw new Error('the run neither held nor settled after the deadline');
+    const elected = live ? live.checks.filter((x) => x.elected).length : (row.elected ? 1 : 0);
+    if (!elected) throw new Error('the deadline passed and nothing was elected (' + (live ? 'live' : 'settled') + ')');
+    if (live) {
+      const events = live.events.filter((e) => e.text === 'No response was recorded').length;
+      if (events !== 1) throw new Error('the election was announced ' + events + ' times');
+    }
+    return 'held through 60 ticks, answered once, elected once (' + (live ? 'still live' : 'settled') + ')';
   } finally { clock.restore(); app.dispose(); }
 });
 
@@ -4543,6 +4603,13 @@ check('a restaurant remembers you, and it can only ever change how it talks', ()
       }
     }
     if (variants < 20) throw new Error('only ' + variants + ' voice variants exist');
+    /* The PAY table carries no voice at all. A restaurant's variant block was once
+       pasted onto the first interrupt — inert, because copyFor's platform branch
+       never looks for one, and invisible, because this sweep walked ALL only. */
+    for (const p of FB.missions.INTERRUPTS) {
+      if (p.voice) throw new Error('interrupt ' + p.id + ' carries a voice block — that is a restaurant register on the pay axis');
+      if (typeof p.keepPay !== 'number' || typeof p.brkPay !== 'number') throw new Error('interrupt ' + p.id + ' is not priced');
+    }
 
     /* THE RULE NEVER VARIES. It is drawn from live state on the card, from live state
        on the sheet and from the stamped run mid-run; a varying rule lets those three
@@ -5225,7 +5292,7 @@ check('a road runs between two givers, and carrying one changes the other', () =
     }
 
     /* the board says the paired thing on both cards, and it is not the one-way line */
-    const rows = FB.missions.board(Date.now()).filter((b) => b.carried !== undefined || true);
+    const rows = FB.missions.board(Date.now());
     for (const slug of ['gyropalace', 'wingbunker']) {
       const row = rows.filter((r) => r.slug === slug)[0];
       const m = FB.missions.ALL.filter((x) => x.slug === slug)[0];
@@ -5235,6 +5302,277 @@ check('a road runs between two givers, and carrying one changes the other', () =
   } finally { app.dispose(); }
 });
 
+
+check('the run feed closes in the voice the card used', () => {
+  /* replay() wrote the closing line off the BASE table while the answer line and
+     the outcome card went through copyFor — so at `known` Olive Orchard's card said
+     "It is getting longer" over a feed that said "It took eleven minutes". Nothing
+     had ever read a run's feed text. The run is captured on its way into settle(),
+     which nulls it. */
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    const T = new Date(2026, 7, 20, 12, 0, 0).getTime();
+    const seen = [];
+    const realSettle = FB.missions.settle;
+    FB.missions.settle = function (run, opts) { seen.push(FB.deep(run)); return realSettle.call(FB.missions, run, opts); };
+    let varied = 0;
+    try {
+      for (const [slug, standing] of [['oliveorchard', 5], ['gyropalace', 5], ['goldenwok', -5], ['bobacloud', 0]]) {
+        FB.store.reset(); clock.set(T);
+        FB.missions.setMode('sling');
+        FB.store.set((st) => { st.slinging.standing[slug] = standing; return st; });
+        const run = FB.missions.accept(slug, T);
+        const rule = run.checks.filter((x) => x.kind === 'rule')[0];
+        clock.set(rule.at + 1000);
+        FB.missions.tick({ catchUp: true });
+        if (!FB.missions.answer('keep')) throw new Error(slug + ': keep was refused');
+        clock.set(run.endAt + 1000);
+        seen.length = 0;
+        FB.missions.tick({ catchUp: true });
+        if (!seen.length) throw new Error(slug + ': the run never settled');
+        const closed = seen[0];
+        const cp = FB.missions.copyFor(closed, { kind: 'rule' });
+        const last = closed.events[0];
+        if (last.text !== 'Rule kept') throw new Error(slug + ': the last line is "' + last.text + '"');
+        if (last.sub !== cp.kept) {
+          throw new Error(slug + ' at ' + closed.regard + ': the feed closed with "' + last.sub +
+            '" while the card says "' + cp.kept + '"');
+        }
+        const base = FB.missions.get(slug);
+        const v = base.voice && base.voice[closed.regard];
+        if (v && v.kept) { varied++; if (last.sub === base.kept) throw new Error(slug + ': the feed used the base line at ' + closed.regard); }
+      }
+    } finally { FB.missions.settle = realSettle; }
+    if (varied < 2) throw new Error('only ' + varied + ' of the runs had a variant to disagree with');
+    return '4 runs closed in their stamped voice, ' + varied + ' of them a variant';
+  } finally { app.clock.restore(); app.dispose(); }
+});
+
+check('what the statement settles in BangBux is actually granted', () => {
+  /* The settlement row said "Excess deductions are settled in BangBux™" and settle()
+     booked the figure into a counter nothing read. FB.scrip.grant was never called
+     on the courier side: the balance stayed at $0.00 under a statement that had
+     just printed a settlement. */
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    const T = new Date(2026, 7, 20, 12, 0, 0).getTime();
+    clock.set(T);
+    let row = null;
+    for (const m of FB.missions.ALL) {
+      FB.store.reset(); FB.missions.setMode('sling');
+      const probe = FB.missions.build(m.slug, T);
+      FB.missions.accept(m.slug, T - (probe.endAt - probe.startAt) - 5000);
+      FB.missions.tick({ catchUp: true });
+      const r = FB.S().slinging.log[0];
+      if (r && r.scrip > 0) { row = r; break; }
+    }
+    if (!row) throw new Error('no run settles anything in BangBux, so the settlement row cannot be tested');
+    const bal = FB.scrip.balance(row.at);
+    if (Math.abs(bal - row.scrip) > 0.001) {
+      throw new Error('the statement settled ' + FB.money(row.scrip) + ' but the balance holds ' + FB.money(bal));
+    }
+    const g = FB.S().scrip[0];
+    if (!g || g.at !== row.at) throw new Error("the grant is not stamped from the run's end");
+    if (Math.abs(FB.S().slinging.scrip - row.scrip) > 0.001) throw new Error('the courier ledger disagrees with the grant');
+    if (FB.scrip.balance(row.at + FB.fees.SCRIP_TTL_MS + 1) !== 0) throw new Error('a settlement does not expire like every other grant');
+    /* and the whole balance is the customer's to redeem — the same wallet */
+    if (FB.scrip.redeemable(row.at) < Math.min(1, Math.floor(row.scrip))) throw new Error('the settlement cannot be redeemed');
+    return FB.money(row.scrip) + ' settled on ' + row.slug + ', granted, stamped from run.endAt, expiring on schedule';
+  } finally { app.clock.restore(); app.dispose(); }
+});
+
+check('a save with a key of the wrong shape is repaired rather than fatal', () => {
+  /* fillDefaults backfilled a MISSING key and recursed into a matching one, and did
+     nothing at all for a key present with the wrong shape — `orders: {}` reached
+     FB.tracker.resume() at boot, threw on .filter, and left the splash up forever
+     with no error on screen. */
+  const probe = harness.loadApp();
+  const key = probe.FB.store.KEY;
+  probe.dispose();
+  const cases = [
+    ['orders', {}], ['addresses', {}], ['scrip', {}], ['bodymax', { history: {} }],
+    ['cart', []], ['slinging', []], ['settings', 'dark'], ['meta', null], ['notifs', 'none'],
+  ];
+  for (const [k, v] of cases) {
+    const saved = { v: 1 }; saved[k] = v;
+    const app = harness.loadApp({ savedState: saved, storageKey: key });
+    try {
+      const { FB } = app;
+      const st = FB.S();
+      const want = k === 'bodymax' ? st.bodymax.history : st[k];
+      const shouldBeArray = ['orders', 'addresses', 'scrip', 'notifs', 'bodymax'].includes(k);
+      if (Array.isArray(want) !== shouldBeArray || want === null || typeof want !== 'object') {
+        throw new Error(k + ' = ' + JSON.stringify(v) + ' survived load as ' + JSON.stringify(want).slice(0, 40));
+      }
+      /* the boot path that used to throw */
+      FB.tracker.resume();
+      FB.missions.resume();
+      FB.store.address(); FB.store.payment(); FB.store.activeOrder();
+      FB.scrip.balance(); FB.bodymax.metrics(); FB.notifs.backfill(); FB.notifs.unreadCount();
+      FB.screens.get('home').render({});
+    } catch (e) {
+      throw new Error(k + ' = ' + JSON.stringify(v) + ': ' + e.message);
+    } finally { app.dispose(); }
+  }
+  /* and a RIGHT-shaped array is still the user's own and is never merged into */
+  const kept = { v: 1, addresses: [{ id: 'z', label: 'Only', line1: '1 Lane', city: 'X', dropoff: 'leave', isDefault: true }] };
+  const app2 = harness.loadApp({ savedState: kept, storageKey: key });
+  try {
+    if (app2.FB.S().addresses.length !== 1 || app2.FB.S().addresses[0].id !== 'z') throw new Error('a well-formed address list was merged into');
+  } finally { app2.dispose(); }
+  return cases.length + ' wrong-shaped keys repaired, a well-formed list left alone';
+});
+
+check('the intake chart and the nightly summary step by calendar day', () => {
+  /* Both walked the calendar by a flat 86 400 000. The day after spring-forward is
+     23 hours long, so the 14-day chart went from the 9th to the 7th and whatever
+     was eaten on the 8th vanished; the 2:40 AM summary's window started an hour
+     late across fall-back, so an order placed in that hour fell into no summary at
+     all. Neither is visible in a zone without daylight saving, so this runs in one. */
+  const probe = require('child_process').execFileSync(process.execPath, ['-e', `
+    const { loadApp } = require(${JSON.stringify(require('path').join(__dirname, 'harness.cjs'))});
+    const app = loadApp();
+    const { FB, clock } = app;
+    const bad = [];
+    /* 00:30 on 9 Mar 2026, the morning after the 23-hour day */
+    clock.set(new Date(2026, 2, 9, 0, 30, 0).getTime());
+    const days = FB.bodymax.days(14);
+    const dates = days.map((d) => d.date);
+    if (new Set(dates).size !== 14) bad.push('chart repeats a date: ' + dates.join(','));
+    if (dates.indexOf(8) < 0) bad.push('8 March is missing from the chart: ' + dates.join(','));
+    if (dates[13] !== 9 || dates[0] !== 24) bad.push('chart does not end today and start 13 days back: ' + dates.join(','));
+    /* an order at 00:30 PDT on 2 Nov 2025, the fall-back day; summarised at 02:40 on the 3rd */
+    FB.store.reset();
+    const placed = new Date(2025, 10, 2, 0, 30, 0).getTime();
+    FB.store.set((st) => {
+      st.orders.unshift({ id: 'o_dst', slug: 'starbux', status: 'delivered', placedAt: placed,
+        calc: { total: 41.5 }, lines: [], events: [] });
+      st.meta.installedAt = placed - 86400000 * 3;
+      return st;
+    });
+    clock.set(new Date(2025, 10, 4, 12, 0, 0).getTime());
+    FB.notifs.backfill();
+    const slot = new Date(2025, 10, 3, 2, 40, 0).getTime();
+    const nightly = FB.S().notifs.filter((n) => n.kind === 'nightly');
+    const hit = nightly.filter((n) => n.ts === slot)[0];
+    if (!hit) bad.push('no summary at 02:40 on the 3rd; got ' + nightly.map((n) => new Date(n.ts).toString()).join(' | '));
+    else if (!/^1 order, \\$41\\.50/.test(hit.body)) bad.push('the summary for the 2nd does not count the 00:30 order: ' + hit.body);
+    app.dispose();
+    console.log(bad.length ? bad.join('\\n') : 'OK');
+  `], { env: Object.assign({}, process.env, { TZ: 'America/Los_Angeles' }), encoding: 'utf8' }).trim();
+  if (!/(^|\n)OK$/.test(probe)) throw new Error(probe);
+  return '14 distinct days across spring-forward, and the fall-back hour is summarised';
+});
+
+check('the briefing gate is reachable, and known waives it', () => {
+  /* copyFor derived needsBrief correctly and the effect was asserted nowhere,
+     because run.briefed was true on every run ever accepted: the dispatch sheet had
+     one button. Now it has two, and the second is what the gate is for. */
+  const app = harness.loadApp();
+  try {
+    const { FB, clock } = app;
+    const T = new Date(2026, 7, 20, 12, 0, 0).getTime();
+    clock.set(T);
+    const carrier = FB.missions.ALL.filter((m) => m.needsBrief)[0];
+    if (!carrier) throw new Error('no giver requires the briefing, so the gate guards nothing');
+
+    /* the sheet offers the dismissal, through the real handler */
+    FB.store.reset(); FB.missions.setMode('sling');
+    let cfg = null;
+    const realSheet = FB.sheet.open, realBusy = FB.busy, realGo = FB.nav.go;
+    const rootBinds = [];
+    const el = () => ({ dataset: {}, innerHTML: '', addEventListener() {}, removeEventListener() {},
+      querySelector: el, querySelectorAll: () => [], contains: () => true, setAttribute() {},
+      getAttribute: () => null, classList: { add() {}, remove() {}, toggle() {}, contains: () => false } });
+    const root = Object.assign(el(), { addEventListener: (t, h) => rootBinds.push({ t, h }) });
+    let unread = null;
+    try {
+      FB.sheet.open = (c) => { cfg = c; return { close() {}, el: Object.assign(el(), { addEventListener: (t, h) => sheetBinds.push({ t, h }) }) }; };
+      FB.busy = (t, kind, fn) => fn();
+      FB.nav.go = () => {};
+      const sheetBinds = [];
+      FB.screens.get('dispatch').mount(root, {});
+      const take = rootBinds.filter((b) => b.t === 'click')[0];
+      if (!take) throw new Error('the dispatch screen binds no click');
+      const card = Object.assign(el(), { dataset: { take: carrier.slug } });
+      take.h({ target: { closest: (sel) => sel === '[data-take]' ? card : null }, preventDefault() {} });
+      if (!cfg) throw new Error('taking a card opened no sheet');
+      if (!/data-accept-unread=/.test(cfg.footer)) throw new Error('the briefing sheet cannot be dismissed unread');
+      const hh = { close() {}, el: Object.assign(el(), { addEventListener: (t, h) => sheetBinds.push({ t, h }) }) };
+      cfg.onMount(el(), hh);
+      const btn = Object.assign(el(), { dataset: { acceptUnread: carrier.slug } });
+      for (const b of sheetBinds.filter((x) => x.t === 'click')) {
+        b.h({ target: { closest: (sel) => sel === '[data-accept-unread]' ? btn : null }, preventDefault() {} }, btn);
+      }
+      unread = FB.missions.run();
+    } finally { FB.sheet.open = realSheet; FB.busy = realBusy; FB.nav.go = realGo; }
+    if (!unread) throw new Error('accepting unread produced no run');
+    if (unread.briefed) throw new Error('a run accepted unread is marked briefed');
+
+    /* the gate blocks the compliant answer, on screen and in the API */
+    const rule = unread.checks.filter((x) => x.kind === 'rule')[0];
+    clock.set(rule.at + 1000);
+    FB.missions.tick({ catchUp: true });
+    const html = FB.screens.get('run').render({});
+    if (!/data-answer="keep"[^>]*\bdisabled/.test(html)) throw new Error('the keep button is not disabled for an unbriefed run');
+    if (!/you dismissed the briefing/.test(html)) throw new Error('the block does not say why');
+    if (FB.missions.answer('keep') !== null) throw new Error('keep was accepted without the briefing');
+    if (!FB.missions.answer('break')) throw new Error('break was refused, so the run is stuck');
+
+    /* and a place that knows you does not brief you, so nothing is dismissed */
+    FB.store.reset(); FB.missions.setMode('sling'); clock.set(T);
+    FB.store.set((st) => { st.slinging.standing[carrier.slug] = 6; return st; });
+    const known = FB.missions.accept(carrier.slug, T, { dismissed: true });
+    const rule2 = known.checks.filter((x) => x.kind === 'rule')[0];
+    clock.set(rule2.at + 1000);
+    FB.missions.tick({ catchUp: true });
+    if (/data-answer="keep"[^>]*\bdisabled/.test(FB.screens.get('run').render({}))) throw new Error('known does not waive the briefing');
+    if (!FB.missions.answer('keep')) throw new Error('keep was refused at known');
+
+    /* every other giver lets an unread run keep */
+    FB.store.reset(); FB.missions.setMode('sling'); clock.set(T);
+    const other = FB.missions.ALL.filter((m) => !m.needsBrief)[0];
+    const r3 = FB.missions.accept(other.slug, T, { dismissed: true });
+    clock.set(r3.checks[0].at + 1000);
+    FB.missions.tick({ catchUp: true });
+    if (!FB.missions.answer('keep')) throw new Error(other.slug + ' imposed a briefing it does not require');
+    return carrier.slug + ' blocks keep unread, waives it at known; ' + other.slug + ' never asks';
+  } finally { app.clock.restore(); app.dispose(); }
+});
+
+check('the intake ledger never shrinks, and a withdrawn monitor is discharged out loud', () => {
+  const probe = harness.loadApp();
+  const key = probe.FB.store.KEY;
+  probe.dispose();
+  /* 260 rows of history; migrate caps the rows at 200 and the fold went with them */
+  const rows = [];
+  for (let i = 0; i < 260; i++) rows.push({ id: 'h' + i, ts: 1700000000000 + i * 3600000, slug: 'mcronalds', cal: 1500, sodium: 10, grease: 1, ranch: 0, flags: {} });
+  const saved = { v: 1, bodymax: { history: rows, badges: [], firstTs: 1700000000000, dismissed: [], flags: {}, maxCal: 1500 },
+    meta: { installedAt: 1700000000000, orderCount: 260, lifetimeSpend: 1, lifetimeFees: 1, lifetimeTips: 1, lifetimeCalories: 260 * 1500 } };
+  const app = harness.loadApp({ savedState: saved, storageKey: key });
+  try {
+    const { FB, clock } = app;
+    if (FB.S().bodymax.history.length !== 200) throw new Error('the cap moved: ' + FB.S().bodymax.history.length);
+    const m = FB.bodymax.metrics();
+    if (m.totalCal !== 260 * 1500) throw new Error('units logged shrank to ' + m.totalCal + ' after the cap');
+    if (m.chewDebt !== Math.round(260 * 1500 / 62)) throw new Error('the chew debt was forgiven');
+
+    /* an id the catalog no longer knows was neither kept nor announced */
+    const T = new Date(2026, 7, 20, 12, 0, 0).getTime();
+    clock.set(T);
+    FB.store.set((st) => { st.restock = ['no-such-item']; return st; });
+    const n = FB.notifs.restocks(T);
+    if (n !== 1) throw new Error('a withdrawn monitor produced ' + n + ' notifications');
+    if (FB.S().restock.length) throw new Error('the withdrawn id lingers in st.restock');
+    const note = FB.S().notifs.filter((x) => x.id === 'restock-gone:no-such-item')[0];
+    if (!note || !/withdrawn/.test(note.title)) throw new Error('the discharge was not announced');
+    if (FB.notifs.restocks(T) !== 0) throw new Error('the discharge was announced twice');
+    return 'total held at 390,000 across the cap; one withdrawn monitor discharged, once';
+  } finally { app.clock.restore(); app.dispose(); }
+});
+
 console.log('');
-if (failed) { console.log(failed + ' check(s) failed'); process.exit(1); }
-console.log('all checks passed');
+if (failed) { console.log(failed + ' of ' + ran + ' check(s) failed'); process.exit(1); }
+console.log('all ' + ran + ' checks passed');

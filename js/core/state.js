@@ -180,10 +180,21 @@ window.FB = window.FB || {};
   function fillDefaults(saved, d) {
     Object.keys(d).forEach(function (k) {
       var dv = d[k];
-      if (saved[k] === undefined) {
-        saved[k] = (dv !== null && typeof dv === 'object') ? FB.deep(dv) : dv;
-      } else if (isPlain(dv) && isPlain(saved[k])) {
-        fillDefaults(saved[k], dv);
+      var wantObj = dv !== null && typeof dv === 'object';
+      var sv = saved[k];
+      var haveObj = sv !== null && typeof sv === 'object';
+      if (sv === undefined) {
+        saved[k] = wantObj ? FB.deep(dv) : dv;
+      } else if (wantObj && (!haveObj || Array.isArray(dv) !== Array.isArray(sv))) {
+        /* Present, but the wrong SHAPE: `orders: {}` or `meta: null`. Nothing here
+           repaired it, and the array guards in migrate() all no-op on a non-array —
+           so a save like that reached FB.tracker.resume() at boot, threw on
+           `.filter`, and left the splash up forever. A wrong-shaped value cannot be
+           the user's data in any form the app could read, so the default replaces
+           it. Arrays of the right shape are still never merged into. */
+        saved[k] = FB.deep(dv);
+      } else if (isPlain(dv) && isPlain(sv)) {
+        fillDefaults(sv, dv);
       }
     });
     return saved;

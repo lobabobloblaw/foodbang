@@ -167,14 +167,24 @@ window.FB = window.FB || {};
       var ids = (st.restock || []).slice();
       if (!ids.length) return 0;
       var now = at || Date.now();
-      var back = [], keep = [];
+      var back = [], keep = [], gone = [];
       ids.forEach(function (id) {
         var found = FB.catalog.find(id);
-        if (!found) return;                       /* item is gone from the menu entirely */
+        /* An id the catalog no longer knows landed in neither list: the monitoring
+           lingered in st.restock forever and, whenever another item came back, was
+           silently dropped instead. You paid to be told, so you are told. */
+        if (!found) { gone.push(id); return; }
         if (FB.catalog.available(found.item, now)) back.push(found); else keep.push(id);
       });
-      if (!back.length) return 0;
-      var added = FB.notifs.pushMany(back.map(function (f) {
+      if (!back.length && !gone.length) return 0;
+      var added = FB.notifs.pushMany(gone.map(function (id) {
+        return {
+          id: 'restock-gone:' + id, kind: 'restock', icon: 'bell',
+          title: 'A monitored item has been withdrawn',
+          body: 'The restaurant no longer lists it. The monitoring you paid for is discharged; the fee is not.',
+          ts: now,
+        };
+      }).concat(back.map(function (f) {
         return {
           id: 'restock:' + f.item.id + ':' + Math.floor(now / 86400000),
           /* Deliberately an UNGATED kind. You paid to be told once, and the id is
@@ -186,7 +196,7 @@ window.FB = window.FB || {};
           body: 'You were told once, which discharges the monitoring you paid for.',
           ts: now, go: 'store', params: { slug: f.store.slug },
         };
-      }));
+      })));
       FB.store.set(function (s) { s.restock = keep; return s; }, { silent: true });
       return added;
     },
@@ -199,7 +209,7 @@ window.FB = window.FB || {};
       var now = Date.now();
       var orders = st.orders || [];
       var since = orders.length ? orders[0].placedAt : (st.meta && st.meta.installedAt) || now;
-      var through = (st.notifs && st.notifs.through) || st.notifsThrough || 0;
+      var through = st.notifsThrough || 0;
       var from = Math.max(since, through);
       var out = [];
 
@@ -235,8 +245,12 @@ window.FB = window.FB || {};
         var at = new Date(from + n * 86400000);
         var slot = new Date(at.getFullYear(), at.getMonth(), at.getDate(), 2, 40, 0).getTime();
         if (slot > now) continue;
-        var dayStart = new Date(at.getFullYear(), at.getMonth(), at.getDate()).getTime() - 86400000;
-        var sum = orders.filter(function (o) { return o.placedAt >= dayStart && o.placedAt < dayStart + 86400000; });
+        /* The previous CALENDAR day, midnight to midnight, both by the local
+           constructor: `midnight - 86400000` is an hour off across a daylight-saving
+           change, and an order placed in that hour fell into no summary at all. */
+        var dayStart = new Date(at.getFullYear(), at.getMonth(), at.getDate() - 1).getTime();
+        var dayEnd = new Date(at.getFullYear(), at.getMonth(), at.getDate()).getTime();
+        var sum = orders.filter(function (o) { return o.placedAt >= dayStart && o.placedAt < dayEnd; });
         if (!sum.length) continue;
         var spent = FB.sum(sum, function (o) { return (o.calc && o.calc.total) || 0; });
         nights.push({

@@ -160,14 +160,15 @@ if (process.argv.includes('--selfcheck')) {
   needles.sort((a, b) => b.s.length - a.s.length);
 
   const survivors = [];
-  for (const file of collect(ROOT, [])) {
-    let text = fs.readFileSync(file, 'utf8');
+  const wordish = c => /[A-Za-z0-9_]/.test(c);
+  /* Apply the synthetic rules to `text` and record every FROM value that survives.
+     `where` is the file for a content pass, or the path itself for a filename pass. */
+  function scan(text, where) {
     for (const [pat, rep] of synthRules) {
       const re = pat instanceof RegExp ? pat : new RegExp(pat.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
       text = text.replace(re, rep);
     }
     const claimed = [];
-    const wordish = c => /[A-Za-z0-9_]/.test(c);
     for (const n of needles) {
       const bound = n.s.length <= 3;
       let at = text.indexOf(n.s);
@@ -180,12 +181,27 @@ if (process.argv.includes('--selfcheck')) {
         if (!claimed.some(c => at >= c[0] && at < c[1])) {
           claimed.push([at, at + n.s.length]);
           const ctx = text.slice(Math.max(0, at - 26), at + n.s.length + 26).replace(/\s+/g, ' ');
-          survivors.push({ file: path.relative(ROOT, file), key: n.k, needle: n.s, ctx: ctx });
+          survivors.push({ file: where, key: n.k, needle: n.s, ctx: ctx });
         }
         at = text.indexOf(n.s, at + 1);
       }
     }
   }
+  for (const file of collect(ROOT, [])) scan(fs.readFileSync(file, 'utf8'), path.relative(ROOT, file));
+  /* FILENAMES too. The content pass rewrites 'assets/app/' + FROM.courierAsset in
+     roster.js and cannot see that the files it now points at do not exist: the
+     rename loop below used to cover portraits 1-3 while nine sat on disk, and this
+     check said "clean" over six broken images. Every path in the tree, every
+     extension — the hazard is precisely the file the content walk skips. */
+  (function names(dir) {
+    for (const e of fs.readdirSync(dir)) {
+      if (SKIP_DIRS.has(e)) continue;
+      const p = path.join(dir, e);
+      if (fs.statSync(p).isDirectory()) { names(p); continue; }
+      const rel = path.relative(ROOT, p).split(path.sep).join('/');
+      scan(rel, rel + ' (filename)');
+    }
+  })(ROOT);
   console.log('rebrand self-check — every rule applied against a synthetic identity\n');
   if (!survivors.length) { console.log('  clean: no FROM value survives the pass'); process.exit(0); }
   console.log('  ' + survivors.length + ' survivor(s) — each would keep the OUTGOING brand after a rename:\n');
@@ -217,11 +233,18 @@ for (const file of files) {
 }
 
 /* ---------------------------------------------------------- asset renames */
-const RENAMES = [
-  ['assets/app/' + FROM.plusHeroAsset + '.webp', 'assets/app/' + TO.plusHeroAsset + '.webp'],
-];
-for (let i = 1; i <= 3; i++) {
-  RENAMES.push(['assets/app/' + FROM.courierAsset + i + '.webp', 'assets/app/' + TO.courierAsset + i + '.webp']);
+/* Read off the disk, never counted: a literal `1..3` here renamed three courier
+   portraits while roster.js addressed nine, and nothing noticed until the selfcheck
+   learned to look at filenames. Every file under assets/app whose name starts with
+   an outgoing asset prefix moves; if the prefix is unchanged nothing does. */
+const RENAMES = [];
+const APP_ASSETS = path.join(ROOT, 'assets', 'app');
+for (const f of fs.readdirSync(APP_ASSETS)) {
+  for (const k of ['plusHeroAsset', 'courierAsset']) {
+    if (FROM[k] && FROM[k] !== TO[k] && f.startsWith(FROM[k])) {
+      RENAMES.push(['assets/app/' + f, 'assets/app/' + TO[k] + f.slice(FROM[k].length)]);
+    }
+  }
 }
 const renamed = [];
 for (const [a, b] of RENAMES) {

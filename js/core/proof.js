@@ -231,7 +231,10 @@ window.FB = window.FB || {};
 
     /** what this order asks of a photograph */
     facets: function (o) {
-      var at = (o && (o.deliveredAt || o.deliverAt)) || Date.now();
+      /* placedAt third: a delivered order from a save older than the timetable has
+         neither stamp, and falling through to the wall clock re-lit its photograph
+         every time the Orders list was drawn at a different hour. */
+      var at = (o && (o.deliveredAt || o.deliverAt || o.placedAt)) || Date.now();
       return {
         /* Anything that is not an explicit hand-off is a doorstep. A missing address
            on a legacy order therefore reads as 'leave', which is what the three

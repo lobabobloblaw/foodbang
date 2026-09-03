@@ -695,25 +695,7 @@ window.FB = window.FB || {};
       keep: ['Accept the route', 'as selected'], brk: ['Deviate', 'deviation is billed'],
       keepPay: 0, brkPay: -1.40,
       kept: 'The selected route was taken. It was longer.',
-      broken: 'A deviation was recorded and billed at $1.40.',
-      voice: {
-        known: { card: 'Amy started it early.',
-          line: 'Amy does the snow bowls and Teresa does the tea. One of them started yours when the car pulled in.',
-          prompt: ['The seal does not look right', 'It was shaken once and sealed once, and you watched it happen.'],
-          keep: ['Leave it', 'you saw it sealed'],
-          brk:  ['Shake it again', 'to settle it'],
-          kept: 'Left as sealed. It was fine, and it was always going to be.',
-          broken: 'It was shaken twice. Teresa remade it and did not ring in the second one.',
-          turn: 'Teresa started it at twenty-five percent before you finished saying it.' },
-        cold: { card: 'Teresa checked the seal twice.',
-          line: 'Teresa checks the seal twice now before it goes in the bag. It takes a minute.',
-          prompt: ['The seal does not look right', 'Teresa already checked it. Twice.'],
-          keep: ['Leave it', 'she checked it'],
-          brk:  ['Shake it again', 'to settle it'],
-          kept: 'Left as sealed. Teresa checked the bag after you before you got to the door.',
-          broken: 'It was shaken twice. Teresa asked you to please call the shop before it goes out next time.',
-          turn: 'Teresa put the drink in the bag herself and looked at it.' },
-      } },
+      broken: 'A deviation was recorded and billed at $1.40.' },
 
     { id: 'stack', title: 'A second order has been added to this run',
       body: 'Both are described as first.',
@@ -1065,10 +1047,15 @@ window.FB = window.FB || {};
     var answered = run.checks.every(function (x) { return !!x.choice; });
     if (!run.outcome && answered && now >= run.endAt && run.replayed >= run.beats.length) {
       var rule = run.checks.filter(function (x) { return x.kind === 'rule'; })[0];
-      var mm = byslug(run.slug);
+      /* Through copyFor, like the answer line above it and the outcome card beside
+         it. This one line read the BASE table, so at `known` Olive Orchard's card
+         said "It is getting longer" while the feed directly beneath it said "It took
+         eleven minutes" — the two-places-deciding-one-thing failure, on the one
+         surface CLAUDE.md says must not vary. */
+      var cc = copyFor(run, rule || { kind: 'rule' });
       run.outcome = rule && rule.choice === 'keep' ? 'kept' : 'broken';
       push(run, run.endAt, run.outcome === 'kept' ? 'Rule kept' : 'Rule broken',
-        run.outcome === 'kept' ? mm.kept : mm.broken);
+        run.outcome === 'kept' ? cc.kept : cc.broken);
       changed = true;
     }
     if (changed) run.events.sort(function (a, b2) { return b2.ts - a.ts; });
@@ -1097,6 +1084,10 @@ window.FB = window.FB || {};
 
   FB.missions = {
     ALL: MISSIONS,
+    /* The pay table, exported so npm test can assert it carries no restaurant voice:
+       a `voice` block was once pasted onto the first interrupt, inert only because
+       the platform branch of copyFor never looks for one. */
+    INTERRUPTS: INTERRUPTS,
     SPINE: SPINE,
     beatsFor: beatsFor,
     slots: slots,
@@ -1126,8 +1117,9 @@ window.FB = window.FB || {};
        no new timer: it is a pure function of FB.world's twenty-minute bucket, so the
        board turns over on its own and two tabs agree about what is on it. Falls with
        your platform standing, which is how the platform expresses an opinion. */
-    asking: function (now) {
-      var at = now || Date.now();
+    asking: function () {
+      /* No clock. The signature used to take `now` and never read it, which
+         advertised a time-dependence the check for flatness forbids. */
       var p = FB.missions.platform();
       return FB.clamp(6 + FB.clamp(Math.round(p / 2), -3, 2), 3, 8);
     },
@@ -1302,7 +1294,7 @@ window.FB = window.FB || {};
         /* what was PAID, which is not what was earned */
         s.earned = FB.round2((s.earned || 0) + pay.net);
         s.deducted = FB.round2((s.deducted || 0) + pay.deductionsTotal);
-        s.scrip = (s.scrip || 0) + pay.scrip;
+        s.scrip = FB.round2((s.scrip || 0) + pay.scrip);
         if (access) s.accessAt = run.endAt;
         /* Written for EVERY giver, not just the two that read it, so there is no
            branch that can drift away from the data. Stamped from run.endAt and never
@@ -1313,12 +1305,20 @@ window.FB = window.FB || {};
         s.platform = (s.platform || 0) + plat;
         return st;
       });
+      /* The settlement the statement prints. It was booked into a courier-side
+         counter that nothing read and never reached the balance, so the row said
+         "settled in BangBux" over a wallet that stayed at $0.00. Granted through
+         the one path every grant takes, stamped from run.endAt like the access
+         block — a catch-up settling last week's run grants scrip that has already
+         expired, which is exactly what the platform would do. */
+      if (pay.scrip > 0 && FB.scrip) FB.scrip.grant(pay.scrip, run.endAt);
       stop();
       if (!(opts && opts.catchUp) && FB.toast) {
         /* The toast quotes the NET, because quoting the gross and then paying the net
            is the one place this app would be lying to the player rather than to the
            character. The gross is on the statement, one row above the deductions. */
-        FB.toast((kept ? 'Rule kept. ' : 'Rule broken. ') + FB.money(pay.net) + ' paid.',
+        FB.toast((kept ? 'Rule kept. ' : 'Rule broken. ') + FB.money(pay.net) + ' paid.' +
+          (pay.scrip > 0 ? ' ' + FB.money(pay.scrip) + ' settled in BangBux™.' : ''),
           { kind: kept ? 'plus' : 'bad', ms: 3600 });
       }
       return row;
@@ -1492,12 +1492,27 @@ window.FB = window.FB || {};
             '<div class="brief-rule"><i>THE RULE</i><b>' + FB.esc(m.rule) + '</b></div>' +
             '</div>',
           footer: '<button class="btn btn--primary btn--block" data-accept="' + FB.attr(slug) + '">' +
-            (band === 'known' ? 'Take it' : 'Accept') + '</button>',
+            (band === 'known' ? 'Take it' : 'Accept') + '</button>' +
+            /* The way past the briefing without reading it. `run.briefed` had been
+               true on every run ever accepted, because this was the only button, so
+               the one giver whose rule requires the briefing never once required it
+               and the waiver `known` grants was granted against nothing. A place that
+               knows you does not brief you, so there is nothing to skip there. */
+            (band === 'known' ? '' :
+              '<button class="btn btn--ghost btn--block" data-accept-unread="' + FB.attr(slug) + '">' +
+              'Accept without reading</button>'),
           onMount: function (b, hh) {
             FB.on(hh.el, 'click', '[data-accept]', function (e2, t2) {
               FB.busy(t2, 'dispatch', function () {
                 hh.close();
                 M.accept(t2.dataset.accept);
+                FB.nav.go('run');
+              });
+            });
+            FB.on(hh.el, 'click', '[data-accept-unread]', function (e2, t2) {
+              FB.busy(t2, 'dispatch', function () {
+                hh.close();
+                M.accept(t2.dataset.acceptUnread, null, { dismissed: true });
                 FB.nav.go('run');
               });
             });

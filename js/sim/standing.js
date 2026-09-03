@@ -29,7 +29,6 @@ window.FB = window.FB || {};
   /* The upkeep amounts live in js/core/fees.js — it is the file under direct test
      and it must stay require-able with nothing but util.js loaded, so it cannot
      look anything up in here. Read back so there is still exactly one table. */
-  function UPKEEP() { return (FB.fees && FB.fees.STANDING_UPKEEP) || [0]; }
 
   var DECAY_PER_DAY = 1;
 
@@ -47,7 +46,9 @@ window.FB = window.FB || {};
     tierFor: tierFor,
     tier: function (key) { return TIERS[FB.clamp(key || 0, 0, TIERS.length - 1)]; },
     name: function (key) { return FB.standing.tier(key).name; },
-    upkeep: function (key) { var u = UPKEEP(); return u[FB.clamp(key || 0, 0, u.length - 1)] || 0; },
+    /* fees.js prices it; this only reads it back, so the tier table on Account and
+       the line on the receipt cannot clamp the same key two different ways */
+    upkeep: function (key) { return FB.fees.upkeep(key) || 0; },
 
     /** points needed for the next tier, or null at the top */
     toNext: function (points) {

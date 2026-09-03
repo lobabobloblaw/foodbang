@@ -713,8 +713,12 @@ window.FB = window.FB || {};
       FB.store.set(function (st) {
         var oo = st.orders.filter(function (x) { return x.id === orderId; })[0];
         if (oo) {
-          (oo.schedule || []).forEach(function (b) { if (b.at >= oo.incident.at) b.at += INCIDENT_MS; });
-          oo.deliverAt += INCIDENT_MS;
+          /* by the hold this incident actually OFFERED, not the ceiling: on a short
+             store the window is clamped down, and the election path already shifts
+             by the offered window for that reason */
+          var held = oo.incident.ms || INCIDENT_MS;
+          (oo.schedule || []).forEach(function (b) { if (b.at >= oo.incident.at) b.at += held; });
+          oo.deliverAt += held;
         }
         return st;
       }, { silent: true });

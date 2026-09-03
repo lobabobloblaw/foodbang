@@ -82,6 +82,20 @@ const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 const styles = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)">/g)].map(m => m[1]);
 const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map(m => m[1]);
 if (!styles.length || !scripts.length) throw new Error('could not find styles/scripts in index.html');
+/* The strict shape above is what this build reads; the loose one is what index.html
+   actually contains. They used to be allowed to disagree, and the guard fired only at
+   ZERO — so one reformatted <link> shipped a single-file build missing a stylesheet,
+   half-styled, without a word. Remote links (the web fonts) are excluded on purpose:
+   the artifact re-emits those itself. */
+const localLinks = [...html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*>/g)]
+  .map(m => m[0]).filter(t => !/href="https?:/.test(t));
+if (localLinks.length !== styles.length) {
+  throw new Error('index.html has ' + localLinks.length + ' local stylesheet link(s) but only ' +
+    styles.length + ' match the shape this build reads (<link rel="stylesheet" href="…">)');
+}
+for (const f of styles.concat(scripts)) {
+  if (!fs.existsSync(path.join(ROOT, f))) throw new Error('index.html references a missing file: ' + f);
+}
 
 const body = html.slice(html.indexOf('<body>') + 6, html.indexOf('<script src=')).replace(/\s+$/, '');
 const css = styles.map(f => '/* ' + f + ' */\n' + fs.readFileSync(path.join(ROOT, f), 'utf8')).join('\n');
@@ -165,9 +179,20 @@ const out = HEAD + '<title>' + title + '</title>\n' + themeColor + '\n' + FONTS 
   '\n<script>\n' + assetScript(assets) + '\n</script>\n' +
   '<script>' + SHIM + '</script>\n<script>\n' + js + '\n</script>\n';
 
+/* The one failure local testing cannot see. A line over ~1 KB renders the published
+   copy as a blank frame with a SyntaxError, and works everywhere else — so the build
+   refuses to write a file it knows cannot be published, rather than leaving it to a
+   smoke check that only runs when a build happens to be on disk. */
+const LINE_LIMIT = 1024;
+let longest = 0, longestAt = 0;
+out.split('\n').forEach((l, i) => { if (l.length > longest) { longest = l.length; longestAt = i + 1; } });
+if (longest > LINE_LIMIT) {
+  throw new Error('refusing to write: line ' + longestAt + ' is ' + longest + ' chars (limit ' + LINE_LIMIT + ') — it would not survive publishing');
+}
+
 fs.mkdirSync(path.join(ROOT, 'build'), { recursive: true });
 fs.writeFileSync(OUT, out);
 console.log('images inlined  ' + Object.keys(assets).length + '  (' + (bytes / 1024 | 0) + ' KB)');
 console.log('css             ' + (css.length / 1024 | 0) + ' KB');
 console.log('js + menus      ' + (js.length / 1024 | 0) + ' KB');
-console.log('output          ' + (out.length / 1048576).toFixed(2) + ' MB -> build/foodbang.html');
+console.log('output          ' + (out.length / 1048576).toFixed(2) + ' MB -> build/foodbang.html  (longest line ' + longest + ' chars)');
