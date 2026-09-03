@@ -47,35 +47,52 @@ window.FB = window.FB || {};
       return o.status !== 'delivered' && o.status !== 'cancelled';
     }).length;
     var live = FB.S().mode === 'sling' && FB.S().slinging.run ? 1 : 0;
-    tabEl.innerHTML = tabs().map(function (t) {
+    var html = tabs().map(function (t) {
       var badge = '';
       if (t.id === 'orders' && pending) badge = '<i class="dot">' + pending + '</i>';
       if (t.id === 'run' && live) badge = '<i class="dot">' + live + '</i>';
       return '<button class="tab" data-tab="' + t.id + '"' + (cur === t.id ? ' aria-current="page"' : '') + '>' +
         FB.icon(t.icon, 23) + '<span>' + t.label + '</span>' + badge + '</button>';
     }).join('');
+    /* Only touch the DOM when the markup has actually moved. This runs on every
+       store write and on every tracker beat, and replacing five identical buttons
+       threw away whatever was focused inside the bar — a keyboard user resting on a
+       tab lost it a few seconds into every live order. Compared against the string
+       last painted, not against tabEl.innerHTML: the browser re-serialises what it
+       parsed, and the two never compare equal. */
+    if (html === tabsHtml) return;
+    tabsHtml = html;
+    tabEl.innerHTML = html;
   }
+  var tabsHtml = null;
 
   function renderCartBar() {
     if (!cartEl || !current) return;
     var scr = screens[current && current.name] || {};
-    if (scr.hideCartBar) { cartEl.innerHTML = ''; return; }
+    if (scr.hideCartBar) { setCartBar(''); return; }
     var slugs = FB.cart.activeSlugs();
-    if (!slugs.length) { cartEl.innerHTML = ''; return; }
+    if (!slugs.length) { setCartBar(''); return; }
     /* on a store page, show that store's cart; otherwise the most recent */
     var slug = (current.name === 'store' && FB.cart.count(current.params.slug)) ? current.params.slug : slugs[0];
     var store = FB.catalog.get(slug);
-    if (!store) { cartEl.innerHTML = ''; return; }
+    if (!store) { setCartBar(''); return; }
     var n = FB.cart.count(slug);
     var others = slugs.length - 1;
-    cartEl.innerHTML =
+    setCartBar(
       '<button class="cartpill" data-cartgo="' + slug + '">' +
         '<span class="cp-n">' + n + '</span>' +
         '<span class="cp-t">' + FB.esc(store.shortName || store.name) +
           (others > 0 ? ' <span style="opacity:.72">+' + others + ' more ' + (others === 1 ? 'cart' : 'carts') + '</span>' : '') +
         '</span>' +
         '<span class="cp-p">' + FB.money(FB.cart.subtotal(slug)) + '</span>' +
-      '</button>';
+      '</button>');
+  }
+  /* same guard as the tab bar, for the same reason: the pill is focusable */
+  var cartHtml = null;
+  function setCartBar(html) {
+    if (html === cartHtml) return;
+    cartHtml = html;
+    cartEl.innerHTML = html;
   }
 
   /* The screen whose mount() actually ran, with the listeners it bound. Tracking
@@ -105,7 +122,7 @@ window.FB = window.FB || {};
     'data-drop', 'data-try', 'data-q', 'data-rm', 'data-edit', 'data-dq', 'data-seg', 'data-sw',
     'data-rate', 'data-use', 'data-del', 'data-usep', 'data-delp', 'data-item', 'data-slug',
     'data-jump', 'data-cartgo', 'data-go', 'data-fav', 'data-express', 'data-expand-fees',
-    'data-mode', 'data-take', 'data-answer', 'data-accept'];
+    'data-take', 'data-answer', 'data-accept'];
 
   function focusKey(elm) {
     if (!elm || elm === document.body) return null;
