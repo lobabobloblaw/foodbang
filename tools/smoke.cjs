@@ -1814,16 +1814,17 @@ check('the build tools fail loudly rather than quietly', () => {
   const tmpBundle = path.join(tmp, 'menus.generated.js');
   const tmpArtifact = path.join(tmp, 'artifact.html');
   const env = (extra) => Object.assign({}, process.env, extra);
+  const realBundle = path.join(ROOT, 'js/data/menus.generated.js');
+  const realBundleMtime = fs.statSync(realBundle).mtimeMs;
   try {
     /* --- the copy bundles clean, so the probe below is about the corruption --- */
     const clean = cp.spawnSync(process.execPath, [path.join(ROOT, 'tools/bundle.cjs')],
       { encoding: 'utf8', env: env({ SMOKE_MENU_DIR: tmpMenus, SMOKE_BUNDLE_OUT: tmpBundle }) });
     if (clean.status !== 0) throw new Error('the copied menus did not bundle clean: ' + (clean.stdout + clean.stderr).slice(0, 200));
     if (!fs.existsSync(tmpBundle)) throw new Error('the bundle did not honour its output override');
-    if (fs.existsSync(path.join(ROOT, 'js/data/menus.generated.js')) &&
-        fs.statSync(path.join(ROOT, 'js/data/menus.generated.js')).mtimeMs > Date.now() - 5000) {
-      throw new Error('the probe wrote into the real bundle');
-    }
+    /* compared against its OWN stamp from before the probe, not against the wall
+       clock: in CI the real bundle is rebuilt seconds before the suite runs */
+    if (fs.statSync(realBundle).mtimeMs !== realBundleMtime) throw new Error('the probe wrote into the real bundle');
 
     /* --- an itemless section is reported, not thrown --- */
     const menuFile = path.join(tmpMenus, 'gyropalace.json');
