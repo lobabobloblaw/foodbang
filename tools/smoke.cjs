@@ -1803,28 +1803,42 @@ check('the build tools fail loudly rather than quietly', () => {
          and then dereferenced it anyway two guards later, dying mid-walk with an
          anonymous TypeError and discarding every problem it had already collected. */
   const cp = require('child_process');
-
-  /* --- an itemless section is reported, not thrown --- */
-  const menuFile = path.join(ROOT, 'js/data/menus/gyropalace.json');
-  const original = fs.readFileSync(menuFile, 'utf8');
-  let out;
+  const os = require('os');
+  /* Everything this check writes goes here, never into the tree: the probe used to
+     corrupt gyropalace.json in place and put it back in a finally, so a Ctrl-C in
+     between left a tracked menu carrying "not a number" — and then rebuilt a 40 MB
+     artifact into build/ on every run. */
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'fb-smoke-'));
+  const tmpMenus = path.join(tmp, 'menus');
+  fs.cpSync(path.join(ROOT, 'js/data/menus'), tmpMenus, { recursive: true });
+  const tmpBundle = path.join(tmp, 'menus.generated.js');
+  const tmpArtifact = path.join(tmp, 'artifact.html');
+  const env = (extra) => Object.assign({}, process.env, extra);
   try {
-    const j = JSON.parse(original);
+    /* --- the copy bundles clean, so the probe below is about the corruption --- */
+    const clean = cp.spawnSync(process.execPath, [path.join(ROOT, 'tools/bundle.cjs')],
+      { encoding: 'utf8', env: env({ SMOKE_MENU_DIR: tmpMenus, SMOKE_BUNDLE_OUT: tmpBundle }) });
+    if (clean.status !== 0) throw new Error('the copied menus did not bundle clean: ' + (clean.stdout + clean.stderr).slice(0, 200));
+    if (!fs.existsSync(tmpBundle)) throw new Error('the bundle did not honour its output override');
+    if (fs.existsSync(path.join(ROOT, 'js/data/menus.generated.js')) &&
+        fs.statSync(path.join(ROOT, 'js/data/menus.generated.js')).mtimeMs > Date.now() - 5000) {
+      throw new Error('the probe wrote into the real bundle');
+    }
+
+    /* --- an itemless section is reported, not thrown --- */
+    const menuFile = path.join(tmpMenus, 'gyropalace.json');
+    const j = JSON.parse(fs.readFileSync(menuFile, 'utf8'));
     j.menu.push({ id: 's_no_items', name: 'Half-finished section' });
     /* a SECOND problem, so we can tell "reported everything" from "died on the first" */
     j.menu[0].items[0].price = 'not a number';
     fs.writeFileSync(menuFile, JSON.stringify(j, null, 2));
-    const r = cp.spawnSync(process.execPath, [path.join(ROOT, 'tools/bundle.cjs')], { encoding: 'utf8' });
-    out = (r.stdout || '') + (r.stderr || '');
+    const r = cp.spawnSync(process.execPath, [path.join(ROOT, 'tools/bundle.cjs')],
+      { encoding: 'utf8', env: env({ SMOKE_MENU_DIR: tmpMenus, SMOKE_BUNDLE_OUT: tmpBundle }) });
+    const out = (r.stdout || '') + (r.stderr || '');
     if (/TypeError/.test(out)) throw new Error('an itemless section crashes the validator: ' + out.split('\n')[0]);
     if (r.status === 0) throw new Error('a menu with two authoring errors bundled clean');
     if (!/no items/.test(out)) throw new Error('the itemless section was not reported: ' + out.slice(0, 200));
     if (!/price/i.test(out)) throw new Error('the validator stopped at the first problem instead of collecting them');
-  } finally {
-    fs.writeFileSync(menuFile, original);
-    const restore = cp.spawnSync(process.execPath, [path.join(ROOT, 'tools/bundle.cjs')], { encoding: 'utf8' });
-    if (restore.status !== 0) throw new Error('the menus did not bundle clean again after the probe');
-  }
 
   /* --- a stale asset cache is refused, and said out loud --- */
   const src = fs.readFileSync(path.join(ROOT, 'tools/build-artifact.cjs'), 'utf8');
@@ -1842,13 +1856,14 @@ check('the build tools fail loudly rather than quietly', () => {
     fs.writeFileSync(probe, Buffer.from('stale'));
     const assetTime = fs.statSync(asset).mtime;
     fs.utimesSync(probe, new Date(assetTime.getTime() - 60000), new Date(assetTime.getTime() - 60000));
-    const r = cp.spawnSync(process.execPath, [path.join(ROOT, 'tools/build-artifact.cjs')], { encoding: 'utf8' });
+    const r = cp.spawnSync(process.execPath, [path.join(ROOT, 'tools/build-artifact.cjs')],
+      { encoding: 'utf8', env: env({ SMOKE_ARTIFACT_OUT: tmpArtifact }) });
     const log = (r.stdout || '') + (r.stderr || '');
     if (r.status !== 0) throw new Error('the artifact build failed on a stale cache instead of falling back');
     if (!/stale/i.test(log)) throw new Error('a stale cache entry was used without a word about it');
     if (log.indexOf('assets/' + probeKey) < 0) throw new Error('the warning does not name the file it fell back on');
     /* and the bytes it shipped are the ones on disk */
-    const html = fs.readFileSync(path.join(ROOT, 'build', 'foodbang.html'), 'utf8');
+    const html = fs.readFileSync(tmpArtifact, 'utf8');
     const marker = 'a[' + JSON.stringify('assets/' + probeKey) + '] = [';
     const i = html.indexOf(marker);
     if (i < 0) throw new Error('the artifact does not inline ' + probeKey);
@@ -1870,8 +1885,11 @@ check('the build tools fail loudly rather than quietly', () => {
     if (hadCache) { fs.writeFileSync(probe, saved); fs.utimesSync(probe, savedTimes.atime, savedTimes.mtime); }
     else { try { fs.unlinkSync(probe); } catch (e) {} }
   }
+  } finally {
+    try { fs.rmSync(tmp, { recursive: true, force: true }); } catch (e) {}
+  }
 
-  return 'an itemless section is reported with everything else, and a stale asset cache is refused out loud';
+  return 'an itemless section is reported with everything else, and a stale asset cache is refused out loud — all in a scratch directory';
 });
 
 check('an incident expires while the food is still in the kitchen', () => {
@@ -5629,6 +5647,82 @@ check('a failed Add to cart does not rebind the item sheet, and a dialog makes t
     FB.overlay.closeAll(true);
     if (screen.inert !== false) throw new Error('the screen stayed inert after the last dialog closed');
     return 'body listeners ' + bound.filter((b) => !b.foot).length + ' before and after two refusals; inert follows the dialog stack';
+  } finally { app.dispose(); }
+});
+
+
+check('the sweep draws the incident, the queue and the reserved slot, and the headings hold their order', () => {
+  /* Three fixtures now go through FB.tracker.build; this pins that they reach the
+     markup they exist for, so the sweep cannot quietly go back to drawing the
+     courier card twenty times. And the heading structure the sweep never looked at:
+     one <h1> per screen, and no screen that jumps from an h1 to an h3. */
+  if (!RENDERED) throw new Error('the render check did not run');
+  const want = [
+    ['class="incident"', 'the open incident'],
+    ['slingercard--queue', 'the dispatch queue'],
+    ['SCHEDULED FOR', 'the reserved slot header'],
+    ['data-inc="hold"', 'the hold button'],
+  ];
+  for (const [needle, what] of want) {
+    if (!RENDERED.some((r) => r.screen === 'track' && r.html.indexOf(needle) > -1)) {
+      throw new Error('no rendered track screen carries ' + what);
+    }
+  }
+  const byScreen = {};
+  for (const r of RENDERED) {
+    const k = r.fixture + '/' + r.screen;
+    byScreen[k] = (byScreen[k] || '') + r.html;
+  }
+  const bad = [];
+  for (const k of Object.keys(byScreen)) {
+    const html = byScreen[k];
+    const levels = [...html.matchAll(/<h([1-3])\b/g)].map((m) => Number(m[1]));
+    const h1s = levels.filter((l) => l === 1).length;
+    if (h1s > 1) bad.push(k + ': ' + h1s + ' <h1>s');
+    /* a jump: any heading more than one level below the one before it */
+    for (let i = 1; i < levels.length; i++) {
+      if (levels[i] > levels[i - 1] + 1) { bad.push(k + ': h' + levels[i - 1] + ' -> h' + levels[i]); break; }
+    }
+  }
+  if (bad.length) throw new Error(bad.length + ' heading problem(s): ' + bad.slice(0, 4).join('; '));
+  return 'incident, queue and slot all drawn; ' + Object.keys(byScreen).length + ' screen renders with one h1 and no skipped level';
+});
+
+check('a tab that missed the other one writes above storage, and a hidden tab writes at once', () => {
+  /* `w` counted this tab's own writes. A tab frozen in the background missed the
+     other's storage events, wrote its own count + 1 — lower than the document already
+     there — and from then on the busier tab refused everything it wrote. The counter
+     is now read off storage at write time, so it is monotone across every tab. */
+  const probe = harness.loadApp();
+  const key = probe.FB.store.KEY;
+  probe.dispose();
+  const app = harness.loadApp();
+  try {
+    const { FB, win } = app;
+    FB.store.set((st) => { st.favorites.push('starbux'); return st; });
+    if (!FB.store.flush()) throw new Error('flush did not write');
+    const mine = JSON.parse(win.localStorage.getItem(key));
+    if (mine.w !== 1) throw new Error('the first write is w=' + mine.w);
+    /* another tab has written many times while this one saw nothing */
+    const theirs = JSON.parse(JSON.stringify(mine)); theirs.w = 50; theirs.favorites = ['ssa'];
+    win.localStorage.setItem(key, JSON.stringify(theirs));
+    FB.store.set((st) => { st.favorites.push('dunkinn'); return st; });
+    FB.store.flush();
+    const now = JSON.parse(win.localStorage.getItem(key));
+    if (now.w !== 51) throw new Error('a tab that missed 49 writes wrote w=' + now.w + ' — the other tab would refuse it forever');
+    if (now.favorites.indexOf('dunkinn') < 0) throw new Error('the write did not carry this tab\'s change');
+    /* the other tab, holding w=50, adopts it */
+    const other = harness.loadApp({ savedState: theirs, storageKey: key });
+    try {
+      if (!other.FB.store.adopt(JSON.stringify(now))) throw new Error('the busier tab refused the write');
+      if (other.FB.S().favorites.indexOf('dunkinn') < 0) throw new Error('the adoption did not carry the change');
+    } finally { other.dispose(); }
+    /* flush is a no-op with nothing pending, and reports so */
+    if (FB.store.flush() !== false) throw new Error('flush wrote with nothing pending');
+    /* and app.js wires it to the page going away */
+    const boot = fs.readFileSync(path.join(ROOT, 'js/app.js'), 'utf8');
+    if (!/pagehide[\s\S]{0,80}FB\.store\.flush/.test(boot)) throw new Error('the boot file does not flush on pagehide');
+    return 'w=1, then w=51 over a stranger\'s 50, adopted by the tab that wrote it; flush wired to pagehide';
   } finally { app.dispose(); }
 });
 

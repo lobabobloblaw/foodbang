@@ -42,7 +42,9 @@ window.FB = window.FB || {};
               : '<span class="sc-eta">' + FB.mins(s.deliveryMin, s.deliveryMax) + '</span>') +
       '</div>' +
       '<div class="sc-body">' +
-        '<div class="sc-title"><h3>' + FB.esc(s.name) + '</h3></div>' +
+        /* h2: a card list sits directly under the screen's h1 on Category and
+            Saved stores, and h3 there is a skipped level */
+        '<div class="sc-title"><h2>' + FB.esc(s.name) + '</h2></div>' +
         '<div class="sc-meta sc-meta--1">' +
           '<span class="stars">' + FB.icon('starFill', 13) + s.rating.toFixed(1) + '</span>' +
           '<span style="color:var(--ink-3)">(' + FB.compact(s.ratingCount) + ')</span>' +
@@ -104,7 +106,7 @@ window.FB = window.FB || {};
   C.empty = function (cfg) {
     return '<div class="empty">' +
       '<img src="' + (cfg.img || 'assets/app/empty-state.webp') + '" alt="" onerror="this.remove()">' +
-      '<h3>' + FB.esc(cfg.title) + '</h3><p>' + FB.esc(cfg.body) + '</p>' +
+      '<h2>' + FB.esc(cfg.title) + '</h2><p>' + FB.esc(cfg.body) + '</p>' +
       /* params too: an empty state that sends you to a screen needing a slug used to
          emit a bare data-go and land there with nothing. FB.esc escapes both quote
          characters, so the JSON is safe inside a double-quoted attribute. */

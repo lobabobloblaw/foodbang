@@ -134,7 +134,7 @@ window.FB = window.FB || {};
         '</p></div>';
 
       /* address / timing */
-      h += '<div class="cblock"><h3>' + (co.mode === 'pickup' ? 'Pickup from' : 'Deliver to') + '</h3>';
+      h += '<div class="cblock"><h2>' + (co.mode === 'pickup' ? 'Pickup from' : 'Deliver to') + '</h2>';
       if (co.mode === 'pickup') {
         h += '<div class="crow">' + FB.icon('pin', 19) + '<span class="crow-b"><b>' + FB.esc(s.name) + '</b><span>' + FB.esc(s.address) + '</span></span></div>';
       } else {
@@ -162,7 +162,7 @@ window.FB = window.FB || {};
       h += '</div>';
 
       /* payment + promo */
-      h += '<div class="cblock"><h3>Payment</h3>' +
+      h += '<div class="cblock"><h2>Payment</h2>' +
         '<button class="crow" data-pay>' + FB.icon('card', 19) +
         '<span class="crow-b"><b>' + FB.esc(pay.brand) + ' ····' + FB.esc(pay.last4) + '</b><span>' + FB.esc(pay.nickname) + '</span></span>' +
         '<span class="crow-r">Change' + FB.icon('fwd', 14) + '</span></button>' +
@@ -193,7 +193,7 @@ window.FB = window.FB || {};
       }
 
       /* tip */
-      h += '<div class="cblock"><h3>Slinger tip</h3>' +
+      h += '<div class="cblock"><h2>Slinger tip</h2>' +
         '<div class="tiprow">' + tiers.map(function (t) {
           return '<button class="tipbtn" data-tip="' + t.pct + '" aria-pressed="' + (curTip === t.pct) + '">' +
             '<b>' + (t.pct === 0 ? 'None' : t.pct + '%') + '</b><span>' + FB.money(t.amount) + '</span></button>';
@@ -204,7 +204,7 @@ window.FB = window.FB || {};
         '</div>';
 
       /* receipt */
-      h += '<div class="cblock"><h3>Order summary</h3>' +
+      h += '<div class="cblock"><h2>Order summary</h2>' +
         '<div style="padding:0 16px 8px">' + lines.map(function (l) {
           return '<div style="display:flex;gap:10px;padding:5px 0;font:var(--t-sub)"><span style="color:var(--ink-3);min-width:20px">' + l.qty + '×</span>' +
             '<span style="flex:1;color:var(--ink-2)">' + FB.esc(l.name) + '</span>' +

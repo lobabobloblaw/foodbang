@@ -206,8 +206,8 @@ build/raw/               2048px source renders, kept for re-encoding
 ```
 
 No framework, no build step, no dependencies. Classic scripts under a `FB` namespace so it runs
-straight from `file://`. `npm test` is eighty checks in one script — the pricing invariants, the
-data, and every screen rendered headlessly against ten states at two different hours. `npm run test:tz`
+straight from `file://`. `npm test` is eighty-two checks in one script — the pricing invariants, the
+data, and every screen rendered headlessly against thirteen states at two different hours. `npm run test:tz`
 runs it again under three other time zones, which is the only way to believe it; the GitHub Actions
 workflow does both on every push.
 

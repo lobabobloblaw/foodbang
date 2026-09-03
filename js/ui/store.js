@@ -13,7 +13,9 @@ window.FB = window.FB || {};
       var s = FB.catalog.get(p.slug); if (!s) return '';
       return '<div class="st-bar" id="stbar"><div class="bar">' +
         '<button class="iconbtn" data-back aria-label="Back">' + FB.icon('back', 20) + '</button>' +
-        '<h1 class="trunc1">' + FB.esc(s.name) + '</h1>' +
+        /* not a second <h1>: the body below carries the page's heading, and this
+            bar only repeats it once the hero has scrolled away */
+        '<b class="st-bar-t trunc1">' + FB.esc(s.name) + '</b>' +
         '<button class="iconbtn" data-storeinfo aria-label="Store info">' + FB.icon('info', 19) + '</button>' +
         '</div></div>';
     },
@@ -99,9 +101,9 @@ window.FB = window.FB || {};
            served them at every hour regardless. */
         var live = FB.catalog.sectionOpen(sec);
         return '<section class="msec' + (live ? '' : ' is-shut') + '" id="sec-' + sec.id + '">' +
-          '<h3>' + FB.esc(sec.name) +
+          '<h2>' + FB.esc(sec.name) +
             (live ? '' : '<span class="msec-off">' + FB.esc(sec.daypart.from) + '–' + FB.esc(sec.daypart.to) +
-              ' · it is ' + FB.esc(FB.clock()) + '</span>') + '</h3>' +
+              ' · it is ' + FB.esc(FB.clock()) + '</span>') + '</h2>' +
           (sec.blurb ? '<p>' + FB.esc(sec.blurb) + '</p>' : '') +
           sec.items.map(function (it) { return FB.C.menuItem(it, s); }).join('') +
         '</section>';

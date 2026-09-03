@@ -6,7 +6,10 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const OUT = path.join(ROOT, 'build', 'foodbang.html');
+/* overridable for the same reason bundle.cjs's is: the test that proves a stale
+   cache is refused builds a real artifact, and forty megabytes into build/ on every
+   npm test is not a test's business */
+const OUT = process.env.SMOKE_ARTIFACT_OUT || path.join(ROOT, 'build', 'foodbang.html');
 const SMALL = path.join(ROOT, 'build', 'artifact-assets');
 const MIME = { '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
 
@@ -195,4 +198,4 @@ fs.writeFileSync(OUT, out);
 console.log('images inlined  ' + Object.keys(assets).length + '  (' + (bytes / 1024 | 0) + ' KB)');
 console.log('css             ' + (css.length / 1024 | 0) + ' KB');
 console.log('js + menus      ' + (js.length / 1024 | 0) + ' KB');
-console.log('output          ' + (out.length / 1048576).toFixed(2) + ' MB -> build/foodbang.html  (longest line ' + longest + ' chars)');
+console.log('output          ' + (out.length / 1048576).toFixed(2) + ' MB -> ' + path.relative(ROOT, OUT) + '  (longest line ' + longest + ' chars)');

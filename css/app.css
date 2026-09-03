@@ -345,7 +345,6 @@ kbd {
 .sec { padding: 6px 0 14px; }
 .sec-head { display: flex; align-items: center; gap: 8px; padding: 12px var(--pad) 10px; }
 .sec-head h2 { font: var(--t-hero); margin: 0; letter-spacing: -.6px; flex: 1; }
-.sec-head h3 { font: var(--t-title); margin: 0; letter-spacing: -.3px; flex: 1; }
 .sec-head .sh-more { color: var(--ink-2); font: var(--t-cap); display: flex; align-items: center; gap: 2px; }
 .sec-sub { padding: 0 var(--pad) 10px; color: var(--ink-2); font: var(--t-sub); margin-top: -6px; }
 
@@ -408,7 +407,7 @@ kbd {
 .sc-tags { position: absolute; left: 10px; top: 10px; display: flex; gap: 6px; z-index: 2; flex-wrap: wrap; max-width: 78%; }
 .sc-body { padding: 9px 2px 0; }
 .sc-title { display: flex; align-items: center; gap: 6px; }
-.sc-title h3 { font: var(--t-head); margin: 0; letter-spacing: -.25px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sc-title h2 { font: var(--t-head); margin: 0; letter-spacing: -.25px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sc-meta { display: flex; align-items: center; gap: 6px; margin-top: 3px; color: var(--ink-2); font: var(--t-sub); flex-wrap: wrap; }
 .sc-meta .dot-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-3); }
 .sc-promo { margin-top: 5px; color: var(--fb-ink); font: 600 calc(13px * var(--fs)) var(--font); display: flex; align-items: center; gap: 5px; }
@@ -644,7 +643,7 @@ kbd {
 
 .empty { padding: 54px 30px; text-align: center; }
 .empty img { width: 130px; margin: 0 auto 18px; opacity: .9; border-radius: 20px; }
-.empty h3 { font: var(--t-title); margin: 0 0 6px; }
+.empty h2 { font: var(--t-title); margin: 0 0 6px; }
 .empty p { color: var(--ink-2); font: var(--t-body); margin: 0 0 20px; }
 
 .fineprint { padding: 18px var(--pad) 30px; color: var(--ink-3); font: 400 calc(11px * var(--fs))/1.55 var(--font); }
@@ -726,7 +725,7 @@ kbd {
   /* the hero only — .sc-logo is a badge pinned inside the same box and must not drift */
   .storecard:hover .sc-media > img:not(.sc-logo), .dishtile:hover img, .promo:hover img { transform: scale(1.03); }
   .storecard .sc-media > img:not(.sc-logo), .dishtile img, .promo img { transition: transform var(--mid) var(--ez); }
-  .storecard:hover .sc-title h3, .dishtile:hover b { text-decoration: underline; text-underline-offset: 2px; }
+  .storecard:hover .sc-title h2, .dishtile:hover b { text-decoration: underline; text-underline-offset: 2px; }
 
   /* .cat i has no border, so border-color was a no-op — use the ring the selected
      state already uses (see .cat[aria-pressed="true"] i), one step quieter */

@@ -22,7 +22,7 @@ node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand b
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose eighty checks always run together — there is no way to run a
+(`node tools/smoke.cjs`) whose eighty-two checks always run together — there is no way to run a
 single one short of editing the file; the runner prints its own count, so read the number off a run
 rather than trusting this sentence. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
@@ -69,7 +69,13 @@ headlessly.
 **State is one object under one localStorage key** (`foodbang.state.v1`, `js/core/state.js`). Read
 it with `FB.S()`; never assign into it. `FB.store.set(function (st) { …; return st; })` persists
 (debounced 90 ms) and notifies `FB.store.sub` subscribers — that is what repaints the tab bar,
-cart pill and desk stats. **New fields go in `defaults()` and nothing else is required**:
+cart pill and desk stats. `FB.store.flush()` writes a pending save now; `app.js` calls it on
+`pagehide` and on the tab going hidden, because the debounce was invisible in use and fatal on close.
+**The write counter `w` is read off storage at write time**, not counted per tab: a tab that missed
+the other's storage events (frozen in the background, restored from the back-forward cache) used to
+write its own count + 1, lower than the document already there, and the busier tab refused
+everything it wrote from then on. Last writer still wins — a whole-document store cannot merge —
+but the counter is monotone across tabs, so the loser always adopts. **New fields go in `defaults()` and nothing else is required**:
 `fillDefaults()` backfills every key a save is missing at any depth, so adding a field is safe
 against every existing save. Plain objects only — an array in a save is the user's data and is
 never merged into. A key that is present with the **wrong shape** (`orders: {}`, `meta: null`) is
@@ -519,8 +525,8 @@ prefix and as a suffix — the noun renames on a word boundary and camelCase has
 after naming anything, not only after adding a file.** Those two are not spelled out here for the
 reason given above: this file is inside the walk, and a prose example would itself be a survivor.
 
-**Run `npm test` before committing.** Eighty checks. Beyond the original thirteen they cover:
-every screen rendering under ten state fixtures × two hours with no `undefined`/`NaN` in the markup;
+**Run `npm test` before committing.** Eighty-two checks. Beyond the original thirteen they cover:
+every screen rendering under thirteen state fixtures × two hours with no `undefined`/`NaN` in the markup;
 accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
 pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency
 staying small and buyable; the world clock's idempotence; the wall-clock order lifecycle including
@@ -571,6 +577,15 @@ mutant. The runner itself now refuses a check that returns a Promise, four asser
 not fail (an undefined variable behind `&&`, a placeholder ternary, a predicate re-asserting itself,
 a `|| true` filter) were repaired, and the same programme found one of the new ones driving the
 wrong footer handler — green on first run, which is the smell.
+
+Two more followed. **Three fixtures go through `FB.tracker.build`** — an open incident, a queue with
+nobody assigned, a reserved slot — because `makeOrder` hand-assembles an order with no timetable and
+absence of the `assign` beat means already-assigned, so the sweep had drawn the courier card every
+time and the incident block never; a check asserts the three surfaces are reached and that every
+screen render carries one `<h1>` and no `h1 → h3` jump. And **the build probes run in a scratch
+directory**: `SMOKE_MENU_DIR` / `SMOKE_BUNDLE_OUT` / `SMOKE_ARTIFACT_OUT` are honoured by the two
+build tools for exactly this, because the check used to corrupt `gyropalace.json` in place and put
+it back in a `finally`, and wrote forty megabytes into `build/` on every run.
 
 ## Rebranding
 

@@ -16,7 +16,7 @@ window.FB = window.FB || {};
       var h = '';
 
       h += '<div class="acct-head"><img src="' + FB.esc(st.user.avatar) + '" alt="" onerror="this.style.visibility=\'hidden\'">' +
-        '<div class="ah-b"><h1>' + FB.esc(st.user.name) + '</h1>' +
+        '<div class="ah-b"><h2>' + FB.esc(st.user.name) + '</h2>' +
         '<span>' + FB.esc(st.user.email) + '</span>' +
         '<div style="margin-top:6px"><button class="btn btn--sm btn--ghost" data-editprofile>Edit profile</button></div></div></div>';
 
@@ -71,7 +71,7 @@ window.FB = window.FB || {};
         '<span>' + (m.orders ? FB.int(m.totalCal) + ' units logged · trajectory ' + m.trajectory : 'No signal yet') + '</span></span>' +
         '<span class="mr-r">' + (m.orders ? '<span class="badge badge--bad">' + m.trajectory + '</span>' : '') + FB.icon('fwd', 15) + '</span></button>';
 
-      h += '<div class="menulist"><h3>ORDERING</h3>' +
+      h += '<div class="menulist"><h2>ORDERING</h2>' +
         row('pin', 'Addresses', FB.plural(st.addresses.length, 'saved address', 'saved addresses'), 'addresses') +
         row('card', 'Payment methods', FB.plural(st.payments.length, 'method'), 'payments') +
         row('orders', 'Order history', FB.plural(st.orders.length, 'order'), 'orders') +
@@ -79,14 +79,14 @@ window.FB = window.FB || {};
         row('tag', 'Promotions', Object.keys(FB.fees.PROMOS).length + ' codes circulating', null, 'promos') +
         '</div>';
 
-      h += '<div class="menulist"><h3>APP</h3>' +
+      h += '<div class="menulist"><h2>APP</h2>' +
         row('settings', 'Settings', 'Appearance, privacy, notifications', 'settings') +
         row('bell', 'Notifications', 'Manage what reaches you', null, 'notifs') +
         row('help', 'Help & support', 'Available', null, 'help') +
         row('shield', 'Legal & policies', 'Terms, Privacy, Arbitration', null, 'legal') +
         '</div>';
 
-      h += '<div class="menulist"><h3>DANGER</h3>' +
+      h += '<div class="menulist"><h2>DANGER</h2>' +
         '<button class="mrow" data-reset>' + FB.icon('trash', 19) +
         '<span class="mr-b"><b style="color:var(--bad)">Reset all data</b><span>Clears orders, carts, telemetry and settings on this device.</span></span></button>' +
         '<button class="mrow" data-signout>' + FB.icon('logout', 19) +
@@ -162,7 +162,7 @@ window.FB = window.FB || {};
       var s = FB.S().settings;
       var h = '';
 
-      h += '<div class="menulist"><h3>APPEARANCE</h3>' +
+      h += '<div class="menulist"><h2>APPEARANCE</h2>' +
         '<div style="padding:2px 0 6px"><div style="padding:0 16px 8px;font:var(--t-cap);color:var(--ink-3)">Theme</div>' +
         seg('theme', s.theme, [['system', 'System'], ['light', 'Light'], ['dark', 'Dark']]) +
         '</div></div>';
@@ -170,7 +170,7 @@ window.FB = window.FB || {};
       /* Text size and Animations were filed under APPEARANCE, where nothing marked
          them as assistive, and the four keyboard shortcuts were advertised only in
          the desktop sidebar — which is display:none below 940px. */
-      h += '<div class="menulist"><h3>ACCESSIBILITY</h3>' +
+      h += '<div class="menulist"><h2>ACCESSIBILITY</h2>' +
         '<div style="padding:2px 0 6px"><div style="padding:0 16px 8px;font:var(--t-cap);color:var(--ink-3)">Text size</div>' +
         seg('textsize', s.textsize, [['m', 'Default'], ['l', 'Large'], ['xl', 'Larger']]) +
         '</div>' +
@@ -186,7 +186,7 @@ window.FB = window.FB || {};
         '<span>Accessibility settings are provided at no charge. This arrangement is under review.</span></div>' +
         '</div>';
 
-      h += '<div class="menulist"><h3>ORDERING</h3>' +
+      h += '<div class="menulist"><h2>ORDERING</h2>' +
         '<div style="padding:12px 16px 4px"><div style="display:flex;justify-content:space-between;align-items:baseline">' +
         '<b style="font:var(--t-body);font-weight:500">Hunger Level</b>' +
         '<span style="font:700 calc(15px * var(--fs)) var(--mono);color:var(--fb-ink)">' + s.hungerLevel + ' / 10</span></div>' +
@@ -200,7 +200,7 @@ window.FB = window.FB || {};
         '<div style="font:var(--t-cap);color:var(--ink-3);margin-top:8px">Pre-selected at checkout. The suggested default is 42%.</div></div>' +
         '</div>';
 
-      h += '<div class="menulist"><h3>PRIVACY &amp; DISCLOSURE</h3>' +
+      h += '<div class="menulist"><h2>PRIVACY &amp; DISCLOSURE</h2>' +
         sw('feeTransparency', s.feeTransparency, 'Show itemized fees',
           s.feeTransparency ? 'On. Adds the Fee Transparency Fee ($0.85) to each order.' : 'Off. Adds the Fee Opacity Fee ($2.85) to each order.') +
         sw('reduceUpsells', s.reduceUpsells, 'Reduce recommendations',
@@ -216,7 +216,7 @@ window.FB = window.FB || {};
         '</div>';
 
       var n = s.notifications;
-      h += '<div class="menulist"><h3>NOTIFICATIONS</h3>' +
+      h += '<div class="menulist"><h2>NOTIFICATIONS</h2>' +
         sw('n.orderUpdates', n.orderUpdates, 'Order updates', 'Status changes and arrival estimates.') +
         sw('n.slingerMessages', n.slingerMessages, 'Slinger messages', 'Messages from the person currently holding your food.') +
         sw('n.promos', n.promos, 'Promotions', 'Up to 14 per day. This is the floor, not the cap.') +
@@ -225,7 +225,7 @@ window.FB = window.FB || {};
         sw('n.reengagement', n.reengagement, 'We miss you', 'Sent when you have not ordered in 90 minutes.') +
         '</div>';
 
-      h += '<div class="menulist"><h3>REGION</h3>' +
+      h += '<div class="menulist"><h2>REGION</h2>' +
         '<div style="padding:2px 0 6px"><div style="padding:0 16px 8px;font:var(--t-cap);color:var(--ink-3)">Units</div>' +
         seg('units', s.units, [['imperial', 'Imperial'], ['metric', 'Metric']]) +
         '<div style="padding:6px 16px 8px;font:var(--t-cap);color:var(--ink-3)">Language</div>' +

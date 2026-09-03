@@ -169,7 +169,9 @@ window.FB = window.FB || {};
     var headline = done ? FB.clock(new Date(o.deliveredAt))
       : pending ? FB.esc(o.scheduled || FB.clock(new Date(o.startAt))) : FB.tracker.eta(o) + ' min';
     return '<div class="te-k">' + kicker + '</div>' +
-      '<h2>' + headline + '</h2>' +
+      /* a number, not a section heading: as an <h2> "23 min" sat in the heading
+         list between TRACKR and the receipt */
+      '<div class="te-h">' + headline + '</div>' +
       '<div class="te-s">' + (pending ? 'Reserved · preparation has not begun' : FB.esc(step.label)) +
         ' · ' + FB.esc(o.storeName) + '</div>' +
       (!done && o.etaDrift > 0 ? '<div class="te-drift">' + FB.icon('alert', 13) + 'Arrival revised later by ' + o.etaDrift + ' min since you ordered</div>' : '');

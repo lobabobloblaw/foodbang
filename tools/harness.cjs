@@ -407,6 +407,65 @@ const FIXTURES = [
       return {};
     },
   },
+  /* The three below go through FB.tracker.build, which no other fixture does:
+     makeOrder hand-assembles an order with one event and no timetable, so no
+     rendered order ever carried a schedule, a deliverAt, an incident or a tagged
+     `assign` beat — and absence of that beat means already-assigned, so the sweep
+     drew the courier card every time and never once the queue, the open incident
+     or the reserved-slot header. Fifteen lines of money and buttons that nothing
+     generic had ever looked at for undefined, NaN or a nameless control. */
+  {
+    name: 'live order, incident open',
+    apply(FB, now) {
+      addToCart(FB, 'mcronalds', 3);
+      let o = null;
+      /* seeded on the id, so walk ids until one draws an incident; then place it
+         far enough back that NOW sits inside the incident's window */
+      for (let i = 0; i < 200 && !o; i++) {
+        const x = makeOrder(FB, 'mcronalds', { now: now });
+        x.id = 'o_fx_inc' + i;
+        x.tier = 1 + (i % 3);
+        FB.tracker.build(x);
+        if (!x.incident) continue;
+        const into = x.incident.at - x.startAt + 1500;
+        const y = makeOrder(FB, 'mcronalds', { now: now });
+        y.id = x.id; y.tier = x.tier; y.placedAt = now - into;
+        FB.tracker.build(y);
+        if (y.incident && y.incident.at <= now && now < y.incident.deadline) o = y;
+      }
+      if (!o) throw new Error('fixture could not draw an open incident');
+      FB.store.set((st) => { st.orders.unshift(o); st.activeOrderId = o.id; st.meta.orderCount = 6; return st; });
+      return { id: o.id, slug: 'mcronalds' };
+    },
+  },
+  {
+    name: 'live order, nobody assigned yet',
+    apply(FB, now) {
+      addToCart(FB, 'pizzahutch', 2);
+      const o = makeOrder(FB, 'pizzahutch', { now: now, step: 0 });
+      o.id = 'o_fx_queue';
+      o.placedAt = now - 1000;
+      FB.tracker.build(o);
+      if (FB.tracker.assigned(o, now)) throw new Error('fixture is already assigned a second in');
+      FB.store.set((st) => { st.orders.unshift(o); st.activeOrderId = o.id; return st; });
+      return { id: o.id, slug: 'pizzahutch' };
+    },
+  },
+  {
+    name: 'scheduled order, reserved',
+    apply(FB, now) {
+      addToCart(FB, 'oliveorchard', 2);
+      const o = makeOrder(FB, 'oliveorchard', { now: now, step: 0 });
+      o.id = 'o_fx_sched';
+      /* a clock string, the way the schedule sheet writes it; build() turns it into
+         the next wall-clock occurrence after placement */
+      o.scheduled = FB.clock(new Date(now + 5 * 3600000));
+      FB.tracker.build(o);
+      if (!FB.tracker.isPending(o)) throw new Error('fixture is not pending at its own placement');
+      FB.store.set((st) => { st.orders.unshift(o); st.activeOrderId = o.id; return st; });
+      return { id: o.id, slug: 'oliveorchard' };
+    },
+  },
   {
     name: 'privacy toggles flipped, hunger 10',
     apply(FB) {

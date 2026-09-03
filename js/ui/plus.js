@@ -57,7 +57,8 @@ window.FB = window.FB || {};
       h += '<div class="plushero">' +
         (active ? '' : '<img src="assets/app/bangplus-hero.webp" alt="" onerror="this.remove()">') +
         '<div class="ph-k">' + (active ? 'MEMBERSHIP ACTIVE' : 'INFINITY PRIME ELITE') + '</div>' +
-        '<h1>' + (active ? 'You are a member' : 'Pay a fee to reduce your fees') + '</h1>' +
+        /* the app bar already carries the page's h1 */
+        '<h2>' + (active ? 'You are a member' : 'Pay a fee to reduce your fees') + '</h2>' +
         '<p>' + (active
           ? 'Member since ' + FB.dayLabel(st.plus.since) + '. ' + FB.plural(months, 'month') + ' billed. ' + FB.money(st.plus.saved || 0) + ' saved.'
           + (FB.scrip.balance() > 0 ? ' ' + FB.money(FB.scrip.balance()) + ' in BangBux™ expiring shortly.' : '')

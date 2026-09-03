@@ -77,7 +77,7 @@
     if (!n) {
       hideSplash(true);
       document.getElementById('view').innerHTML =
-        '<div class="empty"><h3>Menu data missing</h3><p>Run <code>npm run bundle</code> to rebuild ' +
+        '<div class="empty"><h2>Menu data missing</h2><p>Run <code>npm run bundle</code> to rebuild ' +
         '<code>js/data/menus.generated.js</code>, then reload.</p></div>';
       return;
     }
@@ -145,6 +145,12 @@
     window.addEventListener('storage', function (e) {
       if (!e || e.key !== FB.store.KEY || !e.newValue) return;
       if (FB.store.adopt(e.newValue)) FB.nav.refresh();
+    });
+    /* and the other direction: a save still inside its debounce when the tab goes
+       away is written now rather than never */
+    window.addEventListener('pagehide', function () { FB.store.flush(); });
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') FB.store.flush();
     });
 
     /* first-run welcome */

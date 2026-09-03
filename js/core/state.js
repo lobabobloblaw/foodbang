@@ -270,32 +270,64 @@ window.FB = window.FB || {};
 
   var storageWarned = false;
 
-  function persist() {
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(function () {
-      state.w = (state.w || 0) + 1;
-      try { localStorage.setItem(KEY, JSON.stringify(state)); }
-      catch (e) {
-        /* Quota, private mode, or storage blocked outright. Say so ONCE: writes are
-           debounced at 90ms and retry on the next change, so a per-failure message
-           would stack one toast per keystroke. Reported through a hook rather than
-           FB.toast directly, because nothing in js/core may touch the DOM — the
-           boot file owns how the app speaks. */
-        if (storageWarned) return;
+  /* The `w` at the front of whatever is in storage right now, read cheaply: it is
+     the second key JSON.stringify emits, so a prefix match answers without parsing a
+     document that can run to hundreds of kilobytes. Falls back to a parse, then to 0. */
+  function storedW() {
+    var raw = null;
+    try { raw = localStorage.getItem(KEY); } catch (e) { return 0; }
+    if (!raw) return 0;
+    var m = /^\{"v":\d+,"w":(\d+)/.exec(raw);
+    if (m) return Number(m[1]);
+    try { return Number(JSON.parse(raw).w) || 0; } catch (e) { return 0; }
+  }
+
+  function write() {
+    /* Above whatever is in storage, not above what THIS tab last saw. A tab that
+       missed the other's storage events — frozen in the background, restored from
+       the back-forward cache — wrote its own count + 1, which could be lower than
+       the document already there; the other tab refused it as stale while storage
+       now held it, and the two never agreed again. Last writer still wins, but the
+       counter is monotone across every tab, so the loser always adopts. */
+    state.w = Math.max(state.w || 0, storedW()) + 1;
+    try { localStorage.setItem(KEY, JSON.stringify(state)); return true; }
+    catch (e) {
+      /* Quota, private mode, or storage blocked outright. Say so ONCE: writes are
+         debounced at 90ms and retry on the next change, so a per-failure message
+         would stack one toast per keystroke. Reported through a hook rather than
+         FB.toast directly, because nothing in js/core may touch the DOM — the
+         boot file owns how the app speaks. */
+      if (!storageWarned) {
         storageWarned = true;
         if (typeof store.onStorageError === 'function') {
           try { store.onStorageError(e); } catch (e2) {}
         }
       }
-    }, 90);
+      return false;
+    }
   }
 
+  function persist() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      saveTimer = null;
+      write();
+    }, 90);
+  }
   var store = {
     get state() { return state; },
     /* exported so a test can seed a save without spelling the brand into a file
        that tools/rebrand.cjs does not rewrite */
     KEY: KEY,
     onStorageError: null,
+    /** write the pending save NOW. The 90ms debounce is invisible in use and fatal
+        on pagehide: an order placed and the tab closed inside the window was never
+        written. app.js calls this from pagehide and visibilitychange. */
+    flush: function () {
+      if (!saveTimer) return false;
+      clearTimeout(saveTimer); saveTimer = null;
+      return write();
+    },
     /** mutate state through a function, then persist + notify */
     set: function (fn, opts) {
       var r = fn(state);

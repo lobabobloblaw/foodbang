@@ -6,8 +6,12 @@ const path = require('path');
 const crypto = require('crypto');
 
 const ROOT = path.join(__dirname, '..');
-const DIR = path.join(ROOT, 'js', 'data', 'menus');
-const OUT = path.join(ROOT, 'js', 'data', 'menus.generated.js');
+/* Overridable so npm test can validate a deliberately broken COPY of the menus in
+   a scratch directory. It used to corrupt gyropalace.json in place and restore it
+   in a finally — a Ctrl-C between the two left a tracked file carrying a fabricated
+   price. Nothing else should set these. */
+const DIR = process.env.SMOKE_MENU_DIR || path.join(ROOT, 'js', 'data', 'menus');
+const OUT = process.env.SMOKE_BUNDLE_OUT || path.join(ROOT, 'js', 'data', 'menus.generated.js');
 
 const REQUIRED = ['slug', 'name', 'tagline', 'cuisine', 'categories', 'rating', 'ratingCount',
   'deliveryMin', 'deliveryMax', 'deliveryFee', 'distanceMi', 'priceTier', 'opensAt', 'closesAt',
