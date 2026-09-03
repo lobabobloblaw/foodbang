@@ -80,7 +80,7 @@ window.FB = window.FB || {};
 
       /* category rail */
       h += '<div class="cats">' + cats.map(function (c) {
-        return '<button class="cat" data-cat="' + c.slug + '"' + (state.cat === c.slug ? ' aria-pressed="true"' : '') + '>' +
+        return '<button class="cat" data-cat="' + c.slug + '" aria-pressed="' + (state.cat === c.slug) + '">' +
           '<i>' + c.icon + '<img src="' + c.img + '" alt="" loading="lazy" onerror="this.remove()"></i>' +
           '<span>' + FB.esc(c.label) + '</span></button>';
       }).join('') + '</div>';
@@ -110,12 +110,12 @@ window.FB = window.FB || {};
       h += '<div class="filterbar">' +
         '<button class="chip chip--outline" data-sortsheet>' + FB.icon('sliders', 15) + 'Sort' +
           (state.sort !== 'default' ? ' · ' + FB.esc(SORTS[state.sort]) : '') + '</button>' +
-        '<button class="chip chip--outline" data-filter="plus"' + (state.filters.plus ? ' aria-pressed="true"' : '') + '>BANG+</button>' +
-        '<button class="chip chip--outline" data-filter="fast"' + (state.filters.fast ? ' aria-pressed="true"' : '') + '>Under 30 min</button>' +
-        '<button class="chip chip--outline" data-filter="rated"' + (state.filters.rated ? ' aria-pressed="true"' : '') + '>4.0+</button>' +
-        '<button class="chip chip--outline" data-filter="cheap"' + (state.filters.cheap ? ' aria-pressed="true"' : '') + '>$ &amp; $$</button>' +
-        '<button class="chip chip--outline" data-filter="open"' + (state.filters.open ? ' aria-pressed="true"' : '') + '>Open now</button>' +
-        '<button class="chip chip--outline" data-filter="local"' + (state.filters.local ? ' aria-pressed="true"' : '') + '>Independent</button>' +
+        '<button class="chip chip--outline" data-filter="plus" aria-pressed="' + !!state.filters.plus + '">BANG+</button>' +
+        '<button class="chip chip--outline" data-filter="fast" aria-pressed="' + !!state.filters.fast + '">Under 30 min</button>' +
+        '<button class="chip chip--outline" data-filter="rated" aria-pressed="' + !!state.filters.rated + '">4.0+</button>' +
+        '<button class="chip chip--outline" data-filter="cheap" aria-pressed="' + !!state.filters.cheap + '">$ &amp; $$</button>' +
+        '<button class="chip chip--outline" data-filter="open" aria-pressed="' + !!state.filters.open + '">Open now</button>' +
+        '<button class="chip chip--outline" data-filter="local" aria-pressed="' + !!state.filters.local + '">Independent</button>' +
         (state.cat ? '<button class="chip is-on" data-cat="">' + FB.esc(FB.CAT_LABELS[state.cat]) + ' ✕</button>' : '') +
       '</div>';
 
@@ -190,7 +190,7 @@ window.FB = window.FB || {};
     FB.sheet.open({
       title: 'Sort',
       sub: 'One of these is honest.',
-      html: '<div>' + Object.keys(SORTS).map(function (k) {
+      html: '<div role="radiogroup" aria-label="Sort">' + Object.keys(SORTS).map(function (k) {
         return '<button class="opt" role="radio" aria-checked="' + (state.sort === k) + '" data-sort="' + k + '">' +
           '<span class="mark"></span><span class="opt-b"><b>' + SORTS[k] + '</b>' +
           (k === 'desperation' ? '<span>Orders per point of rating. The stores people go to anyway.</span>' : '') +

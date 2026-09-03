@@ -14,34 +14,40 @@ npm start          # preview on http://127.0.0.1:8899 (no-cache server; other po
 npm run bundle     # js/data/menus/*.json  ->  js/data/menus.generated.js   (npm run build is an alias)
 npm run artifact   # bundle, then single-file build  ->  build/foodbang.html
 npm test           # smoke-test the invariants below (exits 1 on regression)
+npm run test:tz    # the same suite under Tokyo, Honolulu and Berlin — see below
 npm run check      # rebundle, then smoke-test
+npm run ci         # what .github/workflows/test.yml runs: bundle freshness, selfcheck, suite
 node tools/rebrand.cjs --dry         # preview an app-wide rename
-node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand behind
+node tools/rebrand.cjs --selfcheck   # prove no rule leaves the outgoing brand behind (npm run selfcheck)
 ```
 
 There is no linter, no test framework and no watch mode, deliberately. `npm test` is one script
-(`node tools/smoke.cjs`) whose seventy-three checks always run together — there is no way to run a
-single one short of editing the file. `tools/harness.cjs` loads the whole app into a `vm` realm
+(`node tools/smoke.cjs`) whose eighty checks always run together — there is no way to run a
+single one short of editing the file; the runner prints its own count, so read the number off a run
+rather than trusting this sentence. `tools/harness.cjs` loads the whole app into a `vm` realm
 behind a stub document, which is what lets the UI checks render every screen headlessly; it also
 exposes `clock.set(ts)` for travelling in time. **`makeOrder` runs in Node's realm and does not see
 `clock.set` — pass `opts.now` or the fixture is stamped with the test machine's wall clock.**
 `addToCart` adds only items that are AVAILABLE today, because scarcity's threshold samples the world
 at a *local* 7 PM whose epoch moves with the zone: a fixture that scooped up a sold-out item turned
 unrelated checks red in Berlin, Tokyo and Honolulu while staying green in Los Angeles. **Run the
-suite under a second `TZ=` before believing it.** `mount()` only *patches* — the initial markup comes
+suite under a second `TZ=` before believing it** — `npm run test:tz` does, and the workflow runs
+four zones on every push. `mount()` only *patches* — the initial markup comes
 from `render()`, so asserting a fragment straight after a mount asserts an empty stub. `node tools/rebrand.cjs --selfcheck` is separate and is only
 worth running after editing that file's rules.
 
-Deployed from `main` at repo root via GitHub Pages. Pushing to `main` redeploys.
+Deployed from `main` at repo root via GitHub Pages. Pushing to `main` redeploys — and
+`.github/workflows/test.yml` runs the bundle-freshness diff, the rebrand self-check and the suite
+under four time zones on every push, so a red suite is at least a red badge before it is a deploy.
 
 ## Layout
 
 ```
 index.html            shell: phone frame, status bar, tab bar, and the ordered <script> list
-css/tokens.css        67 design tokens — light/dark, three-state theming; --fs scales the type ramp
+css/tokens.css        design tokens — light/dark, three-state theming; --fs scales the type ramp
 css/app.css           component library      css/screens.css   per-screen styles
 js/core/              util · world · icons · state · latency · notifs · catalog · fees · scrip · tos · cart
-js/ui/                shell (router/sheets/toasts) · components · item sheet · 18 screens
+js/ui/                shell (router/sheets/toasts) · components · item sheet · 15 screens (19 with the sims')
 js/sim/               roster.js (the nine Slingers) · standing.js · tracker.js (TRACKR™) · bodymax.js · missions.js
 js/app.js             boot: catalog.init -> shell.init -> nav.go('home') -> tracker.resume
 js/data/menus/*.json  one file per restaurant — THE source of truth
@@ -66,7 +72,9 @@ it with `FB.S()`; never assign into it. `FB.store.set(function (st) { …; retur
 cart pill and desk stats. **New fields go in `defaults()` and nothing else is required**:
 `fillDefaults()` backfills every key a save is missing at any depth, so adding a field is safe
 against every existing save. Plain objects only — an array in a save is the user's data and is
-never merged into. **Do not bump `VERSION` to add a field.** A bump runs the `MIGRATIONS` ladder,
+never merged into. A key that is present with the **wrong shape** (`orders: {}`, `meta: null`) is
+replaced by the default: it used to survive untouched, reach `FB.tracker.resume()` at boot, throw
+on `.filter`, and leave the splash up forever with nothing on screen. **Do not bump `VERSION` to add a field.** A bump runs the `MIGRATIONS` ladder,
 and a rung that does not exist still falls back to wiping the save; add a rung only for a
 genuinely breaking *reshape*. `persist()` reports the first storage failure through
 `FB.store.onStorageError`, which `app.js` voices — core must not reach for `FB.toast` itself.
@@ -117,6 +125,23 @@ line and the promo cards. If a wrapper is styled as a box, give it `display: blo
 **Item detail is a sheet, not a screen** — `js/ui/item.js` exposes `FB.openItem` and
 `FB.wireItemOpeners`. Sheets and modals (`FB.sheet`, `FB.modal`, `FB.confirm`, `FB.why`) stack in
 `#overlay-root`, and `nav.back()` / Esc closes the top overlay before it pops the router stack.
+While any overlay is up `#screen` is `inert`, because the Tab trap only sees Tab once focus is
+already inside the dialog. The item sheet rebuilds its body with `innerHTML` on every tap and its
+delegated listeners live on the node that survives that — **never call `wire()` on it twice**; a
+failed Add once did, and every optional modifier toggled on and off in the same tap thereafter.
+
+**Step the calendar by date, never by 86 400 000.** `FB.nextAtMinute` and `FB.dayLabel` say why:
+the day after a daylight-saving change is 23 or 25 hours long. The intake chart and the nightly
+summary both did the flat arithmetic anyway and lost a day each; the check that pins them runs in a
+zone that has daylight saving, because the container's does not.
+
+**The accent is a fill, and text on it or of it goes through its own token.** `--fb-on` is the ink
+painted on `--fb` (buttons, the cart pill, badges) and `--fb-ink` is the accent used *as* text
+(links, promo badges, the selected tip): plain `--fb` on white is 3.73:1 and white on Slinger Mode's
+dark-theme amber was 1.85:1. Both are named under the `--fb` prefix so `tools/rebrand.cjs` moves
+them with the accent — the first draft put the prefix on the wrong side of one of them and
+`--selfcheck` reported it as a survivor, which is the check doing its job (and why it is not spelled
+out here: this file is inside the walk).
 
 **`js/core/catalog.js` owns everything derived from the menu JSON.**
 `FB.catalog.init(window.FB_MENUS)` decorates each store in place with `logoSrc` / `heroSrc` /
@@ -288,8 +313,11 @@ deadline shorter than the sheet takes to read is worth offering.
 **`js/data/menus.generated.js` is generated, and is not the source of truth.** `bundle.cjs` strips
 `BUILD_ONLY` fields (`imagePrompt`, `photoStyle`) — they stay verbatim in the JSON by doctrine but
 no screen reads them, and `imagePrompt` was the only thing in the app producing a line over 1 KB.
-It also stamps a sha256 of the sources into the banner, and `npm test` recomputes it, so a
-forgotten `npm run bundle` is a red test rather than a wrong price. **Data checks read
+It also stamps a sha256 of the sources (the builder included) into the banner, and `npm test`
+recomputes it, so a forgotten `npm run bundle` is a red test rather than a wrong price. It stamps a
+second sha256 of the **output** beside it, and `npm test` recomputes that over everything after the
+banner — the source hash proves the inputs are current and says nothing about a price edited
+directly in the bundle, which every data check is blind to by design. **Data checks read
 `js/data/menus/*.json`, never the bundle.**
 
 **One rule, in core, read by every screen that needs it.** The repeated failure in this codebase is
@@ -408,7 +436,10 @@ boilerplate for the person it is deducting from, and that is the joke — do not
 on one side ($9.49 ordinary, $43.13 on an access day — and the board tops out at $13.45, so the
 access statement never pays out and is not meant to). **BangBux are granted against the deduction
 stack**, by the identical formula `compute` grants them by; granting on the *shortfall* instead puts
-a cliff at $25.00 of it, which made the best-paid run the only one compensated with nothing.
+a cliff at $25.00 of it, which made the best-paid run the only one compensated with nothing. And
+they are **granted**, through `FB.scrip.grant` stamped from `run.endAt`, into the same wallet the
+customer redeems from: `settle()` used to book the figure into a courier-side counter nothing read,
+so the statement printed a settlement over a balance that stayed at $0.00.
 
 `settle()` books the **net** into `st.slinging.earned` and accumulates `deducted` — `earned` is what
 was paid, not what was billed, and the toast quotes the net for the same reason. The log row freezes
@@ -426,13 +457,18 @@ returns `known` at +3, `cold` at −3, `plain` between — and a giver may carry
 literal. Eleven of the twenty carry one; the rest fall through to the base table, which **is** `plain`.
 
 Five things hold it in place. **The band is stamped at accept**, on the run, exactly as the timetable
-is — `copyFor` feeds both the event pushed into `run.events` and the live `testBlock()` render, so a
-live read makes a stored event disagree with the sheet the moment `settle` moves the number. **The
+is — `copyFor` feeds the event pushed into `run.events`, the live `testBlock()` render **and the
+closing line `replay()` writes at `endAt`**, so a live read makes a stored event disagree with the
+sheet the moment `settle` moves the number. That closing line read the base table for the mode's
+whole life, so at `known` the card said one thing and the feed under it another; `npm test` now
+reads a run's feed text, which nothing had. **The
 rule never varies**: it is drawn from live state on the card and the sheet and from the stamped run
 mid-run, and a varying rule lets those three contradict each other. **Regard may remove a gate and
 may never add one** — the single expression `needsBrief: band === 'known' ? false : !!m.needsBrief`,
 because imposing the briefing at `cold` blocks the compliant answer, forces a break, and spirals into
-a store you can never recover with. **The ladder is clamped to ±6 on write**, or forty broken runs at
+a store you can never recover with. The gate is only reachable because the dispatch sheet offers **"Accept without reading"** —
+with one button every run was accepted briefed, `needsBrief` gated nothing and the waiver waived
+nothing, and the check asserted the derivation rather than the effect. **The ladder is clamped to ±6 on write**, or forty broken runs at
 one store means forty kept runs to climb back — a hole deeper than the climb out of it. And **the
 variant shape cannot hold a number**: its whole vocabulary is strings and arrays of strings, asserted
 against the *table* the way the two-axis check asserts `keepPay`/`brkPay`, because a price written
@@ -474,14 +510,17 @@ through it, and the invariant is tested against that function rather than a copy
 wherever it appears as a word, so a *filename* containing it breaks the app (the `<script src>` string
 is rewritten; the file on disk is not), and a camelCase suffix slips past the word boundary and
 carries the outgoing brand forever. That is why the roster file is `roster.js` and the order field is
-`personId`. `--selfcheck` finds both; run it after adding a subsystem, not just after editing `RULES`.
+`personId`. `--selfcheck` finds both; run it after adding a subsystem, not just after editing `RULES`. It walks
+**filenames** as well as contents now: the rename loop used to move three courier portraits while
+nine sat on disk, and the content pass could not see the files its rewritten path pointed at. The
+loop reads the directory instead of counting.
 It has since caught a pair of camelCase identifiers in a screen that carried the courier noun as a
 prefix and as a suffix — the noun renames on a word boundary and camelCase has none, so **run it
 after naming anything, not only after adding a file.** Those two are not spelled out here for the
 reason given above: this file is inside the walk, and a prose example would itself be a survivor.
 
-**Run `npm test` before committing.** Seventy-three checks. Beyond the original thirteen they cover:
-every screen rendering under six state fixtures × two hours with no `undefined`/`NaN` in the markup;
+**Run `npm test` before committing.** Eighty checks. Beyond the original thirteen they cover:
+every screen rendering under ten state fixtures × two hours with no `undefined`/`NaN` in the markup;
 accessible names in that markup; nested backfill of an old save; Hunger never lowering a price or
 pre-selecting a refusal; single-use promo codes; no unseeded randomness outside `util.js`; latency
 staying small and buyable; the world clock's idempotence; the wall-clock order lifecycle including
@@ -522,6 +561,16 @@ have passed forever); a tip check pinning only the boundaries, so halving every 
 not distinguish a clamped deadline on any store but the two with a 29-minute ETA. Three "survivors"
 turned out to be **mis-specified mutants** rather than weak checks — a survivor is a claim about the
 test, and it is only as good as the mutation.
+
+The seven added by the project review pin: the feed closing in the stamped voice; a settlement
+reaching the balance; a wrong-shaped save key repaired rather than fatal; the calendar stepped by
+date across both daylight-saving changes; the briefing gate reachable and waived at `known`; the
+intake ledger never shrinking and a withdrawn monitor discharged out loud; and a refused Add not
+rebinding the item sheet, with `inert` following the dialog stack. Every one was validated by a
+mutant. The runner itself now refuses a check that returns a Promise, four assertions that could
+not fail (an undefined variable behind `&&`, a placeholder ternary, a predicate re-asserting itself,
+a `|| true` filter) were repaired, and the same programme found one of the new ones driving the
+wrong footer handler — green on first run, which is the smell.
 
 ## Rebranding
 

@@ -89,7 +89,8 @@ window.FB = window.FB || {};
       '</div>';
 
       h += '<div class="catnav"><div class="rail">' + s.menu.map(function (sec, i) {
-        return '<button class="chip' + (i === 0 ? ' is-on' : '') + '" data-jump="' + sec.id + '">' + FB.esc(sec.name) + '</button>';
+        return '<button class="chip' + (i === 0 ? ' is-on' : '') + '" data-jump="' + sec.id + '"' +
+          (i === 0 ? ' aria-current="true"' : '') + '>' + FB.esc(sec.name) + '</button>';
       }).join('') + '</div></div>';
 
       h += s.menu.map(function (sec) {
@@ -143,12 +144,12 @@ window.FB = window.FB || {};
       });
       FB.on(root, 'click', '[data-jump]', function (e, t) {
         var el = document.getElementById('sec-' + t.dataset.jump);
-        if (el) root.scrollTo({ top: el.offsetTop - 96, behavior: 'smooth' });
+        if (el) root.scrollTo({ top: el.offsetTop - 96, behavior: FB.smooth() });
       });
       FB.on(root, 'click', '[data-storeinfo]', function () { openInfo(s); });
       FB.on(root, 'click', '[data-reviews]', function () {
         var el = root.querySelector('.sec:last-of-type');
-        if (el) root.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
+        if (el) root.scrollTo({ top: el.offsetTop - 60, behavior: FB.smooth() });
       });
       FB.on(document.getElementById('appbar'), 'click', '[data-storeinfo]', function () { openInfo(s); });
 
@@ -159,15 +160,22 @@ window.FB = window.FB || {};
       var dev = document.getElementById('device');
       function onScroll() {
         var y = root.scrollTop;
-        if (bar) bar.classList.toggle('on', y > 170);
-        dev.classList.toggle('scrolled', y > 170);
+        /* READS first, then writes. The class toggles below invalidate layout, and
+           reading offsetTop after them forced a synchronous reflow per section on
+           every scroll event. */
         var cur = secs[0] && secs[0].id;
         for (var i = 0; i < secs.length; i++) { if (secs[i].el && secs[i].el.offsetTop - 130 <= y) cur = secs[i].id; }
+        if (bar) bar.classList.toggle('on', y > 170);
+        dev.classList.toggle('scrolled', y > 170);
         if (cur !== activeSec) {
           activeSec = cur;
-          chips.forEach(function (c) { c.classList.toggle('is-on', c.dataset.jump === cur); });
+          chips.forEach(function (c) {
+            var on = c.dataset.jump === cur;
+            c.classList.toggle('is-on', on);
+            if (on) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current');
+          });
           var on = chips.filter(function (c) { return c.dataset.jump === cur; })[0];
-          if (on) on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+          if (on) on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: FB.smooth() });
         }
       }
       offScroll = FB.on(root, 'scroll', onScroll, { passive: true });

@@ -120,8 +120,11 @@ window.FB = window.FB || {};
         ? (multi ? 'Required · choose ' + (g.min || 1) + (g.max > g.min ? '–' + g.max : '') : 'Required · choose 1')
         : (multi ? 'Optional · up to ' + g.max : 'Optional');
       if (g.required && !existing && hunger >= 8) rule += ' · pre-selected at your Hunger Level';
-      return '<div class="grp' + (missing ? ' is-missing' : '') + '" data-grp="' + g.id + '">' +
-        '<div class="grp-h"><b>' + FB.esc(g.name) + '<span class="grp-rule">' + rule +
+      /* a group, named by its own heading, so the options announce which required
+         group they belong to and where in it they sit */
+      return '<div class="grp' + (missing ? ' is-missing' : '') + '" data-grp="' + g.id + '"' +
+        ' role="' + (multi ? 'group' : 'radiogroup') + '" aria-labelledby="gh-' + FB.attr(g.id) + '">' +
+        '<div class="grp-h"><b id="gh-' + FB.attr(g.id) + '">' + FB.esc(g.name) + '<span class="grp-rule">' + rule +
           (missing ? ' — a selection is required' : '') + '</span></b>' +
           (g.required ? '<span class="grp-req">REQUIRED</span>' : '<span class="grp-opt">OPTIONAL</span>') + '</div>' +
         g.options.map(function (o) {
@@ -142,7 +145,7 @@ window.FB = window.FB || {};
       return '<div style="flex:1;display:flex;flex-direction:column;gap:8px">' +
         (mods > 0 ? '<div style="font:var(--t-cap);color:var(--ink-2);display:flex;justify-content:space-between">' +
           '<span>Base ' + FB.money(item.price) + ' + selections ' + FB.money(mods) + '</span>' +
-          '<span style="color:var(--fb);font-weight:700">' + (item.price > 0 ? '+' + Math.round(mods / item.price * 100) + '%' : '') + '</span></div>' : '') +
+          '<span style="color:var(--fb-ink);font-weight:700">' + (item.price > 0 ? '+' + Math.round(mods / item.price * 100) + '%' : '') + '</span></div>' : '') +
         '<div class="it-foot">' +
           '<span class="stepper"><button data-q="-1" aria-label="One fewer"' + (qty <= 1 ? ' disabled' : '') + '>' + FB.icon('minus', 15) + '</button>' +
           '<b>' + qty + '</b><button data-q="1" aria-label="One more">' + FB.icon('plus', 15) + '</button></span>' +
@@ -163,11 +166,22 @@ window.FB = window.FB || {};
            scrollTop to 0 and re-adding them does not restore it. An item with six
            required groups means re-scrolling after every single tap without this. */
         var sc = root.scrollTop;
+        /* the option that was tapped is about to be destroyed under the keyboard;
+           remembered by value, the way the router's restoreFocus does it */
+        var ae = document.activeElement;
+        var keep = ae && ae.hasAttribute && ae.hasAttribute('data-opt')
+          ? [ae.getAttribute('data-opt'), ae.getAttribute('data-g')] : null;
         root.innerHTML = body();
         root.scrollTop = sc;
         h.setFooter(foot());
         var ta = root.querySelector('[data-note]');
         if (ta) ta.value = note;
+        if (keep) {
+          var again = FB.qsa('[data-opt]', root).filter(function (b) {
+            return b.getAttribute('data-opt') === keep[0] && b.getAttribute('data-g') === keep[1];
+          })[0];
+          if (again) { try { again.focus({ preventScroll: true }); } catch (e) {} }
+        }
       }
       /* the .sheet-foot element persists across setFooter(), so these delegated
          listeners must be bound exactly once — rebinding leaks a handler per repaint */
@@ -214,10 +228,13 @@ window.FB = window.FB || {};
       var missing = FB.catalog.validate(item, sel);
       if (missing.length) {
         showErr = true;
+        /* innerHTML only. The delegated listeners live on h.body, which survives
+           this, so wiring again here stacked a second [data-opt] handler on the same
+           node: after one failed Add, every optional option toggled on and straight
+           off again in the same tap, and every further failure added another. */
         h.body.innerHTML = body();
-        wire(h.body, h);
         var el = h.body.querySelector('.grp.is-missing');
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (el) el.scrollIntoView({ behavior: FB.smooth(), block: 'center' });
         FB.toast(missing[0].name + ' requires a selection.', { kind: 'bad', icon: 'alert' });
         return;
       }

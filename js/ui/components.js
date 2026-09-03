@@ -139,17 +139,17 @@ window.FB = window.FB || {};
         if (l.note) h += '<div class="rl-note">' + FB.esc(l.note) + '</div>';
       });
       h += '<div class="rl"><span class="rl-l">' + FB.esc(calc.taxLine.label) +
-        '<button class="why" data-why="taxes" data-whylabel="Taxes &amp; Other Fees">?</button></span>' +
+        '<button class="why" data-why="taxes" data-whylabel="Taxes &amp; Other Fees" aria-label="Why this fee?">?</button></span>' +
         '<span class="rl-r">' + FB.money(calc.taxLine.amount) + '</span></div>';
       if (calc.taxLine.note) h += '<div class="rl-note">' + FB.esc(calc.taxLine.note) + '</div>';
     }
 
     h += '<div class="rl"><span class="rl-l">' + FB.esc(calc.tipLine.label) +
-      '<button class="why" data-why="tip" data-whylabel="Slinger Tip">?</button></span>' +
+      '<button class="why" data-why="tip" data-whylabel="Slinger Tip" aria-label="Why this fee?">?</button></span>' +
       '<span class="rl-r">' + FB.money(calc.tipLine.amount) + '</span></div>';
     if (calc.roundLine) {
       h += '<div class="rl"><span class="rl-l">' + FB.esc(calc.roundLine.label) +
-        '<button class="why" data-why="rounding" data-whylabel="Convenience Rounding">?</button></span>' +
+        '<button class="why" data-why="rounding" data-whylabel="Convenience Rounding" aria-label="Why this fee?">?</button></span>' +
         '<span class="rl-r">' + FB.money(calc.roundLine.amount) + '</span></div>';
     }
     h += '<div class="rl rl--total"><span class="rl-l">Total</span><span class="rl-r">' + FB.money(calc.total) + '</span></div>';

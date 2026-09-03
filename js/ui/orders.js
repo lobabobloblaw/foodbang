@@ -25,9 +25,9 @@ window.FB = window.FB || {};
              whose slot is seven hours away converts to 12,600 "minutes" */
           var pend = FB.tracker.isPending(o);
           return '<button class="orderrow" data-go="track" data-params=\'{"id":"' + o.id + '"}\'>' +
-            '<img src="' + o.logo + '" alt="" onerror="this.remove()">' +
+            '<img src="' + o.logo + '" alt="" loading="lazy" onerror="this.remove()">' +
             '<span class="or-b"><b>' + FB.esc(o.storeName) + '</b>' +
-            '<span style="color:var(--fb);font-weight:600">' +
+            '<span style="color:var(--fb-ink);font-weight:600">' +
               (pend ? 'Scheduled · ' + FB.esc(o.scheduled || FB.clock(new Date(o.startAt)))
                     : FB.esc(step.label) + ' · ' + FB.tracker.eta(o) + ' min') + '</span>' +
             '<span class="or-items">' + FB.esc(o.lines.map(function (l) { return l.qty + '× ' + l.name + (l.removed ? ' (removed)' : ''); }).join(', ')) + '</span></span>' +
@@ -46,7 +46,7 @@ window.FB = window.FB || {};
           return '<button class="orderrow" data-go="track" data-params=\'{"id":"' + o.id + '"}\'>' +
             (shot
               ? '<img class="or-shot" src="' + FB.attr(shot) + '" alt="" loading="lazy" onerror="this.remove()">'
-              : '<img src="' + o.logo + '" alt="" onerror="this.remove()">') +
+              : '<img src="' + o.logo + '" alt="" loading="lazy" onerror="this.remove()">') +
             '<span class="or-b"><b>' + FB.esc(o.storeName) + '</b>' +
             '<span>' + FB.dayLabel(o.placedAt) + ' · ' + FB.clock(new Date(o.placedAt)) +
               (o.rated ? ' · you rated ' + o.rated + '★' : '') + '</span>' +
@@ -336,8 +336,11 @@ window.FB = window.FB || {};
             'Collection is recorded at the moment the shelf is emptied. No photograph is taken, ' +
             'and none is available on request.</p>'
           : FB.C.sectionHead('Proof of delivery', 'Photographed by ' + g.name + '.') +
+            /* the pool is square; reserving the box keeps the receipt, the stars and
+               the Reorder button from jumping when the photograph decodes */
             '<div style="padding:0 16px 8px"><img src="' + FB.proof.pick(o) + '" alt="Proof of delivery photo" ' +
-            'style="width:100%;border-radius:14px;background:var(--surface-2)" onerror="this.remove()"></div>' +
+            'loading="lazy" decoding="async" ' +
+            'style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;background:var(--surface-2)" onerror="this.remove()"></div>' +
             '<p style="font:var(--t-cap);color:var(--ink-3);padding:0 16px 14px;line-height:1.45">' +
             'Photograph taken at the delivery address, or at an address near it, or at an address.</p>') +
         '</div>';
@@ -486,7 +489,7 @@ window.FB = window.FB || {};
           '<div style="padding:0 16px 20px;display:flex;flex-direction:column;gap:8px">' +
           [3, 6, 12].map(function (n) {
             return '<button class="btn btn--ghost btn--block btn--split" data-tipup="' + n + '"><span>Add ' + FB.money(n) + '</span>' +
-              '<span style="color:var(--fb)">−' + Math.round(n / 1.5) + ' min displayed</span></button>';
+              '<span style="color:var(--fb-ink)">−' + Math.round(n / 1.5) + ' min displayed</span></button>';
           }).join('') + '</div>',
         onMount: function (b, h) {
           FB.on(b, 'click', '[data-tipup]', function (e, t) {
@@ -659,11 +662,11 @@ window.FB = window.FB || {};
         thread.map(function (c) {
           var mine = c[0] === 'you';
           return '<div style="align-self:' + (mine ? 'flex-end' : 'flex-start') + ';max-width:78%;' +
-            'background:' + (mine ? 'var(--fb)' : 'var(--surface-2)') + ';color:' + (mine ? '#fff' : 'var(--ink)') + ';' +
+            'background:' + (mine ? 'var(--fb)' : 'var(--surface-2)') + ';color:' + (mine ? 'var(--fb-on)' : 'var(--ink)') + ';' +
             'padding:9px 13px;border-radius:16px;font:var(--t-body)">' + FB.esc(c[1]) + '</div>';
         }).join('') + '</div>',
-      footer: '<input class="input" placeholder="Message…" data-chatin style="flex:1">' +
-        '<button class="btn btn--primary" data-send style="width:56px;padding:0">' + FB.icon('fwd', 18) + '</button>',
+      footer: '<input class="input" placeholder="Message…" aria-label="Message your Slinger" data-chatin style="flex:1">' +
+        '<button class="btn btn--primary" data-send aria-label="Send message" style="width:56px;padding:0">' + FB.icon('fwd', 18) + '</button>',
       onMount: function (b, h) {
         FB.on(h.el, 'click', '[data-send]', function () {
           h.close();

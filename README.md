@@ -8,8 +8,9 @@ A satirical, entirely fictional clone of a present-day food-delivery app. Twenty
 restaurants, 426 menu items, 1,473 modifier groups and 4,700 modifier options — every one of them
 priced to make the total arrive somewhere you did not agree to.
 
-Nothing here is real. No orders are placed, no payments are processed, no network requests are
-made. Everything lives in `localStorage` and can be erased from **Account → Reset all data**.
+Nothing here is real. No orders are placed, no payments are processed, and the only network
+request the page makes is for its typeface. Everything lives in `localStorage` and can be erased
+from **Account → Reset all data**.
 
 ---
 
@@ -34,7 +35,7 @@ npm run bundle     # rebuild js/data/menus.generated.js from js/data/menus/*.jso
 npm run artifact   # rebuild build/foodbang.html
 ```
 
-Keyboard: <kbd>D</kbd> theme · <kbd>/</kbd> search · <kbd>Esc</kbd> back · <kbd>R</kbd> reset.
+Keyboard: <kbd>D</kbd> theme · <kbd>/</kbd> search · <kbd>Esc</kbd> back · <kbd>Shift</kbd>+<kbd>R</kbd> reset.
 
 ---
 
@@ -185,16 +186,16 @@ suppress all of it, for a fee.
 
 ```
 index.html               shell — phone frame, status bar, tab bar
-css/tokens.css           67 design tokens; light + dark, three-state theming
+css/tokens.css           the design tokens; light + dark, three-state theming
 css/app.css              component library
 css/screens.css          screen-specific styles
 js/core/                 util · world (the clock) · icons · state · latency · notifs · catalog · fees · scrip · tos · cart
-js/ui/                   shell (router, sheets, toasts) · components · item sheet · 16 screens
+js/ui/                   shell (router, sheets, toasts) · components · item sheet · 15 screens
 js/sim/roster.js         the nine Slingers in your area
 js/sim/standing.js       the loyalty ladder that demotes you
 js/sim/tracker.js        TRACKR™ order simulation, on the wall clock
-js/sim/bodymax.js        BODYMAX™ telemetry — and the 16th screen
-js/sim/missions.js       Slinger Mode — twenty givers, and the 17th and 18th screens
+js/sim/bodymax.js        BODYMAX™ telemetry — and its own screen
+js/sim/missions.js       Slinger Mode — twenty givers, and three more screens
 tools/harness.cjs        loads the whole app headlessly, so npm test can render every screen
 js/data/menus/*.json     one file per restaurant — the source of truth
 js/data/menus.generated.js  bundled by tools/bundle.cjs (validates as it builds)
@@ -205,8 +206,10 @@ build/raw/               2048px source renders, kept for re-encoding
 ```
 
 No framework, no build step, no dependencies. Classic scripts under a `FB` namespace so it runs
-straight from `file://`. `npm test` is fifty-eight checks in one script — the pricing invariants, the
-data, and every screen rendered headlessly against six states at two different hours.
+straight from `file://`. `npm test` is eighty checks in one script — the pricing invariants, the
+data, and every screen rendered headlessly against ten states at two different hours. `npm run test:tz`
+runs it again under three other time zones, which is the only way to believe it; the GitHub Actions
+workflow does both on every push.
 
 The app's own mark — a bag, and a handle, which on this platform is a separate object and is billed
 separately — is drawn in `js/core/icons.js` rather than stored as an image, so it is crisp at every

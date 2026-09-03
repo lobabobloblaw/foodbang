@@ -391,7 +391,7 @@ window.FB = window.FB || {};
       onMount: function (bb, hh) {
         FB.on(bb, 'click', '[data-ok]', function () {
           hh.close();
-          if (continuity) FB.toast('Cancelled. That one was free.');
+          if (continuity) FB.toast('Cancelled. No charge was assessed for this cancellation.');
           FB.nav.refresh();
         });
       },

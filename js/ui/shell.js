@@ -204,7 +204,18 @@ window.FB = window.FB || {};
     dev.dataset.daypart = w.daypart;
   }
 
-  function paint() {
+  /* Everything under the phone's chrome is inert while a dialog is up. The trap
+     below only sees Tab once focus is INSIDE the overlay; from <body> — which is
+     where a repaint of the sheet's own body lands it — Tab walked straight into
+     the app bar, the view and the tab bar behind the scrim, non-dismissible Terms
+     gate included. */
+  function setInert(on) {
+    var s = el('screen');
+    if (!s) return;
+    try { s.inert = !!on; } catch (e) {}
+  }
+
+  function paint(opts) {
     var def = screens[current.name];
     if (!def) { console.warn('no screen', current.name); return; }
 
@@ -236,7 +247,13 @@ window.FB = window.FB || {};
       FB._binds = null;
       mounted = { name: current.name, binds: binds };
     }
-    restoreFocus(refocus);
+    if (refocus) restoreFocus(refocus);
+    /* A navigation replaces the whole view, and focus was left on <body> — a
+       screen-reader user tapping a store card heard nothing and had to walk the
+       document from the top to learn the page had changed. #view is the scroll
+       container and carries tabindex="-1" for exactly this. A refresh() is the same
+       screen repainted, and its focus is handled above. */
+    else if (opts && opts.navigate) { try { viewEl.focus({ preventScroll: true }); } catch (e) {} }
   }
 
   /* ---------- the router owns the session history ----------
@@ -298,7 +315,7 @@ window.FB = window.FB || {};
       /* a new navigation invalidates anything that was ahead of us */
       forward = [];
       FB.overlay.closeAll(true);
-      paint();
+      paint({ navigate: true });
       if (!opts.silent) writeHistory(name, !!opts.replace);
     },
     replace: function (name, params) { nav.go(name, params, { replace: true }); },
@@ -322,7 +339,7 @@ window.FB = window.FB || {};
       var prev = stack.pop();
       forward.push(current);
       current = { name: prev.name, params: prev.params, scroll: prev.scroll, prev: current };
-      paint();
+      paint({ navigate: true });
       return 'screen';
     },
     /* What a popstate MEANS, separated from the listener that receives it: the
@@ -357,7 +374,7 @@ window.FB = window.FB || {};
       if (current) { current.scroll = viewEl.scrollTop; stack.push(current); }
       current = { name: next.name, params: next.params, scroll: next.scroll, prev: current };
       FB.overlay.closeAll(true);
-      paint();
+      paint({ navigate: true });
       return 'screen';
     },
     /* switch a bottom tab: reset the stack to that root */
@@ -366,7 +383,7 @@ window.FB = window.FB || {};
       stack = []; forward = [];
       current = { name: id, params: {}, scroll: 0, prev: current };
       FB.overlay.closeAll(true);
-      paint();
+      paint({ navigate: true });
       /* replace, not push: a tab switch is a new root, and leaving the URL saying
          '#store' while the screen shows Orders is the desync this whole block is about */
       writeHistory(id, true);
@@ -379,6 +396,7 @@ window.FB = window.FB || {};
 
   /* ===================== overlays (sheets + modals) ===================== */
   var overlays = [];
+  var dlgSeq = 0;
 
   function mkOverlay(kind, cfg) {
     var root = el('overlay-root');
@@ -407,6 +425,17 @@ window.FB = window.FB || {};
     }
     ov.innerHTML = '<div class="ov-scrim" data-scrim></div>' + inner;
     root.appendChild(ov);
+    setInert(true);
+    /* A dialog with no title had no accessible name at all — the item sheet, every
+       confirm, the Terms gate — while each rendered a heading it never pointed at. */
+    if (!cfg.title) {
+      var named = ov.querySelector('.sheet, .modal');
+      var hd = named && named.querySelector('h1, h2, h3');
+      if (hd) {
+        if (!hd.id) hd.id = 'dlg-' + (++dlgSeq);
+        named.setAttribute('aria-labelledby', hd.id);
+      }
+    }
 
     var handle = {
       el: ov,
@@ -463,6 +492,8 @@ window.FB = window.FB || {};
     function fin(skipFocus) {
       if (done) return; done = true;
       if (h.el.parentNode) h.el.parentNode.removeChild(h.el);
+      /* before the focus hand-back below, or the element it returns to is inert */
+      if (!overlays.length) setInert(false);
       if (!skipFocus) {
         var back = h.returnFocus;
         if (back && back.isConnected && back.focus) { try { back.focus({ preventScroll: true }); } catch (e) {} }

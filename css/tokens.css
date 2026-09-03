@@ -46,6 +46,18 @@
   --bad:          #C2261A;
   /* the ink to use when --bad is the BACKGROUND rather than the text (.toast--bad) */
   --on-bad:       #FFFFFF;
+  /* The ink painted ON the accent (.btn--primary, .cartpill, the badges). Named under
+     the --fb prefix so tools/rebrand.cjs renames it with the accent; a first draft put
+     the prefix on the wrong side and survived the pass, which --selfcheck reported. Themed
+     with --fb, because Slinger Mode moves --fb onto a light amber in dark theme and
+     white on it measured 1.85:1 — the only buttons that advance a run, unreadable. */
+  --fb-on:        #FFFFFF;
+  /* The accent AS TEXT. --fb on white is 3.73:1, under the 4.5:1 floor set for the
+     badges below; this is the same hue darkened to clear it (5.30:1). Fills stay
+     on --fb; anything that is read goes through this. */
+  --fb-ink:       #D31E07;
+  /* --gold is tuned for the obsidian plate and measures 2.41:1 on white */
+  --gold-ink:     #8A6A18;
   --good-tint:    #E8F6EE;
   --warn-tint:    #FDF2E0;
   --bad-tint:     #FDEBE9;
@@ -98,11 +110,8 @@
   --bar-h: 52px;
 }
 
-/* dark: explicit toggle wins, system default follows prefers */
-:root[data-theme="dark"],
-:root:not([data-theme="light"]) {
-  color-scheme: light;
-}
+/* light is the default; the two dark blocks below override it */
+:root { color-scheme: light; }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -122,6 +131,9 @@
     --warn:      #F0A62B;
     --bad:       #FF6B5E;
     --on-bad:    #2C1210;
+    --fb-on:     #FFFFFF;
+    --fb-ink:    #FF6A55;
+    --gold-ink:  #C8A24A;
     --focus:     #F4F4F7;
     --fb-tint:#2A0F0A;
     --good-tint: #10281B;
@@ -153,6 +165,9 @@
   --warn:      #F0A62B;
   --bad:       #FF6B5E;
   --on-bad:    #2C1210;
+  --fb-on:     #FFFFFF;
+  --fb-ink:    #FF6A55;
+  --gold-ink:  #C8A24A;
   --focus:     #F4F4F7;
   --fb-tint:#2A0F0A;
   --good-tint: #10281B;
@@ -167,10 +182,14 @@
 }
 
 /* accessibility / user setting: reduced motion */
+/* iteration-count too: a .001ms duration on an `infinite` animation (the marquee,
+   the tracker's filling bar) does not stop it, it iterates it a thousand times a
+   second. One instant pass lands each on its final frame. */
 :root[data-motion="off"] *,
 :root[data-motion="off"] *::before,
 :root[data-motion="off"] *::after {
   animation-duration: .001ms !important;
+  animation-iteration-count: 1 !important;
   transition-duration: .001ms !important;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -178,8 +197,19 @@
   :root:not([data-motion="on"]) *::before,
   :root:not([data-motion="on"]) *::after {
     animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: .001ms !important;
   }
+}
+
+/* accessibility: the OS asked for more contrast — secondary ink and hairlines
+   move toward the primary ink; the accent already clears the floor as --fb-ink */
+@media (prefers-contrast: more) {
+  :root { --ink-2: #2E2E36; --ink-3: #46464F; --line: #C9C9D1; --line-strong: #A9A9B4; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink-2: #D6D6DE; --ink-3: #C0C0CA; --line: #4A4A56; --line-strong: #6A6A78; }
+  }
+  :root[data-theme="dark"] { --ink-2: #D6D6DE; --ink-3: #C0C0CA; --line: #4A4A56; --line-strong: #6A6A78; }
 }
 
 /* user setting: text size — one factor, so the ramp keeps its proportions */
@@ -202,6 +232,8 @@
   --fb-deep:  #5E3305;
   --fb-lift:  #D98A2B;
   --fb-sink:  #8C4C08;
+  --fb-on:    #FFFFFF;
+  --fb-ink:   #8C4C08;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) #device[data-mode="sling"] {
@@ -211,6 +243,8 @@
     --fb-deep:  #FFCE86;
     --fb-lift:  #FFC468;
     --fb-sink:  #D98A2B;
+    --fb-on:    #2A1A05;
+    --fb-ink:   #FFAE3B;
   }
 }
 :root[data-theme="dark"] #device[data-mode="sling"] {
@@ -220,6 +254,8 @@
   --fb-deep:  #FFCE86;
   --fb-lift:  #FFC468;
   --fb-sink:  #D98A2B;
+  --fb-on:    #2A1A05;
+  --fb-ink:   #FFAE3B;
 }
 
 /* TRACKR map palette */

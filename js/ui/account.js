@@ -23,7 +23,7 @@ window.FB = window.FB || {};
       h += '<div class="statgrid">' +
         '<div><b>' + st.meta.orderCount + '</b><span>ORDERS</span></div>' +
         '<div><b>' + FB.money(st.meta.lifetimeSpend) + '</b><span>SPENT</span></div>' +
-        '<div><b style="color:var(--fb)">' + FB.money(st.meta.lifetimeFees) + '</b><span>IN FEES</span></div></div>';
+        '<div><b style="color:var(--fb-ink)">' + FB.money(st.meta.lifetimeFees) + '</b><span>IN FEES</span></div></div>';
 
       var sd = st.standing;
       var tier = FB.standing.tier(sd.tier);
@@ -189,7 +189,7 @@ window.FB = window.FB || {};
       h += '<div class="menulist"><h3>ORDERING</h3>' +
         '<div style="padding:12px 16px 4px"><div style="display:flex;justify-content:space-between;align-items:baseline">' +
         '<b style="font:var(--t-body);font-weight:500">Hunger Level</b>' +
-        '<span style="font:700 calc(15px * var(--fs)) var(--mono);color:var(--fb)">' + s.hungerLevel + ' / 10</span></div>' +
+        '<span style="font:700 calc(15px * var(--fs)) var(--mono);color:var(--fb-ink)">' + s.hungerLevel + ' / 10</span></div>' +
         '<input class="slider" type="range" min="1" max="10" value="' + s.hungerLevel + '" data-hunger aria-label="Hunger Level" style="margin-top:12px">' +
         '<div style="font:var(--t-cap);color:var(--ink-3);margin-top:8px;line-height:1.45">' +
         FB.esc(hungerCopy(s.hungerLevel)) + '</div></div>' +
@@ -289,13 +289,14 @@ window.FB = window.FB || {};
   }
   function seg(key, cur, opts) {
     return '<div class="segmented">' + opts.map(function (o) {
-      return '<button data-seg="' + key + '" data-v="' + o[0] + '" aria-pressed="' + (cur === o[0]) + '">' + o[1] + '</button>';
+      return '<button data-seg="' + key + '" data-v="' + FB.attr(o[0]) + '" aria-pressed="' + (cur === o[0]) + '">' + FB.esc(o[1]) + '</button>';
     }).join('') + '</div>';
   }
   function sw(key, on, title, sub) {
     return '<button class="switchrow" data-sw="' + key + '" role="switch" aria-checked="' + !!on + '">' +
-      '<span class="sr-b"><b>' + FB.esc(title) + '</b><span>' + sub + '</span></span>' +
-      '<span class="switch" aria-checked="' + !!on + '"></span></button>';
+      '<span class="sr-b"><b>' + FB.esc(title) + '</b><span>' + FB.esc(sub) + '</span></span>' +
+      /* the state lives on the button's role="switch"; this span only draws it */
+      '<span class="switch" aria-checked="' + !!on + '" aria-hidden="true"></span></button>';
   }
 
   /* ===================== addresses ===================== */
@@ -379,7 +380,7 @@ window.FB = window.FB || {};
     /* a real <label for>, not a floating span: without it every input in the app
        is announced as "edit text, blank" */
     var id = 'f-' + key + '-' + FB.uid('');
-    return '<div class="field"><label class="lbl" for="' + id + '">' + label + '</label>' +
+    return '<div class="field"><label class="lbl" for="' + id + '">' + FB.esc(label) + '</label>' +
       '<input class="input" id="' + id + '" data-f="' + key + '" value="' + FB.attr(val || '') + '" placeholder="' + FB.attr(ph || '') + '"></div>';
   }
 
@@ -615,8 +616,8 @@ window.FB = window.FB || {};
         '<p><b style="color:var(--ink)">This application is a work of satire.</b> FoodBang™, every restaurant in it, every menu item, ' +
         'every price, every fee and every modifier are fictional and were invented for parody. The brands depicted are ' +
         'exaggerated inventions and are not affiliated with, endorsed by, or representative of any real company.</p>' +
-        '<p>No orders are placed. No payments are processed. No network requests are made. Everything you do here is stored ' +
-        'in this browser\'s local storage and is erased when you reset it.</p>' +
+        '<p>No orders are placed. No payments are processed. The only network request this page makes is for its ' +
+        'typeface. Everything you do here is stored in this browser\'s local storage and is erased when you reset it.</p>' +
         '<p style="color:var(--ink-3)">The remainder of this document is part of the parody.</p>' +
         '<p><b style="color:var(--ink)">Arbitration.</b> By reading this sentence you have agreed to resolve all disputes through a process ' +
         'we will describe later. You have waived the right to be told what it is.</p>' +

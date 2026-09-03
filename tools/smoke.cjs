@@ -5573,6 +5573,65 @@ check('the intake ledger never shrinks, and a withdrawn monitor is discharged ou
   } finally { app.clock.restore(); app.dispose(); }
 });
 
+
+check('a failed Add to cart does not rebind the item sheet, and a dialog makes the app behind it inert', () => {
+  /* commit() rebuilt the sheet body with innerHTML and then called wire() on the
+     same node again, so after one refused Add every [data-opt] tap ran twice: a
+     checkbox pushed and spliced in one tap, an optional radio selected and cleared.
+     Counted at the listener, where it happened. */
+  const app = harness.loadApp();
+  try {
+    const { FB } = app;
+    const store = FB.catalog.all().find((s) => s.menu.some((sec) => sec.items.some((it) => FB.catalog.available(it) && (it.groups || []).some((g) => g.required))));
+    const item = store.menu.flatMap((sec) => sec.items).find((it) => FB.catalog.available(it) && (it.groups || []).some((g) => g.required));
+    const bound = [];
+    const el = (tag) => ({ tagName: tag || 'DIV', dataset: {}, innerHTML: '', value: '', scrollTop: 0, addEventListener() {}, removeEventListener() {},
+      querySelector() { return el(); }, querySelectorAll: () => [], contains: () => true, setAttribute() {}, hasAttribute: () => false,
+      getAttribute: () => null, scrollIntoView() {}, focus() {}, classList: { add() {}, remove() {}, toggle() {}, contains: () => false } });
+    const body = Object.assign(el(), { addEventListener: (t, h) => bound.push({ t, h }) });
+    const foot = Object.assign(el(), { addEventListener: (t, h) => bound.push({ t, h, foot: true }) });
+    let cfg = null;
+    const realSheet = FB.sheet.open, realBusy = FB.busy, realValidate = FB.catalog.validate;
+    try {
+      FB.sheet.open = (c) => { cfg = c; return { close() {} }; };
+      FB.busy = (t, kind, fn) => fn();
+      FB.openItem(store.slug, item.id);
+      if (!cfg) throw new Error('the item sheet did not open');
+      const handle = { body: body, el: { querySelector: (sel) => sel === '.sheet-foot' ? foot : el() }, setFooter() {}, close() {} };
+      cfg.onMount(body, handle);
+      const before = bound.filter((b) => !b.foot).length;
+      if (before < 2) throw new Error('the sheet body bound ' + before + ' listeners on mount');
+      /* refuse the Add, twice */
+      let refused = 0;
+      FB.catalog.validate = () => { refused++; return [{ name: 'Probe group' }]; };
+      /* every footer click handler is offered a target that only answers to
+         [data-add] — the stepper's handler is bound first and must not be mistaken
+         for the one under test */
+      const clicks = bound.filter((b) => b.foot && b.t === 'click');
+      if (!clicks.length) throw new Error('the footer has no click handler');
+      const btn = Object.assign(el('BUTTON'), { dataset: { add: '' } });
+      for (let i = 0; i < 2; i++) {
+        for (const c of clicks) c.h({ target: { closest: (sel) => sel === '[data-add]' ? btn : null }, preventDefault() {} }, btn);
+      }
+      if (refused !== 2) throw new Error('the Add was refused ' + refused + ' times, not 2 — commit() never ran');
+      const after = bound.filter((b) => !b.foot).length;
+      if (after !== before) throw new Error('two refused Adds grew the body from ' + before + ' to ' + after + ' listeners');
+    } finally { FB.sheet.open = realSheet; FB.busy = realBusy; FB.catalog.validate = realValidate; }
+
+    /* and while any dialog is up, the screen under it is inert; when the last
+       closes, it is not */
+    const screen = app.doc.getElementById('screen');
+    FB.sheet.open({ title: 'One' });
+    if (screen.inert !== true) throw new Error('a sheet did not make the screen inert');
+    FB.modal.open({ html: '<h2>Two</h2>' });
+    FB.overlay.close();
+    if (screen.inert !== true) throw new Error('closing the top dialog un-inerted the screen under the one still open');
+    FB.overlay.closeAll(true);
+    if (screen.inert !== false) throw new Error('the screen stayed inert after the last dialog closed');
+    return 'body listeners ' + bound.filter((b) => !b.foot).length + ' before and after two refusals; inert follows the dialog stack';
+  } finally { app.dispose(); }
+});
+
 console.log('');
 if (failed) { console.log(failed + ' of ' + ran + ' check(s) failed'); process.exit(1); }
 console.log('all ' + ran + ' checks passed');

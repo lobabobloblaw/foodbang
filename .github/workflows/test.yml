@@ -1,0 +1,27 @@
+# The suite has to be run under a second time zone before it is believed — scarcity
+# samples the world at a LOCAL 7 PM, and fixtures that were green in Los Angeles
+# went red in Berlin, Tokyo and Honolulu. CLAUDE.md said to do this by hand; now
+# every push does it. `git diff --exit-code` on the bundle is the forgotten
+# `npm run bundle`, caught before Pages deploys it from main.
+name: test
+on:
+  push:
+  pull_request:
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        tz: [America/Los_Angeles, Europe/Berlin, Asia/Tokyo, Pacific/Honolulu]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/bundle.cjs
+      - run: git diff --exit-code --stat js/data/menus.generated.js
+      - run: node tools/rebrand.cjs --selfcheck
+      - run: node tools/smoke.cjs
+        env:
+          TZ: ${{ matrix.tz }}

@@ -158,7 +158,7 @@ window.FB = window.FB || {};
         '<span class="crow-r">' + FB.icon('fwd', 14) + '</span></button>';
       h += '<button class="switchrow" data-express role="switch" aria-checked="' + co.express + '">' +
         '<span class="sr-b"><b>Express Bang™ · ' + FB.money(5.99) + '</b><span>Places your order ahead of other orders, which are then placed ahead of yours. Reduces arrival by up to 1 minute.</span></span>' +
-        '<span class="switch" aria-checked="' + co.express + '"></span></button>';
+        '<span class="switch" aria-checked="' + co.express + '" aria-hidden="true"></span></button>';
       h += '</div>';
 
       /* payment + promo */
@@ -338,10 +338,10 @@ window.FB = window.FB || {};
         ];
         FB.sheet.open({
           title: 'Dropoff instructions',
-          html: OPTS.map(function (o) {
+          html: '<div role="radiogroup" aria-label="Dropoff">' + OPTS.map(function (o) {
             return '<button class="opt" role="radio" aria-checked="' + (a.dropoff === o.id) + '" data-drop="' + o.id + '">' +
-              '<span class="mark"></span><span class="opt-b"><b>' + o.name + '</b><span>' + o.note + '</span></span></button>';
-          }).join('') +
+              '<span class="mark"></span><span class="opt-b"><b>' + FB.esc(o.name) + '</b><span>' + FB.esc(o.note) + '</span></span></button>';
+          }).join('') + '</div>' +
           '<div class="field" style="padding-top:14px"><label class="lbl" for="f-note">Note for your Slinger</label>' +
           '<textarea class="textarea" id="f-note" data-ins placeholder="Gate code, floor, warnings…">' + FB.esc(a.instructions || '') + '</textarea></div>',
           footer: '<button class="btn btn--primary btn--block" data-save>Save</button>',

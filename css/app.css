@@ -33,7 +33,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (forced-colors: active) {
   :focus-visible { outline: 3px solid Highlight; outline-offset: 2px; }
 }
-::selection { background: var(--fb); color: #fff; }
+::selection { background: var(--fb); color: var(--fb-on); }
 
 /* ---------- desktop staging ---------------------------------- */
 #bezel {
@@ -45,7 +45,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
     var(--stage);
 }
 #device {
-  position: relative; width: 402px; height: min(874px, calc(100dvh - 48px)); min-height: 620px; flex: none;
+  /* the floor yields to the viewport: a fixed 620px inside a centred, overflow-hidden
+     stage clipped the status bar AND the tab bar off any window shorter than 668px
+     that was too wide for the mobile layout — a laptop with devtools docked */
+  position: relative; width: 402px; height: min(874px, calc(100dvh - 48px)); min-height: min(620px, calc(100dvh - 48px)); flex: none;
   background: var(--bg); border-radius: 54px;
   box-shadow:
     0 0 0 11px #17171B, 0 0 0 13px #34343C, 0 0 0 14px #0C0C0F,
@@ -105,6 +108,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   -webkit-overflow-scrolling: touch; scrollbar-width: none;
   padding-bottom: 18px;
 }
+/* the cart pill floats over the bottom of #view; without this the last sixty
+   pixels of every screen — a store's fineprint, the feed's disclaimer — sat
+   underneath it and could not be scrolled out */
+#screen:has(#cartbar:not(:empty)) #view { padding-bottom: 84px; }
 #view::-webkit-scrollbar { width: 0; height: 0; }
 
 /* ---------- brand mark ---------------------------------------- */
@@ -183,7 +190,6 @@ kbd {
 }
 .bar--border { border-bottom: 1px solid var(--line); }
 .bar h1 { font: var(--t-title); margin: 0; letter-spacing: -.4px; flex: 1; }
-.bar .bar-sub { font: var(--t-cap); color: var(--ink-3); }
 
 .iconbtn {
   position: relative;   /* the notification dot is absolutely placed inside the bell */
@@ -194,13 +200,15 @@ kbd {
 .iconbtn:active { transform: scale(.9); background: var(--surface-3); }
 .iconbtn svg { width: 20px; height: 20px; }
 .iconbtn--glass { background: rgba(20,20,24,.52); color: #fff; backdrop-filter: blur(14px) saturate(1.5); }
-.iconbtn--plain { background: transparent; }
 .iconbtn[data-badge]::after {
   content: attr(data-badge); position: absolute; transform: translate(13px,-13px);
   min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px;
-  background: var(--fb); color: #fff; font: var(--t-micro); display: grid; place-items: center;
+  background: var(--fb); color: var(--fb-on); font: var(--t-micro); display: grid; place-items: center;
   box-shadow: 0 0 0 2px var(--bg);
 }
+/* 38px control, 44px target: grown underneath, so nothing reflows. ::before,
+   because ::after is the badge above. */
+.iconbtn::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; }
 
 /* address selector — the home app bar */
 .addrbar { display: flex; align-items: center; gap: 8px; padding: 2px var(--pad) 10px; }
@@ -232,7 +240,7 @@ kbd {
 .tab .dot {
   position: absolute; top: 7px; left: 50%; margin-left: 5px;
   min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--fb);
-  color: #fff; font: var(--t-micro); display: grid; place-items: center;
+  color: var(--fb-on); font: var(--t-micro); display: grid; place-items: center;
   box-shadow: 0 0 0 2px var(--bg); animation: pop var(--mid) var(--sp);
 }
 @keyframes pop { from { transform: scale(.3); opacity: 0; } }
@@ -244,7 +252,7 @@ kbd {
 #cartbar:empty { display: none; }
 .cartpill {
   pointer-events: auto; width: 100%; display: flex; align-items: center; gap: 10px;
-  background: var(--fb); color: #fff; border-radius: var(--r-pill);
+  background: var(--fb); color: var(--fb-on); border-radius: var(--r-pill);
   padding: 12px 14px 12px 12px; box-shadow: 0 10px 28px -8px rgba(255,45,20,.75), var(--e2);
   animation: rise var(--slow) var(--sp);
   transition: transform var(--fast) var(--sp);
@@ -272,7 +280,7 @@ kbd {
 .btn:active { transform: scale(.965); }
 .btn[disabled] { opacity: .42; pointer-events: none; }
 .btn svg { width: 18px; height: 18px; }
-.btn--primary { background: var(--fb); color: #fff; box-shadow: 0 6px 18px -8px rgba(255,45,20,.9); }
+.btn--primary { background: var(--fb); color: var(--fb-on); box-shadow: 0 6px 18px -8px rgba(255,45,20,.9); }
 .btn--primary:active { background: var(--fb-press); }
 .btn--dark { background: var(--ink); color: var(--bg); }
 .btn--ghost { background: transparent; border: 1.5px solid var(--line-strong); }
@@ -282,7 +290,7 @@ kbd {
 .btn--lg { height: 54px; font-size: calc(16.5px * var(--fs)); }
 .btn--split { justify-content: space-between; }
 
-.linkbtn { color: var(--fb); font: 600 calc(14px * var(--fs)) var(--font); }
+.linkbtn { color: var(--fb-ink); font: 600 calc(14px * var(--fs)) var(--font); }
 .linkbtn:active { opacity: .6; }
 
 /* ===========================================================
@@ -294,7 +302,6 @@ kbd {
 }
 .rail::-webkit-scrollbar { display: none; }
 .rail > * { scroll-snap-align: start; }
-.rail--bleed { margin: 0 calc(var(--pad) * -1); padding: 0 var(--pad) 2px; }
 
 .chip {
   flex: none; display: inline-flex; align-items: center; gap: 6px; height: 34px;
@@ -306,7 +313,6 @@ kbd {
 .chip svg { width: 15px; height: 15px; }
 .chip[aria-pressed="true"], .chip.is-on { background: var(--ink); color: var(--bg); }
 .chip--outline { background: transparent; border-color: var(--line-strong); }
-.chip--count::after { content: attr(data-count); font-size: calc(11px * var(--fs)); opacity: .7; }
 
 /* category tiles (home) */
 .cats { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding: 4px var(--pad) 10px; }
@@ -325,7 +331,7 @@ kbd {
 /* the photographic tile sits over the emoji, which stays as its fallback */
 .cat i img, .catchip img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .cat[aria-pressed="true"] i { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--fb); }
-.cat[aria-pressed="true"] { color: var(--fb); }
+.cat[aria-pressed="true"] { color: var(--fb-ink); }
 .catchip {
   width: 30px; height: 30px; border-radius: 10px; flex: none; margin-right: 9px;
   display: grid; place-items: center; position: relative; overflow: hidden;
@@ -405,7 +411,7 @@ kbd {
 .sc-title h3 { font: var(--t-head); margin: 0; letter-spacing: -.25px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sc-meta { display: flex; align-items: center; gap: 6px; margin-top: 3px; color: var(--ink-2); font: var(--t-sub); flex-wrap: wrap; }
 .sc-meta .dot-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-3); }
-.sc-promo { margin-top: 5px; color: var(--fb); font: 600 calc(13px * var(--fs)) var(--font); display: flex; align-items: center; gap: 5px; }
+.sc-promo { margin-top: 5px; color: var(--fb-ink); font: 600 calc(13px * var(--fs)) var(--font); display: flex; align-items: center; gap: 5px; }
 
 .hcards { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; padding: 0 var(--pad) 6px; scroll-snap-type: x mandatory; }
 .hcards::-webkit-scrollbar { display: none; }
@@ -434,13 +440,11 @@ kbd {
 }
 .badge svg { width: 11px; height: 11px; }
 .badge--plus { background: var(--plus); color: var(--bg); }
-.badge--promo { background: var(--fb-tint); color: var(--fb); }
-.badge--hot { background: var(--fb); color: #fff; }
+.badge--promo { background: var(--fb-tint); color: var(--fb-ink); }
 .badge--good { background: var(--good-tint); color: var(--good); }
 .badge--warn { background: var(--warn-tint); color: var(--warn); }
 .badge--bad { background: var(--bad-tint); color: var(--bad); }
 .badge--glass { background: rgba(16,16,20,.6); color: #fff; backdrop-filter: blur(10px); }
-.badge--outline { background: transparent; box-shadow: inset 0 0 0 1px var(--line-strong); }
 
 .stars { display: inline-flex; align-items: center; gap: 3px; font: 600 calc(13.5px * var(--fs)) var(--font); }
 .stars svg { width: 13px; height: 13px; color: var(--ink); }
@@ -536,6 +540,7 @@ kbd {
   padding: 0 40px 0 42px; font: var(--t-body); color: var(--ink-3); text-align: left;
 }
 .searchbox .sb-clear { position: absolute; right: 26px; top: 11px; width: 20px; height: 20px; border-radius: 50%; background: var(--ink-3); color: var(--bg); display: grid; place-items: center; }
+.searchbox .sb-clear::after { content: ''; position: absolute; inset: -12px; }
 .searchbox .sb-clear svg { position: static; width: 11px; height: 11px; color: inherit; }
 
 /* option rows (radios / checks) */
@@ -550,7 +555,7 @@ kbd {
 .opt-b span { display: block; font: var(--t-cap); color: var(--ink-3); margin-top: 2px; line-height: 1.35; }
 .opt-p { font: 600 calc(14px * var(--fs)) var(--font); color: var(--ink-2); flex: none; }
 .opt-p.free { color: var(--good); }
-.opt-p.big { color: var(--fb); }
+.opt-p.big { color: var(--fb-ink); }
 .mark {
   width: 22px; height: 22px; border-radius: 50%; border: 1.8px solid var(--line-strong);
   flex: none; display: grid; place-items: center; transition: all var(--fast) var(--sp);
@@ -584,7 +589,9 @@ kbd {
 
 /* stepper */
 .stepper { display: inline-flex; align-items: center; gap: 2px; background: var(--surface-2); border-radius: var(--r-pill); padding: 4px; }
-.stepper button { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--bg); box-shadow: var(--e1); transition: transform var(--fast) var(--sp); }
+.stepper button { position: relative; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--bg); box-shadow: var(--e1); transition: transform var(--fast) var(--sp); }
+/* the most-tapped buttons in the app, at 32px; the target is 44px underneath */
+.stepper button::after { content: ''; position: absolute; inset: -6px; border-radius: 50%; }
 .stepper button:active { transform: scale(.85); }
 .stepper button[disabled] { opacity: .35; pointer-events: none; box-shadow: none; }
 .stepper svg { width: 15px; height: 15px; }
@@ -613,20 +620,21 @@ kbd {
    receipt row reflows; the tappable area is grown to 24x24 underneath it. */
 .rl-l .why::after { content: ''; position: absolute; inset: -4.5px; border-radius: 50%; }
 .rl-r { font-variant-numeric: tabular-nums; font-weight: 500; flex: none; }
-.rl--strike .rl-r { text-decoration: line-through; color: var(--ink-3); }
 .rl--free .rl-r { color: var(--good); font-weight: 700; }
 .rl--total { border-top: 1px solid var(--line); margin-top: 6px; padding-top: 12px; font: var(--t-head); }
 .rl--total .rl-l { color: var(--ink); }
 .rl--total .rl-r { font: 700 calc(19px * var(--fs)) var(--display); }
 .rl-note { font: var(--t-cap); color: var(--ink-3); padding: 0 0 8px; margin-top: -4px; line-height: 1.4; }
 
+/* the delivery photograph in place of the logo on an order row */
+.or-shot { object-fit: cover; border-radius: 10px; }
+
 /* the pay statement — the receipt's rows, grouped. `display: block` because these
    carry no block children today but a <span> styled as a box is how the app-bar
    address line and the promo cards both broke. */
-.or-shot { object-fit: cover; border-radius: 10px; }
 .stmt-hd { display: block; font: var(--t-micro); letter-spacing: .14em; text-transform: uppercase;
   color: var(--ink-3); border-top: 1px solid var(--line); margin-top: 10px; padding: 10px 0 6px; }
-.stmt .rl:first-child .rl-r { color: var(--fb); }
+.stmt .rl:first-child .rl-r { color: var(--fb-ink); }
 
 /* ===========================================================
    Misc
@@ -638,9 +646,6 @@ kbd {
 .empty img { width: 130px; margin: 0 auto 18px; opacity: .9; border-radius: 20px; }
 .empty h3 { font: var(--t-title); margin: 0 0 6px; }
 .empty p { color: var(--ink-2); font: var(--t-body); margin: 0 0 20px; }
-
-.skel { background: linear-gradient(100deg, var(--surface-2) 30%, var(--surface-3) 50%, var(--surface-2) 70%); background-size: 240% 100%; animation: shim 1.25s infinite linear; border-radius: var(--r-sm); }
-@keyframes shim { to { background-position: -140% 0; } }
 
 .fineprint { padding: 18px var(--pad) 30px; color: var(--ink-3); font: 400 calc(11px * var(--fs))/1.55 var(--font); }
 .fineprint b { color: var(--ink-2); }
@@ -675,7 +680,7 @@ kbd {
 .callout--warn { background: var(--warn-tint); color: var(--warn); }
 .callout--plus { background: var(--plus); color: var(--bg); }
 
-.marquee { overflow: hidden; background: var(--fb); color: #fff; }
+.marquee { overflow: hidden; background: var(--fb); color: var(--fb-on); }
 .marquee div { display: inline-flex; gap: 34px; white-space: nowrap; padding: 6px 0; font: var(--t-micro); letter-spacing: .1em; animation: slide 26s linear infinite; }
 @keyframes slide { to { transform: translateX(-50%); } }
 
@@ -684,7 +689,6 @@ kbd {
 .tabnums { font-variant-numeric: tabular-nums; }
 .trunc2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .trunc1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.vhide { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
 .sc-meta--1 { flex-wrap: nowrap; overflow: hidden; }
 .sc-meta--1 > span { flex: 0 0 auto; }

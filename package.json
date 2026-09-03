@@ -2,7 +2,7 @@
   "name": "foodbang",
   "version": "1.0.0",
   "private": true,
-  "description": "FoodBang\u2122 \u2014 a satirical, entirely fictional clone of a modern food-delivery app",
+  "description": "FoodBang™ — a satirical, entirely fictional clone of a modern food-delivery app",
   "type": "module",
   "scripts": {
     "start": "node tools/serve.mjs 8899",
@@ -10,6 +10,9 @@
     "bundle": "node tools/bundle.cjs",
     "artifact": "node tools/bundle.cjs && node tools/build-artifact.cjs",
     "test": "node tools/smoke.cjs",
-    "check": "node tools/bundle.cjs && node tools/smoke.cjs"
+    "test:tz": "TZ=Asia/Tokyo node tools/smoke.cjs && TZ=Pacific/Honolulu node tools/smoke.cjs && TZ=Europe/Berlin node tools/smoke.cjs",
+    "selfcheck": "node tools/rebrand.cjs --selfcheck",
+    "check": "node tools/bundle.cjs && node tools/smoke.cjs",
+    "ci": "node tools/bundle.cjs && git diff --exit-code --stat js/data/menus.generated.js && node tools/rebrand.cjs --selfcheck && node tools/smoke.cjs"
   }
 }

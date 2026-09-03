@@ -202,8 +202,18 @@ window.FB = window.FB || {};
     var s = ['th', 'st', 'nd', 'rd'], v = n % 100;
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
   };
+  /* The scroll behaviour a caller may use. The reduced-motion rules in tokens.css
+     neutralise animations and transitions and cannot reach a programmatic smooth
+     scroll, so five call sites animated anyway — one of them from inside a scroll
+     handler. Same predicate the splash uses. */
+  FB.smooth = function () {
+    if (document.documentElement.dataset.motion === 'off') return 'auto';
+    if (document.documentElement.dataset.motion !== 'on' &&
+        window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return 'auto';
+    return 'smooth';
+  };
   FB.scrollTop = function (smooth) {
     var v = document.getElementById('view');
-    if (v) v.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+    if (v) v.scrollTo({ top: 0, behavior: smooth ? FB.smooth() : 'auto' });
   };
 })(window.FB);
